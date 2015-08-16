@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : D:\Projects\OtS DAQ\OtS Ethernet MAC firmware\dig_gec_\dig_gec_\ethernet_controller\compile\DIG_GEC.vhd
--- Generated   : Thu Apr 30 16:00:38 2015
--- From        : D:/Projects/OtS DAQ/OtS Ethernet MAC firmware/dig_gec_/dig_gec_/ethernet_controller/src/DIG_GEC.bde
+-- File        : D:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\DIG_GEC.vhd
+-- Generated   : Sun Aug 16 10:22:18 2015
+-- From        : D:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/DIG_GEC.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -81,17 +81,6 @@ component icmp_ping_checksum_calc
        reset : in STD_LOGIC;
        trigger : in STD_LOGIC;
        resp_chk_sum : out STD_LOGIC_VECTOR(15 downto 0)
-  );
-end component;
-component RX_IN_LATCH
-  port (
-       clk : in STD_LOGIC;
-       d : in STD_LOGIC_VECTOR(7 downto 0);
-       dv : in STD_LOGIC;
-       er : in STD_LOGIC;
-       do : out STD_LOGIC_VECTOR(7 downto 0);
-       dvo : out STD_LOGIC;
-       ero : out STD_LOGIC
   );
 end component;
 component user_addrs_mux
@@ -474,17 +463,6 @@ ICMPPingShiftRegBlock : ICMPPingShiftReg
        us_clken => decipher_clken
   );
 
-RxInLatch : RX_IN_LATCH
-  port map(
-       clk => clk,
-       d => GMII_RXD,
-       do => rxd,
-       dv => GMII_RX_DV,
-       dvo => rx_dv,
-       er => GMII_RX_ER,
-       ero => rx_er
-  );
-
 trigger_sig <= trigger or capture_addrs or is_icmp_packet_sig;
 
 crc_chk_rd_sig <= is_ip_packet_sig and dec_chk_rd_sig;
@@ -521,7 +499,10 @@ UdpLengthMux : user_addrs_mux
 ---- Terminal assignment ----
 
     -- Inputs terminals
+	rxd <= GMII_RXD;
 	clk <= GMII_RX_CLK;
+	rx_dv <= GMII_RX_DV;
+	rx_er <= GMII_RX_ER;
 	addrs_sig <= user_addrs;
 
     -- Output\buffer terminals
