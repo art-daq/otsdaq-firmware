@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : d:\Projects\OtS DAQ\OtS Ethernet MAC firmware\dig_gec_\dig_gec_\ethernet_controller\compile\ip_checksum_calc.vhd
--- Generated   : 04/20/15 12:04:26
--- From        : d:/Projects/OtS DAQ/OtS Ethernet MAC firmware/dig_gec_/dig_gec_/ethernet_controller/src/ip_checksum_calc.asf
+-- File        : D:\Projects\OtS DAQ\PicoZed\ActiveHDL_proj\ethernet_controller\compile\ip_checksum_calc.vhd
+-- Generated   : 08/14/15 14:29:58
+-- From        : D:/Projects/OtS DAQ/PicoZed/ActiveHDL_proj/ethernet_controller/src/ip_checksum_calc.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------

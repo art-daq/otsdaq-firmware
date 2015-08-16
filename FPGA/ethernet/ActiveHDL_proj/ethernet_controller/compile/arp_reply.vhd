@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : d:\Projects\OtS DAQ\OtS Ethernet MAC firmware\dig_gec_\dig_gec_\ethernet_controller\compile\arp_reply.vhd
--- Generated   : 04/27/15 17:15:49
--- From        : d:/Projects/OtS DAQ/OtS Ethernet MAC firmware/dig_gec_/dig_gec_/ethernet_controller/src/arp_reply.asf
+-- File        : D:\Projects\OtS DAQ\PicoZed\ActiveHDL_proj\ethernet_controller\compile\arp_reply.vhd
+-- Generated   : 08/14/15 14:30:07
+-- From        : D:/Projects/OtS DAQ/PicoZed/ActiveHDL_proj/ethernet_controller/src/arp_reply.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------

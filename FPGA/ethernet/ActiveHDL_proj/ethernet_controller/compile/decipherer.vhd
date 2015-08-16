@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : D:\Projects\OtS DAQ\OtS Ethernet MAC firmware\dig_gec_\dig_gec_\ethernet_controller\compile\decipherer.vhd
--- Generated   : 05/01/15 11:54:15
--- From        : D:/Projects/OtS DAQ/OtS Ethernet MAC firmware/dig_gec_/dig_gec_/ethernet_controller/src/decipherer.asf
+-- File        : D:\Projects\OtS DAQ\PicoZed\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd
+-- Generated   : 08/14/15 14:30:01
+-- From        : D:/Projects/OtS DAQ/PicoZed/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------

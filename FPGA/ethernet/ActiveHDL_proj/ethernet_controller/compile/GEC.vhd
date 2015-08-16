@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : D:\Projects\OtS DAQ\OtS Ethernet MAC firmware\dig_gec_\dig_gec_\ethernet_controller\compile\GEC.vhd
--- Generated   : Thu Apr 30 16:03:44 2015
--- From        : D:/Projects/OtS DAQ/OtS Ethernet MAC firmware/dig_gec_/dig_gec_/ethernet_controller/src/GEC.bde
+-- File        : D:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC.vhd
+-- Generated   : Fri Aug 14 15:57:54 2015
+-- From        : D:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -135,6 +135,25 @@ component DIG_GEC
        user_rx_valid_out : out STD_LOGIC
   );
 end component;
+component rgmii_handler
+  port (
+       clk : in STD_LOGIC;
+       reset : in STD_LOGIC;
+       rx_data : in STD_LOGIC_VECTOR(7 downto 0);
+       rx_dv : in STD_LOGIC;
+       rx_er : in STD_LOGIC;
+       tx_data : in STD_LOGIC_VECTOR(7 downto 0);
+       tx_dv : in STD_LOGIC;
+       tx_er : in STD_LOGIC;
+       is_rgmii : out STD_LOGIC;
+       rx_data_handled : out STD_LOGIC_VECTOR(7 downto 0);
+       rx_dv_handled : out STD_LOGIC;
+       rx_er_handled : out STD_LOGIC;
+       tx_data_handled : out STD_LOGIC_VECTOR(7 downto 0);
+       tx_dv_handled : out STD_LOGIC;
+       tx_er_handled : out STD_LOGIC
+  );
+end component;
 
 ---- Signal declarations used on the diagram ----
 
@@ -148,11 +167,17 @@ signal crc_gen_rd : STD_LOGIC;
 signal crc_gen_rd_masked : STD_LOGIC;
 signal crc_mask : STD_LOGIC;
 signal four_bit_mode : STD_LOGIC;
+signal rx_dv_handled : STD_LOGIC;
+signal rx_er_handled : STD_LOGIC;
 signal tx_dv : STD_LOGIC;
+signal tx_dv_out : STD_LOGIC;
 signal tx_er : STD_LOGIC;
+signal tx_er_out : STD_LOGIC;
 signal crc_chk_din : STD_LOGIC_VECTOR(7 downto 0);
 signal crc_gen_out : STD_LOGIC_VECTOR(7 downto 0);
+signal rx_data_handled : STD_LOGIC_VECTOR(7 downto 0);
 signal txd : STD_LOGIC_VECTOR(7 downto 0);
+signal txd_out : STD_LOGIC_VECTOR(7 downto 0);
 
 begin
 
@@ -161,10 +186,10 @@ begin
 DIG_GEC_Block : DIG_GEC
   port map(
        GMII_GTX_CLK => GTX_CLK,
-       GMII_RXD => GMII_RXD,
+       GMII_RXD => rx_data_handled,
        GMII_RX_CLK => GMII_RX_CLK,
-       GMII_RX_DV => GMII_RX_DV,
-       GMII_RX_ER => GMII_RX_ER,
+       GMII_RX_DV => rx_dv_handled,
+       GMII_RX_ER => rx_er_handled,
        GMII_TXD => txd,
        GMII_TX_EN => tx_dv,
        GMII_TX_ER => tx_er,
@@ -194,6 +219,24 @@ DIG_GEC_Block : DIG_GEC
        user_rx_valid_out => user_rx_valid_out,
        user_tx_data_in => user_tx_data_in,
        user_tx_size_in => user_tx_size_in
+  );
+
+RGMII_Block : rgmii_handler
+  port map(
+       clk => GMII_RX_CLK,
+       reset => reset,
+       rx_data => GMII_RXD,
+       rx_data_handled => rx_data_handled,
+       rx_dv => GMII_RX_DV,
+       rx_dv_handled => rx_dv_handled,
+       rx_er => GMII_RX_ER,
+       rx_er_handled => rx_er_handled,
+       tx_data => txd_out,
+       tx_data_handled => GMII_TXD,
+       tx_dv => tx_dv_out,
+       tx_dv_handled => GMII_TX_EN,
+       tx_er => tx_er_out,
+       tx_er_handled => GMII_TX_ER
   );
 
 crc_gen_en_masked <= crc_gen_en and crc_mask;
@@ -230,11 +273,11 @@ crcSplice : CRC_splice
        data => txd,
        four_bit_mode => four_bit_mode,
        rd => crc_gen_rd,
-       tx_en => GMII_TX_EN,
+       tx_en => tx_dv_out,
        tx_en_in => tx_dv,
-       tx_er => GMII_TX_ER,
+       tx_er => tx_er_out,
        tx_er_in => tx_er,
-       txd => GMII_TXD
+       txd => txd_out
   );
 
 
