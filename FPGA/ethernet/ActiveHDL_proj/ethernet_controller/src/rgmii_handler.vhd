@@ -26,7 +26,8 @@ entity rgmii_handler is
 		clk : in std_logic;	 	  
 		reset : in std_logic;	 	  	
 		
-		is_rgmii : out std_logic; 
+		is_rgmii : out std_logic;  
+		locked : out std_logic; 
 		
 		rx_dv : in std_logic;	  
 		rx_er : in std_logic;	  					  
@@ -52,7 +53,10 @@ architecture arch of rgmii_handler is
 	
 	signal is_rgmii_sig : std_logic := '0';	  
 	signal is_rgmii_sig_old : std_logic;	 
-	signal is_rgmii_cnt : std_logic := '0';	   	
+	signal is_rgmii_cnt : std_logic := '0';	   	  
+	signal lose_lock : std_logic := '0';	   	 
+	signal is_passthru_sig : std_logic := '0';	    
+	signal is_passthru_cnt : std_logic := '0';	   	
 	
 	
 	signal rx_dest_loc : unsigned(0 downto 0) := "0";	
@@ -63,11 +67,13 @@ architecture arch of rgmii_handler is
 	
 	type byteShiftData is array(1 downto 0) of std_logic_vector(7 downto 0);	 
 	signal tx_data_shift : byteShiftData;		
-	signal rx_data_gmii_shift : byteShiftData;	
+	signal rx_data_passthru_shift : byteShiftData;	
 													   	
 	signal rx_dv_shift : std_logic_vector(1 downto 0);		
 	signal tx_dv_shift : std_logic_vector(1 downto 0);	
 												
+    signal rx_rgmii_data : std_logic_vector(7 downto 0);    
+    signal rx_passthru_data : std_logic_vector(7 downto 0);    
 
 	signal rx_dv_falling : std_logic;		
 	
@@ -78,8 +84,11 @@ architecture arch of rgmii_handler is
 	
 	
 
-    attribute mark_debug : string;			   		  
-    attribute mark_debug of is_rgmii_sig : signal is "true";	
+    attribute mark_debug : string;			   		  			    	
+    attribute mark_debug of reset : signal is "true"; 		  
+    attribute mark_debug of is_rgmii_sig : signal is "true";	 	   	
+    attribute mark_debug of locked : signal is "true"; 			    	
+    attribute mark_debug of lose_lock : signal is "true"; 
     attribute mark_debug of rx_dv_falling : signal is "true";     	
     attribute mark_debug of is_rgmii_cnt : signal is "true";   	
     attribute mark_debug of rx_dv_handled : signal is "true";  
@@ -88,6 +97,12 @@ architecture arch of rgmii_handler is
     attribute mark_debug of tx_rgmii_data_hi : signal is "true";   
     attribute mark_debug of tx_data : signal is "true";   
     attribute mark_debug of tx_dv : signal is "true"; 
+    attribute mark_debug of rx_data_shift_hi : signal is "true"; 
+    attribute mark_debug of rx_data_shift_lo : signal is "true"; 	
+    attribute mark_debug of rx_rgmii_data : signal is "true"; 
+    attribute mark_debug of rx_passthru_data : signal is "true"; 		
+    attribute mark_debug of rx_dest_loc : signal is "true"; 	   	
+    attribute mark_debug of tx_dest_loc : signal is "true";    
 	
 	
 begin				  
@@ -98,7 +113,9 @@ begin
 	-- if RGMII is never detected then the data should passthrough like GMII as normal	
 	-- When RGMII, must use falling edge to get low nibble of data and ER from DV.
 			
-	is_rgmii <= is_rgmii_sig;  
+	is_rgmii <= is_rgmii_sig;  		  
+	locked <= (is_rgmii_sig or is_passthru_sig) and (not lose_lock);
+	
 	rx_er_handled <= rx_er; -- this is not quite correct for RGMII, but who cares (?)	
 	tx_er_handled <= '0'; -- never used (?)
 	
@@ -115,6 +132,10 @@ begin
 	tx_rgmii_data(3 downto 0) <= tx_rgmii_data_lo when clk = '1' else tx_rgmii_data_hi; 	
 	tx_rgmii_dv <= tx_dv_shift(0) when clk = '1' else '0'; -- er never used (?) 
 		
+	-- rx data mux
+	rx_data_handled <= rx_passthru_data when is_rgmii_sig = '0' else rx_rgmii_data;	   
+			
+		
 		
 	------------------------------------------------------------	 
 	------------------------------------------------------------			  
@@ -124,7 +145,8 @@ begin
 	begin
 		if rising_edge(clk) then	  
 			
-			is_rgmii_cnt <= '0';	 			
+			is_rgmii_cnt <= '0';	 	
+			is_passthru_cnt <= '0';  			
 			rx_dv_handled <= '0';	  
 			is_rgmii_sig_old <= is_rgmii_sig;	 
 			rx_dv_shift <= rx_dv_shift(0) & rx_dv;	   	
@@ -134,7 +156,7 @@ begin
 			rx_data_shift_hi( to_integer( rx_dest_loc) ) <= rx_data(3 downto 0);
 			
 			-- always take rx data as though it were gmii data also
-			rx_data_gmii_shift <= rx_data_gmii_shift(0) & rx_data;
+			rx_data_passthru_shift <= rx_data_passthru_shift(0) & rx_data;
 			
 			
 			-- tx method, for harder tx_clk implementation
@@ -145,7 +167,9 @@ begin
 			tx_rgmii_data_hi <= tx_data(7 downto 4);	 
 			
 			if reset = '1' then
-				is_rgmii_sig <= '0';  
+				is_rgmii_sig <= '0';  	
+				is_passthru_sig <= '0';      
+				lose_lock <= '0';
 				rx_dest_loc <= "0";	   
 				tx_dest_loc <= "0";	  
 				rx_dv_shift <= (others => '0');
@@ -166,31 +190,38 @@ begin
 				end if;	
 				
 				--both paths, RGMII or GMII must deliver data at same time (3 clocks delayed)
-				rx_dv_handled <= rx_dv_shift(1);
+				rx_dv_handled <= rx_dv_shift(1);								  
+						  
+				rx_passthru_data <= rx_data_passthru_shift(1);	   			-- normal GMII operation (wont happen if RGMII detected) passthrough: only rising edges
 					
+				rx_rgmii_data <= 	rx_data_shift_lo( to_integer(rx_dest_loc) ) &	  -- rx RGMII: combine rising and falling edges		
+									rx_data_shift_hi( to_integer(rx_dest_loc) );	
 						
 				
 				if (is_rgmii_sig = '0') then -- RGMII not detected yet
-					
-					-- normal GMII operation (wont happen if RGMII detected)		  
-					rx_data_handled <= rx_data_gmii_shift(1);
+																		   
 					
 					-- detect RGMII
 					if (rx_dv = '1' and rx_dv_falling = '0' and rx_data = x"05") then --that's one!	 
 						if 	(is_rgmii_cnt = '1') then --that's two!	  
-							is_rgmii_sig <= '1'; -- detected RGMII, so set forever!!	  			 																	   
+							is_rgmii_sig <= '1'; -- detected RGMII, so set forever!!	 (until reset) 	 			 																	   
 						end if;						 						
-						is_rgmii_cnt <= '1';
+						is_rgmii_cnt <= '1';								
+					end if;	
+					
+					-- consider 
+					if (rx_dv = '1' and rx_dv_falling = '1' and rx_data(3 downto 0) = x"5") then --count as passthrough lock
+						if 	(is_passthru_cnt = '1') then --that's two!	  
+							is_passthru_sig <= '1'; -- consider a lock for passthrough!	 (until reset) 	 			 																	   
+						end if;	
+						is_passthru_cnt <= '1';
 					end if;
 					
-				else   
-					-- RGMII operation, once here, here forever (until reset) 				
-					
-					-- rx RGMII: combine rising	and falling edges			
-					rx_data_handled <= 	rx_data_shift_lo( to_integer(rx_dest_loc) ) &
-										rx_data_shift_hi( to_integer(rx_dest_loc) );	
-					
-					
+				end if;			  
+				
+				
+				if (rx_dv_shift(0) = '0' and rx_dv = '1' and rx_data(3 downto 0) /= x"5") then --lock was lost if first nibble is not 0x5
+					lose_lock <= '1';
 				end if;
 											
 			end if;	 

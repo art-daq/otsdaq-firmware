@@ -31,11 +31,11 @@ AccessReadWriteSLP=0
 AccessReadTopLevel=1
 DisableC=1
 ENABLE_ADV_DATAFLOW=0
-fileopenfolder=D:\Projects\OtS DAQ\PicoZed\ActiveHDL_proj\ethernet_controller\src
+fileopenfolder=D:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src
 
 [HierarchyViewer]
 SortInfo=u
-HierarchyInformation=gec|GEC|0 
+HierarchyInformation=gec|GEC|0
 ShowHide=ShowTopLevel
 Selected=
 
@@ -53,23 +53,30 @@ WindowVisible=0
 TestBench=1
 
 [Files]
-/filter_data_out.vhd=-1
-/params_package.vhd=-1
-/user_addrs_mux.vhd=-1
+/CRC_splice.vhd=-1
+/rgmii_handler.vhd=-1
+/RX_IN_LATCH.vhd=-1
+/inferredFifo.vhd=-1
 /udp_data_splicer.vhd=-1
-/ICMPPingShiftReg.vhd=-1
+/user_addrs_mux.vhd=-1
+/params_package.vhd=-1
 /or33.vhd=-1
-/dest_info_container.vhd=-1
+/filter_data_out.vhd=-1
+/ICMPPingShiftReg.vhd=-1
 /dataout_mux.vhd=-1
+/dest_info_container.vhd=-1
 /icmp_ping_checksum_calc.asf=-1
+/burst_controller_sm.vhd=-1
 /ip_checksum_calc.asf=-1
 /decipherer.asf=-1
-/create_packet.asf=-1
 /arp_reply.asf=-1
+/create_packet.asf=-1
+/delay_counter.asf=-1
+/GEC_TX_SEQ_CTL_8.asf=-1
 /GEC_RX_CTL_8.asf=-1
 /RAM_COMM_DEC_9.asf=-1
-/GEC_TX_SEQ_CTL_8.asf=-1
-/delay_counter.asf=-1
+/data_manager.vhd=-1
+/burst_traffic_controller.vhd=-1
 /DIG_GEC.bde=-1
 /CRC_chk.v=-1
 /wave-decipherer.awf=-1
@@ -90,37 +97,43 @@ TestBench=1
 /wave-decipherer-icmp-ping-100m.awf=-1
 /GEC.bde=-1
 /CRC_gen.v=-1
-/CRC_splice.vhd=-1
-/RX_IN_LATCH.vhd=-1
 /wave-full_gec_arp_100m.awf=-1
 /wave-full_gec_icmp_100m.awf=-1
 /wave-full_gec_icmp.awf=-1
 /wave-full_gec_udp_write.awf=-1
-/rgmii_handler.vhd=-1
 /wave-full_gec_arp_1000m_rgmii.awf=-1
+/wave-full_gec_icmp_xrgmii.awf=-1
+/eth_interface.vhd=-1
 TestBench/dig_gec_TB.vhd=-1
 TestBench/gec_rx_ctl_8_TB.vhd=-1
 TestBench/gec_rx_ctl_8_TB_runtest.do=-1
 TestBench/dig_gec_TB_runtest.do=-1
 
 [Files.Data]
-.\src\filter_data_out.vhd=VHDL Source Code
-.\src\params_package.vhd=VHDL Source Code
-.\src\user_addrs_mux.vhd=VHDL Source Code
+.\src\CRC_splice.vhd=VHDL Source Code
+.\src\rgmii_handler.vhd=VHDL Source Code
+.\src\RX_IN_LATCH.vhd=VHDL Source Code
+.\src\inferredFifo.vhd=VHDL Source Code
 .\src\udp_data_splicer.vhd=VHDL Source Code
-.\src\ICMPPingShiftReg.vhd=VHDL Source Code
+.\src\user_addrs_mux.vhd=VHDL Source Code
+.\src\params_package.vhd=VHDL Source Code
 .\src\or33.vhd=VHDL Source Code
-.\src\dest_info_container.vhd=VHDL Source Code
+.\src\filter_data_out.vhd=VHDL Source Code
+.\src\ICMPPingShiftReg.vhd=VHDL Source Code
 .\src\dataout_mux.vhd=VHDL Source Code
+.\src\dest_info_container.vhd=VHDL Source Code
 .\src\icmp_ping_checksum_calc.asf=State Diagram
+.\src\burst_controller_sm.vhd=VHDL Source Code
 .\src\ip_checksum_calc.asf=State Diagram
 .\src\decipherer.asf=State Diagram
-.\src\create_packet.asf=State Diagram
 .\src\arp_reply.asf=State Diagram
+.\src\create_packet.asf=State Diagram
+.\src\delay_counter.asf=State Diagram
+.\src\GEC_TX_SEQ_CTL_8.asf=State Diagram
 .\src\GEC_RX_CTL_8.asf=State Diagram
 .\src\RAM_COMM_DEC_9.asf=State Diagram
-.\src\GEC_TX_SEQ_CTL_8.asf=State Diagram
-.\src\delay_counter.asf=State Diagram
+.\src\data_manager.vhd=VHDL Source Code
+.\src\burst_traffic_controller.vhd=VHDL Source Code
 .\src\DIG_GEC.bde=Block Diagram
 .\src\CRC_chk.v=Verilog Source Code
 .\src\wave-decipherer.awf=Waveform File
@@ -141,49 +154,58 @@ TestBench/dig_gec_TB_runtest.do=-1
 .\src\wave-decipherer-icmp-ping-100m.awf=Waveform File
 .\src\GEC.bde=Block Diagram
 .\src\CRC_gen.v=Verilog Source Code
-.\src\CRC_splice.vhd=VHDL Source Code
-.\src\RX_IN_LATCH.vhd=VHDL Source Code
 .\src\wave-full_gec_arp_100m.awf=Waveform File
 .\src\wave-full_gec_icmp_100m.awf=Waveform File
 .\src\wave-full_gec_icmp.awf=Waveform File
 .\src\wave-full_gec_udp_write.awf=Waveform File
-.\src\rgmii_handler.vhd=VHDL Source Code
 .\src\wave-full_gec_arp_1000m_rgmii.awf=Waveform File
+.\src\wave-full_gec_icmp_xrgmii.awf=Waveform File
+.\src\eth_interface.vhd=VHDL Source Code
 .\src\TestBench\dig_gec_TB.vhd=VHDL Test Bench
 .\src\TestBench\gec_rx_ctl_8_TB.vhd=VHDL Test Bench
 .\src\TestBench\gec_rx_ctl_8_TB_runtest.do=Macro
 .\src\TestBench\dig_gec_TB_runtest.do=Macro
+.\compile\GEC.vhd=VHDL Source Code
+.\compile\icmp_ping_checksum_calc.vhd=VHDL Source Code
+.\compile\ip_checksum_calc.vhd=VHDL Source Code
+.\compile\decipherer.vhd=VHDL Source Code
+.\compile\arp_reply.vhd=VHDL Source Code
+.\compile\create_packet.vhd=VHDL Source Code
+.\compile\delay_counter.vhd=VHDL Source Code
+.\compile\GEC_TX_SEQ_CTL_8.vhd=VHDL Source Code
+.\compile\GEC_RX_CTL_8.vhd=VHDL Source Code
+.\compile\RAM_COMM_DEC_9.vhd=VHDL Source Code
+.\compile\DIG_GEC.vhd=VHDL Source Code
+
+
+
+
+
+
+
+
+
+
 
 [file_out:/icmp_ping_checksum_calc.asf]
 /..\compile\icmp_ping_checksum_calc.vhd=-1
-
 [file_out:/ip_checksum_calc.asf]
 /..\compile\ip_checksum_calc.vhd=-1
-
 [file_out:/decipherer.asf]
 /..\compile\decipherer.vhd=-1
-
-[file_out:/create_packet.asf]
-/..\compile\create_packet.vhd=-1
-
 [file_out:/arp_reply.asf]
 /..\compile\arp_reply.vhd=-1
-
-[file_out:/GEC_RX_CTL_8.asf]
-/..\compile\GEC_RX_CTL_8.vhd=-1
-
-[file_out:/RAM_COMM_DEC_9.asf]
-/..\compile\RAM_COMM_DEC_9.vhd=-1
-
-[file_out:/GEC_TX_SEQ_CTL_8.asf]
-/..\compile\GEC_TX_SEQ_CTL_8.vhd=-1
-
+[file_out:/create_packet.asf]
+/..\compile\create_packet.vhd=-1
 [file_out:/delay_counter.asf]
 /..\compile\delay_counter.vhd=-1
-
+[file_out:/GEC_TX_SEQ_CTL_8.asf]
+/..\compile\GEC_TX_SEQ_CTL_8.vhd=-1
+[file_out:/GEC_RX_CTL_8.asf]
+/..\compile\GEC_RX_CTL_8.vhd=-1
+[file_out:/RAM_COMM_DEC_9.asf]
+/..\compile\RAM_COMM_DEC_9.vhd=-1
 [file_out:/DIG_GEC.bde]
 /..\compile\DIG_GEC.vhd=-1
-
 [file_out:/GEC.bde]
 /..\compile\GEC.vhd=-1
-
