@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : D:\Projects\OtS DAQ\PicoZed\ActiveHDL_proj\ethernet_controller\compile\arp_reply.vhd
--- Generated   : 08/14/15 14:30:07
--- From        : D:/Projects/OtS DAQ/PicoZed/ActiveHDL_proj/ethernet_controller/src/arp_reply.asf
+-- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\arp_reply.vhd
+-- Generated   : 08/20/15 08:34:19
+-- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/arp_reply.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -306,7 +306,7 @@ begin
 						Sreg0 <= delay1;
 						crc_gen_rd <= '0';
 						tx_en <= '0';
-						delay_count <= 20;
+						delay_count <= 4;
 						-- number of ticks after sending packet to keep line dead from udp
 					when ArpResponse_CRC_S59 =>
 						delay_count <= delay_count - 1;

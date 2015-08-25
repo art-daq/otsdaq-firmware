@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : D:ProjectsotsdaqPicoZedActiveHDL_projethernet_controllercompileGEC.vhd
--- Generated   : Fri Aug 14 15:57:54 2015
--- From        : D:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC.bde
+-- File        : d:ProjectsotsdaqPicoZedActiveHDL_projethernet_controllercompileGEC.vhd
+-- Generated   : Wed Aug 19 16:13:56 2015
+-- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -97,6 +97,16 @@ component CRC_gen
        CRC_out : out STD_LOGIC_VECTOR(7 downto 0)
   );
 end component;
+component rgmii_data_handler
+  port (
+       clk : in STD_LOGIC;
+       rx_data : in STD_LOGIC_VECTOR(3 downto 0);
+       rx_dv : in STD_LOGIC;
+       rx_rgmii_data : out STD_LOGIC_VECTOR(7 downto 0);
+       rx_rgmii_dv : out STD_LOGIC;
+       rx_rgmii_er : out STD_LOGIC
+  );
+end component;
 component DIG_GEC
   port (
        GMII_RXD : in STD_LOGIC_VECTOR(7 downto 0);
@@ -106,6 +116,7 @@ component DIG_GEC
        dest_addrs : in STD_LOGIC_VECTOR(7 downto 0);
        dest_mac : in STD_LOGIC_VECTOR(47 downto 0);
        dest_port : in STD_LOGIC_VECTOR(15 downto 0);
+       is_rgmii : in STD_LOGIC;
        reset : in STD_LOGIC;
        trigger : in STD_LOGIC;
        user_addrs : in STD_LOGIC_VECTOR(7 downto 0);
@@ -142,10 +153,14 @@ component rgmii_handler
        rx_data : in STD_LOGIC_VECTOR(7 downto 0);
        rx_dv : in STD_LOGIC;
        rx_er : in STD_LOGIC;
+       rx_rgmii_data : in STD_LOGIC_VECTOR(7 downto 0);
+       rx_rgmii_dv : in STD_LOGIC;
+       rx_rgmii_er : in STD_LOGIC;
        tx_data : in STD_LOGIC_VECTOR(7 downto 0);
        tx_dv : in STD_LOGIC;
        tx_er : in STD_LOGIC;
        is_rgmii : out STD_LOGIC;
+       locked : out STD_LOGIC;
        rx_data_handled : out STD_LOGIC_VECTOR(7 downto 0);
        rx_dv_handled : out STD_LOGIC;
        rx_er_handled : out STD_LOGIC;
@@ -167,15 +182,20 @@ signal crc_gen_rd : STD_LOGIC;
 signal crc_gen_rd_masked : STD_LOGIC;
 signal crc_mask : STD_LOGIC;
 signal four_bit_mode : STD_LOGIC;
+signal is_rgmii : STD_LOGIC;
 signal rx_dv_handled : STD_LOGIC;
 signal rx_er_handled : STD_LOGIC;
+signal rx_rgmii_dv : STD_LOGIC;
+signal rx_rgmii_er : STD_LOGIC;
 signal tx_dv : STD_LOGIC;
 signal tx_dv_out : STD_LOGIC;
 signal tx_er : STD_LOGIC;
 signal tx_er_out : STD_LOGIC;
 signal crc_chk_din : STD_LOGIC_VECTOR(7 downto 0);
 signal crc_gen_out : STD_LOGIC_VECTOR(7 downto 0);
+signal GMII_RXD_sig : STD_LOGIC_VECTOR(7 downto 0);
 signal rx_data_handled : STD_LOGIC_VECTOR(7 downto 0);
+signal rx_rgmii_data : STD_LOGIC_VECTOR(7 downto 0);
 signal txd : STD_LOGIC_VECTOR(7 downto 0);
 signal txd_out : STD_LOGIC_VECTOR(7 downto 0);
 
@@ -206,6 +226,7 @@ DIG_GEC_Block : DIG_GEC
        dest_port => user_dest_port,
        en_tx_data => user_tx_enable_out,
        four_bit_mode_out => four_bit_mode,
+       is_rgmii => is_rgmii,
        reset => reset,
        src_addrs => user_src_addrs,
        src_capture => user_src_capture,
@@ -224,19 +245,36 @@ DIG_GEC_Block : DIG_GEC
 RGMII_Block : rgmii_handler
   port map(
        clk => GMII_RX_CLK,
+       is_rgmii => is_rgmii,
        reset => reset,
-       rx_data => GMII_RXD,
+       rx_data => GMII_RXD_sig,
        rx_data_handled => rx_data_handled,
        rx_dv => GMII_RX_DV,
        rx_dv_handled => rx_dv_handled,
        rx_er => GMII_RX_ER,
        rx_er_handled => rx_er_handled,
+       rx_rgmii_data => rx_rgmii_data,
+       rx_rgmii_dv => rx_rgmii_dv,
+       rx_rgmii_er => rx_rgmii_er,
        tx_data => txd_out,
        tx_data_handled => GMII_TXD,
        tx_dv => tx_dv_out,
        tx_dv_handled => GMII_TX_EN,
        tx_er => tx_er_out,
        tx_er_handled => GMII_TX_ER
+  );
+
+RGMII_Conditioner : rgmii_data_handler
+  port map(
+       rx_data(0) => GMII_RXD_sig(0),
+       rx_data(1) => GMII_RXD_sig(1),
+       rx_data(2) => GMII_RXD_sig(2),
+       rx_data(3) => GMII_RXD_sig(3),
+       clk => GMII_RX_CLK,
+       rx_dv => GMII_RX_DV,
+       rx_rgmii_data => rx_rgmii_data,
+       rx_rgmii_dv => rx_rgmii_dv,
+       rx_rgmii_er => rx_rgmii_er
   );
 
 crc_gen_en_masked <= crc_gen_en and crc_mask;
@@ -282,6 +320,9 @@ crcSplice : CRC_splice
 
 
 ---- Terminal assignment ----
+
+    -- Inputs terminals
+	GMII_RXD_sig <= GMII_RXD;
 
     -- Outputbuffer terminals
 	four_bit_mode_out <= four_bit_mode;
