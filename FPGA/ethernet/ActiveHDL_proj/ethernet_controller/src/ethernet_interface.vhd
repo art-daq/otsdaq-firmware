@@ -15,7 +15,6 @@ entity ethernet_interface is
           GMII_RX_DV           : in    std_logic; 
           GMII_RX_ER           : in    std_logic; 
           MASTER_CLK           : in    std_logic; 
-          INV_MASTER_CLK       : in    std_logic; 
           reset                : in    std_logic; 
           tx_data              : in    std_logic_vector (63 downto 0); 
           b_enable             : out   std_logic; 
@@ -46,7 +45,7 @@ architecture BEHAVIORAL of ethernet_interface is
    signal gec_user_tx_data_in    : std_logic_vector (7 downto 0);
    signal gec_user_tx_enable_out : std_logic;
    signal gec_user_tx_size_in    : std_logic_vector (10 downto 0);
-   signal XLXN_15874             : std_logic;
+   signal reset_n             : std_logic;
    component GEC
       port ( GMII_RX_CLK        : in    std_logic; 	  
              GMII_RX_DV         : in    std_logic; 
@@ -147,7 +146,7 @@ begin
                 user_src_port(15 downto 0)=>gec_user_src_port(15 downto 0),
                 user_tx_enable_out=>gec_user_tx_enable_out);
    
-   XLXI_3535 : data_manager
+   data_manager_blk : data_manager
       port map (b_data(63 downto 0)=>b_data(63 downto 0),
                 b_data_we=>b_data_we,
                 b_end_packet=>b_end_packet,
@@ -162,7 +161,7 @@ begin
                 gec_user_tx_enable_out=>gec_user_tx_enable_out,
                 MASTER_CLK=>MASTER_CLK,
                 reset=>reset,
-                reset_n=>XLXN_15874,
+                reset_n=>reset_n,
                 tx_data(63 downto 0)=>tx_data(63 downto 0),
                 b_enable=>b_enable,
                 gec_user_trigger=>gec_user_trigger,
@@ -174,13 +173,13 @@ begin
                 rx_data(63 downto 0)=>rx_data(63 downto 0),
                 state_diag(13 downto 0)=>state_diag(13 downto 0));
    
-   XLXI_4124 : burst_traffic_controller
+   burst_traffic_controller_blk : burst_traffic_controller
       port map (BURST_WE=>b_data_we,
                 MASTER_CLK=>MASTER_CLK,
                 RESET=>reset,
                 BURST_END_PACKET=>b_end_packet);
 				
-	XLXN_15874 <= not reset; 
+	reset_n <= not reset; 
    
 end BEHAVIORAL;
 

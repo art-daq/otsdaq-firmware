@@ -134,8 +134,8 @@ begin
 			empty_sig <= '1';
 		elsif (RCLOCK'event and RCLOCK = '1') then 
 			WAddress_rclk <= WAddress;	
-			RD_COUNT(6) <= '0';
-			RD_COUNT(5 downto 0) <= WAddress_rclk - RAddress;
+			RD_COUNT(addr) <= '0';
+			RD_COUNT(addr-1 downto 0) <= WAddress_rclk - RAddress;
 			--if (RE = '1' and WE = '0') then
 			--	if ((WAddress = RAddress+1) or ((RAddress = depth-1) and (WAddress = 0))) then
 			--if ((WAddress_rclk = RAddress) or (WAddress_rclk = RAddress+1) or ((RAddress = depth-1) and (WAddress = 0))) then

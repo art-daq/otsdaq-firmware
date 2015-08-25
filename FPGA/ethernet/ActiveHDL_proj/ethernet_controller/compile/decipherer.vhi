@@ -5,6 +5,7 @@ component decipherer
 		data_in: in STD_LOGIC_VECTOR (7 downto 0);
 		dv: in STD_LOGIC;
 		er: in STD_LOGIC;
+		is_rgmii: in STD_LOGIC;
 		reset: in STD_LOGIC;
 		arp_req_ip: out STD_LOGIC_VECTOR (31 downto 0);
 		arp_req_mac: out STD_LOGIC_VECTOR (47 downto 0);
@@ -54,6 +55,7 @@ instance_name : decipherer
  is_icmp_ping => ,
  is_idle => ,
  is_ip => ,
+ is_rgmii => ,
  is_udp => ,
  reset => ,
  src_mac => ,

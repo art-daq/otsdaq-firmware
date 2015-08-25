@@ -34,9 +34,8 @@ else
     echo 'Script directory found as:'
     echo $scriptdir
 
-  
-    
-    
+      
+# examples for sed:
 #    sed -i s/use\ s1calol2algo\.algorithm_constants.all\;/--/g $scriptdir/../S1CaloL2Algo/compile/Algorithm.vhd
 #    sed -i s/library\ s1calol2algo\;/--/g $scriptdir/../S1CaloL2Algo/compile/Algorithm.vhd
 
@@ -53,12 +52,26 @@ else
     #replace crazy library lines that always creep up in the GEC.vhd
     sed -i s/\\\\//g $1/gec/GEC.vhd
 
+    #replaced inferred fifos with coregen fifos, since inferred doesn't seem to work in ise/vivado
+    # 2 steps: uncomment coregen, and comment inferred
+    sed -i s/--//g $1/gec/data_manager.vhd
+    sed -i s/.\*SCRIPT\ COMMENT\ OUT/--erased/g $1/gec/data_manager.vhd
+
     echo 'Moving files...'
     mv $1/gec/GEC_RX_CTL_8.vhd $1/data_manager/
     mv $1/gec/GEC_TX_SEQ_CTL_8.vhd $1/data_manager/
     mv $1/gec/RAM_COMM_DEC_9.vhd $1/data_manager/
     mv $1/gec/params_package.vhd $1/data_manager/
     mv $1/gec/delay_counter.vhd $1/data_manager/
+    mv $1/gec/data_manager.vhd $1/data_manager/
+    mv $1/gec/burst_controller_sm.vhd $1/data_manager/
+    mv $1/gec/inferredFifo.vhd $1/data_manager/
+
+    mv $1/gec/ethernet_interface.vhd $1/
+    mv $1/gec/burst_traffic_controller.vhd $1/
+
+
+    
 
 
 

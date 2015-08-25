@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : D:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\DIG_GEC.vhd
--- Generated   : Sun Aug 16 10:22:18 2015
--- From        : D:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/DIG_GEC.bde
+-- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\DIG_GEC.vhd
+-- Generated   : Wed Aug 19 16:29:40 2015
+-- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/DIG_GEC.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -27,6 +27,7 @@ entity DIG_GEC is
        GMII_RX_CLK : in STD_LOGIC;
        GMII_RX_DV : in STD_LOGIC;
        GMII_RX_ER : in STD_LOGIC;
+       is_rgmii : in STD_LOGIC;
        reset : in STD_LOGIC;
        trigger : in STD_LOGIC;
        GMII_RXD : in STD_LOGIC_VECTOR(7 downto 0);
@@ -168,6 +169,7 @@ component decipherer
        data_in : in STD_LOGIC_VECTOR(7 downto 0);
        dv : in STD_LOGIC;
        er : in STD_LOGIC;
+       is_rgmii : in STD_LOGIC;
        reset : in STD_LOGIC;
        arp_req_ip : out STD_LOGIC_VECTOR(31 downto 0);
        arp_req_mac : out STD_LOGIC_VECTOR(47 downto 0);
@@ -270,6 +272,8 @@ signal four_bit_mode : STD_LOGIC;
 signal is_arp_packet_sig : STD_LOGIC;
 signal is_icmp_packet_sig : STD_LOGIC;
 signal is_ip_packet_sig : STD_LOGIC;
+signal is_rgmii_sig : STD_LOGIC;
+signal NET11775 : STD_LOGIC;
 signal rx_dv : STD_LOGIC;
 signal rx_er : STD_LOGIC;
 signal sel_udp : STD_LOGIC;
@@ -415,11 +419,12 @@ DecipherBlock : decipherer
        data_out => decipher_dout,
        dv => rx_dv,
        er => rx_er,
-       four_bit_mode_out => four_bit_mode,
+       four_bit_mode_out => NET11775,
        icmp_checksum => icmp_req_checksum,
        is_arp => is_arp_packet_sig,
        is_icmp_ping => is_icmp_packet_sig,
        is_ip => is_ip_packet_sig,
+       is_rgmii => is_rgmii_sig,
        reset => reset,
        src_mac => frame_src_mac,
        udp_data_count => ip_data_count_sig,
@@ -467,6 +472,8 @@ trigger_sig <= trigger or capture_addrs or is_icmp_packet_sig;
 
 crc_chk_rd_sig <= is_ip_packet_sig and dec_chk_rd_sig;
 
+four_bit_mode <= is_rgmii_sig and NET11775;
+
 UDPDataSplicer : udp_data_splicer
   port map(
        clk => clk,
@@ -503,6 +510,7 @@ UdpLengthMux : user_addrs_mux
 	clk <= GMII_RX_CLK;
 	rx_dv <= GMII_RX_DV;
 	rx_er <= GMII_RX_ER;
+	is_rgmii_sig <= is_rgmii;
 	addrs_sig <= user_addrs;
 
     -- Output\buffer terminals

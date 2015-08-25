@@ -1,4 +1,13 @@
-
+---SCRIPT COMMENT OUT ----------------------------- 		  
+-- SCRIPT COMMENT OUT --  
+-- SCRIPT COMMENT OUT --  Comments by rrivera at fnal dot gov : Aug 25, 2015 
+-- SCRIPT COMMENT OUT --  
+-- SCRIPT COMMENT OUT --  IMPORTANT!! IMPORTANT!! 				
+-- SCRIPT COMMENT OUT --  It's very important to note!!!   	
+-- SCRIPT COMMENT OUT --  										
+-- SCRIPT COMMENT OUT --  The script that moves these files into a Firmware project will 		   
+-- SCRIPT COMMENT OUT --   remove all "--" comments.. 												
+-- SCRIPT COMMENT OUT --  The only way (I think) to safely comment is to put "SCRIPT  COMMENT  OUT"  in your comment line with single spacing
 
 library ieee;
 use ieee.std_logic_1164.ALL;
@@ -83,25 +92,30 @@ architecture BEHAVIORAL of data_manager is
    signal XLXI_3365_data_fifo_wrerr_openSignal : std_logic;
    signal XLXI_3513_data_fifo_rderr_openSignal : std_logic;
    signal XLXI_3513_info_fifo_rderr_openSignal : std_logic;
-   component reg_fifo
-	 
-      generic (
-		width : integer:=16;
-		depth : integer:=64;
-		addr : integer:=6);
-	port (
-		DATA : in std_logic_vector (width-1 downto 0);	 
-		Q : out std_logic_vector (width-1 downto 0);
-		WCLOCK : in std_logic;
-		RCLOCK : in std_logic;
-		WE : in std_logic;		
-		RE : in std_logic;
-		RESET : in std_logic;		  
-		RD_COUNT : out std_logic_vector (addr downto 0);
-		FULL : out std_logic;
-		EMPTY : out std_logic);
-   end component;	 
+ 				  
    
+--       component DATA_FIFO_0
+--       port ( clk   : in    std_logic; 
+--              rd_en : in    std_logic; 
+--              srst  : in    std_logic; 
+--              wr_en : in    std_logic; 
+--              din   : in    std_logic_vector (63 downto 0); 
+--              empty : out   std_logic; 
+--              full  : out   std_logic; 
+--              dout  : out   std_logic_vector (63 downto 0));
+--                  end component;
+--    
+--    component INFO_FIFO_0
+--       port ( wr_en : in    std_logic; 
+--              clk   : in    std_logic; 
+--              srst  : in    std_logic; 
+--              din   : in    std_logic_vector (15 downto 0); 
+--              rd_en : in    std_logic; 
+--              dout  : out   std_logic_vector (15 downto 0); 
+--              empty : out   std_logic; 
+--              full  : out   std_logic);
+--                  end component;
+--   
    component burst_controller_sm
       port ( b_data_we    : in    std_logic; 
              b_end_burst  : in    std_logic; 
@@ -202,98 +216,91 @@ architecture BEHAVIORAL of data_manager is
  
    										
 begin
-   rx_data(63 downto 0) <= rx_data_DUMMY(63 downto 0);		  
-   	  RX_DATA_FIFO : reg_fifo
-   	  generic map (width => 64,
-		 			depth => 256,
-		 			addr => 8)
-      port map (WCLOCK=>MASTER_CLK,		
-	 			RCLOCK=>MASTER_CLK,
-                DATA(63 downto 0)=>data_fifo_wr_data(63 downto 0),
-                RE=>rx_data_fifo_read_enable,
-                RESET=>rx_fifo_reset_sig,
-                WE=>data_fifo_wren,
-                Q(63 downto 0)=>rx_data_DUMMY(63 downto 0),	  	   
-				RD_COUNT=>open,
-                EMPTY=>rx_data_fifo_empty,	
-                FULL=>open);
---   RX_DATA_FIFO : DATA_FIFO_0
---      port map (clk=>MASTER_CLK,
---                din(63 downto 0)=>data_fifo_wr_data(63 downto 0),
---                rd_en=>rx_data_fifo_read_enable,
---                srst=>rx_fifo_reset_sig,
---                wr_en=>data_fifo_wren,
---                dout(63 downto 0)=>rx_data_DUMMY(63 downto 0),
---                empty=>rx_data_fifo_empty,
---                full=>open);
+   rx_data(63 downto 0) <= rx_data_DUMMY(63 downto 0);
+   		  
+   	  RX_DATA_FIFO : entity work.reg_fifo							--SCRIPT COMMENT OUT
+   	  generic map (width => 64,	depth => 256, addr => 8)			--SCRIPT COMMENT OUT
+      port map (WCLOCK=>MASTER_CLK, 								 --SCRIPT COMMENT OUT
+	 			RCLOCK=>MASTER_CLK,									 --SCRIPT COMMENT OUT
+                DATA(63 downto 0)=>data_fifo_wr_data(63 downto 0),	 --SCRIPT COMMENT OUT
+                RE=>rx_data_fifo_read_enable,						 --SCRIPT COMMENT OUT
+                RESET=>rx_fifo_reset_sig,							 --SCRIPT COMMENT OUT
+                WE=>data_fifo_wren,									 --SCRIPT COMMENT OUT
+                Q(63 downto 0)=>rx_data_DUMMY(63 downto 0),	  	   	 --SCRIPT COMMENT OUT
+				RD_COUNT=>open,										 --SCRIPT COMMENT OUT
+                EMPTY=>rx_data_fifo_empty,							 --SCRIPT COMMENT OUT
+                FULL=>open);										--SCRIPT COMMENT OUT
 
- 	RX_INFO_FIFO : reg_fifo
-   	  generic map (width => 16,
-		 			depth => 16,
-		 			addr => 4)
-      port map (WCLOCK=>MASTER_CLK,		
-	 			RCLOCK=>MASTER_CLK,
-                DATA(15 downto 0)=>info_fifo_wr_data(15 downto 0),
-                RE=>rx_info_fifo_rden,
-                RESET=>rx_fifo_reset_sig,
-                WE=>info_fifo_wren,
-                Q(15 downto 0)=>info_fifo_rd_data(15 downto 0),	  	   
-				RD_COUNT=>open,
-                EMPTY=>rx_info_fifo_empty,	
-                FULL=>open);
+ 	RX_INFO_FIFO : entity work.reg_fifo								   --SCRIPT COMMENT OUT    
+   	  generic map (width => 16,	depth => 16, addr => 4)				   --SCRIPT COMMENT OUT    
+      port map (WCLOCK=>MASTER_CLK,									    --SCRIPT COMMENT OUT   
+	 			RCLOCK=>MASTER_CLK,									    --SCRIPT COMMENT OUT   
+                DATA(15 downto 0)=>info_fifo_wr_data(15 downto 0),	    --SCRIPT COMMENT OUT   
+                RE=>rx_info_fifo_rden,								    --SCRIPT COMMENT OUT   
+                RESET=>rx_fifo_reset_sig,							    --SCRIPT COMMENT OUT   
+                WE=>info_fifo_wren,									    --SCRIPT COMMENT OUT   
+                Q(15 downto 0)=>info_fifo_rd_data(15 downto 0),	  	    --SCRIPT COMMENT OUT   
+				RD_COUNT=>open,										    --SCRIPT COMMENT OUT   
+                EMPTY=>rx_info_fifo_empty,							    --SCRIPT COMMENT OUT   
+                FULL=>open);										   --SCRIPT COMMENT OUT    
 				
- --  RX_INFO_FIFO : INFO_FIFO_0
---      port map (clk=>MASTER_CLK,
---                din(15 downto 0)=>info_fifo_wr_data(15 downto 0),
---                rd_en=>rx_info_fifo_rden,
---                srst=>rx_fifo_reset_sig,
---                wr_en=>info_fifo_wren,
---                dout(15 downto 0)=>info_fifo_rd_data(15 downto 0),
---                empty=>rx_info_fifo_empty,
---                full=>open);
---   							   
+							   
 
-  	  TX_DATA_FIFO : reg_fifo
-   	  generic map (width => 64,
-		 			depth => 256,
-		 			addr => 8)
-      port map (WCLOCK=>MASTER_CLK,		
-	 			RCLOCK=>MASTER_CLK,
-                DATA(63 downto 0)=>tx_data_fifo_din(63 downto 0),
-                RE=>tx_data_fifo_read_enable,
-                RESET=>tx_fifo_reset_sig,
-                WE=>tx_data_fifo_wr_en,
-                Q(63 downto 0)=>data_fifo_rd_data(63 downto 0),	  	   
-				RD_COUNT=>open,
-                EMPTY=>tx_data_fifo_empty,	
-                FULL=>tx_data_fifo_full);
-				
---   TX_DATA_FIFO : DATA_FIFO_0
---      port map (clk=>MASTER_CLK,
---                din(63 downto 0)=>tx_data_fifo_din(63 downto 0),
---                rd_en=>tx_data_fifo_read_enable,
---                srst=>tx_fifo_reset_sig,
---                wr_en=>tx_data_fifo_wr_en,
---                dout(63 downto 0)=>data_fifo_rd_data(63 downto 0),
---                empty=>tx_data_fifo_empty,
---                full=>tx_data_fifo_full);
---   								
-
- 	TX_INFO_FIFO : reg_fifo
-   	  generic map (width => 16,
-		 			depth => 16,
-		 			addr => 4)
-      port map (WCLOCK=>MASTER_CLK,		
-	 			RCLOCK=>MASTER_CLK,
-                DATA(15 downto 0)=>tx_info_fifo_din(15 downto 0),
-                RE=>tx_info_fifo_rden,
-                RESET=>tx_fifo_reset_sig,
-                WE=>tx_info_fifo_wr_en,
-                Q(15 downto 0)=>tx_info_fifo_dout(15 downto 0),	  	   
-				RD_COUNT=>open,
-                EMPTY=>tx_info_fifo_empty,	
-                FULL=>tx_info_fifo_full);
-				
+  	  TX_DATA_FIFO : entity work.reg_fifo			  					--SCRIPT COMMENT OUT    
+   	  generic map (width => 64,depth => 256,addr => 8)					--SCRIPT COMMENT OUT    
+      port map (WCLOCK=>MASTER_CLK,										 --SCRIPT COMMENT OUT   
+	 			RCLOCK=>MASTER_CLK,										 --SCRIPT COMMENT OUT   
+                DATA(63 downto 0)=>tx_data_fifo_din(63 downto 0),		 --SCRIPT COMMENT OUT   
+                RE=>tx_data_fifo_read_enable,							 --SCRIPT COMMENT OUT   
+                RESET=>tx_fifo_reset_sig,								 --SCRIPT COMMENT OUT   
+                WE=>tx_data_fifo_wr_en,									 --SCRIPT COMMENT OUT   
+                Q(63 downto 0)=>data_fifo_rd_data(63 downto 0),	  	   	 --SCRIPT COMMENT OUT   
+				RD_COUNT=>open,											 --SCRIPT COMMENT OUT   
+                EMPTY=>tx_data_fifo_empty,								 --SCRIPT COMMENT OUT   
+                FULL=>tx_data_fifo_full);								--SCRIPT COMMENT OUT    
+	
+ 	TX_INFO_FIFO : entity work.reg_fifo									--SCRIPT COMMENT OUT    
+   	  generic map (width => 16,	depth => 16,addr => 4)					--SCRIPT COMMENT OUT    
+      port map (WCLOCK=>MASTER_CLK,										 --SCRIPT COMMENT OUT   
+	 			RCLOCK=>MASTER_CLK,										 --SCRIPT COMMENT OUT   
+                DATA(15 downto 0)=>tx_info_fifo_din(15 downto 0),		 --SCRIPT COMMENT OUT   
+                RE=>tx_info_fifo_rden,									 --SCRIPT COMMENT OUT   
+                RESET=>tx_fifo_reset_sig,								 --SCRIPT COMMENT OUT   
+                WE=>tx_info_fifo_wr_en,									 --SCRIPT COMMENT OUT   
+                Q(15 downto 0)=>tx_info_fifo_dout(15 downto 0),	  	   	 --SCRIPT COMMENT OUT   
+				RD_COUNT=>open,											 --SCRIPT COMMENT OUT   
+                EMPTY=>tx_info_fifo_empty,								 --SCRIPT COMMENT OUT   
+                FULL=>tx_info_fifo_full);								--SCRIPT COMMENT OUT    
+            
+--       RX_DATA_FIFO : DATA_FIFO_0
+--          port map (clk=>MASTER_CLK,
+--                    din(63 downto 0)=>data_fifo_wr_data(63 downto 0),
+--                    rd_en=>rx_data_fifo_read_enable,
+--                    srst=>rx_fifo_reset_sig,
+--                    wr_en=>data_fifo_wren,
+--                    dout(63 downto 0)=>rx_data_DUMMY(63 downto 0),
+--                    empty=>rx_data_fifo_empty,
+--                    full=>open);
+--       RX_INFO_FIFO : INFO_FIFO_0
+--          port map (clk=>MASTER_CLK,
+--                    din(15 downto 0)=>info_fifo_wr_data(15 downto 0),
+--                    rd_en=>rx_info_fifo_rden,
+--                    srst=>rx_fifo_reset_sig,
+--                    wr_en=>info_fifo_wren,
+--                    dout(15 downto 0)=>info_fifo_rd_data(15 downto 0),
+--                    empty=>rx_info_fifo_empty,
+--                    full=>open);
+--                                   	
+--       TX_DATA_FIFO : DATA_FIFO_0
+--          port map (clk=>MASTER_CLK,
+--                    din(63 downto 0)=>tx_data_fifo_din(63 downto 0),
+--                    rd_en=>tx_data_fifo_read_enable,
+--                    srst=>tx_fifo_reset_sig,
+--                    wr_en=>tx_data_fifo_wr_en,
+--                    dout(63 downto 0)=>data_fifo_rd_data(63 downto 0),
+--                    empty=>tx_data_fifo_empty,
+--                    full=>tx_data_fifo_full);
+--				
 --   TX_INFO_FIFO : INFO_FIFO_0
 --      port map (clk=>MASTER_CLK,
 --                din(15 downto 0)=>tx_info_fifo_din(15 downto 0),
