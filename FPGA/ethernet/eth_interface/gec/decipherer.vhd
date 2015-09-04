@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd
--- Generated   : 08/20/15 08:31:16
+-- Generated   : 09/04/15 11:03:25
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -30,7 +30,6 @@ entity decipherer is
 		data_in: in STD_LOGIC_VECTOR (7 downto 0);
 		dv: in STD_LOGIC;
 		er: in STD_LOGIC;
-		is_rgmii: in STD_LOGIC;
 		reset: in STD_LOGIC;
 		arp_req_ip: out STD_LOGIC_VECTOR (31 downto 0);
 		arp_req_mac: out STD_LOGIC_VECTOR (47 downto 0);
@@ -120,7 +119,7 @@ is_icmp_ping <= is_icmp_ping_sig;
 capture_source_addrs <= capture_source_addrs_sig and addrs_match_sig;
 clken_out <= clken;
 data_out <= data;
-data <=  data_in when (four_bit_mode = '0' or is_rgmii = '1') else four_bit_data;
+data <=  data_in when (four_bit_mode = '0') else four_bit_data;
 crc_chk_en_masked <= crc_chk_en_unmasked and clken and dv_old;
 crc_chk_en <=  (crc_chk_en_unmasked and dv) when four_bit_mode = '0' else crc_chk_en_masked;
 udp_data_valid <= udp_data_valid_sig and addrs_match_sig;
@@ -135,7 +134,7 @@ begin
 			first_bytes_count <= (others => '0');
 			four_bit_mode <= '0';
 			clken <= '1';
-		elsif (is_rgmii = '0' and four_bit_mode = '0' and first_bytes_count < 5) then
+		elsif (four_bit_mode = '0' and first_bytes_count < 5) then
 			clken <= '1';
 			first_bytes_count <= first_bytes_count + 1;
 			--count total bytes
@@ -147,23 +146,17 @@ begin
 				four_bit_count <= (others => '0');
 			end if;
 		elsif (four_bit_mode = '1') then
-			if (is_rgmii = '1') then
-			   	clken <= '1';
-				four_bit_data <= data_in;
-				-- save this byte for state machine use in jumping ahead
-			else
-				if (four_bit_count < 9) then
+			if (four_bit_count < 9) then
 -- let data catch up to state machine by withholding clken
-					four_bit_count <= four_bit_count + 1;
-					clken <= '0';
-				else
-					clken <= not clken;
-				end if;
-				if(clken = '1') then
-					four_bit_data(3 downto 0) <= data_in(3 downto 0);
-				else
-					four_bit_data(7 downto 4) <= data_in(3 downto 0);
-				end if;
+				four_bit_count <= four_bit_count + 1;
+				clken <= '0';
+			else
+				clken <= not clken;
+			end if;
+			if(clken = '1') then
+				four_bit_data(3 downto 0) <= data_in(3 downto 0);
+			else
+				four_bit_data(7 downto 4) <= data_in(3 downto 0);
 			end if;
 		else	-- 8bit data mode
 			clken <= '1';
@@ -558,45 +551,17 @@ begin
 						Sreg0 <= RecvPacket_Preamble_S51;
 					when RecvPacket_Preamble_S51 =>
 						udp_countdown <= udp_countdown - 1;
-						if (is_rgmii = '1' and four_bit_mode = '1')	-- handle rgmii first packet glitch
-							and (is_rgmii = '1' and four_bit_mode = '1') then	-- handle rgmii first packet glitch
-							Sreg0 <= RecvPacket_Dest_S11;
-							four_bit_mode_out <= four_bit_mode and (not is_rgmii);
-							-- "permanently" latch four bit mode for outside world
-							-- can indicate if 100Mbps vs 1Gbps
-							-- but RGMII is handled upstream DIG_GEC.. so appears to be 8_bit mode (after first packet glitch)
-							dest_mac(47 downto 40) <= four_bit_data;
-							-- tricky jump ahead when switching back from four_bit_mode
-							dest_mac(39 downto 32) <= data;
-						elsif is_rgmii = '1' and four_bit_mode = '1' then	-- handle rgmii first packet glitch
-							Sreg0 <= RecvPacket_Dest_S22;
-							four_bit_mode_out <= four_bit_mode and (not is_rgmii);
-							-- "permanently" latch four bit mode for outside world
-							-- can indicate if 100Mbps vs 1Gbps
-							-- but RGMII is handled upstream DIG_GEC.. so appears to be 8_bit mode (after first packet glitch)
-							dest_mac(47 downto 40) <= data;
-						elsif udp_countdown = x"0002" then
+						if udp_countdown = x"0002" then
 							Sreg0 <= RecvPacket_Preamble_S54;
 							crc_chk_en_unmasked <= '1';
 						end if;
 					when RecvPacket_Preamble_S54 =>
-						if is_rgmii = '1' and four_bit_mode = '1' then	-- handle rgmii first packet glitch
-							Sreg0 <= RecvPacket_Dest_S11;
-							four_bit_mode_out <= four_bit_mode and (not is_rgmii);
-							-- "permanently" latch four bit mode for outside world
-							-- can indicate if 100Mbps vs 1Gbps
-							-- but RGMII is handled upstream DIG_GEC.. so appears to be 8_bit mode (after first packet glitch)
-							dest_mac(47 downto 40) <= four_bit_data;
-							-- tricky jump ahead when switching back from four_bit_mode
-							dest_mac(39 downto 32) <= data;
-						else
-							Sreg0 <= RecvPacket_Dest_S22;
-							four_bit_mode_out <= four_bit_mode and (not is_rgmii);
-							-- "permanently" latch four bit mode for outside world
-							-- can indicate if 100Mbps vs 1Gbps
-							-- but RGMII is handled upstream DIG_GEC.. so appears to be 8_bit mode (after first packet glitch)
-							dest_mac(47 downto 40) <= data;
-						end if;
+						Sreg0 <= RecvPacket_Dest_S22;
+						four_bit_mode_out <= four_bit_mode;
+						-- "permanently" latch four bit mode for outside world
+						-- can indicate if 100Mbps vs 1Gbps
+						-- but RGMII is handled upstream DIG_GEC.. so appears to be 8_bit mode (after first packet glitch)
+						dest_mac(47 downto 40) <= data;
 					when RecvPacket_CRC_ARP_S52 =>
 						udp_countdown <= x"0011";
 						Sreg0 <= RecvPacket_CRC_ARP_S53;
