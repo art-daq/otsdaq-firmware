@@ -28,7 +28,11 @@ use IEEE.STD_LOGIC_1164.all;
 use IEEE.STD_LOGIC_ARITH.all;
 use IEEE.STD_LOGIC_UNSIGNED.all;
 package params_package is	
- 
+	
+	
+	constant ETH_CONTROLLER_VERSION: std_logic_vector(15 downto 0) := x"AAAC"; -- use all letters, before version number was used version was x"4142"
+	
+	
 -- Constants 
 -- 3 bit constants
 	constant v_3_0: std_logic_vector := "000";

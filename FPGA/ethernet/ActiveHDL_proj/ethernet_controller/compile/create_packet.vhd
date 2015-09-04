@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : D:\Projects\OtS DAQ\PicoZed\ActiveHDL_proj\ethernet_controller\compile\create_packet.vhd
--- Generated   : 08/14/15 14:30:04
--- From        : D:/Projects/OtS DAQ/PicoZed/ActiveHDL_proj/ethernet_controller/src/create_packet.asf
+-- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\create_packet.vhd
+-- Generated   : 08/31/15 10:31:20
+-- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/create_packet.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -23,6 +23,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.std_logic_arith.all;
 use IEEE.std_logic_unsigned.all;
 
+use work.params_package.all;
 entity create_packet is 
 	port (
 		addrs: in STD_LOGIC_VECTOR (7 downto 0);
@@ -322,7 +323,8 @@ begin
 						Sreg0 <= SendPacket_Payload_UDP_Checksum2;
 					when SendPacket_Payload_UDP_Checksum2 =>
 						dataout <= x"00";
-						test_data <= x"41";
+						test_data <= ETH_CONTROLLER_VERSION(15 downto 8);
+						-- x"41";
 						-- A
 						if ping_packet = '0' then
 							en_tx_data <= '1';
@@ -335,7 +337,8 @@ begin
 						 	test_data <= x"41";
 						 	-- A
 						else
-							test_data <= test_data + 1;
+							test_data <= ETH_CONTROLLER_VERSION(7 downto 0);
+							----test_data + 1;
 						end if;
 						dataout <= test_data;
 						if length_count = "000" & x"01" then
