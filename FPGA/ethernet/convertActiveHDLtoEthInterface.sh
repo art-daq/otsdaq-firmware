@@ -10,7 +10,12 @@
 ## 
 ##  e.g:  ./convertActiveHDLtoEthInterface.sh eth_interface/
 ##
-
+##  PHY_SOLUTION := 'XILINX_7SERIES_RGMII' 'MII_100_1000' 'LOGIC_RGMII'
+##
+##  XILINX_7SERIES_RGMII uses IDDR ODDR components to implement RGMII <=> GMII
+##  MII_100_1000 works for 100mb or 1gb Ethernet (G)MII protocol
+##  LOGIC_RGMII uses inferred components (works in simulation but Vivado struggles with it) to autodetect RGMII and (G)MII
+##
 
 #!/bin/tcsh
 
@@ -18,11 +23,16 @@ echo '\n'
 
 if ("x$1" == "x") then
 
-    echo 'Usage: ./convertActiveHDLtoEthInterface.sh <eth_interface/ path>'
+    echo 'Usage: ./convertActiveHDLtoEthInterface.sh <eth_interface/ path> <optional PHY_SOLUTION type string>'
+    echo 'PHY_SOLUTION := '
+    echo '\t XILINX_7SERIES_RGMII'
+    echo '\t LOGIC_RGMII'
+    echo '\t MII_100_1000'
+    echo '\t(default if blank is MII_100_1000)'
 
 else if (!(-d $1/gec) || !(-d $1/data_manager)) then
 
-    echo 'Error: Invalid path (gec and data_manager should be dirs at the specified path $1)' 
+    echo "Error: Invalid path (gec and data_manager should be dirs at the specified path '$1')"
  
 else 
 
@@ -56,6 +66,19 @@ else
     # 2 steps: uncomment coregen, and comment inferred
     sed -i s/--//g $1/gec/data_manager.vhd
     sed -i s/.\*SCRIPT\ COMMENT\ OUT/--erased/g $1/gec/data_manager.vhd
+
+
+    #replace PHY_SOLUTION and default to ONLY_GMII
+    if(("$2" == "XILINX_7SERIES_RGMII") || ("$2" == "LOGIC_RGMII")) then
+	sed -i s/LOGIC_RGMII_handler/$2_handler/g $1/gec/GEC.vhd
+	echo "Chosen PHY Solution: $2"
+    else   
+	sed -i s/LOGIC_RGMII_handler/MII_100_1000_handler/g $1/gec/GEC.vhd
+	echo 'Chose default PHY Solution: MII_100_1000'
+    endif
+
+
+
 
     echo 'Moving files...'
     mv $1/gec/GEC_RX_CTL_8.vhd $1/data_manager/
