@@ -30,7 +30,7 @@ use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;		  
 
 
-Library UNISIM;				  	
+Library UNISIM;				  		  -- NOTE: must install Xilinx libraries for this
 use UNISIM.vcomponents.all;
 																	
 entity XILINX_7SERIES_RGMII_handler is
