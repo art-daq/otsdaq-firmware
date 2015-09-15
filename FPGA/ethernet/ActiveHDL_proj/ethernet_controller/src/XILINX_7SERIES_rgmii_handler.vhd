@@ -71,7 +71,7 @@ architecture arch of XILINX_7SERIES_RGMII_handler is
 --    attribute mark_debug of is_passthru_sig : signal is "true";             
 --    attribute mark_debug of rx_data_handled : signal is "true";             
 --    attribute mark_debug of rx_rgmii_data : signal is "true";       
---    attribute mark_debug of rx_dv_handled : signal is "true";  
+--    attribute mark_debug of rx_dv_handled_sig : signal is "true";  
 --    attribute mark_debug of rx_er_handled : signal is "true";        
 --    attribute mark_debug of tx_data : signal is "true";   
 --    attribute mark_debug of tx_dv : signal is "true";     
@@ -80,13 +80,15 @@ architecture arch of XILINX_7SERIES_RGMII_handler is
 --    attribute mark_debug of tx_dv_handled : signal is "true"; 
 --							  	   
 
-	signal rx_er_recv : std_logic;
+	signal rx_er_recv : std_logic;			  
+	signal rx_dv_handled_sig : std_logic;
 																									  
 begin				  
 	
 	
 	tx_er_handled <= '0'; -- never used (?)	   
-	rx_er_handled <= rx_er_recv xor rx_dv_handled; 
+	rx_er_handled <= rx_er_recv xor rx_dv_handled_sig; 			   
+	rx_dv_handled <= rx_dv_handled_sig;
 
 	
 	---------------------------------------
@@ -127,7 +129,7 @@ begin
 			INIT_Q2 => '0', -- Initial value of Q2: '0' or '1'
 			SRTYPE => "SYNC") -- Set/Reset type: "SYNC" or "ASYNC"
 		port map (
-			Q1 => rx_dv_handled, -- 1-bit output for positive edge of clock
+			Q1 => rx_dv_handled_sig, -- 1-bit output for positive edge of clock
 			Q2 => rx_er_recv, -- 1-bit output for negative edge of clock
 			C => clk, -- 1-bit clock input
 			CE => '1', -- 1-bit clock enable input

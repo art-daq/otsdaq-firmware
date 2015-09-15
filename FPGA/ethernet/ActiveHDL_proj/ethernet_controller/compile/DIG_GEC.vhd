@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\DIG_GEC.vhd
--- Generated   : Fri Sep  4 11:03:44 2015
--- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/DIG_GEC.bde
+-- File        : D:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\DIG_GEC.vhd
+-- Generated   : Fri Sep 11 17:12:40 2015
+-- From        : D:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/DIG_GEC.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -65,6 +65,16 @@ architecture DIG_GEC of DIG_GEC is
 
 ---- Component declarations -----
 
+component gei_address_container
+  port (
+       addr_in : in STD_LOGIC_VECTOR(7 downto 0);
+       capture : in STD_LOGIC;
+       clk : in STD_LOGIC;
+       default_addr_in : in STD_LOGIC_VECTOR(7 downto 0);
+       reset : in STD_LOGIC;
+       gei_addr : out STD_LOGIC_VECTOR(7 downto 0)
+  );
+end component;
 component ICMPPingShiftReg
   port (
        clk : in STD_LOGIC;
@@ -290,6 +300,7 @@ signal arp_req_mac : STD_LOGIC_VECTOR(47 downto 0);
 signal checksum : STD_LOGIC_VECTOR(15 downto 0);
 signal data_out : STD_LOGIC_VECTOR(7 downto 0);
 signal decipher_dout : STD_LOGIC_VECTOR(7 downto 0);
+signal default_user_addrs : STD_LOGIC_VECTOR(7 downto 0);
 signal dest_ip : STD_LOGIC_VECTOR(31 downto 0);
 signal frame_src_mac : STD_LOGIC_VECTOR(47 downto 0);
 signal icmp_checksum : STD_LOGIC_VECTOR(15 downto 0);
@@ -445,6 +456,16 @@ FilterDataOutBlock : filter_data_out
        us_clken => decipher_clken
   );
 
+GEI_AddressContainer : gei_address_container
+  port map(
+       addr_in => decipher_dout,
+       capture => capture_addrs,
+       clk => clk,
+       default_addr_in => default_user_addrs,
+       gei_addr => addrs_sig,
+       reset => reset
+  );
+
 ICMPPingChecksumCalcBlock : icmp_ping_checksum_calc
   port map(
        clk => clk,
@@ -503,7 +524,7 @@ UdpLengthMux : user_addrs_mux
 	clk <= GMII_RX_CLK;
 	rx_dv <= GMII_RX_DV;
 	rx_er <= GMII_RX_ER;
-	addrs_sig <= user_addrs;
+	default_user_addrs <= user_addrs;
 
     -- Output\buffer terminals
 	GMII_GTX_CLK <= clk;

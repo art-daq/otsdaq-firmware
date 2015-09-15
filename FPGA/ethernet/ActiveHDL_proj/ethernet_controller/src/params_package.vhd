@@ -30,7 +30,7 @@ use IEEE.STD_LOGIC_UNSIGNED.all;
 package params_package is	
 	
 	
-	constant ETH_CONTROLLER_VERSION: std_logic_vector(15 downto 0) := x"AAAC"; -- use all letters, before version number was used version was x"4142"
+	constant ETH_CONTROLLER_VERSION: std_logic_vector(15 downto 0) := x"AAAD"; -- use all letters, before version number was used version was x"4142"
 	
 	
 -- Constants 
