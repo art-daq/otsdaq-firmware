@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : D:\Projects\OtS DAQ\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC_TX_SEQ_CTL_8.vhd
--- Generated   : 08/14/15 14:30:13
--- From        : D:/Projects/OtS DAQ/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC_TX_SEQ_CTL_8.asf
+-- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC_TX_SEQ_CTL_8.vhd
+-- Generated   : 09/15/15 16:50:44
+-- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC_TX_SEQ_CTL_8.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------

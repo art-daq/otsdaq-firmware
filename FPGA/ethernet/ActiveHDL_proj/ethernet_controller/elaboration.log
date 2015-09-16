@@ -1,13 +1,16 @@
-Active-HDL 10.2.3312.5682  2015-09-15 11:45:54
+Active-HDL 10.2.3312.5682  2015-09-16 2:15:29 PM
 
 Elaboration top modules:
-Architecture                  DIG_GEC(DIG_GEC)
+Architecture                  GEC(GEC)
 
 
 --------------------------------------------------------------------------------------------------------------------------------------
 Entity                  | Architecture                 | Library             | Info | Compiler Version          | Compilation Options
 --------------------------------------------------------------------------------------------------------------------------------------
-DIG_GEC                 | DIG_GEC                      | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
+GEC                     | GEC                          | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
+DIG_GEC                 | dig_gec                      | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
+LOGIC_RGMII_handler     | arch                         | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
+CRC_splice              | behavioral                   | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 arp_reply               | arp_reply_arch               | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 or33                    | or33_arch                    | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 ip_checksum_calc        | ip_checksum_calc_arch        | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
@@ -16,11 +19,18 @@ dataout_mux             | dataout_mux_arch             | ethernet_controller |  
 decipherer              | decipherer_arch              | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 dest_info_container     | dest_info_container_arch     | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 filter_data_out         | filter_data_out_arch         | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
-gei_address_container   | arch                         | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 icmp_ping_checksum_calc | icmp_ping_checksum_calc_arch | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 ICMPPingShiftReg        | arch                         | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 udp_data_splicer        | udp_data_splicer_arch        | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 user_addrs_mux          | user_addrs_mux_arch          | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
+gei_address_container   | arch                         | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
+--------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------
+Verilog Module                                         | Library             | Info | Compiler Version          | Compilation Options
+--------------------------------------------------------------------------------------------------------------------------------------
+CRC_chk                                                | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O2 -v2k5
+CRC_gen                                                | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O2 -v2k5
 --------------------------------------------------------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------------------------------------------------------------
@@ -29,10 +39,10 @@ VHDL Package                                           | Library             | I
 standard                                               | std                 |      |                           | <unavailable>
 TEXTIO                                                 | std                 |      | 10.2.3312.5682  (Windows) |  -2008
 std_logic_1164                                         | ieee                |      | 10.2.3312.5682  (Windows) |  -2008
+NUMERIC_STD                                            | ieee                |      | 10.2.3312.5682  (Windows) |  -2008
 std_logic_arith                                        | ieee                |      | 10.2.3312.5682  (Windows) | <unavailable>
 STD_LOGIC_UNSIGNED                                     | ieee                |      | 10.2.3312.5682  (Windows) | <unavailable>
 params_package                                         | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
-NUMERIC_STD                                            | ieee                |      | 10.2.3312.5682  (Windows) |  -2008
 --------------------------------------------------------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------------------------------------------------------------
@@ -42,9 +52,3 @@ ethernet_controller                                    | None
 ieee                                                   | Standard IEEE packages library
 std                                                    | Standard VHDL library
 --------------------------------------------------------------------------------------------------------------------------------------
-
-
-Simulation Options: asim -O5 +access +r +m+DIG_GEC DIG_GEC DIG_GEC
-
-
-The performance of simulation is reduced. Version PE

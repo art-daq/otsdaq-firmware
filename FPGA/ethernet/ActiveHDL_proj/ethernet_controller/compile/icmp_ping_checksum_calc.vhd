@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : D:\Projects\OtS DAQ\PicoZed\ActiveHDL_proj\ethernet_controller\compile\icmp_ping_checksum_calc.vhd
--- Generated   : 08/14/15 14:29:53
--- From        : D:/Projects/OtS DAQ/PicoZed/ActiveHDL_proj/ethernet_controller/src/icmp_ping_checksum_calc.asf
+-- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\icmp_ping_checksum_calc.vhd
+-- Generated   : 09/15/15 14:56:13
+-- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/icmp_ping_checksum_calc.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------

@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC.vhd
--- Generated   : Fri Sep  4 11:25:02 2015
+-- Generated   : Tue Sep 15 14:55:38 2015
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC.bde
 -- By          : Bde2Vhdl ver. 2.6
 --

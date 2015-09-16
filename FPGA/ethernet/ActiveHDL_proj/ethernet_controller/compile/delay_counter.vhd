@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : D:\Projects\OtS DAQ\PicoZed\ActiveHDL_proj\ethernet_controller\compile\delay_counter.vhd
--- Generated   : 08/14/15 14:30:15
--- From        : D:/Projects/OtS DAQ/PicoZed/ActiveHDL_proj/ethernet_controller/src/delay_counter.asf
+-- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\delay_counter.vhd
+-- Generated   : 09/15/15 16:50:46
+-- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/delay_counter.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------

@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\create_packet.vhd
--- Generated   : 08/31/15 10:31:20
+-- Generated   : 09/16/15 14:15:28
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/create_packet.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -102,18 +102,8 @@ begin
 -- Diagram ACTION
 tx_icmp_packet <= icmp_ping_packet;
 clken_out <= clken;
-trig_proc : process (clk) -- make trigger sig a single clock width pulse
-begin
-   if rising_edge(clk) and clken = '1' then
-		trigger_sig <= '0';
-		old_trig <= trigger;
-		if reset = '1' then
-			trigger_sig <= '0';
-		elsif trigger = '1' and old_trig = '0' then
-			trigger_sig <= '1';
-		end if;
-	end if;
-end process;
+-- NOTE: expect trigger is a single clock width pulse
+trigger_sig <= trigger;
 four_bit_proc : process (clk) -- make trigger sig a single clock width pulse
 begin
 	if rising_edge(clk) then

@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : D:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\DIG_GEC.vhd
--- Generated   : Fri Sep 11 17:12:40 2015
--- From        : D:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/DIG_GEC.bde
+-- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\DIG_GEC.vhd
+-- Generated   : Tue Sep 15 20:19:35 2015
+-- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/DIG_GEC.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -72,7 +72,9 @@ component gei_address_container
        clk : in STD_LOGIC;
        default_addr_in : in STD_LOGIC_VECTOR(7 downto 0);
        reset : in STD_LOGIC;
-       gei_addr : out STD_LOGIC_VECTOR(7 downto 0)
+       arp_announce_strobe : out STD_LOGIC;
+       gei_addr : out STD_LOGIC_VECTOR(7 downto 0);
+       gei_protocol_ping_strobe : out STD_LOGIC
   );
 end component;
 component ICMPPingShiftReg
@@ -108,6 +110,7 @@ end component;
 component arp_reply
   port (
        addrs : in STD_LOGIC_VECTOR(7 downto 0);
+       arp_announce : in STD_LOGIC;
        clk : in STD_LOGIC;
        four_bit_mode : in STD_LOGIC;
        reset : in STD_LOGIC;
@@ -257,10 +260,12 @@ end component;
 
 ---- Signal declarations used on the diagram ----
 
+signal arp_announce_strobe : STD_LOGIC;
 signal arp_busy : STD_LOGIC;
 signal arp_crc_gen_en_sig : STD_LOGIC;
 signal arp_crc_gen_init_sig : STD_LOGIC;
 signal arp_crc_gen_rd_sig : STD_LOGIC;
+signal arp_trigger : STD_LOGIC;
 signal arp_tx_en : STD_LOGIC;
 signal arp_tx_er : STD_LOGIC;
 signal busy_sig : STD_LOGIC;
@@ -277,6 +282,7 @@ signal decipher_clken : STD_LOGIC;
 signal dec_chk_rd_sig : STD_LOGIC;
 signal en_tx_data_sig : STD_LOGIC;
 signal four_bit_mode : STD_LOGIC;
+signal gei_protocol_ping_strobe : STD_LOGIC;
 signal is_arp_packet_sig : STD_LOGIC;
 signal is_icmp_packet_sig : STD_LOGIC;
 signal is_ip_packet_sig : STD_LOGIC;
@@ -323,6 +329,7 @@ begin
 ArpReplyBlock : arp_reply
   port map(
        addrs => addrs_sig,
+       arp_announce => arp_announce_strobe,
        arp_busy => arp_busy,
        clk => clk,
        crc_gen_en => arp_crc_gen_en_sig,
@@ -333,7 +340,7 @@ ArpReplyBlock : arp_reply
        reset => reset,
        tip => arp_req_ip,
        tmac => arp_req_mac,
-       trigger => is_arp_packet_sig,
+       trigger => arp_trigger,
        tx_en => arp_tx_en,
        tx_er => arp_tx_er,
        udp_busy => sel_udp
@@ -388,7 +395,7 @@ CreatePacketBlock : create_packet
        icmp_mac => frame_src_mac,
        icmp_ping => is_icmp_packet_sig,
        length_count_out => user_tx_size_in_latched,
-       ping => capture_addrs,
+       ping => gei_protocol_ping_strobe,
        reset => reset,
        trigger => trigger_sig,
        tx_en => udp_tx_en,
@@ -456,16 +463,6 @@ FilterDataOutBlock : filter_data_out
        us_clken => decipher_clken
   );
 
-GEI_AddressContainer : gei_address_container
-  port map(
-       addr_in => decipher_dout,
-       capture => capture_addrs,
-       clk => clk,
-       default_addr_in => default_user_addrs,
-       gei_addr => addrs_sig,
-       reset => reset
-  );
-
 ICMPPingChecksumCalcBlock : icmp_ping_checksum_calc
   port map(
        clk => clk,
@@ -484,9 +481,11 @@ ICMPPingShiftRegBlock : ICMPPingShiftReg
        us_clken => decipher_clken
   );
 
-trigger_sig <= trigger or capture_addrs or is_icmp_packet_sig;
+trigger_sig <= trigger or gei_protocol_ping_strobe or is_icmp_packet_sig;
 
 crc_chk_rd_sig <= is_ip_packet_sig and dec_chk_rd_sig;
+
+arp_trigger <= arp_announce_strobe or is_arp_packet_sig;
 
 UDPDataSplicer : udp_data_splicer
   port map(
@@ -514,6 +513,18 @@ UdpLengthMux : user_addrs_mux
        ping_mode => capture_addrs,
        user_dest_addr => dest_addrs,
        user_length => user_tx_size_in
+  );
+
+geiAddressContainer : gei_address_container
+  port map(
+       addr_in => decipher_dout,
+       arp_announce_strobe => arp_announce_strobe,
+       capture => capture_addrs,
+       clk => clk,
+       default_addr_in => default_user_addrs,
+       gei_addr => addrs_sig,
+       gei_protocol_ping_strobe => gei_protocol_ping_strobe,
+       reset => reset
   );
 
 
@@ -549,7 +560,7 @@ UdpLengthMux : user_addrs_mux
 	src_addrs(5) <= udp_src_ip(5);
 	src_addrs(6) <= udp_src_ip(6);
 	src_addrs(7) <= udp_src_ip(7);
-	src_capture <= capture_addrs;
+	src_capture <= gei_protocol_ping_strobe;
 	src_mac <= frame_src_mac;
 	src_port <= udp_src_port;
 	udp_data_count <= ip_data_count_sig;

@@ -17,7 +17,7 @@ end;
 
 architecture arch of ICMPPingShiftReg is   
 		 
-	constant SHR_DEPTH : natural := 34;											 	  								   
+	constant SHR_DEPTH : natural := 33;											 	  								   
 	type shReg_t is array(natural range <>) of std_logic_vector(7 downto 0);  
 	signal shReg 						: shReg_t(SHR_DEPTH-1 downto 0);		
 	signal	din_latch 				: STD_LOGIC_VECTOR(7 downto 0);

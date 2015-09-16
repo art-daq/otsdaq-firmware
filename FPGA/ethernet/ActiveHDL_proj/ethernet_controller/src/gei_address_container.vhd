@@ -20,7 +20,10 @@ entity gei_address_container is
 		reset : in std_logic;		   
 		capture : in std_logic;	
 		default_addr_in : in std_logic_vector(7 downto 0);	  
-		addr_in : in std_logic_vector(7 downto 0);
+		addr_in : in std_logic_vector(7 downto 0);			
+		
+		arp_announce_strobe : out std_logic;	
+		gei_protocol_ping_strobe : out std_logic;	
 		
 		gei_addr : out std_logic_vector(7 downto 0)
 		);
@@ -41,14 +44,22 @@ begin
 		
 		if (rising_edge(clk)) then
 			
-			capture_old <= capture;
+			capture_old <= capture;			 
+			arp_announce_strobe <= '0';	 
+			gei_protocol_ping_strobe <= '0';
 			
-			if (reset = '1' or 						 -- reset can happen any time
-				unsigned(gei_addr_sig) = 0 ) then 	  -- addr=0 should happen at startup ONLY
-				gei_addr_sig <= default_addr_in;	  -- take default addr
-			elsif (	capture_old = '0' and capture = '1' and  -- rising edge of source capture
-				unsigned(addr_in) > 0 and unsigned(addr_in) < 255) then		 --and not illegal addr
-				gei_addr_sig <= addr_in;			-- take "CAPTAN Ping" addr
+			if (reset = '1' or 					 -- reset can happen any time
+				gei_addr_sig = x"00" ) then 	  -- addr=0 should happen at startup ONLY
+				gei_addr_sig <= x"06";--default_addr_in;	  -- take default addr
+			elsif (	capture_old = '0' and capture = '1') then   -- rising edge of source capture
+				if (addr_in /= x"00" and addr_in /= x"FF") then		 --and not illegal addr
+					gei_addr_sig <= addr_in;			-- take "CAPTAN Ping" addr	
+					arp_announce_strobe <= '1';
+				else   					-- illegal address is used as "CAPTAN ping"	
+					gei_protocol_ping_strobe <= '1';					
+				end if;
+			else
+				gei_addr_sig <= gei_addr_sig;		-- give explicit registering behavior (Vivado seems to not be sure?)
 			end if;	  
 				
 		end if;	
