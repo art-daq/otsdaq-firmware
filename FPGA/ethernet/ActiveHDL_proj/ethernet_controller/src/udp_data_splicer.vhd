@@ -18,16 +18,21 @@ entity udp_data_splicer is
 end;
 
 
-architecture udp_data_splicer_arch of udp_data_splicer is	
-signal delay_sel_user : std_logic;		
-signal latched_user_data : std_logic_vector(7 downto 0);
+architecture udp_data_splicer_arch of udp_data_splicer is				   
+
+	signal delay_sel_user : std_logic;		
+	signal latched_user_data, weird_sim_fix : std_logic_vector(7 downto 0);		 
+	
 begin				  
 
 	udp_data_out <= gen_data when delay_sel_user = '0' else latched_user_data;
+	
+	weird_sim_fix <= user_data after 1ns; -- simulation clock is confused,.. so force clock latch to work.
+	
 	process(clk)
 	begin
 		if rising_edge(clk) then	  
-			latched_user_data <= user_data;
+			latched_user_data <= weird_sim_fix;
 			delay_sel_user <= sel_user;
 		end if;				   
 	end process;	

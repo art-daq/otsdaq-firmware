@@ -1,15 +1,15 @@
 -------------------------------------------------------------------------------
 --
--- Title       : GEC_TX_SEQ_CTL_8
+-- Title       : GEC_TX_SEQ_CTL
 -- Design      : ethernet_controller
 -- Author      : aprosser
 -- Company     : CD_CEPA_ESE
 --
 -------------------------------------------------------------------------------
 --
--- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC_TX_SEQ_CTL_8.vhd
--- Generated   : 09/15/15 16:50:44
--- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC_TX_SEQ_CTL_8.asf
+-- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC_TX_SEQ_CTL.vhd
+-- Generated   : 09/28/15 10:32:52
+-- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC_TX_SEQ_CTL.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -24,21 +24,18 @@ use IEEE.std_logic_arith.all;
 use IEEE.std_logic_unsigned.all;
 use work.params_package.all;
 
-entity GEC_TX_SEQ_CTL_8 is 
+entity GEC_TX_SEQ_CTL is 
 	port (
-		block_en: in STD_LOGIC;
 		clk: in STD_LOGIC;
 		data_fifo_empty: in STD_LOGIC;
 		data_fifo_rd_data: in STD_LOGIC_VECTOR (63 downto 0);
-		data_fifo_rderr: in STD_LOGIC;
 		delay_count: in STD_LOGIC;
 		four_bit_mode: in STD_LOGIC;
 		gec_user_busy: in STD_LOGIC;
 		gec_user_tx_enable_out: in STD_LOGIC;
 		info_fifo_empty: in STD_LOGIC;
 		info_fifo_rd_data: in STD_LOGIC_VECTOR (15 downto 0);
-		info_fifo_rderr: in STD_LOGIC;
-		reset_n: in STD_LOGIC;
+		reset: in STD_LOGIC;
 		clear_delay_count: out STD_LOGIC;
 		data_fifo_rden: out STD_LOGIC;
 		data_fifo_rden_en: out STD_LOGIC;
@@ -48,9 +45,9 @@ entity GEC_TX_SEQ_CTL_8 is
 		info_fifo_rden: out STD_LOGIC;
 		start_delay_count: out STD_LOGIC;
 		state_diag: out STD_LOGIC_VECTOR (3 downto 0));
-end GEC_TX_SEQ_CTL_8;
+end GEC_TX_SEQ_CTL;
 
-architecture GEC_TX_SEQ_CTL_8 of GEC_TX_SEQ_CTL_8 is
+architecture GEC_TX_SEQ_CTL of GEC_TX_SEQ_CTL is
 
 -- diagram signals declarations
 signal byte_count: STD_LOGIC_VECTOR (2 downto 0);
@@ -65,27 +62,26 @@ signal tx_data_count: STD_LOGIC_VECTOR (10 downto 0);
 -- BINARY ENCODED state machine: Sreg0
 attribute ENUM_ENCODING: string;
 type Sreg0_type is (
-    idle, enabled, chk_busy, txmtdone, data_rdy_read_Ififo, trgrd, data_rdy_savecount, txmt_xmiting, S1, S2, txmt_S3, S4, S5
+    data_rdy_read_Ififo, data_rdy_savecount, txmt_xmiting, txmt_S3, S2, S1, idle, txmtdone, chk_busy, S4, S5, trgrd
 );
 attribute ENUM_ENCODING of Sreg0_type: type is
-	"0000 " &		-- idle
-	"0001 " &		-- enabled
-	"0010 " &		-- chk_busy
-	"0011 " &		-- txmtdone
-	"0100 " &		-- data_rdy_read_Ififo
-	"0101 " &		-- trgrd
-	"0110 " &		-- data_rdy_savecount
-	"0111 " &		-- txmt_xmiting
-	"1000 " &		-- S1
-	"1001 " &		-- S2
-	"1010 " &		-- txmt_S3
-	"1011 " &		-- S4
-	"1100" ;		-- S5
+	"0000 " &		-- data_rdy_read_Ififo
+	"0001 " &		-- data_rdy_savecount
+	"0010 " &		-- txmt_xmiting
+	"0011 " &		-- txmt_S3
+	"0100 " &		-- S2
+	"0101 " &		-- S1
+	"0110 " &		-- idle
+	"0111 " &		-- txmtdone
+	"1000 " &		-- chk_busy
+	"1001 " &		-- S4
+	"1010 " &		-- S5
+	"1011" ;		-- trgrd
 
 signal Sreg0: Sreg0_type;
 
 attribute STATE_VECTOR: string;
-attribute STATE_VECTOR of GEC_TX_SEQ_CTL_8: architecture is "Sreg0";
+attribute STATE_VECTOR of GEC_TX_SEQ_CTL: architecture is "Sreg0";
 
 begin
 
@@ -95,7 +91,7 @@ begin
 state_diag <= CONV_STD_LOGIC_VECTOR(Sreg0_type'POS(Sreg0),4);
 info_fifo_rden <= info_fifo_rden_sig and clken;
 data_fifo_rden <= data_fifo_rden_sig and clken;
-four_bit_proc : process (clk) -- make trigger sig a single clock width pulse
+four_bit_proc : process (clk)
 begin
 	if rising_edge(clk) then
 		if (four_bit_mode = '1') then
@@ -112,10 +108,11 @@ end process;
 Sreg0_machine: process (clk)
 begin
 	if clk'event and clk = '1' then
-		if reset_n = '0' then
+		if reset = '1' then
 			Sreg0 <= idle;
 			-- Set default values for outputs, signals and variables
 			-- ...
+			seq_count <= (others => '0');
 			gec_user_trigger <= '0';
 			gec_user_tx_size_in <= v_11_0;
 			q_w_count <= v_8_0;
@@ -132,26 +129,33 @@ begin
 				-- Set default values for outputs, signals and variables
 				-- ...
 				case Sreg0 is
-					when idle =>
-						if block_en = '0' then
-							Sreg0 <= idle;
-						elsif block_en = '1' then
-							Sreg0 <= enabled;
+					when S2 =>
+						Sreg0 <= S4;
+						gec_user_tx_size_in <= tx_data_count;
+						-- present byte count to GEC
+						if (tx_data_count /= v_11_2) then
+						-- read a quad word for initialization
+						  data_fifo_rden_en <= '1';
+						  data_fifo_rden_sig <= '1';
 						end if;
-					when enabled =>
-						if block_en = '0' then
-							Sreg0 <= idle;
-						elsif (info_fifo_empty = '0' and block_en = '1') and
+					when S1 =>
+						Sreg0 <= S2;
+						tx_data_count <= tx_data_count + v_11_2;
+						-- add return code byte to
+						-- produce the final number of bytes
+						-- add sequence counter byte also
+						start_delay_count <= '1';
+					when idle =>
+						if info_fifo_empty = '0'  and
 							delay_count = '0' then	-- FIFO has an entry and no more delay needed
 							Sreg0 <= data_rdy_read_Ififo;
 							clear_delay_count <= '1';
 							info_fifo_rden_sig <= '1';
 							-- Read the info word
 							byte_count <= "000";
-						elsif (info_fifo_empty = '1' and block_en = '1') or
-							delay_count = '1' then	-- FIFO is  empty or delay not complete
-							Sreg0 <= enabled;
 						end if;
+					when txmtdone =>
+						Sreg0 <= idle;
 					when chk_busy =>
 						if gec_user_busy = '0' then
 							Sreg0 <= trgrd;
@@ -166,35 +170,6 @@ begin
 							Sreg0 <= chk_busy;
 							data_fifo_rden_sig <= '0';
 							-- finished reading quad word fifo for first quad word
-						end if;
-					when txmtdone =>
-						if block_en = '1' then
-							Sreg0 <= enabled;
-						elsif block_en = '0' then
-							Sreg0 <= idle;
-						end if;
-					when trgrd =>
-						if gec_user_tx_enable_out = '1' then
-							Sreg0 <= S5;
-							gec_user_tx_data_in <= seq_count;
-						elsif gec_user_tx_enable_out = '0' then	-- wait for enable tx reply
-							Sreg0 <= trgrd;
-						end if;
-					when S1 =>
-						Sreg0 <= S2;
-						tx_data_count <= tx_data_count + v_11_2;
-						-- add return code byte to
-						-- produce the final number of bytes
-						-- add sequence counter byte also
-						start_delay_count <= '1';
-					when S2 =>
-						Sreg0 <= S4;
-						gec_user_tx_size_in <= tx_data_count;
-						-- present byte count to GEC
-						if (tx_data_count /= v_11_2) then
-						-- read a quad word for initialization
-						  data_fifo_rden_en <= '1';
-						  data_fifo_rden_sig <= '1';
 						end if;
 					when S4 =>
 						Sreg0 <= chk_busy;
@@ -218,6 +193,13 @@ begin
 						-- user_tx_enable_out from the GEC is
 						-- enabling read operations on the data
 						-- FIFO
+					when trgrd =>
+						if gec_user_tx_enable_out = '1' then
+							Sreg0 <= S5;
+							gec_user_tx_data_in <= seq_count;
+						elsif gec_user_tx_enable_out = '0' then	-- wait for enable tx reply
+							Sreg0 <= trgrd;
+						end if;
 					when data_rdy_read_Ififo =>
 						Sreg0 <= data_rdy_savecount;
 						info_fifo_rden_sig <= '0';
@@ -377,4 +359,4 @@ begin
 	end if;
 end process;
 
-end GEC_TX_SEQ_CTL_8;
+end GEC_TX_SEQ_CTL;

@@ -3,7 +3,6 @@ component GEC_RX_CTL_8
 		block_en: in STD_LOGIC;
 		clock: in STD_LOGIC;
 		data_fifo_full: in STD_LOGIC;
-		data_fifo_wrerr: in STD_LOGIC;
 		four_bit_mode: in STD_LOGIC;
 		gec_user_crc_err: in STD_LOGIC;
 		gec_user_rx_data_out: in STD_LOGIC_VECTOR (7 downto 0);
@@ -26,7 +25,6 @@ instance_name : GEC_RX_CTL_8
  data_fifo_full => ,
  data_fifo_q_w_data => ,
  data_fifo_wren => ,
- data_fifo_wrerr => ,
  four_bit_mode => ,
  gec_user_crc_err => ,
  gec_user_rx_data_out => ,

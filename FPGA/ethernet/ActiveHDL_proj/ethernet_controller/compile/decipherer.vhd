@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd
--- Generated   : 09/15/15 19:59:27
+-- Generated   : 09/23/15 11:39:42
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -186,7 +186,7 @@ match_proc : process(clk)
 begin
 if rising_edge(clk) then
 	addrs_match_sig <= '0';
-	if udp_dest_ip = (x"C0A885" & addrs) or udp_dest_ip = x"C0A885FE" then --this UDP packet was intended for this firmware. 0xFE is CAPTAN broadcast
+	if udp_dest_ip = (x"C0A885" & addrs) then -- or udp_dest_ip = x"C0A885FE" then --this UDP packet was intended for this firmware. 0xFE is CAPTAN broadcast
 		addrs_match_sig <= '1';
 	end if;
 end if;

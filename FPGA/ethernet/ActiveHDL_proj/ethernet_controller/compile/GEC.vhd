@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC.vhd
--- Generated   : Tue Sep 15 14:55:38 2015
+-- Generated   : Fri Sep 25 15:07:31 2015
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -30,7 +30,6 @@ entity GEC is
        reset : in STD_LOGIC;
        user_trigger : in STD_LOGIC;
        GMII_RXD : in STD_LOGIC_VECTOR(7 downto 0);
-       user_addrs : in STD_LOGIC_VECTOR(7 downto 0);
        user_dest_addrs : in STD_LOGIC_VECTOR(7 downto 0);
        user_dest_mac : in STD_LOGIC_VECTOR(47 downto 0);
        user_dest_port : in STD_LOGIC_VECTOR(15 downto 0);
@@ -126,7 +125,6 @@ component DIG_GEC
        dest_port : in STD_LOGIC_VECTOR(15 downto 0);
        reset : in STD_LOGIC;
        trigger : in STD_LOGIC;
-       user_addrs : in STD_LOGIC_VECTOR(7 downto 0);
        user_tx_data_in : in STD_LOGIC_VECTOR(7 downto 0);
        user_tx_size_in : in STD_LOGIC_VECTOR(10 downto 0);
        GMII_GTX_CLK : out STD_LOGIC;
@@ -214,7 +212,6 @@ DIG_GEC_Block : DIG_GEC
        trigger => user_trigger,
        udp_data_count => user_rx_size_out,
        udp_dest_port => udp_fwd_port,
-       user_addrs => user_addrs,
        user_rx_data_out => user_rx_data_out,
        user_rx_valid_out => user_rx_valid_out,
        user_tx_data_in => user_tx_data_in,

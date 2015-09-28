@@ -1,15 +1,15 @@
 -------------------------------------------------------------------------------
 --
--- Title       : RAM_COMM_DEC_9
+-- Title       : RAM_COMM_DEC
 -- Design      : ethernet_controller
 -- Author      : aprosser
 -- Company     : CD_CEPA_ESE
 --
 -------------------------------------------------------------------------------
 --
--- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\RAM_COMM_DEC_9.vhd
--- Generated   : 09/15/15 16:50:40
--- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/RAM_COMM_DEC_9.asf
+-- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\RAM_COMM_DEC.vhd
+-- Generated   : 09/28/15 12:30:19
+-- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/RAM_COMM_DEC.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -24,12 +24,11 @@ use IEEE.std_logic_arith.all;
 use IEEE.std_logic_unsigned.all;
 use work.params_package.all;
 
-entity RAM_COMM_DEC_9 is 
+entity RAM_COMM_DEC is 
 	port (
-		block_en: in STD_LOGIC;
 		burst_done: in STD_LOGIC;
 		clock: in STD_LOGIC;
-		reset_n: in STD_LOGIC;
+		reset: in STD_LOGIC;
 		rx_data_fifo_rd_data: in STD_LOGIC_VECTOR (63 downto 0);
 		rx_info_fifo_empty: in STD_LOGIC;
 		rx_info_fifo_rd_data: in STD_LOGIC_VECTOR (15 downto 0);
@@ -49,9 +48,9 @@ entity RAM_COMM_DEC_9 is
 		tx_info_fifo_src_sel: out STD_LOGIC;
 		tx_info_fifo_wr_data: out STD_LOGIC_VECTOR (15 downto 0);
 		tx_info_fifo_wren: out STD_LOGIC);
-end RAM_COMM_DEC_9;
+end RAM_COMM_DEC;
 
-architecture RAM_COMM_DEC_9 of RAM_COMM_DEC_9 is
+architecture RAM_COMM_DEC of RAM_COMM_DEC is
 
 -- diagram signals declarations
 signal burst_active: STD_LOGIC;
@@ -65,51 +64,51 @@ signal ram_addr_reg: STD_LOGIC_VECTOR (63 downto 0);
 -- BINARY ENCODED state machine: Sreg0
 attribute ENUM_ENCODING: string;
 type Sreg0_type is (
-    dec_comm, enabled, idle, illegal, return_st, get_comm, write_com_S9, write_com_S8, write_com_S10, read_com_S13, read_com_S14, read_com_S15,
-    read_com_S16, read_com_S1, pro_comm, read_com_S18, write_com_S19, write_com_S11, write_com_S21, err_dec, crcerr_S24, crcerr_S25,
-    crcerr_S26, crcerr_S27, crcerr_S28, burst_strt_S30, burst_strt_S31, burst_strt_S33, burst_strt_S34, burst_stp_S36, burst_stp_S37,
-    burst_stp_S38, burst_stp_S39, brst_wait
+    write_com_S9, write_com_S8, write_com_S10, read_com_S13, read_com_S14, read_com_S15, read_com_S16, read_com_S1, read_com_S18, write_com_S19,
+    write_com_S11, write_com_S21, crcerr_S24, crcerr_S25, crcerr_S26, crcerr_S27, crcerr_S28, burst_strt_S30, burst_strt_S31, burst_strt_S33,
+    burst_strt_S34, burst_stp_S36, burst_stp_S37, burst_stp_S38, burst_stp_S39, dec_comm, idle, illegal, return_st, get_comm, brst_wait,
+    err_dec, ack, pro_comm
 );
 attribute ENUM_ENCODING of Sreg0_type: type is
-	"000000 " &		-- dec_comm
-	"000001 " &		-- enabled
-	"000010 " &		-- idle
-	"000011 " &		-- illegal
-	"000100 " &		-- return_st
-	"000101 " &		-- get_comm
-	"000110 " &		-- write_com_S9
-	"000111 " &		-- write_com_S8
-	"001000 " &		-- write_com_S10
-	"001001 " &		-- read_com_S13
-	"001010 " &		-- read_com_S14
-	"001011 " &		-- read_com_S15
-	"001100 " &		-- read_com_S16
-	"001101 " &		-- read_com_S1
-	"001110 " &		-- pro_comm
-	"001111 " &		-- read_com_S18
-	"010000 " &		-- write_com_S19
-	"010001 " &		-- write_com_S11
-	"010010 " &		-- write_com_S21
-	"010011 " &		-- err_dec
-	"010100 " &		-- crcerr_S24
-	"010101 " &		-- crcerr_S25
-	"010110 " &		-- crcerr_S26
-	"010111 " &		-- crcerr_S27
-	"011000 " &		-- crcerr_S28
-	"011001 " &		-- burst_strt_S30
-	"011010 " &		-- burst_strt_S31
-	"011011 " &		-- burst_strt_S33
-	"011100 " &		-- burst_strt_S34
-	"011101 " &		-- burst_stp_S36
-	"011110 " &		-- burst_stp_S37
-	"011111 " &		-- burst_stp_S38
-	"100000 " &		-- burst_stp_S39
-	"100001" ;		-- brst_wait
+	"000000 " &		-- write_com_S9
+	"000001 " &		-- write_com_S8
+	"000010 " &		-- write_com_S10
+	"000011 " &		-- read_com_S13
+	"000100 " &		-- read_com_S14
+	"000101 " &		-- read_com_S15
+	"000110 " &		-- read_com_S16
+	"000111 " &		-- read_com_S1
+	"001000 " &		-- read_com_S18
+	"001001 " &		-- write_com_S19
+	"001010 " &		-- write_com_S11
+	"001011 " &		-- write_com_S21
+	"001100 " &		-- crcerr_S24
+	"001101 " &		-- crcerr_S25
+	"001110 " &		-- crcerr_S26
+	"001111 " &		-- crcerr_S27
+	"010000 " &		-- crcerr_S28
+	"010001 " &		-- burst_strt_S30
+	"010010 " &		-- burst_strt_S31
+	"010011 " &		-- burst_strt_S33
+	"010100 " &		-- burst_strt_S34
+	"010101 " &		-- burst_stp_S36
+	"010110 " &		-- burst_stp_S37
+	"010111 " &		-- burst_stp_S38
+	"011000 " &		-- burst_stp_S39
+	"011001 " &		-- dec_comm
+	"011010 " &		-- idle
+	"011011 " &		-- illegal
+	"011100 " &		-- return_st
+	"011101 " &		-- get_comm
+	"011110 " &		-- brst_wait
+	"011111 " &		-- err_dec
+	"100000 " &		-- ack
+	"100001" ;		-- pro_comm
 
 signal Sreg0: Sreg0_type;
 
 attribute STATE_VECTOR: string;
-attribute STATE_VECTOR of RAM_COMM_DEC_9: architecture is "Sreg0";
+attribute STATE_VECTOR of RAM_COMM_DEC: architecture is "Sreg0";
 
 begin
 
@@ -124,7 +123,7 @@ state_diag <= CONV_STD_LOGIC_VECTOR(Sreg0_type'POS(Sreg0),6);
 Sreg0_machine: process (clock)
 begin
 	if clock'event and clock = '1' then
-		if reset_n = '0' then
+		if reset = '1' then
 			Sreg0 <= idle;
 			-- Set default values for outputs, signals and variables
 			-- ...
@@ -154,20 +153,17 @@ begin
 			-- Reset FIFOs
 			Tx_FIFO_Reset <= '1';
 			burst_complete_flag <= '0';
+			-- disable reset
+			-- disable reset
 		else
 			-- Set default values for outputs, signals and variables
 			-- ...
 			case Sreg0 is
 				when dec_comm =>
-					if comm_reg = "011" then
+					if comm_reg(1 downto 0) = 3 then
 						Sreg0 <= burst_stp_S38;
 						burst_stop <= '1';
-					elsif comm_reg(2) = '1' or
-						(comm_reg = "000" and burst_active = '1') or
-						(comm_reg = "010" and burst_active = '1') then
-						Sreg0 <= illegal;
-						Rx_FIFO_Reset <= '1';
-					elsif comm_reg = "010" and burst_active = '0' then
+					elsif comm_reg(1 downto 0) = 2 and burst_active = '0' then
 						Sreg0 <= burst_strt_S33;
 						burst_active <= '1';
 						burst_start <= '1';
@@ -178,48 +174,72 @@ begin
 						if (burst_complete_flag = '1') then
 						  Tx_FIFO_Reset <= '1';
 						end if;
-					elsif comm_reg = "000" and burst_active = '0' then
+					elsif comm_reg(1 downto 0) = 0 and burst_active = '0' then
 						Sreg0 <= read_com_S1;
 						if (burst_complete_flag = '1') then
 						  Tx_FIFO_Reset <= '1';
 						end if;
-					elsif comm_reg = "001" then
+					elsif comm_reg(1 downto 0) = 1 then
 						Sreg0 <= write_com_S8;
 						rx_data_fifo_rden <= '1';
+					else
+						Sreg0 <= illegal;
+						Rx_FIFO_Reset <= '1';
 					end if;
-				when enabled =>
-					if block_en = '0' then
-						Sreg0 <= idle;
-					elsif burst_done = '1' and
+				when idle =>
+					Rx_FIFO_Reset <= '0';
+					-- disable reset
+					Tx_FIFO_Reset <= '0';
+					-- disable reset
+					if burst_done = '1' and
 						burst_active = '1' then
 						Sreg0 <= brst_wait;
-					elsif rx_info_fifo_empty = '1' then
-						Sreg0 <= enabled;
 					elsif rx_info_fifo_empty = '0' then
 						Sreg0 <= get_comm;
 						rx_info_fifo_rden <= '1';
-					end if;
-				when idle =>
-					if block_en = '1' then
-						Sreg0 <= enabled;
-						Rx_FIFO_Reset <= '0';
-					elsif block_en = '0' then
-						Sreg0 <= idle;
-						Rx_FIFO_Reset <= '0';
-						-- disable reset
 					end if;
 				when illegal =>
 					Sreg0 <= return_st;
 					Rx_FIFO_Reset <= '0';
 				when return_st =>
-					if block_en = '0' then
-						Sreg0 <= idle;
-					elsif block_en = '1' then
-						Sreg0 <= enabled;
-					end if;
+					Sreg0 <= idle;
 				when get_comm =>
 					Sreg0 <= pro_comm;
 					rx_info_fifo_rden <= '0';
+				when brst_wait =>
+					if burst_done = '1' then
+						Sreg0 <= return_st;
+						burst_active <= '0';
+						burst_stop <= '0';
+						-- Point FIFO muxes away from
+						-- burst controller
+						tx_data_fifo_src_sel <= '0';
+						tx_info_fifo_src_sel <= '0';
+						burst_complete_flag <= '1';
+					end if;
+				when err_dec =>
+					if crc_err = '1' then
+						Sreg0 <= crcerr_S26;
+						rx_data_fifo_rden <= '1';
+					elsif comm_reg(2) = '1' then
+						Sreg0 <= ack;
+						-- handle ACK info (no data for ACK)
+						tx_info_fifo_wr_data(15 downto 8) <= (others => '0');
+						tx_info_fifo_wr_data(7 downto 3) <= (others => '0');
+						tx_info_fifo_wr_data(2 downto 0) <= comm_reg;
+						tx_info_fifo_wren <= '1';
+						-- write to tx info fifo
+						-- definition of bits written to tx_info_fifo
+						-- bits 15-8: quad word count (read data)
+						-- bits 7-3: status (currently undefined)
+						-- bits 2-0: return code (bit 2 is ack, 1:0 is command)
+					else
+						Sreg0 <= dec_comm;
+					end if;
+				when ack =>
+					Sreg0 <= dec_comm;
+					tx_info_fifo_wren <= '0';
+					-- stop write to tx info fifo
 				when pro_comm =>
 					Sreg0 <= err_dec;
 					comm_reg <= rx_info_fifo_rd_data(2 downto 0);
@@ -231,26 +251,6 @@ begin
 					crc_err <= rx_info_fifo_rd_data(3);
 					-- get the crc error indicator
 					mem_loc_count_reg <= v_8_0;
-				when err_dec =>
-					if crc_err = '0' then
-						Sreg0 <= dec_comm;
-					elsif crc_err = '1' then
-						Sreg0 <= crcerr_S26;
-						rx_data_fifo_rden <= '1';
-					end if;
-				when brst_wait =>
-					if burst_done = '0' then
-						Sreg0 <= brst_wait;
-					elsif burst_done = '1' then
-						Sreg0 <= return_st;
-						burst_active <= '0';
-						burst_stop <= '0';
-						-- Point FIFO muxes towards
-						-- burst controller
-						tx_data_fifo_src_sel <= '0';
-						tx_info_fifo_src_sel <= '0';
-						burst_complete_flag <= '1';
-					end if;
 				when burst_stp_S36 =>
 					Sreg0 <= burst_stp_S37;
 					rx_data_fifo_rden <= '0';
@@ -424,4 +424,4 @@ begin
 	end if;
 end process;
 
-end RAM_COMM_DEC_9;
+end RAM_COMM_DEC;

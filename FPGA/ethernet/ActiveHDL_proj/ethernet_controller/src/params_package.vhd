@@ -30,7 +30,8 @@ use IEEE.STD_LOGIC_UNSIGNED.all;
 package params_package is	
 	
 	
-	constant ETH_CONTROLLER_VERSION: std_logic_vector(15 downto 0) := x"AAAD"; -- use all letters, before version number was used version was x"4142"
+	constant ETH_CONTROLLER_VERSION: std_logic_vector(15 downto 0) := x"AAAE"; -- use all letters, before version number was used version was x"4142"  
+	constant ETH_CONTROLLER_DEFAULT_ADDRS: std_logic_vector(7 downto 0) := x"02"; -- use all letters, before version number was used version was x"4142"
 	
 	
 -- Constants 
@@ -58,7 +59,7 @@ package params_package is
 -- 16 bit constants
 	constant v_16_0: std_logic_vector := "0000000000000000";
 	constant v_16_1: std_logic_vector := "0000000000000001";
-	constant delay_term: std_logic_vector := x"000A"; --x"07D0";
+	constant delay_term: std_logic_vector := x"0000"; --x"000A" --x"07D0";
 	
 -- 32 bit constants:
 	constant v_32_0: std_logic_vector := "00000000000000000000000000000000";

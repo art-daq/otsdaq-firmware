@@ -66,7 +66,7 @@ architecture arch of LOGIC_RGMII_handler is
 	
 	signal is_rgmii_sig : std_logic := '0';	  
 	signal is_rgmii_sig_old : std_logic;	 
-	signal is_rgmii_cnt : std_logic := '0';	   	  
+	signal is_rgmii_cnt : unsigned(3 downto 0) := (others => '0');	   	  
 	signal lose_lock : std_logic := '0';	   	 
 	signal is_passthru_sig : std_logic := '0';	    
 	signal is_passthru_cnt : std_logic := '0';	   	
@@ -135,8 +135,7 @@ begin
 	rx_handling_rising:process(clk)
 	begin
 		if rising_edge(clk) then	  
-			
-			is_rgmii_cnt <= '0';	 	
+								   	
 			is_passthru_cnt <= '0';  			
 			rx_dv_handled <= '0';	  
 			is_rgmii_sig_old <= is_rgmii_sig;	 
@@ -163,7 +162,8 @@ begin
 				lose_lock <= '0';
 				rx_dest_loc <= "0";	   
 				tx_dest_loc <= "0";	  
-				rx_dv_shift <= (others => '0');
+				rx_dv_shift <= (others => '0');		
+				is_rgmii_cnt <= (others => '0');
 			else				   		
 				
 				 --alternate locations for rgmii whenever dv = 1
@@ -193,11 +193,13 @@ begin
 																		   
 					
 					-- detect RGMII
-					if (rx_dv = '1' and rx_dv_falling = '1' and rx_data = x"05") then --that's one!	 
-						if 	(is_rgmii_cnt = '1') then --that's two!	  
+					if (rx_dv = '1' and rx_dv_falling = '1' and rx_data = x"05") then --that's one!	 						
+						is_rgmii_cnt <= is_rgmii_cnt + 1;		
+					else					
+						if (is_rgmii_cnt = 4) then --pass threshold	  
 							is_rgmii_sig <= '1'; -- detected RGMII, so set forever!!	 (until reset) 	 			 																	   
-						end if;						 						
-						is_rgmii_cnt <= '1';								
+						end if;						
+						is_rgmii_cnt <= (others => '0');
 					end if;	
 					
 					-- consider 

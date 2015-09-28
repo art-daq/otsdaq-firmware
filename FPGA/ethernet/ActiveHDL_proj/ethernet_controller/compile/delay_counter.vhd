@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\delay_counter.vhd
--- Generated   : 09/15/15 16:50:46
+-- Generated   : 09/28/15 10:26:18
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/delay_counter.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -28,7 +28,7 @@ entity delay_counter is
 	port (
 		clear_delay_count: in STD_LOGIC;
 		clock: in STD_LOGIC;
-		reset_n: in STD_LOGIC;
+		reset: in STD_LOGIC;
 		start_delay_count: in STD_LOGIC;
 		delay_count: out STD_LOGIC);
 end delay_counter;
@@ -55,7 +55,7 @@ begin
 Sreg0_machine: process (clock)
 begin
 	if clock'event and clock = '1' then
-		if reset_n = '0' then
+		if reset = '1' then
 			Sreg0 <= S1;
 			-- Set default values for outputs, signals and variables
 			-- ...

@@ -4,14 +4,12 @@ component GEC_TX_SEQ_CTL_8
 		clk: in STD_LOGIC;
 		data_fifo_empty: in STD_LOGIC;
 		data_fifo_rd_data: in STD_LOGIC_VECTOR (63 downto 0);
-		data_fifo_rderr: in STD_LOGIC;
 		delay_count: in STD_LOGIC;
 		four_bit_mode: in STD_LOGIC;
 		gec_user_busy: in STD_LOGIC;
 		gec_user_tx_enable_out: in STD_LOGIC;
 		info_fifo_empty: in STD_LOGIC;
 		info_fifo_rd_data: in STD_LOGIC_VECTOR (15 downto 0);
-		info_fifo_rderr: in STD_LOGIC;
 		reset_n: in STD_LOGIC;
 		clear_delay_count: out STD_LOGIC;
 		data_fifo_rden: out STD_LOGIC;
@@ -33,7 +31,6 @@ instance_name : GEC_TX_SEQ_CTL_8
  data_fifo_rd_data => ,
  data_fifo_rden => ,
  data_fifo_rden_en => ,
- data_fifo_rderr => ,
  delay_count => ,
  four_bit_mode => ,
  gec_user_busy => ,
@@ -44,7 +41,6 @@ instance_name : GEC_TX_SEQ_CTL_8
  info_fifo_empty => ,
  info_fifo_rd_data => ,
  info_fifo_rden => ,
- info_fifo_rderr => ,
  reset_n => ,
  start_delay_count => ,
  state_diag => );

@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\create_packet.vhd
--- Generated   : 09/16/15 14:15:28
+-- Generated   : 09/28/15 11:26:36
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/create_packet.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -65,7 +65,6 @@ signal delay_count: INTEGER range 0 to 65535;
 signal icmp_ping_packet: STD_LOGIC;
 signal IP_length: STD_LOGIC_VECTOR (15 downto 0);
 signal length_count: STD_LOGIC_VECTOR (10 downto 0);
-signal old_trig: STD_LOGIC;
 signal ping_packet: STD_LOGIC;
 signal sleep_count: INTEGER range 0 to 65535;
 signal test_data: STD_LOGIC_VECTOR (7 downto 0);
@@ -102,7 +101,7 @@ begin
 -- Diagram ACTION
 tx_icmp_packet <= icmp_ping_packet;
 clken_out <= clken;
--- NOTE: expect trigger is a single clock width pulse
+-- NOTE: expect trigger is a single clock width pulse (but it is not from Data Manager and seems to be OK)
 trigger_sig <= trigger;
 four_bit_proc : process (clk) -- make trigger sig a single clock width pulse
 begin

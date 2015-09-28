@@ -131,8 +131,7 @@ begin
 	EMPTYLAG : process (RESET, RCLOCK)
 	begin
 		if (RESET = '1') then
-			empty_sig <= '1';	 
-			WAddress_rclk <= (others => '0');
+			empty_sig <= '1';
 		elsif (RCLOCK'event and RCLOCK = '1') then 
 			WAddress_rclk <= WAddress;	
 			RD_COUNT(addr) <= '0';

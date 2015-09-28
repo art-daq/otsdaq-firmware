@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\DIG_GEC.vhd
--- Generated   : Tue Sep 15 20:19:35 2015
+-- Generated   : Mon Sep 28 10:09:10 2015
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/DIG_GEC.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -33,7 +33,6 @@ entity DIG_GEC is
        dest_addrs : in STD_LOGIC_VECTOR(7 downto 0);
        dest_mac : in STD_LOGIC_VECTOR(47 downto 0);
        dest_port : in STD_LOGIC_VECTOR(15 downto 0);
-       user_addrs : in STD_LOGIC_VECTOR(7 downto 0);
        user_tx_data_in : in std_logic_vector(7 downto 0);
        user_tx_size_in : in STD_LOGIC_VECTOR(10 downto 0);
        GMII_GTX_CLK : out STD_LOGIC;
@@ -70,7 +69,6 @@ component gei_address_container
        addr_in : in STD_LOGIC_VECTOR(7 downto 0);
        capture : in STD_LOGIC;
        clk : in STD_LOGIC;
-       default_addr_in : in STD_LOGIC_VECTOR(7 downto 0);
        reset : in STD_LOGIC;
        arp_announce_strobe : out STD_LOGIC;
        gei_addr : out STD_LOGIC_VECTOR(7 downto 0);
@@ -306,7 +304,6 @@ signal arp_req_mac : STD_LOGIC_VECTOR(47 downto 0);
 signal checksum : STD_LOGIC_VECTOR(15 downto 0);
 signal data_out : STD_LOGIC_VECTOR(7 downto 0);
 signal decipher_dout : STD_LOGIC_VECTOR(7 downto 0);
-signal default_user_addrs : STD_LOGIC_VECTOR(7 downto 0);
 signal dest_ip : STD_LOGIC_VECTOR(31 downto 0);
 signal frame_src_mac : STD_LOGIC_VECTOR(47 downto 0);
 signal icmp_checksum : STD_LOGIC_VECTOR(15 downto 0);
@@ -521,7 +518,6 @@ geiAddressContainer : gei_address_container
        arp_announce_strobe => arp_announce_strobe,
        capture => capture_addrs,
        clk => clk,
-       default_addr_in => default_user_addrs,
        gei_addr => addrs_sig,
        gei_protocol_ping_strobe => gei_protocol_ping_strobe,
        reset => reset
@@ -535,7 +531,6 @@ geiAddressContainer : gei_address_container
 	clk <= GMII_RX_CLK;
 	rx_dv <= GMII_RX_DV;
 	rx_er <= GMII_RX_ER;
-	default_user_addrs <= user_addrs;
 
     -- Output\buffer terminals
 	GMII_GTX_CLK <= clk;
