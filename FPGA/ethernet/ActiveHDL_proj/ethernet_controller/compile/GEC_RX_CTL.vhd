@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC_RX_CTL.vhd
--- Generated   : 09/29/15 08:52:32
+-- Generated   : 09/30/15 16:33:28
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC_RX_CTL.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -174,7 +174,7 @@ begin
 						-- we actually write the info fifo here.
 					when S1 =>
 						Sreg0 <= S2;
-						info_fifo_wr_data(3) <= crc_err_reg;
+						info_fifo_wr_data(7) <= crc_err_reg;
 						-- keep the crc error status
 						-- at this point the info should be complete
 						crc_err_flag <= crc_err_reg;

@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\RAM_COMM_DEC.vhd
--- Generated   : 09/30/15 15:10:52
+-- Generated   : 09/30/15 16:33:19
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/RAM_COMM_DEC.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -57,6 +57,7 @@ signal burst_complete_flag: STD_LOGIC;
 signal comm_reg: UNSIGNED (1 downto 0);
 signal crc_err: STD_LOGIC;
 signal mem_loc_count_reg: UNSIGNED (7 downto 0);
+signal no_addrs_incr: STD_LOGIC;
 signal q_w_count_reg: UNSIGNED (7 downto 0);
 signal ram_addr_sig: UNSIGNED (63 downto 0);
 signal ram_en_sig: STD_LOGIC;
@@ -227,21 +228,23 @@ begin
 					q_w_count_reg <= unsigned(rx_info_fifo_rd_data(15 downto 8));
 					-- get the number of 8 byte quad words from
 					-- the info fifo word
-					crc_err <= rx_info_fifo_rd_data(3);
+					crc_err <= rx_info_fifo_rd_data(7);
 					-- get the crc error indicator
+					no_addrs_incr <= rx_info_fifo_rd_data(3);
+					-- get the no addr increment flag
 					mem_loc_count_reg <= unsigned(rx_info_fifo_rd_data(15 downto 8));
 					if (rx_info_fifo_rd_data(2) = '1' ) then --ACK
 					-- handle ACK info (no data for ACK)
 						tx_info_fifo_wr_data(15 downto 8) <= (others => '0');
-						tx_info_fifo_wr_data(7 downto 4) <= (others => '0');
-						tx_info_fifo_wr_data(3 downto 0) <= rx_info_fifo_rd_data(3 downto 0);
+						tx_info_fifo_wr_data(7 downto 0) <= rx_info_fifo_rd_data(7 downto 0);
 						tx_info_fifo_wren <= '1';
 						-- write to tx info fifo
 					-- definition of bits written to tx_info_fifo
 					-- bits 15-8: quad word count (read data)
-					-- bits 7-4: (currently undefined)
-					-- bit 3: crc err detected in received packet
-					-- bits 2-0: return code (bit 2 is ack, 1:0 is command)
+					-- bit 7: crc err detected in received packet
+					-- bits 6-4: (currently undefined)
+					-- bits 3-0: op code
+					-- (bit 3 is no address increment, bit 2 is ack, 1:0 is command)
 					end if;
 				when burst_stp_S36 =>
 					Sreg0 <= burst_stp_S37;
@@ -260,7 +263,9 @@ begin
 					ram_en_sig <= '1';
 					-- Enable the RAM
 					if (user_tx_qword_ready = '1') then  -- only if user is ready take next data
-						ram_addr_sig <= ram_addr_sig + 1;
+						if (no_addrs_incr = '0') then
+							ram_addr_sig <= ram_addr_sig + 1;
+						end if;
 						mem_loc_count_reg <= mem_loc_count_reg - 1;
 					end if;
 					-- write data into fifo 1 clock later if user's data is ready
@@ -333,8 +338,10 @@ begin
 					Sreg0 <= return_st;
 					burst_start <= '0';
 				when write_com_S9 =>
+					if (no_addrs_incr = '0') then
+						ram_addr_sig <= ram_addr_sig + 1;
+					end if;
 					ram_wren <= '1';
-					ram_addr_sig <= ram_addr_sig + 1;
 					rx_data_fifo_rden <= '1';
 					mem_loc_count_reg <= mem_loc_count_reg - 1;
 					if mem_loc_count_reg = 1 then
