@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\delay_counter.vhd
--- Generated   : 09/28/15 10:26:18
+-- Generated   : 09/29/15 09:09:33
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/delay_counter.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -19,9 +19,8 @@
 -------------------------------------------------------------------------------
 
 library IEEE;
-use IEEE.std_logic_1164.all;
-use IEEE.std_logic_arith.all;
-use IEEE.std_logic_unsigned.all;
+use IEEE.std_logic_1164.all;	  		
+use ieee.numeric_std.all;	   
 use work.params_package.all;
 
 entity delay_counter is 
@@ -36,7 +35,7 @@ end delay_counter;
 architecture delay_counter of delay_counter is
 
 -- diagram signals declarations
-signal delay_val: STD_LOGIC_VECTOR (15 downto 0);
+signal delay_val: UNSIGNED (15 downto 0);
 
 -- SYMBOLIC ENCODED state machine: Sreg0
 type Sreg0_type is (
@@ -59,7 +58,7 @@ begin
 			Sreg0 <= S1;
 			-- Set default values for outputs, signals and variables
 			-- ...
-			delay_val <= v_16_0;
+			delay_val <= (others => '0');
 			delay_count <= '0';
 		else
 			-- Set default values for outputs, signals and variables
@@ -68,7 +67,7 @@ begin
 				when S1 =>
 					if start_delay_count = '0' then
 						Sreg0 <= S1;
-						delay_val <= v_16_0;
+						delay_val <= (others => '0');
 					elsif start_delay_count = '1' then
 						Sreg0 <= S2;
 						delay_count <= '1';
@@ -77,7 +76,7 @@ begin
 				when S2 =>
 					if delay_val < delay_term then
 						Sreg0 <= S2;
-						delay_val <= delay_val + v_16_1;
+						delay_val <= delay_val + 1;
 					elsif delay_val >= delay_term then
 						Sreg0 <= S3;
 						delay_count <= '0';
@@ -87,7 +86,7 @@ begin
 						Sreg0 <= S3;
 					elsif clear_delay_count = '1' then
 						Sreg0 <= S1;
-						delay_val <= v_16_0;
+						delay_val <= (others => '0');
 					end if;
 --vhdl_cover_off
 				when others =>

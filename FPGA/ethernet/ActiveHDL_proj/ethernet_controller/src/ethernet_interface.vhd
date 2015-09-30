@@ -5,35 +5,51 @@ use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.ALL;	  
 
 entity ethernet_interface is
-   port ( b_data               : in    std_logic_vector (63 downto 0); 
-          b_data_we            : in    std_logic; 						
+   port ( 								
+   		  reset_in             : in    std_logic; 		-- optional for user to reset, this block will self reset on startup					
+          reset_out            : out   std_logic;  		-- ethernet reset can be used for "reset on start-up" or for reset to PHY  
+		  		
+		  -- rx/tx signals
+          rx_addr              : out   std_logic_vector (63 downto 0); 
+          rx_data              : out   std_logic_vector (63 downto 0); 
+          rx_wren              : out   std_logic;			
+		  tx_rden			   : out   std_logic;
+          tx_data              : in    std_logic_vector (63 downto 0); 		 
+		  tx_data_ready		   : in    std_logic; 				
+		  
+		  -- burst signals
+   		  b_data               : in    std_logic_vector (63 downto 0); 
+          b_data_we            : in    std_logic; 			
+          b_enable             : out   std_logic; 		 
+		  
+		  
           gec_user_dest_addrs  : in    std_logic_vector (7 downto 0); 
           gec_user_dest_mac    : in    std_logic_vector (47 downto 0); 
-          gec_user_dest_port   : in    std_logic_vector (15 downto 0); 
+          gec_user_dest_port   : in    std_logic_vector (15 downto 0); 	  
+		  																
+          gec_user_src_capture : out   std_logic; 	-- to always respond to sender, latch src when capture is '1' for dest														 
+          gec_user_src_addrs   : out   std_logic_vector (7 downto 0); 	
+          gec_user_src_mac     : out   std_logic_vector (47 downto 0); 
+          gec_user_src_port    : out   std_logic_vector (15 downto 0); 		 
+		  
+		  -- PHY interface signals
+		  MASTER_CLK           : in    std_logic; 			
+		  
           GMII_RXD             : in    std_logic_vector (7 downto 0); 
           GMII_RX_DV           : in    std_logic; 
-          GMII_RX_ER           : in    std_logic; 
-          MASTER_CLK           : in    std_logic; 			 
-          tx_data              : in    std_logic_vector (63 downto 0); 
-          reset_in             : in    std_logic; 							  
-          reset_out            : out   std_logic;  		-- ethernet reset can be used for "reset on start-up" or to reset to PHY
-          b_enable             : out   std_logic; 
-          gec_user_src_addrs   : out   std_logic_vector (7 downto 0); 
-          gec_user_src_capture : out   std_logic; 
-          gec_user_src_mac     : out   std_logic_vector (47 downto 0); 
-          gec_user_src_port    : out   std_logic_vector (15 downto 0); 
+          GMII_RX_ER           : in    std_logic; 				 	   
+		  
           GTX_CLK              : out   std_logic; 
           PHY_TXD              : out   std_logic_vector (7 downto 0); 
           PHY_TX_EN            : out   std_logic; 
-          PHY_TX_ER            : out   std_logic; 
-          rx_addr              : out   std_logic_vector (63 downto 0); 
-          rx_data              : out   std_logic_vector (63 downto 0); 
-          rx_wren              : out   std_logic; 
-          state_diag           : out   std_logic_vector (13 downto 0));
+          PHY_TX_ER            : out   std_logic
+		  );
 end ethernet_interface;
 
-architecture BEHAVIORAL of ethernet_interface is
-   attribute BOX_TYPE   : string ;
+
+
+architecture BEHAVIORAL of ethernet_interface is	   
+											 
    signal b_end_packet           : std_logic;
    signal four_bit_mode          : std_logic;
    signal gec_user_busy          : std_logic;
@@ -98,9 +114,10 @@ begin
                 gec_user_tx_data_in(7 downto 0)=>gec_user_tx_data_in(7 downto 0),
                 gec_user_tx_size_in(10 downto 0)=>gec_user_tx_size_in(10 downto 0),
                 ram_addr(63 downto 0)=>rx_addr(63 downto 0),
-                ram_wren=>rx_wren,
-                rx_data(63 downto 0)=>rx_data(63 downto 0),
-                state_diag(13 downto 0)=>state_diag(13 downto 0));
+                ram_rden=>tx_rden,							
+                ram_wren=>rx_wren,								   
+				gec_user_tx_qword_rdy=>tx_data_ready,
+                rx_data(63 downto 0)=>rx_data(63 downto 0));
    
    burst_traffic_controller_blk : entity work.burst_traffic_controller
       port map (BURST_WE=>b_data_we,

@@ -23,7 +23,8 @@ entity data_manager is
           gec_user_rx_data_out   : in    std_logic_vector (7 downto 0); 
           gec_user_rx_size_out   : in    std_logic_vector (10 downto 0); 
           gec_user_rx_valid_out  : in    std_logic; 
-          gec_user_tx_enable_out : in    std_logic; 
+          gec_user_tx_enable_out : in    std_logic; 	 
+		  gec_user_tx_qword_rdy	 : in    std_logic;
           MASTER_CLK             : in    std_logic; 
           reset                  : in    std_logic; 
           reset_n                : in    std_logic; 
@@ -32,7 +33,8 @@ entity data_manager is
           gec_user_trigger       : out   std_logic; 
           gec_user_tx_data_in    : out   std_logic_vector (7 downto 0); 
           gec_user_tx_size_in    : out   std_logic_vector (10 downto 0); 
-          ram_addr               : out   std_logic_vector (63 downto 0); 
+          ram_addr               : out   std_logic_vector (63 downto 0);   
+          ram_rden               : out   std_logic; 
           ram_wren               : out   std_logic; 
           rx_data                : out   std_logic_vector (63 downto 0); 
           state_diag             : out   std_logic_vector (13 downto 0));
@@ -83,7 +85,9 @@ architecture BEHAVIORAL of data_manager is
    signal tx_info_fifo_wren_burst              : std_logic;
    signal tx_info_fifo_wren_comm               : std_logic;
    signal tx_info_fifo_wr_en                   : std_logic;	   
-   signal rx_data_DUMMY                        : std_logic_vector (63 downto 0);	  
+   signal rx_data_sig                          : std_logic_vector (63 downto 0);	  	
+   
+   signal tx_data_reg			               : std_logic_vector (63 downto 0); 
  				  
    
 --       component DATA_FIFO_0
@@ -110,7 +114,8 @@ architecture BEHAVIORAL of data_manager is
 --   				  
    										
 begin
-   rx_data(63 downto 0) <= rx_data_DUMMY(63 downto 0);
+
+	rx_data(63 downto 0) <= rx_data_sig(63 downto 0);
    		  
    	  RX_DATA_FIFO : entity work.reg_fifo							--SCRIPT COMMENT OUT
    	  generic map (width => 64,	depth => 256, addr => 8)			--SCRIPT COMMENT OUT
@@ -120,7 +125,7 @@ begin
                 RE=>rx_data_fifo_read_enable,						 --SCRIPT COMMENT OUT
                 RESET=>rx_fifo_reset_sig,							 --SCRIPT COMMENT OUT
                 WE=>data_fifo_wren,									 --SCRIPT COMMENT OUT
-                Q(63 downto 0)=>rx_data_DUMMY(63 downto 0),	  	   	 --SCRIPT COMMENT OUT
+                Q(63 downto 0)=>rx_data_sig(63 downto 0),	  	   	 --SCRIPT COMMENT OUT
 				RD_COUNT=>open,										 --SCRIPT COMMENT OUT
                 EMPTY=>rx_data_fifo_empty,							 --SCRIPT COMMENT OUT
                 FULL=>open);										--SCRIPT COMMENT OUT
@@ -172,7 +177,7 @@ begin
 --                    rd_en=>rx_data_fifo_read_enable,
 --                    srst=>rx_fifo_reset_sig,
 --                    wr_en=>data_fifo_wren,
---                    dout(63 downto 0)=>rx_data_DUMMY(63 downto 0),
+--                    dout(63 downto 0)=>rx_data_sig(63 downto 0),
 --                    empty=>rx_data_fifo_empty,
 --                    full=>open);
 --       RX_INFO_FIFO : INFO_FIFO_0
@@ -235,8 +240,7 @@ begin
                 data_fifo_q_w_data(63 downto 0)=>data_fifo_wr_data(63 downto 0),
                 data_fifo_wren=>data_fifo_wren,
                 info_fifo_wren=>info_fifo_wren,
-                info_fifo_wr_data(15 downto 0)=>info_fifo_wr_data(15 downto 0),
-                state_diag(3 downto 0)=>state_diag(3 downto 0));
+                info_fifo_wr_data(15 downto 0)=>info_fifo_wr_data(15 downto 0));
 							
 	tx_fifo_reset_sig <=  tx_fifo_reset or reset;
    
@@ -245,26 +249,25 @@ begin
                 burst_done=>burst_done,
                 clock=>MASTER_CLK,
                 reset=>reset,
-                rx_data_fifo_rd_data(63 downto 0)=>rx_data_DUMMY(63 downto 0),
+                rx_data_fifo_rd_data(63 downto 0)=>rx_data_sig(63 downto 0),
                 rx_info_fifo_empty=>rx_info_fifo_empty,
                 rx_info_fifo_rd_data(15 downto 0)=>info_fifo_rd_data(15 downto 0),
                 tx_info_fifo_full=>tx_info_fifo_full,
                 burst_start=>burst_start,
-                burst_stop=>burst_stop,
+                burst_stop=>burst_stop,					   	 
                 ram_addr(63 downto 0)=>ram_addr(63 downto 0),
-                ram_en=>open,
-                ram_wren=>ram_wren,
+                ram_en=>ram_rden,
+                ram_wren=>ram_wren,		   			
+				user_tx_qword_ready=>gec_user_tx_qword_rdy,		  
                 rx_data_fifo_rden=>rx_data_fifo_read_enable,
                 Rx_FIFO_Reset=>rx_fifo_reset,
-                rx_info_fifo_rden=>rx_info_fifo_rden,
-                state_diag(0 to 5)=>state_diag(9 downto 4),
+                rx_info_fifo_rden=>rx_info_fifo_rden,		 
                 tx_data_fifo_src_sel=>tx_data_fifo_src_sel,
                 tx_data_fifo_wren=>tx_data_fifo_wren_comm,
                 Tx_FIFO_Reset=>tx_fifo_reset,
                 tx_info_fifo_src_sel=>tx_info_fifo_src_sel,
                 tx_info_fifo_wren=>tx_info_fifo_wren_comm,
-                tx_info_fifo_wr_data(15 downto 0)=>tx_info_fifo_data_comm(15 
-            downto 0));
+                tx_info_fifo_wr_data(15 downto 0)=>tx_info_fifo_data_comm(15 downto 0));
 							   
 	tx_data_fifo_read_enable <= tx_data_fifo_rden and data_fifo_rden_en;
    
@@ -287,8 +290,7 @@ begin
                 gec_user_tx_data_in(7 downto 0)=>gec_user_tx_data_in(7 downto 0),
                 gec_user_tx_size_in(10 downto 0)=>gec_user_tx_size_in(10 downto 0),
                 info_fifo_rden=>tx_info_fifo_rden,
-                start_delay_count=>start_delay_count,
-                state_diag(3 downto 0)=>state_diag(13 downto 10));
+                start_delay_count=>start_delay_count);
    
    delay_counter : entity work.delay_counter
       port map (clear_delay_count=>clear_delay_count,
@@ -299,10 +301,17 @@ begin
 				
 	tx_info_fifo_din(15 downto 0) <= tx_info_fifo_data_comm(15 downto 0) when  tx_info_fifo_src_sel = '0' else tx_info_fifo_data_burst(15 downto 0);
 	tx_info_fifo_wr_en <= tx_info_fifo_wren_comm when  tx_info_fifo_src_sel = '0' else tx_info_fifo_wren_burst;
-	
-	tx_data_fifo_din(63 downto 0) <= tx_data(63 downto 0) when  tx_data_fifo_src_sel = '0' else b_data(63 downto 0);
-	
-	tx_data_fifo_wr_en <= tx_data_fifo_wren_comm when  tx_data_fifo_src_sel = '0' else tx_data_fifo_wren_burst;
+		
+	-- latch tx_data once for timing to be right for tx_wren from RAM_COMM_DEC
+	process(MASTER_CLK)
+	begin
+		if (rising_edge(MASTER_CLK)) then
+			tx_data_reg <= tx_data;
+		end if;
+	end process;
+			
+	tx_data_fifo_din(63 downto 0) <= 	tx_data_reg(63 downto 0) 	when  tx_data_fifo_src_sel = '0' else b_data(63 downto 0);	
+	tx_data_fifo_wr_en <= 				tx_data_fifo_wren_comm 	when  tx_data_fifo_src_sel = '0' else tx_data_fifo_wren_burst;
 							
 	rx_fifo_reset_sig <= rx_fifo_reset or reset;
    
