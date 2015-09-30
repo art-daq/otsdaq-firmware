@@ -61,7 +61,7 @@ architecture BEHAVIORAL of ethernet_interface is
    signal gec_user_tx_data_in    : std_logic_vector (7 downto 0);
    signal gec_user_tx_enable_out : std_logic;
    signal gec_user_tx_size_in    : std_logic_vector (10 downto 0);
-   signal reset_n, reset         : std_logic;
+   signal reset         : std_logic;
   	 
    
 begin
@@ -106,8 +106,7 @@ begin
                 gec_user_rx_valid_out=>gec_user_rx_valid_out,
                 gec_user_tx_enable_out=>gec_user_tx_enable_out,
                 MASTER_CLK=>MASTER_CLK,
-                reset=>reset,
-                reset_n=>reset_n,
+                reset=>reset,		  
                 tx_data(63 downto 0)=>tx_data(63 downto 0),
                 b_enable=>b_enable,
                 gec_user_trigger=>gec_user_trigger,
@@ -133,8 +132,7 @@ begin
 			slow_clk => MASTER_CLK,
 			reset_start => reset_in,
 			reset => reset);
-			
-	reset_n <= not reset; 		 
+						  		 
 	reset_out <= reset;
    	-------- end reset section -----------
 	   

@@ -81,9 +81,9 @@ else
 
 
     echo 'Moving files...'
-    mv $1/gec/GEC_RX_CTL_8.vhd $1/data_manager/
-    mv $1/gec/GEC_TX_SEQ_CTL_8.vhd $1/data_manager/
-    mv $1/gec/RAM_COMM_DEC_9.vhd $1/data_manager/
+    mv $1/gec/GEC_RX_CTL.vhd $1/data_manager/
+    mv $1/gec/GEC_TX_SEQ_CTL.vhd $1/data_manager/
+    mv $1/gec/RAM_COMM_DEC.vhd $1/data_manager/
     mv $1/gec/params_package.vhd $1/data_manager/
     mv $1/gec/delay_counter.vhd $1/data_manager/
     mv $1/gec/data_manager.vhd $1/data_manager/

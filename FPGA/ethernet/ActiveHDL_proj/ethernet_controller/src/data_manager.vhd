@@ -26,8 +26,7 @@ entity data_manager is
           gec_user_tx_enable_out : in    std_logic; 	 
 		  gec_user_tx_qword_rdy	 : in    std_logic;
           MASTER_CLK             : in    std_logic; 
-          reset                  : in    std_logic; 
-          reset_n                : in    std_logic; 
+          reset                  : in    std_logic;  
           tx_data                : in    std_logic_vector (63 downto 0); 
           b_enable               : out   std_logic; 
           gec_user_trigger       : out   std_logic; 
@@ -36,8 +35,7 @@ entity data_manager is
           ram_addr               : out   std_logic_vector (63 downto 0);   
           ram_rden               : out   std_logic; 
           ram_wren               : out   std_logic; 
-          rx_data                : out   std_logic_vector (63 downto 0); 
-          state_diag             : out   std_logic_vector (13 downto 0));
+          rx_data                : out   std_logic_vector (63 downto 0));
 end data_manager;
 
 architecture BEHAVIORAL of data_manager is	  
@@ -217,7 +215,7 @@ begin
                 b_end_burst=>'0',
                 b_end_packet=>b_end_packet,
                 clk=>MASTER_CLK,
-                reset_n=>reset_n,
+                reset=>reset,
                 tx_data_full=>tx_data_fifo_full,
                 tx_info_full=>tx_info_fifo_full,
                 burst_done=>burst_done,
@@ -302,7 +300,7 @@ begin
 	tx_info_fifo_din(15 downto 0) <= tx_info_fifo_data_comm(15 downto 0) when  tx_info_fifo_src_sel = '0' else tx_info_fifo_data_burst(15 downto 0);
 	tx_info_fifo_wr_en <= tx_info_fifo_wren_comm when  tx_info_fifo_src_sel = '0' else tx_info_fifo_wren_burst;
 		
-	-- latch tx_data once for timing to be right for tx_wren from RAM_COMM_DEC
+	-- SCRIPT COMMENT OUT -- 	-- latch tx_data once for timing to be right for tx_wren from RAM_COMM_DEC
 	process(MASTER_CLK)
 	begin
 		if (rising_edge(MASTER_CLK)) then
