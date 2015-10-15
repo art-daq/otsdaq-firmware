@@ -14,8 +14,8 @@ entity ethernet_interface is
           rx_data              : out   std_logic_vector (63 downto 0); 
           rx_wren              : out   std_logic;			
 		  tx_rden			   : out   std_logic;
-          tx_data              : in    std_logic_vector (63 downto 0); 		 
-		  tx_data_ready		   : in    std_logic; 				
+          tx_data              : in    std_logic_vector (63 downto 0); 	 
+		  user_ready		   : in    std_logic; 					
 		  
 		  -- burst signals
    		  b_data               : in    std_logic_vector (63 downto 0); 
@@ -61,7 +61,7 @@ architecture BEHAVIORAL of ethernet_interface is
    signal gec_user_tx_data_in    : std_logic_vector (7 downto 0);
    signal gec_user_tx_enable_out : std_logic;
    signal gec_user_tx_size_in    : std_logic_vector (10 downto 0);
-   signal reset         : std_logic;
+   signal reset         	     : std_logic;
   	 
    
 begin
@@ -115,7 +115,7 @@ begin
                 ram_addr(63 downto 0)=>rx_addr(63 downto 0),
                 ram_rden=>tx_rden,							
                 ram_wren=>rx_wren,								   
-				gec_user_tx_qword_rdy=>tx_data_ready,
+				gec_user_ready=>user_ready,
                 rx_data(63 downto 0)=>rx_data(63 downto 0));
    
    burst_traffic_controller_blk : entity work.burst_traffic_controller

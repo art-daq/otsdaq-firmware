@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\RAM_COMM_DEC.vhd
--- Generated   : 09/30/15 16:33:19
+-- Generated   : 10/14/15 13:59:40
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/RAM_COMM_DEC.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -32,11 +32,11 @@ entity RAM_COMM_DEC is
 		rx_info_fifo_empty: in STD_LOGIC;
 		rx_info_fifo_rd_data: in STD_LOGIC_VECTOR (15 downto 0);
 		tx_info_fifo_full: in STD_LOGIC;
-		user_tx_qword_ready: in STD_LOGIC;
+		user_ready: in STD_LOGIC;
 		burst_start: out STD_LOGIC;
 		burst_stop: out STD_LOGIC;
 		ram_addr: out STD_LOGIC_VECTOR (63 downto 0);
-		ram_en: out STD_LOGIC;
+		ram_rden: out STD_LOGIC;
 		ram_wren: out STD_LOGIC;
 		rx_data_fifo_rden: out STD_LOGIC;
 		Rx_FIFO_Reset: out STD_LOGIC;
@@ -60,14 +60,15 @@ signal mem_loc_count_reg: UNSIGNED (7 downto 0);
 signal no_addrs_incr: STD_LOGIC;
 signal q_w_count_reg: UNSIGNED (7 downto 0);
 signal ram_addr_sig: UNSIGNED (63 downto 0);
-signal ram_en_sig: STD_LOGIC;
+signal ram_rden_sig: STD_LOGIC;
+signal ram_wren_sig: STD_LOGIC;
 
 -- BINARY ENCODED state machine: Sreg0
 attribute ENUM_ENCODING: string;
 type Sreg0_type is (
-    write_com_S9, write_com_S8, read_com_S13, read_com_S14, read_com_S15, read_com_S1, read_com_S18, write_com_S11, crcerr_S26, burst_strt_S30,
-    burst_strt_S31, burst_strt_S33, burst_strt_S34, burst_stp_S36, burst_stp_S37, burst_stp_S38, burst_stp_S39, dec_comm, idle, illegal,
-    return_st, get_comm, brst_wait, err_dec, pro_comm, read_com_S40
+    write_com_S9, write_com_S8, read_com_S13, read_com_S14, read_com_S15, read_com_S1, read_com_S18, crcerr_S26, burst_strt_S30, burst_strt_S31,
+    burst_strt_S33, burst_strt_S34, burst_stp_S36, burst_stp_S37, burst_stp_S38, burst_stp_S39, dec_comm, idle, illegal, return_st,
+    get_comm, brst_wait, err_dec, pro_comm
 );
 attribute ENUM_ENCODING of Sreg0_type: type is
 	"00000 " &		-- write_com_S9
@@ -77,25 +78,23 @@ attribute ENUM_ENCODING of Sreg0_type: type is
 	"00100 " &		-- read_com_S15
 	"00101 " &		-- read_com_S1
 	"00110 " &		-- read_com_S18
-	"00111 " &		-- write_com_S11
-	"01000 " &		-- crcerr_S26
-	"01001 " &		-- burst_strt_S30
-	"01010 " &		-- burst_strt_S31
-	"01011 " &		-- burst_strt_S33
-	"01100 " &		-- burst_strt_S34
-	"01101 " &		-- burst_stp_S36
-	"01110 " &		-- burst_stp_S37
-	"01111 " &		-- burst_stp_S38
-	"10000 " &		-- burst_stp_S39
-	"10001 " &		-- dec_comm
-	"10010 " &		-- idle
-	"10011 " &		-- illegal
-	"10100 " &		-- return_st
-	"10101 " &		-- get_comm
-	"10110 " &		-- brst_wait
-	"10111 " &		-- err_dec
-	"11000 " &		-- pro_comm
-	"11001" ;		-- read_com_S40
+	"00111 " &		-- crcerr_S26
+	"01000 " &		-- burst_strt_S30
+	"01001 " &		-- burst_strt_S31
+	"01010 " &		-- burst_strt_S33
+	"01011 " &		-- burst_strt_S34
+	"01100 " &		-- burst_stp_S36
+	"01101 " &		-- burst_stp_S37
+	"01110 " &		-- burst_stp_S38
+	"01111 " &		-- burst_stp_S39
+	"10000 " &		-- dec_comm
+	"10001 " &		-- idle
+	"10010 " &		-- illegal
+	"10011 " &		-- return_st
+	"10100 " &		-- get_comm
+	"10101 " &		-- brst_wait
+	"10110 " &		-- err_dec
+	"10111" ;		-- pro_comm
 
 signal Sreg0: Sreg0_type;
 
@@ -107,7 +106,8 @@ begin
 -- concurrent signals assignments
 
 -- Diagram ACTION
-ram_en <= ram_en_sig;
+ram_rden <= ram_rden_sig;
+ram_wren <= ram_wren_sig;
 
 ----------------------------------------------------------------------
 -- Machine: Sreg0
@@ -134,8 +134,8 @@ begin
 			tx_info_fifo_src_sel <= '0';
 -- ram controls
 			ram_addr_sig <= (others => '0');
-			ram_wren <= '0';
-			ram_en_sig <= '0';
+			ram_wren_sig <= '0';
+			ram_rden_sig <= '0';
 			burst_start <= '0';
 			burst_stop <= '0';
 			rx_info_fifo_rden <= '0';
@@ -144,6 +144,7 @@ begin
 			-- Reset FIFOs
 			Tx_FIFO_Reset <= '1';
 			burst_complete_flag <= '0';
+			no_addrs_incr <= '0';
 			-- disable reset
 			-- disable reset
 		else
@@ -260,18 +261,34 @@ begin
 				when burst_stp_S39 =>
 					Sreg0 <= brst_wait;
 				when read_com_S13 =>
-					ram_en_sig <= '1';
-					-- Enable the RAM
-					if (user_tx_qword_ready = '1') then  -- only if user is ready take next data
-						if (no_addrs_incr = '0') then
+					if (mem_loc_count_reg = 1 and user_ready = '1') then
+						ram_rden_sig <= '0';
+						--done
+					else
+						ram_rden_sig <= '1';
+						-- Enable the RAM
+					end if;
+					if (user_ready = '1') then  -- only if user is ready take next data
+						if (no_addrs_incr = '0' and mem_loc_count_reg /= 1 ) then
 							ram_addr_sig <= ram_addr_sig + 1;
 						end if;
 						mem_loc_count_reg <= mem_loc_count_reg - 1;
 					end if;
 					-- write data into fifo 1 clock later if user's data is ready
-					tx_data_fifo_wren <= user_tx_qword_ready and ram_en_sig;
-					if mem_loc_count_reg = 1 then
-						Sreg0 <= read_com_S40;
+					tx_data_fifo_wren <= user_ready and ram_rden_sig;
+					if mem_loc_count_reg = 1 and user_ready = '1' then	-- done with read
+						Sreg0 <= read_com_S15;
+						-- need to write code to
+						-- tx_info_fifo
+						tx_info_fifo_wr_data(15 downto 8) <= std_logic_vector(q_w_count_reg);
+						tx_info_fifo_wr_data(7 downto 0) <= (others => '0');
+						-- This is a read command being responded to
+						tx_info_fifo_wren <= '1';
+						-- write to tx info fifo
+						-- definition of bits written to tx_info_fifo
+						-- bits 15-8: quad word count (read data)
+						-- bits 7-3: status (currently undefined)
+						-- bits 2-0: return code (always 000 from this block)
 					end if;
 				when read_com_S14 =>
 					Sreg0 <= read_com_S18;
@@ -282,7 +299,7 @@ begin
 					-- end write to tx info fifo
 					tx_data_fifo_wren <= '0';
 				when read_com_S1 =>
-					if q_w_count_reg = 0 then
+					if q_w_count_reg = 0 then	-- err? there is no starting address
 						Sreg0 <= read_com_S15;
 						tx_info_fifo_wr_data(15 downto 8) <= std_logic_vector(q_w_count_reg);
 						tx_info_fifo_wr_data(7 downto 0) <= "00000" & "000";
@@ -300,27 +317,8 @@ begin
 					Sreg0 <= read_com_S13;
 					ram_addr_sig <= unsigned(rx_data_fifo_rd_data);
 					-- obtain starting address
-				when read_com_S40 =>
-					if user_tx_qword_ready = '1' then	--last read is ready
-						Sreg0 <= read_com_S15;
-						ram_en_sig <= '0';
-						-- no more accesses from RAM
-						mem_loc_count_reg <= (others => '0');
-						-- reset the memory location counter
-						tx_data_fifo_wren <= '1';
-						-- writing last qword to the tx data fifo
-						-- need to write code to
-						-- tx_info_fifo
-						tx_info_fifo_wr_data(15 downto 8) <= std_logic_vector(q_w_count_reg);
-						tx_info_fifo_wr_data(7 downto 0) <= (others => '0');
-						-- This is a read command being responded to
-						tx_info_fifo_wren <= '1';
-						-- write to tx info fifo
-						-- definition of bits written to tx_info_fifo
-						-- bits 15-8: quad word count (read data)
-						-- bits 7-3: status (currently undefined)
-						-- bits 2-0: return code (always 000 from this block)
-					end if;
+					ram_rden_sig <= '1';
+					-- enable ram read
 				when burst_strt_S30 =>
 					Sreg0 <= burst_strt_S34;
 					ram_addr_sig <= unsigned(rx_data_fifo_rd_data);
@@ -338,17 +336,33 @@ begin
 					Sreg0 <= return_st;
 					burst_start <= '0';
 				when write_com_S9 =>
-					if (no_addrs_incr = '0') then
-						ram_addr_sig <= ram_addr_sig + 1;
+					if (mem_loc_count_reg = 1 and user_ready = '1') then
+						ram_wren_sig <= '0';
+						--done
+					else
+						ram_wren_sig <= '1';
+						-- Enable the RAM
 					end if;
-					ram_wren <= '1';
-					rx_data_fifo_rden <= '1';
-					mem_loc_count_reg <= mem_loc_count_reg - 1;
-					if mem_loc_count_reg = 1 then
-						Sreg0 <= write_com_S11;
+					if (user_ready = '1') then  -- only if user is ready take next data
+						if (no_addrs_incr = '0' and mem_loc_count_reg /= 1 ) then
+							ram_addr_sig <= ram_addr_sig + 1;
+						end if;
+						mem_loc_count_reg <= mem_loc_count_reg - 1;
+					end if;
+					-- read data out of fifo 1 clock later if user is ready
+					rx_data_fifo_rden <= user_ready and ram_wren_sig;
+					--
+					--
+					--if (no_addrs_incr = '0') then
+					--	ram_addr_sig <= ram_addr_sig + 1;
+					--end if;
+					--
+					--ram_wren_sig <= '1';
+					--rx_data_fifo_rden <= '1';
+					--mem_loc_count_reg <= mem_loc_count_reg - 1;
+					if mem_loc_count_reg = 1 and user_ready = '1' then
+						Sreg0 <= return_st;
 						-- Turn off read accesses of the
-						-- data FIFO
-						-- but write last qword out
 						rx_data_fifo_rden <= '0';
 					end if;
 				when write_com_S8 =>
@@ -357,18 +371,7 @@ begin
 					--set base address
 					rx_data_fifo_rden <= '1';
 					--read first data qword
-					ram_wren <= '1';
-					mem_loc_count_reg <= mem_loc_count_reg - 1;
-					if (mem_loc_count_reg = 1) then	 -- if sz = 1
-						rx_data_fifo_rden <= '0';
-						-- stop reading data qwords
-					else							 -- else
-						rx_data_fifo_rden <= '1';
-						-- continue reading data qwords
-					end if;
-				when write_com_S11 =>
-					Sreg0 <= return_st;
-					ram_wren <= '0';
+					ram_wren_sig <= '1';
 				when crcerr_S26 =>
 					Sreg0 <= return_st;
 					Rx_FIFO_Reset <= '0';

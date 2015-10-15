@@ -24,7 +24,7 @@ entity data_manager is
           gec_user_rx_size_out   : in    std_logic_vector (10 downto 0); 
           gec_user_rx_valid_out  : in    std_logic; 
           gec_user_tx_enable_out : in    std_logic; 	 
-		  gec_user_tx_qword_rdy	 : in    std_logic;
+		  gec_user_ready	 : in    std_logic;
           MASTER_CLK             : in    std_logic; 
           reset                  : in    std_logic;  
           tx_data                : in    std_logic_vector (63 downto 0); 
@@ -254,9 +254,9 @@ begin
                 burst_start=>burst_start,
                 burst_stop=>burst_stop,					   	 
                 ram_addr(63 downto 0)=>ram_addr(63 downto 0),
-                ram_en=>ram_rden,
+                ram_rden=>ram_rden,
                 ram_wren=>ram_wren,		   			
-				user_tx_qword_ready=>gec_user_tx_qword_rdy,		  
+				user_ready=>gec_user_ready,		  
                 rx_data_fifo_rden=>rx_data_fifo_read_enable,
                 Rx_FIFO_Reset=>rx_fifo_reset,
                 rx_info_fifo_rden=>rx_info_fifo_rden,		 
