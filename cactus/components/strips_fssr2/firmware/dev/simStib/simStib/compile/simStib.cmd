@@ -1,0 +1,1 @@
+-w -s "d:\Projects\otsdaq\PicoZed\Firmware\simStib\library.cfg"  -j "d:\Projects\otsdaq\PicoZed\Firmware\simStib\simStib\projlib.cfg"  -d "d:\Projects\otsdaq\PicoZed\Firmware\simStib\simStib\compile"   -work simstib  -O3 -e 100 -2002 "d:/Projects/otsdaq/PicoZed/Firmware/simStib/simStib/src/stripclk.vhd"
