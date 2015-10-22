@@ -76,7 +76,9 @@ else
 	sed -i s/LOGIC_RGMII_handler/MII_100_1000_handler/g $1/gec/GEC.vhd
 	echo 'Chose default PHY Solution: MII_100_1000'
     endif
-
+    
+    mv $1/gec/$2_xmii_handler.vhd $1/gec/xmii_handler.vhd
+    rm $1/gec/*_xmii_handler.vhd
 
 
 
@@ -94,6 +96,9 @@ else
     mv $1/gec/burst_traffic_controller.vhd $1/
 
 
+    echo 'Removing files for tidiness...'
+    rm -f $1/gec/top_tmp.vhd
+    rm -f $1/data_manager/inferredFifo.vhd
     
 
 

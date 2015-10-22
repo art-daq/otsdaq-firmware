@@ -235,7 +235,7 @@ begin
                 gec_user_rx_valid_out=>gec_user_rx_valid_out,
                 reset=>reset,
                 crc_err_flag=>crc_err_flag,
-                data_fifo_q_w_data(63 downto 0)=>data_fifo_wr_data(63 downto 0),
+                data_fifo_wdata(63 downto 0)=>data_fifo_wr_data(63 downto 0),
                 data_fifo_wren=>data_fifo_wren,
                 info_fifo_wren=>info_fifo_wren,
                 info_fifo_wr_data(15 downto 0)=>info_fifo_wr_data(15 downto 0));

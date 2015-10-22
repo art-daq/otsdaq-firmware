@@ -1,0 +1,50 @@
+component RAM_COMM_DEC
+	port (
+		burst_done: in STD_LOGIC;
+		clock: in STD_LOGIC;
+		reset: in STD_LOGIC;
+		rx_data_fifo_rd_data: in STD_LOGIC_VECTOR (63 downto 0);
+		rx_info_fifo_empty: in STD_LOGIC;
+		rx_info_fifo_rd_data: in STD_LOGIC_VECTOR (15 downto 0);
+		tx_info_fifo_full: in STD_LOGIC;
+		user_ready: in STD_LOGIC;
+		burst_start: out STD_LOGIC;
+		burst_stop: out STD_LOGIC;
+		ram_addr: out STD_LOGIC_VECTOR (63 downto 0);
+		ram_rden: out STD_LOGIC;
+		ram_wren: out STD_LOGIC;
+		rx_data_fifo_rden: out STD_LOGIC;
+		Rx_FIFO_Reset: out STD_LOGIC;
+		rx_info_fifo_rden: out STD_LOGIC;
+		tx_data_fifo_src_sel: out STD_LOGIC;
+		tx_data_fifo_wren: out STD_LOGIC;
+		Tx_FIFO_Reset: out STD_LOGIC;
+		tx_info_fifo_src_sel: out STD_LOGIC;
+		tx_info_fifo_wr_data: out STD_LOGIC_VECTOR (15 downto 0);
+		tx_info_fifo_wren: out STD_LOGIC);
+end component;
+
+
+instance_name : RAM_COMM_DEC
+( burst_done => ,
+ burst_start => ,
+ burst_stop => ,
+ clock => ,
+ ram_addr => ,
+ ram_rden => ,
+ ram_wren => ,
+ reset => ,
+ rx_data_fifo_rd_data => ,
+ rx_data_fifo_rden => ,
+ Rx_FIFO_Reset => ,
+ rx_info_fifo_empty => ,
+ rx_info_fifo_rd_data => ,
+ rx_info_fifo_rden => ,
+ tx_data_fifo_src_sel => ,
+ tx_data_fifo_wren => ,
+ Tx_FIFO_Reset => ,
+ tx_info_fifo_full => ,
+ tx_info_fifo_src_sel => ,
+ tx_info_fifo_wr_data => ,
+ tx_info_fifo_wren => ,
+ user_ready => );
