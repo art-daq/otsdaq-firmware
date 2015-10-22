@@ -1,3 +1,9 @@
 src *.vhd
 src data_manager/*.vhd
 src gec/*.vhd
+src gec/*.v
+
+?toolset=="ISE"? src --cd ../cgn DATA_FIFO_0.xco
+?toolset=="ISE"? src --cd ../cgn INFO_FIFO_0.xco
+?toolset=="Vivado"? src --cd ../cgn DATA_FIFO_0.xci
+?toolset=="Vivado"? src --cd ../cgn INFO_FIFO_0.xci
