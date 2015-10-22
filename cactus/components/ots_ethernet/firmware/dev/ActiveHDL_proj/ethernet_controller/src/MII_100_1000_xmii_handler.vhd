@@ -63,8 +63,44 @@ begin
 	tx_er_handled 	<= 	 	tx_er;		  
 	   
 end arch;					 
-
-
+                --
+--
+--entity RX_IN_LATCH is
+--    Port ( clk : in  STD_LOGIC;
+--           dv : in  STD_LOGIC;
+--           er : in  STD_LOGIC;
+--           d : in  STD_LOGIC_VECTOR (7 downto 0);
+--           dvo : out  STD_LOGIC;
+--           ero : out  STD_LOGIC;
+--           do : out  STD_LOGIC_VECTOR (7 downto 0));
+--end RX_IN_LATCH;
+--
+--architecture Behavioral of RX_IN_LATCH is	   
+--       signal    dvs :  STD_LOGIC;
+--       signal    ers :  STD_LOGIC;
+--       signal    ds :   STD_LOGIC_VECTOR (7 downto 0);
+--
+--begin
+--
+--	process(clk)
+--	begin
+--		if falling_edge(clk) then
+--			dvs <= dv;
+--			ers <= er;
+--			ds <= d;
+--		end if;
+--	end process; 
+--	
+--	process(clk)
+--	begin
+--		if rising_edge(clk) then
+--			dvo <= dvs;
+--			ero <= ers;
+--			do <= ds;
+--		end if;
+--	end process;
+--
+--end Behavioral;
 
 
 
