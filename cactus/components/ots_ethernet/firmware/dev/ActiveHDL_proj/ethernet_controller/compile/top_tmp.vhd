@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\top_tmp.vhd
--- Generated   : Wed Oct 14 15:58:06 2015
+-- Generated   : Fri Oct 23 15:56:31 2015
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/top_tmp.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -37,6 +37,7 @@ component ethernet_interface
        MASTER_CLK : in STD_LOGIC;
        b_data : in STD_LOGIC_VECTOR(63 downto 0);
        b_data_we : in STD_LOGIC;
+       b_force_packet : in STD_LOGIC;
        gec_user_dest_addrs : in STD_LOGIC_VECTOR(7 downto 0);
        gec_user_dest_mac : in STD_LOGIC_VECTOR(47 downto 0);
        gec_user_dest_port : in STD_LOGIC_VECTOR(15 downto 0);
@@ -284,6 +285,7 @@ U1 : ethernet_interface
        tx_data(62) => Dangling_Input_Signal,
        tx_data(63) => Dangling_Input_Signal,
        b_data_we => Dangling_Input_Signal,
+       b_force_packet => Dangling_Input_Signal,
        reset_in => Dangling_Input_Signal,
        user_ready => Dangling_Input_Signal
   );

@@ -19,7 +19,8 @@ entity ethernet_interface is
 		  
 		  -- burst signals
    		  b_data               : in    std_logic_vector (63 downto 0); 
-          b_data_we            : in    std_logic; 			
+          b_data_we            : in    std_logic; 	
+		  b_force_packet	   : in    std_logic;
           b_enable             : out   std_logic; 		 
 		  
 		  
@@ -120,7 +121,8 @@ begin
    
    burst_traffic_controller_blk : entity work.burst_traffic_controller
       port map (BURST_WE=>b_data_we,
-                MASTER_CLK=>MASTER_CLK,
+	  			MASTER_CLK=>MASTER_CLK,		
+	  			BURST_FORCE_PACKET=>b_force_packet,
                 RESET=>reset,
                 BURST_END_PACKET=>b_end_packet);
 				
