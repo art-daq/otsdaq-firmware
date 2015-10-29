@@ -1,5 +1,6 @@
 component GEC_RX_CTL
 	port (
+		clear_crc_err_flag: in STD_LOGIC;
 		clock: in STD_LOGIC;
 		four_bit_mode: in STD_LOGIC;
 		gec_user_crc_err: in STD_LOGIC;
@@ -16,7 +17,8 @@ end component;
 
 
 instance_name : GEC_RX_CTL
-( clock => ,
+( clear_crc_err_flag => ,
+ clock => ,
  crc_err_flag => ,
  data_fifo_wdata => ,
  data_fifo_wren => ,

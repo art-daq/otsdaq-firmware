@@ -2,14 +2,19 @@ component RAM_COMM_DEC
 	port (
 		burst_done: in STD_LOGIC;
 		clock: in STD_LOGIC;
+		crc_err_flag: in STD_LOGIC;
+		gec_user_rx_valid_out: in STD_LOGIC;
 		reset: in STD_LOGIC;
+		rx_data_fifo_full: in STD_LOGIC;
 		rx_data_fifo_rd_data: in STD_LOGIC_VECTOR (63 downto 0);
 		rx_info_fifo_empty: in STD_LOGIC;
+		rx_info_fifo_full: in STD_LOGIC;
 		rx_info_fifo_rd_data: in STD_LOGIC_VECTOR (15 downto 0);
 		tx_info_fifo_full: in STD_LOGIC;
 		user_ready: in STD_LOGIC;
 		burst_start: out STD_LOGIC;
 		burst_stop: out STD_LOGIC;
+		clear_crc_err_flag: out STD_LOGIC;
 		ram_addr: out STD_LOGIC_VECTOR (63 downto 0);
 		ram_rden: out STD_LOGIC;
 		ram_wren: out STD_LOGIC;
@@ -29,15 +34,20 @@ instance_name : RAM_COMM_DEC
 ( burst_done => ,
  burst_start => ,
  burst_stop => ,
+ clear_crc_err_flag => ,
  clock => ,
+ crc_err_flag => ,
+ gec_user_rx_valid_out => ,
  ram_addr => ,
  ram_rden => ,
  ram_wren => ,
  reset => ,
+ rx_data_fifo_full => ,
  rx_data_fifo_rd_data => ,
  rx_data_fifo_rden => ,
  Rx_FIFO_Reset => ,
  rx_info_fifo_empty => ,
+ rx_info_fifo_full => ,
  rx_info_fifo_rd_data => ,
  rx_info_fifo_rden => ,
  tx_data_fifo_src_sel => ,

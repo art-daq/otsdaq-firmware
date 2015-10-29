@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC_RX_CTL.vhd
--- Generated   : 10/20/15 10:12:16
+-- Generated   : 10/29/15 11:59:42
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC_RX_CTL.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -25,6 +25,7 @@ use work.params_package.all;
 
 entity GEC_RX_CTL is 
 	port (
+		clear_crc_err_flag: in STD_LOGIC;
 		clock: in STD_LOGIC;
 		four_bit_mode: in STD_LOGIC;
 		gec_user_crc_err: in STD_LOGIC;
@@ -45,18 +46,16 @@ architecture GEC_RX_CTL of GEC_RX_CTL is
 signal clken: STD_LOGIC;
 signal com_code: STD_LOGIC_VECTOR (1 downto 0);
 signal crc_err_reg: STD_LOGIC;
-signal crc_loop_count: UNSIGNED (4 downto 0);
 signal data_fifo_wdata_sig: STD_LOGIC_VECTOR (63 downto 0);
 signal data_fifo_wren_sig: STD_LOGIC;
 signal info_fifo_wren_sig: STD_LOGIC;
 signal q_w_count: UNSIGNED (7 downto 0);
 signal q_w_counter: UNSIGNED (7 downto 0);
-signal q_w_reg: STD_LOGIC_VECTOR (63 downto 0);
 
 -- BINARY ENCODED state machine: Sreg0
 attribute ENUM_ENCODING: string;
 type Sreg0_type is (
-    S3_S4, S3_S7, S3_S8, S3_S9, S3_S10, S3_S11, S3_S6, S3_S5, idle, check_crc, rcvdone, S2, S1, S13, S3_S14
+    S3_S4, S3_S7, S3_S8, S3_S9, S3_S10, S3_S11, S3_S6, S3_S5, idle, insert_crc, rcvdone, S13
 );
 attribute ENUM_ENCODING of Sreg0_type: type is
 	"0000 " &		-- S3_S4
@@ -68,12 +67,9 @@ attribute ENUM_ENCODING of Sreg0_type: type is
 	"0110 " &		-- S3_S6
 	"0111 " &		-- S3_S5
 	"1000 " &		-- idle
-	"1001 " &		-- check_crc
+	"1001 " &		-- insert_crc
 	"1010 " &		-- rcvdone
-	"1011 " &		-- S2
-	"1100 " &		-- S1
-	"1101 " &		-- S13
-	"1110" ;		-- S3_S14
+	"1011" ;		-- S13
 
 signal Sreg0: Sreg0_type;
 
@@ -98,6 +94,21 @@ begin
 		end if;
 	end if;
 end process;
+crc_err_proc : process (clock) -- register crc err after reset
+begin
+	if rising_edge(clock) then
+		if (reset = '1') then
+			crc_err_reg <= '0';
+			crc_err_flag <= '0';
+		elsif (gec_user_crc_err = '1') then
+		  	crc_err_reg <= '1';
+		  	--stay high until reset to indicate there was an error ever
+			crc_err_flag <= '1';
+		elsif (clear_crc_err_flag = '1') then -- command handler clears err flag after reseting fifos
+		   	crc_err_flag <= '0';
+		end if;
+	end if;
+end process;
 
 ----------------------------------------------------------------------
 -- Machine: Sreg0
@@ -108,78 +119,38 @@ begin
 		if reset = '1' then
 			Sreg0 <= idle;
 			-- Set default values for outputs, signals and variables
-			-- ...
-			crc_err_reg <= '0';
-			crc_loop_count <= (others => '0');
-			q_w_reg <= (others => '0');
--- Initialize error flag outputs
-			crc_err_flag <= '0';
--- Initialize FIFO control outputs
 			data_fifo_wren_sig <= '0';
 			info_fifo_wren_sig <= '0';
-			info_fifo_wr_data <= (others => '0');
-			com_code <= (others => '0');
-			data_fifo_wdata_sig <= (others => '0');
 		else
 			if clken = '1' then
 				-- Set default values for outputs, signals and variables
-				-- ...
+				data_fifo_wren_sig <= '0';
+				info_fifo_wren_sig <= '0';
 				case Sreg0 is
 					when idle =>
 						if gec_user_rx_valid_out = '1' and
 							unsigned(gec_user_rx_size_out) = 1 then
-							Sreg0 <= check_crc;
+							Sreg0 <= insert_crc;
 							info_fifo_wr_data(7 downto 0) <= gec_user_rx_data_out;
 							info_fifo_wr_data(15 downto 8) <= (others => '0');
 							-- Capture command byte
 						elsif gec_user_rx_valid_out = '1' and
 							unsigned(gec_user_rx_size_out) > 1 then
 							Sreg0 <= S13;
+							-- Put the entire command/size word in the info FIFO.
+							-- This is not written until all info for the fifo is accumulated.
 							info_fifo_wr_data(7 downto 0) <= gec_user_rx_data_out;
-							-- Put the entire command/size word in the info
-							-- FIFO
-							-- this is not written until
-							-- all info for the fifo is
-							-- accumulated
-							--q_w_count <= gec_user_rx_data_out (7 downto 3);
-							-- set the terminal count of quad words
-							-- using that portion of the command/size
-							-- word
 							com_code <= gec_user_rx_data_out(1 downto 0);
 							-- save command code
 						end if;
-					when check_crc =>
-						if (crc_loop_count = 22) or
-							(crc_err_reg = '1') then	-- CRC timed out  -- or CRC err detected
-							Sreg0 <= S1;
-						else
-							Sreg0 <= check_crc;
-							crc_loop_count <= crc_loop_count + 1;
-							if (gec_user_crc_err = '1') then
-							  crc_err_reg <= '1';
-							end if;
-						end if;
-					when rcvdone =>
-						Sreg0 <= idle;
-						info_fifo_wren_sig <= '0';
-					when S2 =>
+					when insert_crc =>
 						Sreg0 <= rcvdone;
-						crc_err_reg <= '0';
-						-- reset the crc error counter
-						crc_err_flag <= '0';
-						-- reset the crc error flag (output)
-						crc_loop_count <= (others => '0');
-						-- reset the 22 cycle crc loop counter
-						data_fifo_wren_sig <= '0';
+						info_fifo_wr_data(7) <= crc_err_reg;
+						-- return the crc error status in info, info complete
 						info_fifo_wren_sig <= '1';
 						-- we actually write the info fifo here.
-					when S1 =>
-						Sreg0 <= S2;
-						info_fifo_wr_data(7) <= crc_err_reg;
-						-- keep the crc error status
-						-- at this point the info should be complete
-						crc_err_flag <= crc_err_reg;
-						-- assert the crc error status on the output
+					when rcvdone =>
+						Sreg0 <= idle;
 					when S13 =>
 						Sreg0 <= S3_S4;
 						info_fifo_wr_data(15 downto 8) <= gec_user_rx_data_out;
@@ -201,9 +172,8 @@ begin
 						end if;
 					when S3_S4 =>
 						Sreg0 <= S3_S5;
-						data_fifo_wdata_sig <= data_fifo_wdata_sig(55 downto 0) & gec_user_rx_data_out;
-						data_fifo_wren_sig <= '0';
 						-- Finish the write to the data fifo
+						data_fifo_wdata_sig <= data_fifo_wdata_sig(55 downto 0) & gec_user_rx_data_out;
 						q_w_counter <= q_w_counter + 1;
 						-- increment the counter
 					when S3_S7 =>
@@ -219,11 +189,20 @@ begin
 						Sreg0 <= S3_S11;
 						data_fifo_wdata_sig <= data_fifo_wdata_sig(55 downto 0) & gec_user_rx_data_out;
 					when S3_S11 =>
-						if q_w_counter = q_w_count then
-							Sreg0 <= S3_S14;
+						if (q_w_counter = q_w_count) and (gec_user_rx_valid_out = '0') then
+							Sreg0 <= insert_crc;
 							data_fifo_wren_sig <= '1';
 							-- write the assembled data to the FIFO
 							data_fifo_wdata_sig <= data_fifo_wdata_sig(55 downto 0) & gec_user_rx_data_out;
+						elsif (q_w_counter = q_w_count) and (gec_user_rx_valid_out = '1') then	-- multi-operation packet
+							Sreg0 <= idle;
+							data_fifo_wren_sig <= '1';
+							-- write the assembled data to the FIFO
+							data_fifo_wdata_sig <= data_fifo_wdata_sig(55 downto 0) & gec_user_rx_data_out;
+							info_fifo_wr_data(7) <= crc_err_reg;
+							-- return the crc error status in info, info complete
+							info_fifo_wren_sig <= '1';
+							-- we actually write the info fifo here.
 						else
 							Sreg0 <= S3_S4;
 							data_fifo_wren_sig <= '1';
@@ -236,15 +215,6 @@ begin
 					when S3_S5 =>
 						Sreg0 <= S3_S6;
 						data_fifo_wdata_sig <= data_fifo_wdata_sig(55 downto 0) & gec_user_rx_data_out;
-					when S3_S14 =>
-						Sreg0 <= check_crc;
-						data_fifo_wren_sig <= '0';
-						-- finish data FIFO write
-						if (gec_user_crc_err = '1') then
-						  crc_err_reg <= '1';
-						end if;
-						crc_loop_count <= crc_loop_count + 1;
-						-- increment loop counter for catching CRC errors
 --vhdl_cover_off
 					when others =>
 						null;
