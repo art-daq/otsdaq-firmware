@@ -4021,7 +4021,7 @@ PAGE ""
 </symbol>
 
 
-I 000051 40 12865 1445633187610 ethernet_interface
+I 000051 40 12627 1446578789150 ethernet_interface
 <?xml version="1.0"?>
 <symbol name="ethernet_interface">
 <shape guid="a1437df9-0293-4b45-ae0f-c40dadcd3559" default="1">
@@ -4034,7 +4034,7 @@ HEADER
     #DESCRIPTION=""
     #HDL_ENTRIES="library IEEE;\nuse ieee.std_logic_1164.all;"
     #LANGUAGE="VHDL"
-    #MODIFIED="1445633187"
+    #MODIFIED="1446578789"
     #NAME="ethernet_interface"
     #SYMBOL_GLOBALLY_UNIQUE_IDENTIFIER="a1437df9-0293-4b45-ae0f-c40dadcd3559"
   }
@@ -4043,8 +4043,8 @@ PAGE ""
 {
   PAGEHEADER 
   {
-    RECT (0,-20,620,740)
-    FREEID 66
+    RECT (0,-20,620,820)
+    FREEID 74
   }
   BODY
   {
@@ -4054,7 +4054,7 @@ PAGE ""
       {
         #OUTLINE_FILLING="1"
       }
-      AREA (20,0,600,720)
+      AREA (20,-2,600,799)
     }
     PIN 12,0,0
     {
@@ -4406,32 +4406,6 @@ PAGE ""
       MARGINS (1,1)
       PARENT 36
     }
-    PIN 38,0,0
-    {
-      VARIABLES
-      {
-        #DIRECTION="IN"
-        #DOWNTO="1"
-        #LENGTH="20"
-        #NAME="GMII_RXD(7:0)"
-        #SIDE="left"
-      }
-      COORD (0,520)
-      LINE 2,0,0
-      {
-        OUTLINE 0,3,(128,0,0)
-        POINTS ((0,0),(20,0))
-        FILL (1,(0,0,0),0)
-      }
-    }
-    TEXT 39,0,0
-    {
-      TEXT "$#NAME"
-      RECT (25,510,160,534)
-      ALIGN 4
-      MARGINS (1,1)
-      PARENT 38
-    }
     PIN 4,0,0
     {
       VARIABLES
@@ -4473,81 +4447,6 @@ PAGE ""
       ALIGN 6
       MARGINS (1,1)
       PARENT 40
-    }
-    PIN 42,0,0
-    {
-      VARIABLES
-      {
-        #DIRECTION="IN"
-        #LENGTH="20"
-        #NAME="GMII_RX_DV"
-        #SIDE="left"
-      }
-      COORD (0,560)
-      LINE 2,0,0
-      {
-        OUTLINE 0,1,(0,0,255)
-        POINTS ((0,0),(20,0))
-        FILL (1,(0,0,0),0)
-      }
-    }
-    TEXT 43,0,0
-    {
-      TEXT "$#NAME"
-      RECT (25,550,145,574)
-      ALIGN 4
-      MARGINS (1,1)
-      PARENT 42
-    }
-    PIN 44,0,0
-    {
-      VARIABLES
-      {
-        #DIRECTION="OUT"
-        #LENGTH="20"
-        #NAME="GTX_CLK"
-        #SIDE="right"
-      }
-      COORD (620,640)
-      LINE 2,0,0
-      {
-        OUTLINE 0,1,(0,0,255)
-        POINTS ((-20,0),(0,0))
-        FILL (1,(0,0,0),0)
-      }
-    }
-    TEXT 45,0,0
-    {
-      TEXT "$#NAME"
-      RECT (504,630,595,654)
-      ALIGN 6
-      MARGINS (1,1)
-      PARENT 44
-    }
-    PIN 46,0,0
-    {
-      VARIABLES
-      {
-        #DIRECTION="IN"
-        #LENGTH="20"
-        #NAME="GMII_RX_ER"
-        #SIDE="left"
-      }
-      COORD (0,600)
-      LINE 2,0,0
-      {
-        OUTLINE 0,1,(0,0,255)
-        POINTS ((0,0),(20,0))
-        FILL (1,(0,0,0),0)
-      }
-    }
-    TEXT 47,0,0
-    {
-      TEXT "$#NAME"
-      RECT (25,590,145,614)
-      ALIGN 4
-      MARGINS (1,1)
-      PARENT 46
     }
     PIN 48,0,0
     {
@@ -4724,6 +4623,32 @@ PAGE ""
         #DIRECTION="IN"
         #LENGTH="20"
         #NAME="b_force_packet"
+        #SIDE="left"
+      }
+      COORD (0,240)
+      LINE 2,0,0
+      {
+        OUTLINE 0,1,(0,0,255)
+        POINTS ((0,0),(20,0))
+        FILL (1,(0,0,0),0)
+      }
+    }
+    TEXT 65,0,0
+    {
+      TEXT "$#NAME"
+      RECT (25,230,160,254)
+      ALIGN 4
+      MARGINS (1,1)
+      PARENT 64
+    }
+    PIN 66,0,0
+    {
+      VARIABLES
+      {
+        #DIRECTION="IN"
+        #DOWNTO="1"
+        #LENGTH="20"
+        #NAME="PHY_RXD(7:0)"
       }
       COORD (0,680)
       LINE 2,0,0
@@ -4731,13 +4656,35 @@ PAGE ""
         POINTS ((0,0),(20,0))
       }
     }
-    TEXT 65,0,0
+    TEXT 67,0,0
     {
       TEXT "$#NAME"
       MARGINS (1,1)
-      PARENT 64
+      PARENT 66
       ALIGN 4
       RECT (25,666,315,698)
+    }
+    PIN 68,0,0
+    {
+      VARIABLES
+      {
+        #DIRECTION="IN"
+        #LENGTH="20"
+        #NAME="PHY_RX_DV"
+      }
+      COORD (0,720)
+      LINE 2,0,0
+      {
+        POINTS ((0,0),(20,0))
+      }
+    }
+    TEXT 69,0,0
+    {
+      TEXT "$#NAME"
+      MARGINS (1,1)
+      PARENT 68
+      ALIGN 4
+      RECT (25,706,315,738)
     }
     TEXT 7,0,0
     {
@@ -4746,6 +4693,50 @@ PAGE ""
       ALIGN 4
       MARGINS (1,1)
       PARENT 6
+    }
+    PIN 70,0,0
+    {
+      VARIABLES
+      {
+        #DIRECTION="IN"
+        #LENGTH="20"
+        #NAME="PHY_RX_ER"
+      }
+      COORD (0,760)
+      LINE 2,0,0
+      {
+        POINTS ((0,0),(20,0))
+      }
+    }
+    TEXT 71,0,0
+    {
+      TEXT "$#NAME"
+      MARGINS (1,1)
+      PARENT 70
+      ALIGN 4
+      RECT (25,746,315,778)
+    }
+    PIN 72,0,0
+    {
+      VARIABLES
+      {
+        #DIRECTION="OUT"
+        #LENGTH="20"
+        #NAME="TX_CLK"
+      }
+      COORD (620,680)
+      LINE 2,0,0
+      {
+        POINTS ((0,0),(-20,0))
+      }
+    }
+    TEXT 73,0,0
+    {
+      TEXT "$#NAME"
+      MARGINS (1,1)
+      PARENT 72
+      ALIGN 6
+      RECT (305,666,595,698)
     }
     PIN 8,0,0
     {
@@ -7234,7 +7225,7 @@ PAGE ""
 </symbol>
 
 
-V 000051 40 11118 1445633199867 ethernet_interface
+V 000051 40 11114 1446578817137 ethernet_interface
 <?xml version="1.0"?>
 <symbol name="ethernet_interface">
 <shape guid="a1437df9-0293-4b45-ae0f-c40dadcd3559" default="1">
@@ -7249,7 +7240,7 @@ HEADER
 "library IEEE;\n"+
 "use ieee.std_logic_1164.all;"
   #LANGUAGE="VHDL"
-  #MODIFIED="1445633199"
+  #MODIFIED="1446578817"
   #NAME="ethernet_interface"
   #SYMBOL_GLOBALLY_UNIQUE_IDENTIFIER="a1437df9-0293-4b45-ae0f-c40dadcd3559"
  }
@@ -7259,7 +7250,7 @@ PAGE ""
  PAGEHEADER
  {
   RECT (0,-20,620,700)
-  FREEID 67
+  FREEID 75
  }
  
  BODY
@@ -7270,7 +7261,7 @@ PAGE ""
    {
     #OUTLINE_FILLING="1"
    }
-   AREA (20,-2,600,679)
+   AREA (20,-5,600,681)
   }
   TEXT  3, 0, 0
   {
@@ -7408,14 +7399,6 @@ PAGE ""
    MARGINS (1,1)
    PARENT 36
   }
-  TEXT  39, 0, 0
-  {
-   TEXT "$#NAME"
-   RECT (25,510,160,534)
-   ALIGN 4
-   MARGINS (1,1)
-   PARENT 38
-  }
   TEXT  41, 0, 0
   {
    TEXT "$#NAME"
@@ -7423,30 +7406,6 @@ PAGE ""
    ALIGN 6
    MARGINS (1,1)
    PARENT 40
-  }
-  TEXT  43, 0, 0
-  {
-   TEXT "$#NAME"
-   RECT (25,550,145,574)
-   ALIGN 4
-   MARGINS (1,1)
-   PARENT 42
-  }
-  TEXT  45, 0, 0
-  {
-   TEXT "$#NAME"
-   RECT (504,630,595,654)
-   ALIGN 6
-   MARGINS (1,1)
-   PARENT 44
-  }
-  TEXT  47, 0, 0
-  {
-   TEXT "$#NAME"
-   RECT (25,590,145,614)
-   ALIGN 4
-   MARGINS (1,1)
-   PARENT 46
   }
   TEXT  49, 0, 0
   {
@@ -7529,6 +7488,38 @@ PAGE ""
    ALIGN 4
    MARGINS (1,1)
    PARENT 64
+  }
+  TEXT  67, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (25,510,156,534)
+   ALIGN 4
+   MARGINS (1,1)
+   PARENT 66
+  }
+  TEXT  69, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (25,550,141,574)
+   ALIGN 4
+   MARGINS (1,1)
+   PARENT 68
+  }
+  TEXT  71, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (25,590,141,614)
+   ALIGN 4
+   MARGINS (1,1)
+   PARENT 70
+  }
+  TEXT  73, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (519,630,595,654)
+   ALIGN 6
+   MARGINS (1,1)
+   PARENT 72
   }
   PIN  2, 0, 0
   {
@@ -7818,24 +7809,6 @@ PAGE ""
     FILL (1,(0,0,0),0)
    }
   }
-  PIN  38, 0, 0
-  {
-   COORD (0,520)
-   VARIABLES
-   {
-    #DIRECTION="IN"
-    #DOWNTO="1"
-    #LENGTH="20"
-    #NAME="GMII_RXD(7:0)"
-    #SIDE="left"
-   }
-   LINE  2, 0, 0
-   {
-    OUTLINE 0,3, (128,0,0)
-    POINTS ( (0,0), (20,0) )
-    FILL (1,(0,0,0),0)
-   }
-  }
   PIN  40, 0, 0
   {
    COORD (620,440)
@@ -7851,57 +7824,6 @@ PAGE ""
    {
     OUTLINE 0,3, (128,0,0)
     POINTS ( (-20,0), (0,0) )
-    FILL (1,(0,0,0),0)
-   }
-  }
-  PIN  42, 0, 0
-  {
-   COORD (0,560)
-   VARIABLES
-   {
-    #DIRECTION="IN"
-    #LENGTH="20"
-    #NAME="GMII_RX_DV"
-    #SIDE="left"
-   }
-   LINE  2, 0, 0
-   {
-    OUTLINE 0,1, (0,0,255)
-    POINTS ( (0,0), (20,0) )
-    FILL (1,(0,0,0),0)
-   }
-  }
-  PIN  44, 0, 0
-  {
-   COORD (620,640)
-   VARIABLES
-   {
-    #DIRECTION="OUT"
-    #LENGTH="20"
-    #NAME="GTX_CLK"
-    #SIDE="right"
-   }
-   LINE  2, 0, 0
-   {
-    OUTLINE 0,1, (0,0,255)
-    POINTS ( (-20,0), (0,0) )
-    FILL (1,(0,0,0),0)
-   }
-  }
-  PIN  46, 0, 0
-  {
-   COORD (0,600)
-   VARIABLES
-   {
-    #DIRECTION="IN"
-    #LENGTH="20"
-    #NAME="GMII_RX_ER"
-    #SIDE="left"
-   }
-   LINE  2, 0, 0
-   {
-    OUTLINE 0,1, (0,0,255)
-    POINTS ( (0,0), (20,0) )
     FILL (1,(0,0,0),0)
    }
   }
@@ -7988,6 +7910,75 @@ PAGE ""
    {
     OUTLINE 0,1, (0,0,255)
     POINTS ( (0,0), (20,0) )
+    FILL (1,(0,0,0),0)
+   }
+  }
+  PIN  66, 0, 0
+  {
+   COORD (0,520)
+   VARIABLES
+   {
+    #DIRECTION="IN"
+    #DOWNTO="1"
+    #LENGTH="20"
+    #NAME="PHY_RXD(7:0)"
+    #SIDE="left"
+   }
+   LINE  2, 0, 0
+   {
+    OUTLINE 0,3, (128,0,0)
+    POINTS ( (0,0), (20,0) )
+    FILL (1,(0,0,0),0)
+   }
+  }
+  PIN  68, 0, 0
+  {
+   COORD (0,560)
+   VARIABLES
+   {
+    #DIRECTION="IN"
+    #LENGTH="20"
+    #NAME="PHY_RX_DV"
+    #SIDE="left"
+   }
+   LINE  2, 0, 0
+   {
+    OUTLINE 0,1, (0,0,255)
+    POINTS ( (0,0), (20,0) )
+    FILL (1,(0,0,0),0)
+   }
+  }
+  PIN  70, 0, 0
+  {
+   COORD (0,600)
+   VARIABLES
+   {
+    #DIRECTION="IN"
+    #LENGTH="20"
+    #NAME="PHY_RX_ER"
+    #SIDE="left"
+   }
+   LINE  2, 0, 0
+   {
+    OUTLINE 0,1, (0,0,255)
+    POINTS ( (0,0), (20,0) )
+    FILL (1,(0,0,0),0)
+   }
+  }
+  PIN  72, 0, 0
+  {
+   COORD (620,640)
+   VARIABLES
+   {
+    #DIRECTION="OUT"
+    #LENGTH="20"
+    #NAME="TX_CLK"
+    #SIDE="right"
+   }
+   LINE  2, 0, 0
+   {
+    OUTLINE 0,1, (0,0,255)
+    POINTS ( (0,0), (-20,0) )
     FILL (1,(0,0,0),0)
    }
   }

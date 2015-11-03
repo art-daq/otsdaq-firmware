@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\top_tmp.vhd
--- Generated   : Wed Oct 28 16:56:50 2015
+-- Generated   : Tue Nov  3 13:32:29 2015
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/top_tmp.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -31,10 +31,10 @@ architecture top_tmp of top_tmp is
 
 component ethernet_interface
   port (
-       GMII_RXD : in STD_LOGIC_VECTOR(7 downto 0);
-       GMII_RX_DV : in STD_LOGIC;
-       GMII_RX_ER : in STD_LOGIC;
        MASTER_CLK : in STD_LOGIC;
+       PHY_RXD : in STD_LOGIC_VECTOR(7 downto 0);
+       PHY_RX_DV : in STD_LOGIC;
+       PHY_RX_ER : in STD_LOGIC;
        b_data : in STD_LOGIC_VECTOR(63 downto 0);
        b_data_we : in STD_LOGIC;
        b_force_packet : in STD_LOGIC;
@@ -44,10 +44,10 @@ component ethernet_interface
        reset_in : in STD_LOGIC;
        tx_data : in STD_LOGIC_VECTOR(63 downto 0);
        user_ready : in STD_LOGIC;
-       GTX_CLK : out STD_LOGIC;
        PHY_TXD : out STD_LOGIC_VECTOR(7 downto 0);
        PHY_TX_EN : out STD_LOGIC;
        PHY_TX_ER : out STD_LOGIC;
+       TX_CLK : out STD_LOGIC;
        b_enable : out STD_LOGIC;
        gec_user_src_addrs : out STD_LOGIC_VECTOR(7 downto 0);
        gec_user_src_capture : out STD_LOGIC;
@@ -209,17 +209,17 @@ U1 : ethernet_interface
        gec_user_dest_port(13) => Dangling_Input_Signal,
        gec_user_dest_port(14) => Dangling_Input_Signal,
        gec_user_dest_port(15) => Dangling_Input_Signal,
-       GMII_RXD(0) => Dangling_Input_Signal,
-       GMII_RXD(1) => Dangling_Input_Signal,
-       GMII_RXD(2) => Dangling_Input_Signal,
-       GMII_RXD(3) => Dangling_Input_Signal,
-       GMII_RXD(4) => Dangling_Input_Signal,
-       GMII_RXD(5) => Dangling_Input_Signal,
-       GMII_RXD(6) => Dangling_Input_Signal,
-       GMII_RXD(7) => Dangling_Input_Signal,
-       GMII_RX_DV => Dangling_Input_Signal,
-       GMII_RX_ER => Dangling_Input_Signal,
        MASTER_CLK => Dangling_Input_Signal,
+       PHY_RXD(0) => Dangling_Input_Signal,
+       PHY_RXD(1) => Dangling_Input_Signal,
+       PHY_RXD(2) => Dangling_Input_Signal,
+       PHY_RXD(3) => Dangling_Input_Signal,
+       PHY_RXD(4) => Dangling_Input_Signal,
+       PHY_RXD(5) => Dangling_Input_Signal,
+       PHY_RXD(6) => Dangling_Input_Signal,
+       PHY_RXD(7) => Dangling_Input_Signal,
+       PHY_RX_DV => Dangling_Input_Signal,
+       PHY_RX_ER => Dangling_Input_Signal,
        tx_data(0) => Dangling_Input_Signal,
        tx_data(1) => Dangling_Input_Signal,
        tx_data(2) => Dangling_Input_Signal,
