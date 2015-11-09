@@ -44,7 +44,7 @@ architecture BEHAVIORAL of data_manager is
    signal burst_start                          : std_logic;
    signal burst_stop                           : std_logic;
    signal clear_delay_count                    : std_logic;
-   signal crc_err_flag                         : std_logic;
+   signal crc_err_flag, clear_crc_err_flag     : std_logic;
    signal data_fifo_full                       : std_logic;
    signal data_fifo_rden_en                    : std_logic;
    signal data_fifo_rd_data                    : std_logic_vector (63 downto 0);
@@ -58,7 +58,9 @@ architecture BEHAVIORAL of data_manager is
    signal rx_data_fifo_read_enable             : std_logic;
    signal rx_fifo_reset                        : std_logic;
    signal rx_fifo_reset_sig                    : std_logic;
-   signal rx_info_fifo_empty                   : std_logic;
+   signal rx_info_fifo_empty                   : std_logic;	 
+   signal rx_info_fifo_full	                   : std_logic;	
+   signal rx_data_fifo_full	                   : std_logic;	   
    signal rx_info_fifo_rden                    : std_logic;
    signal start_delay_count                    : std_logic;
    signal tx_data_fifo_din                     : std_logic_vector (63 downto 0);
@@ -177,7 +179,7 @@ begin
                     wr_en=>data_fifo_wren,
                     dout(63 downto 0)=>rx_data_sig(63 downto 0),
                     empty=>rx_data_fifo_empty,
-                    full=>open);
+                    full=>rx_data_fifo_full);
        RX_INFO_FIFO : INFO_FIFO_0
           port map (clk=>MASTER_CLK,
                     din(15 downto 0)=>info_fifo_wr_data(15 downto 0),
@@ -186,7 +188,7 @@ begin
                     wr_en=>info_fifo_wren,
                     dout(15 downto 0)=>info_fifo_rd_data(15 downto 0),
                     empty=>rx_info_fifo_empty,
-                    full=>open);
+                    full=>rx_info_fifo_full);
                                    	
        TX_DATA_FIFO : DATA_FIFO_0
           port map (clk=>MASTER_CLK,
@@ -234,7 +236,8 @@ begin
                 gec_user_rx_size_out(10 downto 0)=>gec_user_rx_size_out(10 downto 0),
                 gec_user_rx_valid_out=>gec_user_rx_valid_out,
                 reset=>reset,
-                crc_err_flag=>crc_err_flag,
+                crc_err_flag=>crc_err_flag,	  
+                clear_crc_err_flag=>clear_crc_err_flag,
                 data_fifo_wdata(63 downto 0)=>data_fifo_wr_data(63 downto 0),
                 data_fifo_wren=>data_fifo_wren,
                 info_fifo_wren=>info_fifo_wren,
@@ -248,15 +251,20 @@ begin
                 clock=>MASTER_CLK,
                 reset=>reset,
                 rx_data_fifo_rd_data(63 downto 0)=>rx_data_sig(63 downto 0),
-                rx_info_fifo_empty=>rx_info_fifo_empty,
-                rx_info_fifo_rd_data(15 downto 0)=>info_fifo_rd_data(15 downto 0),
+                rx_info_fifo_empty=>rx_info_fifo_empty,							  
+				rx_info_fifo_full=>rx_info_fifo_full,	   
+				rx_data_fifo_full=>rx_data_fifo_full,
+                rx_info_fifo_rd_data(15 downto 0)=>info_fifo_rd_data(15 downto 0),				
                 tx_info_fifo_full=>tx_info_fifo_full,
                 burst_start=>burst_start,
                 burst_stop=>burst_stop,					   	 
                 ram_addr(63 downto 0)=>ram_addr(63 downto 0),
                 ram_rden=>ram_rden,
                 ram_wren=>ram_wren,		   			
-				user_ready=>gec_user_ready,		  
+				user_ready=>gec_user_ready,
+				gec_user_rx_valid_out=>gec_user_rx_valid_out,  
+                crc_err_flag=>crc_err_flag,	  
+                clear_crc_err_flag=>clear_crc_err_flag,	  
                 rx_data_fifo_rden=>rx_data_fifo_read_enable,
                 Rx_FIFO_Reset=>rx_fifo_reset,
                 rx_info_fifo_rden=>rx_info_fifo_rden,		 

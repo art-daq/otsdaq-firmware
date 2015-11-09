@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:ProjectsotsdaqPicoZedActiveHDL_projethernet_controllercompileGEC.vhd
--- Generated   : Fri Sep 25 15:07:31 2015
+-- Generated   : Wed Oct 28 16:57:50 2015
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -73,7 +73,7 @@ component CRC_splice
        txd : out STD_LOGIC_VECTOR(7 downto 0)
   );
 end component;
-component XILINX_7SERIES_RGMII_handler
+component MII_100_1000_handler
   port (
        clk : in STD_LOGIC;
        reset : in STD_LOGIC;
@@ -218,7 +218,7 @@ DIG_GEC_Block : DIG_GEC
        user_tx_size_in => user_tx_size_in
   );
 
-RGMII_Block : XILINX_7SERIES_RGMII_handler
+RGMII_Block : MII_100_1000_handler
   port map(
        clk => GMII_RX_CLK,
        reset => reset,

@@ -4,13 +4,14 @@
 ## Notes:
 ##
 ##
-##        ./<script path>/convert....sh <eth_interface/ path>
+##        ./<script path>/convert....sh <eth_interface/ path> [optional args]
 ##
 ##  you can run from any directory..  
 ## 
 ##  e.g:  ./convertActiveHDLtoEthInterface.sh eth_interface/
 ##
-##  PHY_SOLUTION := 'XILINX_7SERIES_RGMII' 'MII_100_1000' 'LOGIC_RGMII'
+##  Optional Args:
+##  -phy PHY_SOLUTION := 'XILINX_7SERIES_RGMII' 'MII_100_1000' 'LOGIC_RGMII'
 ##
 ##  XILINX_7SERIES_RGMII uses IDDR ODDR components to implement RGMII <=> GMII
 ##  MII_100_1000 works for 100mb or 1gb Ethernet (G)MII protocol
@@ -23,18 +24,58 @@ echo '\n'
 
 if ("x$1" == "x") then
 
-    echo 'Usage: ./convertActiveHDLtoEthInterface.sh <eth_interface/ path> <optional PHY_SOLUTION type string>'
-    echo 'PHY_SOLUTION := '
-    echo '\t XILINX_7SERIES_RGMII'
-    echo '\t LOGIC_RGMII'
-    echo '\t MII_100_1000'
-    echo '\t(default if blank is MII_100_1000)'
+    echo 'Usage: ./convertActiveHDLtoEthInterface.sh <eth_interface/ path> [optional args]'
+    echo
+    echo 'Optional Args:'
+    echo '-phy <optional PHY_SOLUTION type string>'
+    echo '\tPHY_SOLUTION := '
+    echo '\t\t XILINX_7SERIES_RGMII'
+    echo '\t\t LOGIC_RGMII'
+    echo '\t\t MII_100_1000'
+    echo '\t\t (default if blank is MII_100_1000)'
+    echo
+    echo 
 
 else if (!(-d $1/gec) || !(-d $1/data_manager)) then
 
     echo "Error: Invalid path (gec and data_manager should be dirs at the specified path '$1')"
  
 else 
+    echo 'Parsing arguments...\n\n'
+
+    #####################
+
+    set phy=""
+
+    # parse options
+    echo $#
+
+#    while [ $# -gt 0 ]
+#    do
+#        case "$1" in
+#                -phy) a="$2" ; shift ;;
+#                -b) b="$2" ; shift ;;
+#                -c) c="$2" ; shift ;;
+#                -d) d="$2" ; shift ;;
+#                --) shift; break ;;
+#                -*) usage ;;
+ #               *) break ;;  # arguments ...
+#        esac
+#        shift
+#    done
+    # now $* include arguments
+    echo $phy
+
+    #[ "$a" = "" ] && usage
+  
+    #if [ "$d" = "" ] ; then
+#	prog -a "$a" -b "$b" -c "$c" 2>&1 | tee -a ~/"$a".log 
+ #   else
+#	prog -a "$a" -b "$b" -c "$c" -d "$d" 2>&1 | tee -a ~/"$a".log
+ #   fi
+
+    exit
+
 
     echo 'Integrating algorithm...\n\n'
     

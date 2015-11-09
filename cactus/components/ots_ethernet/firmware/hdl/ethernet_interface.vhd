@@ -19,7 +19,8 @@ entity ethernet_interface is
 		  
 		  -- burst signals
    		  b_data               : in    std_logic_vector (63 downto 0); 
-          b_data_we            : in    std_logic; 			
+          b_data_we            : in    std_logic; 	
+		  b_force_packet	   : in    std_logic;
           b_enable             : out   std_logic; 		 
 		  
 		  
@@ -35,11 +36,11 @@ entity ethernet_interface is
 		  -- PHY interface signals
 		  MASTER_CLK           : in    std_logic; 			
 		  
-          GMII_RXD             : in    std_logic_vector (7 downto 0); 
-          GMII_RX_DV           : in    std_logic; 
-          GMII_RX_ER           : in    std_logic; 				 	   
+          PHY_RXD             : in    std_logic_vector (7 downto 0); 
+          PHY_RX_DV           : in    std_logic; 
+          PHY_RX_ER           : in    std_logic; 				 	   
 		  
-          GTX_CLK              : out   std_logic; 
+          TX_CLK              : out   std_logic; 
           PHY_TXD              : out   std_logic_vector (7 downto 0); 
           PHY_TX_EN            : out   std_logic; 
           PHY_TX_ER            : out   std_logic
@@ -66,10 +67,10 @@ architecture BEHAVIORAL of ethernet_interface is
    
 begin
    GEC_blk : entity work.GEC
-      port map (GMII_RXD(7 downto 0)=>GMII_RXD(7 downto 0),
+      port map (GMII_RXD(7 downto 0)=>PHY_RXD(7 downto 0),
                 GMII_RX_CLK=>MASTER_CLK,	
-                GMII_RX_DV=>GMII_RX_DV,
-                GMII_RX_ER=>GMII_RX_ER,
+                GMII_RX_DV=>PHY_RX_DV,
+                GMII_RX_ER=>PHY_RX_ER,
                 reset=>reset,										
                 user_dest_addrs(7 downto 0)=>gec_user_dest_addrs(7 downto 0),
                 user_dest_mac(47 downto 0)=>gec_user_dest_mac(47 downto 0),
@@ -82,7 +83,7 @@ begin
                 GMII_TXD(7 downto 0)=>PHY_TXD(7 downto 0),
                 GMII_TX_EN=>PHY_TX_EN,
                 GMII_TX_ER=>PHY_TX_ER,
-                GTX_CLK=>GTX_CLK,
+                GTX_CLK=>TX_CLK,
                 udp_fwd_port=>open,
                 user_busy=>gec_user_busy,
                 user_rx_data_out(7 downto 0)=>gec_user_rx_data_out(7 downto 0),
@@ -120,7 +121,8 @@ begin
    
    burst_traffic_controller_blk : entity work.burst_traffic_controller
       port map (BURST_WE=>b_data_we,
-                MASTER_CLK=>MASTER_CLK,
+	  			MASTER_CLK=>MASTER_CLK,		
+	  			BURST_FORCE_PACKET=>b_force_packet,
                 RESET=>reset,
                 BURST_END_PACKET=>b_end_packet);
 				
