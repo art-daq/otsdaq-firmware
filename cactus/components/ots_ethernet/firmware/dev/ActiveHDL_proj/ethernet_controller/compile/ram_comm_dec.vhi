@@ -1,4 +1,4 @@
-component RAM_COMM_DEC
+component ram_comm_dec
 	port (
 		burst_done: in STD_LOGIC;
 		clock: in STD_LOGIC;
@@ -30,7 +30,7 @@ component RAM_COMM_DEC
 end component;
 
 
-instance_name : RAM_COMM_DEC
+instance_name : ram_comm_dec
 ( burst_done => ,
  burst_start => ,
  burst_stop => ,

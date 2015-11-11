@@ -25,8 +25,7 @@ use IEEE.std_logic_unsigned.all;
 
 entity burst_controller_sm is 
 	port (
-		b_data_we: in STD_LOGIC;
-		b_end_burst: in STD_LOGIC;
+		b_data_we: in STD_LOGIC;	 
 		b_end_packet: in STD_LOGIC;
 		burst_start: in STD_LOGIC;
 		burst_stop: in STD_LOGIC;
@@ -121,7 +120,7 @@ begin
 						tx_info_we <= '0';
 						burst_done <= '1';
 					when Wait_for_End =>
-						if burst_stop = '1' or b_end_burst = '1' then	
+						if burst_stop = '1' then 
 							Sreg0 <= End_Burst;
 							tx_info(15 downto 8) <= b_packet_64_size;
 							tx_info(2 downto 0) <= "011";

@@ -2,14 +2,7 @@
 -- Company:  FNAL
 -- Engineer:  Ryan Rivera
 -- 
--- Create Date:    16:52:08 12/04/2007 
--- Design Name: 
--- Module Name:    CRC_splice - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
---
+-- Create Date:    16:52:08 12/04/2007 	 
 -- Dependencies: 
 --
 -- Revision: 
@@ -22,28 +15,25 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
----- Uncomment the following library declaration if instantiating
----- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
-entity CRC_splice is
-    Port ( data : in  STD_LOGIC_VECTOR (7 downto 0);
-           crc : in  STD_LOGIC_VECTOR (7 downto 0);
-           rd : in  STD_LOGIC;			  
+entity crc_splice is
+    Port ( 
+			data 				: in  STD_LOGIC_VECTOR (7 downto 0);
+			crc 				: in  STD_LOGIC_VECTOR (7 downto 0);
+			rd 					: in  STD_LOGIC;			  
 		   									 	  	  
-			clk 			: in STD_LOGIC;
+			clk 				: in STD_LOGIC;
 			tx_en_in 			: in STD_LOGIC;
 			tx_er_in 			: in STD_LOGIC;
-		    four_bit_mode		: in STD_LOGIC;
-												  
+			four_bit_mode		: in STD_LOGIC;
+											  
 			crc_mask			: out STD_LOGIC;
 			tx_en		 		: out STD_LOGIC;
 			tx_er		 		: out STD_LOGIC;  		
-			txd 				: out STD_LOGIC_VECTOR(7 downto 0));
-end CRC_splice;
+			txd 				: out STD_LOGIC_VECTOR(7 downto 0)
+		);
+end entity;
 
-architecture Behavioral of CRC_splice is
+architecture arch of crc_splice is
 						
      signal  dataout : STD_LOGIC_VECTOR (7 downto 0);  	
      signal  nibble_reg : STD_LOGIC_VECTOR (3 downto 0);  --crc doesn't hold output, so need to latch
@@ -82,5 +72,5 @@ begin
 		end if;
 	end process;
 
-end Behavioral;
+end arch;
 

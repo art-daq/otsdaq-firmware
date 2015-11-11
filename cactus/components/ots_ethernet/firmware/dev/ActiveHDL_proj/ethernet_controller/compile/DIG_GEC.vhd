@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\DIG_GEC.vhd
--- Generated   : Wed Oct 28 16:57:46 2015
+-- Generated   : Wed Nov 11 09:29:52 2015
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/DIG_GEC.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -75,15 +75,6 @@ component gei_address_container
        gei_protocol_ping_strobe : out STD_LOGIC
   );
 end component;
-component ICMPPingShiftReg
-  port (
-       clk : in STD_LOGIC;
-       din : in STD_LOGIC_VECTOR(7 downto 0);
-       ds_clken : in STD_LOGIC;
-       us_clken : in STD_LOGIC;
-       dout : out STD_LOGIC_VECTOR(7 downto 0)
-  );
-end component;
 component icmp_ping_checksum_calc
   port (
        clk : in STD_LOGIC;
@@ -91,6 +82,15 @@ component icmp_ping_checksum_calc
        reset : in STD_LOGIC;
        trigger : in STD_LOGIC;
        resp_chk_sum : out STD_LOGIC_VECTOR(15 downto 0)
+  );
+end component;
+component icmp_ping_shift_reg
+  port (
+       clk : in STD_LOGIC;
+       din : in STD_LOGIC_VECTOR(7 downto 0);
+       ds_clken : in STD_LOGIC;
+       us_clken : in STD_LOGIC;
+       dout : out STD_LOGIC_VECTOR(7 downto 0)
   );
 end component;
 component user_addrs_mux
@@ -469,7 +469,7 @@ ICMPPingChecksumCalcBlock : icmp_ping_checksum_calc
        trigger => trigger_sig
   );
 
-ICMPPingShiftRegBlock : ICMPPingShiftReg
+ICMPPingShiftRegBlock : icmp_ping_shift_reg
   port map(
        clk => clk,
        din => decipher_dout,

@@ -1,4 +1,4 @@
-component GEC_RX_CTL
+component gec_rx_ctl
 	port (
 		clear_crc_err_flag: in STD_LOGIC;
 		clock: in STD_LOGIC;
@@ -16,7 +16,7 @@ component GEC_RX_CTL
 end component;
 
 
-instance_name : GEC_RX_CTL
+instance_name : gec_rx_ctl
 ( clear_crc_err_flag => ,
  clock => ,
  crc_err_flag => ,

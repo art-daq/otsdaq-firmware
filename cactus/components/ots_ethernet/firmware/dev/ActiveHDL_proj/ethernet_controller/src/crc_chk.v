@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////
 ////                                                              ////
-////  CRC_gen.v                                                   ////
+////  crc_chk.v                                                   ////
 ////                                                              ////
 ////  This file is part of the Ethernet IP core project           ////
 ////  http://www.opencores.org/projects.cgi/web/ethernet_tri_mode/////
@@ -39,11 +39,11 @@
 //                                                                    
 // CVS Revision History                                               
 //                                                                    
-// $Log: CRC_gen.v,v $
+// $Log: CRC_chk.v,v $
 // Revision 1.3  2006/01/19 14:07:54  maverickist
 // verification is complete.
 //
-// Revision 1.2  2005/12/16 06:44:17  Administrator
+// Revision 1.2  2005/12/16 06:44:16  Administrator
 // replaced tab with space.
 // passed 9.6k length frame test.
 //
@@ -51,34 +51,29 @@
 // no message
 //                                           
 
-module CRC_gen (
+module crc_chk(
 Reset       ,
 Clk         ,
-Init        ,
-Frame_data  ,
-Data_en     ,
-CRC_rd      ,
-CRC_end     ,
-CRC_out     
-
+CRC_data    ,
+CRC_init    ,
+CRC_en      ,
+//From CPU  
+CRC_chk_en  ,
+CRC_err     
 );
-input           Reset       ;
-input           Clk         ;
-input           Init        ;
-input   [7:0]   Frame_data  ;
-input           Data_en     ;
-input           CRC_rd      ;
-output  [7:0]   CRC_out     ;
-output          CRC_end     ;
-
+input       Reset       ;
+input       Clk         ;
+input[7:0]  CRC_data    ;
+input       CRC_init    ;
+input       CRC_en      ;
+            //From CPU
+input       CRC_chk_en  ;
+output      CRC_err     ; 
 //******************************************************************************   
 //internal signals                                                              
 //******************************************************************************
-reg [7:0]       CRC_out     ;
-reg [31:0]      CRC_reg;
-reg             CRC_end;
-reg [3:0]       Counter;
-//******************************************************************************
+reg [31:0]  CRC_reg;
+wire[31:0]  Next_CRC;
 //******************************************************************************
 //input data width is 8bit, and the first bit is bit[0]
 function[31:0]  NextCRC;
@@ -121,49 +116,15 @@ function[31:0]  NextCRC;
     NextCRC=NewCRC;
     end
         endfunction
-//******************************************************************************
 
 always @ (posedge Clk or posedge Reset)
     if (Reset)
         CRC_reg     <=32'hffffffff;
-    else if (Init)
+    else if (CRC_init)
         CRC_reg     <=32'hffffffff;
-    else if (Data_en)
-        CRC_reg     <=NextCRC(Frame_data,CRC_reg);
-    else if (CRC_rd)
-        CRC_reg     <={CRC_reg[23:0],8'hff};
-        
-always @ (CRC_rd or CRC_reg)
-    if (CRC_rd)
-        CRC_out     <=~{
-                        CRC_reg[24],
-                        CRC_reg[25],
-                        CRC_reg[26],
-                        CRC_reg[27],
-                        CRC_reg[28],
-                        CRC_reg[29],
-                        CRC_reg[30],
-                        CRC_reg[31]
-                        };
-    else
-        CRC_out     <=0;
-        
-//caculate CRC out length ,4 cycles     
-//CRC_end aligned to last CRC checksum data
-always @(posedge Clk or posedge Reset)
-    if (Reset)
-        Counter     <=0;
-    else if (!CRC_rd)
-        Counter     <=0;
-    else 
-        Counter     <=Counter + 1;
-        
-always @ (Counter)
-    if (Counter==3)
-        CRC_end=1;
-    else
-        CRC_end=0;
+    else if (CRC_en)
+        CRC_reg     <=NextCRC(CRC_data,CRC_reg);
+
+assign  CRC_err = CRC_chk_en&(CRC_reg[31:0] != 32'hc704dd7b);
 
 endmodule
-
-

@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\RAM_COMM_DEC.vhd
--- Generated   : 10/29/15 11:59:44
+-- Generated   : 11/11/15 08:44:36
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/RAM_COMM_DEC.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -23,7 +23,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.NUMERIC_STD.all;
 use work.params_package.all;
 
-entity RAM_COMM_DEC is 
+entity ram_comm_dec is 
 	port (
 		burst_done: in STD_LOGIC;
 		clock: in STD_LOGIC;
@@ -52,9 +52,9 @@ entity RAM_COMM_DEC is
 		tx_info_fifo_src_sel: out STD_LOGIC;
 		tx_info_fifo_wr_data: out STD_LOGIC_VECTOR (15 downto 0);
 		tx_info_fifo_wren: out STD_LOGIC);
-end RAM_COMM_DEC;
+end ram_comm_dec;
 
-architecture RAM_COMM_DEC of RAM_COMM_DEC is
+architecture arch of ram_comm_dec is
 
 -- diagram signals declarations
 signal burst_active: STD_LOGIC;
@@ -105,7 +105,7 @@ attribute ENUM_ENCODING of Sreg0_type: type is
 signal Sreg0: Sreg0_type;
 
 attribute STATE_VECTOR: string;
-attribute STATE_VECTOR of RAM_COMM_DEC: architecture is "Sreg0";
+attribute STATE_VECTOR of arch: architecture is "Sreg0";
 
 begin
 
@@ -447,4 +447,4 @@ ram_addr_assignment:
 ram_addr <= std_logic_vector(ram_addr_sig) when (Sreg0 = idle) else
             std_logic_vector(ram_addr_sig);
 
-end RAM_COMM_DEC;
+end arch;

@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC_TX_SEQ_CTL.vhd
--- Generated   : 09/29/15 09:07:01
+-- Generated   : 11/11/15 08:46:21
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC_TX_SEQ_CTL.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -23,7 +23,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.NUMERIC_STD.all;
 use work.params_package.all;
 
-entity GEC_TX_SEQ_CTL is 
+entity gec_tx_seq_ctl is 
 	port (
 		clk: in STD_LOGIC;
 		data_fifo_empty: in STD_LOGIC;
@@ -43,9 +43,9 @@ entity GEC_TX_SEQ_CTL is
 		gec_user_tx_size_in: out STD_LOGIC_VECTOR (10 downto 0);
 		info_fifo_rden: out STD_LOGIC;
 		start_delay_count: out STD_LOGIC);
-end GEC_TX_SEQ_CTL;
+end gec_tx_seq_ctl;
 
-architecture GEC_TX_SEQ_CTL of GEC_TX_SEQ_CTL is
+architecture arch of gec_tx_seq_ctl is
 
 -- diagram signals declarations
 signal byte_count: UNSIGNED (2 downto 0);
@@ -79,7 +79,7 @@ attribute ENUM_ENCODING of Sreg0_type: type is
 signal Sreg0: Sreg0_type;
 
 attribute STATE_VECTOR: string;
-attribute STATE_VECTOR of GEC_TX_SEQ_CTL: architecture is "Sreg0";
+attribute STATE_VECTOR of arch: architecture is "Sreg0";
 
 begin
 
@@ -310,4 +310,4 @@ begin
 	end if;
 end process;
 
-end GEC_TX_SEQ_CTL;
+end arch;

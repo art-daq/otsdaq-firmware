@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC_RX_CTL.vhd
--- Generated   : 10/29/15 11:59:42
+-- Generated   : 11/11/15 08:46:19
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC_RX_CTL.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -23,7 +23,7 @@ use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.params_package.all;
 
-entity GEC_RX_CTL is 
+entity gec_rx_ctl is 
 	port (
 		clear_crc_err_flag: in STD_LOGIC;
 		clock: in STD_LOGIC;
@@ -38,9 +38,9 @@ entity GEC_RX_CTL is
 		data_fifo_wren: out STD_LOGIC;
 		info_fifo_wr_data: out STD_LOGIC_VECTOR (15 downto 0);
 		info_fifo_wren: out STD_LOGIC);
-end GEC_RX_CTL;
+end gec_rx_ctl;
 
-architecture GEC_RX_CTL of GEC_RX_CTL is
+architecture arch of gec_rx_ctl is
 
 -- diagram signals declarations
 signal clken: STD_LOGIC;
@@ -74,7 +74,7 @@ attribute ENUM_ENCODING of Sreg0_type: type is
 signal Sreg0: Sreg0_type;
 
 attribute STATE_VECTOR: string;
-attribute STATE_VECTOR of GEC_RX_CTL: architecture is "Sreg0";
+attribute STATE_VECTOR of arch: architecture is "Sreg0";
 
 begin
 
@@ -225,4 +225,4 @@ begin
 	end if;
 end process;
 
-end GEC_RX_CTL;
+end arch;

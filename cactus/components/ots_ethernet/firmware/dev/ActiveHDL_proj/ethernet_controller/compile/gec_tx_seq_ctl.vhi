@@ -1,4 +1,4 @@
-component GEC_TX_SEQ_CTL
+component gec_tx_seq_ctl
 	port (
 		clk: in STD_LOGIC;
 		data_fifo_empty: in STD_LOGIC;
@@ -21,7 +21,7 @@ component GEC_TX_SEQ_CTL
 end component;
 
 
-instance_name : GEC_TX_SEQ_CTL
+instance_name : gec_tx_seq_ctl
 ( clear_delay_count => ,
  clk => ,
  data_fifo_empty => ,

@@ -3,7 +3,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;	
 
-entity ICMPPingShiftReg is
+entity icmp_ping_shift_reg is
 	port (					
 		clk : in std_logic;	 	   	 
 		us_clken : in std_logic;	 
@@ -15,7 +15,7 @@ entity ICMPPingShiftReg is
 end;
 
 
-architecture arch of ICMPPingShiftReg is   
+architecture arch of icmp_ping_shift_reg is   
 		 
 	constant SHR_DEPTH : natural := 33;											 	  								   
 	type shReg_t is array(natural range <>) of std_logic_vector(7 downto 0);  

@@ -35,7 +35,7 @@ fileopenfolder=D:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src
 
 [HierarchyViewer]
 SortInfo=u
-HierarchyInformation=ethernet_interface|BEHAVIORAL|0 
+HierarchyInformation=gec|GEC|0 logic_rgmii_handler|arch|0 
 ShowHide=ShowTopLevel
 Selected=
 
@@ -57,13 +57,13 @@ TestBench=1
 /XILINX_7SERIES_RGMII_xmii_handler.vhd=-1
 /LOGIC_RGMII_xmii_handler.vhd=-1
 /MII_100_1000_xmii_handler.vhd=-1
-/CRC_splice.vhd=-1
+/crc_splice.vhd=-1
 /user_addrs_mux.vhd=-1
 /udp_data_splicer.vhd=-1
 /inferredFifo.vhd=-1
 /params_package.vhd=-1
 /or33.vhd=-1
-/ICMPPingShiftReg.vhd=-1
+/icmp_ping_shift_reg.vhd=-1
 /icmp_ping_checksum_calc.asf=-1
 /dataout_mux.vhd=-1
 /filter_data_out.vhd=-1
@@ -73,15 +73,15 @@ TestBench=1
 /decipherer.asf=-1
 /arp_reply.asf=-1
 /create_packet.asf=-1
-/GEC_RX_CTL.asf=-1
-/GEC_TX_SEQ_CTL.asf=-1
+/gec_rx_ctl.asf=-1
+/gec_tx_seq_ctl.asf=-1
 /delay_counter.asf=-1
-/RAM_COMM_DEC.asf=-1
+/ram_comm_dec.asf=-1
 /gei_address_container.vhd=-1
 /data_manager.vhd=-1
 /burst_traffic_controller.vhd=-1
-/DIG_GEC.bde=-1
-/CRC_chk.v=-1
+/dig_gec.bde=-1
+/crc_chk.v=-1
 /wave-rxctrl.awf=-1
 /wave-createpacket.awf=-1
 /wave-createpacket-test.awf=-1
@@ -98,8 +98,8 @@ TestBench=1
 /wave-decipherer-arp-100m.awf=-1
 /wave-decipherer-icmp-ping-100m.awf=-1
 /wave-decipherer-udp.awf=-1
-/GEC.bde=-1
-/CRC_gen.v=-1
+/gec.bde=-1
+/crc_gen.v=-1
 /wave-full_gec_arp_100m.awf=-1
 /wave-full_gec_arp_1000m_rgmii.awf=-1
 /wave-full_gec_icmp_100m.awf=-1
@@ -118,13 +118,13 @@ TestBench=1
 .\src\XILINX_7SERIES_RGMII_xmii_handler.vhd=VHDL Source Code
 .\src\LOGIC_RGMII_xmii_handler.vhd=VHDL Source Code
 .\src\MII_100_1000_xmii_handler.vhd=VHDL Source Code
-.\src\CRC_splice.vhd=VHDL Source Code
+.\src\crc_splice.vhd=VHDL Source Code
 .\src\user_addrs_mux.vhd=VHDL Source Code
 .\src\udp_data_splicer.vhd=VHDL Source Code
 .\src\inferredFifo.vhd=VHDL Source Code
 .\src\params_package.vhd=VHDL Source Code
 .\src\or33.vhd=VHDL Source Code
-.\src\ICMPPingShiftReg.vhd=VHDL Source Code
+.\src\icmp_ping_shift_reg.vhd=VHDL Source Code
 .\src\icmp_ping_checksum_calc.asf=State Diagram
 .\src\dataout_mux.vhd=VHDL Source Code
 .\src\filter_data_out.vhd=VHDL Source Code
@@ -134,15 +134,15 @@ TestBench=1
 .\src\decipherer.asf=State Diagram
 .\src\arp_reply.asf=State Diagram
 .\src\create_packet.asf=State Diagram
-.\src\GEC_RX_CTL.asf=State Diagram
-.\src\GEC_TX_SEQ_CTL.asf=State Diagram
+.\src\gec_rx_ctl.asf=State Diagram
+.\src\gec_tx_seq_ctl.asf=State Diagram
 .\src\delay_counter.asf=State Diagram
-.\src\RAM_COMM_DEC.asf=State Diagram
+.\src\ram_comm_dec.asf=State Diagram
 .\src\gei_address_container.vhd=VHDL Source Code
 .\src\data_manager.vhd=VHDL Source Code
 .\src\burst_traffic_controller.vhd=VHDL Source Code
-.\src\DIG_GEC.bde=Block Diagram
-.\src\CRC_chk.v=Verilog Source Code
+.\src\dig_gec.bde=Block Diagram
+.\src\crc_chk.v=Verilog Source Code
 .\src\wave-rxctrl.awf=Waveform File
 .\src\wave-createpacket.awf=Waveform File
 .\src\wave-createpacket-test.awf=Waveform File
@@ -159,8 +159,8 @@ TestBench=1
 .\src\wave-decipherer-arp-100m.awf=Waveform File
 .\src\wave-decipherer-icmp-ping-100m.awf=Waveform File
 .\src\wave-decipherer-udp.awf=Waveform File
-.\src\GEC.bde=Block Diagram
-.\src\CRC_gen.v=Verilog Source Code
+.\src\gec.bde=Block Diagram
+.\src\crc_gen.v=Verilog Source Code
 .\src\wave-full_gec_arp_100m.awf=Waveform File
 .\src\wave-full_gec_arp_1000m_rgmii.awf=Waveform File
 .\src\wave-full_gec_icmp_100m.awf=Waveform File
@@ -189,23 +189,23 @@ TestBench=1
 [file_out:/create_packet.asf]
 /..\compile\create_packet.vhd=-1
 
-[file_out:/GEC_RX_CTL.asf]
-/..\compile\GEC_RX_CTL.vhd=-1
+[file_out:/gec_rx_ctl.asf]
+/..\compile\gec_rx_ctl.vhd=-1
 
-[file_out:/GEC_TX_SEQ_CTL.asf]
-/..\compile\GEC_TX_SEQ_CTL.vhd=-1
+[file_out:/gec_tx_seq_ctl.asf]
+/..\compile\gec_tx_seq_ctl.vhd=-1
 
 [file_out:/delay_counter.asf]
 /..\compile\delay_counter.vhd=-1
 
-[file_out:/RAM_COMM_DEC.asf]
-/..\compile\RAM_COMM_DEC.vhd=-1
+[file_out:/ram_comm_dec.asf]
+/..\compile\ram_comm_dec.vhd=-1
 
-[file_out:/DIG_GEC.bde]
-/..\compile\DIG_GEC.vhd=-1
+[file_out:/dig_gec.bde]
+/..\compile\dig_gec.vhd=-1
 
-[file_out:/GEC.bde]
-/..\compile\GEC.vhd=-1
+[file_out:/gec.bde]
+/..\compile\gec.vhd=-1
 
 [file_out:/top_tmp.bde]
 /..\compile\top_tmp.vhd=-1

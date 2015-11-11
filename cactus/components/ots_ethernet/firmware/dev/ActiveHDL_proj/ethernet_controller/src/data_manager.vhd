@@ -213,8 +213,7 @@ begin
    burst_controller_sm : entity work.burst_controller_sm
       port map (burst_start=>burst_start,
                 burst_stop=>burst_stop,
-                b_data_we=>b_data_we,
-                b_end_burst=>'0',
+                b_data_we=>b_data_we,  
                 b_end_packet=>b_end_packet,
                 clk=>MASTER_CLK,
                 reset=>reset,
@@ -227,7 +226,7 @@ begin
                 tx_info_we=>tx_info_fifo_wren_burst);
 					 
    
-   GEC_RX_CTRL : entity work.GEC_RX_CTL
+   GEC_RX_CTRL : entity work.gec_rx_ctl
       port map (
                 clock=>MASTER_CLK,				 					   
                 four_bit_mode=>four_bit_mode,
@@ -245,9 +244,8 @@ begin
 							
 	tx_fifo_reset_sig <=  tx_fifo_reset or reset;
    
-   RAM_COMM_DEC : entity work.RAM_COMM_DEC
-      port map (
-                burst_done=>burst_done,
+   RAM_COMM_DEC : entity work.ram_comm_dec
+      port map (						   
                 clock=>MASTER_CLK,
                 reset=>reset,
                 rx_data_fifo_rd_data(63 downto 0)=>rx_data_sig(63 downto 0),
@@ -255,7 +253,8 @@ begin
 				rx_info_fifo_full=>rx_info_fifo_full,	   
 				rx_data_fifo_full=>rx_data_fifo_full,
                 rx_info_fifo_rd_data(15 downto 0)=>info_fifo_rd_data(15 downto 0),				
-                tx_info_fifo_full=>tx_info_fifo_full,
+                tx_info_fifo_full=>tx_info_fifo_full,	 
+                burst_done=>burst_done,
                 burst_start=>burst_start,
                 burst_stop=>burst_stop,					   	 
                 ram_addr(63 downto 0)=>ram_addr(63 downto 0),
@@ -277,7 +276,7 @@ begin
 							   
 	tx_data_fifo_read_enable <= tx_data_fifo_rden and data_fifo_rden_en;
    
-   GEC_TX_SEQ_CTL : entity work.GEC_TX_SEQ_CTL
+   GEC_TX_SEQ_CTL : entity work.gec_tx_seq_ctl
       port map (
                 clk=>MASTER_CLK,
                 data_fifo_empty=>tx_data_fifo_empty,					

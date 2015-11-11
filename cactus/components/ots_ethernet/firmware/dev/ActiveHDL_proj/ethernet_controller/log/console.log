@@ -1,14 +1,75 @@
 # ELBREAD: Elaboration process.
 # ELBREAD: Elaboration time 0.0 [s].
-acom -O3 -work ethernet_controller -2002  $dsn/src/ethernet_interface.vhd
+acom -O3 -work ethernet_controller -2002  $dsn/src/burst_controller_sm.vhd
 # Compile...
 # Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
-# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\ethernet_interface.vhd
-# Compile Entity "ethernet_interface"
-# Compile Architecture "BEHAVIORAL" of Entity "ethernet_interface"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_controller_sm.vhd
+# Compile Entity "burst_controller_sm"
+# Compile Architecture "burst_controller_sm_arch" of Entity "burst_controller_sm"
+# Error: COMP96_0078: burst_controller_sm.vhd : (124, 30): Unknown identifier "b_end_burst".
+# Error: COMP96_0133: burst_controller_sm.vhd : (124, 30): Cannot find object declaration.
+# Error: COMP96_0077: burst_controller_sm.vhd : (124, 10): Undefined type of expression. Expected type 'BOOLEAN'.
+# Compile failure 3 Errors 0 Warnings  Analysis time :  62.0 [ms]
+acom -O3 -work ethernet_controller -2002  $dsn/src/burst_controller_sm.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_controller_sm.vhd
+# Compile Entity "burst_controller_sm"
+# Compile Architecture "burst_controller_sm_arch" of Entity "burst_controller_sm"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
+acom -O3 -work ethernet_controller -2002  $dsn/src/burst_controller_sm.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_controller_sm.vhd
+# Compile Entity "burst_controller_sm"
+# Compile Architecture "burst_controller_sm_arch" of Entity "burst_controller_sm"
+# Compile success 0 Errors 0 Warnings  Analysis time :  47.0 [ms]
+acom -O3 -work ethernet_controller -2002  $dsn/src/RAM_COMM_DEC.asf
+# Compile...
+# Loading State Diagram data...
+# Generating d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\RAM_COMM_DEC.vhd from d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/RAM_COMM_DEC.asf
+# Synthesis attributes will be generated for Synopsys FPGA Express
+# Generating interface file...
+# HDL code generation successful. 0 error(s), 0 warning(s)
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: .\RAM_COMM_DEC.vhd
+# Compile Entity "ram_comm_dec"
+# Compile Architecture "arch" of Entity "ram_comm_dec"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+acom -O3 -work ethernet_controller -2002  $dsn/src/data_manager.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\data_manager.vhd
+# Compile Entity "data_manager"
+# Compile Architecture "BEHAVIORAL" of Entity "data_manager"
+# Error: COMP96_0078: data_manager.vhd : (217, 17): Unknown identifier "b_end_burst".
+# Error: COMP96_0133: data_manager.vhd : (217, 17): Cannot find object declaration.
+# Error: COMP96_0112: data_manager.vhd : (217, 17): "b_end_burst" does not match the formal name.
+# Error: COMP96_0207: data_manager.vhd : (213, 0): No actual specified for local port "b_end_packet".
+# Error: COMP96_0207: data_manager.vhd : (213, 0): No actual specified for local port "clk".
+# Error: COMP96_0207: data_manager.vhd : (213, 0): No actual specified for local port "reset".
+# Error: COMP96_0207: data_manager.vhd : (213, 0): No actual specified for local port "tx_data_full".
+# Error: COMP96_0207: data_manager.vhd : (213, 0): No actual specified for local port "tx_info_full".
+# Compile failure 8 Errors 0 Warnings  Analysis time :  31.0 [ms]
+acom -O3 -work ethernet_controller -2002  $dsn/src/data_manager.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\data_manager.vhd
+# Compile Entity "data_manager"
+# Compile Architecture "BEHAVIORAL" of Entity "data_manager"
 # Compile success 0 Errors 0 Warnings  Analysis time :  62.0 [ms]
-acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/reset_mgr.vhd $dsn/src/XILINX_7SERIES_RGMII_xmii_handler.vhd $dsn/src/LOGIC_RGMII_xmii_handler.vhd $dsn/src/MII_100_1000_xmii_handler.vhd $dsn/src/CRC_splice.vhd $dsn/src/user_addrs_mux.vhd $dsn/src/udp_data_splicer.vhd $dsn/src/inferredFifo.vhd $dsn/src/params_package.vhd $dsn/src/or33.vhd $dsn/src/ICMPPingShiftReg.vhd $dsn/src/icmp_ping_checksum_calc.asf $dsn/src/dataout_mux.vhd $dsn/src/filter_data_out.vhd $dsn/src/dest_info_container.vhd $dsn/src/burst_controller_sm.vhd $dsn/src/ip_checksum_calc.asf $dsn/src/decipherer.asf $dsn/src/arp_reply.asf $dsn/src/create_packet.asf $dsn/src/GEC_RX_CTL.asf $dsn/src/GEC_TX_SEQ_CTL.asf $dsn/src/delay_counter.asf $dsn/src/RAM_COMM_DEC.asf $dsn/src/gei_address_container.vhd $dsn/src/data_manager.vhd $dsn/src/burst_traffic_controller.vhd $dsn/src/DIG_GEC.bde
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/reset_mgr.vhd $dsn/src/XILINX_7SERIES_RGMII_xmii_handler.vhd $dsn/src/LOGIC_RGMII_xmii_handler.vhd $dsn/src/MII_100_1000_xmii_handler.vhd $dsn/src/CRC_splice.vhd $dsn/src/user_addrs_mux.vhd $dsn/src/udp_data_splicer.vhd $dsn/src/inferredFifo.vhd $dsn/src/params_package.vhd $dsn/src/or33.vhd $dsn/src/ICMPPingShiftReg.vhd $dsn/src/icmp_ping_checksum_calc.asf $dsn/src/dataout_mux.vhd $dsn/src/filter_data_out.vhd $dsn/src/dest_info_container.vhd $dsn/src/burst_controller_sm.vhd $dsn/src/ip_checksum_calc.asf $dsn/src/decipherer.asf $dsn/src/arp_reply.asf $dsn/src/create_packet.asf $dsn/src/GEC_RX_CTL.asf $dsn/src/GEC_TX_SEQ_CTL.asf $dsn/src/delay_counter.asf $dsn/src/ram_comm_dec.asf $dsn/src/gei_address_container.vhd $dsn/src/data_manager.vhd $dsn/src/burst_traffic_controller.vhd $dsn/src/DIG_GEC.bde
 # Compile with File Reorder...
+# Loading State Diagram data...
+# Generating d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC_RX_CTL.vhd from d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC_RX_CTL.asf
+# Synthesis attributes will be generated for Synopsys FPGA Express
+# Generating interface file...
+# HDL code generation successful. 0 error(s), 0 warning(s)
+# Loading State Diagram data...
+# Generating d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC_TX_SEQ_CTL.vhd from d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC_TX_SEQ_CTL.asf
+# Synthesis attributes will be generated for Synopsys FPGA Express
+# Generating interface file...
+# HDL code generation successful. 0 error(s), 0 warning(s)
 # Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
 # File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\reset_mgr.vhd
 # Compile Entity "reset_mgr"
@@ -71,17 +132,17 @@ acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/reset_mgr.vhd $dsn/s
 # Compile Entity "create_packet"
 # Compile Architecture "create_packet_arch" of Entity "create_packet"
 # File: .\GEC_RX_CTL.vhd
-# Compile Entity "GEC_RX_CTL"
-# Compile Architecture "GEC_RX_CTL" of Entity "GEC_RX_CTL"
+# Compile Entity "gec_rx_ctl"
+# Compile Architecture "arch" of Entity "gec_rx_ctl"
 # File: .\GEC_TX_SEQ_CTL.vhd
-# Compile Entity "GEC_TX_SEQ_CTL"
-# Compile Architecture "GEC_TX_SEQ_CTL" of Entity "GEC_TX_SEQ_CTL"
+# Compile Entity "gec_tx_seq_ctl"
+# Compile Architecture "arch" of Entity "gec_tx_seq_ctl"
 # File: .\delay_counter.vhd
 # Compile Entity "delay_counter"
 # Compile Architecture "delay_counter" of Entity "delay_counter"
-# File: .\RAM_COMM_DEC.vhd
-# Compile Entity "RAM_COMM_DEC"
-# Compile Architecture "RAM_COMM_DEC" of Entity "RAM_COMM_DEC"
+# File: .\ram_comm_dec.vhd
+# Compile Entity "ram_comm_dec"
+# Compile Architecture "arch" of Entity "ram_comm_dec"
 # File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\gei_address_container.vhd
 # Compile Entity "gei_address_container"
 # Compile Architecture "arch" of Entity "gei_address_container"
@@ -116,7 +177,7 @@ alog -O2 -sve   -work ethernet_controller $dsn/src/CRC_chk.v
 # Info: VCP2113 Module \$root found in current working library.
 # Unit top modules: CRC_chk.
 # $root top modules: CRC_chk CRC_gen rgmii_data_handler.
-# Compile success 0 Errors 0 Warnings  Analysis time: 1[s].
+# Compile success 0 Errors 0 Warnings  Analysis time: 2[s].
 # done
 acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/GEC.bde
 # Compile with File Reorder...
@@ -126,7 +187,7 @@ acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/GEC.bde
 # Compile Architecture "GEC" of Entity "GEC"
 # Top-level unit(s) detected:
 # Entity => GEC
-# Compile success 0 Errors 0 Warnings  Analysis time :  47.0 [ms]
+# Compile success 0 Errors 0 Warnings  Analysis time :  78.0 [ms]
 alog -O2 -sve   -work ethernet_controller $dsn/src/CRC_gen.v
 # Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
 # Compile...
@@ -152,19 +213,1267 @@ acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/ethernet_interface.v
 # Compile Architecture "top_tmp" of Entity "top_tmp"
 # Top-level unit(s) detected:
 # Entity => top_tmp
-# Warning: ELAB1_0026: top_tmp.bde(top_tmp.vhd) : (74, 0): There is no default binding for component "ethernet_interface". (Port "GMII_RXD" is not on the entity).
-# Compile success 0 Errors 1 Warnings  Analysis time :  0.1 [s]
-# top_tmp.bde: Updating instances of symbol 'ethernet_interface' from library 'ethernet_controller' (U1)
-acom -O3 -work ethernet_controller -2002  $dsn/src/top_tmp.bde
+# Compile success 0 Errors 0 Warnings  Analysis time :  94.0 [ms]
+acom -O3 -work ethernet_controller -2002  $dsn/src/data_manager.vhd
 # Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\data_manager.vhd
+# Compile Entity "data_manager"
+# Compile Architecture "BEHAVIORAL" of Entity "data_manager"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.3 [s]
+acom -O3 -work ethernet_controller -2002  $dsn/src/ICMPPingShiftReg.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\ICMPPingShiftReg.vhd
+# Compile Entity "icmp_ping_shift_reg"
+# Compile Architecture "arch" of Entity "icmp_ping_shift_reg"
+# Compile success 0 Errors 0 Warnings  Analysis time :  94.0 [ms]
+acom -O3 -work ethernet_controller -2002  $dsn/src/reset_mgr.vhd $dsn/src/XILINX_7SERIES_RGMII_xmii_handler.vhd $dsn/src/LOGIC_RGMII_xmii_handler.vhd $dsn/src/MII_100_1000_xmii_handler.vhd $dsn/src/CRC_splice.vhd $dsn/src/user_addrs_mux.vhd $dsn/src/udp_data_splicer.vhd $dsn/src/inferredFifo.vhd $dsn/src/params_package.vhd $dsn/src/or33.vhd $dsn/src/icmp_ping_shift_reg.vhd $dsn/src/icmp_ping_checksum_calc.asf $dsn/src/dataout_mux.vhd $dsn/src/filter_data_out.vhd $dsn/src/dest_info_container.vhd $dsn/src/burst_controller_sm.vhd $dsn/src/ip_checksum_calc.asf $dsn/src/decipherer.asf $dsn/src/arp_reply.asf $dsn/src/create_packet.asf $dsn/src/gec_rx_ctl.asf $dsn/src/gec_tx_seq_ctl.asf $dsn/src/delay_counter.asf $dsn/src/ram_comm_dec.asf $dsn/src/gei_address_container.vhd $dsn/src/data_manager.vhd $dsn/src/burst_traffic_controller.vhd $dsn/src/DIG_GEC.bde
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\reset_mgr.vhd
+# Compile Entity "reset_mgr"
+# Compile Architecture "Behavioral" of Entity "reset_mgr"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\XILINX_7SERIES_RGMII_xmii_handler.vhd
+# Compile Entity "XILINX_7SERIES_RGMII_handler"
+# Compile Architecture "arch" of Entity "XILINX_7SERIES_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\LOGIC_RGMII_xmii_handler.vhd
+# Compile Entity "LOGIC_RGMII_handler"
+# Compile Architecture "arch" of Entity "LOGIC_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\MII_100_1000_xmii_handler.vhd
+# Compile Entity "MII_100_1000_handler"
+# Compile Architecture "arch" of Entity "MII_100_1000_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\CRC_splice.vhd
+# Compile Entity "CRC_splice"
+# Compile Architecture "Behavioral" of Entity "CRC_splice"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\user_addrs_mux.vhd
+# Compile Entity "user_addrs_mux"
+# Compile Architecture "user_addrs_mux_arch" of Entity "user_addrs_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\udp_data_splicer.vhd
+# Compile Entity "udp_data_splicer"
+# Compile Architecture "udp_data_splicer_arch" of Entity "udp_data_splicer"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\inferredFifo.vhd
+# Compile Entity "reg_fifo"
+# Compile Architecture "behavioral" of Entity "reg_fifo"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\params_package.vhd
+# Compile Package "params_package"
+# Compile Package Body "params_package"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\or33.vhd
+# Compile Entity "or33"
+# Compile Architecture "or33_arch" of Entity "or33"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\icmp_ping_shift_reg.vhd
+# Compile Entity "icmp_ping_shift_reg"
+# Compile Architecture "arch" of Entity "icmp_ping_shift_reg"
+# File: .\icmp_ping_checksum_calc.vhd
+# Compile Entity "icmp_ping_checksum_calc"
+# Compile Architecture "icmp_ping_checksum_calc_arch" of Entity "icmp_ping_checksum_calc"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dataout_mux.vhd
+# Compile Entity "dataout_mux"
+# Compile Architecture "dataout_mux_arch" of Entity "dataout_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\filter_data_out.vhd
+# Compile Entity "filter_data_out"
+# Compile Architecture "filter_data_out_arch" of Entity "filter_data_out"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dest_info_container.vhd
+# Compile Entity "dest_info_container"
+# Compile Architecture "dest_info_container_arch" of Entity "dest_info_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_controller_sm.vhd
+# Compile Entity "burst_controller_sm"
+# Compile Architecture "burst_controller_sm_arch" of Entity "burst_controller_sm"
+# File: .\ip_checksum_calc.vhd
+# Compile Entity "ip_checksum_calc"
+# Compile Architecture "ip_checksum_calc_arch" of Entity "ip_checksum_calc"
+# File: .\decipherer.vhd
+# Compile Entity "decipherer"
+# Compile Architecture "decipherer_arch" of Entity "decipherer"
+# File: .\arp_reply.vhd
+# Compile Entity "arp_reply"
+# Compile Architecture "arp_reply_arch" of Entity "arp_reply"
+# File: .\create_packet.vhd
+# Compile Entity "create_packet"
+# Compile Architecture "create_packet_arch" of Entity "create_packet"
+# File: .\gec_rx_ctl.vhd
+# Compile Entity "gec_rx_ctl"
+# Compile Architecture "arch" of Entity "gec_rx_ctl"
+# File: .\gec_tx_seq_ctl.vhd
+# Compile Entity "gec_tx_seq_ctl"
+# Compile Architecture "arch" of Entity "gec_tx_seq_ctl"
+# File: .\delay_counter.vhd
+# Compile Entity "delay_counter"
+# Compile Architecture "delay_counter" of Entity "delay_counter"
+# File: .\ram_comm_dec.vhd
+# Compile Entity "ram_comm_dec"
+# Compile Architecture "arch" of Entity "ram_comm_dec"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\gei_address_container.vhd
+# Compile Entity "gei_address_container"
+# Compile Architecture "arch" of Entity "gei_address_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\data_manager.vhd
+# Compile Entity "data_manager"
+# Compile Architecture "BEHAVIORAL" of Entity "data_manager"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_traffic_controller.vhd
+# Compile Entity "burst_traffic_controller"
+# Compile Architecture "burst_traffic_controller_arch" of Entity "burst_traffic_controller"
+# File: .\..\compile\DIG_GEC.vhd
+# Compile Entity "DIG_GEC"
+# Compile Architecture "DIG_GEC" of Entity "DIG_GEC"
+# Compile success 0 Errors 0 Warnings  Analysis time :  2.0 [s]
+alog -O2 -sve   -work ethernet_controller $dsn/src/CRC_chk.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: CRC_chk.
+# $root top modules: CRC_chk CRC_gen rgmii_data_handler.
+# Compile success 0 Errors 0 Warnings  Analysis time: 6[s].
+# done
+acom -O3 -work ethernet_controller -2002  $dsn/src/GEC.bde
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: .\..\compile\GEC.vhd
+# Compile Entity "GEC"
+# Compile Architecture "GEC" of Entity "GEC"
+# Compile success 0 Errors 0 Warnings  Analysis time :  47.0 [ms]
+alog -O2 -sve   -work ethernet_controller $dsn/src/CRC_gen.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: CRC_gen.
+# $root top modules: CRC_chk CRC_gen rgmii_data_handler.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+acom -O3 -work ethernet_controller -2002  $dsn/src/ethernet_interface.vhd $dsn/src/top_tmp.bde
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\ethernet_interface.vhd
+# Compile Entity "ethernet_interface"
+# Compile Architecture "BEHAVIORAL" of Entity "ethernet_interface"
+# File: .\..\compile\top_tmp.vhd
+# Compile Entity "top_tmp"
+# Compile Architecture "top_tmp" of Entity "top_tmp"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+acom -O3 -work ethernet_controller -2002  $dsn/src/DIG_GEC.bde
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: .\..\compile\DIG_GEC.vhd
+# Compile Entity "DIG_GEC"
+# Compile Architecture "DIG_GEC" of Entity "DIG_GEC"
+# Compile success 0 Errors 0 Warnings  Analysis time :  93.0 [ms]
+acom -O3 -work ethernet_controller -2002  $dsn/src/icmp_ping_shift_reg.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\icmp_ping_shift_reg.vhd
+# Compile Entity "icmp_ping_shift_reg"
+# Compile Architecture "arch" of Entity "icmp_ping_shift_reg"
+# Compile success 0 Errors 0 Warnings  Analysis time :  1.0 [s]
+acom -O3 -work ethernet_controller -2002  $dsn/src/DIG_GEC.bde
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: .\..\compile\DIG_GEC.vhd
+# Compile Entity "DIG_GEC"
+# Compile Architecture "DIG_GEC" of Entity "DIG_GEC"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/reset_mgr.vhd $dsn/src/XILINX_7SERIES_RGMII_xmii_handler.vhd $dsn/src/LOGIC_RGMII_xmii_handler.vhd $dsn/src/MII_100_1000_xmii_handler.vhd $dsn/src/CRC_splice.vhd $dsn/src/user_addrs_mux.vhd $dsn/src/udp_data_splicer.vhd $dsn/src/inferredFifo.vhd $dsn/src/params_package.vhd $dsn/src/or33.vhd $dsn/src/icmp_ping_shift_reg.vhd $dsn/src/icmp_ping_checksum_calc.asf $dsn/src/dataout_mux.vhd $dsn/src/filter_data_out.vhd $dsn/src/dest_info_container.vhd $dsn/src/burst_controller_sm.vhd $dsn/src/ip_checksum_calc.asf $dsn/src/decipherer.asf $dsn/src/arp_reply.asf $dsn/src/create_packet.asf $dsn/src/gec_rx_ctl.asf $dsn/src/gec_tx_seq_ctl.asf $dsn/src/delay_counter.asf $dsn/src/ram_comm_dec.asf $dsn/src/gei_address_container.vhd $dsn/src/data_manager.vhd $dsn/src/burst_traffic_controller.vhd $dsn/src/DIG_GEC.bde
+# Compile with File Reorder...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\reset_mgr.vhd
+# Compile Entity "reset_mgr"
+# Compile Architecture "Behavioral" of Entity "reset_mgr"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\XILINX_7SERIES_RGMII_xmii_handler.vhd
+# Compile Entity "XILINX_7SERIES_RGMII_handler"
+# Compile Architecture "arch" of Entity "XILINX_7SERIES_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\LOGIC_RGMII_xmii_handler.vhd
+# Compile Entity "LOGIC_RGMII_handler"
+# Compile Architecture "arch" of Entity "LOGIC_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\MII_100_1000_xmii_handler.vhd
+# Compile Entity "MII_100_1000_handler"
+# Compile Architecture "arch" of Entity "MII_100_1000_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\CRC_splice.vhd
+# Compile Entity "CRC_splice"
+# Compile Architecture "Behavioral" of Entity "CRC_splice"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\user_addrs_mux.vhd
+# Compile Entity "user_addrs_mux"
+# Compile Architecture "user_addrs_mux_arch" of Entity "user_addrs_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\udp_data_splicer.vhd
+# Compile Entity "udp_data_splicer"
+# Compile Architecture "udp_data_splicer_arch" of Entity "udp_data_splicer"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\inferredFifo.vhd
+# Compile Entity "reg_fifo"
+# Compile Architecture "behavioral" of Entity "reg_fifo"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\params_package.vhd
+# Compile Package "params_package"
+# Compile Package Body "params_package"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\or33.vhd
+# Compile Entity "or33"
+# Compile Architecture "or33_arch" of Entity "or33"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\icmp_ping_shift_reg.vhd
+# Compile Entity "icmp_ping_shift_reg"
+# Compile Architecture "arch" of Entity "icmp_ping_shift_reg"
+# File: .\icmp_ping_checksum_calc.vhd
+# Compile Entity "icmp_ping_checksum_calc"
+# Compile Architecture "icmp_ping_checksum_calc_arch" of Entity "icmp_ping_checksum_calc"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dataout_mux.vhd
+# Compile Entity "dataout_mux"
+# Compile Architecture "dataout_mux_arch" of Entity "dataout_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\filter_data_out.vhd
+# Compile Entity "filter_data_out"
+# Compile Architecture "filter_data_out_arch" of Entity "filter_data_out"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dest_info_container.vhd
+# Compile Entity "dest_info_container"
+# Compile Architecture "dest_info_container_arch" of Entity "dest_info_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_controller_sm.vhd
+# Compile Entity "burst_controller_sm"
+# Compile Architecture "burst_controller_sm_arch" of Entity "burst_controller_sm"
+# File: .\ip_checksum_calc.vhd
+# Compile Entity "ip_checksum_calc"
+# Compile Architecture "ip_checksum_calc_arch" of Entity "ip_checksum_calc"
+# File: .\decipherer.vhd
+# Compile Entity "decipherer"
+# Compile Architecture "decipherer_arch" of Entity "decipherer"
+# File: .\arp_reply.vhd
+# Compile Entity "arp_reply"
+# Compile Architecture "arp_reply_arch" of Entity "arp_reply"
+# File: .\create_packet.vhd
+# Compile Entity "create_packet"
+# Compile Architecture "create_packet_arch" of Entity "create_packet"
+# File: .\gec_rx_ctl.vhd
+# Compile Entity "gec_rx_ctl"
+# Compile Architecture "arch" of Entity "gec_rx_ctl"
+# File: .\gec_tx_seq_ctl.vhd
+# Compile Entity "gec_tx_seq_ctl"
+# Compile Architecture "arch" of Entity "gec_tx_seq_ctl"
+# File: .\delay_counter.vhd
+# Compile Entity "delay_counter"
+# Compile Architecture "delay_counter" of Entity "delay_counter"
+# File: .\ram_comm_dec.vhd
+# Compile Entity "ram_comm_dec"
+# Compile Architecture "arch" of Entity "ram_comm_dec"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\gei_address_container.vhd
+# Compile Entity "gei_address_container"
+# Compile Architecture "arch" of Entity "gei_address_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\data_manager.vhd
+# Compile Entity "data_manager"
+# Compile Architecture "BEHAVIORAL" of Entity "data_manager"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_traffic_controller.vhd
+# Compile Entity "burst_traffic_controller"
+# Compile Architecture "burst_traffic_controller_arch" of Entity "burst_traffic_controller"
+# File: .\..\compile\DIG_GEC.vhd
+# Compile Entity "DIG_GEC"
+# Compile Architecture "DIG_GEC" of Entity "DIG_GEC"
+# Top-level unit(s) detected:
+# Entity => LOGIC_RGMII_handler
+# Entity => reset_mgr
+# Entity => XILINX_7SERIES_RGMII_handler
+# Entity => MII_100_1000_handler
+# Entity => icmp_ping_shift_reg
+# Entity => CRC_splice
+# Entity => data_manager
+# Entity => burst_traffic_controller
+# Entity => DIG_GEC
+# Compile success 0 Errors 0 Warnings  Analysis time :  2.0 [s]
+alog -O2 -sve   -work ethernet_controller $dsn/src/CRC_chk.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: CRC_chk.
+# $root top modules: CRC_chk CRC_gen rgmii_data_handler.
+# Compile success 0 Errors 0 Warnings  Analysis time: 7[s].
+# done
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/GEC.bde
+# Compile with File Reorder...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: .\..\compile\GEC.vhd
+# Compile Entity "GEC"
+# Compile Architecture "GEC" of Entity "GEC"
+# Top-level unit(s) detected:
+# Entity => GEC
+# Compile success 0 Errors 0 Warnings  Analysis time :  63.0 [ms]
+alog -O2 -sve   -work ethernet_controller $dsn/src/CRC_gen.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: CRC_gen.
+# $root top modules: CRC_chk CRC_gen rgmii_data_handler.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/ethernet_interface.vhd $dsn/src/top_tmp.bde
+# Compile with File Reorder...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\ethernet_interface.vhd
+# Compile Entity "ethernet_interface"
+# Compile Architecture "BEHAVIORAL" of Entity "ethernet_interface"
+# File: .\..\compile\top_tmp.vhd
+# Compile Entity "top_tmp"
+# Compile Architecture "top_tmp" of Entity "top_tmp"
+# Top-level unit(s) detected:
+# Entity => top_tmp
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+vdel -all
+# Library contents cleared.
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/reset_mgr.vhd $dsn/src/XILINX_7SERIES_RGMII_xmii_handler.vhd $dsn/src/LOGIC_RGMII_xmii_handler.vhd $dsn/src/MII_100_1000_xmii_handler.vhd $dsn/src/CRC_splice.vhd $dsn/src/user_addrs_mux.vhd $dsn/src/udp_data_splicer.vhd $dsn/src/inferredFifo.vhd $dsn/src/params_package.vhd $dsn/src/or33.vhd $dsn/src/icmp_ping_shift_reg.vhd $dsn/src/icmp_ping_checksum_calc.asf $dsn/src/dataout_mux.vhd $dsn/src/filter_data_out.vhd $dsn/src/dest_info_container.vhd $dsn/src/burst_controller_sm.vhd $dsn/src/ip_checksum_calc.asf $dsn/src/decipherer.asf $dsn/src/arp_reply.asf $dsn/src/create_packet.asf $dsn/src/gec_rx_ctl.asf $dsn/src/gec_tx_seq_ctl.asf $dsn/src/delay_counter.asf $dsn/src/ram_comm_dec.asf $dsn/src/gei_address_container.vhd $dsn/src/data_manager.vhd $dsn/src/burst_traffic_controller.vhd $dsn/src/DIG_GEC.bde
+# Compile with File Reorder...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\reset_mgr.vhd
+# Compile Entity "reset_mgr"
+# Compile Architecture "Behavioral" of Entity "reset_mgr"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\XILINX_7SERIES_RGMII_xmii_handler.vhd
+# Compile Entity "XILINX_7SERIES_RGMII_handler"
+# Compile Architecture "arch" of Entity "XILINX_7SERIES_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\LOGIC_RGMII_xmii_handler.vhd
+# Compile Entity "LOGIC_RGMII_handler"
+# Compile Architecture "arch" of Entity "LOGIC_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\MII_100_1000_xmii_handler.vhd
+# Compile Entity "MII_100_1000_handler"
+# Compile Architecture "arch" of Entity "MII_100_1000_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\CRC_splice.vhd
+# Compile Entity "CRC_splice"
+# Compile Architecture "Behavioral" of Entity "CRC_splice"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\user_addrs_mux.vhd
+# Compile Entity "user_addrs_mux"
+# Compile Architecture "user_addrs_mux_arch" of Entity "user_addrs_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\udp_data_splicer.vhd
+# Compile Entity "udp_data_splicer"
+# Compile Architecture "udp_data_splicer_arch" of Entity "udp_data_splicer"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\inferredFifo.vhd
+# Compile Entity "reg_fifo"
+# Compile Architecture "behavioral" of Entity "reg_fifo"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\params_package.vhd
+# Compile Package "params_package"
+# Compile Package Body "params_package"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\or33.vhd
+# Compile Entity "or33"
+# Compile Architecture "or33_arch" of Entity "or33"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\icmp_ping_shift_reg.vhd
+# Compile Entity "icmp_ping_shift_reg"
+# Compile Architecture "arch" of Entity "icmp_ping_shift_reg"
+# File: .\icmp_ping_checksum_calc.vhd
+# Compile Entity "icmp_ping_checksum_calc"
+# Compile Architecture "icmp_ping_checksum_calc_arch" of Entity "icmp_ping_checksum_calc"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dataout_mux.vhd
+# Compile Entity "dataout_mux"
+# Compile Architecture "dataout_mux_arch" of Entity "dataout_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\filter_data_out.vhd
+# Compile Entity "filter_data_out"
+# Compile Architecture "filter_data_out_arch" of Entity "filter_data_out"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dest_info_container.vhd
+# Compile Entity "dest_info_container"
+# Compile Architecture "dest_info_container_arch" of Entity "dest_info_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_controller_sm.vhd
+# Compile Entity "burst_controller_sm"
+# Compile Architecture "burst_controller_sm_arch" of Entity "burst_controller_sm"
+# File: .\ip_checksum_calc.vhd
+# Compile Entity "ip_checksum_calc"
+# Compile Architecture "ip_checksum_calc_arch" of Entity "ip_checksum_calc"
+# File: .\decipherer.vhd
+# Compile Entity "decipherer"
+# Compile Architecture "decipherer_arch" of Entity "decipherer"
+# File: .\arp_reply.vhd
+# Compile Entity "arp_reply"
+# Compile Architecture "arp_reply_arch" of Entity "arp_reply"
+# File: .\create_packet.vhd
+# Compile Entity "create_packet"
+# Compile Architecture "create_packet_arch" of Entity "create_packet"
+# File: .\gec_rx_ctl.vhd
+# Compile Entity "gec_rx_ctl"
+# Compile Architecture "arch" of Entity "gec_rx_ctl"
+# File: .\gec_tx_seq_ctl.vhd
+# Compile Entity "gec_tx_seq_ctl"
+# Compile Architecture "arch" of Entity "gec_tx_seq_ctl"
+# File: .\delay_counter.vhd
+# Compile Entity "delay_counter"
+# Compile Architecture "delay_counter" of Entity "delay_counter"
+# File: .\ram_comm_dec.vhd
+# Compile Entity "ram_comm_dec"
+# Compile Architecture "arch" of Entity "ram_comm_dec"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\gei_address_container.vhd
+# Compile Entity "gei_address_container"
+# Compile Architecture "arch" of Entity "gei_address_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\data_manager.vhd
+# Compile Entity "data_manager"
+# Compile Architecture "BEHAVIORAL" of Entity "data_manager"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_traffic_controller.vhd
+# Compile Entity "burst_traffic_controller"
+# Compile Architecture "burst_traffic_controller_arch" of Entity "burst_traffic_controller"
+# File: .\..\compile\DIG_GEC.vhd
+# Compile Entity "DIG_GEC"
+# Compile Architecture "DIG_GEC" of Entity "DIG_GEC"
+# Top-level unit(s) detected:
+# Entity => LOGIC_RGMII_handler
+# Entity => reset_mgr
+# Entity => XILINX_7SERIES_RGMII_handler
+# Entity => MII_100_1000_handler
+# Entity => icmp_ping_shift_reg
+# Entity => CRC_splice
+# Entity => data_manager
+# Entity => burst_traffic_controller
+# Entity => DIG_GEC
+# Warning: ELAB1_0026: DIG_GEC.bde(DIG_GEC.vhd) : (472, 0): There is no default binding for component "ICMPPingShiftReg". (No entity named "ICMPPingShiftReg" was found).
+# Compile success 0 Errors 1 Warnings  Analysis time :  1.0 [s]
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+alog -O2 -sve   -work ethernet_controller $dsn/src/CRC_chk.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Unit top modules: CRC_chk.
+# $root top modules: CRC_chk.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/GEC.bde
+# Compile with File Reorder...
+# DRC: Checking file 'd:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC.bde'.
+# DRC: Warning: GEC.bde - 0 error(s), 2 warning(s)
+# DRC: DRC process completed in 2 second(s).
+# DRC: The results have been written to the log file. Double click on this line to view the log.
+# Generating d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC.vhd from d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC.bde ...
+# Generation successful
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: .\..\compile\GEC.vhd
+# Compile Entity "GEC"
+# Compile Architecture "GEC" of Entity "GEC"
+# Top-level unit(s) detected:
+# Entity => GEC
+# Warning: ELAB1_0026: GEC.bde(GEC.vhd) : (254, 0): There is no default binding for component "\CRC_gen\". (No entity named "\CRC_gen\" was found).
+# Compile success 0 Errors 1 Warnings  Analysis time :  62.0 [ms]
+alog -O2 -sve   -work ethernet_controller $dsn/src/CRC_gen.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: CRC_gen.
+# $root top modules: CRC_chk CRC_gen.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/ethernet_interface.vhd $dsn/src/top_tmp.bde
+# Compile with File Reorder...
 # DRC: Checking file 'd:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/top_tmp.bde'.
-# DRC: Warning: top_tmp.bde - 0 error(s), 27 warning(s)
+# DRC: Warning: top_tmp.bde - 0 error(s), 28 warning(s)
 # DRC: DRC process completed in 1 second(s).
 # DRC: The results have been written to the log file. Double click on this line to view the log.
 # Generating d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\top_tmp.vhd from d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/top_tmp.bde ...
 # Generation successful
 # Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\ethernet_interface.vhd
+# Compile Entity "ethernet_interface"
+# Compile Architecture "BEHAVIORAL" of Entity "ethernet_interface"
 # File: .\..\compile\top_tmp.vhd
 # Compile Entity "top_tmp"
 # Compile Architecture "top_tmp" of Entity "top_tmp"
+# Top-level unit(s) detected:
+# Entity => top_tmp
+# Compile success 0 Errors 0 Warnings  Analysis time :  94.0 [ms]
+acom -O3 -work ethernet_controller -2002  $dsn/src/DIG_GEC.bde
+# Compile...
+# DRC: Checking file 'd:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/DIG_GEC.bde'.
+# DRC: Warning: DIG_GEC.bde - 0 error(s), 5 warning(s)
+# DRC: DRC process completed in 2 second(s).
+# DRC: The results have been written to the log file. Double click on this line to view the log.
+# Generating d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\DIG_GEC.vhd from d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/DIG_GEC.bde ...
+# Generation successful
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: .\..\compile\DIG_GEC.vhd
+# Compile Entity "DIG_GEC"
+# Compile Architecture "DIG_GEC" of Entity "DIG_GEC"
+# Warning: ELAB1_0026: DIG_GEC.bde(DIG_GEC.vhd) : (472, 0): There is no default binding for component "ICMPPingShiftReg". (No entity named "ICMPPingShiftReg" was found).
+# Compile success 0 Errors 1 Warnings  Analysis time :  62.0 [ms]
+acom -O3 -work ethernet_controller -2002  $dsn/src/DIG_GEC.bde
+# Compile...
+# DRC: Checking file 'd:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/DIG_GEC.bde'.
+# DRC: Warning: DIG_GEC.bde - 0 error(s), 4 warning(s)
+# DRC: DRC process completed in 2 second(s).
+# DRC: The results have been written to the log file. Double click on this line to view the log.
+# Generating d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\DIG_GEC.vhd from d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/DIG_GEC.bde ...
+# Generation successful
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: .\..\compile\DIG_GEC.vhd
+# Compile Entity "DIG_GEC"
+# Compile Architecture "DIG_GEC" of Entity "DIG_GEC"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+acom -O3 -work ethernet_controller -2002  $dsn/src/CRC_splice.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\CRC_splice.vhd
+# Compile Entity "crc_splice"
+# Compile Architecture "arch" of Entity "crc_splice"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+acom -O3 -work ethernet_controller -2002  $dsn/src/reset_mgr.vhd $dsn/src/XILINX_7SERIES_RGMII_xmii_handler.vhd $dsn/src/LOGIC_RGMII_xmii_handler.vhd $dsn/src/MII_100_1000_xmii_handler.vhd $dsn/src/CRC_splice.vhd $dsn/src/user_addrs_mux.vhd $dsn/src/udp_data_splicer.vhd $dsn/src/inferredFifo.vhd $dsn/src/params_package.vhd $dsn/src/or33.vhd $dsn/src/icmp_ping_shift_reg.vhd $dsn/src/icmp_ping_checksum_calc.asf $dsn/src/dataout_mux.vhd $dsn/src/filter_data_out.vhd $dsn/src/dest_info_container.vhd $dsn/src/burst_controller_sm.vhd $dsn/src/ip_checksum_calc.asf $dsn/src/decipherer.asf $dsn/src/arp_reply.asf $dsn/src/create_packet.asf $dsn/src/gec_rx_ctl.asf $dsn/src/gec_tx_seq_ctl.asf $dsn/src/delay_counter.asf $dsn/src/ram_comm_dec.asf $dsn/src/gei_address_container.vhd $dsn/src/data_manager.vhd $dsn/src/burst_traffic_controller.vhd $dsn/src/DIG_GEC.bde
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\reset_mgr.vhd
+# Compile Entity "reset_mgr"
+# Compile Architecture "Behavioral" of Entity "reset_mgr"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\XILINX_7SERIES_RGMII_xmii_handler.vhd
+# Compile Entity "XILINX_7SERIES_RGMII_handler"
+# Compile Architecture "arch" of Entity "XILINX_7SERIES_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\LOGIC_RGMII_xmii_handler.vhd
+# Compile Entity "LOGIC_RGMII_handler"
+# Compile Architecture "arch" of Entity "LOGIC_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\MII_100_1000_xmii_handler.vhd
+# Compile Entity "MII_100_1000_handler"
+# Compile Architecture "arch" of Entity "MII_100_1000_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\CRC_splice.vhd
+# Compile Entity "crc_splice"
+# Compile Architecture "arch" of Entity "crc_splice"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\user_addrs_mux.vhd
+# Compile Entity "user_addrs_mux"
+# Compile Architecture "user_addrs_mux_arch" of Entity "user_addrs_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\udp_data_splicer.vhd
+# Compile Entity "udp_data_splicer"
+# Compile Architecture "udp_data_splicer_arch" of Entity "udp_data_splicer"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\inferredFifo.vhd
+# Compile Entity "reg_fifo"
+# Compile Architecture "behavioral" of Entity "reg_fifo"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\params_package.vhd
+# Compile Package "params_package"
+# Compile Package Body "params_package"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\or33.vhd
+# Compile Entity "or33"
+# Compile Architecture "or33_arch" of Entity "or33"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\icmp_ping_shift_reg.vhd
+# Compile Entity "icmp_ping_shift_reg"
+# Compile Architecture "arch" of Entity "icmp_ping_shift_reg"
+# File: .\icmp_ping_checksum_calc.vhd
+# Compile Entity "icmp_ping_checksum_calc"
+# Compile Architecture "icmp_ping_checksum_calc_arch" of Entity "icmp_ping_checksum_calc"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dataout_mux.vhd
+# Compile Entity "dataout_mux"
+# Compile Architecture "dataout_mux_arch" of Entity "dataout_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\filter_data_out.vhd
+# Compile Entity "filter_data_out"
+# Compile Architecture "filter_data_out_arch" of Entity "filter_data_out"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dest_info_container.vhd
+# Compile Entity "dest_info_container"
+# Compile Architecture "dest_info_container_arch" of Entity "dest_info_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_controller_sm.vhd
+# Compile Entity "burst_controller_sm"
+# Compile Architecture "burst_controller_sm_arch" of Entity "burst_controller_sm"
+# File: .\ip_checksum_calc.vhd
+# Compile Entity "ip_checksum_calc"
+# Compile Architecture "ip_checksum_calc_arch" of Entity "ip_checksum_calc"
+# File: .\decipherer.vhd
+# Compile Entity "decipherer"
+# Compile Architecture "decipherer_arch" of Entity "decipherer"
+# File: .\arp_reply.vhd
+# Compile Entity "arp_reply"
+# Compile Architecture "arp_reply_arch" of Entity "arp_reply"
+# File: .\create_packet.vhd
+# Compile Entity "create_packet"
+# Compile Architecture "create_packet_arch" of Entity "create_packet"
+# File: .\gec_rx_ctl.vhd
+# Compile Entity "gec_rx_ctl"
+# Compile Architecture "arch" of Entity "gec_rx_ctl"
+# File: .\gec_tx_seq_ctl.vhd
+# Compile Entity "gec_tx_seq_ctl"
+# Compile Architecture "arch" of Entity "gec_tx_seq_ctl"
+# File: .\delay_counter.vhd
+# Compile Entity "delay_counter"
+# Compile Architecture "delay_counter" of Entity "delay_counter"
+# File: .\ram_comm_dec.vhd
+# Compile Entity "ram_comm_dec"
+# Compile Architecture "arch" of Entity "ram_comm_dec"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\gei_address_container.vhd
+# Compile Entity "gei_address_container"
+# Compile Architecture "arch" of Entity "gei_address_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\data_manager.vhd
+# Compile Entity "data_manager"
+# Compile Architecture "BEHAVIORAL" of Entity "data_manager"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_traffic_controller.vhd
+# Compile Entity "burst_traffic_controller"
+# Compile Architecture "burst_traffic_controller_arch" of Entity "burst_traffic_controller"
+# File: .\..\compile\DIG_GEC.vhd
+# Compile Entity "DIG_GEC"
+# Compile Architecture "DIG_GEC" of Entity "DIG_GEC"
+# Compile success 0 Errors 0 Warnings  Analysis time :  1.0 [s]
+alog -O2 -sve   -work ethernet_controller $dsn/src/CRC_chk.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: CRC_chk.
+# $root top modules: CRC_chk CRC_gen.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+acom -O3 -work ethernet_controller -2002  $dsn/src/GEC.bde
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: .\..\compile\GEC.vhd
+# Compile Entity "GEC"
+# Compile Architecture "GEC" of Entity "GEC"
+# Compile success 0 Errors 0 Warnings  Analysis time :  62.0 [ms]
+alog -O2 -sve   -work ethernet_controller $dsn/src/CRC_gen.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: CRC_gen.
+# $root top modules: CRC_chk CRC_gen.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+acom -O3 -work ethernet_controller -2002  $dsn/src/ethernet_interface.vhd $dsn/src/top_tmp.bde
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\ethernet_interface.vhd
+# Compile Entity "ethernet_interface"
+# Compile Architecture "BEHAVIORAL" of Entity "ethernet_interface"
+# File: .\..\compile\top_tmp.vhd
+# Compile Entity "top_tmp"
+# Compile Architecture "top_tmp" of Entity "top_tmp"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/reset_mgr.vhd $dsn/src/XILINX_7SERIES_RGMII_xmii_handler.vhd $dsn/src/LOGIC_RGMII_xmii_handler.vhd $dsn/src/MII_100_1000_xmii_handler.vhd $dsn/src/CRC_splice.vhd $dsn/src/user_addrs_mux.vhd $dsn/src/udp_data_splicer.vhd $dsn/src/inferredFifo.vhd $dsn/src/params_package.vhd $dsn/src/or33.vhd $dsn/src/icmp_ping_shift_reg.vhd $dsn/src/icmp_ping_checksum_calc.asf $dsn/src/dataout_mux.vhd $dsn/src/filter_data_out.vhd $dsn/src/dest_info_container.vhd $dsn/src/burst_controller_sm.vhd $dsn/src/ip_checksum_calc.asf $dsn/src/decipherer.asf $dsn/src/arp_reply.asf $dsn/src/create_packet.asf $dsn/src/gec_rx_ctl.asf $dsn/src/gec_tx_seq_ctl.asf $dsn/src/delay_counter.asf $dsn/src/ram_comm_dec.asf $dsn/src/gei_address_container.vhd $dsn/src/data_manager.vhd $dsn/src/burst_traffic_controller.vhd $dsn/src/DIG_GEC.bde
+# Compile with File Reorder...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\reset_mgr.vhd
+# Compile Entity "reset_mgr"
+# Compile Architecture "Behavioral" of Entity "reset_mgr"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\XILINX_7SERIES_RGMII_xmii_handler.vhd
+# Compile Entity "XILINX_7SERIES_RGMII_handler"
+# Compile Architecture "arch" of Entity "XILINX_7SERIES_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\LOGIC_RGMII_xmii_handler.vhd
+# Compile Entity "LOGIC_RGMII_handler"
+# Compile Architecture "arch" of Entity "LOGIC_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\MII_100_1000_xmii_handler.vhd
+# Compile Entity "MII_100_1000_handler"
+# Compile Architecture "arch" of Entity "MII_100_1000_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\CRC_splice.vhd
+# Compile Entity "crc_splice"
+# Compile Architecture "arch" of Entity "crc_splice"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\user_addrs_mux.vhd
+# Compile Entity "user_addrs_mux"
+# Compile Architecture "user_addrs_mux_arch" of Entity "user_addrs_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\udp_data_splicer.vhd
+# Compile Entity "udp_data_splicer"
+# Compile Architecture "udp_data_splicer_arch" of Entity "udp_data_splicer"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\inferredFifo.vhd
+# Compile Entity "reg_fifo"
+# Compile Architecture "behavioral" of Entity "reg_fifo"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\params_package.vhd
+# Compile Package "params_package"
+# Compile Package Body "params_package"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\or33.vhd
+# Compile Entity "or33"
+# Compile Architecture "or33_arch" of Entity "or33"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\icmp_ping_shift_reg.vhd
+# Compile Entity "icmp_ping_shift_reg"
+# Compile Architecture "arch" of Entity "icmp_ping_shift_reg"
+# File: .\icmp_ping_checksum_calc.vhd
+# Compile Entity "icmp_ping_checksum_calc"
+# Compile Architecture "icmp_ping_checksum_calc_arch" of Entity "icmp_ping_checksum_calc"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dataout_mux.vhd
+# Compile Entity "dataout_mux"
+# Compile Architecture "dataout_mux_arch" of Entity "dataout_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\filter_data_out.vhd
+# Compile Entity "filter_data_out"
+# Compile Architecture "filter_data_out_arch" of Entity "filter_data_out"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dest_info_container.vhd
+# Compile Entity "dest_info_container"
+# Compile Architecture "dest_info_container_arch" of Entity "dest_info_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_controller_sm.vhd
+# Compile Entity "burst_controller_sm"
+# Compile Architecture "burst_controller_sm_arch" of Entity "burst_controller_sm"
+# File: .\ip_checksum_calc.vhd
+# Compile Entity "ip_checksum_calc"
+# Compile Architecture "ip_checksum_calc_arch" of Entity "ip_checksum_calc"
+# File: .\decipherer.vhd
+# Compile Entity "decipherer"
+# Compile Architecture "decipherer_arch" of Entity "decipherer"
+# File: .\arp_reply.vhd
+# Compile Entity "arp_reply"
+# Compile Architecture "arp_reply_arch" of Entity "arp_reply"
+# File: .\create_packet.vhd
+# Compile Entity "create_packet"
+# Compile Architecture "create_packet_arch" of Entity "create_packet"
+# File: .\gec_rx_ctl.vhd
+# Compile Entity "gec_rx_ctl"
+# Compile Architecture "arch" of Entity "gec_rx_ctl"
+# File: .\gec_tx_seq_ctl.vhd
+# Compile Entity "gec_tx_seq_ctl"
+# Compile Architecture "arch" of Entity "gec_tx_seq_ctl"
+# File: .\delay_counter.vhd
+# Compile Entity "delay_counter"
+# Compile Architecture "delay_counter" of Entity "delay_counter"
+# File: .\ram_comm_dec.vhd
+# Compile Entity "ram_comm_dec"
+# Compile Architecture "arch" of Entity "ram_comm_dec"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\gei_address_container.vhd
+# Compile Entity "gei_address_container"
+# Compile Architecture "arch" of Entity "gei_address_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\data_manager.vhd
+# Compile Entity "data_manager"
+# Compile Architecture "BEHAVIORAL" of Entity "data_manager"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_traffic_controller.vhd
+# Compile Entity "burst_traffic_controller"
+# Compile Architecture "burst_traffic_controller_arch" of Entity "burst_traffic_controller"
+# File: .\..\compile\DIG_GEC.vhd
+# Compile Entity "DIG_GEC"
+# Compile Architecture "DIG_GEC" of Entity "DIG_GEC"
+# Top-level unit(s) detected:
+# Entity => LOGIC_RGMII_handler
+# Entity => reset_mgr
+# Entity => XILINX_7SERIES_RGMII_handler
+# Entity => MII_100_1000_handler
+# Entity => crc_splice
+# Entity => data_manager
+# Entity => burst_traffic_controller
+# Entity => DIG_GEC
+# Compile success 0 Errors 0 Warnings  Analysis time :  1.0 [s]
+alog -O2 -sve   -work ethernet_controller $dsn/src/CRC_chk.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: CRC_chk.
+# $root top modules: CRC_chk CRC_gen.
+# Compile success 0 Errors 0 Warnings  Analysis time: 1[s].
+# done
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/GEC.bde
+# Compile with File Reorder...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: .\..\compile\GEC.vhd
+# Compile Entity "GEC"
+# Compile Architecture "GEC" of Entity "GEC"
+# Top-level unit(s) detected:
+# Entity => GEC
+# Compile success 0 Errors 0 Warnings  Analysis time :  46.0 [ms]
+alog -O2 -sve   -work ethernet_controller $dsn/src/CRC_gen.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: CRC_gen.
+# $root top modules: CRC_chk CRC_gen.
+# Compile success 0 Errors 0 Warnings  Analysis time: 1[s].
+# done
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/ethernet_interface.vhd $dsn/src/top_tmp.bde
+# Compile with File Reorder...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\ethernet_interface.vhd
+# Compile Entity "ethernet_interface"
+# Compile Architecture "BEHAVIORAL" of Entity "ethernet_interface"
+# File: .\..\compile\top_tmp.vhd
+# Compile Entity "top_tmp"
+# Compile Architecture "top_tmp" of Entity "top_tmp"
+# Top-level unit(s) detected:
+# Entity => top_tmp
+# Compile success 0 Errors 0 Warnings  Analysis time :  78.0 [ms]
+acom -O3 -work ethernet_controller -2002  $dsn/src/CRC_splice.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\CRC_splice.vhd
+# Compile Entity "crc_splice"
+# Compile Architecture "arch" of Entity "crc_splice"
+# Compile success 0 Errors 0 Warnings  Analysis time :  46.0 [ms]
+alog -O2 -sve   -work ethernet_controller $dsn/src/crc_gen.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: crc_gen.
+# $root top modules: CRC_chk CRC_gen crc_gen.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+acom -O3 -work ethernet_controller -2002  $dsn/src/reset_mgr.vhd $dsn/src/XILINX_7SERIES_RGMII_xmii_handler.vhd $dsn/src/LOGIC_RGMII_xmii_handler.vhd $dsn/src/MII_100_1000_xmii_handler.vhd $dsn/src/crc_splice.vhd $dsn/src/user_addrs_mux.vhd $dsn/src/udp_data_splicer.vhd $dsn/src/inferredFifo.vhd $dsn/src/params_package.vhd $dsn/src/or33.vhd $dsn/src/icmp_ping_shift_reg.vhd $dsn/src/icmp_ping_checksum_calc.asf $dsn/src/dataout_mux.vhd $dsn/src/filter_data_out.vhd $dsn/src/dest_info_container.vhd $dsn/src/burst_controller_sm.vhd $dsn/src/ip_checksum_calc.asf $dsn/src/decipherer.asf $dsn/src/arp_reply.asf $dsn/src/create_packet.asf $dsn/src/gec_rx_ctl.asf $dsn/src/gec_tx_seq_ctl.asf $dsn/src/delay_counter.asf $dsn/src/ram_comm_dec.asf $dsn/src/gei_address_container.vhd $dsn/src/data_manager.vhd $dsn/src/burst_traffic_controller.vhd $dsn/src/DIG_GEC.bde
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\reset_mgr.vhd
+# Compile Entity "reset_mgr"
+# Compile Architecture "Behavioral" of Entity "reset_mgr"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\XILINX_7SERIES_RGMII_xmii_handler.vhd
+# Compile Entity "XILINX_7SERIES_RGMII_handler"
+# Compile Architecture "arch" of Entity "XILINX_7SERIES_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\LOGIC_RGMII_xmii_handler.vhd
+# Compile Entity "LOGIC_RGMII_handler"
+# Compile Architecture "arch" of Entity "LOGIC_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\MII_100_1000_xmii_handler.vhd
+# Compile Entity "MII_100_1000_handler"
+# Compile Architecture "arch" of Entity "MII_100_1000_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\crc_splice.vhd
+# Compile Entity "crc_splice"
+# Compile Architecture "arch" of Entity "crc_splice"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\user_addrs_mux.vhd
+# Compile Entity "user_addrs_mux"
+# Compile Architecture "user_addrs_mux_arch" of Entity "user_addrs_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\udp_data_splicer.vhd
+# Compile Entity "udp_data_splicer"
+# Compile Architecture "udp_data_splicer_arch" of Entity "udp_data_splicer"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\inferredFifo.vhd
+# Compile Entity "reg_fifo"
+# Compile Architecture "behavioral" of Entity "reg_fifo"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\params_package.vhd
+# Compile Package "params_package"
+# Compile Package Body "params_package"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\or33.vhd
+# Compile Entity "or33"
+# Compile Architecture "or33_arch" of Entity "or33"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\icmp_ping_shift_reg.vhd
+# Compile Entity "icmp_ping_shift_reg"
+# Compile Architecture "arch" of Entity "icmp_ping_shift_reg"
+# File: .\icmp_ping_checksum_calc.vhd
+# Compile Entity "icmp_ping_checksum_calc"
+# Compile Architecture "icmp_ping_checksum_calc_arch" of Entity "icmp_ping_checksum_calc"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dataout_mux.vhd
+# Compile Entity "dataout_mux"
+# Compile Architecture "dataout_mux_arch" of Entity "dataout_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\filter_data_out.vhd
+# Compile Entity "filter_data_out"
+# Compile Architecture "filter_data_out_arch" of Entity "filter_data_out"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dest_info_container.vhd
+# Compile Entity "dest_info_container"
+# Compile Architecture "dest_info_container_arch" of Entity "dest_info_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_controller_sm.vhd
+# Compile Entity "burst_controller_sm"
+# Compile Architecture "burst_controller_sm_arch" of Entity "burst_controller_sm"
+# File: .\ip_checksum_calc.vhd
+# Compile Entity "ip_checksum_calc"
+# Compile Architecture "ip_checksum_calc_arch" of Entity "ip_checksum_calc"
+# File: .\decipherer.vhd
+# Compile Entity "decipherer"
+# Compile Architecture "decipherer_arch" of Entity "decipherer"
+# File: .\arp_reply.vhd
+# Compile Entity "arp_reply"
+# Compile Architecture "arp_reply_arch" of Entity "arp_reply"
+# File: .\create_packet.vhd
+# Compile Entity "create_packet"
+# Compile Architecture "create_packet_arch" of Entity "create_packet"
+# File: .\gec_rx_ctl.vhd
+# Compile Entity "gec_rx_ctl"
+# Compile Architecture "arch" of Entity "gec_rx_ctl"
+# File: .\gec_tx_seq_ctl.vhd
+# Compile Entity "gec_tx_seq_ctl"
+# Compile Architecture "arch" of Entity "gec_tx_seq_ctl"
+# File: .\delay_counter.vhd
+# Compile Entity "delay_counter"
+# Compile Architecture "delay_counter" of Entity "delay_counter"
+# File: .\ram_comm_dec.vhd
+# Compile Entity "ram_comm_dec"
+# Compile Architecture "arch" of Entity "ram_comm_dec"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\gei_address_container.vhd
+# Compile Entity "gei_address_container"
+# Compile Architecture "arch" of Entity "gei_address_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\data_manager.vhd
+# Compile Entity "data_manager"
+# Compile Architecture "BEHAVIORAL" of Entity "data_manager"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_traffic_controller.vhd
+# Compile Entity "burst_traffic_controller"
+# Compile Architecture "burst_traffic_controller_arch" of Entity "burst_traffic_controller"
+# File: .\..\compile\DIG_GEC.vhd
+# Compile Entity "DIG_GEC"
+# Compile Architecture "DIG_GEC" of Entity "DIG_GEC"
+# Compile success 0 Errors 0 Warnings  Analysis time :  1.0 [s]
+alog -O2 -sve   -work ethernet_controller $dsn/src/CRC_chk.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: CRC_chk.
+# $root top modules: CRC_chk CRC_gen crc_gen.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+acom -O3 -work ethernet_controller -2002  $dsn/src/GEC.bde
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: .\..\compile\GEC.vhd
+# Compile Entity "GEC"
+# Compile Architecture "GEC" of Entity "GEC"
 # Compile success 0 Errors 0 Warnings  Analysis time :  47.0 [ms]
+alog -O2 -sve   -work ethernet_controller $dsn/src/crc_gen.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: crc_gen.
+# $root top modules: CRC_chk CRC_gen crc_gen.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+acom -O3 -work ethernet_controller -2002  $dsn/src/ethernet_interface.vhd $dsn/src/top_tmp.bde
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\ethernet_interface.vhd
+# Compile Entity "ethernet_interface"
+# Compile Architecture "BEHAVIORAL" of Entity "ethernet_interface"
+# File: .\..\compile\top_tmp.vhd
+# Compile Entity "top_tmp"
+# Compile Architecture "top_tmp" of Entity "top_tmp"
+# Compile success 0 Errors 0 Warnings  Analysis time :  93.0 [ms]
+alog -O2 -sve   -work ethernet_controller $dsn/src/crc_chk.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: crc_chk.
+# $root top modules: CRC_chk CRC_gen crc_gen crc_chk.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/reset_mgr.vhd $dsn/src/XILINX_7SERIES_RGMII_xmii_handler.vhd $dsn/src/LOGIC_RGMII_xmii_handler.vhd $dsn/src/MII_100_1000_xmii_handler.vhd $dsn/src/crc_splice.vhd $dsn/src/user_addrs_mux.vhd $dsn/src/udp_data_splicer.vhd $dsn/src/inferredFifo.vhd $dsn/src/params_package.vhd $dsn/src/or33.vhd $dsn/src/icmp_ping_shift_reg.vhd $dsn/src/icmp_ping_checksum_calc.asf $dsn/src/dataout_mux.vhd $dsn/src/filter_data_out.vhd $dsn/src/dest_info_container.vhd $dsn/src/burst_controller_sm.vhd $dsn/src/ip_checksum_calc.asf $dsn/src/decipherer.asf $dsn/src/arp_reply.asf $dsn/src/create_packet.asf $dsn/src/gec_rx_ctl.asf $dsn/src/gec_tx_seq_ctl.asf $dsn/src/delay_counter.asf $dsn/src/ram_comm_dec.asf $dsn/src/gei_address_container.vhd $dsn/src/data_manager.vhd $dsn/src/burst_traffic_controller.vhd $dsn/src/dig_gec.bde
+# Compile with File Reorder...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\reset_mgr.vhd
+# Compile Entity "reset_mgr"
+# Compile Architecture "Behavioral" of Entity "reset_mgr"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\XILINX_7SERIES_RGMII_xmii_handler.vhd
+# Compile Entity "XILINX_7SERIES_RGMII_handler"
+# Compile Architecture "arch" of Entity "XILINX_7SERIES_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\LOGIC_RGMII_xmii_handler.vhd
+# Compile Entity "LOGIC_RGMII_handler"
+# Compile Architecture "arch" of Entity "LOGIC_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\MII_100_1000_xmii_handler.vhd
+# Compile Entity "MII_100_1000_handler"
+# Compile Architecture "arch" of Entity "MII_100_1000_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\crc_splice.vhd
+# Compile Entity "crc_splice"
+# Compile Architecture "arch" of Entity "crc_splice"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\user_addrs_mux.vhd
+# Compile Entity "user_addrs_mux"
+# Compile Architecture "user_addrs_mux_arch" of Entity "user_addrs_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\udp_data_splicer.vhd
+# Compile Entity "udp_data_splicer"
+# Compile Architecture "udp_data_splicer_arch" of Entity "udp_data_splicer"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\inferredFifo.vhd
+# Compile Entity "reg_fifo"
+# Compile Architecture "behavioral" of Entity "reg_fifo"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\params_package.vhd
+# Compile Package "params_package"
+# Compile Package Body "params_package"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\or33.vhd
+# Compile Entity "or33"
+# Compile Architecture "or33_arch" of Entity "or33"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\icmp_ping_shift_reg.vhd
+# Compile Entity "icmp_ping_shift_reg"
+# Compile Architecture "arch" of Entity "icmp_ping_shift_reg"
+# File: .\icmp_ping_checksum_calc.vhd
+# Compile Entity "icmp_ping_checksum_calc"
+# Compile Architecture "icmp_ping_checksum_calc_arch" of Entity "icmp_ping_checksum_calc"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dataout_mux.vhd
+# Compile Entity "dataout_mux"
+# Compile Architecture "dataout_mux_arch" of Entity "dataout_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\filter_data_out.vhd
+# Compile Entity "filter_data_out"
+# Compile Architecture "filter_data_out_arch" of Entity "filter_data_out"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dest_info_container.vhd
+# Compile Entity "dest_info_container"
+# Compile Architecture "dest_info_container_arch" of Entity "dest_info_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_controller_sm.vhd
+# Compile Entity "burst_controller_sm"
+# Compile Architecture "burst_controller_sm_arch" of Entity "burst_controller_sm"
+# File: .\ip_checksum_calc.vhd
+# Compile Entity "ip_checksum_calc"
+# Compile Architecture "ip_checksum_calc_arch" of Entity "ip_checksum_calc"
+# File: .\decipherer.vhd
+# Compile Entity "decipherer"
+# Compile Architecture "decipherer_arch" of Entity "decipherer"
+# File: .\arp_reply.vhd
+# Compile Entity "arp_reply"
+# Compile Architecture "arp_reply_arch" of Entity "arp_reply"
+# File: .\create_packet.vhd
+# Compile Entity "create_packet"
+# Compile Architecture "create_packet_arch" of Entity "create_packet"
+# File: .\gec_rx_ctl.vhd
+# Compile Entity "gec_rx_ctl"
+# Compile Architecture "arch" of Entity "gec_rx_ctl"
+# File: .\gec_tx_seq_ctl.vhd
+# Compile Entity "gec_tx_seq_ctl"
+# Compile Architecture "arch" of Entity "gec_tx_seq_ctl"
+# File: .\delay_counter.vhd
+# Compile Entity "delay_counter"
+# Compile Architecture "delay_counter" of Entity "delay_counter"
+# File: .\ram_comm_dec.vhd
+# Compile Entity "ram_comm_dec"
+# Compile Architecture "arch" of Entity "ram_comm_dec"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\gei_address_container.vhd
+# Compile Entity "gei_address_container"
+# Compile Architecture "arch" of Entity "gei_address_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\data_manager.vhd
+# Compile Entity "data_manager"
+# Compile Architecture "BEHAVIORAL" of Entity "data_manager"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_traffic_controller.vhd
+# Compile Entity "burst_traffic_controller"
+# Compile Architecture "burst_traffic_controller_arch" of Entity "burst_traffic_controller"
+# File: .\..\compile\dig_gec.vhd
+# Compile Entity "DIG_GEC"
+# Compile Architecture "DIG_GEC" of Entity "DIG_GEC"
+# Top-level unit(s) detected:
+# Entity => LOGIC_RGMII_handler
+# Entity => reset_mgr
+# Entity => XILINX_7SERIES_RGMII_handler
+# Entity => MII_100_1000_handler
+# Entity => crc_splice
+# Entity => data_manager
+# Entity => burst_traffic_controller
+# Entity => DIG_GEC
+# Compile success 0 Errors 0 Warnings  Analysis time :  1.0 [s]
+alog -O2 -sve   -work ethernet_controller $dsn/src/crc_chk.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: crc_chk.
+# $root top modules: CRC_chk CRC_gen crc_gen crc_chk.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/gec.bde
+# Compile with File Reorder...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: .\..\compile\gec.vhd
+# Compile Entity "GEC"
+# Compile Architecture "GEC" of Entity "GEC"
+# Top-level unit(s) detected:
+# Entity => GEC
+# Compile success 0 Errors 0 Warnings  Analysis time :  46.0 [ms]
+alog -O2 -sve   -work ethernet_controller $dsn/src/crc_gen.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: crc_gen.
+# $root top modules: CRC_chk CRC_gen crc_gen crc_chk.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/ethernet_interface.vhd $dsn/src/top_tmp.bde
+# Compile with File Reorder...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\ethernet_interface.vhd
+# Compile Entity "ethernet_interface"
+# Compile Architecture "BEHAVIORAL" of Entity "ethernet_interface"
+# File: .\..\compile\top_tmp.vhd
+# Compile Entity "top_tmp"
+# Compile Architecture "top_tmp" of Entity "top_tmp"
+# Top-level unit(s) detected:
+# Entity => top_tmp
+# Compile success 0 Errors 0 Warnings  Analysis time :  93.0 [ms]
+vdel -all
+# Library contents cleared.
+vdel -a
+# Warning: Cannot delete unit -a from ethernet_controller library.
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/reset_mgr.vhd $dsn/src/XILINX_7SERIES_RGMII_xmii_handler.vhd $dsn/src/LOGIC_RGMII_xmii_handler.vhd $dsn/src/MII_100_1000_xmii_handler.vhd $dsn/src/crc_splice.vhd $dsn/src/user_addrs_mux.vhd $dsn/src/udp_data_splicer.vhd $dsn/src/inferredFifo.vhd $dsn/src/params_package.vhd $dsn/src/or33.vhd $dsn/src/icmp_ping_shift_reg.vhd $dsn/src/icmp_ping_checksum_calc.asf $dsn/src/dataout_mux.vhd $dsn/src/filter_data_out.vhd $dsn/src/dest_info_container.vhd $dsn/src/burst_controller_sm.vhd $dsn/src/ip_checksum_calc.asf $dsn/src/decipherer.asf $dsn/src/arp_reply.asf $dsn/src/create_packet.asf $dsn/src/gec_rx_ctl.asf $dsn/src/gec_tx_seq_ctl.asf $dsn/src/delay_counter.asf $dsn/src/ram_comm_dec.asf $dsn/src/gei_address_container.vhd $dsn/src/data_manager.vhd $dsn/src/burst_traffic_controller.vhd $dsn/src/dig_gec.bde
+# Compile with File Reorder...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\reset_mgr.vhd
+# Compile Entity "reset_mgr"
+# Compile Architecture "Behavioral" of Entity "reset_mgr"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\XILINX_7SERIES_RGMII_xmii_handler.vhd
+# Compile Entity "XILINX_7SERIES_RGMII_handler"
+# Compile Architecture "arch" of Entity "XILINX_7SERIES_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\LOGIC_RGMII_xmii_handler.vhd
+# Compile Entity "LOGIC_RGMII_handler"
+# Compile Architecture "arch" of Entity "LOGIC_RGMII_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\MII_100_1000_xmii_handler.vhd
+# Compile Entity "MII_100_1000_handler"
+# Compile Architecture "arch" of Entity "MII_100_1000_handler"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\crc_splice.vhd
+# Compile Entity "crc_splice"
+# Compile Architecture "arch" of Entity "crc_splice"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\user_addrs_mux.vhd
+# Compile Entity "user_addrs_mux"
+# Compile Architecture "user_addrs_mux_arch" of Entity "user_addrs_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\udp_data_splicer.vhd
+# Compile Entity "udp_data_splicer"
+# Compile Architecture "udp_data_splicer_arch" of Entity "udp_data_splicer"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\inferredFifo.vhd
+# Compile Entity "reg_fifo"
+# Compile Architecture "behavioral" of Entity "reg_fifo"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\params_package.vhd
+# Compile Package "params_package"
+# Compile Package Body "params_package"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\or33.vhd
+# Compile Entity "or33"
+# Compile Architecture "or33_arch" of Entity "or33"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\icmp_ping_shift_reg.vhd
+# Compile Entity "icmp_ping_shift_reg"
+# Compile Architecture "arch" of Entity "icmp_ping_shift_reg"
+# File: .\icmp_ping_checksum_calc.vhd
+# Compile Entity "icmp_ping_checksum_calc"
+# Compile Architecture "icmp_ping_checksum_calc_arch" of Entity "icmp_ping_checksum_calc"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dataout_mux.vhd
+# Compile Entity "dataout_mux"
+# Compile Architecture "dataout_mux_arch" of Entity "dataout_mux"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\filter_data_out.vhd
+# Compile Entity "filter_data_out"
+# Compile Architecture "filter_data_out_arch" of Entity "filter_data_out"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\dest_info_container.vhd
+# Compile Entity "dest_info_container"
+# Compile Architecture "dest_info_container_arch" of Entity "dest_info_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_controller_sm.vhd
+# Compile Entity "burst_controller_sm"
+# Compile Architecture "burst_controller_sm_arch" of Entity "burst_controller_sm"
+# File: .\ip_checksum_calc.vhd
+# Compile Entity "ip_checksum_calc"
+# Compile Architecture "ip_checksum_calc_arch" of Entity "ip_checksum_calc"
+# File: .\decipherer.vhd
+# Compile Entity "decipherer"
+# Compile Architecture "decipherer_arch" of Entity "decipherer"
+# File: .\arp_reply.vhd
+# Compile Entity "arp_reply"
+# Compile Architecture "arp_reply_arch" of Entity "arp_reply"
+# File: .\create_packet.vhd
+# Compile Entity "create_packet"
+# Compile Architecture "create_packet_arch" of Entity "create_packet"
+# File: .\gec_rx_ctl.vhd
+# Compile Entity "gec_rx_ctl"
+# Compile Architecture "arch" of Entity "gec_rx_ctl"
+# File: .\gec_tx_seq_ctl.vhd
+# Compile Entity "gec_tx_seq_ctl"
+# Compile Architecture "arch" of Entity "gec_tx_seq_ctl"
+# File: .\delay_counter.vhd
+# Compile Entity "delay_counter"
+# Compile Architecture "delay_counter" of Entity "delay_counter"
+# File: .\ram_comm_dec.vhd
+# Compile Entity "ram_comm_dec"
+# Compile Architecture "arch" of Entity "ram_comm_dec"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\gei_address_container.vhd
+# Compile Entity "gei_address_container"
+# Compile Architecture "arch" of Entity "gei_address_container"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\data_manager.vhd
+# Compile Entity "data_manager"
+# Compile Architecture "BEHAVIORAL" of Entity "data_manager"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\burst_traffic_controller.vhd
+# Compile Entity "burst_traffic_controller"
+# Compile Architecture "burst_traffic_controller_arch" of Entity "burst_traffic_controller"
+# File: .\..\compile\dig_gec.vhd
+# Compile Entity "DIG_GEC"
+# Compile Architecture "DIG_GEC" of Entity "DIG_GEC"
+# Top-level unit(s) detected:
+# Entity => LOGIC_RGMII_handler
+# Entity => reset_mgr
+# Entity => XILINX_7SERIES_RGMII_handler
+# Entity => MII_100_1000_handler
+# Entity => crc_splice
+# Entity => data_manager
+# Entity => burst_traffic_controller
+# Entity => DIG_GEC
+# Compile success 0 Errors 0 Warnings  Analysis time :  1.0 [s]
+alog -O2 -sve   -work ethernet_controller $dsn/src/crc_chk.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Unit top modules: crc_chk.
+# $root top modules: crc_chk.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/gec.bde
+# Compile with File Reorder...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: .\..\compile\gec.vhd
+# Compile Entity "GEC"
+# Compile Architecture "GEC" of Entity "GEC"
+# Top-level unit(s) detected:
+# Entity => GEC
+# Warning: ELAB1_0026: gec.bde(gec.vhd) : (243, 0): There is no default binding for component "\CRC_chk\". (No entity named "\CRC_chk\" was found).
+# Warning: ELAB1_0026: gec.bde(gec.vhd) : (254, 0): There is no default binding for component "\CRC_gen\". (No entity named "\CRC_gen\" was found).
+# Compile success 0 Errors 2 Warnings  Analysis time :  47.0 [ms]
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.2 [s].
+alog -O2 -sve   -work ethernet_controller $dsn/src/crc_gen.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: crc_gen.
+# $root top modules: crc_chk crc_gen.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/ethernet_interface.vhd $dsn/src/top_tmp.bde
+# Compile with File Reorder...
+# DRC: Checking file 'd:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/top_tmp.bde'.
+# DRC: Warning: top_tmp.bde - 0 error(s), 28 warning(s)
+# DRC: DRC process completed in 1 second(s).
+# DRC: The results have been written to the log file. Double click on this line to view the log.
+# Generating d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\top_tmp.vhd from d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/top_tmp.bde ...
+# Generation successful
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\ethernet_interface.vhd
+# Compile Entity "ethernet_interface"
+# Compile Architecture "BEHAVIORAL" of Entity "ethernet_interface"
+# File: .\..\compile\top_tmp.vhd
+# Compile Entity "top_tmp"
+# Compile Architecture "top_tmp" of Entity "top_tmp"
+# Top-level unit(s) detected:
+# Entity => top_tmp
+# Compile success 0 Errors 0 Warnings  Analysis time :  93.0 [ms]
