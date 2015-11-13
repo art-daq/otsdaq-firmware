@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\top_tmp.vhd
--- Generated   : Fri Nov 13 14:14:37 2015
+-- Generated   : Fri Nov 13 15:15:20 2015
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/top_tmp.bde
 -- By          : Bde2Vhdl ver. 2.6
 --

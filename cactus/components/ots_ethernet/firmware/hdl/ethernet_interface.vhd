@@ -28,27 +28,27 @@ entity ethernet_interface is
 		  -- rx/tx signals
           rx_addr              	: out   std_logic_vector (63 downto 0); 
           rx_data              	: out   std_logic_vector (63 downto 0); 
-          rx_wren              	: out   std_logic;			
---erased 
-          tx_data              	: in    std_logic_vector (63 downto 0); 	 
---erased 
+          rx_wren              	: out   std_logic;												   
+          tx_data              	: in    std_logic_vector (63 downto 0); 	 					 
+--erased for simple interface 
+--erased for simple interface 
 		  
 		  -- burst signals
    		  b_data               	: in    std_logic_vector (63 downto 0); 
-          b_data_we            	: in    std_logic; 	
---erased 
-          b_enable             	: out   std_logic; 		 
+          b_data_we            	: in    std_logic; 												                            
+          b_enable             	: out   std_logic; 				  		  															 				   
+--erased for simple interface  	 
 		  
-		  															 
---erased 
---erased 
---erased 
---erased 
-		  																
-          src_capture 			: out   std_logic; 	-- to always respond to sender, latch src when capture is '1' for dest														 
---erased 
---erased 
---erased 	 
+--erased for simple interface 
+--erased for simple interface 
+--erased for simple interface 
+--erased for simple interface 
+--erased for simple interface 
+--erased for simple interface 
+--erased for simple interface 
+--erased for simple interface 
+--erased for simple interface 
+--erased for simple interface 	 
 		  
 		  -- PHY interface signals
 		  MASTER_CLK           	: in    std_logic; 			
@@ -170,23 +170,26 @@ begin
 	   
 	   
 	   
---erased 
---erased 
---erased 
---erased    
---erased 
---erased 
---erased 	
---erased			
---erased					
---erased		 
---erased	
+--erased for simple interface 
+--erased for simple interface 
+--erased for simple interface 
+--erased for simple interface    
+--erased for simple interface 
+--erased for simple interface 
+--erased for simple interface 	
+--erased for simple interface			
+--erased for simple interface					
+--erased for simple interface		 
+--erased for simple interface	
 	
 	-------- start simple section -----------  
 	-- comments denoted as  will be removed in this case by install script
---erased  will be commented out
+--erased for simple interface  will be commented out
 	
-	 user_addrs <= (others => '0'); -- choosing 0s will force the default value on reset
+	 user_addrs <= (others => '0'); -- choosing 0s will force the default value on reset	  
+	 user_ready <= '1';
+	 user_b_force_packet <= '0';													   
+	
      process(MASTER_CLK)
      begin
          if (rising_edge(MASTER_CLK) and user_src_capture = '1') then	 
@@ -194,9 +197,7 @@ begin
              user_dest_mac <= user_src_mac;  
              user_dest_port <= user_src_port;   		  
          end if;   
-     end process;			
-	 user_ready <= '1';
-	 user_b_force_packet <= '0';
+     end process;					 
 	-------- end simple section -----------
 	   
 end BEHAVIORAL;

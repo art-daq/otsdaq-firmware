@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\rx_ctl.vhd
--- Generated   : 11/13/15 08:52:45
+-- Generated   : 11/13/15 15:15:12
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/rx_ctl.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --

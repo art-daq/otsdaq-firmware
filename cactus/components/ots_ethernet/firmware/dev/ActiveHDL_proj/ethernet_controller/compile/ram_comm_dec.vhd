@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\ram_comm_dec.vhd
--- Generated   : 11/13/15 08:57:48
+-- Generated   : 11/13/15 15:15:10
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/ram_comm_dec.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --

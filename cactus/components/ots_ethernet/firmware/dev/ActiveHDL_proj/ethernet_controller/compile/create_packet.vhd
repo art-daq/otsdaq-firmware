@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\create_packet.vhd
--- Generated   : 09/28/15 11:26:36
+-- Generated   : 11/13/15 15:15:06
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/create_packet.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --

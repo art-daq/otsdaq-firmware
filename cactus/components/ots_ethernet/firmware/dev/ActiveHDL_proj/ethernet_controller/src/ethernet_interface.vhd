@@ -28,27 +28,27 @@ entity ethernet_interface is
 		  -- rx/tx signals
           rx_addr              	: out   std_logic_vector (63 downto 0); 
           rx_data              	: out   std_logic_vector (63 downto 0); 
-          rx_wren              	: out   std_logic;			
-		  tx_rden			   	: out   std_logic;						  --SCRIPT COMMENT OUT 
-          tx_data              	: in    std_logic_vector (63 downto 0); 	 
-		  ready		   			: in    std_logic; 						  --SCRIPT COMMENT OUT 
+          rx_wren              	: out   std_logic;												   
+          tx_data              	: in    std_logic_vector (63 downto 0); 	 					 
+		  tx_rden			   	: out   std_logic;						  	--SCRIPT COMMENT OUT 
+		  ready		   			: in    std_logic; 						  	--SCRIPT COMMENT OUT 
 		  
 		  -- burst signals
    		  b_data               	: in    std_logic_vector (63 downto 0); 
-          b_data_we            	: in    std_logic; 	
-		  b_force_packet	   	: in    std_logic;						  --SCRIPT COMMENT OUT 
-          b_enable             	: out   std_logic; 		 
+          b_data_we            	: in    std_logic; 												                            
+          b_enable             	: out   std_logic; 				  		  															 				   
+		  b_force_packet	   	: in    std_logic;						  	--SCRIPT COMMENT OUT  	 
 		  
-		  															 
-          addrs  	   			: in    std_logic_vector (7 downto 0); 	   --SCRIPT COMMENT OUT 
-          dest_addrs  			: in    std_logic_vector (7 downto 0); 	   --SCRIPT COMMENT OUT 
-          dest_mac    			: in    std_logic_vector (47 downto 0); 	   --SCRIPT COMMENT OUT 
-          dest_port   			: in    std_logic_vector (15 downto 0); 	   --SCRIPT COMMENT OUT 
-		  																
-          src_capture 			: out   std_logic; 	-- to always respond to sender, latch src when capture is '1' for dest														 
-          src_addrs   			: out   std_logic_vector (7 downto 0); 	   --SCRIPT COMMENT OUT 
-          src_mac     			: out   std_logic_vector (47 downto 0); 	   --SCRIPT COMMENT OUT 
-          src_port    			: out   std_logic_vector (15 downto 0); 	   --SCRIPT COMMENT OUT 	 
+		  -- addrs signals													--SCRIPT COMMENT OUT 
+          addrs  	   			: in    std_logic_vector (7 downto 0); 	   	--SCRIPT COMMENT OUT 
+          dest_addrs  			: in    std_logic_vector (7 downto 0); 	   	--SCRIPT COMMENT OUT 
+          dest_mac    			: in    std_logic_vector (47 downto 0); 	--SCRIPT COMMENT OUT 
+          dest_port   			: in    std_logic_vector (15 downto 0); 	--SCRIPT COMMENT OUT 
+		  																	--SCRIPT COMMENT OUT 
+          src_capture 			: out   std_logic; -- to always respond to sender, latch src when capture is '1' for dest --SCRIPT COMMENT OUT 
+          src_addrs   			: out   std_logic_vector (7 downto 0); 	   	--SCRIPT COMMENT OUT 
+          src_mac     			: out   std_logic_vector (47 downto 0); 	--SCRIPT COMMENT OUT 
+          src_port    			: out   std_logic_vector (15 downto 0); 	--SCRIPT COMMENT OUT 	 
 		  
 		  -- PHY interface signals
 		  MASTER_CLK           	: in    std_logic; 			
@@ -178,7 +178,7 @@ begin
 	user_dest_mac     	 <= dest_mac;    		--SCRIPT COMMENT OUT 
 	user_dest_port    	 <= dest_port;   		--SCRIPT COMMENT OUT 	
 	user_addrs			 <= addrs;		  		--SCRIPT COMMENT OUT			
-	tx_rden	 <= user_tx_rden;		  		--SCRIPT COMMENT OUT					
+	tx_rden				 <= user_tx_rden;		--SCRIPT COMMENT OUT					
 	user_ready		   	 <= ready;		  		--SCRIPT COMMENT OUT		 
 	user_b_force_packet	 <= b_force_packet;  	--SCRIPT COMMENT OUT	
 	
@@ -186,7 +186,10 @@ begin
 	-- comments denoted as -- simple -- will be removed in this case by install script
 	-- and lines with --SCRIPT COMMENT OUT  will be commented out
 	-- simple --
-	-- simple -- user_addrs <= (others => '0'); -- choosing 0s will force the default value on reset
+	-- simple -- user_addrs <= (others => '0'); -- choosing 0s will force the default value on reset	  
+	-- simple -- user_ready <= '1';
+	-- simple -- user_b_force_packet <= '0';													   
+	-- simple --
     -- simple -- process(MASTER_CLK)
     -- simple -- begin
     -- simple --     if (rising_edge(MASTER_CLK) and user_src_capture = '1') then	 
@@ -194,9 +197,7 @@ begin
     -- simple --         user_dest_mac <= user_src_mac;  
     -- simple --         user_dest_port <= user_src_port;   		  
     -- simple --     end if;   
-    -- simple -- end process;			
-	-- simple -- user_ready <= '1';
-	-- simple -- user_b_force_packet <= '0';
+    -- simple -- end process;					 
 	-------- end simple section -----------
 	   
 end BEHAVIORAL;

@@ -122,7 +122,7 @@ print
 # 2 steps: uncomment coregen, and comment inferred
 os.system("sed -i s/--//g " + dest + "/ethernet_controller/data_manager.vhd")
 os.system("sed -i s/.\*SCRIPT\ COMMENT\ OUT/--erased/g " + dest + \
-              "/ethernet_controller/data_manager.vhd")
+          "/ethernet_controller/data_manager.vhd")
 
 #replaced inferred fifos with coregen fifos, 
 #..since inferred doesn't seem to work in ise/vivado
@@ -132,9 +132,10 @@ if (args.simple):
     print "Modifying files for simple interface..."
     print 
     os.system("sed -i s/--\ simple\ --//g " + dest + \
-                  "/ethernet_controller/ethernet_interface.vhd")
-    os.system("sed -i s/.\*SCRIPT\ COMMENT\ OUT/--erased/g " + dest + \
-                  "/ethernet_controller/ethernet_interface.vhd")
+              "/ethernet_controller/ethernet_interface.vhd")
+    os.system("sed -i s/.\*SCRIPT\ COMMENT\ OUT/" + \
+              "--erased\ for\ simple\ interface/g " + dest + \
+              "/ethernet_controller/ethernet_interface.vhd")
 
 
 #replace PHY_SOLUTION

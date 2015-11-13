@@ -54,7 +54,32 @@ end entity	;
 
 architecture arch of ethernet_controller_wrapper is			 	   
 
-	---- Signal declarations used on the diagram ----
+	---- Verilog Component declarations ----
+    component crc_chk
+      port (
+           CRC_chk_en : in STD_LOGIC;
+           CRC_data : in STD_LOGIC_VECTOR(7 downto 0);
+           CRC_en : in STD_LOGIC;
+           CRC_init : in STD_LOGIC;
+           Clk : in STD_LOGIC;
+           Reset : in STD_LOGIC;
+           CRC_err : out STD_LOGIC
+      );
+    end component;
+    component crc_gen
+      port (
+           CRC_rd : in STD_LOGIC;
+           Clk : in STD_LOGIC;
+           Data_en : in STD_LOGIC;
+           Frame_data : in STD_LOGIC_VECTOR(7 downto 0);
+           Init : in STD_LOGIC;
+           Reset : in STD_LOGIC;
+           CRC_end : out STD_LOGIC;
+           CRC_out : out STD_LOGIC_VECTOR(7 downto 0)
+      );
+    end component;
+
+	---- Signal declarations ----
 	
 	signal crc_chk_en : STD_LOGIC;
 	signal crc_chk_init : STD_LOGIC;
@@ -77,7 +102,9 @@ architecture arch of ethernet_controller_wrapper is
 	signal GMII_RXD_sig : STD_LOGIC_VECTOR(7 downto 0);
 	signal rx_data_handled : STD_LOGIC_VECTOR(7 downto 0);
 	signal txd : STD_LOGIC_VECTOR(7 downto 0);
-	signal txd_out : STD_LOGIC_VECTOR(7 downto 0);			
+	signal txd_out : STD_LOGIC_VECTOR(7 downto 0);	
+	
+			
 
 begin
 	
@@ -143,7 +170,7 @@ begin
 	
 	crc_gen_rd_masked <= crc_gen_rd and crc_mask;
 	
-	crcChk : entity work.crc_chk
+	crcChk : crc_chk --Verilog component
 	  port map(
 	       CRC_chk_en => crc_chk_rd,
 	       CRC_data => crc_chk_din,
@@ -154,7 +181,7 @@ begin
 	       Reset => reset
 	  );
 	
-	crcGen : entity work.crc_gen
+	crcGen : crc_gen --Verilog component
 	  port map(
 	       CRC_out => crc_gen_out,
 	       CRC_rd => crc_gen_rd_masked,

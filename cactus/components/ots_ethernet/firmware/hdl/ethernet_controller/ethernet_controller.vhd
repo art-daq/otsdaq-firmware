@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\ethernet_controller.vhd
--- Generated   : Fri Nov 13 10:07:22 2015
+-- Generated   : Fri Nov 13 15:15:16 2015
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
