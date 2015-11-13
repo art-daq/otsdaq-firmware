@@ -29,26 +29,26 @@ entity ethernet_interface is
           rx_addr              	: out   std_logic_vector (63 downto 0); 
           rx_data              	: out   std_logic_vector (63 downto 0); 
           rx_wren              	: out   std_logic;			
-		  tx_rden			   	: out   std_logic;						  --SCRIPT COMMENT OUT 
+--erased 
           tx_data              	: in    std_logic_vector (63 downto 0); 	 
-		  ready		   			: in    std_logic; 						  --SCRIPT COMMENT OUT 
+--erased 
 		  
 		  -- burst signals
    		  b_data               	: in    std_logic_vector (63 downto 0); 
           b_data_we            	: in    std_logic; 	
-		  b_force_packet	   	: in    std_logic;						  --SCRIPT COMMENT OUT 
+--erased 
           b_enable             	: out   std_logic; 		 
 		  
 		  															 
-          addrs  	   			: in    std_logic_vector (7 downto 0); 	   --SCRIPT COMMENT OUT 
-          dest_addrs  			: in    std_logic_vector (7 downto 0); 	   --SCRIPT COMMENT OUT 
-          dest_mac    			: in    std_logic_vector (47 downto 0); 	   --SCRIPT COMMENT OUT 
-          dest_port   			: in    std_logic_vector (15 downto 0); 	   --SCRIPT COMMENT OUT 
+--erased 
+--erased 
+--erased 
+--erased 
 		  																
           src_capture 			: out   std_logic; 	-- to always respond to sender, latch src when capture is '1' for dest														 
-          src_addrs   			: out   std_logic_vector (7 downto 0); 	   --SCRIPT COMMENT OUT 
-          src_mac     			: out   std_logic_vector (47 downto 0); 	   --SCRIPT COMMENT OUT 
-          src_port    			: out   std_logic_vector (15 downto 0); 	   --SCRIPT COMMENT OUT 	 
+--erased 
+--erased 
+--erased 	 
 		  
 		  -- PHY interface signals
 		  MASTER_CLK           	: in    std_logic; 			
@@ -170,33 +170,33 @@ begin
 	   
 	   
 	   
-	src_capture <= user_src_capture;  			--SCRIPT COMMENT OUT 
-	src_addrs   <= user_src_addrs;    			--SCRIPT COMMENT OUT 
-	src_mac     <= user_src_mac;      			--SCRIPT COMMENT OUT 
-	src_port    <= user_src_port;	   			--SCRIPT COMMENT OUT    
-	user_dest_addrs   	 <= dest_addrs;  		--SCRIPT COMMENT OUT 
-	user_dest_mac     	 <= dest_mac;    		--SCRIPT COMMENT OUT 
-	user_dest_port    	 <= dest_port;   		--SCRIPT COMMENT OUT 	
-	user_addrs			 <= addrs;		  		--SCRIPT COMMENT OUT			
-	tx_rden	 <= user_tx_rden;		  		--SCRIPT COMMENT OUT					
-	user_ready		   	 <= ready;		  		--SCRIPT COMMENT OUT		 
-	user_b_force_packet	 <= b_force_packet;  	--SCRIPT COMMENT OUT	
+--erased 
+--erased 
+--erased 
+--erased    
+--erased 
+--erased 
+--erased 	
+--erased			
+--erased					
+--erased		 
+--erased	
 	
 	-------- start simple section -----------  
-	-- comments denoted as -- simple -- will be removed in this case by install script
-	-- and lines with --SCRIPT COMMENT OUT  will be commented out
-	-- simple --
-	-- simple -- user_addrs <= (others => '0'); -- choosing 0s will force the default value on reset
-    -- simple -- process(MASTER_CLK)
-    -- simple -- begin
-    -- simple --     if (rising_edge(MASTER_CLK) and user_src_capture = '1') then	 
-    -- simple --         user_dest_addrs <= user_src_addrs;    
-    -- simple --         user_dest_mac <= user_src_mac;  
-    -- simple --         user_dest_port <= user_src_port;   		  
-    -- simple --     end if;   
-    -- simple -- end process;			
-	-- simple -- user_ready <= '1';
-	-- simple -- user_b_force_packet <= '0';
+	-- comments denoted as  will be removed in this case by install script
+--erased  will be commented out
+	
+	 user_addrs <= (others => '0'); -- choosing 0s will force the default value on reset
+     process(MASTER_CLK)
+     begin
+         if (rising_edge(MASTER_CLK) and user_src_capture = '1') then	 
+             user_dest_addrs <= user_src_addrs;    
+             user_dest_mac <= user_src_mac;  
+             user_dest_port <= user_src_port;   		  
+         end if;   
+     end process;			
+	 user_ready <= '1';
+	 user_b_force_packet <= '0';
 	-------- end simple section -----------
 	   
 end BEHAVIORAL;

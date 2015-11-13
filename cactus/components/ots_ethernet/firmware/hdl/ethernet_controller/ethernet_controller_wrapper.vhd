@@ -121,7 +121,7 @@ begin
 	       user_tx_size_in => user_tx_size_in
 	  );
 	
-	xgmii : entity work.LOGIC_RGMII_handler
+	xgmii : entity work.XILINX_7SERIES_RGMII_handler
 	  port map(
 	       clk => GMII_RX_CLK,
 	       reset => reset,
