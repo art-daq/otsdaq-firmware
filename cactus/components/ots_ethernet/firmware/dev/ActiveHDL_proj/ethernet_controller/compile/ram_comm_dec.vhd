@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\RAM_COMM_DEC.vhd
--- Generated   : 10/29/15 11:59:44
--- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/RAM_COMM_DEC.asf
+-- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\ram_comm_dec.vhd
+-- Generated   : 11/13/15 08:57:48
+-- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/ram_comm_dec.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -23,12 +23,11 @@ use IEEE.std_logic_1164.all;
 use IEEE.NUMERIC_STD.all;
 use work.params_package.all;
 
-entity RAM_COMM_DEC is 
+entity ram_comm_dec is 
 	port (
 		burst_done: in STD_LOGIC;
 		clock: in STD_LOGIC;
 		crc_err_flag: in STD_LOGIC;
-		gec_user_rx_valid_out: in STD_LOGIC;
 		reset: in STD_LOGIC;
 		rx_data_fifo_full: in STD_LOGIC;
 		rx_data_fifo_rd_data: in STD_LOGIC_VECTOR (63 downto 0);
@@ -37,6 +36,7 @@ entity RAM_COMM_DEC is
 		rx_info_fifo_rd_data: in STD_LOGIC_VECTOR (15 downto 0);
 		tx_info_fifo_full: in STD_LOGIC;
 		user_ready: in STD_LOGIC;
+		user_rx_valid_out: in STD_LOGIC;
 		burst_start: out STD_LOGIC;
 		burst_stop: out STD_LOGIC;
 		clear_crc_err_flag: out STD_LOGIC;
@@ -52,9 +52,9 @@ entity RAM_COMM_DEC is
 		tx_info_fifo_src_sel: out STD_LOGIC;
 		tx_info_fifo_wr_data: out STD_LOGIC_VECTOR (15 downto 0);
 		tx_info_fifo_wren: out STD_LOGIC);
-end RAM_COMM_DEC;
+end ram_comm_dec;
 
-architecture RAM_COMM_DEC of RAM_COMM_DEC is
+architecture arch of ram_comm_dec is
 
 -- diagram signals declarations
 signal burst_active: STD_LOGIC;
@@ -105,7 +105,7 @@ attribute ENUM_ENCODING of Sreg0_type: type is
 signal Sreg0: Sreg0_type;
 
 attribute STATE_VECTOR: string;
-attribute STATE_VECTOR of RAM_COMM_DEC: architecture is "Sreg0";
+attribute STATE_VECTOR of arch: architecture is "Sreg0";
 
 begin
 
@@ -127,20 +127,20 @@ begin
 	process(clock)
 	begin
 		if (rising_edge(clock)) then
-			old_rx_v <= gec_user_rx_valid_out;
+			old_rx_v <= user_rx_valid_out;
 			if (reset = '1') then
 				tmp_cnt <= (others => '1');
 				comm_dec_ready <= '1';
 				rx_info_fifo_full_flag <= '0';
 				rx_data_fifo_full_flag <= '0';
 			else
-				if (old_rx_v = '0' and gec_user_rx_valid_out = '1') then
+				if (old_rx_v = '0' and user_rx_valid_out = '1') then
 -- reset signal at start of receiving a packet
 					comm_dec_ready <= '0';
 					is_counting <= '0';
 					tmp_cnt <= (others => '1');
 				end if;
-				if (old_rx_v = '1' and gec_user_rx_valid_out = '0') then
+				if (old_rx_v = '1' and user_rx_valid_out = '0') then
 					is_counting <= '1';
 					-- start counting after packet rcv'd
 				end if;
@@ -447,4 +447,4 @@ ram_addr_assignment:
 ram_addr <= std_logic_vector(ram_addr_sig) when (Sreg0 = idle) else
             std_logic_vector(ram_addr_sig);
 
-end RAM_COMM_DEC;
+end arch;

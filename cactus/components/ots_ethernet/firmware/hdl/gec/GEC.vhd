@@ -7,8 +7,8 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : d:ProjectsotsdaqPicoZedActiveHDL_projethernet_controllercompileGEC.vhd
--- Generated   : Wed Oct 28 16:57:50 2015
+-- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC.vhd
+-- Generated   : Wed Nov 11 09:28:30 2015
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -73,7 +73,7 @@ component CRC_splice
        txd : out STD_LOGIC_VECTOR(7 downto 0)
   );
 end component;
-component MII_100_1000_handler
+component LOGIC_RGMII_handler
   port (
        clk : in STD_LOGIC;
        reset : in STD_LOGIC;
@@ -91,7 +91,7 @@ component MII_100_1000_handler
        tx_er_handled : out STD_LOGIC
   );
 end component;
-component CRC_chk
+component \CRC_chk\
   port (
        CRC_chk_en : in STD_LOGIC;
        CRC_data : in STD_LOGIC_VECTOR(7 downto 0);
@@ -102,7 +102,7 @@ component CRC_chk
        CRC_err : out STD_LOGIC
   );
 end component;
-component CRC_gen
+component \CRC_gen\
   port (
        CRC_rd : in STD_LOGIC;
        Clk : in STD_LOGIC;
@@ -218,7 +218,7 @@ DIG_GEC_Block : DIG_GEC
        user_tx_size_in => user_tx_size_in
   );
 
-RGMII_Block : MII_100_1000_handler
+RGMII_Block : LOGIC_RGMII_handler
   port map(
        clk => GMII_RX_CLK,
        reset => reset,
@@ -240,7 +240,7 @@ crc_gen_en_masked <= crc_gen_en and crc_mask;
 
 crc_gen_rd_masked <= crc_gen_rd and crc_mask;
 
-crcChk : CRC_chk
+crcChk : \CRC_chk\
   port map(
        CRC_chk_en => crc_chk_rd,
        CRC_data => crc_chk_din,
@@ -251,7 +251,7 @@ crcChk : CRC_chk
        Reset => reset
   );
 
-crcGen : CRC_gen
+crcGen : \CRC_gen\
   port map(
        CRC_out => crc_gen_out,
        CRC_rd => crc_gen_rd_masked,
@@ -283,7 +283,7 @@ crcSplice : CRC_splice
     -- Inputs terminals
 	GMII_RXD_sig <= GMII_RXD;
 
-    -- Outputbuffer terminals
+    -- Output\buffer terminals
 	four_bit_mode_out <= four_bit_mode;
 
 

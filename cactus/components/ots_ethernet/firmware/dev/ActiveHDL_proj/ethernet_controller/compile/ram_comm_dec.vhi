@@ -3,7 +3,6 @@ component ram_comm_dec
 		burst_done: in STD_LOGIC;
 		clock: in STD_LOGIC;
 		crc_err_flag: in STD_LOGIC;
-		gec_user_rx_valid_out: in STD_LOGIC;
 		reset: in STD_LOGIC;
 		rx_data_fifo_full: in STD_LOGIC;
 		rx_data_fifo_rd_data: in STD_LOGIC_VECTOR (63 downto 0);
@@ -12,6 +11,7 @@ component ram_comm_dec
 		rx_info_fifo_rd_data: in STD_LOGIC_VECTOR (15 downto 0);
 		tx_info_fifo_full: in STD_LOGIC;
 		user_ready: in STD_LOGIC;
+		user_rx_valid_out: in STD_LOGIC;
 		burst_start: out STD_LOGIC;
 		burst_stop: out STD_LOGIC;
 		clear_crc_err_flag: out STD_LOGIC;
@@ -37,7 +37,6 @@ instance_name : ram_comm_dec
  clear_crc_err_flag => ,
  clock => ,
  crc_err_flag => ,
- gec_user_rx_valid_out => ,
  ram_addr => ,
  ram_rden => ,
  ram_wren => ,
@@ -57,4 +56,5 @@ instance_name : ram_comm_dec
  tx_info_fifo_src_sel => ,
  tx_info_fifo_wr_data => ,
  tx_info_fifo_wren => ,
- user_ready => );
+ user_ready => ,
+ user_rx_valid_out => );

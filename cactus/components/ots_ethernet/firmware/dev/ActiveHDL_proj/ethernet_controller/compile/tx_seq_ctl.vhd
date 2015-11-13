@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC_TX_SEQ_CTL.vhd
--- Generated   : 11/11/15 08:46:21
--- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC_TX_SEQ_CTL.asf
+-- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\tx_seq_ctl.vhd
+-- Generated   : 11/13/15 08:54:56
+-- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/tx_seq_ctl.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -23,29 +23,29 @@ use IEEE.std_logic_1164.all;
 use IEEE.NUMERIC_STD.all;
 use work.params_package.all;
 
-entity gec_tx_seq_ctl is 
+entity tx_seq_ctl is 
 	port (
 		clk: in STD_LOGIC;
 		data_fifo_empty: in STD_LOGIC;
 		data_fifo_rd_data: in STD_LOGIC_VECTOR (63 downto 0);
 		delay_count: in STD_LOGIC;
 		four_bit_mode: in STD_LOGIC;
-		gec_user_busy: in STD_LOGIC;
-		gec_user_tx_enable_out: in STD_LOGIC;
 		info_fifo_empty: in STD_LOGIC;
 		info_fifo_rd_data: in STD_LOGIC_VECTOR (15 downto 0);
 		reset: in STD_LOGIC;
+		user_busy: in STD_LOGIC;
+		user_tx_enable_out: in STD_LOGIC;
 		clear_delay_count: out STD_LOGIC;
 		data_fifo_rden: out STD_LOGIC;
 		data_fifo_rden_en: out STD_LOGIC;
-		gec_user_trigger: out STD_LOGIC;
-		gec_user_tx_data_in: out STD_LOGIC_VECTOR (7 downto 0);
-		gec_user_tx_size_in: out STD_LOGIC_VECTOR (10 downto 0);
 		info_fifo_rden: out STD_LOGIC;
-		start_delay_count: out STD_LOGIC);
-end gec_tx_seq_ctl;
+		start_delay_count: out STD_LOGIC;
+		user_trigger: out STD_LOGIC;
+		user_tx_data_in: out STD_LOGIC_VECTOR (7 downto 0);
+		user_tx_size_in: out STD_LOGIC_VECTOR (10 downto 0));
+end tx_seq_ctl;
 
-architecture arch of gec_tx_seq_ctl is
+architecture arch of tx_seq_ctl is
 
 -- diagram signals declarations
 signal byte_count: UNSIGNED (2 downto 0);
@@ -110,8 +110,8 @@ begin
 			-- Set default values for outputs, signals and variables
 			-- ...
 			seq_count <= (others => '0');
-			gec_user_trigger <= '0';
-			gec_user_tx_size_in <= (others => '0');
+			user_trigger <= '0';
+			user_tx_size_in <= (others => '0');
 			q_w_count <= (others => '0');
 			tx_data_count <= (others => '0');
 			info_fifo_rden_sig <= '0';
@@ -128,7 +128,7 @@ begin
 				case Sreg0 is
 					when S2 =>
 						Sreg0 <= S4;
-						gec_user_tx_size_in <= std_logic_vector(tx_data_count);
+						user_tx_size_in <= std_logic_vector(tx_data_count);
 						-- present byte count to GEC
 						if (tx_data_count /= 2) then
 						-- read a quad word for initialization
@@ -154,16 +154,16 @@ begin
 					when txmtdone =>
 						Sreg0 <= idle;
 					when chk_busy =>
-						if gec_user_busy = '0' then
+						if user_busy = '0' then
 							Sreg0 <= trgrd;
-							gec_user_trigger <= '1';
+							user_trigger <= '1';
 							-- GEC not busy
 							-- assert trigger to GEC
 							if (tx_data_count /= 2) then
 							  data_fifo_rd_data_reg <= data_fifo_rd_data;
 							-- prepare first quad word if there is one
 							end if;
-						elsif gec_user_busy = '1' then
+						elsif user_busy = '1' then
 							Sreg0 <= chk_busy;
 							data_fifo_rden_sig <= '0';
 							-- finished reading quad word fifo for first quad word
@@ -182,7 +182,7 @@ begin
 						-- not happen in loopback tests
 						else
 						-- update the data presented to the GEC
-						    gec_user_tx_data_in <= data_fifo_rd_data(63 downto 56);
+						    user_tx_data_in <= data_fifo_rd_data(63 downto 56);
 						-- increment the byte count
 						    byte_count <= "001";
 						end if;
@@ -191,10 +191,10 @@ begin
 						-- enabling read operations on the data
 						-- FIFO
 					when trgrd =>
-						if gec_user_tx_enable_out = '1' then
+						if user_tx_enable_out = '1' then
 							Sreg0 <= S5;
-							gec_user_tx_data_in <= std_logic_vector(seq_count);
-						elsif gec_user_tx_enable_out = '0' then	-- wait for enable tx reply
+							user_tx_data_in <= std_logic_vector(seq_count);
+						elsif user_tx_enable_out = '0' then	-- wait for enable tx reply
 							Sreg0 <= trgrd;
 						end if;
 					when data_rdy_read_Ififo =>
@@ -206,7 +206,7 @@ begin
 						Sreg0 <= S1;
 						q_w_count <= unsigned(info_fifo_rd_data(15 downto 8));
 						-- get number of quad words
-						gec_user_tx_data_in <= info_fifo_rd_data(7 downto 0);
+						user_tx_data_in <= info_fifo_rd_data(7 downto 0);
 						-- assert the return code to the GEC
 						-- when Ryan's enable out signal goes high
 						-- the return code is there already
@@ -218,8 +218,8 @@ begin
 					when txmt_xmiting =>
 						if tx_data_count = 2 then
 							Sreg0 <= txmt_S3;
-							gec_user_trigger <= '0';
-							gec_user_tx_size_in <= (others => '0');
+							user_trigger <= '0';
+							user_tx_size_in <= (others => '0');
 							tx_data_count <= (others => '0');
 							info_fifo_rden_sig <= '0';
 							data_fifo_rden_sig <= '0';
@@ -229,13 +229,13 @@ begin
 							case byte_count is
 							    when "000" =>
 							      byte_count <= byte_count + 1;
-							      gec_user_tx_data_in <= data_fifo_rd_data_reg(63 downto 56);
+							      user_tx_data_in <= data_fifo_rd_data_reg(63 downto 56);
 							    when "001" =>
 							      byte_count <= byte_count + 1;
-							      gec_user_tx_data_in <= data_fifo_rd_data_reg(55 downto 48);
+							      user_tx_data_in <= data_fifo_rd_data_reg(55 downto 48);
 							    when "010" =>
 							      byte_count <= byte_count + 1;
-							      gec_user_tx_data_in <= data_fifo_rd_data_reg(47 downto 40);
+							      user_tx_data_in <= data_fifo_rd_data_reg(47 downto 40);
 							-- Read a new data quad word with plenty of time to spare
 							-- Jefferson did this to compensate for commenting
 							--out the action done when q_w_count =v_5_1
@@ -244,23 +244,23 @@ begin
 							       end if;
 							    when "011" =>
 							      byte_count <= byte_count + 1;
-							      gec_user_tx_data_in <= data_fifo_rd_data_reg(39 downto 32);
+							      user_tx_data_in <= data_fifo_rd_data_reg(39 downto 32);
 							-- Finish read a new data quad word with plenty of time to spare
 							      data_fifo_rden_sig <= '0';
 							    when "100" =>
 							      byte_count <= byte_count + 1;
-							      gec_user_tx_data_in <= data_fifo_rd_data_reg(31 downto 24);
+							      user_tx_data_in <= data_fifo_rd_data_reg(31 downto 24);
 							-- at this point, the data_fifo_rd_data lines have the
 							-- next quad word sitting on them
 							    when "101" =>
 							      byte_count <= byte_count + 1;
-							      gec_user_tx_data_in <= data_fifo_rd_data_reg(23 downto 16);
+							      user_tx_data_in <= data_fifo_rd_data_reg(23 downto 16);
 							    when "110" =>
 							      byte_count <= byte_count + 1;
-							      gec_user_tx_data_in <= data_fifo_rd_data_reg(15 downto 8);
+							      user_tx_data_in <= data_fifo_rd_data_reg(15 downto 8);
 							    when "111" =>
 							      byte_count <= "000";
-							      gec_user_tx_data_in <= data_fifo_rd_data_reg(7 downto 0);
+							      user_tx_data_in <= data_fifo_rd_data_reg(7 downto 0);
 							-- read another quad word
 								  data_fifo_rd_data_reg <= data_fifo_rd_data;
 							-- we latch the data into the internal register
@@ -274,8 +274,8 @@ begin
 							end case;
 						elsif q_w_count = 0 then
 							Sreg0 <= txmt_S3;
-							gec_user_trigger <= '0';
-							gec_user_tx_size_in <= (others => '0');
+							user_trigger <= '0';
+							user_tx_size_in <= (others => '0');
 							tx_data_count <= (others => '0');
 							info_fifo_rden_sig <= '0';
 							data_fifo_rden_sig <= '0';
@@ -283,14 +283,14 @@ begin
 						end if;
 					when txmt_S3 =>
 						Sreg0 <= txmtdone;
-						gec_user_trigger <= '0';
-						gec_user_tx_size_in <= (others => '0');
+						user_trigger <= '0';
+						user_tx_size_in <= (others => '0');
 						tx_data_count <= (others => '0');
 						info_fifo_rden_sig <= '0';
 						data_fifo_rden_sig <= '0';
 						data_fifo_rden_en <= '0';
-						gec_user_trigger <= '0';
-						gec_user_tx_size_in <= (others => '0');
+						user_trigger <= '0';
+						user_tx_size_in <= (others => '0');
 						tx_data_count <= (others => '0');
 						info_fifo_rden_sig <= '0';
 						data_fifo_rden_sig <= '0';

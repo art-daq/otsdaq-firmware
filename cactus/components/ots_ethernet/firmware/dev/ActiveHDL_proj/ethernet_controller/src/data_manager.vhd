@@ -18,20 +18,20 @@ entity data_manager is
           b_data_we              : in    std_logic; 
           b_end_packet           : in    std_logic; 
           four_bit_mode          : in    std_logic; 
-          gec_user_busy          : in    std_logic; 
-          gec_user_crc_err       : in    std_logic; 
-          gec_user_rx_data_out   : in    std_logic_vector (7 downto 0); 
-          gec_user_rx_size_out   : in    std_logic_vector (10 downto 0); 
-          gec_user_rx_valid_out  : in    std_logic; 
-          gec_user_tx_enable_out : in    std_logic; 	 
-		  gec_user_ready	 : in    std_logic;
+          oei_user_busy          : in    std_logic; 
+          oei_user_crc_err       : in    std_logic; 
+          oei_user_rx_data_out   : in    std_logic_vector (7 downto 0); 
+          oei_user_rx_size_out   : in    std_logic_vector (10 downto 0); 
+          oei_user_rx_valid_out  : in    std_logic; 
+          oei_user_tx_enable_out : in    std_logic; 	 
+		  oei_user_ready	 : in    std_logic;
           MASTER_CLK             : in    std_logic; 
           reset                  : in    std_logic;  
           tx_data                : in    std_logic_vector (63 downto 0); 
           b_enable               : out   std_logic; 
-          gec_user_trigger       : out   std_logic; 
-          gec_user_tx_data_in    : out   std_logic_vector (7 downto 0); 
-          gec_user_tx_size_in    : out   std_logic_vector (10 downto 0); 
+          oei_user_trigger       : out   std_logic; 
+          oei_user_tx_data_in    : out   std_logic_vector (7 downto 0); 
+          oei_user_tx_size_in    : out   std_logic_vector (10 downto 0); 
           ram_addr               : out   std_logic_vector (63 downto 0);   
           ram_rden               : out   std_logic; 
           ram_wren               : out   std_logic; 
@@ -226,14 +226,14 @@ begin
                 tx_info_we=>tx_info_fifo_wren_burst);
 					 
    
-   GEC_RX_CTRL : entity work.gec_rx_ctl
+   GEC_RX_CTRL : entity work.rx_ctl
       port map (
                 clock=>MASTER_CLK,				 					   
                 four_bit_mode=>four_bit_mode,
-                gec_user_crc_err=>gec_user_crc_err,
-                gec_user_rx_data_out(7 downto 0)=>gec_user_rx_data_out(7 downto 0),
-                gec_user_rx_size_out(10 downto 0)=>gec_user_rx_size_out(10 downto 0),
-                gec_user_rx_valid_out=>gec_user_rx_valid_out,
+                user_crc_err=>oei_user_crc_err,
+                user_rx_data_out(7 downto 0)=>oei_user_rx_data_out(7 downto 0),
+                user_rx_size_out(10 downto 0)=>oei_user_rx_size_out(10 downto 0),
+                user_rx_valid_out=>oei_user_rx_valid_out,
                 reset=>reset,
                 crc_err_flag=>crc_err_flag,	  
                 clear_crc_err_flag=>clear_crc_err_flag,
@@ -260,8 +260,8 @@ begin
                 ram_addr(63 downto 0)=>ram_addr(63 downto 0),
                 ram_rden=>ram_rden,
                 ram_wren=>ram_wren,		   			
-				user_ready=>gec_user_ready,
-				gec_user_rx_valid_out=>gec_user_rx_valid_out,  
+				user_ready=>oei_user_ready,
+				user_rx_valid_out=>oei_user_rx_valid_out,  
                 crc_err_flag=>crc_err_flag,	  
                 clear_crc_err_flag=>clear_crc_err_flag,	  
                 rx_data_fifo_rden=>rx_data_fifo_read_enable,
@@ -276,24 +276,24 @@ begin
 							   
 	tx_data_fifo_read_enable <= tx_data_fifo_rden and data_fifo_rden_en;
    
-   GEC_TX_SEQ_CTL : entity work.gec_tx_seq_ctl
+   GEC_TX_SEQ_CTL : entity work.tx_seq_ctl
       port map (
                 clk=>MASTER_CLK,
                 data_fifo_empty=>tx_data_fifo_empty,					
                 data_fifo_rd_data(63 downto 0)=>data_fifo_rd_data(63 downto 0),
                 delay_count=>delay_count,
                 four_bit_mode=>four_bit_mode,
-                gec_user_busy=>gec_user_busy,
-                gec_user_tx_enable_out=>gec_user_tx_enable_out,
+                user_busy=>oei_user_busy,
+                user_tx_enable_out=>oei_user_tx_enable_out,
                 info_fifo_empty=>tx_info_fifo_empty,					
                 info_fifo_rd_data(15 downto 0)=>tx_info_fifo_dout(15 downto 0),
                 reset=>reset,
                 clear_delay_count=>clear_delay_count,
                 data_fifo_rden=>tx_data_fifo_rden,
                 data_fifo_rden_en=>data_fifo_rden_en,
-                gec_user_trigger=>gec_user_trigger,
-                gec_user_tx_data_in(7 downto 0)=>gec_user_tx_data_in(7 downto 0),
-                gec_user_tx_size_in(10 downto 0)=>gec_user_tx_size_in(10 downto 0),
+                user_trigger=>oei_user_trigger,
+                user_tx_data_in(7 downto 0)=>oei_user_tx_data_in(7 downto 0),
+                user_tx_size_in(10 downto 0)=>oei_user_tx_size_in(10 downto 0),
                 info_fifo_rden=>tx_info_fifo_rden,
                 start_delay_count=>start_delay_count);
    

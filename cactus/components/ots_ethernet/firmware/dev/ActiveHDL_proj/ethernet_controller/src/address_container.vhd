@@ -17,29 +17,30 @@ use ieee.numeric_std.all;
 	  		
 use work.params_package.all;
 																	
-entity gei_address_container is
+entity address_container is
 	port (						 			 					
 		clk : in std_logic;	 	  
 		reset : in std_logic;		   
-		capture : in std_logic;								  
+		capture : in std_logic;							  
+		user_addr_in : in std_logic_vector(7 downto 0);				  
 		addr_in : in std_logic_vector(7 downto 0);			
 		
 		arp_announce_strobe : out std_logic;	
-		gei_protocol_ping_strobe : out std_logic;	
+		protocol_ping_strobe : out std_logic;	
 		
-		gei_addr : out std_logic_vector(7 downto 0)
+		addr : out std_logic_vector(7 downto 0)
 		);
 end;
 
 
-architecture arch of gei_address_container is	   
+architecture arch of address_container is	   
 
 	signal capture_old : std_logic;		  
-	signal gei_addr_sig : std_logic_vector(7 downto 0) := (others => '0');	
+	signal addr_sig : std_logic_vector(7 downto 0) := (others => '0');	
 
 begin		
 	
-	gei_addr <= gei_addr_sig;
+	addr <= addr_sig;
 		
 	process(clk)
 	begin
@@ -48,20 +49,23 @@ begin
 			
 			capture_old <= capture;			 
 			arp_announce_strobe <= '0';	 
-			gei_protocol_ping_strobe <= '0';
+			protocol_ping_strobe <= '0';
 			
-			if (reset = '1' or 					 -- reset can happen any time
-				gei_addr_sig = x"00" ) then 	  -- addr=0 should happen at startup ONLY
-				gei_addr_sig <= ETH_CONTROLLER_DEFAULT_ADDRS;	  		-- take default addr from params_package
+			if (reset = '1') then					 -- reset can happen any time
+				addr_sig <= user_addr_in;			
+			elsif (addr_sig = x"00" or addr_sig = x"FF") then 	  
+				-- addr=0 should happen at startup ONLY ... 
+				-- or this case happens if reset and user_addr_in is not being used (or is illegal, i.e. 0 or 255).
+				addr_sig <= ETH_CONTROLLER_DEFAULT_ADDRS;	  		-- take default addr from params_package
 			elsif (	capture_old = '0' and capture = '1') then   -- rising edge of source capture
 				if (addr_in /= x"00" and addr_in /= x"FF") then		 --and not illegal addr
-					gei_addr_sig <= addr_in;			-- take "CAPTAN Ping" addr	
+					addr_sig <= addr_in;			-- take "CAPTAN Ping" addr	
 					arp_announce_strobe <= '1';
 				else   					-- illegal address is used as "CAPTAN ping"	
-					gei_protocol_ping_strobe <= '1';					
+					protocol_ping_strobe <= '1';					
 				end if;
 			else
-				gei_addr_sig <= gei_addr_sig;		-- give explicit registering behavior (Vivado seems to not be sure?)
+				addr_sig <= addr_sig;		-- give explicit registering behavior (Vivado seems to not be sure?)
 			end if;	  
 				
 		end if;	

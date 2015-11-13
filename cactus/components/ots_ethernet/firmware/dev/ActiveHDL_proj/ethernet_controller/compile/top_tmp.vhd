@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\top_tmp.vhd
--- Generated   : Wed Nov 11 14:46:26 2015
+-- Generated   : Fri Nov 13 09:29:52 2015
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/top_tmp.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -38,9 +38,10 @@ component ethernet_interface
        b_data : in STD_LOGIC_VECTOR(63 downto 0);
        b_data_we : in STD_LOGIC;
        b_force_packet : in STD_LOGIC;
-       gec_user_dest_addrs : in STD_LOGIC_VECTOR(7 downto 0);
-       gec_user_dest_mac : in STD_LOGIC_VECTOR(47 downto 0);
-       gec_user_dest_port : in STD_LOGIC_VECTOR(15 downto 0);
+       oei_user_addrs : in STD_LOGIC_VECTOR(7 downto 0);
+       oei_user_dest_addrs : in STD_LOGIC_VECTOR(7 downto 0);
+       oei_user_dest_mac : in STD_LOGIC_VECTOR(47 downto 0);
+       oei_user_dest_port : in STD_LOGIC_VECTOR(15 downto 0);
        reset_in : in STD_LOGIC;
        tx_data : in STD_LOGIC_VECTOR(63 downto 0);
        user_ready : in STD_LOGIC;
@@ -49,10 +50,10 @@ component ethernet_interface
        PHY_TX_ER : out STD_LOGIC;
        TX_CLK : out STD_LOGIC;
        b_enable : out STD_LOGIC;
-       gec_user_src_addrs : out STD_LOGIC_VECTOR(7 downto 0);
-       gec_user_src_capture : out STD_LOGIC;
-       gec_user_src_mac : out STD_LOGIC_VECTOR(47 downto 0);
-       gec_user_src_port : out STD_LOGIC_VECTOR(15 downto 0);
+       oei_user_src_addrs : out STD_LOGIC_VECTOR(7 downto 0);
+       oei_user_src_capture : out STD_LOGIC;
+       oei_user_src_mac : out STD_LOGIC_VECTOR(47 downto 0);
+       oei_user_src_port : out STD_LOGIC_VECTOR(15 downto 0);
        reset_out : out STD_LOGIC;
        rx_addr : out STD_LOGIC_VECTOR(63 downto 0);
        rx_data : out STD_LOGIC_VECTOR(63 downto 0);
@@ -137,79 +138,87 @@ U1 : ethernet_interface
        b_data(61) => Dangling_Input_Signal,
        b_data(62) => Dangling_Input_Signal,
        b_data(63) => Dangling_Input_Signal,
-       gec_user_dest_addrs(0) => Dangling_Input_Signal,
-       gec_user_dest_addrs(1) => Dangling_Input_Signal,
-       gec_user_dest_addrs(2) => Dangling_Input_Signal,
-       gec_user_dest_addrs(3) => Dangling_Input_Signal,
-       gec_user_dest_addrs(4) => Dangling_Input_Signal,
-       gec_user_dest_addrs(5) => Dangling_Input_Signal,
-       gec_user_dest_addrs(6) => Dangling_Input_Signal,
-       gec_user_dest_addrs(7) => Dangling_Input_Signal,
-       gec_user_dest_mac(0) => Dangling_Input_Signal,
-       gec_user_dest_mac(1) => Dangling_Input_Signal,
-       gec_user_dest_mac(2) => Dangling_Input_Signal,
-       gec_user_dest_mac(3) => Dangling_Input_Signal,
-       gec_user_dest_mac(4) => Dangling_Input_Signal,
-       gec_user_dest_mac(5) => Dangling_Input_Signal,
-       gec_user_dest_mac(6) => Dangling_Input_Signal,
-       gec_user_dest_mac(7) => Dangling_Input_Signal,
-       gec_user_dest_mac(8) => Dangling_Input_Signal,
-       gec_user_dest_mac(9) => Dangling_Input_Signal,
-       gec_user_dest_mac(10) => Dangling_Input_Signal,
-       gec_user_dest_mac(11) => Dangling_Input_Signal,
-       gec_user_dest_mac(12) => Dangling_Input_Signal,
-       gec_user_dest_mac(13) => Dangling_Input_Signal,
-       gec_user_dest_mac(14) => Dangling_Input_Signal,
-       gec_user_dest_mac(15) => Dangling_Input_Signal,
-       gec_user_dest_mac(16) => Dangling_Input_Signal,
-       gec_user_dest_mac(17) => Dangling_Input_Signal,
-       gec_user_dest_mac(18) => Dangling_Input_Signal,
-       gec_user_dest_mac(19) => Dangling_Input_Signal,
-       gec_user_dest_mac(20) => Dangling_Input_Signal,
-       gec_user_dest_mac(21) => Dangling_Input_Signal,
-       gec_user_dest_mac(22) => Dangling_Input_Signal,
-       gec_user_dest_mac(23) => Dangling_Input_Signal,
-       gec_user_dest_mac(24) => Dangling_Input_Signal,
-       gec_user_dest_mac(25) => Dangling_Input_Signal,
-       gec_user_dest_mac(26) => Dangling_Input_Signal,
-       gec_user_dest_mac(27) => Dangling_Input_Signal,
-       gec_user_dest_mac(28) => Dangling_Input_Signal,
-       gec_user_dest_mac(29) => Dangling_Input_Signal,
-       gec_user_dest_mac(30) => Dangling_Input_Signal,
-       gec_user_dest_mac(31) => Dangling_Input_Signal,
-       gec_user_dest_mac(32) => Dangling_Input_Signal,
-       gec_user_dest_mac(33) => Dangling_Input_Signal,
-       gec_user_dest_mac(34) => Dangling_Input_Signal,
-       gec_user_dest_mac(35) => Dangling_Input_Signal,
-       gec_user_dest_mac(36) => Dangling_Input_Signal,
-       gec_user_dest_mac(37) => Dangling_Input_Signal,
-       gec_user_dest_mac(38) => Dangling_Input_Signal,
-       gec_user_dest_mac(39) => Dangling_Input_Signal,
-       gec_user_dest_mac(40) => Dangling_Input_Signal,
-       gec_user_dest_mac(41) => Dangling_Input_Signal,
-       gec_user_dest_mac(42) => Dangling_Input_Signal,
-       gec_user_dest_mac(43) => Dangling_Input_Signal,
-       gec_user_dest_mac(44) => Dangling_Input_Signal,
-       gec_user_dest_mac(45) => Dangling_Input_Signal,
-       gec_user_dest_mac(46) => Dangling_Input_Signal,
-       gec_user_dest_mac(47) => Dangling_Input_Signal,
-       gec_user_dest_port(0) => Dangling_Input_Signal,
-       gec_user_dest_port(1) => Dangling_Input_Signal,
-       gec_user_dest_port(2) => Dangling_Input_Signal,
-       gec_user_dest_port(3) => Dangling_Input_Signal,
-       gec_user_dest_port(4) => Dangling_Input_Signal,
-       gec_user_dest_port(5) => Dangling_Input_Signal,
-       gec_user_dest_port(6) => Dangling_Input_Signal,
-       gec_user_dest_port(7) => Dangling_Input_Signal,
-       gec_user_dest_port(8) => Dangling_Input_Signal,
-       gec_user_dest_port(9) => Dangling_Input_Signal,
-       gec_user_dest_port(10) => Dangling_Input_Signal,
-       gec_user_dest_port(11) => Dangling_Input_Signal,
-       gec_user_dest_port(12) => Dangling_Input_Signal,
-       gec_user_dest_port(13) => Dangling_Input_Signal,
-       gec_user_dest_port(14) => Dangling_Input_Signal,
-       gec_user_dest_port(15) => Dangling_Input_Signal,
        MASTER_CLK => Dangling_Input_Signal,
+       oei_user_addrs(0) => Dangling_Input_Signal,
+       oei_user_addrs(1) => Dangling_Input_Signal,
+       oei_user_addrs(2) => Dangling_Input_Signal,
+       oei_user_addrs(3) => Dangling_Input_Signal,
+       oei_user_addrs(4) => Dangling_Input_Signal,
+       oei_user_addrs(5) => Dangling_Input_Signal,
+       oei_user_addrs(6) => Dangling_Input_Signal,
+       oei_user_addrs(7) => Dangling_Input_Signal,
+       oei_user_dest_addrs(0) => Dangling_Input_Signal,
+       oei_user_dest_addrs(1) => Dangling_Input_Signal,
+       oei_user_dest_addrs(2) => Dangling_Input_Signal,
+       oei_user_dest_addrs(3) => Dangling_Input_Signal,
+       oei_user_dest_addrs(4) => Dangling_Input_Signal,
+       oei_user_dest_addrs(5) => Dangling_Input_Signal,
+       oei_user_dest_addrs(6) => Dangling_Input_Signal,
+       oei_user_dest_addrs(7) => Dangling_Input_Signal,
+       oei_user_dest_mac(0) => Dangling_Input_Signal,
+       oei_user_dest_mac(1) => Dangling_Input_Signal,
+       oei_user_dest_mac(2) => Dangling_Input_Signal,
+       oei_user_dest_mac(3) => Dangling_Input_Signal,
+       oei_user_dest_mac(4) => Dangling_Input_Signal,
+       oei_user_dest_mac(5) => Dangling_Input_Signal,
+       oei_user_dest_mac(6) => Dangling_Input_Signal,
+       oei_user_dest_mac(7) => Dangling_Input_Signal,
+       oei_user_dest_mac(8) => Dangling_Input_Signal,
+       oei_user_dest_mac(9) => Dangling_Input_Signal,
+       oei_user_dest_mac(10) => Dangling_Input_Signal,
+       oei_user_dest_mac(11) => Dangling_Input_Signal,
+       oei_user_dest_mac(12) => Dangling_Input_Signal,
+       oei_user_dest_mac(13) => Dangling_Input_Signal,
+       oei_user_dest_mac(14) => Dangling_Input_Signal,
+       oei_user_dest_mac(15) => Dangling_Input_Signal,
+       oei_user_dest_mac(16) => Dangling_Input_Signal,
+       oei_user_dest_mac(17) => Dangling_Input_Signal,
+       oei_user_dest_mac(18) => Dangling_Input_Signal,
+       oei_user_dest_mac(19) => Dangling_Input_Signal,
+       oei_user_dest_mac(20) => Dangling_Input_Signal,
+       oei_user_dest_mac(21) => Dangling_Input_Signal,
+       oei_user_dest_mac(22) => Dangling_Input_Signal,
+       oei_user_dest_mac(23) => Dangling_Input_Signal,
+       oei_user_dest_mac(24) => Dangling_Input_Signal,
+       oei_user_dest_mac(25) => Dangling_Input_Signal,
+       oei_user_dest_mac(26) => Dangling_Input_Signal,
+       oei_user_dest_mac(27) => Dangling_Input_Signal,
+       oei_user_dest_mac(28) => Dangling_Input_Signal,
+       oei_user_dest_mac(29) => Dangling_Input_Signal,
+       oei_user_dest_mac(30) => Dangling_Input_Signal,
+       oei_user_dest_mac(31) => Dangling_Input_Signal,
+       oei_user_dest_mac(32) => Dangling_Input_Signal,
+       oei_user_dest_mac(33) => Dangling_Input_Signal,
+       oei_user_dest_mac(34) => Dangling_Input_Signal,
+       oei_user_dest_mac(35) => Dangling_Input_Signal,
+       oei_user_dest_mac(36) => Dangling_Input_Signal,
+       oei_user_dest_mac(37) => Dangling_Input_Signal,
+       oei_user_dest_mac(38) => Dangling_Input_Signal,
+       oei_user_dest_mac(39) => Dangling_Input_Signal,
+       oei_user_dest_mac(40) => Dangling_Input_Signal,
+       oei_user_dest_mac(41) => Dangling_Input_Signal,
+       oei_user_dest_mac(42) => Dangling_Input_Signal,
+       oei_user_dest_mac(43) => Dangling_Input_Signal,
+       oei_user_dest_mac(44) => Dangling_Input_Signal,
+       oei_user_dest_mac(45) => Dangling_Input_Signal,
+       oei_user_dest_mac(46) => Dangling_Input_Signal,
+       oei_user_dest_mac(47) => Dangling_Input_Signal,
+       oei_user_dest_port(0) => Dangling_Input_Signal,
+       oei_user_dest_port(1) => Dangling_Input_Signal,
+       oei_user_dest_port(2) => Dangling_Input_Signal,
+       oei_user_dest_port(3) => Dangling_Input_Signal,
+       oei_user_dest_port(4) => Dangling_Input_Signal,
+       oei_user_dest_port(5) => Dangling_Input_Signal,
+       oei_user_dest_port(6) => Dangling_Input_Signal,
+       oei_user_dest_port(7) => Dangling_Input_Signal,
+       oei_user_dest_port(8) => Dangling_Input_Signal,
+       oei_user_dest_port(9) => Dangling_Input_Signal,
+       oei_user_dest_port(10) => Dangling_Input_Signal,
+       oei_user_dest_port(11) => Dangling_Input_Signal,
+       oei_user_dest_port(12) => Dangling_Input_Signal,
+       oei_user_dest_port(13) => Dangling_Input_Signal,
+       oei_user_dest_port(14) => Dangling_Input_Signal,
+       oei_user_dest_port(15) => Dangling_Input_Signal,
        PHY_RXD(0) => Dangling_Input_Signal,
        PHY_RXD(1) => Dangling_Input_Signal,
        PHY_RXD(2) => Dangling_Input_Signal,

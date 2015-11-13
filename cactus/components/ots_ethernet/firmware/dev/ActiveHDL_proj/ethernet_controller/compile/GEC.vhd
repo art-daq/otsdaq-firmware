@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\GEC.vhd
--- Generated   : Wed Nov 11 09:28:30 2015
+-- Generated   : Thu Nov 12 10:33:07 2015
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/GEC.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -22,7 +22,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 
-entity GEC is
+entity gec is
   port(
        GMII_RX_CLK : in STD_LOGIC;
        GMII_RX_DV : in STD_LOGIC;
@@ -30,6 +30,7 @@ entity GEC is
        reset : in STD_LOGIC;
        user_trigger : in STD_LOGIC;
        GMII_RXD : in STD_LOGIC_VECTOR(7 downto 0);
+       user_addrs : in STD_LOGIC_VECTOR(7 downto 0);
        user_dest_addrs : in STD_LOGIC_VECTOR(7 downto 0);
        user_dest_mac : in STD_LOGIC_VECTOR(47 downto 0);
        user_dest_port : in STD_LOGIC_VECTOR(15 downto 0);
@@ -52,9 +53,9 @@ entity GEC is
        user_src_mac : out STD_LOGIC_VECTOR(47 downto 0);
        user_src_port : out STD_LOGIC_VECTOR(15 downto 0)
   );
-end GEC;
+end gec;
 
-architecture GEC of GEC is
+architecture arch of gec is
 
 ---- Component declarations -----
 
@@ -73,53 +74,13 @@ component CRC_splice
        txd : out STD_LOGIC_VECTOR(7 downto 0)
   );
 end component;
-component LOGIC_RGMII_handler
-  port (
-       clk : in STD_LOGIC;
-       reset : in STD_LOGIC;
-       rx_data : in STD_LOGIC_VECTOR(7 downto 0);
-       rx_dv : in STD_LOGIC;
-       rx_er : in STD_LOGIC;
-       tx_data : in STD_LOGIC_VECTOR(7 downto 0);
-       tx_dv : in STD_LOGIC;
-       tx_er : in STD_LOGIC;
-       rx_data_handled : out STD_LOGIC_VECTOR(7 downto 0);
-       rx_dv_handled : out STD_LOGIC;
-       rx_er_handled : out STD_LOGIC;
-       tx_data_handled : out STD_LOGIC_VECTOR(7 downto 0);
-       tx_dv_handled : out STD_LOGIC;
-       tx_er_handled : out STD_LOGIC
-  );
-end component;
-component \CRC_chk\
-  port (
-       CRC_chk_en : in STD_LOGIC;
-       CRC_data : in STD_LOGIC_VECTOR(7 downto 0);
-       CRC_en : in STD_LOGIC;
-       CRC_init : in STD_LOGIC;
-       Clk : in STD_LOGIC;
-       Reset : in STD_LOGIC;
-       CRC_err : out STD_LOGIC
-  );
-end component;
-component \CRC_gen\
-  port (
-       CRC_rd : in STD_LOGIC;
-       Clk : in STD_LOGIC;
-       Data_en : in STD_LOGIC;
-       Frame_data : in STD_LOGIC_VECTOR(7 downto 0);
-       Init : in STD_LOGIC;
-       Reset : in STD_LOGIC;
-       CRC_end : out STD_LOGIC;
-       CRC_out : out STD_LOGIC_VECTOR(7 downto 0)
-  );
-end component;
 component DIG_GEC
   port (
        GMII_RXD : in STD_LOGIC_VECTOR(7 downto 0);
        GMII_RX_CLK : in STD_LOGIC;
        GMII_RX_DV : in STD_LOGIC;
        GMII_RX_ER : in STD_LOGIC;
+       addrs : in STD_LOGIC_VECTOR(7 downto 0);
        dest_addrs : in STD_LOGIC_VECTOR(7 downto 0);
        dest_mac : in STD_LOGIC_VECTOR(47 downto 0);
        dest_port : in STD_LOGIC_VECTOR(15 downto 0);
@@ -151,6 +112,47 @@ component DIG_GEC
        user_rx_valid_out : out STD_LOGIC
   );
 end component;
+component LOGIC_RGMII_handler
+  port (
+       clk : in STD_LOGIC;
+       reset : in STD_LOGIC;
+       rx_data : in STD_LOGIC_VECTOR(7 downto 0);
+       rx_dv : in STD_LOGIC;
+       rx_er : in STD_LOGIC;
+       tx_data : in STD_LOGIC_VECTOR(7 downto 0);
+       tx_dv : in STD_LOGIC;
+       tx_er : in STD_LOGIC;
+       rx_data_handled : out STD_LOGIC_VECTOR(7 downto 0);
+       rx_dv_handled : out STD_LOGIC;
+       rx_er_handled : out STD_LOGIC;
+       tx_data_handled : out STD_LOGIC_VECTOR(7 downto 0);
+       tx_dv_handled : out STD_LOGIC;
+       tx_er_handled : out STD_LOGIC
+  );
+end component;
+component crc_chk
+  port (
+       CRC_chk_en : in STD_LOGIC;
+       CRC_data : in STD_LOGIC_VECTOR(7 downto 0);
+       CRC_en : in STD_LOGIC;
+       CRC_init : in STD_LOGIC;
+       Clk : in STD_LOGIC;
+       Reset : in STD_LOGIC;
+       CRC_err : out STD_LOGIC
+  );
+end component;
+component crc_gen
+  port (
+       CRC_rd : in STD_LOGIC;
+       Clk : in STD_LOGIC;
+       Data_en : in STD_LOGIC;
+       Frame_data : in STD_LOGIC_VECTOR(7 downto 0);
+       Init : in STD_LOGIC;
+       Reset : in STD_LOGIC;
+       CRC_end : out STD_LOGIC;
+       CRC_out : out STD_LOGIC_VECTOR(7 downto 0)
+  );
+end component;
 
 ---- Signal declarations used on the diagram ----
 
@@ -176,6 +178,7 @@ signal GMII_RXD_sig : STD_LOGIC_VECTOR(7 downto 0);
 signal rx_data_handled : STD_LOGIC_VECTOR(7 downto 0);
 signal txd : STD_LOGIC_VECTOR(7 downto 0);
 signal txd_out : STD_LOGIC_VECTOR(7 downto 0);
+signal user_oei_addrs : STD_LOGIC_VECTOR(7 downto 0);
 
 begin
 
@@ -191,6 +194,7 @@ DIG_GEC_Block : DIG_GEC
        GMII_TXD => txd,
        GMII_TX_EN => tx_dv,
        GMII_TX_ER => tx_er,
+       addrs => user_oei_addrs,
        busy => user_busy,
        crc_chk_din => crc_chk_din,
        crc_chk_en => crc_chk_en,
@@ -240,7 +244,7 @@ crc_gen_en_masked <= crc_gen_en and crc_mask;
 
 crc_gen_rd_masked <= crc_gen_rd and crc_mask;
 
-crcChk : \CRC_chk\
+crcChk : crc_chk
   port map(
        CRC_chk_en => crc_chk_rd,
        CRC_data => crc_chk_din,
@@ -251,7 +255,7 @@ crcChk : \CRC_chk\
        Reset => reset
   );
 
-crcGen : \CRC_gen\
+crcGen : crc_gen
   port map(
        CRC_out => crc_gen_out,
        CRC_rd => crc_gen_rd_masked,
@@ -282,9 +286,10 @@ crcSplice : CRC_splice
 
     -- Inputs terminals
 	GMII_RXD_sig <= GMII_RXD;
+	user_oei_addrs <= user_addrs;
 
     -- Output\buffer terminals
 	four_bit_mode_out <= four_bit_mode;
 
 
-end GEC;
+end arch;

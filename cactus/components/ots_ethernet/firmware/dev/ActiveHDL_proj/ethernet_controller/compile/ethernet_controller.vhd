@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\DIG_GEC.vhd
--- Generated   : Wed Nov 11 09:29:52 2015
--- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/DIG_GEC.bde
+-- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\ethernet_controller.vhd
+-- Generated   : Fri Nov 13 09:01:47 2015
+-- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -22,7 +22,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 
-entity DIG_GEC is
+entity ethernet_controller is
   port(
        GMII_RX_CLK : in STD_LOGIC;
        GMII_RX_DV : in STD_LOGIC;
@@ -30,6 +30,7 @@ entity DIG_GEC is
        reset : in STD_LOGIC;
        trigger : in STD_LOGIC;
        GMII_RXD : in STD_LOGIC_VECTOR(7 downto 0);
+       addrs : in STD_LOGIC_VECTOR(7 downto 0);
        dest_addrs : in STD_LOGIC_VECTOR(7 downto 0);
        dest_mac : in STD_LOGIC_VECTOR(47 downto 0);
        dest_port : in STD_LOGIC_VECTOR(15 downto 0);
@@ -58,21 +59,22 @@ entity DIG_GEC is
        udp_dest_port : out STD_LOGIC_VECTOR(15 downto 0);
        user_rx_data_out : out STD_LOGIC_VECTOR(7 downto 0)
   );
-end DIG_GEC;
+end ethernet_controller;
 
-architecture DIG_GEC of DIG_GEC is
+architecture arch of ethernet_controller is
 
 ---- Component declarations -----
 
-component gei_address_container
+component address_container
   port (
        addr_in : in STD_LOGIC_VECTOR(7 downto 0);
        capture : in STD_LOGIC;
        clk : in STD_LOGIC;
        reset : in STD_LOGIC;
+       user_addr_in : in STD_LOGIC_VECTOR(7 downto 0);
+       addr : out STD_LOGIC_VECTOR(7 downto 0);
        arp_announce_strobe : out STD_LOGIC;
-       gei_addr : out STD_LOGIC_VECTOR(7 downto 0);
-       gei_protocol_ping_strobe : out STD_LOGIC
+       protocol_ping_strobe : out STD_LOGIC
   );
 end component;
 component icmp_ping_checksum_calc
@@ -280,10 +282,10 @@ signal decipher_clken : STD_LOGIC;
 signal dec_chk_rd_sig : STD_LOGIC;
 signal en_tx_data_sig : STD_LOGIC;
 signal four_bit_mode : STD_LOGIC;
-signal gei_protocol_ping_strobe : STD_LOGIC;
 signal is_arp_packet_sig : STD_LOGIC;
 signal is_icmp_packet_sig : STD_LOGIC;
 signal is_ip_packet_sig : STD_LOGIC;
+signal oei_protocol_ping_strobe : STD_LOGIC;
 signal rx_dv : STD_LOGIC;
 signal rx_er : STD_LOGIC;
 signal sel_udp : STD_LOGIC;
@@ -317,11 +319,24 @@ signal udp_gen_data : STD_LOGIC_VECTOR(7 downto 0);
 signal udp_src_ip : STD_LOGIC_VECTOR(31 downto 0);
 signal udp_src_port : STD_LOGIC_VECTOR(15 downto 0);
 signal udp_tx_length : STD_LOGIC_VECTOR(10 downto 0);
+signal user_addr_in : STD_LOGIC_VECTOR(7 downto 0);
 signal user_tx_size_in_latched : STD_LOGIC_VECTOR(10 downto 0);
 
 begin
 
 ----  Component instantiations  ----
+
+AddressContainer : address_container
+  port map(
+       addr => addrs_sig,
+       addr_in => decipher_dout,
+       arp_announce_strobe => arp_announce_strobe,
+       capture => capture_addrs,
+       clk => clk,
+       protocol_ping_strobe => oei_protocol_ping_strobe,
+       reset => reset,
+       user_addr_in => user_addr_in
+  );
 
 ArpReplyBlock : arp_reply
   port map(
@@ -392,7 +407,7 @@ CreatePacketBlock : create_packet
        icmp_mac => frame_src_mac,
        icmp_ping => is_icmp_packet_sig,
        length_count_out => user_tx_size_in_latched,
-       ping => gei_protocol_ping_strobe,
+       ping => oei_protocol_ping_strobe,
        reset => reset,
        trigger => trigger_sig,
        tx_en => udp_tx_en,
@@ -478,7 +493,7 @@ ICMPPingShiftRegBlock : icmp_ping_shift_reg
        us_clken => decipher_clken
   );
 
-trigger_sig <= trigger or gei_protocol_ping_strobe or is_icmp_packet_sig;
+trigger_sig <= trigger or oei_protocol_ping_strobe or is_icmp_packet_sig;
 
 crc_chk_rd_sig <= is_ip_packet_sig and dec_chk_rd_sig;
 
@@ -512,17 +527,6 @@ UdpLengthMux : user_addrs_mux
        user_length => user_tx_size_in
   );
 
-geiAddressContainer : gei_address_container
-  port map(
-       addr_in => decipher_dout,
-       arp_announce_strobe => arp_announce_strobe,
-       capture => capture_addrs,
-       clk => clk,
-       gei_addr => addrs_sig,
-       gei_protocol_ping_strobe => gei_protocol_ping_strobe,
-       reset => reset
-  );
-
 
 ---- Terminal assignment ----
 
@@ -531,6 +535,7 @@ geiAddressContainer : gei_address_container
 	clk <= GMII_RX_CLK;
 	rx_dv <= GMII_RX_DV;
 	rx_er <= GMII_RX_ER;
+	user_addr_in <= addrs;
 
     -- Output\buffer terminals
 	GMII_GTX_CLK <= clk;
@@ -555,10 +560,10 @@ geiAddressContainer : gei_address_container
 	src_addrs(5) <= udp_src_ip(5);
 	src_addrs(6) <= udp_src_ip(6);
 	src_addrs(7) <= udp_src_ip(7);
-	src_capture <= gei_protocol_ping_strobe;
+	src_capture <= oei_protocol_ping_strobe;
 	src_mac <= frame_src_mac;
 	src_port <= udp_src_port;
 	udp_data_count <= ip_data_count_sig;
 
 
-end DIG_GEC;
+end arch;
