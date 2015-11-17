@@ -61,8 +61,9 @@ begin
 				if (addr_in /= x"00" and addr_in /= x"FF") then		 --and not illegal addr
 					addr_sig <= addr_in;			-- take "CAPTAN Ping" addr	
 					arp_announce_strobe <= '1';
-				else   					-- illegal address is used as "CAPTAN ping"	
-					protocol_ping_strobe <= '1';					
+				elsif (addr_in = x"00") then		-- 0s is used as "CAPTAN ping"	
+					protocol_ping_strobe <= '1';									
+				--else (addr_in = x"FF")			-- 1s is used as "CAPTAN no-op"	
 				end if;
 			else
 				addr_sig <= addr_sig;		-- give explicit registering behavior (Vivado seems to not be sure?)

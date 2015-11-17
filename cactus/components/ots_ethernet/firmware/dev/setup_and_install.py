@@ -66,7 +66,7 @@ dest = scriptDir + "/../hdl" #default destination path
 if (args.dest): #if option used, then use args.dest
     dest = args.dest
 
-print 'Desitnation directory is:'
+print 'Destination directory is:'
 print  dest
 print
 print
