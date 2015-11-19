@@ -17,6 +17,7 @@ component ram_comm_dec
 		clear_crc_err_flag: out STD_LOGIC;
 		ram_addr: out STD_LOGIC_VECTOR (63 downto 0);
 		ram_rden: out STD_LOGIC;
+		ram_wdata: out STD_LOGIC_VECTOR (63 downto 0);
 		ram_wren: out STD_LOGIC;
 		rx_data_fifo_rden: out STD_LOGIC;
 		Rx_FIFO_Reset: out STD_LOGIC;
@@ -39,6 +40,7 @@ instance_name : ram_comm_dec
  crc_err_flag => ,
  ram_addr => ,
  ram_rden => ,
+ ram_wdata => ,
  ram_wren => ,
  reset => ,
  rx_data_fifo_full => ,

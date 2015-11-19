@@ -10,7 +10,9 @@ entity reg_fifo is
 	generic (
 		width : integer:=16;
 		depth : integer:=64;
-		addr : integer:=6);
+		addr : integer:=6;
+		read_latency : unsigned(0 downto 0):= "1"  -- number of clocks after read enable that data is ready (0 or 1)
+		);
 	port (
 		DATA : in std_logic_vector (width-1 downto 0);	 
 		Q : out std_logic_vector (width-1 downto 0);
@@ -33,7 +35,7 @@ architecture behavioral of reg_fifo is
 	signal RAddress : std_logic_vector (addr-1 downto 0) := (others =>'0'); 
 	signal words : std_logic_vector (addr-1 downto 0); 
 	signal empty_sig : std_logic := '1'; 				
-	signal lastQ : std_logic_vector (width-1 downto 0); 
+	signal lastQ : std_logic_vector (width-1 downto 0); 			   
 begin		
 	EMPTY <= empty_sig;
 					
@@ -84,25 +86,23 @@ begin
 	end process;
 	
 	READ_RAM : process (RAddress,ramTmp,RE,RCLOCK)
-	begin						
-		if(RE = '1') then
-			Q <= ramTmp(conv_integer(RAddress));
-		--	lastQ <= ramTmp(conv_integer(RAddress));
-		else
-			Q <= lastQ;--(others => 'U');
-		end if;				  
+	begin						 
+		if (read_latency = 0) then	   	--data ready 0 clocks after read enable
+			if(RE = '1') then
+				Q <= ramTmp(conv_integer(RAddress));
+			--	lastQ <= ramTmp(conv_integer(RAddress));
+			else
+				Q <= lastQ;--(others => 'U');
+			end if;		  						  
+		else							--data ready 1 clocks after read enable
+			Q <= lastQ;	   
+		end if;
+		
 		
 		if (rising_edge(RCLOCK)) and RE='1' then 	  
 			lastQ <= ramTmp(conv_integer(RAddress));
-		end if;
-			
-		--if (RESET = '1') then
---			Q <= (others => '0');
---		elsif (RCLOCK'event and RCLOCK = '1') then
---			if (RE = '1') then
---				Q <= ramTmp(conv_integer(RAddress+1));
---			end if;
---		end if;
+		end if;	
+			  
 	end process;		  
 	
 	

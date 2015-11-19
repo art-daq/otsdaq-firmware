@@ -16,7 +16,7 @@
 -------------------------------------------------------------------------------
 -- Design unit header --
 
-library ieee;
+library ieee;								  
 use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.ALL;	  
 
@@ -91,7 +91,8 @@ architecture BEHAVIORAL of ethernet_interface is
 	signal user_dest_port    		: std_logic_vector (15 downto 0); 	
 	signal user_tx_rden			   	: std_logic;						
 	signal user_ready		   		: std_logic; 						
-	signal user_b_force_packet	   	: std_logic;						
+	signal user_b_force_packet	   	: std_logic;  						
+	signal crc_chk_out	   			: std_logic;						
   	 											  								     
 begin										 
 	
@@ -108,7 +109,8 @@ begin
                 user_trigger=>user_trigger,
                 user_tx_data_in(7 downto 0)=>user_tx_data_in(7 downto 0),
                 user_tx_size_in(10 downto 0)=>user_tx_size_in(10 downto 0),
-                crc_err=>user_crc_err,
+                crc_err=>user_crc_err,	
+				crc_chk_out=>crc_chk_out,
                 four_bit_mode_out=>four_bit_mode,
                 GMII_TXD(7 downto 0)=>PHY_TXD(7 downto 0),
                 GMII_TX_EN=>PHY_TX_EN,
@@ -131,7 +133,8 @@ begin
                 b_end_packet=>b_end_packet,
                 four_bit_mode=>four_bit_mode,
                 user_busy=>user_busy,
-                user_crc_err=>user_crc_err,
+                user_crc_err=>user_crc_err,	
+				user_crc_chk=>crc_chk_out,
                 user_rx_data_out(7 downto 0)=>user_rx_data_out(7 downto 0),
                 user_rx_size_out(10 downto 0)=>user_rx_size_out(10 downto 0),
                 user_rx_valid_out=>user_rx_valid_out,

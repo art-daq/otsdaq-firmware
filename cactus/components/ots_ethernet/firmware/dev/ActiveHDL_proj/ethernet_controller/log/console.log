@@ -1,39 +1,50 @@
 # ELBREAD: Elaboration process.
-# ELBREAD: Warning: The contents of module 'crc_gen' instantiated in architecture 'arch' differ from the contents available during the compilation of this architecture.
 # ELBREAD: Warning: The contents of module 'crc_chk' instantiated in architecture 'arch' differ from the contents available during the compilation of this architecture.
-# ELBREAD: Elaboration time 1.0 [s].
-acom -O3 -work ethernet_controller -2002  $dsn/src/address_container.vhd
+# ELBREAD: Warning: The contents of module 'crc_gen' instantiated in architecture 'arch' differ from the contents available during the compilation of this architecture.
+# ELBREAD: Elaboration time 0.0 [s].
+acom -O3 -work ethernet_controller -2002  $dsn/src/inferredFifo.vhd
 # Compile...
 # Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
-# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\address_container.vhd
-# Compile Entity "address_container"
-# Compile Architecture "arch" of Entity "address_container"
-# Error: COMP96_0019: address_container.vhd : (65, 6): Keyword 'then' expected.
-# Error: COMP96_0019: address_container.vhd : (72, 7): Keyword 'process' expected.
-# Error: COMP96_0015: address_container.vhd : (74, 6): ';' expected.
-# Error: COMP96_0016: address_container.vhd : (74, 13): Design unit declaration expected.
-# Compile failure 4 Errors 0 Warnings  Analysis time :  15.0 [ms]
-acom -O3 -work ethernet_controller -2002  $dsn/src/address_container.vhd
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\inferredFifo.vhd
+# Compile Entity "reg_fifo"
+# Error: COMP96_0018: inferredFifo.vhd : (15, 3): Identifier expected.
+# Compile Architecture "behavioral" of Entity "reg_fifo"
+# Error: COMP96_0078: inferredFifo.vhd : (39, 53): Unknown identifier "read_latency".
+# Error: COMP96_0133: inferredFifo.vhd : (39, 53): Cannot find object declaration.
+# Error: COMP96_0077: inferredFifo.vhd : (39, 53): Undefined type of expression. Expected type 'UNSIGNED'.
+# Compile failure 4 Errors 0 Warnings  Analysis time :  31.0 [ms]
+acom -O3 -work ethernet_controller -2002  $dsn/src/inferredFifo.vhd
 # Compile...
 # Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
-# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\address_container.vhd
-# Compile Entity "address_container"
-# Compile Architecture "arch" of Entity "address_container"
-# Compile success 0 Errors 0 Warnings  Analysis time :  47.0 [ms]
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\inferredFifo.vhd
+# Compile Entity "reg_fifo"
+# Compile Architecture "behavioral" of Entity "reg_fifo"
+# Error: COMP96_0617: inferredFifo.vhd : (39, 53): Assignment target incompatible with right side. Cannot convert 'INTEGER' to 'UNSIGNED'.
+# Compile failure 1 Errors 0 Warnings  Analysis time :  31.0 [ms]
+acom -O3 -work ethernet_controller -2002  $dsn/src/inferredFifo.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\inferredFifo.vhd
+# Compile Entity "reg_fifo"
+# Error: COMP96_0077: inferredFifo.vhd : (14, 40): Undefined type of expression. Expected type 'UNSIGNED'.
+# Compile Architecture "behavioral" of Entity "reg_fifo"
+# Compile failure 1 Errors 0 Warnings  Analysis time :  32.0 [ms]
+acom -O3 -work ethernet_controller -2002  $dsn/src/inferredFifo.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\inferredFifo.vhd
+# Compile Entity "reg_fifo"
+# Compile Architecture "behavioral" of Entity "reg_fifo"
+# Compile success 0 Errors 0 Warnings  Analysis time :  31.0 [ms]
+acom -O3 -work ethernet_controller -2002  $dsn/src/inferredFifo.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\inferredFifo.vhd
+# Compile Entity "reg_fifo"
+# Compile Architecture "behavioral" of Entity "reg_fifo"
+# Compile success 0 Errors 0 Warnings  Analysis time :  31.0 [ms]
 acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/XILINX_7SERIES_RGMII_xmii_handler.vhd $dsn/src/MII_100_1000_xmii_handler.vhd $dsn/src/LOGIC_RGMII_xmii_handler.vhd $dsn/src/reset_mgr.vhd $dsn/src/user_addrs_mux.vhd $dsn/src/udp_data_splicer.vhd $dsn/src/or33.vhd $dsn/src/params_package.vhd $dsn/src/icmp_ping_shift_reg.vhd $dsn/src/inferredFifo.vhd $dsn/src/filter_data_out.vhd $dsn/src/ip_checksum_calc.asf $dsn/src/crc_splice.vhd $dsn/src/dataout_mux.vhd $dsn/src/dest_info_container.vhd $dsn/src/burst_controller_sm.vhd $dsn/src/decipherer.asf $dsn/src/icmp_ping_checksum_calc.asf $dsn/src/arp_reply.asf $dsn/src/create_packet.asf $dsn/src/delay_counter.asf $dsn/src/ram_comm_dec.asf $dsn/src/rx_ctl.asf $dsn/src/address_container.vhd $dsn/src/burst_traffic_controller.vhd $dsn/src/tx_seq_ctl.asf $dsn/src/data_manager.vhd $dsn/src/ethernet_controller.bde $dsn/src/ethernet_controller_wrapper.vhd $dsn/src/ethernet_interface.vhd
 # Compile with File Reorder...
-# Loading State Diagram data...
-# Generating d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd from d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
-# Synthesis attributes will be generated for Synopsys FPGA Express
-# Warning: FSM2HDL_4028 decipherer.asf : Attribute ENUM_ENCODING is not supported for Symbolic encoding.
-# Generating interface file...
-# HDL code generation completed. 0 error(s), 1 warning(s)
-# Double-click on error/warning line to see the source of error/warning.
-# Loading State Diagram data...
-# Generating d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\ram_comm_dec.vhd from d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/ram_comm_dec.asf
-# Synthesis attributes will be generated for Synopsys FPGA Express
-# Generating interface file...
-# HDL code generation successful. 0 error(s), 0 warning(s)
 # Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
 # File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\XILINX_7SERIES_RGMII_xmii_handler.vhd
 # Compile Entity "XILINX_7SERIES_RGMII_handler"
@@ -112,4 +123,44 @@ acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/XILINX_7SERIES_RGMII
 # Compile Architecture "burst_traffic_controller_arch" of Entity "burst_traffic_controller"
 # File: .\tx_seq_ctl.vhd
 # Compile Entity "tx_seq_ctl"
-# Compile Architecture "arch" of Entity "tx_seq_
+# Compile Architecture "arch" of Entity "tx_seq_ctl"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\data_manager.vhd
+# Compile Entity "data_manager"
+# Compile Architecture "BEHAVIORAL" of Entity "data_manager"
+# File: .\..\compile\ethernet_controller.vhd
+# Compile Entity "ethernet_controller"
+# Compile Architecture "arch" of Entity "ethernet_controller"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\ethernet_controller_wrapper.vhd
+# Compile Entity "ethernet_controller_wrapper"
+# Compile Architecture "arch" of Entity "ethernet_controller_wrapper"
+# File: d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\src\ethernet_interface.vhd
+# Compile Entity "ethernet_interface"
+# Compile Architecture "BEHAVIORAL" of Entity "ethernet_interface"
+# Top-level unit(s) detected:
+# Entity => MII_100_1000_handler
+# Entity => XILINX_7SERIES_RGMII_handler
+# Entity => ethernet_interface
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.9 [s]
+alog -O2 -sve   -work ethernet_controller $dsn/src/crc_chk.v $dsn/src/crc_gen.v
+# Warning: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# Compile...
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: crc_chk crc_gen.
+# $root top modules: crc_chk crc_gen.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+acom -reorder -O3 -work ethernet_controller -2002  $dsn/src/top_tmp.bde
+# Compile with File Reorder...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: .\..\compile\top_tmp.vhd
+# Compile Entity "top_tmp"
+# Compile Architecture "top_tmp" of Entity "top_tmp"
+# Top-level unit(s) detected:
+# Entity => top_tmp
+# Compile success 0 Errors 0 Warnings  Analysis time :  31.0 [ms]

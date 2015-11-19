@@ -15,8 +15,10 @@
 --
 -------------------------------------------------------------------------------
 -- Design unit header --
-library IEEE;
-use IEEE.std_logic_1164.all;
+library IEEE;					  					
+use ieee.std_logic_1164.ALL;
+use ieee.numeric_std.ALL;	 
+
 
 
 entity ethernet_controller_wrapper is
@@ -35,8 +37,9 @@ entity ethernet_controller_wrapper is
        user_tx_size_in : in STD_LOGIC_VECTOR(10 downto 0);
        GMII_TX_EN : out STD_LOGIC;
        GMII_TX_ER : out STD_LOGIC;
-       GTX_CLK : out STD_LOGIC;
+       GTX_CLK : out STD_LOGIC;	 
        crc_err : out STD_LOGIC;
+       crc_chk_out : out STD_LOGIC;
        four_bit_mode_out : out STD_LOGIC;
        user_busy : out STD_LOGIC;
        user_rx_valid_out : out STD_LOGIC;
@@ -148,7 +151,7 @@ begin
 	       user_tx_size_in => user_tx_size_in
 	  );
 	
-	xgmii : entity work.XILINX_7SERIES_RGMII_handler
+	xgmii : entity work.LOGIC_RGMII_handler
 	  port map(
 	       clk => GMII_RX_CLK,
 	       reset => reset,
@@ -170,6 +173,8 @@ begin
 	
 	crc_gen_rd_masked <= crc_gen_rd and crc_mask;
 	
+	crc_chk_out <= crc_chk_rd; --output moment of checking, so downstream users know when check is complete
+	
 	crcChk : crc_chk --Verilog component
 	  port map(
 	       CRC_chk_en => crc_chk_rd,
@@ -190,8 +195,40 @@ begin
 	       Frame_data => txd,
 	       Init => crc_gen_init,
 	       Reset => reset
-	  );
-	
+	  );		   		 
+	  
+	genDbgCRC:for i in 0 to 0 generate
+		signal tmp_rd_sig: std_logic := '0';
+		signal tmp_cnt : unsigned (1 downto 0) := (others => '0');
+	begin			 
+		
+		process(GMII_RX_CLK)
+		begin
+			if (rising_edge(GMII_RX_CLK)) then	
+				tmp_rd_sig <= '0';
+				if crc_chk_rd = '1' then
+					tmp_rd_sig <= '1';		 
+					tmp_cnt <= "11";
+				elsif tmp_cnt /= 0 then
+					tmp_rd_sig <= '1';	 
+					tmp_cnt <= tmp_cnt - 1;
+				end if;					
+			end if;
+			
+		end process;   
+		
+		crcGenDebug : crc_gen --Verilog component for debuggin
+		port map(
+		   CRC_out => open,
+		   CRC_rd => tmp_rd_sig,
+		   Clk => GMII_RX_CLK,
+		   Data_en => crc_chk_en,
+		   Frame_data => crc_chk_din,
+		   Init => crc_chk_init,
+		   Reset => reset
+		);
+	end generate;
+	 
 	crcSplice : entity work.crc_splice
 	  port map(
 	       clk => GMII_RX_CLK,
@@ -206,7 +243,7 @@ begin
 	       tx_er_in => tx_er,
 	       txd => txd_out
 	  );
-	
+		  
 	
 	---- Terminal assignment ----
 								 						

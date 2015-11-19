@@ -230,42 +230,30 @@ begin
    user_led1: OBUF   -- LED display of RESET
       port map (I=>reset,    O=>PZ_ULED_1);        
       
-   eth_interface : entity work.Ethernet_Interface
+   
+   -- start simple OEI
+  eth_interface : entity work.Ethernet_Interface
       port map (b_data(63 downto 0)=>b_data(63 downto 0),
                 b_data_we=>b_data_we,
-                gec_user_dest_addrs(7 downto 0)=>gec_addrs,
-                gec_user_dest_mac(47 downto 0)=>gec_mac,
-                gec_user_dest_port(15 downto 0)=>gec_port,
-                GMII_RXD(7 downto 0)=>GMII_RXD_0_sig(7 downto 0),
-                GMII_RX_DV=>GMII_RX_DV_0_sig,
-                GMII_RX_ER=>GMII_RX_ER_0_sig,
-                MASTER_CLK=>MASTER_CLK,
-                reset_in=>'0',
+                PHY_RXD(7 downto 0)=>GMII_RXD_0_sig(7 downto 0),
+                PHY_RX_DV=>GMII_RX_DV_0_sig,
+                PHY_RX_ER=>GMII_RX_ER_0_sig,
+                MASTER_CLK=>MASTER_CLK,                
+                reset_in=>reset_btn,
                 reset_out => reset,
-                user_ready => '1',
                 tx_data(63 downto 0)=>tx_data(63 downto 0),
                 b_enable=>open,
-                gec_user_src_addrs=>gec_user_src_addrs,
-                gec_user_src_capture=>gec_user_src_capture,
-                gec_user_src_mac=>gec_user_src_mac,
-                gec_user_src_port=>gec_user_src_port,
-                GTX_CLK=>GTX_CLK_0_sig,
+                TX_CLK=>GTX_CLK_0_sig,
                 PHY_TXD(7 downto 0)=>PHY_TXD_sig(7 downto 0),
                 PHY_TX_EN=>PHY_TXEN_sig,
                 PHY_TX_ER=>PHY_TXER_sig,
                 rx_addr(63 downto 0)=>rx_addr(63 downto 0),
                 rx_data(63 downto 0)=>rx_data(63 downto 0),
                 rx_wren=>rx_wren);
-   
-    process(MASTER_CLK)
-    begin
-        if (rising_edge(MASTER_CLK) and gec_user_src_capture = '1') then
-            gec_addrs <= gec_user_src_addrs;    
-            gec_mac <= gec_user_src_mac;  
-            gec_port <= gec_user_src_port;   
-        end if;   
-    end process;
-       
+                     
+  -- end simple OEI
+  
+     
    
    
    makeSlowClock : for i in 0 to 0 generate

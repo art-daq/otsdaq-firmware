@@ -4,6 +4,7 @@ component rx_ctl
 		clock: in STD_LOGIC;
 		four_bit_mode: in STD_LOGIC;
 		reset: in STD_LOGIC;
+		user_crc_chk: in STD_LOGIC;
 		user_crc_err: in STD_LOGIC;
 		user_rx_data_out: in STD_LOGIC_VECTOR (7 downto 0);
 		user_rx_size_out: in STD_LOGIC_VECTOR (10 downto 0);
@@ -26,6 +27,7 @@ instance_name : rx_ctl
  info_fifo_wr_data => ,
  info_fifo_wren => ,
  reset => ,
+ user_crc_chk => ,
  user_crc_err => ,
  user_rx_data_out => ,
  user_rx_size_out => ,
