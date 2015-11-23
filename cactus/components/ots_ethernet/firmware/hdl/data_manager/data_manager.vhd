@@ -19,7 +19,8 @@ entity data_manager is
           b_end_packet           	: in    std_logic; 
           four_bit_mode          	: in    std_logic; 
           user_busy          		: in    std_logic; 
-          user_crc_err       		: in    std_logic; 
+          user_crc_err       		: in    std_logic; 	  
+		  user_crc_chk				: in    std_logic;
           user_rx_data_out   		: in    std_logic_vector (7 downto 0); 
           user_rx_size_out   		: in    std_logic_vector (10 downto 0); 
           user_rx_valid_out  		: in    std_logic; 
@@ -47,13 +48,13 @@ architecture BEHAVIORAL of data_manager is
    signal crc_err_flag, clear_crc_err_flag     : std_logic;
    signal data_fifo_full                       : std_logic;
    signal data_fifo_rden_en                    : std_logic;
-   signal data_fifo_rd_data                    : std_logic_vector (63 downto 0);
-   signal data_fifo_wren                       : std_logic;
-   signal data_fifo_wr_data                    : std_logic_vector (63 downto 0);
+   signal tx_data_fifo_rd_data                 : std_logic_vector (63 downto 0);
+   signal rx_data_fifo_wren                    : std_logic;
+   signal rx_data_fifo_wr_data                 : std_logic_vector (63 downto 0);
    signal delay_count                          : std_logic;
    signal info_fifo_rd_data                    : std_logic_vector (15 downto 0);
-   signal info_fifo_wren                       : std_logic;
-   signal info_fifo_wr_data                    : std_logic_vector (15 downto 0);
+   signal rx_info_fifo_wren                       : std_logic;
+   signal rx_info_fifo_wr_data                    : std_logic_vector (15 downto 0);
    signal rx_data_fifo_empty                   : std_logic;
    signal rx_data_fifo_read_enable             : std_logic;
    signal rx_fifo_reset                        : std_logic;
@@ -86,9 +87,10 @@ architecture BEHAVIORAL of data_manager is
    signal tx_info_fifo_wren_comm               : std_logic;
    signal tx_info_fifo_wr_en                   : std_logic;	   
    signal rx_data_sig                          : std_logic_vector (63 downto 0);	  	
-   
+   																				 														  
    signal tx_data_reg			               : std_logic_vector (63 downto 0); 
- 				  
+   signal rx_data_fifo_rd_data	               : std_logic_vector (63 downto 0); 
+ 				  											   
    
        component DATA_FIFO_0
        port ( clk   : in    std_logic; 
@@ -173,19 +175,19 @@ begin
             
        RX_DATA_FIFO : DATA_FIFO_0
           port map (clk=>MASTER_CLK,
-                    din(63 downto 0)=>data_fifo_wr_data(63 downto 0),
+                    din(63 downto 0)=>rx_data_fifo_wr_data(63 downto 0),
                     rd_en=>rx_data_fifo_read_enable,
                     srst=>rx_fifo_reset_sig,
-                    wr_en=>data_fifo_wren,
-                    dout(63 downto 0)=>rx_data_sig(63 downto 0),
+                    wr_en=>rx_data_fifo_wren,
+                    dout(63 downto 0)=>rx_data_fifo_rd_data(63 downto 0),
                     empty=>rx_data_fifo_empty,
                     full=>rx_data_fifo_full);
        RX_INFO_FIFO : INFO_FIFO_0
           port map (clk=>MASTER_CLK,
-                    din(15 downto 0)=>info_fifo_wr_data(15 downto 0),
+                    din(15 downto 0)=>rx_info_fifo_wr_data(15 downto 0),
                     rd_en=>rx_info_fifo_rden,
                     srst=>rx_fifo_reset_sig,
-                    wr_en=>info_fifo_wren,
+                    wr_en=>rx_info_fifo_wren,
                     dout(15 downto 0)=>info_fifo_rd_data(15 downto 0),
                     empty=>rx_info_fifo_empty,
                     full=>rx_info_fifo_full);
@@ -196,7 +198,7 @@ begin
                     rd_en=>tx_data_fifo_read_enable,
                     srst=>tx_fifo_reset_sig,
                     wr_en=>tx_data_fifo_wr_en,
-                    dout(63 downto 0)=>data_fifo_rd_data(63 downto 0),
+                    dout(63 downto 0)=>tx_data_fifo_rd_data(63 downto 0),
                     empty=>tx_data_fifo_empty,
                     full=>tx_data_fifo_full);
 				
@@ -230,17 +232,18 @@ begin
       port map (
                 clock=>MASTER_CLK,				 					   
                 four_bit_mode=>four_bit_mode,
-                user_crc_err=>user_crc_err,
+                user_crc_err=>user_crc_err,	 
+				user_crc_chk=>user_crc_chk,
                 user_rx_data_out(7 downto 0)=>user_rx_data_out(7 downto 0),
                 user_rx_size_out(10 downto 0)=>user_rx_size_out(10 downto 0),
                 user_rx_valid_out=>user_rx_valid_out,
                 reset=>reset,
                 crc_err_flag=>crc_err_flag,	  
                 clear_crc_err_flag=>clear_crc_err_flag,
-                data_fifo_wdata(63 downto 0)=>data_fifo_wr_data(63 downto 0),
-                data_fifo_wren=>data_fifo_wren,
-                info_fifo_wren=>info_fifo_wren,
-                info_fifo_wr_data(15 downto 0)=>info_fifo_wr_data(15 downto 0));
+                data_fifo_wdata(63 downto 0)=>rx_data_fifo_wr_data(63 downto 0),
+                data_fifo_wren=>rx_data_fifo_wren,
+                info_fifo_wren=>rx_info_fifo_wren,
+                info_fifo_wr_data(15 downto 0)=>rx_info_fifo_wr_data(15 downto 0));
 							
 	tx_fifo_reset_sig <=  tx_fifo_reset or reset;
    
@@ -248,7 +251,8 @@ begin
       port map (						   
                 clock=>MASTER_CLK,
                 reset=>reset,
-                rx_data_fifo_rd_data(63 downto 0)=>rx_data_sig(63 downto 0),
+                rx_data_fifo_rd_data(63 downto 0)=>rx_data_fifo_rd_data(63 downto 0),
+				ram_wdata(63 downto 0)=>rx_data_sig(63 downto 0),
                 rx_info_fifo_empty=>rx_info_fifo_empty,							  
 				rx_info_fifo_full=>rx_info_fifo_full,	   
 				rx_data_fifo_full=>rx_data_fifo_full,
@@ -280,7 +284,7 @@ begin
       port map (
                 clk=>MASTER_CLK,
                 data_fifo_empty=>tx_data_fifo_empty,					
-                data_fifo_rd_data(63 downto 0)=>data_fifo_rd_data(63 downto 0),
+                data_fifo_rd_data(63 downto 0)=>tx_data_fifo_rd_data(63 downto 0),
                 delay_count=>delay_count,
                 four_bit_mode=>four_bit_mode,
                 user_busy=>user_busy,

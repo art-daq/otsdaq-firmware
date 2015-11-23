@@ -1,3 +1,12 @@
+--erased --------------------------------------------------------------------------------
+
+--erased -- IMPORTANT!! IMPORTANT!! 				
+--erased -- It's very important to note!!!   	
+--erased -- 										
+--erased -- The script that moves these files into a Firmware project will 		   
+--erased --  remove all "" comments.. 												
+--erased" 
+
 ----------------------------------------------------------------------------------
 -- Company:
 -- Engineer:       Matthew Jones - Purdue University
@@ -46,19 +55,19 @@ end trigproc;
 
 architecture Behavioral of trigproc is
 
-  component chip_fifo
-    port (
-      rst : in std_logic;
-      wr_clk : in std_logic;
-      rd_clk : in std_logic;
-      din : in std_logic_vector(35 downto 0);
-      wr_en : in std_logic;
-      rd_en : in std_logic;
-      dout : out std_logic_vector(35 downto 0);
-      full : out std_logic;
-      empty : out std_logic
-    );
-  end component;
+ component chip_fifo
+   port (
+     rst : in std_logic;
+     wr_clk : in std_logic;
+     rd_clk : in std_logic;
+     din : in std_logic_vector(35 downto 0);
+     wr_en : in std_logic;
+     rd_en : in std_logic;
+     dout : out std_logic_vector(35 downto 0);
+     full : out std_logic;
+     empty : out std_logic
+   );
+ end component;
 
   component trigcounter
     port (
@@ -84,19 +93,38 @@ architecture Behavioral of trigproc is
   signal fifo_output : std_logic_vector(35 downto 0);
 
 begin
+	
+	 					   			
+--erased			   
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+  													
+  
+  
+	
+ fifo_imp : chip_fifo
+ port map (
+   rst => reset,
+   wr_clk => fbcoclk,
+   rd_clk => rdclk,
+   din => trig_fifo_input,
+   wr_en => trig_fifo_we,
+   rd_en => read_enable,
+   full => trig_fifo_full,
+   empty => trig_fifo_empty,
+   dout => fifo_output
+ );
 
-  fifo_imp : chip_fifo
-  port map (
-    rst => reset,
-    wr_clk => fbcoclk,
-    rd_clk => rdclk,
-    din => trig_fifo_input,
-    wr_en => trig_fifo_we,
-    rd_en => read_enable,
-    full => trig_fifo_full,
-    empty => trig_fifo_empty,
-    dout => fifo_output
-  );
 
 	trigcounter_imp : for i in 0 to 0 generate
 		signal tmpcnt : unsigned(39 downto 0) := (others => '0');
@@ -115,6 +143,7 @@ begin
 			end if;			
 		end process;
 	end generate;
+	
 --  trigcounter_imp : trigcounter
 --  port map (
 --    clk => bcoclk,
@@ -122,7 +151,7 @@ begin
 --    sclr => clear,
 --    q => trigger_count
 --  );
-
+--
   process ( fbcoclk, fbco, trig_input ) begin
     if ( fbcoclk'event and fbcoclk = '1' ) then
       if ( trigger_state = '0') then

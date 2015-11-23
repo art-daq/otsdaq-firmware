@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\tx_seq_ctl.vhd
--- Generated   : 11/13/15 15:15:14
+-- Generated   : 11/17/15 16:13:38
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/tx_seq_ctl.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --

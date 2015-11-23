@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\rx_ctl.vhd
--- Generated   : 11/13/15 15:15:12
+-- Generated   : 11/18/15 10:13:43
 -- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/rx_ctl.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -29,6 +29,7 @@ entity rx_ctl is
 		clock: in STD_LOGIC;
 		four_bit_mode: in STD_LOGIC;
 		reset: in STD_LOGIC;
+		user_crc_chk: in STD_LOGIC;
 		user_crc_err: in STD_LOGIC;
 		user_rx_data_out: in STD_LOGIC_VECTOR (7 downto 0);
 		user_rx_size_out: in STD_LOGIC_VECTOR (10 downto 0);
@@ -129,7 +130,7 @@ begin
 				case Sreg0 is
 					when idle =>
 						if user_rx_valid_out = '1' and
-							unsigned(user_rx_size_out) = 1 then
+							unsigned(user_rx_size_out) = 1 then	-- burst start and stop could be 1 user byte..  -- NOTE: this will throw off rx_fifos..  -- because comm_dec expects 10B packets
 							Sreg0 <= insert_crc;
 							info_fifo_wr_data(7 downto 0) <= user_rx_data_out;
 							info_fifo_wr_data(15 downto 8) <= (others => '0');
@@ -144,13 +145,15 @@ begin
 							-- save command code
 						end if;
 					when insert_crc =>
-						Sreg0 <= rcvdone;
+						if user_crc_chk = '1' then	-- it's possible that there was an error in the protocol that was sent.. -- and so must wait for transimission to complete
+							Sreg0 <= rcvdone;
+						end if;
+					when rcvdone =>
+						Sreg0 <= idle;
 						info_fifo_wr_data(7) <= crc_err_reg;
 						-- return the crc error status in info, info complete
 						info_fifo_wren_sig <= '1';
 						-- we actually write the info fifo here.
-					when rcvdone =>
-						Sreg0 <= idle;
 					when S13 =>
 						Sreg0 <= S3_S4;
 						info_fifo_wr_data(15 downto 8) <= user_rx_data_out;
@@ -189,12 +192,7 @@ begin
 						Sreg0 <= S3_S11;
 						data_fifo_wdata_sig <= data_fifo_wdata_sig(55 downto 0) & user_rx_data_out;
 					when S3_S11 =>
-						if (q_w_counter = q_w_count) and (user_rx_valid_out = '0') then
-							Sreg0 <= insert_crc;
-							data_fifo_wren_sig <= '1';
-							-- write the assembled data to the FIFO
-							data_fifo_wdata_sig <= data_fifo_wdata_sig(55 downto 0) & user_rx_data_out;
-						elsif (q_w_counter = q_w_count) and (user_rx_valid_out = '1') then	-- multi-operation packet
+						if (q_w_counter = q_w_count) and (user_rx_valid_out = '1') then	-- multi-operation packet
 							Sreg0 <= idle;
 							data_fifo_wren_sig <= '1';
 							-- write the assembled data to the FIFO
@@ -203,6 +201,11 @@ begin
 							-- return the crc error status in info, info complete
 							info_fifo_wren_sig <= '1';
 							-- we actually write the info fifo here.
+						elsif q_w_counter = q_w_count then
+							Sreg0 <= insert_crc;
+							data_fifo_wren_sig <= '1';
+							-- write the assembled data to the FIFO
+							data_fifo_wdata_sig <= data_fifo_wdata_sig(55 downto 0) & user_rx_data_out;
 						else
 							Sreg0 <= S3_S4;
 							data_fifo_wren_sig <= '1';

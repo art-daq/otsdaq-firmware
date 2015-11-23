@@ -1,3 +1,12 @@
+--erased --------------------------------------------------------------------------------
+
+--erased -- IMPORTANT!! IMPORTANT!! 				
+--erased -- It's very important to note!!!   	
+--erased -- 										
+--erased -- The script that moves these files into a Firmware project will 		   
+--erased --  remove all "" comments.. 												
+--erased" 
+
 --------------------------------------------------------------------------------
 --
 -- Company:
@@ -115,34 +124,73 @@ architecture Behavioral of stripstream is
   SIGNAL CKSUM_CARRY : UNSIGNED(16 DOWNTO 0);
   SIGNAL CKSUM_CARRY_ONE : UNSIGNED(16 DOWNTO 0);
   SIGNAL STATE : STD_LOGIC_VECTOR(7 DOWNTO 0) := X"00";
-
-BEGIN
-
-  streamipbuf_imp : streamipbuf
-  PORT MAP (
-    rst => RESET,
-    wr_clk => CLK,
-    rd_clk => STREAM_RCLK,
-    din => INPUT_DATA,
-    wr_en => STREAMING,
-    rd_en => STREAM_READ_ENABLE,
-    dout => FIFO_DOUT,
-    full => FULL,
-    empty => EMPTY,
-    prog_full => PROG_FULL
-  );
   
-  packetfifo_imp : packetfifo
-  PORT MAP (
-    rst => RESET,
-    clk => CLK,
-    din => CKSUM_LENGTH_INPUT,
-    wr_en => PACKET_FIFO_WE,
-    rd_en => PACKET_FIFO_RE,
-    dout => CKSUM_LENGTH_OUTPUT,
-    full => PACKET_FIFO_FULL,
-    empty => PACKET_FIFO_EMPTY
-  );
+  signal dummydummy : std_logic_vector(23 downto 0);
+BEGIN
+		   
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+  	
+  
+   
+ streamipbuf_imp : streamipbuf
+ PORT MAP (
+   rst => RESET,
+   wr_clk => CLK,
+   rd_clk => STREAM_RCLK,
+   din => INPUT_DATA,
+   wr_en => STREAMING,
+   rd_en => STREAM_READ_ENABLE,
+   dout => FIFO_DOUT,
+   full => FULL,
+   empty => EMPTY,
+   prog_full => PROG_FULL
+ );
+  			  
+--erased 				   
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+
+  
+  
+   
+
+ packetfifo_imp : packetfifo
+ PORT MAP (
+   rst => RESET,
+   clk => CLK,
+   din => CKSUM_LENGTH_INPUT,
+   wr_en => PACKET_FIFO_WE,
+   rd_en => PACKET_FIFO_RE,
+   dout => CKSUM_LENGTH_OUTPUT,
+   full => PACKET_FIFO_FULL,
+   empty => PACKET_FIFO_EMPTY
+ );
 
   PROCESS ( CLK ) BEGIN
     IF ( CLK'EVENT AND CLK = '1' ) THEN

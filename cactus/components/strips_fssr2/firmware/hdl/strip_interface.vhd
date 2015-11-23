@@ -1,62 +1,71 @@
---------------------------------------------------------------------------------
---
--- Company:
--- Engineer:       Matthew Jones - Purdue University
--- 
--- Create Date:    08:44:16 06/06/2013 
--- Design Name:    stib
--- Module Name:    strip_interface - RTL
--- Project Name:   STIB firmware
--- Target Devices: xc4vlx25ff668-10
--- Tool versions:  ISE 14.4 / 14.6
--- Description:    Defines a MicroBlaze LMB slave that interfaces with the
---                 strip sensor hybrids
---
--- Dependencies:
---
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
---
---   strip_csr - 0xc4000000
---     Bits  2.. 0 - R   - Number of channels (normally 6)
---     Bits  7.. 3 - R/W - Packet size
---     Bits 13.. 8 - R/W - Channel enable mask
---     Bits 15..14 - R/W - Idle count
---     Bit 16      - R/W - external clock select 
---     Bit 17      - halt readout
---     Bit 18      -
---     Bit 19      - R/W - arm BCO reset
---     Bit 20      - R/W - flush packet buffers
---     Bit 21      - R/W - clear trigger number
---     Bit 22      - R/W - clear BCO counter
---     Bit 23      - R/W - enable trigger veto
---     Bit 24      - R/W - send trigger primitive data
---     Bit 25      - R/W - send trigger number
---     Bit 26      - R/W - Send bunch counter
---     Bit 27      - R/W - Send strip hit data
---     Bit 28      -
---     Bit 29      - R/W - clock DCM locked
---     Bit 30      - R/W - clock DCM locked
---     Bit 31      - R/W - DCM reset
---
---  strip_reset - 0c4000004
---     Bits  5.. 0 - R/W - Reset mask
---     Bits 31..24 - R/W - Reset type/status
---
---
---  trig_csr - 0xc4000060
---     Bit 3..0    - R/W - BCO offset
---     Bit 7       - R/W - Halt pipeline
---     Bits 31..28 - R   - Trigger inputs
---
---  spy_fifo_csr - 0xc4000030
---     Bit   3.. 0 - channel select
---------------------------------------------------------------------------------
+--erased --------------------------------------------------------------------------------
+
+--erased -- IMPORTANT!! IMPORTANT!! 				
+--erased -- It's very important to note!!!   	
+--erased -- 										
+--erased -- The script that moves these files into a Firmware project will 		   
+--erased --  remove all "" comments.. 												
+--erased" 
+
+--erased --------------------------------------------------------------------------------
+--erased --
+--erased -- Company:
+--erased -- Engineer:       Matthew Jones - Purdue University
+--erased -- 
+--erased -- Create Date:    08:44:16 06/06/2013 
+--erased -- Design Name:    stib
+--erased -- Module Name:    strip_interface - RTL
+--erased -- Project Name:   STIB firmware
+--erased -- Target Devices: xc4vlx25ff668-10
+--erased -- Tool versions:  ISE 14.4 / 14.6
+--erased -- Description:    Defines a MicroBlaze LMB slave that interfaces with the
+--erased --                 strip sensor hybrids
+--erased --
+--erased -- Dependencies:
+--erased --
+--erased -- Revision: 
+--erased -- Revision 0.01 - File Created
+--erased -- Additional Comments: 
+--erased --
+--erased --   strip_csr - 0xc4000000
+--erased --     Bits  2.. 0 - R   - Number of channels (normally 6)
+--erased --     Bits  7.. 3 - R/W - Packet size
+--erased --     Bits 13.. 8 - R/W - Channel enable mask
+--erased --     Bits 15..14 - R/W - Idle count
+--erased --     Bit 16      - R/W - external clock select 
+--erased --     Bit 17      - halt readout
+--erased --     Bit 18      -
+--erased --     Bit 19      - R/W - arm BCO reset
+--erased --     Bit 20      - R/W - flush packet buffers
+--erased --     Bit 21      - R/W - clear trigger number
+--erased --     Bit 22      - R/W - clear BCO counter
+--erased --     Bit 23      - R/W - enable trigger veto
+--erased --     Bit 24      - R/W - send trigger primitive data
+--erased --     Bit 25      - R/W - send trigger number
+--erased --     Bit 26      - R/W - Send bunch counter
+--erased --     Bit 27      - R/W - Send strip hit data
+--erased --     Bit 28      -
+--erased --     Bit 29      - R/W - clock DCM locked
+--erased --     Bit 30      - R/W - clock DCM locked
+--erased --     Bit 31      - R/W - DCM reset
+--erased --
+--erased --  strip_reset - 0c4000004
+--erased --     Bits  5.. 0 - R/W - Reset mask
+--erased --     Bits 31..24 - R/W - Reset type/status
+--erased --
+--erased --
+--erased --  trig_csr - 0xc4000060
+--erased --     Bit 3..0    - R/W - BCO offset
+--erased --     Bit 7       - R/W - Halt pipeline
+--erased --     Bits 31..28 - R   - Trigger inputs
+--erased --
+--erased --  spy_fifo_csr - 0xc4000030
+--erased --     Bit   3.. 0 - channel select
+--erased --------------------------------------------------------------------------------
 
 library IEEE;
 use IEEE.std_logic_1164.all;
-
+library work;
 use work.iobus.ALL;
 
 use IEEE.numeric_std.all;
@@ -393,17 +402,17 @@ architecture behavioral of strip_interface is
     );
   end component;
 
-  component trigbuf
-    port (
-      clka : in std_logic;
-      wea : in std_logic_vector(0 downto 0);
-      addra : in std_logic_vector(7 downto 0);
-      dina : in std_logic_vector(3 downto 0);
-      clkb : in std_logic;
-      addrb : in std_logic_vector(7 downto 0);
-      doutb : out std_logic_vector(3 downto 0)
-    );
-  end component;
+ component trigbuf
+   port (
+     clka : in std_logic;
+     wea : in std_logic_vector(0 downto 0);
+     addra : in std_logic_vector(7 downto 0);
+     dina : in std_logic_vector(3 downto 0);
+     clkb : in std_logic;
+     addrb : in std_logic_vector(7 downto 0);
+     doutb : out std_logic_vector(3 downto 0)
+   );
+ end component;
 
   component chip_fifo
     port (
@@ -819,14 +828,15 @@ begin
   G : FOR I IN 0 TO NSENSOR-1 GENERATE
 
     BCOCLK(I) <= DCM_BCOCLK;
-
-    bufgmux_imp : BUFGMUX
-    port map (
-      o => strip_mclk(i),
-      i0 => DCM_MCLK_A,
-      i1 => DCM_MCLK_B,
-      s => strip_trim_csr(8+i)
-    );
+	
+--erased
+   bufgmux_imp : BUFGMUX
+   port map (
+     o => strip_mclk(i),
+     i0 => DCM_MCLK_A,
+     i1 => DCM_MCLK_B,
+     s => strip_trim_csr(8+i)
+   );
 
     chipserdes4_imp : chipserdes
     GENERIC MAP (
@@ -963,18 +973,36 @@ begin
       TRIG_ADDR => TRIG_ADDR(I),
       TRIG_DATA => TRIG_DATA(I)
     );
-
-    trigbuf_imp : trigbuf
-    PORT MAP (
-      CLKA => dcm_bcoclk,   -- Check this...  it should probably be DCM_BCOCLK.
-      WEA => TRIGGER_DPRAM_WE,
-      ADDRA => TRIG_DPRAM_ADDR,
-      DINA => TRIG_OUTPUTS,
-      CLKB => DCM_MCLK_A,
-      ADDRB => TRIG_ADDR(I),
-      DOUTB => TRIG_DATA(I)
-    );
-
+	
+	
+	
+--erased  
+--erased  
+--erased  
+--erased  
+--erased  
+--erased  
+--erased  
+--erased  
+--erased  
+--erased  
+--erased  
+--erased  
+--erased  
+	
+    
+	
+trigbuf_imp : trigbuf	   	
+   PORT MAP (
+     CLKA => dcm_bcoclk,   -- Check this...  it should probably be DCM_BCOCLK.
+     WEA => TRIGGER_DPRAM_WE,
+     ADDRA => TRIG_DPRAM_ADDR,
+     DINA => TRIG_OUTPUTS,
+     CLKB => DCM_MCLK_A,
+     ADDRB => TRIG_ADDR(I),
+     DOUTB => TRIG_DATA(I)
+   );
+---
   END GENERATE;
 
   trigprim0_imp : trigprim
@@ -1171,45 +1199,86 @@ begin
     STREAM_CKSUM => STREAM_CKSUM,
     STREAM_STROBE => STREAM_SENDPKT,
     STREAM_READY => STREAM_READY
-  );
-
-  spy_fifo_a_imp : chip_fifo
-  port map (
-    rst => spy_fifo_csr(31),
-    wr_clk => dcm_mclk_a,
-    rd_clk => clk,
-    din => spy_fifo_a_input,
-    wr_en => spy_fifo_a_we,
-    rd_en => spy_fifo_a_addressed,
-    full => spy_fifo_a_full,
-    empty => spy_fifo_a_empty,
-    dout => spy_fifo_a_output
-  );
-  spy_fifo_b_imp : chip_fifo
-  port map (
-    rst => spy_fifo_csr(31),
-    wr_clk => regional_bcoclk,
-    rd_clk => clk,
-    din => spy_fifo_b_input,
-    wr_en => spy_fifo_b_we,
-    rd_en => spy_fifo_b_addressed,
-    full => spy_fifo_b_full,
-    empty => spy_fifo_b_empty,
-    dout => spy_fifo_b_output
-  );
-  spy_fifo_c_imp : chip_fifo
-  port map (
-    rst => spy_fifo_csr(31),
-    wr_clk => fracbcoclk,
-    rd_clk => clk,
-    din => spy_fifo_c_input,
-    wr_en => spy_fifo_c_we,
-    rd_en => spy_fifo_c_addressed,
-    full => spy_fifo_c_full,
-    empty => spy_fifo_c_empty,
-    dout => spy_fifo_c_output
-  );
-
+  );  
+  
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+ ---
+ spy_fifo_a_imp : chip_fifo
+ port map (
+   rst => spy_fifo_csr(31),
+   wr_clk => dcm_mclk_a,
+   rd_clk => clk,
+   din => spy_fifo_a_input,
+   wr_en => spy_fifo_a_we,
+   rd_en => spy_fifo_a_addressed,
+   full => spy_fifo_a_full,
+   empty => spy_fifo_a_empty,
+   dout => spy_fifo_a_output
+ );
+ spy_fifo_b_imp : chip_fifo
+ port map (
+   rst => spy_fifo_csr(31),
+   wr_clk => regional_bcoclk,
+   rd_clk => clk,
+   din => spy_fifo_b_input,
+   wr_en => spy_fifo_b_we,
+   rd_en => spy_fifo_b_addressed,
+   full => spy_fifo_b_full,
+   empty => spy_fifo_b_empty,
+   dout => spy_fifo_b_output
+ );
+ spy_fifo_c_imp : chip_fifo
+ port map (
+   rst => spy_fifo_csr(31),
+   wr_clk => fracbcoclk,
+   rd_clk => clk,
+   din => spy_fifo_c_input,
+   wr_en => spy_fifo_c_we,
+   rd_en => spy_fifo_c_addressed,
+   full => spy_fifo_c_full,
+   empty => spy_fifo_c_empty,
+   dout => spy_fifo_c_output
+ );
+---
   process ( clk )
     variable chip_index : integer range 0 to 5;
     variable chan_index : integer range 0 to nsensor-1;

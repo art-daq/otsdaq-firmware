@@ -1,3 +1,12 @@
+-- SCRIPT COMMENT OUT --------------------------------------------------------------------------------
+
+-- SCRIPT COMMENT OUT -- IMPORTANT!! IMPORTANT!! 				
+-- SCRIPT COMMENT OUT -- It's very important to note!!!   	
+-- SCRIPT COMMENT OUT -- 										
+-- SCRIPT COMMENT OUT -- The script that moves these files into a Firmware project will 		   
+-- SCRIPT COMMENT OUT --  remove all "--- " comments.. 												
+-- SCRIPT COMMENT OUT -- and will remove completely any text before "SCRIPT COMMENT OUT" 
+
 ----------------------------------------------------------------------------------
 -- Company:
 -- Engineer:       Matthew Jones - Purdue University
@@ -21,8 +30,8 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
---library UNISIM;
---use UNISIM.VComponents.all;
+--- library UNISIM;
+--- use UNISIM.VComponents.all;
 
 entity trigprim is
   generic (
@@ -56,19 +65,19 @@ end trigprim;
 
 architecture Behavioral of trigprim is
 
---  COMPONENT chip_fifo
---    PORT (
---      rst : IN STD_LOGIC;
---      wr_clk : IN STD_LOGIC;
---      rd_clk : IN STD_LOGIC;
---      din : IN STD_LOGIC_VECTOR(35 DOWNTO 0);
---      wr_en : IN STD_LOGIC;
---      rd_en : IN STD_LOGIC;
---      dout : OUT STD_LOGIC_VECTOR(35 DOWNTO 0);
---      full : OUT STD_LOGIC;
---      empty : OUT STD_LOGIC
---    );
---  END COMPONENT;
+---  COMPONENT chip_fifo
+---    PORT (
+---      rst : IN STD_LOGIC;
+---      wr_clk : IN STD_LOGIC;
+---      rd_clk : IN STD_LOGIC;
+---      din : IN STD_LOGIC_VECTOR(35 DOWNTO 0);
+---      wr_en : IN STD_LOGIC;
+---      rd_en : IN STD_LOGIC;
+---      dout : OUT STD_LOGIC_VECTOR(35 DOWNTO 0);
+---      full : OUT STD_LOGIC;
+---      empty : OUT STD_LOGIC
+---    );
+---  END COMPONENT;
  
   constant pipeline_length : integer := 16;
   type trigger_pipeline_t is array(1 downto 0) of std_logic_vector(pipeline_length-1 downto 0);
@@ -94,31 +103,35 @@ architecture Behavioral of trigprim is
 begin
 	  
 					   			
-	fifo_imp : entity inferredFifo 							 				   
-		GENERIC MAP ( width => 36, depth => 527, addr => 8)
-  PORT MAP (
-    RESET => RESET,
-    WCLOCK => BCOCLK,
-    RCLOCK => RDCLK,
-    DATA => TRIGGER_FIFO_DATA,
-    WE => TRIGGER_FIFO_WE,
-    RE => READ_ENABLE,
-    FULL => TRIG_FIFO_FULL,
-    EMPTY => TRIG_FIFO_EMPTY,
-    Q => FIFO_OUTPUT
-  );
---  fifo_imp : chip_fifo
---  PORT MAP (
---    RST => RESET,
---    WR_CLK => BCOCLK,
---    RD_CLK => RDCLK,
---    DIN => TRIGGER_FIFO_DATA,
---    WR_EN => TRIGGER_FIFO_WE,
---    RD_EN => READ_ENABLE,
---    FULL => TRIG_FIFO_FULL,
---    EMPTY => TRIG_FIFO_EMPTY,
---    DOUT => FIFO_OUTPUT
---  );
+	fifo_imp : entity inferredFifo 							 	-- SCRIPT COMMENT OUT			   
+		GENERIC MAP ( width => 36, depth => 527, addr => 8)		-- SCRIPT COMMENT OUT
+  PORT MAP (													-- SCRIPT COMMENT OUT
+    RESET => RESET,												-- SCRIPT COMMENT OUT
+    WCLOCK => BCOCLK,											-- SCRIPT COMMENT OUT
+    RCLOCK => RDCLK,											-- SCRIPT COMMENT OUT
+    DATA => TRIGGER_FIFO_DATA,									-- SCRIPT COMMENT OUT
+    WE => TRIGGER_FIFO_WE,										-- SCRIPT COMMENT OUT
+    RE => READ_ENABLE,											-- SCRIPT COMMENT OUT
+    FULL => TRIG_FIFO_FULL,										-- SCRIPT COMMENT OUT
+    EMPTY => TRIG_FIFO_EMPTY,									-- SCRIPT COMMENT OUT
+    Q => FIFO_OUTPUT											-- SCRIPT COMMENT OUT
+  );											  				-- SCRIPT COMMENT OUT
+  																-- SCRIPT COMMENT OUT
+  
+  
+  
+---  fifo_imp : chip_fifo
+---  PORT MAP (
+---    RST => RESET,
+---    WR_CLK => BCOCLK,
+---    RD_CLK => RDCLK,
+---    DIN => TRIGGER_FIFO_DATA,
+---    WR_EN => TRIGGER_FIFO_WE,
+---    RD_EN => READ_ENABLE,
+---    FULL => TRIG_FIFO_FULL,
+---    EMPTY => TRIG_FIFO_EMPTY,
+---    DOUT => FIFO_OUTPUT
+---  );
  
   process ( fbcoclk, trig_input ) begin
     if ( fbcoclk'event and fbcoclk = '0' ) then

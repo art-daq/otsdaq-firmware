@@ -1,3 +1,12 @@
+--erased --------------------------------------------------------------------------------
+
+--erased -- IMPORTANT!! IMPORTANT!! 				
+--erased -- It's very important to note!!!   	
+--erased -- 										
+--erased -- The script that moves these files into a Firmware project will 		   
+--erased --  remove all "" comments.. 												
+--erased" 
+
 --------------------------------------------------------------------------------
 --
 -- Company:
@@ -52,19 +61,19 @@ end stripfifo;
 
 architecture Behavioral of stripfifo is
 
-  COMPONENT chip_fifo 
-    PORT (
-      RST : IN STD_LOGIC;
-      WR_CLK : IN STD_LOGIC;
-      RD_CLK : IN STD_LOGIC;
-      DIN : IN STD_LOGIC_VECTOR(35 DOWNTO 0);
-      WR_EN : IN STD_LOGIC;
-      RD_EN : IN STD_LOGIC;
-      DOUT : OUT STD_LOGIC_VECTOR(35 DOWNTO 0);
-      EMPTY : OUT STD_LOGIC;
-      FULL : OUT STD_LOGIC
-    );
-  END COMPONENT;
+ COMPONENT chip_fifo 
+   PORT (
+     RST : IN STD_LOGIC;
+     WR_CLK : IN STD_LOGIC;
+     RD_CLK : IN STD_LOGIC;
+     DIN : IN STD_LOGIC_VECTOR(35 DOWNTO 0);
+     WR_EN : IN STD_LOGIC;
+     RD_EN : IN STD_LOGIC;
+     DOUT : OUT STD_LOGIC_VECTOR(35 DOWNTO 0);
+     EMPTY : OUT STD_LOGIC;
+     FULL : OUT STD_LOGIC
+   );
+ END COMPONENT;
 
   SIGNAL FIFO_INPUT : STD_LOGIC_VECTOR(35 DOWNTO 0);
   SIGNAL FIFO_OUTPUT : STD_LOGIC_VECTOR(35 DOWNTO 0);
@@ -81,19 +90,34 @@ architecture Behavioral of stripfifo is
   SIGNAL TRIGGERED_DATA : STD_LOGIC_VECTOR(31 DOWNTO 0);
   
 BEGIN
-
-  fifo_imp : chip_fifo
-  PORT MAP (
-    RST => RESET,
-    WR_CLK => CLK,
-    RD_CLK => RDCLK,
-    DIN => FIFO_INPUT,
-    WR_EN => FIFO_WE,
-    RD_EN => READ_ENABLE,
-    FULL => FIFO_FULL,
-    EMPTY => STRIP_FIFO_EMPTY,
-    DOUT => FIFO_OUTPUT
-  );
+	
+	
+--erased	   
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+																	   
+ fifo_imp : chip_fifo
+ PORT MAP (
+   RST => RESET,
+   WR_CLK => CLK,
+   RD_CLK => RDCLK,
+   DIN => FIFO_INPUT,
+   WR_EN => FIFO_WE,
+   RD_EN => READ_ENABLE,
+   FULL => FIFO_FULL,
+   EMPTY => STRIP_FIFO_EMPTY,
+   DOUT => FIFO_OUTPUT
+ );
 
   PROCESS ( CLK, CHECK_TRIGGER ) BEGIN
     IF ( CLK'EVENT AND CLK = '0' ) THEN

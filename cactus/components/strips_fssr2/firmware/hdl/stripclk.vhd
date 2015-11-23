@@ -1,3 +1,12 @@
+--erased --------------------------------------------------------------------------------
+
+--erased -- IMPORTANT!! IMPORTANT!! 				
+--erased -- It's very important to note!!!   	
+--erased -- 										
+--erased -- The script that moves these files into a Firmware project will 		   
+--erased --  remove all "" comments.. 												
+--erased" 
+
 --------------------------------------------------------------------------------
 --
 -- Company:
@@ -18,6 +27,9 @@
 -- Additional Comments: 
 --
 --------------------------------------------------------------------------------
+
+				  
+
 
 library IEEE;
 use IEEE.std_logic_1164.all;
@@ -116,78 +128,170 @@ architecture Behavioral of stripclk is
       sclr : in std_logic;
       q : out std_logic_vector(2 downto 0)
     );
-  end component;
+  end component; 
+ 
+-------------------Begin Cut here for COMPONENT Declaration ------COMP_TAG
+ component strips_mclk_mmcm
+ port
+  (-- Clock in ports
+   CLK15NS           : in     std_logic;
+   -- Clock out ports
+   MCLK_A          : out    std_logic;
+   MCLK_B          : out    std_logic;
+   MCLK_DIV4          : out    std_logic;
+   MCLK_MULT3          : out    std_logic;
+   -- Status and control signals
+   reset             : in     std_logic;
+   locked            : out    std_logic
+  );
+ end component;
+ 
+ ATTRIBUTE SYN_BLACK_BOX : BOOLEAN;
+ ATTRIBUTE SYN_BLACK_BOX OF strips_mclk_mmcm : COMPONENT IS TRUE;
+ 
+ 
+ ATTRIBUTE BLACK_BOX_PAD_PIN : STRING;
+ ATTRIBUTE BLACK_BOX_PAD_PIN OF strips_mclk_mmcm : COMPONENT IS "CLK15NS,MCLK_A,MCLK_B,MCLK_DIV4,MCLK_MULT3,reset,locked";
+ 
+ -- COMP_TAG_END ------End COMPONENT Declaration ------------------
+ 
+ ----------------Begin Cut here for COMPONENT Declaration ------COMP_TAG
+ component bcoclk_pmcd
+ port
+  (-- Clock in ports
+   clk_in           : in     std_logic;
+   -- Clock out ports
+   clk_out          : out    std_logic;
+   -- Status and control signals
+   reset             : in     std_logic;
+   locked            : out    std_logic
+  );
+ end component;
+ 
+ --ATTRIBUTE SYN_BLACK_BOX : BOOLEAN;
+ ATTRIBUTE SYN_BLACK_BOX OF bcoclk_pmcd : COMPONENT IS TRUE;
+ 
+ 
+ --ATTRIBUTE BLACK_BOX_PAD_PIN : STRING;
+ ATTRIBUTE BLACK_BOX_PAD_PIN OF bcoclk_pmcd : COMPONENT IS "clk_in,clk_out,reset,locked";
+ 
+ -- COMP_TAG_END ---End COMPONENT Declaration ------------
   
-      ------------- Begin Cut here for COMPONENT Declaration ------ COMP_TAG
-  component strips_mclk_mmcm
-  port
-   (-- Clock in ports
-    CLK15NS           : in     std_logic;
-    -- Clock out ports
-    MCLK_A          : out    std_logic;
-    MCLK_B          : out    std_logic;
-    MCLK_DIV4          : out    std_logic;
-    MCLK_MULT3          : out    std_logic;
-    -- Status and control signals
-    reset             : in     std_logic;
-    locked            : out    std_logic
-   );
-  end component;
-  
-  ATTRIBUTE SYN_BLACK_BOX : BOOLEAN;
-  ATTRIBUTE SYN_BLACK_BOX OF strips_mclk_mmcm : COMPONENT IS TRUE;
-  
-  
-  ATTRIBUTE BLACK_BOX_PAD_PIN : STRING;
-  ATTRIBUTE BLACK_BOX_PAD_PIN OF strips_mclk_mmcm : COMPONENT IS "CLK15NS,MCLK_A,MCLK_B,MCLK_DIV4,MCLK_MULT3,reset,locked";
-  
-  -- COMP_TAG_END ------ End COMPONENT Declaration ------------
-  
-  ------------- Begin Cut here for COMPONENT Declaration ------ COMP_TAG
-  component bcoclk_pmcd
-  port
-   (-- Clock in ports
-    clk_in           : in     std_logic;
-    -- Clock out ports
-    clk_out          : out    std_logic;
-    -- Status and control signals
-    reset             : in     std_logic;
-    locked            : out    std_logic
-   );
-  end component;
-  
-  --ATTRIBUTE SYN_BLACK_BOX : BOOLEAN;
-  ATTRIBUTE SYN_BLACK_BOX OF bcoclk_pmcd : COMPONENT IS TRUE;
-  
-  
-  --ATTRIBUTE BLACK_BOX_PAD_PIN : STRING;
-  ATTRIBUTE BLACK_BOX_PAD_PIN OF bcoclk_pmcd : COMPONENT IS "clk_in,clk_out,reset,locked";
-  
-  -- COMP_TAG_END ------ End COMPONENT Declaration ------------
 
 begin
 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+--erased 
+  					
+ -- port map (
+--    clk0 => dcm_mclk_a,         -- 66.667 mhz
+--    clk180 => open,
+--    clk270 => open,
+--    clk90 => dcm_mclk_b,
+--    clk2x => open,
+--    clk2x180 => open,
+--    clkdv => dcm_mclk_div,       -- 16.667 mhz 
+--    clkfx => dcm_mclk_fx,         -- 200 mhz
+--    clkfx180 => open,
+--    locked => dcm_mclk_locked,
+--    clkfb => dcm_mclk_fb,
+--    clkin => clk_x,             -- 66.667 mhz
+--    rst => reset
+--  );	   
+  
+  
+  
+--erased
+--erased
+--erased
+--erased
+--erased
+--  );
+--erased
+--erased
+--erased
+--erased
+--erased
+--    i => dcm_mclk_b 
+--erased
+--erased
+--erased
+--erased
+--erased
+--    o => clk_fx,                --  drives the dac
+--    i => dcm_mclk_fx
+--  );
 
-    -- NOTE: RAR .. I believe this mmcm already outputs clocks on BUFG's
-    ------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
-    strips_mclk_gen : strips_mclk_mmcm
-    port map ( 
-        
-        -- Clock in ports
-        CLK15NS => clk_x,            -- 66.667 mhz
-        -- Clock out ports  
-        MCLK_A => mclk_a,        -- 66.667 mhz
-        MCLK_B => mclk_b,        -- 66.667 mhz phase 90
-        MCLK_DIV4 => outclk,    -- 16.667 mhz, ISERDES output clock
-        MCLK_MULT3 => clk_fx,   -- 200 mhz, drives the dac
-        -- Status and control signals                
-        reset => reset,
-        locked => dcm_mclk_locked            
-    );
-    -- INST_TAG_END ------ End INSTANTIATION Template ------------
+--  idelayctrl_imp : idelayctrl
+--  port map (
+--    rdy => idelayctrl_ready,
+--erased
+--erased
+--erased
+--erased
+--erased
+--  outclk_bufg : bufg
+--  port map (
+--erased
+--erased
+--erased
+--erased
+--erased
+  
+ 	
+  
+     -- NOTE: RAR .. I believe this mmcm already outputs clocks on BUFG's
+   ----------------Begin Cut here for INSTANTIATION Template ----INST_TAG
+   strips_mclk_gen : strips_mclk_mmcm
+   port map ( 
+       
+       -- Clock in ports
+       CLK15NS => clk_x,            -- 66.667 mhz
+       -- Clock out ports  
+       MCLK_A => mclk_a,        -- 66.667 mhz
+       MCLK_B => mclk_b,        -- 66.667 mhz phase 90
+       MCLK_DIV4 => outclk,    -- 16.667 mhz, ISERDES output clock
+       MCLK_MULT3 => clk_fx,   -- 200 mhz, drives the dac
+       -- Status and control signals                
+       reset => reset,
+       locked => dcm_mclk_locked            
+   );
+   -- INST_TAG_END ------End INSTANTIATION Template --------------
 
-
-
+	
+  
+  
   dacclk <= clk_fx;
   idelayctrl_reset <= not dcm_mclk_locked;
 
@@ -195,108 +299,226 @@ begin
 --  The bufgmux should not be used because you won't be able to switch
 --  between clock sources if either one is not active.
 --  Instead, we need an asynchronous mux.
+--
+--  bcoclkmux : bufgmux
+--  port map (
+--    i0 => clk_x,
+--    i1 => clk_ext,
+--    o => clk_z,
+--    s => clksel
+--  );
+																			
+--erased
+ bcoclkmux : bufgctrl													
+ port map (																
+   i0 => clk_x,															
+   i1 => clk_ext,
+   o => clk_z,
+   s0 => not clksel,
+   s1 => clksel,
+   ce1 => '1',
+   ce0 => '1',
+   ignore1 => '1',
+   ignore0 => '1'
+ );
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--    en_rel => true
+--  )
+--  port map (
+--    clka => clk_q,
+--    clkb => '0',
+--    clkc => '0',
+--    clkd => '0',
+--    rst => bcoclk_reset,
+--    rel => bcoclk_release,
+--    clka1 => dcm_bco_a,
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--  port map (
+--    o => dcm_fbco,             -- Fractional BCO clock
+--    i => dcm_bco_a
+--  );	   
+--  					
 
-  bcoclkmux : bufgctrl
-  port map (
-    i0 => clk_x,
-    i1 => clk_ext,
-    o => clk_z,
-    s0 => not clksel,
-    s1 => clksel,
-    ce1 => '1',
-    ce0 => '1',
-    ignore1 => '1',
-    ignore0 => '1'
-  );
-
-
----- NOTE: RAR.. there was a DCM here with in clk_z (possibly external clock)
-----  and output controllable clk_q. But removed for simplicity in transfer to picoZed
-
-  bcoclk_mux : bufg    
-  port map (
-    i => clk_z,
-    o => clk_q
-  );
-  
-  
-    -- NOTE: RAR.. replaced pll with divide by 4 logic (inclk = clk_q, outclk = dcm_bco_div)
-    gen_div_by4_clk : for i in 0 to 0 generate
-      signal cnt : unsigned(1 downto 0) := (others => '0');
-      signal tmp_clk : std_logic;
-    begin
-        tmp_clk <= cnt(1);
-        
-        bcoclk_mux : bufg    
-          port map (
-            i => tmp_clk,
-            o => dcm_bco_div
-          );
-        
-        process(clk_q, bcoclk_reset)
-        begin
-          if (bcoclk_reset = '1') then
-              cnt <= (others => '0');
-          elsif (rising_edge(clk_q)) then        
-              cnt <= cnt + 1;
-          end if;      
-        end process;
-    end generate;
---  ------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
---  bcoclk_div_mmcm : bcoclk_pmcd
---     port map ( 
-  
---     -- Clock in ports
---     clk_in => clk_q,
---    -- Clock out ports  
---     clk_out => dcm_bco_div,
---    -- Status and control signals                
---     reset => bcoclk_reset,
---     locked => open            
---   );
---  -- INST_TAG_END ------ End INSTANTIATION Template ------------
-
-  dcm_fbco <= clk_q; -- Fractional BCO clock
-  
-  bcoclk_bufg : bufg
-  port map (
-    o => dcm_bco,                -- BCO clock
-    i => dcm_bco_div
-  );
+------NOTE: RAR.. there was a DCM here with in clk_z (possibly external clock)
+------ and output controllable clk_q. But removed for simplicity in transfer to picoZed
+---	   
+ clk_q <= clk_z;
+ --bcoclk_mux : bufg    
+ --port map (
+ --  i => clk_z,
+ --  o => clk_q
+ --);
+ 
+ 
+   -- NOTE: RAR.. replaced pll with divide by 4 logic (inclk = clk_q, outclk = dcm_bco_div)
+   gen_div_by4_clk : for i in 0 to 0 generate
+     signal cnt : unsigned(1 downto 0) := (others => '0');
+     signal tmp_clk : std_logic;
+   begin
+       tmp_clk <= cnt(1);
+       
+       bcoclk_mux : bufg    
+         port map (
+           i => tmp_clk,
+           o => dcm_bco_div
+         );
+       
+       process(clk_q, bcoclk_reset)
+       begin
+         if (bcoclk_reset = '1') then
+             cnt <= (others => '0');
+         elsif (rising_edge(clk_q)) then        
+             cnt <= cnt + 1;
+         end if;      
+       end process;
+   end generate;			   
+---	
+ dcm_fbco <= clk_q; -- Fractional BCO clock			 
+															 
+															 
+															 
+--erased
+ bcoclk_bufg : bufg
+ port map (
+   o => dcm_bco,                -- BCO clock
+   i => dcm_bco_div
+ );
 
   bcoclk <= dcm_bco;
   fracbcoclk <= dcm_fbco;
+  
+  									   
+--erased
+ bcoclkmux_imp : bufgctrl
+ port map (
+   o => bcocounter_clock,
+   i0 => dcm_bco,
+   i1 => clk_z,
+   ignore0 => '1',
+   ignore1 => '0',
+   ce0 => '1',
+   ce1 => '1',
+   s0 => not bco_clear,
+   s1 => bco_clear
+ );
 
-  bcoclkmux_imp : bufgctrl
-  port map (
-    o => bcocounter_clock,
-    i0 => dcm_bco,
-    i1 => clk_z,
-    ignore0 => '1',
-    ignore1 => '0',
-    ce0 => '1',
-    ce1 => '1',
-    s0 => not bco_clear,
-    s1 => bco_clear
-  );
 
-
-    binaryCnt: for i in 0 downto 0 generate 
-        signal tmpcnt : unsigned(47 downto 0) := (others => '0');
-    begin
-        process(bcocounter_clock)											 
-        begin							
-            bco <= std_logic_vector(tmpcnt);
-            if (rising_edge(bcocounter_clock)) then	
-                if(	bco_clear = '1' ) then
-                    tmpcnt <= (others => '0');
-                else
-                    tmpcnt <= tmpcnt + 1;
-                end if;	   
-            end if;
-        end process; 
-    end generate;
+	binaryCnt: for i in 0 downto 0 generate 
+		signal tmpcnt : unsigned(47 downto 0) := (others => '0');
+	begin
+		process(bcocounter_clock)											 
+		begin							
+			bco <= std_logic_vector(tmpcnt);
+			if (rising_edge(bcocounter_clock)) then	
+				if(	bco_clear = '1' ) then
+					tmpcnt <= (others => '0');
+				else
+					tmpcnt <= tmpcnt + 1;
+				end if;	   
+			end if;
+		end process; 
+	end generate;
 	
+--  bcocounter_imp : bcocounter
+--  port map (
+--    clk => bcocounter_clock,
+--    ce => '1',
+--    sclr => bco_clear,
+--    q => bco
+--  );
 
   fastbcocounter_imp : fastbcocounter
   port map (

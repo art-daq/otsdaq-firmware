@@ -1,3 +1,12 @@
+--erased --------------------------------------------------------------------------------
+
+--erased -- IMPORTANT!! IMPORTANT!! 				
+--erased -- It's very important to note!!!   	
+--erased -- 										
+--erased -- The script that moves these files into a Firmware project will 		   
+--erased --  remove all "" comments.. 												
+--erased" 
+
 ----------------------------------------------------------------------------------
 -- Company:
 -- Engineer:       Matthew Jones - Purdue University
@@ -56,19 +65,19 @@ end trigprim;
 
 architecture Behavioral of trigprim is
 
-  COMPONENT chip_fifo
-    PORT (
-      rst : IN STD_LOGIC;
-      wr_clk : IN STD_LOGIC;
-      rd_clk : IN STD_LOGIC;
-      din : IN STD_LOGIC_VECTOR(35 DOWNTO 0);
-      wr_en : IN STD_LOGIC;
-      rd_en : IN STD_LOGIC;
-      dout : OUT STD_LOGIC_VECTOR(35 DOWNTO 0);
-      full : OUT STD_LOGIC;
-      empty : OUT STD_LOGIC
-    );
-  END COMPONENT;
+ COMPONENT chip_fifo
+   PORT (
+     rst : IN STD_LOGIC;
+     wr_clk : IN STD_LOGIC;
+     rd_clk : IN STD_LOGIC;
+     din : IN STD_LOGIC_VECTOR(35 DOWNTO 0);
+     wr_en : IN STD_LOGIC;
+     rd_en : IN STD_LOGIC;
+     dout : OUT STD_LOGIC_VECTOR(35 DOWNTO 0);
+     full : OUT STD_LOGIC;
+     empty : OUT STD_LOGIC
+   );
+ END COMPONENT;
  
   constant pipeline_length : integer := 16;
   type trigger_pipeline_t is array(1 downto 0) of std_logic_vector(pipeline_length-1 downto 0);
@@ -92,19 +101,37 @@ architecture Behavioral of trigprim is
   SIGNAL FIFO_OUTPUT : STD_LOGIC_VECTOR(35 DOWNTO 0);
 
 begin
-
-  fifo_imp : chip_fifo
-  PORT MAP (
-    RST => RESET,
-    WR_CLK => BCOCLK,
-    RD_CLK => RDCLK,
-    DIN => TRIGGER_FIFO_DATA,
-    WR_EN => TRIGGER_FIFO_WE,
-    RD_EN => READ_ENABLE,
-    FULL => TRIG_FIFO_FULL,
-    EMPTY => TRIG_FIFO_EMPTY,
-    DOUT => FIFO_OUTPUT
-  );
+	  
+					   			
+--erased			   
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+  
+  
+  
+ fifo_imp : chip_fifo
+ PORT MAP (
+   RST => RESET,
+   WR_CLK => BCOCLK,
+   RD_CLK => RDCLK,
+   DIN => TRIGGER_FIFO_DATA,
+   WR_EN => TRIGGER_FIFO_WE,
+   RD_EN => READ_ENABLE,
+   FULL => TRIG_FIFO_FULL,
+   EMPTY => TRIG_FIFO_EMPTY,
+   DOUT => FIFO_OUTPUT
+ );
  
   process ( fbcoclk, trig_input ) begin
     if ( fbcoclk'event and fbcoclk = '0' ) then

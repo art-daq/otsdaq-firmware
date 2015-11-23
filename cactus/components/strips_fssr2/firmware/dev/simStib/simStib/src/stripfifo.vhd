@@ -1,3 +1,12 @@
+-- SCRIPT COMMENT OUT --------------------------------------------------------------------------------
+
+-- SCRIPT COMMENT OUT -- IMPORTANT!! IMPORTANT!! 				
+-- SCRIPT COMMENT OUT -- It's very important to note!!!   	
+-- SCRIPT COMMENT OUT -- 										
+-- SCRIPT COMMENT OUT -- The script that moves these files into a Firmware project will 		   
+-- SCRIPT COMMENT OUT --  remove all "--- " comments.. 												
+-- SCRIPT COMMENT OUT -- and will remove completely any text before "SCRIPT COMMENT OUT" 
+
 --------------------------------------------------------------------------------
 --
 -- Company:
@@ -52,19 +61,19 @@ end stripfifo;
 
 architecture Behavioral of stripfifo is
 
---  COMPONENT chip_fifo 
---    PORT (
---      RST : IN STD_LOGIC;
---      WR_CLK : IN STD_LOGIC;
---      RD_CLK : IN STD_LOGIC;
---      DIN : IN STD_LOGIC_VECTOR(35 DOWNTO 0);
---      WR_EN : IN STD_LOGIC;
---      RD_EN : IN STD_LOGIC;
---      DOUT : OUT STD_LOGIC_VECTOR(35 DOWNTO 0);
---      EMPTY : OUT STD_LOGIC;
---      FULL : OUT STD_LOGIC
---    );
---  END COMPONENT;
+---  COMPONENT chip_fifo 
+---    PORT (
+---      RST : IN STD_LOGIC;
+---      WR_CLK : IN STD_LOGIC;
+---      RD_CLK : IN STD_LOGIC;
+---      DIN : IN STD_LOGIC_VECTOR(35 DOWNTO 0);
+---      WR_EN : IN STD_LOGIC;
+---      RD_EN : IN STD_LOGIC;
+---      DOUT : OUT STD_LOGIC_VECTOR(35 DOWNTO 0);
+---      EMPTY : OUT STD_LOGIC;
+---      FULL : OUT STD_LOGIC
+---    );
+---  END COMPONENT;
 
   SIGNAL FIFO_INPUT : STD_LOGIC_VECTOR(35 DOWNTO 0);
   SIGNAL FIFO_OUTPUT : STD_LOGIC_VECTOR(35 DOWNTO 0);
@@ -83,32 +92,32 @@ architecture Behavioral of stripfifo is
 BEGIN
 	
 	
-	fifo_imp : entity inferredFifo 							 				   
-		GENERIC MAP ( width => 36, depth => 527, addr => 8)
-  PORT MAP (
-    RESET => RESET,
-    WCLOCK => CLK,
-    RCLOCK => RDCLK,
-    DATA => FIFO_INPUT,
-    WE => FIFO_WE,
-    RE => READ_ENABLE,
-    FULL => FIFO_FULL,
-    EMPTY => STRIP_FIFO_EMPTY,
-    Q => FIFO_OUTPUT
-  );
-	--
---  fifo_imp : chip_fifo
---  PORT MAP (
---    RST => RESET,
---    WR_CLK => CLK,
---    RD_CLK => RDCLK,
---    DIN => FIFO_INPUT,
---    WR_EN => FIFO_WE,
---    RD_EN => READ_ENABLE,
---    FULL => FIFO_FULL,
---    EMPTY => STRIP_FIFO_EMPTY,
---    DOUT => FIFO_OUTPUT
---  );
+	fifo_imp : entity inferredFifo 							 			-- SCRIPT COMMENT OUT	   
+		GENERIC MAP ( width => 36, depth => 527, addr => 8)				-- SCRIPT COMMENT OUT
+  PORT MAP (															-- SCRIPT COMMENT OUT
+    RESET => RESET,														-- SCRIPT COMMENT OUT
+    WCLOCK => CLK,														-- SCRIPT COMMENT OUT
+    RCLOCK => RDCLK,													-- SCRIPT COMMENT OUT
+    DATA => FIFO_INPUT,													-- SCRIPT COMMENT OUT
+    WE => FIFO_WE,													   -- SCRIPT COMMENT OUT
+    RE => READ_ENABLE,												   -- SCRIPT COMMENT OUT
+    FULL => FIFO_FULL,												   -- SCRIPT COMMENT OUT
+    EMPTY => STRIP_FIFO_EMPTY,										   -- SCRIPT COMMENT OUT
+    Q => FIFO_OUTPUT												   -- SCRIPT COMMENT OUT
+  );																   -- SCRIPT COMMENT OUT
+																	   
+---  fifo_imp : chip_fifo
+---  PORT MAP (
+---    RST => RESET,
+---    WR_CLK => CLK,
+---    RD_CLK => RDCLK,
+---    DIN => FIFO_INPUT,
+---    WR_EN => FIFO_WE,
+---    RD_EN => READ_ENABLE,
+---    FULL => FIFO_FULL,
+---    EMPTY => STRIP_FIFO_EMPTY,
+---    DOUT => FIFO_OUTPUT
+---  );
 
   PROCESS ( CLK, CHECK_TRIGGER ) BEGIN
     IF ( CLK'EVENT AND CLK = '0' ) THEN

@@ -1,3 +1,12 @@
+-- SCRIPT COMMENT OUT --------------------------------------------------------------------------------
+
+-- SCRIPT COMMENT OUT -- IMPORTANT!! IMPORTANT!! 				
+-- SCRIPT COMMENT OUT -- It's very important to note!!!   	
+-- SCRIPT COMMENT OUT -- 										
+-- SCRIPT COMMENT OUT -- The script that moves these files into a Firmware project will 		   
+-- SCRIPT COMMENT OUT --  remove all "--- " comments.. 												
+-- SCRIPT COMMENT OUT -- and will remove completely any text before "SCRIPT COMMENT OUT" 
+
 --------------------------------------------------------------------------------
 --
 -- Company:
@@ -119,63 +128,69 @@ architecture Behavioral of stripstream is
   signal dummydummy : std_logic_vector(23 downto 0);
 BEGIN
 		   
-	streamipbuf_imp : entity inferredFifo 							 				   
-		GENERIC MAP ( width => 32, depth => 128, addr => 7)
-  PORT MAP (
-    RESET => RESET,
-    WCLOCK => CLK,
-    RCLOCK => STREAM_RCLK,
-    DATA => INPUT_DATA,
-    WE => STREAMING,
-    RE => STREAM_READ_ENABLE,
-    FULL => FULL,
-    EMPTY => EMPTY,															   
-	Q(31 downto 8) => dummydummy,
-    Q(7 downto 0) => FIFO_DOUT   --- NOTE: this is broken, inferredFifo doens't handle size mismatch, but RAR doesn't care for checking out interface?
-  );	   
-  PROG_FULL	<= FULL;		-- NOTE: this is not the same functionality that Matthew intended
---  
---  streamipbuf_imp : streamipbuf
---  PORT MAP (
---    rst => RESET,
---    wr_clk => CLK,
---    rd_clk => STREAM_RCLK,
---    din => INPUT_DATA,
---    wr_en => STREAMING,
---    rd_en => STREAM_READ_ENABLE,
---    dout => FIFO_DOUT,
---    full => FULL,
---    empty => EMPTY,
---    prog_full => PROG_FULL
---  );
+	streamipbuf_imp : entity inferredFifo 							 				   																			-- SCRIPT COMMENT OUT
+		GENERIC MAP ( width => 32, depth => 128, addr => 7)																										-- SCRIPT COMMENT OUT
+  PORT MAP (																																					-- SCRIPT COMMENT OUT
+    RESET => RESET,																																				-- SCRIPT COMMENT OUT
+    WCLOCK => CLK,																																				-- SCRIPT COMMENT OUT
+    RCLOCK => STREAM_RCLK,																																		-- SCRIPT COMMENT OUT
+    DATA => INPUT_DATA,																																			-- SCRIPT COMMENT OUT
+    WE => STREAMING,																																			-- SCRIPT COMMENT OUT
+    RE => STREAM_READ_ENABLE,																																	-- SCRIPT COMMENT OUT
+    FULL => FULL,																																				-- SCRIPT COMMENT OUT
+    EMPTY => EMPTY,															   																					-- SCRIPT COMMENT OUT
+	Q(31 downto 8) => dummydummy,																																-- SCRIPT COMMENT OUT
+    Q(7 downto 0) => FIFO_DOUT   --- NOTE: this is broken, inferredFifo doens't handle size mismatch, but RAR doesn't care for checking out interface?			-- SCRIPT COMMENT OUT
+  );	   																																						-- SCRIPT COMMENT OUT
+  PROG_FULL	<= FULL;		-- NOTE: this is not the same functionality that Matthew intended																	-- SCRIPT COMMENT OUT
+																																								-- SCRIPT COMMENT OUT
+  	
+  
+  ---  
+---  streamipbuf_imp : streamipbuf
+---  PORT MAP (
+---    rst => RESET,
+---    wr_clk => CLK,
+---    rd_clk => STREAM_RCLK,
+---    din => INPUT_DATA,
+---    wr_en => STREAMING,
+---    rd_en => STREAM_READ_ENABLE,
+---    dout => FIFO_DOUT,
+---    full => FULL,
+---    empty => EMPTY,
+---    prog_full => PROG_FULL
+---  );
   			  
-	packetfifo_imp : entity inferredFifo 							 				   
-		GENERIC MAP ( width => 32, depth => 16, addr => 4)
-  PORT MAP (
-    RESET => RESET,
-    WCLOCK => CLK,
-    RCLOCK => CLK,
-    DATA => CKSUM_LENGTH_INPUT,
-    WE => PACKET_FIFO_WE,
-    RE => PACKET_FIFO_RE,
-    FULL => PACKET_FIFO_FULL,
-    EMPTY => PACKET_FIFO_EMPTY,
-    Q => CKSUM_LENGTH_OUTPUT   
-  );	   
-  PROG_FULL	<= FULL;		
---  
+	packetfifo_imp : entity inferredFifo 							-- SCRIPT COMMENT OUT 				   
+		GENERIC MAP ( width => 32, depth => 16, addr => 4)			-- SCRIPT COMMENT OUT
+  PORT MAP (														-- SCRIPT COMMENT OUT
+    RESET => RESET,													-- SCRIPT COMMENT OUT
+    WCLOCK => CLK,													-- SCRIPT COMMENT OUT
+    RCLOCK => CLK,													-- SCRIPT COMMENT OUT
+    DATA => CKSUM_LENGTH_INPUT,										-- SCRIPT COMMENT OUT
+    WE => PACKET_FIFO_WE,											-- SCRIPT COMMENT OUT
+    RE => PACKET_FIFO_RE,											-- SCRIPT COMMENT OUT
+    FULL => PACKET_FIFO_FULL,										-- SCRIPT COMMENT OUT
+    EMPTY => PACKET_FIFO_EMPTY,										-- SCRIPT COMMENT OUT
+    Q => CKSUM_LENGTH_OUTPUT   										-- SCRIPT COMMENT OUT
+  );	   															-- SCRIPT COMMENT OUT
+  PROG_FULL	<= FULL;												-- SCRIPT COMMENT OUT
 
---  packetfifo_imp : packetfifo
---  PORT MAP (
---    rst => RESET,
---    clk => CLK,
---    din => CKSUM_LENGTH_INPUT,
---    wr_en => PACKET_FIFO_WE,
---    rd_en => PACKET_FIFO_RE,
---    dout => CKSUM_LENGTH_OUTPUT,
---    full => PACKET_FIFO_FULL,
---    empty => PACKET_FIFO_EMPTY
---  );
+  
+  
+  ---  
+
+---  packetfifo_imp : packetfifo
+---  PORT MAP (
+---    rst => RESET,
+---    clk => CLK,
+---    din => CKSUM_LENGTH_INPUT,
+---    wr_en => PACKET_FIFO_WE,
+---    rd_en => PACKET_FIFO_RE,
+---    dout => CKSUM_LENGTH_OUTPUT,
+---    full => PACKET_FIFO_FULL,
+---    empty => PACKET_FIFO_EMPTY
+---  );
 
   PROCESS ( CLK ) BEGIN
     IF ( CLK'EVENT AND CLK = '1' ) THEN

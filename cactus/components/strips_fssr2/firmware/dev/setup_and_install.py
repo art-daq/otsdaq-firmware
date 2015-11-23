@@ -64,7 +64,7 @@ print  dest
 print
 print
 
-if ((not os.path.isdir(dest ) ):
+if ( (not os.path.isdir(dest )) ):
     print "Error!\n Check usage. "
     parser.print_help()
     print
@@ -77,34 +77,53 @@ if ((not os.path.isdir(dest ) ):
 
 
 
-#print
-#print  'Clearing destination files...'
+print
+print  'Clearing destination files...'
 
-#os.system("rm -f " + dest + "/*.v")
-#os.system("rm -f " + dest + "/*.vhd")
+os.system("rm -f " + dest + "/*.v")
+os.system("rm -f " + dest + "/*.vhd")
 
 print
 print  'Copying files...'
-#os.system("cp " + scriptDir + \
-#              "/ActiveHDL_proj/ethernet_controller/src/*.vhd " + \
-#              dest + "/ethernet_controller/")
+os.system("cp " + scriptDir + \
+              "/simStib/simStib/src/*.vhd " + \
+              dest + "/")
 
 print
 print 'Modifying files...'
 print
 
-#replaced inferred fifos with coregen fifos, 
-#..since inferred doesn't seem to work in ise/vivado
-# 2 steps: uncomment coregen, and comment inferred
-#os.system("sed -i s/--//g " + dest + "/ethernet_controller/data_manager.vhd")
+
+#modify strip interface
+os.system("sed -i s/---\ //g " + dest + "/*.vhd")
+os.system("sed -i s/.\*SCRIPT\ COMMENT\ OUT/--erased/g " + dest + \
+          "/*.vhd")
+#os.system("sed -i s/---//g " + dest + "/strip_interface.vhd")
 #os.system("sed -i s/.\*SCRIPT\ COMMENT\ OUT/--erased/g " + dest + \
-          "/ethernet_controller/data_manager.vhd")
+#          "/strip_interface.vhd")
+#os.system("sed -i s/---//g " + dest + "/stripstream.vhd")
+#os.system("sed -i s/.\*SCRIPT\ COMMENT\ OUT/--erased/g " + dest + \
+#          "/stripstream.vhd")
+#os.system("sed -i s/---//g " + dest + "/stripclk.vhd")
+#os.system("sed -i s/.\*SCRIPT\ COMMENT\ OUT/--erased/g " + dest + \
+#          "/clk.vhd")
+#os.system("sed -i s/---//g " + dest + "/stripfifo.vhd")
+#os.system("sed -i s/.\*SCRIPT\ COMMENT\ OUT/--erased/g " + dest + \
+#          "/stripfifo.vhd")
+#os.system("sed -i s/---//g " + dest + "/trigprim.vhd")
+#os.system("sed -i s/.\*SCRIPT\ COMMENT\ OUT/--erased/g " + dest + \
+#          "/trigprim.vhd")
+#os.system("sed -i s/---//g " + dest + "/trigproc.vhd")
+#os.system("sed -i s/.\*SCRIPT\ COMMENT\ OUT/--erased/g " + dest + \
+#          "/trigproc.vhd")
+
+
 print
 print 'Removing files for tidiness...'
 print
 
-#os.system("rm -f " + dest + "/ethernet_controller/top_tmp.vhd")
-#os.system("rm -f " + dest + "/data_manager/inferredFifo.vhd")
+
+os.system("rm -f " + dest + "/inferred*.vhd")
     
 print
 print 'Integration complete.'

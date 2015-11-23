@@ -1,3 +1,12 @@
+-- SCRIPT COMMENT OUT --------------------------------------------------------------------------------
+
+-- SCRIPT COMMENT OUT -- IMPORTANT!! IMPORTANT!! 				
+-- SCRIPT COMMENT OUT -- It's very important to note!!!   	
+-- SCRIPT COMMENT OUT -- 										
+-- SCRIPT COMMENT OUT -- The script that moves these files into a Firmware project will 		   
+-- SCRIPT COMMENT OUT --  remove all "--- " comments.. 												
+-- SCRIPT COMMENT OUT -- and will remove completely any text before "SCRIPT COMMENT OUT" 
+
 --------------------------------------------------------------------------------
 --
 -- Company:
@@ -26,8 +35,8 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
---library UNISIM;
---use UNISIM.VComponents.all;
+--- library UNISIM;
+--- use UNISIM.VComponents.all;
 
 entity stripclk is
   port (
@@ -119,43 +128,92 @@ architecture Behavioral of stripclk is
       sclr : in std_logic;
       q : out std_logic_vector(2 downto 0)
     );
-  end component;
+  end component; 
+ 
+--- ---------------------- Begin Cut here for COMPONENT Declaration --------- COMP_TAG
+---  component strips_mclk_mmcm
+---  port
+---   (-- Clock in ports
+---    CLK15NS           : in     std_logic;
+---    -- Clock out ports
+---    MCLK_A          : out    std_logic;
+---    MCLK_B          : out    std_logic;
+---    MCLK_DIV4          : out    std_logic;
+---    MCLK_MULT3          : out    std_logic;
+---    -- Status and control signals
+---    reset             : in     std_logic;
+---    locked            : out    std_logic
+---   );
+---  end component;
+---  
+---  ATTRIBUTE SYN_BLACK_BOX : BOOLEAN;
+---  ATTRIBUTE SYN_BLACK_BOX OF strips_mclk_mmcm : COMPONENT IS TRUE;
+---  
+---  
+---  ATTRIBUTE BLACK_BOX_PAD_PIN : STRING;
+---  ATTRIBUTE BLACK_BOX_PAD_PIN OF strips_mclk_mmcm : COMPONENT IS "CLK15NS,MCLK_A,MCLK_B,MCLK_DIV4,MCLK_MULT3,reset,locked";
+---  
+---  -- COMP_TAG_END --------- End COMPONENT Declaration ------------------
+---  
+---  ------------------- Begin Cut here for COMPONENT Declaration --------- COMP_TAG
+---  component bcoclk_pmcd
+---  port
+---   (-- Clock in ports
+---    clk_in           : in     std_logic;
+---    -- Clock out ports
+---    clk_out          : out    std_logic;
+---    -- Status and control signals
+---    reset             : in     std_logic;
+---    locked            : out    std_logic
+---   );
+---  end component;
+---  
+---  --ATTRIBUTE SYN_BLACK_BOX : BOOLEAN;
+---  ATTRIBUTE SYN_BLACK_BOX OF bcoclk_pmcd : COMPONENT IS TRUE;
+---  
+---  
+---  --ATTRIBUTE BLACK_BOX_PAD_PIN : STRING;
+---  ATTRIBUTE BLACK_BOX_PAD_PIN OF bcoclk_pmcd : COMPONENT IS "clk_in,clk_out,reset,locked";
+---  
+---  -- COMP_TAG_END ------ End COMPONENT Declaration ------------
+  
 
 begin
 
-  mclk_dcm : entity inferredDCM --dcm_base
-  generic map (
-    clkfx_divide => 2,
-    clkfx_multiply => 6,
-    clkdv_divide => 4.0,
-    clkin_divide_by_2 => false,
-    clkin_period => 15.0   -- 15 ns when driven from busclk
-  )
-  port map (
-    clk0 => dcm_mclk_a,         -- 66.667 mhz
-    clk180 => open,
-    clk270 => open,
-    clk90 => dcm_mclk_b,
-    clk2x => open,
-    clk2x180 => open,
-    clkdv => dcm_mclk_div,       -- 16.667 mhz 
-    clkfx => dcm_mclk_fx,         -- 200 mhz
-    clkfx180 => open,		
-	psincdec => '0',
-    psclk => '0',
-    psen => '0',
-    do => bcoclk_data,
-    di => bcoclk_data_in,	  
-    drdy => bcoclk_data_ready,
-    daddr => bcoclk_addr,
-    dwe => bcoclk_we,
-    den => bcoclk_en,
-    dclk => busclk,
-    locked => dcm_mclk_locked,
-    clkfb => dcm_mclk_fb,
-    clkin => clk_x,             -- 66.667 mhz
-    rst => reset
-  );	  
+  mclk_dcm : entity inferredDCM --dcm_base							-- SCRIPT COMMENT OUT 
+  generic map (														-- SCRIPT COMMENT OUT 
+    clkfx_divide => 2,												-- SCRIPT COMMENT OUT 
+    clkfx_multiply => 6,											-- SCRIPT COMMENT OUT 
+    clkdv_divide => 4.0,											-- SCRIPT COMMENT OUT 
+    clkin_divide_by_2 => false,										-- SCRIPT COMMENT OUT 
+    clkin_period => 15.0   -- 15 ns when driven from busclk			-- SCRIPT COMMENT OUT 
+  )																	-- SCRIPT COMMENT OUT 
+  port map (														-- SCRIPT COMMENT OUT 
+    clk0 => dcm_mclk_a,         -- 66.667 mhz						-- SCRIPT COMMENT OUT 
+    clk180 => open,													-- SCRIPT COMMENT OUT 
+    clk270 => open,													-- SCRIPT COMMENT OUT 
+    clk90 => dcm_mclk_b,											-- SCRIPT COMMENT OUT 
+    clk2x => open,													-- SCRIPT COMMENT OUT 
+    clk2x180 => open,												-- SCRIPT COMMENT OUT 
+    clkdv => dcm_mclk_div,       -- 16.667 mhz 						-- SCRIPT COMMENT OUT 
+    clkfx => dcm_mclk_fx,         -- 200 mhz						-- SCRIPT COMMENT OUT 
+    clkfx180 => open,												-- SCRIPT COMMENT OUT 
+	psincdec => '0',												-- SCRIPT COMMENT OUT 
+    psclk => '0',													-- SCRIPT COMMENT OUT 
+    psen => '0',													-- SCRIPT COMMENT OUT 
+    do => bcoclk_data,												-- SCRIPT COMMENT OUT 
+    di => bcoclk_data_in,	  										-- SCRIPT COMMENT OUT 
+    drdy => bcoclk_data_ready,										-- SCRIPT COMMENT OUT 
+    daddr => bcoclk_addr,											-- SCRIPT COMMENT OUT 
+    dwe => bcoclk_we,												-- SCRIPT COMMENT OUT 
+    den => bcoclk_en,												-- SCRIPT COMMENT OUT 
+    dclk => busclk,													-- SCRIPT COMMENT OUT 
+    locked => dcm_mclk_locked,										-- SCRIPT COMMENT OUT 
+    clkfb => dcm_mclk_fb,											-- SCRIPT COMMENT OUT 
+    clkin => clk_x,             -- 66.667 mhz						-- SCRIPT COMMENT OUT 
+    rst => reset													-- SCRIPT COMMENT OUT 
+  );	  															-- SCRIPT COMMENT OUT 
+  					
  -- port map (
 --    clk0 => dcm_mclk_a,         -- 66.667 mhz
 --    clk180 => open,
@@ -174,23 +232,23 @@ begin
   
   
   
-  dcm_mclk_fb <= dcm_mclk_a;
---  mclka_bufg : bufg
---  port map (
---    o => dcm_mclk_fb,           -- MCLK_A global clock and DCM feedback
---    i => dcm_mclk_a 
+  dcm_mclk_fb <= dcm_mclk_a;														 -- SCRIPT COMMENT OUT
+--  mclka_bufg : bufg																 -- SCRIPT COMMENT OUT
+--  port map (																		 -- SCRIPT COMMENT OUT
+--    o => dcm_mclk_fb,           -- MCLK_A global clock and DCM feedback			 -- SCRIPT COMMENT OUT
+--    i => dcm_mclk_a 																 -- SCRIPT COMMENT OUT
 --  );
-
-	mclk_b <= dcm_mclk_b;
---  mclkb_bufg : bufg
---  port map (
---    o => mclk_b,                -- MCLK_B global clock
+																					 -- SCRIPT COMMENT OUT
+	mclk_b <= dcm_mclk_b;															 -- SCRIPT COMMENT OUT
+--  mclkb_bufg : bufg																 -- SCRIPT COMMENT OUT
+--  port map (																		 -- SCRIPT COMMENT OUT
+--    o => mclk_b,                -- MCLK_B global clock							 -- SCRIPT COMMENT OUT
 --    i => dcm_mclk_b 
---  );
-
-	clk_fx <= dcm_mclk_fx;
---  fclk_bufg : bufg
---  port map (
+--  );																				 -- SCRIPT COMMENT OUT
+																					 -- SCRIPT COMMENT OUT
+	clk_fx <= dcm_mclk_fx;															 -- SCRIPT COMMENT OUT
+--  fclk_bufg : bufg																 -- SCRIPT COMMENT OUT
+--  port map (																		 -- SCRIPT COMMENT OUT
 --    o => clk_fx,                --  drives the dac
 --    i => dcm_mclk_fx
 --  );
@@ -198,18 +256,42 @@ begin
 --  idelayctrl_imp : idelayctrl
 --  port map (
 --    rdy => idelayctrl_ready,
---    refclk => clk_fx,
---    rst => idelayctrl_reset
---  );
-
-	outclk <= dcm_mclk_div;
+--    refclk => clk_fx,																 -- SCRIPT COMMENT OUT
+--    rst => idelayctrl_reset														 -- SCRIPT COMMENT OUT
+--  );																				 -- SCRIPT COMMENT OUT
+																					 -- SCRIPT COMMENT OUT
+	outclk <= dcm_mclk_div;															 -- SCRIPT COMMENT OUT
 --  outclk_bufg : bufg
 --  port map (
---    o => outclk,                -- ISERDES output clock
---    i => dcm_mclk_div
---  );
+--    o => outclk,                -- ISERDES output clock							 -- SCRIPT COMMENT OUT
+--    i => dcm_mclk_div																 -- SCRIPT COMMENT OUT
+--  );																				 -- SCRIPT COMMENT OUT
+																					 -- SCRIPT COMMENT OUT
+  mclk_a <= dcm_mclk_fb;															 -- SCRIPT COMMENT OUT
+  
+ 	
+  
+---      -- NOTE: RAR .. I believe this mmcm already outputs clocks on BUFG's
+---    ------------------- Begin Cut here for INSTANTIATION Template ------- INST_TAG
+---    strips_mclk_gen : strips_mclk_mmcm
+---    port map ( 
+---        
+---        -- Clock in ports
+---        CLK15NS => clk_x,            -- 66.667 mhz
+---        -- Clock out ports  
+---        MCLK_A => mclk_a,        -- 66.667 mhz
+---        MCLK_B => mclk_b,        -- 66.667 mhz phase 90
+---        MCLK_DIV4 => outclk,    -- 16.667 mhz, ISERDES output clock
+---        MCLK_MULT3 => clk_fx,   -- 200 mhz, drives the dac
+---        -- Status and control signals                
+---        reset => reset,
+---        locked => dcm_mclk_locked            
+---    );
+---    -- INST_TAG_END --------- End INSTANTIATION Template --------------
 
-  mclk_a <= dcm_mclk_fb;
+	
+  
+  
   dacclk <= clk_fx;
   idelayctrl_reset <= not dcm_mclk_locked;
 
@@ -225,127 +307,105 @@ begin
 --    o => clk_z,
 --    s => clksel
 --  );
-																						   
- 	clk_z <= clk_x when clksel = '0' else clk_ext;
- -- bcoclkmux : bufgctrl
---  port map (
---    i0 => clk_x,
---    i1 => clk_ext,
---    o => clk_z,
---    s0 => not clksel,
---    s1 => clksel,
---    ce1 => '1',
---    ce0 => '1',
---    ignore1 => '1',
---    ignore0 => '1'
---  );
-
-  fbcoclk_dcm : entity inferredDCM --dcm_adv
-  generic map (
-    clkin_period => 15.0,
-    clkfx_divide => 4,
-    clkfx_multiply => 3,
-    clkdv_divide => 4.0,
-    clkin_divide_by_2 => false
-  )
-  port map (
-    clkin => clk_z,
-    clkfb => dcm_fbco_a,   -- Direct feedback since this edje is not used
-    rst => reset,
-    psincdec => '0',
-    psclk => '0',
-    psen => '0',
-    do => bcoclk_data,
-    di => bcoclk_data_in,	  
-    drdy => bcoclk_data_ready,
-    daddr => bcoclk_addr,
-    dwe => bcoclk_we,
-    den => bcoclk_en,
-    dclk => busclk,
-    clk0 => dcm_fbco_a,
-    clk90 => open,
-    clk180 => open,
-    clk270 => open,
-    clk2x => open,
-    clk2x180 => open,
-    clkdv => open,
-    clkfx => dcm_fbco_fx,
-    clkfx180 => open,
-    locked => dcm_fbco_locked
-  );
-
---  Technically, we should insert a bufg between dcm_fbco_fx and any
---  other logic.  This is to ensure that the timing of the BCO reset signal
---  is predictable.
-
-	clk_q <= dcm_fbco_fx;
- -- bcoclk_mux : bufg    -- Well, it was a mux at one time...
---  port map (
---    i => dcm_fbco_fx,
---    o => clk_q
---  );
-
- bcoclk_pmcd : entity inferredDCM --pmcd
-  generic map (
-    clkin_period => 15.0*4/3,
-    clkfx_divide => 1,
-    clkfx_multiply => 1,
-    clkdv_divide => 4.0,
-    clkin_divide_by_2 => false
-  )
-  port map (
-    clkin => clk_z,
-    clkfb => '0', 
-    rst => bcoclk_reset,	
-	
-    psincdec => '0',
-    psclk => '0',
-    psen => '0',
-    do => open,
-    di => bcoclk_data_in,	  
-    drdy => open,
-    daddr => bcoclk_addr,
-    dwe => bcoclk_we,
-    den => bcoclk_en,
-    dclk => busclk,		 
-	
-    clk0 => dcm_bco_a,
-    clk90 => open,
-    clk180 => open,
-    clk270 => open,
-    clk2x => open,
-    clk2x180 => open,
-    clkdv => dcm_bco_div,
-    clkfx => open,
-    clkfx180 => open,
-    locked => open
-  );			 
-  
-    -- NOTE: RAR.. replaced pll with divide by 4 logic (inclk = clk_q, outclk = dcm_bco_div)
-  gen_div_by4_clk : for i in 0 to 0 generate
-    signal cnt : std_logic_vector(1 downto 0) := (others => '0');
-    signal tmp_clk : std_logic_vector;
-  begin
-      tmp_clk <= cnt(1);
-      
-      bcoclk_mux : bufg    
-        port map (
-          i => tmp_clk,
-          o => dcm_bco_div
-        );
-      
-      process(clk_q, bcoclk_reset)
-      begin
-        if (bcoclk_reset = '1') then
-            cnt <= (others => '0');
-        elsif (rising_edge(clk_q) then        
-            cnt <= cnt + 1;
-        end if;      
-      end process;
-  end generate;
---  bcoclk_pmcd : pmcd
---  generic map (
---    rst_deassert_clk => "CLKA",
+																			
+ 	clk_z <= clk_x when clksel = '0' else clk_ext;							-- SCRIPT COMMENT OUT
+ --- bcoclkmux : bufgctrl													
+---  port map (																
+---    i0 => clk_x,															
+---    i1 => clk_ext,
+---    o => clk_z,
+---    s0 => not clksel,
+---    s1 => clksel,
+---    ce1 => '1',
+---    ce0 => '1',
+---    ignore1 => '1',
+---    ignore0 => '1'
+---  );
+																				 -- SCRIPT COMMENT OUT
+  fbcoclk_dcm : entity inferredDCM --dcm_adv									 -- SCRIPT COMMENT OUT
+  generic map (																	 -- SCRIPT COMMENT OUT
+    clkin_period => 15.0,														 -- SCRIPT COMMENT OUT
+    clkfx_divide => 4,															 -- SCRIPT COMMENT OUT
+    clkfx_multiply => 3,														 -- SCRIPT COMMENT OUT
+    clkdv_divide => 4.0,														 -- SCRIPT COMMENT OUT
+    clkin_divide_by_2 => false													 -- SCRIPT COMMENT OUT
+  )																				 -- SCRIPT COMMENT OUT
+  port map (																	 -- SCRIPT COMMENT OUT
+    clkin => clk_z,																 -- SCRIPT COMMENT OUT
+    clkfb => dcm_fbco_a,   -- Direct feedback since this edje is not used		 -- SCRIPT COMMENT OUT
+    rst => reset,																 -- SCRIPT COMMENT OUT
+    psincdec => '0',															 -- SCRIPT COMMENT OUT
+    psclk => '0',																 -- SCRIPT COMMENT OUT
+    psen => '0',																 -- SCRIPT COMMENT OUT
+    do => bcoclk_data,															 -- SCRIPT COMMENT OUT
+    di => bcoclk_data_in,	  													 -- SCRIPT COMMENT OUT
+    drdy => bcoclk_data_ready,													 -- SCRIPT COMMENT OUT
+    daddr => bcoclk_addr,														 -- SCRIPT COMMENT OUT
+    dwe => bcoclk_we,															 -- SCRIPT COMMENT OUT
+    den => bcoclk_en,															 -- SCRIPT COMMENT OUT
+    dclk => busclk,																 -- SCRIPT COMMENT OUT
+    clk0 => dcm_fbco_a,															 -- SCRIPT COMMENT OUT
+    clk90 => open,																 -- SCRIPT COMMENT OUT
+    clk180 => open,																 -- SCRIPT COMMENT OUT
+    clk270 => open,																 -- SCRIPT COMMENT OUT
+    clk2x => open,																 -- SCRIPT COMMENT OUT
+    clk2x180 => open,															 -- SCRIPT COMMENT OUT
+    clkdv => open,																 -- SCRIPT COMMENT OUT
+    clkfx => dcm_fbco_fx,														 -- SCRIPT COMMENT OUT
+    clkfx180 => open,															 -- SCRIPT COMMENT OUT
+    locked => dcm_fbco_locked													 -- SCRIPT COMMENT OUT
+  );																			 -- SCRIPT COMMENT OUT
+																				 -- SCRIPT COMMENT OUT
+--  Technically, we should insert a bufg between dcm_fbco_fx and any			 -- SCRIPT COMMENT OUT
+--  other logic.  This is to ensure that the timing of the BCO reset signal		 -- SCRIPT COMMENT OUT
+--  is predictable.																 -- SCRIPT COMMENT OUT
+																				 -- SCRIPT COMMENT OUT
+	clk_q <= dcm_fbco_fx;														 -- SCRIPT COMMENT OUT
+ -- bcoclk_mux : bufg    -- Well, it was a mux at one time...					 -- SCRIPT COMMENT OUT
+--  port map (																	 -- SCRIPT COMMENT OUT
+--    i => dcm_fbco_fx,															 -- SCRIPT COMMENT OUT
+--    o => clk_q																 -- SCRIPT COMMENT OUT
+--  );																			 -- SCRIPT COMMENT OUT
+																				 -- SCRIPT COMMENT OUT
+ bcoclk_pmcd : entity inferredDCM --pmcd										 -- SCRIPT COMMENT OUT
+  generic map (																	 -- SCRIPT COMMENT OUT
+    clkin_period => 15.0*4/3,													 -- SCRIPT COMMENT OUT
+    clkfx_divide => 1,															 -- SCRIPT COMMENT OUT
+    clkfx_multiply => 1,														 -- SCRIPT COMMENT OUT
+    clkdv_divide => 4.0,														 -- SCRIPT COMMENT OUT
+    clkin_divide_by_2 => false													 -- SCRIPT COMMENT OUT
+  )																				 -- SCRIPT COMMENT OUT
+  port map (																	 -- SCRIPT COMMENT OUT
+    clkin => clk_z,																 -- SCRIPT COMMENT OUT
+    clkfb => '0', 																 -- SCRIPT COMMENT OUT
+    rst => bcoclk_reset,														 -- SCRIPT COMMENT OUT
+																				 -- SCRIPT COMMENT OUT
+    psincdec => '0',															 -- SCRIPT COMMENT OUT
+    psclk => '0',																 -- SCRIPT COMMENT OUT
+    psen => '0',																 -- SCRIPT COMMENT OUT
+    do => open,																	 -- SCRIPT COMMENT OUT
+    di => bcoclk_data_in,	  													 -- SCRIPT COMMENT OUT
+    drdy => open,																 -- SCRIPT COMMENT OUT
+    daddr => bcoclk_addr,														 -- SCRIPT COMMENT OUT
+    dwe => bcoclk_we,															 -- SCRIPT COMMENT OUT
+    den => bcoclk_en,															 -- SCRIPT COMMENT OUT
+    dclk => busclk,		 														 -- SCRIPT COMMENT OUT
+																				 -- SCRIPT COMMENT OUT
+    clk0 => dcm_bco_a,															 -- SCRIPT COMMENT OUT
+    clk90 => open,																 -- SCRIPT COMMENT OUT
+    clk180 => open,																 -- SCRIPT COMMENT OUT
+    clk270 => open,																 -- SCRIPT COMMENT OUT
+    clk2x => open,																 -- SCRIPT COMMENT OUT
+    clk2x180 => open,															 -- SCRIPT COMMENT OUT
+    clkdv => dcm_bco_div,														 -- SCRIPT COMMENT OUT
+    clkfx => open,																 -- SCRIPT COMMENT OUT
+    clkfx180 => open,															 -- SCRIPT COMMENT OUT
+    locked => open																 -- SCRIPT COMMENT OUT
+  );			 																 -- SCRIPT COMMENT OUT
+  					  															 -- SCRIPT COMMENT OUT
+--  bcoclk_pmcd : pmcd															 -- SCRIPT COMMENT OUT
+--  generic map (																 -- SCRIPT COMMENT OUT
+--    rst_deassert_clk => "CLKA",												 -- SCRIPT COMMENT OUT
 --    en_rel => true
 --  )
 --  port map (
@@ -356,45 +416,84 @@ begin
 --    rst => bcoclk_reset,
 --    rel => bcoclk_release,
 --    clka1 => dcm_bco_a,
---    clka1d2 => open,
---    clka1d4 => dcm_bco_div,
---    clka1d8 => open,
---    clkb1 => open,
---    clkc1 => open,
---    clkd1 => open
---  );
-
-  dcm_fbco <= dcm_bco_a;
---  bcoclkfb_bufg : bufg
+--    clka1d2 => open,															 -- SCRIPT COMMENT OUT
+--    clka1d4 => dcm_bco_div,													 -- SCRIPT COMMENT OUT
+--    clka1d8 => open,															 -- SCRIPT COMMENT OUT
+--    clkb1 => open,															 -- SCRIPT COMMENT OUT
+--    clkc1 => open,															 -- SCRIPT COMMENT OUT
+--    clkd1 => open																 -- SCRIPT COMMENT OUT
+--  );																			 -- SCRIPT COMMENT OUT
+																				 -- SCRIPT COMMENT OUT
+  dcm_fbco <= dcm_bco_a;														 -- SCRIPT COMMENT OUT
+--  bcoclkfb_bufg : bufg														 -- SCRIPT COMMENT OUT
 --  port map (
 --    o => dcm_fbco,             -- Fractional BCO clock
 --    i => dcm_bco_a
 --  );	   
---  
-  dcm_bco <=  dcm_bco_div;
---  bcoclk_bufg : bufg
---  port map (
---    o => dcm_bco,                -- BCO clock
---    i => dcm_bco_div
---  );
+--  					
+
+--------- NOTE: RAR.. there was a DCM here with in clk_z (possibly external clock)
+---------  and output controllable clk_q. But removed for simplicity in transfer to picoZed
+---	   
+---  clk_q <= clk_z;
+---  --bcoclk_mux : bufg    
+---  --port map (
+---  --  i => clk_z,
+---  --  o => clk_q
+---  --);
+---  
+---  
+---    -- NOTE: RAR.. replaced pll with divide by 4 logic (inclk = clk_q, outclk = dcm_bco_div)
+---    gen_div_by4_clk : for i in 0 to 0 generate
+---      signal cnt : unsigned(1 downto 0) := (others => '0');
+---      signal tmp_clk : std_logic;
+---    begin
+---        tmp_clk <= cnt(1);
+---        
+---        bcoclk_mux : bufg    
+---          port map (
+---            i => tmp_clk,
+---            o => dcm_bco_div
+---          );
+---        
+---        process(clk_q, bcoclk_reset)
+---        begin
+---          if (bcoclk_reset = '1') then
+---              cnt <= (others => '0');
+---          elsif (rising_edge(clk_q)) then        
+---              cnt <= cnt + 1;
+---          end if;      
+---        end process;
+---    end generate;			   
+---	
+---  dcm_fbco <= clk_q; -- Fractional BCO clock			 
+															 
+															 
+															 
+  dcm_bco <=  dcm_bco_div;									 -- SCRIPT COMMENT OUT
+---  bcoclk_bufg : bufg
+---  port map (
+---    o => dcm_bco,                -- BCO clock
+---    i => dcm_bco_div
+---  );
 
   bcoclk <= dcm_bco;
   fracbcoclk <= dcm_fbco;
   
   									   
- 	bcocounter_clock <= dcm_bco when bco_clear = '0' else clk_z;
---  bcoclkmux_imp : bufgctrl
---  port map (
---    o => bcocounter_clock,
---    i0 => dcm_bco,
---    i1 => clk_z,
---    ignore0 => '1',
---    ignore1 => '0',
---    ce0 => '1',
---    ce1 => '1',
---    s0 => not bco_clear,
---    s1 => bco_clear
---  );
+ 	bcocounter_clock <= dcm_bco when bco_clear = '0' else clk_z;   -- SCRIPT COMMENT OUT
+---  bcoclkmux_imp : bufgctrl
+---  port map (
+---    o => bcocounter_clock,
+---    i0 => dcm_bco,
+---    i1 => clk_z,
+---    ignore0 => '1',
+---    ignore1 => '0',
+---    ce0 => '1',
+---    ce1 => '1',
+---    s0 => not bco_clear,
+---    s1 => bco_clear
+---  );
 
 
 	binaryCnt: for i in 0 downto 0 generate 

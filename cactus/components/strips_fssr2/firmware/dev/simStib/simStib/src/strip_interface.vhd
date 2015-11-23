@@ -1,58 +1,67 @@
---------------------------------------------------------------------------------
---
--- Company:
--- Engineer:       Matthew Jones - Purdue University
--- 
--- Create Date:    08:44:16 06/06/2013 
--- Design Name:    stib
--- Module Name:    strip_interface - RTL
--- Project Name:   STIB firmware
--- Target Devices: xc4vlx25ff668-10
--- Tool versions:  ISE 14.4 / 14.6
--- Description:    Defines a MicroBlaze LMB slave that interfaces with the
---                 strip sensor hybrids
---
--- Dependencies:
---
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
---
---   strip_csr - 0xc4000000
---     Bits  2.. 0 - R   - Number of channels (normally 6)
---     Bits  7.. 3 - R/W - Packet size
---     Bits 13.. 8 - R/W - Channel enable mask
---     Bits 15..14 - R/W - Idle count
---     Bit 16      - R/W - external clock select 
---     Bit 17      - halt readout
---     Bit 18      -
---     Bit 19      - R/W - arm BCO reset
---     Bit 20      - R/W - flush packet buffers
---     Bit 21      - R/W - clear trigger number
---     Bit 22      - R/W - clear BCO counter
---     Bit 23      - R/W - enable trigger veto
---     Bit 24      - R/W - send trigger primitive data
---     Bit 25      - R/W - send trigger number
---     Bit 26      - R/W - Send bunch counter
---     Bit 27      - R/W - Send strip hit data
---     Bit 28      -
---     Bit 29      - R/W - clock DCM locked
---     Bit 30      - R/W - clock DCM locked
---     Bit 31      - R/W - DCM reset
---
---  strip_reset - 0c4000004
---     Bits  5.. 0 - R/W - Reset mask
---     Bits 31..24 - R/W - Reset type/status
---
---
---  trig_csr - 0xc4000060
---     Bit 3..0    - R/W - BCO offset
---     Bit 7       - R/W - Halt pipeline
---     Bits 31..28 - R   - Trigger inputs
---
---  spy_fifo_csr - 0xc4000030
---     Bit   3.. 0 - channel select
---------------------------------------------------------------------------------
+-- SCRIPT COMMENT OUT --------------------------------------------------------------------------------
+
+-- SCRIPT COMMENT OUT -- IMPORTANT!! IMPORTANT!! 				
+-- SCRIPT COMMENT OUT -- It's very important to note!!!   	
+-- SCRIPT COMMENT OUT -- 										
+-- SCRIPT COMMENT OUT -- The script that moves these files into a Firmware project will 		   
+-- SCRIPT COMMENT OUT --  remove all "--- " comments.. 												
+-- SCRIPT COMMENT OUT -- and will remove completely any text before "SCRIPT COMMENT OUT" 
+
+-- SCRIPT COMMENT OUT --------------------------------------------------------------------------------
+-- SCRIPT COMMENT OUT --
+-- SCRIPT COMMENT OUT -- Company:
+-- SCRIPT COMMENT OUT -- Engineer:       Matthew Jones - Purdue University
+-- SCRIPT COMMENT OUT -- 
+-- SCRIPT COMMENT OUT -- Create Date:    08:44:16 06/06/2013 
+-- SCRIPT COMMENT OUT -- Design Name:    stib
+-- SCRIPT COMMENT OUT -- Module Name:    strip_interface - RTL
+-- SCRIPT COMMENT OUT -- Project Name:   STIB firmware
+-- SCRIPT COMMENT OUT -- Target Devices: xc4vlx25ff668-10
+-- SCRIPT COMMENT OUT -- Tool versions:  ISE 14.4 / 14.6
+-- SCRIPT COMMENT OUT -- Description:    Defines a MicroBlaze LMB slave that interfaces with the
+-- SCRIPT COMMENT OUT --                 strip sensor hybrids
+-- SCRIPT COMMENT OUT --
+-- SCRIPT COMMENT OUT -- Dependencies:
+-- SCRIPT COMMENT OUT --
+-- SCRIPT COMMENT OUT -- Revision: 
+-- SCRIPT COMMENT OUT -- Revision 0.01 - File Created
+-- SCRIPT COMMENT OUT -- Additional Comments: 
+-- SCRIPT COMMENT OUT --
+-- SCRIPT COMMENT OUT --   strip_csr - 0xc4000000
+-- SCRIPT COMMENT OUT --     Bits  2.. 0 - R   - Number of channels (normally 6)
+-- SCRIPT COMMENT OUT --     Bits  7.. 3 - R/W - Packet size
+-- SCRIPT COMMENT OUT --     Bits 13.. 8 - R/W - Channel enable mask
+-- SCRIPT COMMENT OUT --     Bits 15..14 - R/W - Idle count
+-- SCRIPT COMMENT OUT --     Bit 16      - R/W - external clock select 
+-- SCRIPT COMMENT OUT --     Bit 17      - halt readout
+-- SCRIPT COMMENT OUT --     Bit 18      -
+-- SCRIPT COMMENT OUT --     Bit 19      - R/W - arm BCO reset
+-- SCRIPT COMMENT OUT --     Bit 20      - R/W - flush packet buffers
+-- SCRIPT COMMENT OUT --     Bit 21      - R/W - clear trigger number
+-- SCRIPT COMMENT OUT --     Bit 22      - R/W - clear BCO counter
+-- SCRIPT COMMENT OUT --     Bit 23      - R/W - enable trigger veto
+-- SCRIPT COMMENT OUT --     Bit 24      - R/W - send trigger primitive data
+-- SCRIPT COMMENT OUT --     Bit 25      - R/W - send trigger number
+-- SCRIPT COMMENT OUT --     Bit 26      - R/W - Send bunch counter
+-- SCRIPT COMMENT OUT --     Bit 27      - R/W - Send strip hit data
+-- SCRIPT COMMENT OUT --     Bit 28      -
+-- SCRIPT COMMENT OUT --     Bit 29      - R/W - clock DCM locked
+-- SCRIPT COMMENT OUT --     Bit 30      - R/W - clock DCM locked
+-- SCRIPT COMMENT OUT --     Bit 31      - R/W - DCM reset
+-- SCRIPT COMMENT OUT --
+-- SCRIPT COMMENT OUT --  strip_reset - 0c4000004
+-- SCRIPT COMMENT OUT --     Bits  5.. 0 - R/W - Reset mask
+-- SCRIPT COMMENT OUT --     Bits 31..24 - R/W - Reset type/status
+-- SCRIPT COMMENT OUT --
+-- SCRIPT COMMENT OUT --
+-- SCRIPT COMMENT OUT --  trig_csr - 0xc4000060
+-- SCRIPT COMMENT OUT --     Bit 3..0    - R/W - BCO offset
+-- SCRIPT COMMENT OUT --     Bit 7       - R/W - Halt pipeline
+-- SCRIPT COMMENT OUT --     Bits 31..28 - R   - Trigger inputs
+-- SCRIPT COMMENT OUT --
+-- SCRIPT COMMENT OUT --  spy_fifo_csr - 0xc4000030
+-- SCRIPT COMMENT OUT --     Bit   3.. 0 - channel select
+-- SCRIPT COMMENT OUT --------------------------------------------------------------------------------
 
 library IEEE;
 use IEEE.std_logic_1164.all;
@@ -60,9 +69,9 @@ library work;
 use work.iobus.ALL;
 
 use IEEE.numeric_std.all;
---
---library UNISIM;
---use UNISIM.VComponents.all;
+
+--- library UNISIM;
+--- use UNISIM.VComponents.all;
 
 entity strip_interface is
   generic ( nsensor : integer := 2 );
@@ -393,17 +402,17 @@ architecture behavioral of strip_interface is
     );
   end component;
 
---  component trigbuf
---    port (
---      clka : in std_logic;
---      wea : in std_logic_vector(0 downto 0);
---      addra : in std_logic_vector(7 downto 0);
---      dina : in std_logic_vector(3 downto 0);
---      clkb : in std_logic;
---      addrb : in std_logic_vector(7 downto 0);
---      doutb : out std_logic_vector(3 downto 0)
---    );
---  end component;
+---  component trigbuf
+---    port (
+---      clka : in std_logic;
+---      wea : in std_logic_vector(0 downto 0);
+---      addra : in std_logic_vector(7 downto 0);
+---      dina : in std_logic_vector(3 downto 0);
+---      clkb : in std_logic;
+---      addrb : in std_logic_vector(7 downto 0);
+---      doutb : out std_logic_vector(3 downto 0)
+---    );
+---  end component;
 
   component chip_fifo
     port (
@@ -820,14 +829,14 @@ begin
 
     BCOCLK(I) <= DCM_BCOCLK;
 	
-	strip_mclk(i) <= DCM_MCLK_A when strip_trim_csr(8+i) = '0' else DCM_MCLK_B;
---    bufgmux_imp : BUFGMUX
---    port map (
---      o => strip_mclk(i),
---      i0 => DCM_MCLK_A,
---      i1 => DCM_MCLK_B,
---      s => strip_trim_csr(8+i)
---    );
+	strip_mclk(i) <= DCM_MCLK_A when strip_trim_csr(8+i) = '0' else DCM_MCLK_B;	 -- SCRIPT COMMENT OUT
+---    bufgmux_imp : BUFGMUX
+---    port map (
+---      o => strip_mclk(i),
+---      i0 => DCM_MCLK_A,
+---      i1 => DCM_MCLK_B,
+---      s => strip_trim_csr(8+i)
+---    );
 
     chipserdes4_imp : chipserdes
     GENERIC MAP (
@@ -967,32 +976,33 @@ begin
 	
 	
 	
-    trigbuf_imp : entity inferredRAM --trigbuf	   
-	GENERIC MAP (AWIDTH => 8, DWIDTH => 4)	
-    PORT MAP (
-      CLKA => dcm_bcoclk,   -- Check this...  it should probably be DCM_BCOCLK.
-      WEA => TRIGGER_DPRAM_WE,
-      ADDRA => TRIG_DPRAM_ADDR,
-      DINA => TRIG_OUTPUTS,	 
-	  web => "0",
-	  dinb => x"0",
-      CLKB => DCM_MCLK_A,
-      ADDRB => TRIG_ADDR(I),
-      DOUTB => TRIG_DATA(I)
-    );
+    trigbuf_imp : entity inferredRAM  			-- SCRIPT COMMENT OUT  
+	GENERIC MAP (AWIDTH => 8, DWIDTH => 4)		-- SCRIPT COMMENT OUT  
+    PORT MAP (									-- SCRIPT COMMENT OUT  
+      CLKA => dcm_bcoclk,   -- Check this...  it should probably be DCM_BCOCLK.					 -- SCRIPT COMMENT OUT  
+      WEA => TRIGGER_DPRAM_WE,					-- SCRIPT COMMENT OUT  
+      ADDRA => TRIG_DPRAM_ADDR,					-- SCRIPT COMMENT OUT  
+      DINA => TRIG_OUTPUTS,	 					-- SCRIPT COMMENT OUT  
+	  web => "0",								-- SCRIPT COMMENT OUT  
+	  dinb => x"0",								-- SCRIPT COMMENT OUT  
+      CLKB => DCM_MCLK_A,						-- SCRIPT COMMENT OUT  
+      ADDRB => TRIG_ADDR(I),					-- SCRIPT COMMENT OUT  
+      DOUTB => TRIG_DATA(I)						-- SCRIPT COMMENT OUT  
+    );											-- SCRIPT COMMENT OUT  
 	
-    --trigbuf_imp : trigbuf	   
---		
---    PORT MAP (
---      CLKA => dcm_bcoclk,   -- Check this...  it should probably be DCM_BCOCLK.
---      WEA => TRIGGER_DPRAM_WE,
---      ADDRA => TRIG_DPRAM_ADDR,
---      DINA => TRIG_OUTPUTS,
---      CLKB => DCM_MCLK_A,
---      ADDRB => TRIG_ADDR(I),
---      DOUTB => TRIG_DATA(I)
---    );
---
+    
+	
+--- trigbuf_imp : trigbuf	   	
+---    PORT MAP (
+---      CLKA => dcm_bcoclk,   -- Check this...  it should probably be DCM_BCOCLK.
+---      WEA => TRIGGER_DPRAM_WE,
+---      ADDRA => TRIG_DPRAM_ADDR,
+---      DINA => TRIG_OUTPUTS,
+---      CLKB => DCM_MCLK_A,
+---      ADDRB => TRIG_ADDR(I),
+---      DOUTB => TRIG_DATA(I)
+---    );
+---
   END GENERATE;
 
   trigprim0_imp : trigprim
@@ -1191,84 +1201,84 @@ begin
     STREAM_READY => STREAM_READY
   );  
   
-  spy_fifo_a_imp : entity inferredFifo	
-	generic map (  width =>36, depth=>527, addr=>9)
-  port map (
-    RESET => spy_fifo_csr(31),
-    WCLOCK => dcm_mclk_a,
-    RCLOCK => clk,
-    DATA => spy_fifo_a_input,
-    WE => spy_fifo_a_we,
-    RE => spy_fifo_a_addressed,
-    FULL => spy_fifo_a_full,
-    EMPTY => spy_fifo_a_empty,
-    Q => spy_fifo_a_output
-  );
-    spy_fifo_b_imp : entity inferredFifo	
-	generic map (  width =>36, depth=>527, addr=>9)
-  port map (
-    RESET => spy_fifo_csr(31),
-    WCLOCK => regional_bcoclk,
-    RCLOCK => clk,
-    DATA => spy_fifo_b_input,
-    WE => spy_fifo_b_we,
-    RE => spy_fifo_b_addressed,
-    FULL => spy_fifo_b_full,
-    EMPTY => spy_fifo_b_empty,
-    Q => spy_fifo_b_output
-  );
-    spy_fifo_c_imp : entity inferredFifo	
-	generic map (  width =>36, depth=>527, addr=>9)
-  port map (
-    RESET => spy_fifo_csr(31),
-    WCLOCK => fracbcoclk,
-    RCLOCK => clk,
-    DATA => spy_fifo_c_input,
-    WE => spy_fifo_c_we,
-    RE => spy_fifo_c_addressed,
-    FULL => spy_fifo_c_full,
-    EMPTY => spy_fifo_c_empty,
-    Q => spy_fifo_c_output
-  );		
-  
- --
---  spy_fifo_a_imp : chip_fifo
---  port map (
---    rst => spy_fifo_csr(31),
---    wr_clk => dcm_mclk_a,
---    rd_clk => clk,
---    din => spy_fifo_a_input,
---    wr_en => spy_fifo_a_we,
---    rd_en => spy_fifo_a_addressed,
---    full => spy_fifo_a_full,
---    empty => spy_fifo_a_empty,
---    dout => spy_fifo_a_output
---  );
---  spy_fifo_b_imp : chip_fifo
---  port map (
---    rst => spy_fifo_csr(31),
---    wr_clk => regional_bcoclk,
---    rd_clk => clk,
---    din => spy_fifo_b_input,
---    wr_en => spy_fifo_b_we,
---    rd_en => spy_fifo_b_addressed,
---    full => spy_fifo_b_full,
---    empty => spy_fifo_b_empty,
---    dout => spy_fifo_b_output
---  );
---  spy_fifo_c_imp : chip_fifo
---  port map (
---    rst => spy_fifo_csr(31),
---    wr_clk => fracbcoclk,
---    rd_clk => clk,
---    din => spy_fifo_c_input,
---    wr_en => spy_fifo_c_we,
---    rd_en => spy_fifo_c_addressed,
---    full => spy_fifo_c_full,
---    empty => spy_fifo_c_empty,
---    dout => spy_fifo_c_output
---  );
---
+  spy_fifo_a_imp : entity inferredFifo					-- SCRIPT COMMENT OUT
+	generic map (  width =>36, depth=>527, addr=>9)		-- SCRIPT COMMENT OUT
+  port map (											-- SCRIPT COMMENT OUT
+    RESET => spy_fifo_csr(31),							-- SCRIPT COMMENT OUT
+    WCLOCK => dcm_mclk_a,								-- SCRIPT COMMENT OUT
+    RCLOCK => clk,										-- SCRIPT COMMENT OUT
+    DATA => spy_fifo_a_input,							-- SCRIPT COMMENT OUT
+    WE => spy_fifo_a_we,								-- SCRIPT COMMENT OUT
+    RE => spy_fifo_a_addressed,							-- SCRIPT COMMENT OUT
+    FULL => spy_fifo_a_full,							-- SCRIPT COMMENT OUT
+    EMPTY => spy_fifo_a_empty,							-- SCRIPT COMMENT OUT
+    Q => spy_fifo_a_output								-- SCRIPT COMMENT OUT
+  );													-- SCRIPT COMMENT OUT
+    spy_fifo_b_imp : entity inferredFifo				-- SCRIPT COMMENT OUT
+	generic map (  width =>36, depth=>527, addr=>9)		-- SCRIPT COMMENT OUT
+  port map (											-- SCRIPT COMMENT OUT
+    RESET => spy_fifo_csr(31),							-- SCRIPT COMMENT OUT
+    WCLOCK => regional_bcoclk,							-- SCRIPT COMMENT OUT
+    RCLOCK => clk,										-- SCRIPT COMMENT OUT
+    DATA => spy_fifo_b_input,							-- SCRIPT COMMENT OUT
+    WE => spy_fifo_b_we,								-- SCRIPT COMMENT OUT
+    RE => spy_fifo_b_addressed,							-- SCRIPT COMMENT OUT
+    FULL => spy_fifo_b_full,							-- SCRIPT COMMENT OUT
+    EMPTY => spy_fifo_b_empty,							-- SCRIPT COMMENT OUT
+    Q => spy_fifo_b_output								-- SCRIPT COMMENT OUT
+  );													-- SCRIPT COMMENT OUT
+    spy_fifo_c_imp : entity inferredFifo				-- SCRIPT COMMENT OUT
+	generic map (  width =>36, depth=>527, addr=>9)		-- SCRIPT COMMENT OUT
+  port map (											-- SCRIPT COMMENT OUT
+    RESET => spy_fifo_csr(31),							-- SCRIPT COMMENT OUT
+    WCLOCK => fracbcoclk,								-- SCRIPT COMMENT OUT
+    RCLOCK => clk,										-- SCRIPT COMMENT OUT
+    DATA => spy_fifo_c_input,							-- SCRIPT COMMENT OUT
+    WE => spy_fifo_c_we,								-- SCRIPT COMMENT OUT
+    RE => spy_fifo_c_addressed,							-- SCRIPT COMMENT OUT
+    FULL => spy_fifo_c_full,							-- SCRIPT COMMENT OUT
+    EMPTY => spy_fifo_c_empty,							-- SCRIPT COMMENT OUT
+    Q => spy_fifo_c_output								-- SCRIPT COMMENT OUT
+  );													-- SCRIPT COMMENT OUT
+  														-- SCRIPT COMMENT OUT
+ ---
+---  spy_fifo_a_imp : chip_fifo
+---  port map (
+---    rst => spy_fifo_csr(31),
+---    wr_clk => dcm_mclk_a,
+---    rd_clk => clk,
+---    din => spy_fifo_a_input,
+---    wr_en => spy_fifo_a_we,
+---    rd_en => spy_fifo_a_addressed,
+---    full => spy_fifo_a_full,
+---    empty => spy_fifo_a_empty,
+---    dout => spy_fifo_a_output
+---  );
+---  spy_fifo_b_imp : chip_fifo
+---  port map (
+---    rst => spy_fifo_csr(31),
+---    wr_clk => regional_bcoclk,
+---    rd_clk => clk,
+---    din => spy_fifo_b_input,
+---    wr_en => spy_fifo_b_we,
+---    rd_en => spy_fifo_b_addressed,
+---    full => spy_fifo_b_full,
+---    empty => spy_fifo_b_empty,
+---    dout => spy_fifo_b_output
+---  );
+---  spy_fifo_c_imp : chip_fifo
+---  port map (
+---    rst => spy_fifo_csr(31),
+---    wr_clk => fracbcoclk,
+---    rd_clk => clk,
+---    din => spy_fifo_c_input,
+---    wr_en => spy_fifo_c_we,
+---    rd_en => spy_fifo_c_addressed,
+---    full => spy_fifo_c_full,
+---    empty => spy_fifo_c_empty,
+---    dout => spy_fifo_c_output
+---  );
+---
   process ( clk )
     variable chip_index : integer range 0 to 5;
     variable chan_index : integer range 0 to nsensor-1;

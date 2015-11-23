@@ -1,3 +1,12 @@
+-- SCRIPT COMMENT OUT --------------------------------------------------------------------------------
+
+-- SCRIPT COMMENT OUT -- IMPORTANT!! IMPORTANT!! 				
+-- SCRIPT COMMENT OUT -- It's very important to note!!!   	
+-- SCRIPT COMMENT OUT -- 										
+-- SCRIPT COMMENT OUT -- The script that moves these files into a Firmware project will 		   
+-- SCRIPT COMMENT OUT --  remove all "--- " comments.. 												
+-- SCRIPT COMMENT OUT -- and will remove completely any text before "SCRIPT COMMENT OUT" 
+
 ----------------------------------------------------------------------------------
 -- Company:
 -- Engineer:       Matthew Jones - Purdue University
@@ -46,19 +55,19 @@ end trigproc;
 
 architecture Behavioral of trigproc is
 
---  component chip_fifo
---    port (
---      rst : in std_logic;
---      wr_clk : in std_logic;
---      rd_clk : in std_logic;
---      din : in std_logic_vector(35 downto 0);
---      wr_en : in std_logic;
---      rd_en : in std_logic;
---      dout : out std_logic_vector(35 downto 0);
---      full : out std_logic;
---      empty : out std_logic
---    );
---  end component;
+---  component chip_fifo
+---    port (
+---      rst : in std_logic;
+---      wr_clk : in std_logic;
+---      rd_clk : in std_logic;
+---      din : in std_logic_vector(35 downto 0);
+---      wr_en : in std_logic;
+---      rd_en : in std_logic;
+---      dout : out std_logic_vector(35 downto 0);
+---      full : out std_logic;
+---      empty : out std_logic
+---    );
+---  end component;
 
   component trigcounter
     port (
@@ -86,32 +95,35 @@ architecture Behavioral of trigproc is
 begin
 	
 	 					   			
-	fifo_imp : entity inferredFifo 							 				   
-		GENERIC MAP ( width => 36, depth => 527, addr => 8)
-  PORT MAP (
-    RESET => RESET,
-    WCLOCK => fbcoclk,
-    RCLOCK => RDCLK,
-    DATA => trig_fifo_input,
-    WE => trig_fifo_we,
-    RE => READ_ENABLE,
-    FULL => TRIG_FIFO_FULL,
-    EMPTY => TRIG_FIFO_EMPTY,
-    Q => FIFO_OUTPUT
-  );
+	fifo_imp : entity inferredFifo 							 	-- SCRIPT COMMENT OUT			   
+		GENERIC MAP ( width => 36, depth => 527, addr => 8)		-- SCRIPT COMMENT OUT
+  PORT MAP (													-- SCRIPT COMMENT OUT
+    RESET => RESET,												-- SCRIPT COMMENT OUT
+    WCLOCK => fbcoclk,											-- SCRIPT COMMENT OUT
+    RCLOCK => RDCLK,											-- SCRIPT COMMENT OUT
+    DATA => trig_fifo_input,									-- SCRIPT COMMENT OUT
+    WE => trig_fifo_we,											-- SCRIPT COMMENT OUT
+    RE => READ_ENABLE,											-- SCRIPT COMMENT OUT
+    FULL => TRIG_FIFO_FULL,										-- SCRIPT COMMENT OUT
+    EMPTY => TRIG_FIFO_EMPTY,									-- SCRIPT COMMENT OUT
+    Q => FIFO_OUTPUT											-- SCRIPT COMMENT OUT
+  );															-- SCRIPT COMMENT OUT
+  													
+  
+  
 	
- -- fifo_imp : chip_fifo
---  port map (
---    rst => reset,
---    wr_clk => fbcoclk,
---    rd_clk => rdclk,
---    din => trig_fifo_input,
---    wr_en => trig_fifo_we,
---    rd_en => read_enable,
---    full => trig_fifo_full,
---    empty => trig_fifo_empty,
---    dout => fifo_output
---  );
+ --- fifo_imp : chip_fifo
+---  port map (
+---    rst => reset,
+---    wr_clk => fbcoclk,
+---    rd_clk => rdclk,
+---    din => trig_fifo_input,
+---    wr_en => trig_fifo_we,
+---    rd_en => read_enable,
+---    full => trig_fifo_full,
+---    empty => trig_fifo_empty,
+---    dout => fifo_output
+---  );
 
 
 	trigcounter_imp : for i in 0 to 0 generate
