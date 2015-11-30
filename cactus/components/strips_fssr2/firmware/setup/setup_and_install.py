@@ -41,17 +41,23 @@ print 'Script directory is:'
 print scriptDir
 print
 
+src = scriptDir + "/../dev"
 
-if ((not os.path.isdir(scriptDir + "/simStib")) or 
-    (not os.path.isdir(scriptDir + "/simStib/simStib")) ):
+
+print 'Source directory is:'
+print src
+print
+
+if ((not os.path.isdir(src + "/simStib")) or 
+    (not os.path.isdir(src + "/simStib/simStib")) ):
     print "Error!\n Check usage. "
     parser.print_help()
     print
     print "****************"
-    print "Error: Invalid script location " + \
-             "(make sure 'ActiveHDL_proj' and " + \
-             "'/ActiveHDL_proj/ethernet_controller' " + \
-             "are directories at the script path: '" + scriptDir + "')\n\n"
+    print "Error: Invalid source location " + \
+             "(make sure '../dev/ActiveHDL_proj' and " + \
+             "'../dev/ActiveHDL_proj/ethernet_controller' " + \
+             "are directories relative to the script path: '" + scriptDir + "')\n\n"
     raise SystemExit
 
 
@@ -85,7 +91,7 @@ os.system("rm -f " + dest + "/*.vhd")
 
 print
 print  'Copying files...'
-os.system("cp " + scriptDir + \
+os.system("cp " + src + \
               "/simStib/simStib/src/*.vhd " + \
               dest + "/")
 

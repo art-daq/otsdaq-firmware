@@ -19,15 +19,9 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
+use IEEE.std_logic_misc.ALL;
 
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity reset_mgr is
     Port ( slow_clk : in  STD_LOGIC;
@@ -37,8 +31,8 @@ end reset_mgr;
 
 architecture Behavioral of reset_mgr is
 
-	signal cnt : integer range 0 to 15 := 0;
-	
+	signal cnt : unsigned(15 downto 0) := (others => '0');
+	signal old_reset_start : std_logic := '1';
 begin
 
 	process(slow_clk)
@@ -46,13 +40,14 @@ begin
 	
 		if rising_edge(slow_clk) then
 		
-			reset <= '0';
+			reset <= '0';			   
+			old_reset_start <= reset_start;
 			
-			if cnt < 15 then -- currently reseting
+			if cnt < 100 then -- currently reseting
 					reset <= '1';
 					cnt <= cnt + 1;
-			elsif reset_start = '1' then
-					cnt <= 0;			
+			elsif old_reset_start = '0' and reset_start = '1' then
+					cnt <= (others => '0');			
 					reset <= '1';
 			end if;		
 		

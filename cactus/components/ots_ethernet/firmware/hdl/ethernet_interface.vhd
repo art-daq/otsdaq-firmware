@@ -116,7 +116,7 @@ begin
                 GMII_TX_EN=>PHY_TX_EN,
                 GMII_TX_ER=>PHY_TX_ER,
                 GTX_CLK=>TX_CLK,
-                udp_fwd_port=>open,
+                udp_fwd_port=>open,	 -- could use this to reject packets that are not 2001, e.g. (or to choose between data manager and something else)
                 user_busy=>user_busy,
                 user_rx_data_out(7 downto 0)=>user_rx_data_out(7 downto 0),
                 user_rx_size_out(10 downto 0)=>user_rx_size_out(10 downto 0),

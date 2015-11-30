@@ -19,8 +19,16 @@ print
 parser = argparse.ArgumentParser(description='Setup Firmware Component')
 
 parser.add_argument('-d','--dest',help='Destination path')
+parser.add_argument('-p','--param_name',default='value 2',
+		help='Dummy parameter example with expected values specified in param_values/')
 
 args = parser.parse_args()
+
+print
+print 'Arguments parsed...'
+print args
+print
+print
 
 ########
 # at this point call is legal according to argparse
@@ -41,7 +49,8 @@ print  dest
 print
 print
 
-if ((not os.path.isdir(dest + "/")):
+#validate destination directory
+if ((not os.path.isdir(dest + "/"))):
     print "Error!\n Check usage. "
     parser.print_help()
     print
@@ -55,12 +64,12 @@ print  'Clearing destination files...'
 #os.system("rm " + args.dest + "/*.vhd")
 
 print  'Copying files...'
-os.system("cp " + scriptDir + \
-              "/*.vhd " + \
-              args.dest + "/")
-os.system("cp " + scriptDir + \
-              "/*.v  " + \
-              args.dest + "/")
+#os.system("cp " + scriptDir + \
+#              "/../dev/*.vhd " + \
+#              args.dest + "/")
+#os.system("cp " + scriptDir + \
+#              "/../dev/*.v  " + \
+#              args.dest + "/")
     
 print
 print "***********************\n"
