@@ -26,7 +26,7 @@ package params_package is
 	constant delay_term: natural := 0; --x"000A" --x"07D0";
 
 	-- DO NOT TOUCH IP ADDRESS LINE BELOW.. Managed by setup and install script!
-	constant ETH_CONTROLLER_DEFAULT_ADDRS: std_logic_vector(7 downto 0) := std_logic_vector(to_unsigned(239,8)); -- must be 1 to 254 inclusive
+	constant ETH_CONTROLLER_DEFAULT_ADDRS: std_logic_vector(7 downto 0) := std_logic_vector(to_unsigned(2,8)); -- must be 1 to 254 inclusive
 	-- DO NOT TOUCH IP ADDRESS LINE ABOVE.. Managed by setup and install script!
 	
 end params_package; 
