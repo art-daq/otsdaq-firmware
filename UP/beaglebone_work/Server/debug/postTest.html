@@ -1,0 +1,22 @@
+<textarea id='1'>[[0,1,"CAPTAN",[2,0],[1,0]]]</textarea>
+<br>to url:<input id='3' value="http://131.225.82.252:1999">
+<br>to path:<input id='2' value="/device_picker/checkout?recipient=ethan9397@gmail.com">
+
+<button onclick="func()">go</button>
+<p id="response"></p>
+<script>
+function func(){
+var xmlhttp=new XMLHttpRequest();
+xmlhttp.onreadystatechange=function(){
+    if (xmlhttp.readyState==4 && xmlhttp.status==200){
+        document.getElementById('response').innerHTML=xmlhttp.responseText;}
+}
+xmlhttp.open("POST",document.getElementById('3').value+
+			document.getElementById('2').value,true);
+var data=document.getElementById('1').value;
+console.log(data);
+xmlhttp.send(data);
+}
+
+
+</script>

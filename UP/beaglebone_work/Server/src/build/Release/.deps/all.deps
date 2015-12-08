@@ -1,0 +1,16 @@
+cmd_Release/obj.target/cactus/parse_cactus.o := g++ '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DBUILDING_NODE_EXTENSION' -I/usr/include -I/usr/include/node -fPIC -Wall -Wextra -Wno-unused-parameter -pthread -m64 -std=c++11 -fexceptions -O2 -fno-strict-aliasing -fno-tree-vrp -fno-tree-sink -fno-omit-frame-pointer  -fno-rtti -fno-exceptions -std=c++11 -fexceptions  -MMD -MF ./Release/.deps/Release/obj.target/cactus/parse_cactus.o.d.raw  -c -o Release/obj.target/cactus/parse_cactus.o ../parse_cactus.cpp
+Release/obj.target/cactus/parse_cactus.o: ../parse_cactus.cpp \
+ ../parse_cactus.h
+../parse_cactus.cpp:
+../parse_cactus.h:
+cmd_Release/obj.target/cactus/cactus_wrap.o := g++ '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DBUILDING_NODE_EXTENSION' -I/usr/include -I/usr/include/node -fPIC -Wall -Wextra -Wno-unused-parameter -pthread -m64 -std=c++11 -fexceptions -O2 -fno-strict-aliasing -fno-tree-vrp -fno-tree-sink -fno-omit-frame-pointer  -fno-rtti -fno-exceptions -std=c++11 -fexceptions  -MMD -MF ./Release/.deps/Release/obj.target/cactus/cactus_wrap.o.d.raw  -c -o Release/obj.target/cactus/cactus_wrap.o ../cactus_wrap.cxx
+Release/obj.target/cactus/cactus_wrap.o: ../cactus_wrap.cxx \
+ /usr/include/node/node.h /usr/include/node/node_object_wrap.h \
+ /usr/include/node/node.h ../parse_cactus.h
+../cactus_wrap.cxx:
+/usr/include/node/node.h:
+/usr/include/node/node_object_wrap.h:
+/usr/include/node/node.h:
+../parse_cactus.h:
+cmd_Release/obj.target/cactus.node := flock ./Release/linker.lock g++ -shared -pthread -rdynamic -m64   -Wl,-soname=cactus.node -o Release/obj.target/cactus.node -Wl,--start-group Release/obj.target/cactus/parse_cactus.o Release/obj.target/cactus/cactus_wrap.o -Wl,--end-group 
+cmd_Release/cactus.node := ln -f "Release/obj.target/cactus.node" "Release/cactus.node" 2>/dev/null || (rm -rf "Release/cactus.node" && cp -af "Release/obj.target/cactus.node" "Release/cactus.node")

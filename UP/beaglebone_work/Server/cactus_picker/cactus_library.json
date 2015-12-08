@@ -1,0 +1,28 @@
+{
+"boards":{"captan+x":["CAPTAN+X","/"],"kc705":["Xilinx KC705","/"],"picozed":["PicoZed","/"]},
+"projects":{"ethernet_null_algo":["Ethernet with Null Algorithm","/"],"strip_mvp":["Strip MVP","/"]},
+"components":{"ots_ethernet":["otsdaq Ethernet","/"],"strips_fssr2":["Strips FSSR2 Readout","/"]},
+"board_descriptions":{"kc705":"This is a Xilinx demo board","picozed":"This is a zed board"},
+"project_descriptions":{},
+"component_descriptions": {},
+"board_features":{},
+"project_features":{},
+"component_features":{},
+"board_options":{},
+"project_options":{"ethernet_null_algo":
+	{"--phy":
+		{"type":"int","desc":"phy proj description","default":8,"value_list":[8,4]}
+	} },
+"component_options":{"ots_ethernet":
+	{"--phy":
+		{"type":"string","desc":"phy description","default":"MII_100_1000","value_list":
+			["XILINX_7SERIES_RGMII","MII_100_1000","LOGIC_RGMII"]},
+	 "--simple":
+	 	{"type":"bool","desc":"simple description","default":1},
+	 "--ip":
+	 	{"type":"int","default":2}
+	} },
+"board_images":{"picozed":"img/picoboard.png"},
+"project_images":{},
+"component_images":{}
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="/css/macroStyleSheet.css">
+    <script src="/scripts/query-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/scripts/macroScript.js"></script>
+
+
+</head>
+<body onload="init()">
+<table><tr>
+    <th><button type="button" onclick="loadMacro()">Load</button></th>
+    <th><button type="button" onclick="saveMacro()">Save</button></th>
+    <th><button type="button" onclick="loadPinsFromServer()">Load Available Pins</button></th>
+    <th><button type="button" onclick="loadCommandsFromServer()">Load Commands</button></th>
+    <th><select id="commandOptions"></select><button type="button" onclick="addCommandToStoryboard()">Add Command to Storyboard</button></th>
+    <th><button type="button" onclick="deleteCommand()">Delete Command</button></th>
+    <th></th>
+<th></th>
+<th></th>
+<th><br>X:</br><br><button type="button" onclick="decreaseXScale()">-</button><button type="button" onclick="increaseXScale()">+</button></br></th>
+
+<th><br>Y:</br><br><button type="button" onclick="decreaseYScale()">-</button><button type="button" onclick="increaseYScale()">+</button></br></th>
+<th><br><button id="hideButton" type="button" onclick="hide()">Hide</button></br><br><button id="unhideButton" type="button" onclick="unhide()" disabled="true">Unhide</button?</br></th>
+</tr></table>
+<canvas id="storyboard">Your browser does not support the canvas feature</canvas>
+
+
+</body>
+</html>
