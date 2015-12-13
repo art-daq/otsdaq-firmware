@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : d:\Projects\otsdaq\PicoZed\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd
--- Generated   : 11/17/15 11:49:36
--- From        : d:/Projects/otsdaq/PicoZed/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
+-- File        : D:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd
+-- Generated   : 12/13/15 14:10:34
+-- From        : D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -70,6 +70,7 @@ signal first_bytes_count: STD_LOGIC_VECTOR (2 downto 0);
 signal four_bit_count: STD_LOGIC_VECTOR (4 downto 0);
 signal four_bit_data: STD_LOGIC_VECTOR (7 downto 0);
 signal four_bit_mode: STD_LOGIC;
+signal icmp_trigger_sig: STD_LOGIC;
 signal is_arp_sig: STD_LOGIC;
 signal is_icmp_ping_sig: STD_LOGIC;
 signal is_ip_sig: STD_LOGIC;
@@ -115,7 +116,8 @@ begin
 is_arp <= is_arp_sig;
 is_ip <= is_ip_sig;
 is_udp <= is_udp_sig;
-is_icmp_ping <= is_icmp_ping_sig;
+is_icmp_ping <= icmp_trigger_sig and addrs_match_sig;
+-- FIXED to consider icmp type and dest address.. old: is_icmp_ping_sig;
 capture_source_addrs <= capture_source_addrs_sig and addrs_match_sig;
 clken_out <= clken;
 data_out <= data;
@@ -186,7 +188,8 @@ match_proc : process(clk)
 begin
 if rising_edge(clk) then
 	addrs_match_sig <= '0';
-	if udp_dest_ip = (x"C0A885" & addrs) then -- or udp_dest_ip = x"C0A885FE" then --this UDP packet was intended for this firmware. 0xFE is CAPTAN broadcast
+	if udp_dest_ip = (x"C0A885" & addrs) then --this UDP packet was intended for this firmware.
+-- Removed feature: -- or udp_dest_ip = x"C0A885FE" then --0xFE is CAPTAN broadcast
 		addrs_match_sig <= '1';
 	end if;
 end if;
@@ -220,6 +223,7 @@ begin
 			is_idle <= '1';
 			is_udp_sig <= '0';
 			is_icmp_ping_sig <= '0';
+			icmp_trigger_sig <= '0';
 --from ipv4 payload
 			udp_data_valid_sig <= '0';
 			--indicates packet data on data lines
@@ -241,6 +245,7 @@ begin
 						is_idle <= '1';
 						is_udp_sig <= '0';
 						is_icmp_ping_sig <= '0';
+						icmp_trigger_sig <= '0';
 						--from ipv4 payload
 						udp_data_valid_sig <= '0';
 						--indicates packet data on data lines
@@ -253,6 +258,8 @@ begin
 						capture_source_addrs_sig <= '0';
 						if dv = '0' and er ='0' then
 							Sreg0 <= Ready;
+							udp_dest_ip <= (others => '0');
+							-- reset for checking destination
 						end if;
 					when Ready =>
 						if dv = '1' and er = '0' then
@@ -360,6 +367,8 @@ begin
 							Sreg0 <= RecvPacket_IP_Payload_ICMP_Type;
 							udp_countdown <= udp_countdown - 28;
 							-- get ping payload data length
+							icmp_trigger_sig <= '1';
+							-- trigger packet create
 						elsif is_icmp_ping_sig = '1' then
 							Sreg0 <= Idle;
 						elsif is_udp_sig = '1' then

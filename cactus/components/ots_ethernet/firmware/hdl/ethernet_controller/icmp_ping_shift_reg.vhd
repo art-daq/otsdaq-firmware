@@ -17,7 +17,7 @@ end;
 
 architecture arch of icmp_ping_shift_reg is   
 		 
-	constant SHR_DEPTH : natural := 33;											 	  								   
+	constant SHR_DEPTH : natural := 44; -- was 33, but was not considering dest addr or type (so extraneous pings replies were occuring)											 	  								   
 	type shReg_t is array(natural range <>) of std_logic_vector(7 downto 0);  
 	signal shReg 						: shReg_t(SHR_DEPTH-1 downto 0);		
 	signal	din_latch 				: STD_LOGIC_VECTOR(7 downto 0);
