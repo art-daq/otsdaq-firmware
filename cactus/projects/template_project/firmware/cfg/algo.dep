@@ -1,0 +1,61 @@
+src mp7_payload.vhd
+src Algorithm.vhd
+src DelayOutput.vhd 
+src EGammaIsolation.vhd 
+src EGammaIsolationComputer.vhd 
+src EGammaPacker.vhd 
+src EnergySums.vhd
+src EnergyTablesToMemoryMap.vhd
+src EnergyTranslation.vhd
+src FastToSlowClockTransition.vhd
+src HFCounts.vhd
+src IPBusInterface.vhd
+src IsoMergeSort.vhd
+src TauMergeSort.vhd
+src TauPacker.vhd
+src JetClustering.vhd
+src JetMergeSort.vhd 
+src JetPattern.vhd 
+src JetSumDelay.vhd
+src OutputStrobeGenerator.vhd
+src PUM0.vhd 
+src JetPacker.vhd
+src PileupSubtractor.vhd
+src SumPacker.vhd 
+src TauClustering.vhd
+src TauFiberTranslation.vhd
+src TauIsolation.vhd
+src TauIsolationSelection.vhd
+src TauMergeSort.vhd
+src TauPacker.vhd
+src TauTranslation.vhd 
+src DelayInput.vhd
+src Unpacker.vhd 
+
+
+src AlgorithmConstants.vhd
+
+src --cd ../cgn/isolation96 isolation96.xci
+src --cd ../cgn/div_MHT_HT_gen_v4_0 div_MHT_HT_gen_v4_0.xci
+src --cd ../cgn/cos20_30bit_dsp cos20_30bit_dsp.xci
+src --cd ../cgn/cos40_30bit_dsp cos40_30bit_dsp.xci
+src --cd ../cgn/cos80_30bit_dsp cos80_30bit_dsp.xci
+src --cd ../cgn/sin20_30bit_dsp sin20_30bit_dsp.xci
+src --cd ../cgn/sin40_30bit_dsp sin40_30bit_dsp.xci
+src --cd ../cgn/sin60_30bit_dsp sin60_30bit_dsp.xci
+src --cd ../cgn/sin80_30bit_dsp sin80_30bit_dsp.xci
+src --cd ../cgn/XY_Translation_To_Magnitude_Angle XY_Translation_To_Magnitude_Angle_v5.xci
+src --cd ../cgn/jet_energy_translation_lut jet_energy_translation_lut.xci
+src --cd ../cgn/tau_fiber_translation_lut tau_fiber_translation_lut.xci
+src --cd ../cgn/isolation88 isolation88.xci
+src --cd ../cgn/energy_memory_10bitAddress energy_memory_10bitAddress.xci
+
+src -c components/mp7_datapath mp7_data_types.vhd
+src -c components/ipbus_core ipbus_package.vhd
+src -c components/mp7_null_algo payload_syncreg.vhd
+src -c boards/mp7/base_fw/common mp7_top_decl.vhd
+src -c boards/mp7/base_fw/mp7xe_690 mp7_brd_decl.vhd
+
+src --cd ../ucf algorithm.tcl 
+
+

@@ -1,0 +1,581 @@
+#net  sfp_tx_disable            loc = y20  | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_0_12
+#net  user_sma_gpio_p           loc = y23  | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l1p_t0_12
+#net  user_sma_gpio_n           loc = y24  | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l1n_t0_12
+#net  sdio_sdwp                 loc = y21  | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l2p_t0_12
+#net  sdio_sddet                loc = aa21 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l2n_t0_12
+#net  sdio_cmd_ls               loc = ab22 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l3p_t0_dqs_12
+#net  sdio_clk_ls               loc = ab23 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l3n_t0_dqs_12
+#net  sdio_dat2_ls              loc = aa22 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l4p_t0_12
+#net  sdio_dat1_ls              loc = aa23 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l4n_t0_12
+#net  sdio_dat0_ls              loc = ac20 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l5p_t0_12
+#net  sdio_cd_dat3_ls           loc = ac21 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l5n_t0_12
+#net  fmc_lpc_la12_p            loc = aa20 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l6p_t0_12
+#net  fmc_lpc_la12_n            loc = ab20 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l6n_t0_vref_12
+#net  fmc_lpc_la13_p            loc = ab24 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l7p_t1_12
+#net  fmc_lpc_la13_n            loc = ac25 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l7n_t1_12
+#net  fmc_lpc_la16_p            loc = ac22 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l8p_t1_12
+#net  fmc_lpc_la16_n            loc = ad22 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l8n_t1_12
+#net  fmc_lpc_la15_p            loc = ac24 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l9p_t1_dqs_12
+#net  fmc_lpc_la15_n            loc = ad24 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l9n_t1_dqs_12
+#net  fmc_lpc_la14_p            loc = ad21 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l10p_t1_12
+#net  fmc_lpc_la14_n            loc = ae21 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l10n_t1_12
+#net  fmc_lpc_la01_cc_p         loc = ae23 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l11p_t1_srcc_12
+#net  fmc_lpc_la01_cc_n         loc = af23 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l11n_t1_srcc_12
+#net  fmc_lpc_la00_cc_p         loc = ad23 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l12p_t1_mrcc_12
+#net  fmc_lpc_la00_cc_n         loc = ae24 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l12n_t1_mrcc_12
+#net  fmc_lpc_clk0_m2c_p        loc = af22 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l13p_t2_mrcc_12
+#net  fmc_lpc_clk0_m2c_n        loc = ag23 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l13n_t2_mrcc_12
+#net  si5326_int_alm_ls         loc = ag24 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l14p_t2_srcc_12
+#net  hdmi_int                  loc = ah24 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l14n_t2_srcc_12
+#net  fmc_lpc_la10_p            loc = aj24 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l15p_t2_dqs_12
+#net  fmc_lpc_la10_n            loc = ak25 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l15n_t2_dqs_12
+#net  fmc_lpc_la11_p            loc = ae25 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l16p_t2_12
+#net  fmc_lpc_la11_n            loc = af25 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l16n_t2_12
+#net  fmc_lpc_la09_p            loc = ak23 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l17p_t2_12
+#net  fmc_lpc_la09_n            loc = ak24 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l17n_t2_12
+#net  fmc_lpc_la07_p            loc = ag25 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l18p_t2_12
+#net  fmc_lpc_la07_n            loc = ah25 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l18n_t2_12
+#net  fmc_lpc_la02_p            loc = af20 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l19p_t3_12
+#net  fmc_lpc_la02_n            loc = af21 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l19n_t3_vref_12
+#net  fmc_lpc_la05_p            loc = ag22 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l20p_t3_12
+#net  fmc_lpc_la05_n            loc = ah22 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l20n_t3_12
+#net  fmc_lpc_la08_p            loc = aj22 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l21p_t3_dqs_12
+#net  fmc_lpc_la08_n            loc = aj23 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l21n_t3_dqs_12
+#net  fmc_lpc_la03_p            loc = ag20 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l22p_t3_12
+#net  fmc_lpc_la03_n            loc = ah20 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l22n_t3_12
+#net  fmc_lpc_la04_p            loc = ah21 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l23p_t3_12
+#net  fmc_lpc_la04_n            loc = aj21 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l23n_t3_12
+#net  fmc_lpc_la06_p            loc = ak20 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l24p_t3_12
+#net  fmc_lpc_la06_n            loc = ak21 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_l24n_t3_12
+#net  si5326_rst_ls             loc = ae20 | iostandard=lvcmos25; # bank  12 vcco - vadj_fpga - io_25_12
+#net  rotary_incb               loc = y25  | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_0_13
+#net  rotary_inca               loc = y26  | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l1p_t0_13
+#net  rotary_push               loc = aa26 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l1n_t0_13
+#net  rec_clock_c_p             loc = w27  | iostandard=lvds_25; # bank  13 vcco - vadj_fpga - io_l2p_t0_13
+#net  rec_clock_c_n             loc = w28  | iostandard=lvds_25; # bank  13 vcco - vadj_fpga - io_l2n_t0_13
+#net  gpio_dip_sw3              loc = y28  | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l3p_t0_dqs_13
+#net  gpio_dip_sw2              loc = aa28 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l3n_t0_dqs_13
+#net  gpio_dip_sw1              loc = w29  | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l4p_t0_13
+#net  gpio_dip_sw0              loc = y29  | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l4n_t0_13
+#net  xadc_gpio_3               loc = aa27 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l5p_t0_13
+#net  xadc_gpio_2               loc = ab28 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l5n_t0_13
+#net  xadc_gpio_1               loc = aa25 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l6p_t0_13
+#net  xadc_gpio_0               loc = ab25 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l6n_t0_vref_13
+#net  fmc_lpc_la33_p            loc = ac29 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l7p_t1_13
+#net  fmc_lpc_la33_n            loc = ac30 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l7n_t1_13
+#net  fmc_lpc_la32_p            loc = y30  | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l8p_t1_13
+#net  fmc_lpc_la32_n            loc = aa30 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l8n_t1_13
+#net  fmc_lpc_la31_p            loc = ad29 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l9p_t1_dqs_13
+#net  fmc_lpc_la31_n            loc = ae29 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l9n_t1_dqs_13
+#net  fmc_lpc_la30_p            loc = ab29 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l10p_t1_13
+#net  fmc_lpc_la30_n            loc = ab30 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l10n_t1_13
+#net  fmc_lpc_la18_cc_p         loc = ad27 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l11p_t1_srcc_13
+#net  fmc_lpc_la18_cc_n         loc = ad28 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l11n_t1_srcc_13
+#net  fmc_lpc_la17_cc_p         loc = ab27 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l12p_t1_mrcc_13
+#net  fmc_lpc_la17_cc_n         loc = ac27 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l12n_t1_mrcc_13
+#net  fmc_lpc_clk1_m2c_p        loc = ag29 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l13p_t2_mrcc_13
+#net  fmc_lpc_clk1_m2c_n        loc = ah29 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l13n_t2_mrcc_13
+#net  fmc_lpc_la29_p            loc = ae28 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l14p_t2_srcc_13
+#net  fmc_lpc_la29_n            loc = af28 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l14n_t2_srcc_13
+#net  fmc_lpc_la26_p            loc = ak29 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l15p_t2_dqs_13
+#net  fmc_lpc_la26_n            loc = ak30 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l15n_t2_dqs_13
+#net  fmc_lpc_la28_p            loc = ae30 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l16p_t2_13
+#net  fmc_lpc_la28_n            loc = af30 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l16n_t2_13
+#net  fmc_lpc_la27_p            loc = aj28 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l17p_t2_13
+#net  fmc_lpc_la27_n            loc = aj29 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l17n_t2_13
+#net  fmc_lpc_la24_p            loc = ag30 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l18p_t2_13
+#net  fmc_lpc_la24_n            loc = ah30 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l18n_t2_13
+#net  fmc_lpc_la25_p            loc = ac26 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l19p_t3_13
+#net  fmc_lpc_la25_n            loc = ad26 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l19n_t3_vref_13
+#net  fmc_lpc_la22_p            loc = aj27 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l20p_t3_13
+#net  fmc_lpc_la22_n            loc = ak28 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l20n_t3_13
+#net  fmc_lpc_la21_p            loc = ag27 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l21p_t3_dqs_13
+#net  fmc_lpc_la21_n            loc = ag28 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l21n_t3_dqs_13
+#net  fmc_lpc_la23_p            loc = ah26 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l22p_t3_13
+#net  fmc_lpc_la23_n            loc = ah27 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l22n_t3_13
+#net  fmc_lpc_la20_p            loc = af26 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l23p_t3_13
+#net  fmc_lpc_la20_n            loc = af27 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l23n_t3_13
+#net  fmc_lpc_la19_p            loc = aj26 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l24p_t3_13
+#net  fmc_lpc_la19_n            loc = ak26 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_l24n_t3_13
+#net  gpio_led_4_ls             loc = ae26 | iostandard=lvcmos25; # bank  13 vcco - vadj_fpga - io_25_13
+net  phy_rxd4                  loc = r19  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_0_14
+#net  flash_d0                  loc = p24  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l1p_t0_d00_mosi_14
+#net  flash_d1                  loc = r25  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l1n_t0_d01_din_14
+#net  flash_d2                  loc = r20  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l2p_t0_d02_14
+#net  flash_d3                  loc = r21  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l2n_t0_d03_14
+#net  phy_mdc                   loc = r23  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l3p_t0_dqs_pudc_b_14
+#net  fpga_emcclk               loc = r24  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l3n_t0_dqs_emcclk_14
+#net  flash_d4                  loc = t20  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l4p_t0_d04_14
+#net  flash_d5                  loc = t21  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l4n_t0_d05_14
+#net  flash_d6                  loc = t22  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l5p_t0_d06_14
+#net  flash_d7                  loc = t23  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l5n_t0_d07_14
+#net  fpga_fcs                  loc = u19  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l6p_t0_fcs_b_14
+#net  flash_d8                  loc = u20  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l6n_t0_d08_vref_14
+#net  flash_d9                  loc = p29  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l7p_t1_d09_14
+#net  flash_d10                 loc = r29  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l7n_t1_d10_14
+#net  flash_d11                 loc = p27  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l8p_t1_d11_14
+#net  flash_d12                 loc = p28  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l8n_t1_d12_14
+#net  phy_crs                   loc = r30  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l9p_t1_dqs_14
+#net  flash_d13                 loc = t30  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l9n_t1_dqs_d13_14
+#net  flash_d14                 loc = p26  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l10p_t1_d14_14
+#net  flash_d15                 loc = r26  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l10n_t1_d15_14
+net  phy_rxctl_rxdv            loc = r28  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l11p_t1_srcc_14
+net  phy_rxd7                  loc = t28  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l11n_t1_srcc_14
+net  phy_rxd6                  loc = t26  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l12p_t1_mrcc_14
+net  phy_rxd5                  loc = t27  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l12n_t1_mrcc_14
+net  phy_rxclk                 loc = u27  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l13p_t2_mrcc_14
+net  phy_rxd3                  loc = u28  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l13n_t2_mrcc_14
+net  phy_rxd2                  loc = t25  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l14p_t2_srcc_14
+net  phy_rxd1                  loc = u25  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l14n_t2_srcc_14
+#net  flash_wait                loc = u29  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l15p_t2_dqs_rdwr_b_14
+net  phy_rxd0                  loc = u30  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l15n_t2_dqs_dout_cso_b_14
+#net  phy_rxer                  loc = v26  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l16p_t2_csi_b_14
+#net  flash_a15                 loc = v27  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l16n_t2_a15_d31_14
+#net  flash_a14                 loc = v29  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l17p_t2_a14_d30_14
+#net  flash_a13                 loc = v30  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l17n_t2_a13_d29_14
+#net  flash_a12                 loc = v25  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l18p_t2_a12_d28_14
+#net  flash_a11                 loc = w26  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l18n_t2_a11_d27_14
+#net  flash_a10                 loc = v19  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l19p_t3_a10_d26_14
+#net  flash_a9                  loc = v20  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l19n_t3_a09_d25_vref_14
+#net  flash_a8                  loc = w23  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l20p_t3_a08_d24_14
+#net  flash_a7                  loc = w24  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l20n_t3_a07_d23_14
+#net  sm_fan_tach               loc = u22  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l21p_t3_dqs_14
+#net  flash_a6                  loc = u23  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l21n_t3_dqs_a06_d22_14
+#net  flash_a5                  loc = v21  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l22p_t3_a05_d21_14
+#net  flash_a4                  loc = v22  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l22n_t3_a04_d20_14
+#net  flash_a3                  loc = u24  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l23p_t3_a03_d19_14
+#net  flash_a2                  loc = v24  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l23n_t3_a02_d18_14
+#net  flash_a1                  loc = w21  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l24p_t3_a01_d17_14
+#net  flash_a0                  loc = w22  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_l24n_t3_a00_d16_14
+#net  phy_col                   loc = w19  | iostandard=lvcmos25; # bank  14 vcco - vcc2v5_fpga - io_25_14
+#net  usb_tx                    loc = m19  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_0_15
+#net  xadc_vaux0p_r             loc = j23  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l1p_t0_ad0p_15
+#net  xadc_vaux0n_r             loc = j24  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l1n_t0_ad0n_15
+#net  xadc_vaux8p_r             loc = l22  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l2p_t0_ad8p_15
+#net  xadc_vaux8n_r             loc = l23  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l2n_t0_ad8n_15
+#net  usb_rts                   loc = k23  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l3p_t0_dqs_ad1p_15
+#net  usb_rx                    loc = k24  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l3n_t0_dqs_ad1n_15
+#net  iic_sda_main              loc = l21  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l4p_t0_ad9p_15
+#net  iic_scl_main              loc = k21  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l4n_t0_ad9n_15
+#net  phy_mdio                  loc = j21  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l5p_t0_ad2p_15
+#net  fmc_lpc_prsnt_m2c_b_ls    loc = j22  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l5n_t0_ad2n_15
+#net  fmc_hpc_prsnt_m2c_b_ls    loc = m20  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l6p_t0_15
+net  phy_reset                 loc = l20  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l6n_t0_vref_15
+#net  fmc_hpc_pg_m2c_ls         loc = j29  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l7p_t1_ad10p_15
+#net  fmc_c2m_pg_ls             loc = h29  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l7n_t1_ad10n_15
+#net  fmc_vadj_on_b_ls          loc = j27  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l8p_t1_ad3p_15
+net  phy_txd7                  loc = j28  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l8n_t1_ad3n_15
+net  phy_txd6                  loc = l30  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l9p_t1_dqs_ad11p_15
+net  phy_txc_gtxclk            loc = k30  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l9n_t1_dqs_ad11n_15
+net  phy_txd5                  loc = k26  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l10p_t1_ad4p_15
+net  phy_txd4                  loc = j26  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l10n_t1_ad4n_15
+#net  sm_fan_pwm                loc = l26  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l11p_t1_srcc_ad12p_15
+#net  usb_cts                   loc = l27  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l11n_t1_srcc_ad12n_15
+#net  user_sma_clock_p          loc = l25  | iostandard=lvds_25; # bank  15 vcco - vcc2v5_fpga - io_l12p_t1_mrcc_ad5p_15
+#net  user_sma_clock_n          loc = k25  | iostandard=lvds_25; # bank  15 vcco - vcc2v5_fpga - io_l12n_t1_mrcc_ad5n_15
+#net  user_clock_p              loc = k28  | iostandard=lvds_25; # bank  15 vcco - vcc2v5_fpga - io_l13p_t2_mrcc_15
+#net  user_clock_n              loc = k29  | iostandard=lvds_25; # bank  15 vcco - vcc2v5_fpga - io_l13n_t2_mrcc_15
+#net  phy_txclk                 loc = m28  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l14p_t2_srcc_15
+net  phy_txd3                  loc = l28  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l14n_t2_srcc_15
+net  phy_txd2                  loc = m29  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l15p_t2_dqs_15
+#net  flash_adv_b               loc = m30  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l15n_t2_dqs_adv_b_15
+net  phy_txd0                  loc = n27  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l16p_t2_a28_15
+net  phy_txctl_txen            loc = m27  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l16n_t2_a27_15
+net  phy_txer                  loc = n29  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l17p_t2_a26_15
+#net  phy_int                   loc = n30  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l17n_t2_a25_15
+net  phy_txd1                  loc = n25  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l18p_t2_a24_15
+#net  flash_a23                 loc = n26  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l18n_t2_a23_15
+#net  flash_a22                 loc = n19  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l19p_t3_a22_15
+#net  flash_a21                 loc = n20  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l19n_t3_a21_vref_15
+#net  flash_a20                 loc = n21  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l20p_t3_a20_15
+#net  flash_a19                 loc = n22  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l20n_t3_a19_15
+#net  iic_mux_reset_b           loc = p23  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l21p_t3_dqs_15
+#net  flash_a18                 loc = n24  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l21n_t3_dqs_a18_15
+#net  flash_a17                 loc = p21  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l22p_t3_a17_15
+#net  flash_a16                 loc = p22  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l22n_t3_a16_15
+#net  flash_oe_b                loc = m24  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l23p_t3_foe_b_15
+#net  flash_fwe_b               loc = m25  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l23n_t3_fwe_b_15
+#net  flash_a25                 loc = m22  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l24p_t3_rs1_15
+#net  flash_a24                 loc = m23  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_l24n_t3_rs0_15
+#net  sfp_los_ls                loc = p19  | iostandard=lvcmos25; # bank  15 vcco - vcc2v5_fpga - io_25_15
+#net  pcie_wake_b_ls            loc = f23  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_0_16
+#net  hdmi_r_d0                 loc = b23  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l1p_t0_16
+#net  hdmi_r_d1                 loc = a23  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l1n_t0_16
+#net  hdmi_r_d2                 loc = e23  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l2p_t0_16
+#net  hdmi_r_d3                 loc = d23  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l2n_t0_16
+#net  hdmi_r_d4                 loc = f25  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l3p_t0_dqs_16
+#net  hdmi_r_d5                 loc = e25  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l3n_t0_dqs_16
+#net  hdmi_r_d6                 loc = e24  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l4p_t0_16
+#net  hdmi_r_d7                 loc = d24  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l4n_t0_16
+#net  hdmi_r_d8                 loc = f26  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l5p_t0_16
+#net  hdmi_r_d9                 loc = e26  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l5n_t0_16
+#net  hdmi_r_d10                loc = g23  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l6p_t0_16
+#net  hdmi_r_d11                loc = g24  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l6n_t0_vref_16
+#net  fmc_hpc_la16_p            loc = b27  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l7p_t1_16
+#net  fmc_hpc_la16_n            loc = a27  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l7n_t1_16
+#net  fmc_hpc_la15_p            loc = c24  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l8p_t1_16
+#net  fmc_hpc_la15_n            loc = b24  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l8n_t1_16
+#net  fmc_hpc_la14_p            loc = b28  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l9p_t1_dqs_16
+#net  fmc_hpc_la14_n            loc = a28  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l9n_t1_dqs_16
+#net  fmc_hpc_la13_p            loc = a25  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l10p_t1_16
+#net  fmc_hpc_la13_n            loc = a26  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l10n_t1_16
+#net  fmc_hpc_la01_cc_p         loc = d26  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l11p_t1_srcc_16
+#net  fmc_hpc_la01_cc_n         loc = c26  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l11n_t1_srcc_16
+#net  fmc_hpc_la00_cc_p         loc = c25  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l12p_t1_mrcc_16
+#net  fmc_hpc_la00_cc_n         loc = b25  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l12n_t1_mrcc_16
+#net  fmc_hpc_clk0_m2c_p        loc = d27  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l13p_t2_mrcc_16
+#net  fmc_hpc_clk0_m2c_n        loc = c27  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l13n_t2_mrcc_16
+#net  fmc_hpc_la07_p            loc = e28  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l14p_t2_srcc_16
+#net  fmc_hpc_la07_n            loc = d28  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l14n_t2_srcc_16
+#net  fmc_hpc_la12_p            loc = c29  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l15p_t2_dqs_16
+#net  fmc_hpc_la12_n            loc = b29  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l15n_t2_dqs_16
+#net  fmc_hpc_la10_p            loc = d29  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l16p_t2_16
+#net  fmc_hpc_la10_n            loc = c30  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l16n_t2_16
+#net  fmc_hpc_la09_p            loc = b30  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l17p_t2_16
+#net  fmc_hpc_la09_n            loc = a30  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l17n_t2_16
+#net  fmc_hpc_la08_p            loc = e29  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l18p_t2_16
+#net  fmc_hpc_la08_n            loc = e30  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l18n_t2_16
+#net  fmc_hpc_la02_p            loc = h24  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l19p_t3_16
+#net  fmc_hpc_la02_n            loc = h25  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l19n_t3_vref_16
+#net  fmc_hpc_la04_p            loc = g28  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l20p_t3_16
+#net  fmc_hpc_la04_n            loc = f28  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l20n_t3_16
+#net  fmc_hpc_la11_p            loc = g27  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l21p_t3_dqs_16
+#net  fmc_hpc_la11_n            loc = f27  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l21n_t3_dqs_16
+#net  fmc_hpc_la05_p            loc = g29  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l22p_t3_16
+#net  fmc_hpc_la05_n            loc = f30  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l22n_t3_16
+#net  fmc_hpc_la03_p            loc = h26  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l23p_t3_16
+#net  fmc_hpc_la03_n            loc = h27  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l23n_t3_16
+#net  fmc_hpc_la06_p            loc = h30  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l24p_t3_16
+#net  fmc_hpc_la06_n            loc = g30  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_l24n_t3_16
+#net  pcie_perst_ls             loc = g25  | iostandard=lvcmos25; # bank  16 vcco - vadj_fpga - io_25_16
+#net  gpio_led_5_ls             loc = g19  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_0_17
+#net  hdmi_r_clk                loc = k18  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l1p_t0_17
+#net  hdmi_r_hsync              loc = j18  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l1n_t0_17
+#net  hdmi_r_vsync              loc = h20  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l2p_t0_17
+#net  hdmi_spdif_out_ls         loc = g20  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l2n_t0_17
+#net  hdmi_r_spdif              loc = j17  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l3p_t0_dqs_17
+#net  hdmi_r_de                 loc = h17  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l3n_t0_dqs_17
+#net  hdmi_r_d12                loc = j19  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l4p_t0_17
+#net  hdmi_r_d13                loc = h19  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l4n_t0_17
+#net  hdmi_r_d14                loc = l17  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l5p_t0_17
+#net  hdmi_r_d15                loc = l18  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l5n_t0_17
+#net  hdmi_r_d16                loc = k19  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l6p_t0_17
+#net  hdmi_r_d17                loc = k20  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l6n_t0_vref_17
+#net  fmc_hpc_la33_p            loc = h21  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l7p_t1_17
+#net  fmc_hpc_la33_n            loc = h22  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l7n_t1_17
+#net  fmc_hpc_la32_p            loc = d21  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l8p_t1_17
+#net  fmc_hpc_la32_n            loc = c21  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l8n_t1_17
+#net  fmc_hpc_la31_p            loc = g22  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l9p_t1_dqs_17
+#net  fmc_hpc_la31_n            loc = f22  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l9n_t1_dqs_17
+#net  fmc_hpc_la30_p            loc = d22  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l10p_t1_17
+#net  fmc_hpc_la30_n            loc = c22  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l10n_t1_17
+#net  fmc_hpc_la18_cc_p         loc = f21  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l11p_t1_srcc_17
+#net  fmc_hpc_la18_cc_n         loc = e21  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l11n_t1_srcc_17
+#net  fmc_hpc_la17_cc_p         loc = f20  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l12p_t1_mrcc_17
+#net  fmc_hpc_la17_cc_n         loc = e20  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l12n_t1_mrcc_17
+#net  fmc_hpc_clk1_m2c_p        loc = d17  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l13p_t2_mrcc_17
+#net  fmc_hpc_clk1_m2c_n        loc = d18  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l13n_t2_mrcc_17
+#net  fmc_hpc_la20_p            loc = e19  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l14p_t2_srcc_17
+#net  fmc_hpc_la20_n            loc = d19  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l14n_t2_srcc_17
+#net  fmc_hpc_la28_p            loc = d16  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l15p_t2_dqs_17
+#net  fmc_hpc_la28_n            loc = c16  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l15n_t2_dqs_17
+#net  fmc_hpc_la19_p            loc = g18  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l16p_t2_17
+#net  fmc_hpc_la19_n            loc = f18  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l16n_t2_17
+#net  fmc_hpc_la29_p            loc = c17  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l17p_t2_17
+#net  fmc_hpc_la29_n            loc = b17  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l17n_t2_17
+#net  fmc_hpc_la25_p            loc = g17  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l18p_t2_17
+#net  fmc_hpc_la25_n            loc = f17  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l18n_t2_17
+#net  fmc_hpc_la22_p            loc = c20  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l19p_t3_17
+#net  fmc_hpc_la22_n            loc = b20  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l19n_t3_vref_17
+#net  fmc_hpc_la24_p            loc = a16  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l20p_t3_17
+#net  fmc_hpc_la24_n            loc = a17  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l20n_t3_17
+#net  fmc_hpc_la21_p            loc = a20  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l21p_t3_dqs_17
+#net  fmc_hpc_la21_n            loc = a21  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l21n_t3_dqs_17
+#net  fmc_hpc_la26_p            loc = b18  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l22p_t3_17
+#net  fmc_hpc_la26_n            loc = a18  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l22n_t3_17
+#net  fmc_hpc_la23_p            loc = b22  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l23p_t3_17
+#net  fmc_hpc_la23_n            loc = a22  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l23n_t3_17
+#net  fmc_hpc_la27_p            loc = c19  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l24p_t3_17
+#net  fmc_hpc_la27_n            loc = b19  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_l24n_t3_17
+#net  gpio_led_6_ls             loc = e18  | iostandard=lvcmos25; # bank  17 vcco - vadj_fpga - io_25_17
+#net  gpio_sw_c                 loc = g12  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_0_18
+#net  fmc_hpc_ha13_p            loc = l16  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l1p_t0_18
+#net  fmc_hpc_ha13_n            loc = k16  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l1n_t0_18
+#net  fmc_hpc_ha16_p            loc = l15  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l2p_t0_18
+#net  fmc_hpc_ha16_n            loc = k15  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l2n_t0_18
+#net  fmc_hpc_ha23_p            loc = l12  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l3p_t0_dqs_18
+#net  fmc_hpc_ha23_n            loc = l13  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l3n_t0_dqs_18
+#net  fmc_hpc_ha20_p            loc = k13  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l4p_t0_18
+#net  fmc_hpc_ha20_n            loc = j13  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l4n_t0_18
+#net  fmc_hpc_ha18_p            loc = k14  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l5p_t0_18
+#net  fmc_hpc_ha18_n            loc = j14  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l5n_t0_18
+#net  fmc_hpc_ha22_p            loc = l11  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l6p_t0_18
+#net  fmc_hpc_ha22_n            loc = k11  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l6n_t0_vref_18
+#net  fmc_hpc_ha15_p            loc = h15  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l7p_t1_18
+#net  fmc_hpc_ha15_n            loc = g15  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l7n_t1_18
+#net  fmc_hpc_ha21_p            loc = j11  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l8p_t1_18
+#net  fmc_hpc_ha21_n            loc = j12  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l8n_t1_18
+#net  fmc_hpc_ha14_p            loc = j16  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l9p_t1_dqs_18
+#net  fmc_hpc_ha14_n            loc = h16  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l9n_t1_dqs_18
+#net  fmc_hpc_ha19_p            loc = h11  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l10p_t1_18
+#net  fmc_hpc_ha19_n            loc = h12  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l10n_t1_18
+#net  fmc_hpc_ha01_cc_p         loc = h14  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l11p_t1_srcc_18
+#net  fmc_hpc_ha01_cc_n         loc = g14  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l11n_t1_srcc_18
+#net  fmc_hpc_ha17_cc_p         loc = g13  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l12p_t1_mrcc_18
+#net  fmc_hpc_ha17_cc_n         loc = f13  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l12n_t1_mrcc_18
+#net  fmc_hpc_ha00_cc_p         loc = d12  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l13p_t2_mrcc_18
+#net  fmc_hpc_ha00_cc_n         loc = d13  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l13n_t2_mrcc_18
+#net  fmc_hpc_ha09_p            loc = f12  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l14p_t2_srcc_18
+#net  fmc_hpc_ha09_n            loc = e13  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l14n_t2_srcc_18
+#net  fmc_hpc_ha03_p            loc = c12  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l15p_t2_dqs_18
+#net  fmc_hpc_ha03_n            loc = b12  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l15n_t2_dqs_18
+#net  fmc_hpc_ha04_p            loc = f11  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l16p_t2_18
+#net  fmc_hpc_ha04_n            loc = e11  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l16n_t2_18
+#net  fmc_hpc_ha10_p            loc = a11  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l17p_t2_18
+#net  fmc_hpc_ha10_n            loc = a12  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l17n_t2_18
+#net  fmc_hpc_ha02_p            loc = d11  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l18p_t2_18
+#net  fmc_hpc_ha02_n            loc = c11  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l18n_t2_18
+#net  fmc_hpc_ha05_p            loc = f15  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l19p_t3_18
+#net  fmc_hpc_ha05_n            loc = e16  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l19n_t3_vref_18
+#net  fmc_hpc_ha08_p            loc = e14  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l20p_t3_18
+#net  fmc_hpc_ha08_n            loc = e15  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l20n_t3_18
+#net  fmc_hpc_ha06_p            loc = d14  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l21p_t3_dqs_18
+#net  fmc_hpc_ha06_n            loc = c14  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l21n_t3_dqs_18
+#net  fmc_hpc_ha11_p            loc = b13  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l22p_t3_18
+#net  fmc_hpc_ha11_n            loc = a13  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l22n_t3_18
+#net  fmc_hpc_ha12_p            loc = c15  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l23p_t3_18
+#net  fmc_hpc_ha12_n            loc = b15  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l23n_t3_18
+#net  fmc_hpc_ha07_p            loc = b14  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l24p_t3_18
+#net  fmc_hpc_ha07_n            loc = a15  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_l24n_t3_18
+#net  gpio_led_7_ls             loc = f16  | iostandard=lvcmos25; # bank  18 vcco - vadj_fpga - io_25_18
+#net  pmbus_data_ls             loc = y14  | iostandard=lvcmos15; # bank  32 vcco - vcc1v5_fpga - io_0_vrn_32
+#net  ddr3_d24                  loc = ak16 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l1p_t0_32
+#net  ddr3_d31                  loc = ak15 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l1n_t0_32
+#net  ddr3_d26                  loc = ag15 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l2p_t0_32
+#net  ddr3_d30                  loc = ah15 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l2n_t0_32
+#net  ddr3_dqs3_p               loc = ah16 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l3p_t0_dqs_32
+#net  ddr3_dqs3_n               loc = aj16 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l3n_t0_dqs_32
+#net  ddr3_d27                  loc = af15 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l4p_t0_32
+#net  ddr3_d29                  loc = ag14 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l4n_t0_32
+#net  ddr3_d28                  loc = ah17 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l5p_t0_32
+#net  ddr3_d25                  loc = aj17 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l5n_t0_32
+#net  ddr3_dm3                  loc = ae16 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l6p_t0_32
+#net  vttvref                   loc = af16                   ; # bank  32 vcco - vcc1v5_fpga - io_l6n_t0_vref_32
+#net  ddr3_d21                  loc = aj19 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l7p_t1_32
+#net  ddr3_d17                  loc = ak19 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l7n_t1_32
+#net  ddr3_d16                  loc = ag19 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l8p_t1_32
+#net  ddr3_d20                  loc = ah19 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l8n_t1_32
+#net  ddr3_dqs2_p               loc = aj18 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l9p_t1_dqs_32
+#net  ddr3_dqs2_n               loc = ak18 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l9n_t1_dqs_32
+#net  ddr3_d23                  loc = ad19 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l10p_t1_32
+#net  ddr3_d22                  loc = ae19 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l10n_t1_32
+#net  ddr3_d19                  loc = af18 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l11p_t1_srcc_32
+#net  ddr3_d18                  loc = ag18 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l11n_t1_srcc_32
+#net  ddr3_dm2                  loc = af17 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l12p_t1_mrcc_32
+#net  pmbus_clk_ls              loc = ag17 | iostandard=lvcmos15; # bank  32 vcco - vcc1v5_fpga - io_l12n_t1_mrcc_32
+#net  ddr3_d15                  loc = ad18 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l13p_t2_mrcc_32
+#net  ddr3_d14                  loc = ae18 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l13n_t2_mrcc_32
+#net  ddr3_d11                  loc = ad17 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l14p_t2_srcc_32
+#net  ddr3_d9                   loc = ad16 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l14n_t2_srcc_32
+#net  ddr3_dqs1_p               loc = y19  | iostandard=diff_sstl15; # bank  32 vcco - vcc1v5_fpga - io_l15p_t2_dqs_32
+#net  ddr3_dqs1_n               loc = y18  | iostandard=diff_sstl15; # bank  32 vcco - vcc1v5_fpga - io_l15n_t2_dqs_32
+#net  ddr3_d12                  loc = aa18 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l16p_t2_32
+#net  ddr3_d13                  loc = ab18 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l16n_t2_32
+#net  ddr3_d8                   loc = ab19 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l17p_t2_32
+#net  ddr3_d10                  loc = ac19 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l17n_t2_32
+#net  ddr3_dm1                  loc = ab17 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l18p_t2_32
+#net  7n700                     loc = ac17                   ; # bank  32 vcco - vcc1v5_fpga - io_l18n_t2_32
+#net  ddr3_d6                   loc = ae15 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l19p_t3_32
+#net  vttvref                   loc = ae14                   ; # bank  32 vcco - vcc1v5_fpga - io_l19n_t3_vref_32
+#net  ddr3_d0                   loc = aa15 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l20p_t3_32
+#net  ddr3_d5                   loc = ab15 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l20n_t3_32
+#net  ddr3_dqs0_p               loc = ac16 | iostandard=diff_sstl15; # bank  32 vcco - vcc1v5_fpga - io_l21p_t3_dqs_32
+#net  ddr3_dqs0_n               loc = ac15 | iostandard=diff_sstl15; # bank  32 vcco - vcc1v5_fpga - io_l21n_t3_dqs_32
+#net  ddr3_d2                   loc = ac14 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l22p_t3_32
+#net  ddr3_d3                   loc = ad14 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l22n_t3_32
+#net  ddr3_d4                   loc = aa17 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l23p_t3_32
+#net  ddr3_d1                   loc = aa16 | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l23n_t3_32
+#net  ddr3_dm0                  loc = y16  | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l24p_t3_32
+#net  ddr3_d7                   loc = y15  | iostandard=sstl15; # bank  32 vcco - vcc1v5_fpga - io_l24n_t3_32
+#net  pmbus_alert_ls            loc = ab14 | iostandard=lvcmos15; # bank  32 vcco - vcc1v5_fpga - io_25_vrp_32
+#net  vrn_33                    loc = y13  | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_0_vrn_33
+#net  gpio_sw_n                 loc = aa12 | iostandard=lvcmos15; # bank  33 vcco - vcc1v5_fpga - io_l1p_t0_33
+#net  gpio_sw_s                 loc = ab12 | iostandard=lvcmos15; # bank  33 vcco - vcc1v5_fpga - io_l1n_t0_33
+#net  gpio_led_1_ls             loc = aa8  | iostandard=lvcmos15; # bank  33 vcco - vcc1v5_fpga - io_l2p_t0_33
+#net  gpio_led_0_ls             loc = ab8  | iostandard=lvcmos15; # bank  33 vcco - vcc1v5_fpga - io_l2n_t0_33
+#net  gpio_led_3_ls             loc = ab9  | iostandard=lvcmos15; # bank  33 vcco - vcc1v5_fpga - io_l3p_t0_dqs_33
+#net  gpio_led_2_ls             loc = ac9  | iostandard=lvcmos15; # bank  33 vcco - vcc1v5_fpga - io_l3n_t0_dqs_33
+#net  lcd_rs_ls                 loc = y11  | iostandard=lvcmos15; # bank  33 vcco - vcc1v5_fpga - io_l4p_t0_33
+#net  lcd_db7_ls                loc = y10  | iostandard=lvcmos15; # bank  33 vcco - vcc1v5_fpga - io_l4n_t0_33
+#net  lcd_db6_ls                loc = aa11 | iostandard=lvcmos15; # bank  33 vcco - vcc1v5_fpga - io_l5p_t0_33
+#net  lcd_db5_ls                loc = aa10 | iostandard=lvcmos15; # bank  33 vcco - vcc1v5_fpga - io_l5n_t0_33
+#net  lcd_db4_ls                loc = aa13 | iostandard=lvcmos15; # bank  33 vcco - vcc1v5_fpga - io_l6p_t0_33
+#net  lcd_rw_ls                 loc = ab13 | iostandard=lvcmos15; # bank  33 vcco - vcc1v5_fpga - io_l6n_t0_vref_33
+#net  lcd_e_ls                  loc = ab10 | iostandard=lvcmos15; # bank  33 vcco - vcc1v5_fpga - io_l7p_t1_33
+#net  ddr3_odt1                 loc = ac10 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l7n_t1_33
+#net  ddr3_odt0                 loc = ad8  | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l8p_t1_33
+#net  ddr3_s1_b                 loc = ae8  | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l8n_t1_33
+#net  ddr3_s0_b                 loc = ac12 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l9p_t1_dqs_33
+#net  ddr3_cas_b                loc = ac11 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l9n_t1_dqs_33
+#net  ddr3_ras_b                loc = ad9  | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l10p_t1_33
+#net  ddr3_we_b                 loc = ae9  | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l10n_t1_33
+#net  ddr3_clk1_p               loc = ae11 | iostandard=diff_sstl15; # bank  33 vcco - vcc1v5_fpga - io_l11p_t1_srcc_33
+#net  ddr3_clk1_n               loc = af11 | iostandard=diff_sstl15; # bank  33 vcco - vcc1v5_fpga - io_l11n_t1_srcc_33
+#net  sysclk_p                  loc = ad12 | iostandard=lvds; # bank  33 vcco - vcc1v5_fpga - io_l12p_t1_mrcc_33
+#net  sysclk_n                  loc = ad11 | iostandard=lvds; # bank  33 vcco - vcc1v5_fpga - io_l12n_t1_mrcc_33
+#net  ddr3_clk0_p               loc = ag10 | iostandard=diff_sstl15; # bank  33 vcco - vcc1v5_fpga - io_l13p_t2_mrcc_33
+#net  ddr3_clk0_n               loc = ah10 | iostandard=diff_sstl15; # bank  33 vcco - vcc1v5_fpga - io_l13n_t2_mrcc_33
+#net  ddr3_cke1                 loc = ae10 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l14p_t2_srcc_33
+#net  ddr3_cke0                 loc = af10 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l14n_t2_srcc_33
+#net  ddr3_temp_event           loc = aj9  | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l15p_t2_dqs_33
+#net  ddr3_ba2                  loc = ak9  | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l15n_t2_dqs_33
+#net  ddr3_ba1                  loc = ag9  | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l16p_t2_33
+#net  ddr3_ba0                  loc = ah9  | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l16n_t2_33
+#net  ddr3_a15                  loc = ak11 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l17p_t2_33
+#net  ddr3_a14                  loc = ak10 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l17n_t2_33
+#net  ddr3_a13                  loc = ah11 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l18p_t2_33
+#net  ddr3_a12                  loc = aj11 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l18n_t2_33
+#net  ddr3_a11                  loc = ae13 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l19p_t3_33
+#net  ddr3_a10                  loc = af13 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l19n_t3_vref_33
+#net  ddr3_a9                   loc = ak14 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l20p_t3_33
+#net  ddr3_a8                   loc = ak13 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l20n_t3_33
+#net  ddr3_a7                   loc = ah14 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l21p_t3_dqs_33
+#net  ddr3_a6                   loc = aj14 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l21n_t3_dqs_33
+#net  ddr3_a5                   loc = aj13 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l22p_t3_33
+#net  ddr3_a4                   loc = aj12 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l22n_t3_33
+#net  ddr3_a3                   loc = af12 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l23p_t3_33
+#net  ddr3_a2                   loc = ag12 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l23n_t3_33
+#net  ddr3_a1                   loc = ag13 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l24p_t3_33
+#net  ddr3_a0                   loc = ah12 | iostandard=sstl15; # bank  33 vcco - vcc1v5_fpga - io_l24n_t3_33
+#net  vrp_33                    loc = ad13                   ; # bank  33 vcco - vcc1v5_fpga - io_25_vrp_33
+#net  gpio_sw_w                 loc = ac6  | iostandard=lvcmos15; # bank  34 vcco - vcc1v5_fpga - io_0_vrn_34
+#net  ddr3_d63                  loc = ad4  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l1p_t0_34
+#net  ddr3_d57                  loc = ad3  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l1n_t0_34
+#net  ddr3_d62                  loc = ac2  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l2p_t0_34
+#net  ddr3_d56                  loc = ac1  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l2n_t0_34
+#net  ddr3_dqs7_p               loc = ad2  | iostandard=diff_sstl15; # bank  34 vcco - vcc1v5_fpga - io_l3p_t0_dqs_34
+#net  ddr3_dqs7_n               loc = ad1  | iostandard=diff_sstl15; # bank  34 vcco - vcc1v5_fpga - io_l3n_t0_dqs_34
+#net  ddr3_d59                  loc = ac5  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l4p_t0_34
+#net  ddr3_d58                  loc = ac4  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l4n_t0_34
+#net  ddr3_d61                  loc = ad6  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l5p_t0_34
+#net  ddr3_d60                  loc = ae6  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l5n_t0_34
+#net  ddr3_dm7                  loc = ac7  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l6p_t0_34
+#net  vttvref                   loc = ad7                    ; # bank  34 vcco - vcc1v5_fpga - io_l6n_t0_vref_34
+#net  ddr3_d52                  loc = af3  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l7p_t1_34
+#net  ddr3_d49                  loc = af2  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l7n_t1_34
+#net  ddr3_d54                  loc = ae1  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l8p_t1_34
+#net  ddr3_d48                  loc = af1  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l8n_t1_34
+#net  ddr3_dqs6_p               loc = ag4  | iostandard=diff_sstl15; # bank  34 vcco - vcc1v5_fpga - io_l9p_t1_dqs_34
+#net  ddr3_dqs6_n               loc = ag3  | iostandard=diff_sstl15; # bank  34 vcco - vcc1v5_fpga - io_l9n_t1_dqs_34
+#net  ddr3_d50                  loc = ae4  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l10p_t1_34
+#net  ddr3_d51                  loc = ae3  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l10n_t1_34
+#net  ddr3_d55                  loc = ae5  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l11p_t1_srcc_34
+#net  ddr3_d53                  loc = af5  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l11n_t1_srcc_34
+#net  ddr3_dm6                  loc = af6  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l12p_t1_mrcc_34
+#net  gpio_sw_e                 loc = ag5  | iostandard=lvcmos15; # bank  34 vcco - vcc1v5_fpga - io_l12n_t1_mrcc_34
+#net  ddr3_d44                  loc = ah4  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l13p_t2_mrcc_34
+#net  ddr3_d45                  loc = aj4  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l13n_t2_mrcc_34
+#net  ddr3_d41                  loc = ah6  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l14p_t2_srcc_34
+#net  ddr3_d40                  loc = ah5  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l14n_t2_srcc_34
+#net  ddr3_dqs5_p               loc = ag2  | iostandard=diff_sstl15; # bank  34 vcco - vcc1v5_fpga - io_l15p_t2_dqs_34
+#net  ddr3_dqs5_n               loc = ah1  | iostandard=diff_sstl15; # bank  34 vcco - vcc1v5_fpga - io_l15n_t2_dqs_34
+#net  ddr3_d43                  loc = ah2  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l16p_t2_34
+#net  ddr3_d42                  loc = aj2  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l16n_t2_34
+#net  ddr3_d47                  loc = aj1  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l17p_t2_34
+#net  ddr3_d46                  loc = ak1  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l17n_t2_34
+#net  ddr3_dm5                  loc = aj3  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l18p_t2_34
+#net  ddr3_reset_b              loc = ak3  | iostandard=lvcmos15; # bank  34 vcco - vcc1v5_fpga - io_l18n_t2_34
+#net  ddr3_d36                  loc = af8  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l19p_t3_34
+#net  vttvref                   loc = ag8                    ; # bank  34 vcco - vcc1v5_fpga - io_l19n_t3_vref_34
+#net  ddr3_d35                  loc = af7  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l20p_t3_34
+#net  ddr3_d34                  loc = ag7  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l20n_t3_34
+#net  ddr3_dqs4_p               loc = ah7  | iostandard=diff_sstl15; # bank  34 vcco - vcc1v5_fpga - io_l21p_t3_dqs_34
+#net  ddr3_dqs4_n               loc = aj7  | iostandard=diff_sstl15; # bank  34 vcco - vcc1v5_fpga - io_l21n_t3_dqs_34
+#net  ddr3_d39                  loc = aj6  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l22p_t3_34
+#net  ddr3_d33                  loc = ak6  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l22n_t3_34
+#net  ddr3_d38                  loc = aj8  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l23p_t3_34
+#net  ddr3_d32                  loc = ak8  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l23n_t3_34
+#net  ddr3_dm4                  loc = ak5  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l24p_t3_34
+#net  ddr3_d37                  loc = ak4  | iostandard=sstl15; # bank  34 vcco - vcc1v5_fpga - io_l24n_t3_34
+#net  cpu_reset                 loc = ab7  | iostandard=lvcmos15; # bank  34 vcco - vcc1v5_fpga - io_25_vrp_34
+#net  pcie_tx4_p                loc = t2                        ; # bank 115                 - mgtxtxp3_115
+#net  pcie_rx4_p                loc = v6                        ; # bank 115                 - mgtxrxp3_115
+#net  pcie_tx4_n                loc = t1                        ; # bank 115                 - mgtxtxn3_115
+#net  pcie_rx4_n                loc = v5                        ; # bank 115                 - mgtxrxn3_115
+#net  pcie_tx5_p                loc = u4                        ; # bank 115                 - mgtxtxp2_115
+#net  pcie_rx5_p                loc = w4                        ; # bank 115                 - mgtxrxp2_115
+#net  pcie_tx5_n                loc = u3                        ; # bank 115                 - mgtxtxn2_115
+#net  9n302                     loc = r8                        ; # bank 115                 - mgtrefclk0p_115
+#net  pcie_rx5_n                loc = w3                        ; # bank 115                 - mgtxrxn2_115
+#net  9n301                     loc = r7                        ; # bank 115                 - mgtrefclk0n_115
+#net  9n173                     loc = w8                        ; # bank 115                 - mgtrref_115
+#net  pcie_clk_qo_n             loc = u7                        ; # bank 115                 - mgtrefclk1n_115
+#net  pcie_clk_qo_p             loc = u8                        ; # bank 115                 - mgtrefclk1p_115
+#net  pcie_tx6_p                loc = v2                        ; # bank 115                 - mgtxtxp1_115
+#net  pcie_rx6_p                loc = y6                        ; # bank 115                 - mgtxrxp1_115
+#net  pcie_tx6_n                loc = v1                        ; # bank 115                 - mgtxtxn1_115
+#net  pcie_rx6_n                loc = y5                        ; # bank 115                 - mgtxrxn1_115
+#net  pcie_tx7_p                loc = y2                        ; # bank 115                 - mgtxtxp0_115
+#net  pcie_rx7_p                loc = aa4                       ; # bank 115                 - mgtxrxp0_115
+#net  pcie_tx7_n                loc = y1                        ; # bank 115                 - mgtxtxn0_115
+#net  pcie_rx7_n                loc = aa3                       ; # bank 115                 - mgtxrxn0_115
+#net  pcie_tx0_p                loc = l4                        ; # bank 116                 - mgtxtxp3_116
+#net  pcie_rx0_p                loc = m6                        ; # bank 116                 - mgtxrxp3_116
+#net  pcie_tx0_n                loc = l3                        ; # bank 116                 - mgtxtxn3_116
+#net  pcie_rx0_n                loc = m5                        ; # bank 116                 - mgtxrxn3_116
+#net  pcie_tx1_p                loc = m2                        ; # bank 116                 - mgtxtxp2_116
+#net  pcie_rx1_p                loc = p6                        ; # bank 116                 - mgtxrxp2_116
+#net  pcie_tx1_n                loc = m1                        ; # bank 116                 - mgtxtxn2_116
+#net  si5326_out_c_p            loc = l8                        ; # bank 116                 - mgtrefclk0p_116
+#net  pcie_rx1_n                loc = p5                        ; # bank 116                 - mgtxrxn2_116
+#net  si5326_out_c_n            loc = l7                        ; # bank 116                 - mgtrefclk0n_116
+#net  fmc_lpc_gbtclk0_m2c_c_n   loc = n7                        ; # bank 116                 - mgtrefclk1n_116
+#net  fmc_lpc_gbtclk0_m2c_c_p   loc = n8                        ; # bank 116                 - mgtrefclk1p_116
+#net  pcie_tx2_p                loc = n4                        ; # bank 116                 - mgtxtxp1_116
+#net  pcie_rx2_p                loc = r4                        ; # bank 116                 - mgtxrxp1_116
+#net  pcie_tx2_n                loc = n3                        ; # bank 116                 - mgtxtxn1_116
+#net  pcie_rx2_n                loc = r3                        ; # bank 116                 - mgtxrxn1_116
+#net  pcie_tx3_p                loc = p2                        ; # bank 116                 - mgtxtxp0_116
+#net  pcie_rx3_p                loc = t6                        ; # bank 116                 - mgtxrxp0_116
+#net  pcie_tx3_n                loc = p1                        ; # bank 116                 - mgtxtxn0_116
+#net  pcie_rx3_n                loc = t5                        ; # bank 116                 - mgtxrxn0_116
+#net  fmc_lpc_dp0_c2m_p         loc = f2                        ; # bank 117                 - mgtxtxp3_117
+#net  fmc_lpc_dp0_m2c_p         loc = f6                        ; # bank 117                 - mgtxrxp3_117
+#net  fmc_lpc_dp0_c2m_n         loc = f1                        ; # bank 117                 - mgtxtxn3_117
+#net  fmc_lpc_dp0_m2c_n         loc = f5                        ; # bank 117                 - mgtxrxn3_117
+#net  sfp_tx_p                  loc = h2                        ; # bank 117                 - mgtxtxp2_117
+#net  sfp_rx_n                  loc = g4                        ; # bank 117                 - mgtxrxp2_117
+#net  sfp_tx_n                  loc = h1                        ; # bank 117                 - mgtxtxn2_117
+#net  sgmiiclk_q0_p             loc = g8                        ; # bank 117                 - mgtrefclk0p_117
+#net  sfp_rx_p                  loc = g3                        ; # bank 117                 - mgtxrxn2_117
+#net  sgmiiclk_q0_n             loc = g7                        ; # bank 117                 - mgtrefclk0n_117
+#net  sma_mgt_refclk_n          loc = j7                        ; # bank 117                 - mgtrefclk1n_117
+#net  sma_mgt_refclk_p          loc = j8                        ; # bank 117                 - mgtrefclk1p_117
+#net  sgmii_tx_p                loc = j4                        ; # bank 117                 - mgtxtxp1_117
+#net  sgmii_rx_p                loc = h6                        ; # bank 117                 - mgtxrxp1_117
+#net  sgmii_tx_n                loc = j3                        ; # bank 117                 - mgtxtxn1_117
+#net  sgmii_rx_n                loc = h5                        ; # bank 117                 - mgtxrxn1_117
+#net  sma_mgt_tx_p              loc = k2                        ; # bank 117                 - mgtxtxp0_117
+#net  sma_mgt_rx_p              loc = k6                        ; # bank 117                 - mgtxrxp0_117
+#net  sma_mgt_tx_n              loc = k1                        ; # bank 117                 - mgtxtxn0_117
+#net  sma_mgt_rx_n              loc = k5                        ; # bank 117                 - mgtxrxn0_117
+#net  fmc_hpc_dp3_c2m_p         loc = a4                        ; # bank 118                 - mgtxtxp3_118
+#net  fmc_hpc_dp3_m2c_p         loc = a8                        ; # bank 118                 - mgtxrxp3_118
+#net  fmc_hpc_dp3_c2m_n         loc = a3                        ; # bank 118                 - mgtxtxn3_118
+#net  fmc_hpc_dp3_m2c_n         loc = a7                        ; # bank 118                 - mgtxrxn3_118
+#net  fmc_hpc_dp2_c2m_p         loc = b2                        ; # bank 118                 - mgtxtxp2_118
+#net  fmc_hpc_dp2_m2c_p         loc = b6                        ; # bank 118                 - mgtxrxp2_118
+#net  fmc_hpc_dp2_c2m_n         loc = b1                        ; # bank 118                 - mgtxtxn2_118
+#net  fmc_hpc_gbtclk0_m2c_c_p   loc = c8                        ; # bank 118                 - mgtrefclk0p_118
+#net  fmc_hpc_dp2_m2c_n         loc = b5                        ; # bank 118                 - mgtxrxn2_118
+#net  fmc_hpc_gbtclk0_m2c_c_n   loc = c7                        ; # bank 118                 - mgtrefclk0n_118
+#net  fmc_hpc_gbtclk1_m2c_c_n   loc = e7                        ; # bank 118                 - mgtrefclk1n_118
+#net  fmc_hpc_gbtclk1_m2c_c_p   loc = e8                        ; # bank 118                 - mgtrefclk1p_118
+#net  fmc_hpc_dp1_c2m_p         loc = c4                        ; # bank 118                 - mgtxtxp1_118
+#net  fmc_hpc_dp1_m2c_p         loc = d6                        ; # bank 118                 - mgtxrxp1_118
+#net  fmc_hpc_dp1_c2m_n         loc = c3                        ; # bank 118                 - mgtxtxn1_118
+#net  fmc_hpc_dp1_m2c_n         loc = d5                        ; # bank 118                 - mgtxrxn1_118
+#net  fmc_hpc_dp0_c2m_p         loc = d2                        ; # bank 118                 - mgtxtxp0_118
+#net  fmc_hpc_dp0_m2c_p         loc = e4                        ; # bank 118                 - mgtxrxp0_118
+#net  fmc_hpc_dp0_c2m_n         loc = d1                        ; # bank 118                 - mgtxtxn0_118
+#net  fmc_hpc_dp0_m2c_n         loc = e3                        ; # bank 118                 - mgtxrxn0_118

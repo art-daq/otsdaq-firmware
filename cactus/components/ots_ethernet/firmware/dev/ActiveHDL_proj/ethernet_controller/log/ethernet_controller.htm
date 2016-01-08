@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+
+<!----------------------------------------------------------------------------->
+<!--                          BEGIN HTML HEAD                                -->
+<!--                                                                         -->
+
+<HEAD>
+<TITLE>DRC Report File - ethernet_controller.bde</TITLE>
+<STYLE>
+.Err	{color:'#FF0000';cursor:hand;text-decoration:underline;}
+.Warn	{color:'#0000FF';cursor:hand;text-decoration:underline;}
+.Info	{color:'#000000';cursor:hand;text-decoration:underline;}
+.Sccss  {color:'#009600';cursor:hand;text-decoration:underline;}
+.ErrH	{color:'#FF0000';cursor:hand;text-decoration:underline;}
+.WarnH	{color:'#0000FF';cursor:hand;text-decoration:underline;}
+.InfoH	{color:'#000000';cursor:hand;text-decoration:underline;}
+.Err1	{color:'#FF0000';}
+.Warn1	{color:'#0000FF';}
+.Info1	{color:'#000000';}
+.Sccss1 {color:'#009600';}
+</STYLE>
+</HEAD>
+<BODY BGCOLOR="white" TEXT="black" LINK="blue" VLINK="purple" BACKGROUND="C:\Aldec\Active-HDL-10.2\\Flows\Res\default.bmp">
+<FONT FACE="Serif">
+<tt>
+<!--                                                                         -->
+<!--                             END HEADER                                  -->
+<!----------------------------------------------------------------------------->
+
+<!----------------------------------------------------------------------------->
+<!--                            BEGIN VBSCRIPT                               -->
+<!--                                                                         -->
+<SCRIPT LANGUAGE=JSCRIPT>
+	function RollOn() {
+		switch(window.event.srcElement.className) {
+			case 'Err':
+				window.event.srcElement.className = 'ErrH'; break;
+			case 'Warn':
+				window.event.srcElement.className = 'WarnH'; break;
+			case 'Info':
+				window.event.srcElement.className = 'InfoH'; break;
+		}
+	}
+	function RollOff() {
+		switch(window.event.srcElement.className) {
+			case 'ErrH':
+				window.event.srcElement.className = 'Err'; break;
+			case 'WarnH':
+				window.event.srcElement.className = 'Warn'; break;
+			case 'InfoH':
+				window.event.srcElement.className = 'Info'; break;
+		}
+	}
+	function OnError(sMsg,sUrl,sLine) {
+		return true;
+	}
+	
+	document.onmouseover = RollOn;
+	document.onmouseout = RollOff;
+	window.onerror = OnError;
+</SCRIPT>
+
+<SCRIPT LANGUAGE=VBSCRIPT>
+
+Function IID_IDispatch
+	IID_IDispatch = "{00020400-0000-0000-C000-000000000046}"
+End Function
+
+Function CLSID_Executor
+	CLSID_Executor = "Aldec.ExePlugIn.Generic.7"
+End Function
+
+
+Sub OpenPlugIn (progid, template, document, element, string)
+
+	Dim executor, command
+
+	Set executor = window.external.aldec.connector.OpenPlugIn(CLSID_Executor, IID_IDispatch)
+
+	command = "?Activate[<"+progid+">][<"+template+">][<"+document+">][<"+element+">][<"+string+">]"
+
+	executor.ExecuteCommand command, ""
+
+End Sub
+
+
+</SCRIPT>
+<!--                                                                         -->
+<!--                             END VBSCRIPT                                -->
+<!----------------------------------------------------------------------------->
+
+<H2>DRC Report File - ethernet_controller.bde</H2>
+
+Created on Son 2015-12-13 at 13:03:36
+<HR NOSHADE COLOR="#008080">
+<SPAN class=Info1>Checking file 'D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde'.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=12417');">symbol 'address_container' is empty. Compile to the library a source file with a description of symbol contents.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=704');">symbol 'arp_reply' is empty. Compile to the library a source file with a description of symbol contents.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=1420');">symbol 'create_packet' is empty. Compile to the library a source file with a description of symbol contents.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=903');">symbol 'dataout_mux' is empty. Compile to the library a source file with a description of symbol contents.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=195');">symbol 'decipherer' is empty. Compile to the library a source file with a description of symbol contents.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=7720');">symbol 'dest_info_container' is empty. Compile to the library a source file with a description of symbol contents.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=358');">symbol 'filter_data_out' is empty. Compile to the library a source file with a description of symbol contents.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=9820');">symbol 'icmp_ping_checksum_calc' is empty. Compile to the library a source file with a description of symbol contents.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=12190');">symbol 'icmp_ping_shift_reg' is empty. Compile to the library a source file with a description of symbol contents.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=1485');">symbol 'ip_checksum_calc' is empty. Compile to the library a source file with a description of symbol contents.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=1900');">symbol 'or33' is empty. Compile to the library a source file with a description of symbol contents.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=1501');">symbol 'udp_data_splicer' is empty. Compile to the library a source file with a description of symbol contents.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=8100');">symbol 'user_addrs_mux' is empty. Compile to the library a source file with a description of symbol contents.</SPAN><BR>
+<SPAN class=Info1>To settle inconsistencies between symbols and their contents apply the Compare Symbol with Contents command to each of the reported symbols.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=195');">Unconnected output port 'dest_mac(47:0)'. Instance 'DecipherBlock'.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=195');">Unconnected output port 'is_idle'. Instance 'DecipherBlock'.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=195');">Unconnected output port 'is_udp'. Instance 'DecipherBlock'.</SPAN><BR>
+<SPAN class=Warn onclick="OpenPlugIn('Aldec.BDE.7','0','D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde','','-errorid=195');">Unconnected output port 'arp_search_ip(31:0)'. Instance 'DecipherBlock'.</SPAN><BR>
+<SPAN class=Warn1>ethernet_controller.bde - 0 error(s), 17 warning(s)</SPAN><BR>
+<SPAN class=Info1>DRC process completed in 2 second(s).</SPAN><BR>
+</tt>
+</FONT>
+       
+        >
+</BODY>
+</HTML>
