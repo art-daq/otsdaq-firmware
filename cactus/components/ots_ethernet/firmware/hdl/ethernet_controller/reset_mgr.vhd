@@ -43,7 +43,7 @@ begin
 			reset <= '0';			   
 			old_reset_start <= reset_start;
 			
-			if cnt < 2 then -- 100 -- currently reseting
+			if cnt < 100 then -- 100 -- currently reseting
 					reset <= '1';
 					cnt <= cnt + 1;
 			elsif old_reset_start = '0' and reset_start = '1' then

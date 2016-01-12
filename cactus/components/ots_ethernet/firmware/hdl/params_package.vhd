@@ -22,7 +22,7 @@ use ieee.numeric_std.ALL;
 package params_package is	
 	
 	
-	constant ETH_CONTROLLER_VERSION: std_logic_vector(15 downto 0) := x"AAAE"; -- use all letters, before version number was used version was x"4142"  
+	constant ETH_CONTROLLER_VERSION: std_logic_vector(15 downto 0) := x"AAAF"; -- use all letters, before version number was used version was x"4142"  
 	constant delay_term: natural := 0; --x"000A" --x"07D0";
 
 	-- DO NOT TOUCH IP ADDRESS LINE BELOW.. Managed by setup and install script!
