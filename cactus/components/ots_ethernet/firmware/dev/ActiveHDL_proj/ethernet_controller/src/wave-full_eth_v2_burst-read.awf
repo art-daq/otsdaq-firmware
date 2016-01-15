@@ -1,0 +1,13188 @@
+$WAVE4
+$RESOLUTION 1000
+$ENDTIME 40000000
+I 1 "c#9#STD_LOGICc9 UX01ZWLH-"
+$IN 1 1 "/ethernet_interface/reset_in"
+$OUT 2 1 26 0 out
+I 2 "a#29#STD_LOGIC_VECTOR(63 downto 0)1 ricd63 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS IN 3 2 64 20 0 tx_data
+$SC 4-67
+$IN +1 1 20 0 ready
+$BUS IN +1 2 64 20 0 b_data
+$SC +1-+63
+$IN +1 1 26 0 _we
+$OUT +1 1 22 1 enabl
+$IN +1 1 22 0 force_packet
+I 3 "a#28#STD_LOGIC_VECTOR(7 downto 0)1 ricd7 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS IN +1 3 8 20 0 addrs
+$SC +1-+7
+$BUS IN +1 3 8 20 5 dest_
+$SC +1-+7
+I 4 "a#29#STD_LOGIC_VECTOR(47 downto 0)1 ricd47 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS IN +1 4 48 25 0 mac
+$SC +1-+47
+I 5 "a#29#STD_LOGIC_VECTOR(15 downto 0)1 ricd15 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS IN +1 5 16 25 0 port
+$SC +1-+15
+$OUT +1 1 20 0 src_capture
+$BUS OUT +1 3 8 24 0 addrs
+$SC +1-+7
+$BUS OUT +1 4 48 24 0 mac
+$SC +1-+47
+$BUS OUT +1 5 16 24 0 port
+$SC +1-+15
+$BUS S +1 5 16 20 0 "ec_wrapper/ethernet_controller/DecipherBlock/udp_countdown"
+$SC +1-+15
+I 6 "c#10#Sreg0_types100 idle recvpacket_ip_payload_udp_recvdataloop recvpacket_type_s29 recvpacket_ip_payload_ip_totlength2 recvpacket_ip_payload_udp_sourceport1 recvpacket_ip_payload_ip_versionandheader recvpacket_dest_s22 recvpacket_ip_payload_ip_totlength1 recvpacket_ip_payload_ip_tos recvpacket_dest_s11 recvpacket_ip_payload_udp_destport1 recvpacket_ip_payload_ip_ttl recvpacket_ip_payload_ip_fragmentoffset recvpacket_ip_payload_ip_flagsandfrag recvpacket_ip_payload_ip_id2 recvpacket_ip_payload_ip_id1 recvpacket_dest_s12 recvpacket_dest_s13 recvpacket_dest_s14 recvpacket_dest_s15 recvpacket_ip_payload_ip_sourceaddr1 recvpacket_ip_payload_ip_checksum2 recvpacket_ip_payload_ip_checksum1 recvpacket_ip_payload_ip_protocol recvpacket_ip_payload_ip_sourceaddr3 recvpacket_ip_payload_ip_sourceaddr2 recvpacket_ip_payload_ip_destaddr2 recvpacket_ip_payload_ip_destaddr1 recvpacket_ip_payload_ip_sourceaddr4 recvpacket_ip_payload_ip_destaddr4 recvpacket_ip_payload_ip_destaddr3 recvpacket_type_s26 recvpacket_ip_payload_udp_destport2 recvpacket_ip_payload_udp_length1 recvpacket_ip_payload_udp_checksum2 recvpacket_ip_payload_udp_checksum1 recvpacket_ip_payload_udp_length2 recvpacket_ip_payload_udp_sourceport2 recvpacket_src_s42 recvpacket_src_s44 recvpacket_src_s45 recvpacket_src_s46 recvpacket_src_s47 recvpacket_src_s43 recvpacket_type_s1 recvpacket_type_s48 recvpacket_type_s49 recvpacket_arp_payload_htype2 recvpacket_arp_payload_htype1 recvpacket_arp_payload_ptype1 recvpacket_arp_payload_ptype2 recvpacket_arp_payload_hlen recvpacket_arp_payload_plen recvpacket_arp_payload_op1 recvpacket_arp_payload_smac1 recvpacket_arp_payload_smac2 recvpacket_arp_payload_smac3 recvpacket_arp_payload_smac4 recvpacket_arp_payload_smac5 recvpacket_arp_payload_smac6 recvpacket_arp_payload_sip1 recvpacket_arp_payload_sip2 recvpacket_arp_payload_sip3 recvpacket_arp_payload_sip4 recvpacket_arp_payload_tmac1 recvpacket_arp_payload_tmac2 recvpacket_arp_payload_tmac3 recvpacket_arp_payload_tmac4 recvpacket_arp_payload_tmac5 recvpacket_arp_payload_tmac6 recvpacket_arp_payload_tip1 recvpacket_arp_payload_tip2 recvpacket_arp_payload_tip3 recvpacket_arp_payload_tip4 recvpacket_ip_payload_icmp_id1 recvpacket_arp_payload_op2 recvpacket_ip_payload_icmp_id2 recvpacket_preamble_s50 recvpacket_preamble_s51 recvpacket_crc_arp_s52 recvpacket_ip_payload_icmp_seqnum1 recvpacket_crc_arp_s53 recvpacket_crc_arp_crc1 recvpacket_ip_payload_icmp_seqnum2 recvpacket_crc_arp_crc2 recvpacket_crc_arp_crc3 recvpacket_crc_arp_crc4 recvpacket_ip_payload_icmp_dataloop recvpacket_preamble_s54 recvpacket_crc_ip_s55 recvpacket_crc_ip_crc6 recvpacket_crc_ip_crc7 recvpacket_crc_ip_crc8 recvpacket_crc_ip_crc9 recvpacket_crc_ip_s56 ready recvpacket_ip_payload_icmp_type recvpacket_ip_payload_icmp_code recvpacket_ip_payload_icmp_checksum1 recvpacket_ip_payload_icmp_checksum2 "
+$S +1 6 65 0 Sreg0
+$BUS IN +1 3 8 65 0 data_in
+$SC +1-+7
+I 7 "a#V9#[7:0]wire1 ricd7 0 e#V4#wirec4 01zx"
+I 8 "e#V4#wirec4 01zx"
+$BUS IN +1 7 8 31 0 "crcChk/CRC_data"
+$SC +1-+7
+$S +1 1 31 0 "ethernet_controller/DecipherBlock/crc_chk_en_unmasked"
+$NOMODE +1 0 "FORCE Ignore CRC err"
+$OUT +1 8 "/ethernet_interface/ec_wrapper/crcChk/CRC_err"
+$NOMODE +1 0 "FORCE Ignore CRC err"
+$IN +1 8 "/ethernet_interface/ec_wrapper/crcChk/CRC_chk_en"
+$IN +1 1 20 0 MASTER_CLK
+$IN +1 1 20 0 PHY_RX_DV
+$BUS IN +1 3 8 26 0 D
+$SC +1-+7
+$BUS OUT +1 2 64 20 0 rx_data
+$SC +1-+63
+$BUS OUT +1 2 64 23 0 addr
+$SC +1-+63
+$OUT +1 1 23 0 wren
+$OUT +1 1 20 2 tx_rd
+$IN +1 1 20 0 PHY_RX_ER
+$OUT +1 1 20 0 TX_CLK
+$BUS OUT +1 3 8 20 0 PHY_TXD
+$SC +1-+7
+$OUT +1 1 26 0 _EN
+$OUT +1 1 28 0 R
+$S +1 1 20 0 user_b_force_packet
+$S +1 1 25 0 ready
+$S +1 1 25 0 tx_rden
+$BUS S +1 5 16 25 0 dest_port
+$SC +1-+15
+$BUS S +1 4 48 30 0 mac
+$SC +1-+47
+$BUS S +1 3 8 30 0 addrs
+$SC +1-+7
+$BUS S +1 3 8 25 0 addrs
+$SC +1-+7
+$BUS S +1 5 16 25 0 src_port
+$SC +1-+15
+$BUS S +1 4 48 29 0 mac
+$SC +1-+47
+$BUS S +1 3 8 29 0 addrs
+$SC +1-+7
+$S +1 1 29 0 capture
+$S +1 1 20 0 reset
+I 9 "a#29#STD_LOGIC_VECTOR(10 downto 0)1 ricd10 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 9 11 20 0 user_tx_size_in
+$SC +1-+10
+$S +1 1 28 0 enable_out
+$BUS S +1 3 8 28 0 data_in
+$SC +1-+7
+$S +1 1 26 0 rigger
+$S +1 1 25 0 rx_valid_out
+$BUS S +1 9 11 28 4 size
+$SC +1-+10
+$BUS S +1 3 8 28 4 data
+$SC +1-+7
+$S +1 1 25 0 crc_err
+$S +1 1 25 0 busy
+$S +1 1 20 0 four_bit_mode
+$S +1 1 20 0 b_end_packet
+$NOMODE +1 0 rx_ctl
+$S +1 1 "/ethernet_interface/data_manager_blk/GEC_RX_CTRL/clken"
+I 10 "a#28#STD_LOGIC_VECTOR(1 downto 0)1 ricd1 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 10 2 50 0 om_code
+$SC +1 +1
+$S +1 1 50 0 rc_err_reg
+$BUS S +1 2 64 49 1 data_fifo_wdata_si
+$SC +1-+63
+$S +1 1 60 4 ren
+$S +1 1 49 14 info
+I 11 "a#20#UNSIGNED(7 downto 0)1 ricd7 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 11 8 49 0 q_w_count
+$SC +1-+7
+$BUS S +1 11 8 58 0 er
+$SC +1-+7
+I 12 "c#10#Sreg0_types12 s3_s4 s3_s7 s3_s8 s3_s9 s3_s10 s3_s11 s3_s6 s3_s5 idle insert_crc rcvdone s13 "
+$S +1 12 49 0 Sreg0
+$IN +1 1 49 0 clear_crc_err_flag
+$IN +1 1 51 0 ock
+$IN +1 1 49 0 four_bit_mode
+$IN +1 1 49 0 reset
+$IN +1 1 49 0 user_crc_err
+$BUS IN +1 3 8 54 0 rx_data_out
+$SC +1-+7
+$BUS IN +1 9 11 57 4 size
+$SC +1-+10
+$IN +1 1 57 4 valid
+$OUT +1 1 49 0 crc_err_flag
+$BUS OUT +1 2 64 49 0 data_fifo_wdata
+$SC +1-+63
+$OUT +1 1 60 0 ren
+$BUS OUT +1 5 16 49 0 info_fifo_wr_data
+$SC +1-+15
+$OUT +1 1 61 0 en
+$NOMODE +1 0 ram_comm_dec
+$S +1 1 "/ethernet_interface/data_manager_blk/RAM_COMM_DEC/burst_active"
+$S +1 1 56 0 complete_flag
+$S +1 1 50 0 comm_dec_ready
+I 13 "a#20#UNSIGNED(1 downto 0)1 ricd1 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 13 2 55 0 reg
+$SC +1 +1
+$S +1 1 51 0 rc_err
+$BUS S +1 11 8 50 0 mem_loc_count_reg
+$SC +1-+7
+$S +1 1 50 0 no_addrs_incr
+$BUS S +1 11 8 50 0 q_w_count_reg
+$SC +1-+7
+I 14 "a#21#UNSIGNED(63 downto 0)1 ricd63 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 14 64 50 1 ram_addr_si
+$SC +1-+63
+$S +1 1 54 4 rden
+$S +1 1 54 6 wr
+$S +1 1 51 1 x_data_fifo_full_fla
+$S +1 1 53 15 info
+I 15 "c#10#Sreg0_types23 write_com_s8 read_com_s13 read_com_s14 read_com_s15 read_com_s1 read_com_s18 burst_strt_s30 burst_strt_s31 burst_strt_s33 burst_strt_s34 burst_stp_s36 burst_stp_s37 burst_stp_s38 burst_stp_s39 write_com_s42 write_com_s40 write_com_s9 pro_comm dec_comm idle return_st get_comm err_dec "
+$S +1 15 50 0 Sreg0
+$IN +1 1 50 0 burst_done
+$IN +1 1 50 0 clock
+$IN +1 1 51 0 rc_err_flag
+$IN +1 1 50 0 reset
+I 16 "a#20#UNSIGNED(4 downto 0)1 ricd4 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 16 5 50 1 "flag_handling_gen__0/tmp_cn"
+$SC +1-+4
+$S +1 1 71 0 old_rx_v
+$S +1 1 71 0 is_counting
+$IN +1 1 50 0 rx_data_fifo_full
+$BUS IN +1 2 64 63 0 rd_data
+$SC +1-+63
+$BUS OUT +1 2 64 20 5 rx
+$SC +1-+63
+$OUT +1 1 20 0 "data_manager_blk/RAM_COMM_DEC/rx_data_fifo_rden"
+$IN +1 1 53 0 info_fifo_empty
+$IN +1 1 63 0 full
+$BUS IN +1 5 16 63 0 rd_data
+$SC +1-+15
+$IN +1 1 50 0 tx_info_fifo_full
+$IN +1 1 50 0 user_ready
+$S +1 1 60 0 _mask
+$IN +1 1 56 0 x_valid_out
+$OUT +1 1 50 1 burst_star
+$OUT +1 1 58 0 op
+$OUT +1 1 50 0 clear_crc_err_flag
+$BUS OUT +1 2 64 50 0 ram_addr
+$SC +1-+63
+$OUT +1 1 54 0 rden
+$OUT +1 1 54 2 wr
+$OUT +1 1 50 0 tx_data_fifo_src_sel
+$OUT +1 1 53 13 info
+$OUT +1 1 50 0 Rx_FIFO_Reset
+$OUT +1 1 50 0 rx_info_fifo_rden
+$OUT +1 1 50 2 tx_data_fifo_wr
+$OUT +1 1 50 0 Tx_FIFO_Reset
+$BUS OUT +1 5 16 50 0 tx_info_fifo_wr_data
+$SC +1-+15
+$OUT +1 1 65 0 en
+$NOMODE +1 0 tx_ctrl
+I 17 "a#20#UNSIGNED(2 downto 0)1 ricd2 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 17 3 "/ethernet_interface/data_manager_blk/GEC_TX_SEQ_CTL/byte_count"
+$SC +1-+2
+$S +1 1 52 0 clken
+$BUS S +1 2 64 52 0 data_fifo_rd_data_reg
+$SC +1-+63
+$S +1 1 64 1 en_si
+$S +1 1 52 14 info
+$BUS S +1 11 8 52 0 q_w_count
+$SC +1-+7
+$BUS S +1 11 8 52 6 seq
+$SC +1-+7
+I 18 "a#21#UNSIGNED(10 downto 0)1 ricd10 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 18 11 52 6 tx_data
+$SC +1-+10
+I 19 "c#10#Sreg0_types10 s7 s1 savecount read_ififo s2 idle txmtdone chk_busy s5 trgrd "
+$S +1 19 52 0 Sreg0
+$IN +1 1 52 0 clk
+$IN +1 1 52 0 data_fifo_empty
+$BUS IN +1 2 64 62 0 rd_data
+$SC +1-+63
+$IN +1 1 53 0 elay_count
+$IN +1 1 52 0 four_bit_mode
+$IN +1 1 52 0 info_fifo_empty
+$BUS IN +1 5 16 62 0 rd_data
+$SC +1-+15
+$IN +1 1 52 0 reset
+$IN +1 1 52 0 user_busy
+$IN +1 1 57 0 tx_enable_out
+$OUT +1 1 52 1 clear_delay_coun
+$OUT +1 1 52 0 data_fifo_rden
+$OUT +1 1 66 2 _
+$OUT +1 1 52 2 info_fifo_rd
+$OUT +1 1 52 0 start_delay_count
+$OUT +1 1 52 0 user_trigger
+$BUS OUT +1 3 8 58 0 x_data_in
+$SC +1-+7
+$BUS OUT +1 9 11 60 3 size
+$SC +1-+10
+$NOMODE +1 0 "rx info fifo"
+I 20 "a#3#MEM1 rict0 15 a#34#STD_LOGIC_VECTOR(width-1 downto 0)1 ricd15 0 c#9#STD_LOGICc9 UX01ZWLH-"
+I 21 "a#34#STD_LOGIC_VECTOR(width-1 downto 0)1 ricd15 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 20 16 "/ethernet_interface/data_manager_blk/RX_INFO_FIFO/ramTmp"
+$CHILD +1 0 1491
+$CHILD +18 1 1491
+$CHILD +35 2 1491
+$CHILD +52 3 1491
+$CHILD +69 4 1491
+$CHILD +86 5 1491
+$CHILD +103 6 1491
+$CHILD +120 7 1491
+$CHILD +137 8 1491
+$CHILD +154 9 1491
+$CHILD +171 10 1491
+$CHILD +188 11 1491
+$CHILD +205 12 1491
+$CHILD +222 13 1491
+$CHILD +239 14 1491
+$CHILD +256 15 1491
+$SC +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15
+I 22 "a#33#STD_LOGIC_VECTOR(addr-1 downto 0)1 ricd3 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 22 4 50 0 WAddress
+$SC +1-+3
+$BUS S +1 22 4 58 0 _rclk
+$SC +1-+3
+$BUS S +1 22 4 50 0 RAddress
+$SC +1-+3
+$BUS S +1 22 4 50 1 word
+$SC +1-+3
+$S +1 1 50 0 empty_sig
+$BUS S +1 21 16 50 0 lastQ
+$SC +1-+15
+$BUS IN +1 21 16 50 0 DATA
+$SC +1-+15
+$BUS OUT +1 21 16 50 0 Q
+$SC +1-+15
+$IN +1 1 50 0 WCLOCK
+$IN +1 1 50 5 R
+$IN +1 1 50 0 WE
+$IN +1 1 50 1 R
+$IN +1 1 52 0 SET
+I 23 "a#31#STD_LOGIC_VECTOR(addr downto 0)1 ricd4 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS OUT +1 23 5 51 1 D_COUN
+$SC +1-+4
+$OUT +1 1 50 0 FULL
+$OUT +1 1 50 0 EMPTY
+$NOMODE +1 0 "rx data fifo"
+I 24 "a#3#MEM1 rict0 255 a#34#STD_LOGIC_VECTOR(width-1 downto 0)1 ricd63 0 c#9#STD_LOGICc9 UX01ZWLH-"
+I 25 "a#34#STD_LOGIC_VECTOR(width-1 downto 0)1 ricd63 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 24 256 "/ethernet_interface/data_manager_blk/RX_DATA_FIFO/ramTmp"
+$CHILD +1 0 1850
+$CHILD +66 1 1850
+$CHILD +131 2 1850
+$CHILD +196 3 1850
+$CHILD +261 4 1850
+$CHILD +326 5 1850
+$CHILD +391 6 1850
+$CHILD +456 7 1850
+$CHILD +521 8 1850
+$CHILD +586 9 1850
+$CHILD +651 10 1850
+$CHILD +716 11 1850
+$CHILD +781 12 1850
+$CHILD +846 13 1850
+$CHILD +911 14 1850
+$CHILD +976 15 1850
+$CHILD 2891 16 1850
+$CHILD 2956 17 1850
+$CHILD 3021 18 1850
+$CHILD 3086 19 1850
+$CHILD 3151 20 1850
+$CHILD 3216 21 1850
+$CHILD 3281 22 1850
+$CHILD 3346 23 1850
+$CHILD 3411 24 1850
+$CHILD 3476 25 1850
+$CHILD 3541 26 1850
+$CHILD 3606 27 1850
+$CHILD 3671 28 1850
+$CHILD 3736 29 1850
+$CHILD 3801 30 1850
+$CHILD 3866 31 1850
+$CHILD 3931 32 1850
+$CHILD 3996 33 1850
+$CHILD 4061 34 1850
+$CHILD 4126 35 1850
+$CHILD 4191 36 1850
+$CHILD 4256 37 1850
+$CHILD 4321 38 1850
+$CHILD 4386 39 1850
+$CHILD 4451 40 1850
+$CHILD 4516 41 1850
+$CHILD 4581 42 1850
+$CHILD 4646 43 1850
+$CHILD 4711 44 1850
+$CHILD 4776 45 1850
+$CHILD 4841 46 1850
+$CHILD 4906 47 1850
+$CHILD 4971 48 1850
+$CHILD 5036 49 1850
+$CHILD 5101 50 1850
+$CHILD 5166 51 1850
+$CHILD 5231 52 1850
+$CHILD 5296 53 1850
+$CHILD 5361 54 1850
+$CHILD 5426 55 1850
+$CHILD 5491 56 1850
+$CHILD 5556 57 1850
+$CHILD 5621 58 1850
+$CHILD 5686 59 1850
+$CHILD 5751 60 1850
+$CHILD 5816 61 1850
+$CHILD 5881 62 1850
+$CHILD 5946 63 1850
+$CHILD 6011 64 1850
+$CHILD 6076 65 1850
+$CHILD 6141 66 1850
+$CHILD 6206 67 1850
+$CHILD 6271 68 1850
+$CHILD 6336 69 1850
+$CHILD 6401 70 1850
+$CHILD 6466 71 1850
+$CHILD 6531 72 1850
+$CHILD 6596 73 1850
+$CHILD 6661 74 1850
+$CHILD 6726 75 1850
+$CHILD 6791 76 1850
+$CHILD 6856 77 1850
+$CHILD 6921 78 1850
+$CHILD 6986 79 1850
+$CHILD 7051 80 1850
+$CHILD 7116 81 1850
+$CHILD 7181 82 1850
+$CHILD 7246 83 1850
+$CHILD 7311 84 1850
+$CHILD 7376 85 1850
+$CHILD 7441 86 1850
+$CHILD 7506 87 1850
+$CHILD 7571 88 1850
+$CHILD 7636 89 1850
+$CHILD 7701 90 1850
+$CHILD 7766 91 1850
+$CHILD 7831 92 1850
+$CHILD 7896 93 1850
+$CHILD 7961 94 1850
+$CHILD 8026 95 1850
+$CHILD 8091 96 1850
+$CHILD 8156 97 1850
+$CHILD 8221 98 1850
+$CHILD 8286 99 1850
+$CHILD 8351 100 1850
+$CHILD 8416 101 1850
+$CHILD 8481 102 1850
+$CHILD 8546 103 1850
+$CHILD 8611 104 1850
+$CHILD 8676 105 1850
+$CHILD 8741 106 1850
+$CHILD 8806 107 1850
+$CHILD 8871 108 1850
+$CHILD 8936 109 1850
+$CHILD 9001 110 1850
+$CHILD 9066 111 1850
+$CHILD 9131 112 1850
+$CHILD 9196 113 1850
+$CHILD 9261 114 1850
+$CHILD 9326 115 1850
+$CHILD 9391 116 1850
+$CHILD 9456 117 1850
+$CHILD 9521 118 1850
+$CHILD 9586 119 1850
+$CHILD 9651 120 1850
+$CHILD 9716 121 1850
+$CHILD 9781 122 1850
+$CHILD 9846 123 1850
+$CHILD 9911 124 1850
+$CHILD 9976 125 1850
+$CHILD +8191 126 1850
+$CHILD +8256 127 1850
+$CHILD +8321 128 1850
+$CHILD +8386 129 1850
+$CHILD +8451 130 1850
+$CHILD +8516 131 1850
+$CHILD +8581 132 1850
+$CHILD +8646 133 1850
+$CHILD +8711 134 1850
+$CHILD +8776 135 1850
+$CHILD +8841 136 1850
+$CHILD +8906 137 1850
+$CHILD +8971 138 1850
+$CHILD +9036 139 1850
+$CHILD +9101 140 1850
+$CHILD +9166 141 1850
+$CHILD +9231 142 1850
+$CHILD +9296 143 1850
+$CHILD +9361 144 1850
+$CHILD +9426 145 1850
+$CHILD +9491 146 1850
+$CHILD +9556 147 1850
+$CHILD +9621 148 1850
+$CHILD +9686 149 1850
+$CHILD +9751 150 1850
+$CHILD +9816 151 1850
+$CHILD +9881 152 1850
+$CHILD +9946 153 1850
+$CHILD 11861 154 1850
+$CHILD 11926 155 1850
+$CHILD 11991 156 1850
+$CHILD 12056 157 1850
+$CHILD 12121 158 1850
+$CHILD 12186 159 1850
+$CHILD 12251 160 1850
+$CHILD 12316 161 1850
+$CHILD 12381 162 1850
+$CHILD 12446 163 1850
+$CHILD 12511 164 1850
+$CHILD 12576 165 1850
+$CHILD 12641 166 1850
+$CHILD 12706 167 1850
+$CHILD 12771 168 1850
+$CHILD 12836 169 1850
+$CHILD 12901 170 1850
+$CHILD 12966 171 1850
+$CHILD 13031 172 1850
+$CHILD 13096 173 1850
+$CHILD 13161 174 1850
+$CHILD 13226 175 1850
+$CHILD 13291 176 1850
+$CHILD 13356 177 1850
+$CHILD 13421 178 1850
+$CHILD 13486 179 1850
+$CHILD 13551 180 1850
+$CHILD 13616 181 1850
+$CHILD 13681 182 1850
+$CHILD 13746 183 1850
+$CHILD 13811 184 1850
+$CHILD 13876 185 1850
+$CHILD 13941 186 1850
+$CHILD 14006 187 1850
+$CHILD 14071 188 1850
+$CHILD 14136 189 1850
+$CHILD 14201 190 1850
+$CHILD 14266 191 1850
+$CHILD 14331 192 1850
+$CHILD 14396 193 1850
+$CHILD 14461 194 1850
+$CHILD 14526 195 1850
+$CHILD 14591 196 1850
+$CHILD 14656 197 1850
+$CHILD 14721 198 1850
+$CHILD 14786 199 1850
+$CHILD 14851 200 1850
+$CHILD 14916 201 1850
+$CHILD 14981 202 1850
+$CHILD 15046 203 1850
+$CHILD 15111 204 1850
+$CHILD 15176 205 1850
+$CHILD 15241 206 1850
+$CHILD 15306 207 1850
+$CHILD 15371 208 1850
+$CHILD 15436 209 1850
+$CHILD 15501 210 1850
+$CHILD 15566 211 1850
+$CHILD 15631 212 1850
+$CHILD 15696 213 1850
+$CHILD 15761 214 1850
+$CHILD 15826 215 1850
+$CHILD 15891 216 1850
+$CHILD 15956 217 1850
+$CHILD 16021 218 1850
+$CHILD 16086 219 1850
+$CHILD 16151 220 1850
+$CHILD 16216 221 1850
+$CHILD 16281 222 1850
+$CHILD 16346 223 1850
+$CHILD 16411 224 1850
+$CHILD 16476 225 1850
+$CHILD 16541 226 1850
+$CHILD 16606 227 1850
+$CHILD 16671 228 1850
+$CHILD 16736 229 1850
+$CHILD 16801 230 1850
+$CHILD 16866 231 1850
+$CHILD 16931 232 1850
+$CHILD 16996 233 1850
+$CHILD 17061 234 1850
+$CHILD 17126 235 1850
+$CHILD 17191 236 1850
+$CHILD 17256 237 1850
+$CHILD 17321 238 1850
+$CHILD 17386 239 1850
+$CHILD 17451 240 1850
+$CHILD 17516 241 1850
+$CHILD 17581 242 1850
+$CHILD 17646 243 1850
+$CHILD 17711 244 1850
+$CHILD 17776 245 1850
+$CHILD 17841 246 1850
+$CHILD 17906 247 1850
+$CHILD 17971 248 1850
+$CHILD 18036 249 1850
+$CHILD 18101 250 1850
+$CHILD 18166 251 1850
+$CHILD 18231 252 1850
+$CHILD 18296 253 1850
+$CHILD 18361 254 1850
+$CHILD 18426 255 1850
+$SC +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63
+I 26 "a#33#STD_LOGIC_VECTOR(addr-1 downto 0)1 ricd7 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 26 8 50 0 WAddress
+$SC +1-+7
+$BUS S +1 26 8 58 0 _rclk
+$SC +1-+7
+$BUS S +1 26 8 50 0 RAddress
+$SC +1-+7
+$BUS S +1 26 8 50 1 word
+$SC +1-+7
+$S +1 1 50 0 empty_sig
+$BUS S +1 25 64 50 0 lastQ
+$SC +1-+63
+$BUS IN +1 25 64 50 0 DATA
+$SC +1-+63
+$BUS OUT +1 25 64 50 0 Q
+$SC +1-+63
+$IN +1 1 50 0 WCLOCK
+$IN +1 1 50 5 R
+$IN +1 1 50 0 WE
+$IN +1 1 50 1 R
+$IN +1 1 52 0 SET
+I 27 "a#31#STD_LOGIC_VECTOR(addr downto 0)1 ricd8 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS OUT +1 27 9 51 1 D_COUN
+$SC +1-+8
+$OUT +1 1 50 0 FULL
+$OUT +1 1 50 0 EMPTY
+$NOMODE +1 0 "tx info fifo"
+$BUS S +1 20 16 "/ethernet_interface/data_manager_blk/TX_INFO_FIFO/ramTmp"
+$CHILD +1 0 18741
+$CHILD +18 1 18741
+$CHILD +35 2 18741
+$CHILD +52 3 18741
+$CHILD +69 4 18741
+$CHILD +86 5 18741
+$CHILD +103 6 18741
+$CHILD +120 7 18741
+$CHILD +137 8 18741
+$CHILD +154 9 18741
+$CHILD +171 10 18741
+$CHILD +188 11 18741
+$CHILD +205 12 18741
+$CHILD +222 13 18741
+$CHILD +239 14 18741
+$CHILD +256 15 18741
+$SC +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15 +2-+15
+$BUS S +1 22 4 50 0 WAddress
+$SC +1-+3
+$BUS S +1 22 4 58 0 _rclk
+$SC +1-+3
+$BUS S +1 22 4 50 0 RAddress
+$SC +1-+3
+$BUS S +1 22 4 50 1 word
+$SC +1-+3
+$S +1 1 50 0 empty_sig
+$BUS S +1 21 16 50 0 lastQ
+$SC +1-+15
+$BUS IN +1 21 16 50 0 DATA
+$SC +1-+15
+$BUS OUT +1 21 16 50 0 Q
+$SC +1-+15
+$IN +1 1 50 0 WCLOCK
+$IN +1 1 50 5 R
+$IN +1 1 50 0 WE
+$IN +1 1 50 1 R
+$IN +1 1 52 0 SET
+$BUS OUT +1 23 5 51 1 D_COUN
+$SC +1-+4
+$OUT +1 1 50 0 FULL
+$OUT +1 1 50 0 EMPTY
+$NOMODE +1 0 "tx data fifo"
+$BUS S +1 24 256 "/ethernet_interface/data_manager_blk/TX_DATA_FIFO/ramTmp"
+$CHILD +1 0 19100
+$CHILD +66 1 19100
+$CHILD +131 2 19100
+$CHILD +196 3 19100
+$CHILD +261 4 19100
+$CHILD +326 5 19100
+$CHILD +391 6 19100
+$CHILD +456 7 19100
+$CHILD +521 8 19100
+$CHILD +586 9 19100
+$CHILD +651 10 19100
+$CHILD +716 11 19100
+$CHILD +781 12 19100
+$CHILD +846 13 19100
+$CHILD +911 14 19100
+$CHILD +976 15 19100
+$CHILD +1041 16 19100
+$CHILD +1106 17 19100
+$CHILD +1171 18 19100
+$CHILD +1236 19 19100
+$CHILD +1301 20 19100
+$CHILD +1366 21 19100
+$CHILD +1431 22 19100
+$CHILD +1496 23 19100
+$CHILD +1561 24 19100
+$CHILD +1626 25 19100
+$CHILD +1691 26 19100
+$CHILD +1756 27 19100
+$CHILD +1821 28 19100
+$CHILD +1886 29 19100
+$CHILD +1951 30 19100
+$CHILD +2016 31 19100
+$CHILD +2081 32 19100
+$CHILD +2146 33 19100
+$CHILD +2211 34 19100
+$CHILD +2276 35 19100
+$CHILD +2341 36 19100
+$CHILD +2406 37 19100
+$CHILD +2471 38 19100
+$CHILD +2536 39 19100
+$CHILD +2601 40 19100
+$CHILD +2666 41 19100
+$CHILD +2731 42 19100
+$CHILD +2796 43 19100
+$CHILD +2861 44 19100
+$CHILD +2926 45 19100
+$CHILD +2991 46 19100
+$CHILD +3056 47 19100
+$CHILD +3121 48 19100
+$CHILD +3186 49 19100
+$CHILD +3251 50 19100
+$CHILD +3316 51 19100
+$CHILD +3381 52 19100
+$CHILD +3446 53 19100
+$CHILD +3511 54 19100
+$CHILD +3576 55 19100
+$CHILD +3641 56 19100
+$CHILD +3706 57 19100
+$CHILD +3771 58 19100
+$CHILD +3836 59 19100
+$CHILD +3901 60 19100
+$CHILD +3966 61 19100
+$CHILD +4031 62 19100
+$CHILD +4096 63 19100
+$CHILD +4161 64 19100
+$CHILD +4226 65 19100
+$CHILD +4291 66 19100
+$CHILD +4356 67 19100
+$CHILD +4421 68 19100
+$CHILD +4486 69 19100
+$CHILD +4551 70 19100
+$CHILD +4616 71 19100
+$CHILD +4681 72 19100
+$CHILD +4746 73 19100
+$CHILD +4811 74 19100
+$CHILD +4876 75 19100
+$CHILD +4941 76 19100
+$CHILD +5006 77 19100
+$CHILD +5071 78 19100
+$CHILD +5136 79 19100
+$CHILD +5201 80 19100
+$CHILD +5266 81 19100
+$CHILD +5331 82 19100
+$CHILD +5396 83 19100
+$CHILD +5461 84 19100
+$CHILD +5526 85 19100
+$CHILD +5591 86 19100
+$CHILD +5656 87 19100
+$CHILD +5721 88 19100
+$CHILD +5786 89 19100
+$CHILD +5851 90 19100
+$CHILD +5916 91 19100
+$CHILD +5981 92 19100
+$CHILD +6046 93 19100
+$CHILD +6111 94 19100
+$CHILD +6176 95 19100
+$CHILD +6241 96 19100
+$CHILD +6306 97 19100
+$CHILD +6371 98 19100
+$CHILD +6436 99 19100
+$CHILD +6501 100 19100
+$CHILD +6566 101 19100
+$CHILD +6631 102 19100
+$CHILD +6696 103 19100
+$CHILD +6761 104 19100
+$CHILD +6826 105 19100
+$CHILD +6891 106 19100
+$CHILD +6956 107 19100
+$CHILD +7021 108 19100
+$CHILD +7086 109 19100
+$CHILD +7151 110 19100
+$CHILD +7216 111 19100
+$CHILD +7281 112 19100
+$CHILD +7346 113 19100
+$CHILD +7411 114 19100
+$CHILD +7476 115 19100
+$CHILD +7541 116 19100
+$CHILD +7606 117 19100
+$CHILD +7671 118 19100
+$CHILD +7736 119 19100
+$CHILD +7801 120 19100
+$CHILD +7866 121 19100
+$CHILD +7931 122 19100
+$CHILD +7996 123 19100
+$CHILD +8061 124 19100
+$CHILD +8126 125 19100
+$CHILD +8191 126 19100
+$CHILD +8256 127 19100
+$CHILD +8321 128 19100
+$CHILD +8386 129 19100
+$CHILD +8451 130 19100
+$CHILD +8516 131 19100
+$CHILD +8581 132 19100
+$CHILD +8646 133 19100
+$CHILD +8711 134 19100
+$CHILD +8776 135 19100
+$CHILD +8841 136 19100
+$CHILD +8906 137 19100
+$CHILD +8971 138 19100
+$CHILD +9036 139 19100
+$CHILD +9101 140 19100
+$CHILD +9166 141 19100
+$CHILD +9231 142 19100
+$CHILD +9296 143 19100
+$CHILD +9361 144 19100
+$CHILD +9426 145 19100
+$CHILD +9491 146 19100
+$CHILD +9556 147 19100
+$CHILD +9621 148 19100
+$CHILD +9686 149 19100
+$CHILD +9751 150 19100
+$CHILD +9816 151 19100
+$CHILD +9881 152 19100
+$CHILD +9946 153 19100
+$CHILD 29111 154 19100
+$CHILD 29176 155 19100
+$CHILD 29241 156 19100
+$CHILD 29306 157 19100
+$CHILD 29371 158 19100
+$CHILD 29436 159 19100
+$CHILD 29501 160 19100
+$CHILD 29566 161 19100
+$CHILD 29631 162 19100
+$CHILD 29696 163 19100
+$CHILD 29761 164 19100
+$CHILD 29826 165 19100
+$CHILD 29891 166 19100
+$CHILD 29956 167 19100
+$CHILD 30021 168 19100
+$CHILD 30086 169 19100
+$CHILD 30151 170 19100
+$CHILD 30216 171 19100
+$CHILD 30281 172 19100
+$CHILD 30346 173 19100
+$CHILD 30411 174 19100
+$CHILD 30476 175 19100
+$CHILD 30541 176 19100
+$CHILD 30606 177 19100
+$CHILD 30671 178 19100
+$CHILD 30736 179 19100
+$CHILD 30801 180 19100
+$CHILD 30866 181 19100
+$CHILD 30931 182 19100
+$CHILD 30996 183 19100
+$CHILD 31061 184 19100
+$CHILD 31126 185 19100
+$CHILD 31191 186 19100
+$CHILD 31256 187 19100
+$CHILD 31321 188 19100
+$CHILD 31386 189 19100
+$CHILD 31451 190 19100
+$CHILD 31516 191 19100
+$CHILD 31581 192 19100
+$CHILD 31646 193 19100
+$CHILD 31711 194 19100
+$CHILD 31776 195 19100
+$CHILD 31841 196 19100
+$CHILD 31906 197 19100
+$CHILD 31971 198 19100
+$CHILD 32036 199 19100
+$CHILD 32101 200 19100
+$CHILD 32166 201 19100
+$CHILD 32231 202 19100
+$CHILD 32296 203 19100
+$CHILD 32361 204 19100
+$CHILD 32426 205 19100
+$CHILD 32491 206 19100
+$CHILD 32556 207 19100
+$CHILD 32621 208 19100
+$CHILD 32686 209 19100
+$CHILD 32751 210 19100
+$CHILD 32816 211 19100
+$CHILD 32881 212 19100
+$CHILD 32946 213 19100
+$CHILD 33011 214 19100
+$CHILD 33076 215 19100
+$CHILD 33141 216 19100
+$CHILD 33206 217 19100
+$CHILD 33271 218 19100
+$CHILD 33336 219 19100
+$CHILD 33401 220 19100
+$CHILD 33466 221 19100
+$CHILD 33531 222 19100
+$CHILD 33596 223 19100
+$CHILD 33661 224 19100
+$CHILD 33726 225 19100
+$CHILD 33791 226 19100
+$CHILD 33856 227 19100
+$CHILD 33921 228 19100
+$CHILD 33986 229 19100
+$CHILD 34051 230 19100
+$CHILD 34116 231 19100
+$CHILD 34181 232 19100
+$CHILD 34246 233 19100
+$CHILD 34311 234 19100
+$CHILD 34376 235 19100
+$CHILD 34441 236 19100
+$CHILD 34506 237 19100
+$CHILD 34571 238 19100
+$CHILD 34636 239 19100
+$CHILD 34701 240 19100
+$CHILD 34766 241 19100
+$CHILD 34831 242 19100
+$CHILD 34896 243 19100
+$CHILD 34961 244 19100
+$CHILD 35026 245 19100
+$CHILD 35091 246 19100
+$CHILD 35156 247 19100
+$CHILD 35221 248 19100
+$CHILD 35286 249 19100
+$CHILD 35351 250 19100
+$CHILD 35416 251 19100
+$CHILD 35481 252 19100
+$CHILD 35546 253 19100
+$CHILD 35611 254 19100
+$CHILD 35676 255 19100
+$SC +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63
+$BUS S +1 26 8 50 0 WAddress
+$SC +1-+7
+$BUS S +1 26 8 58 0 _rclk
+$SC +1-+7
+$BUS S +1 26 8 50 0 RAddress
+$SC +1-+7
+$BUS S +1 26 8 50 1 word
+$SC +1-+7
+$S +1 1 50 0 empty_sig
+$BUS S +1 25 64 50 0 lastQ
+$SC +1-+63
+$BUS IN +1 25 64 50 0 DATA
+$SC +1-+63
+$BUS OUT +1 25 64 50 0 Q
+$SC +1-+63
+$IN +1 1 50 0 WCLOCK
+$IN +1 1 50 5 R
+$IN +1 1 50 0 WE
+$IN +1 1 50 1 R
+$IN +1 1 52 0 SET
+$BUS OUT +1 27 9 51 1 D_COUN
+$SC +1-+8
+$OUT +1 1 50 0 FULL
+$OUT +1 1 50 0 EMPTY
+$NOMODE +1 0 ""
+P 0 1-323 +10 +1-+4/2 +1-35990 CS "0"
+P 0 324-+8 +3 +2 CS "1"
+P 0 +-3 +2 707 911 +358 +221 +359 18740 +359 35990 EmptyRow "1"
+P 0 334 +2 707 911 +358 +221 +359 18740 +359 Height "37"
+P 0 494-+3 +17 +49-+18/9 +66 +9-+2 +12 +1 +9-+2 +21-+3 +636 Radix "10"
+P 0 598 +96 Radix "16"
+P 0 494-+2 656 +1 +13 +10 +1 +22-+3 Shape "3"
+P 0 338 Stimulator "CLK:FRM:Override:8.000000;2;1;3000000;50;1:Clock:1:"
+P 0 1 3 68 +1 +65 +2 +1 335 +4 +1 481 +16 +17 +49 Stimulator "CST:FRM:Override: :Cs:1:"
+$WAVES 1 4-46 +2 +1 +2-+2 +3 +2-+2 +2 +2-+6/3 +1 +1 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2 +3 +2-+7 481 +17-+15 +2-+47 +2-+7 18492-+5 +4-+5 +4-+5
+=0 T 0
+$VALUES
+V 1
+0
+$END
+$WAVES 2
+*0
+=1 D 7k 2
+=2 D 16k 2
+$VALUES
+V 3
+U
+1
+0
+$END
+$WAVES 47 +3 +4 +1 +2 +4-+4/2 +1 +2 +5 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+$VALUES
+V 1
+1
+$END
+$WAVES +4
+*0
+=3 T 5140k
+=4 T 34860k
+$VALUES
+V 3
+1
+0
+1
+$END
+$WAVES +1
+*0
+=5 D 15k 2
+=6 D 952k 2
+=7 D 2056k 2
+=8 D 432k 2
+R 2 27 *2 =9 D 48k 2
+$VALUES
+V 1
+U
+R 2 29 0 1
+$END
+$WAVES +12-+7 +2-+47 +2-+15 1982-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +2-+63 +29-+7 35769-+7
+*0
+$VALUES
+V 1
+U
+$END
+$WAVES 221 +2-+7 +2-+4 +2 +3-+6/2 +17-+15 +6 +2-+9 705 +96 +640
+*0
+=10 D 7k 4
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 237 +2
+*0
+*10
+=11 D 280k 4
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1-+6/2
+*0
+*10
+=12 D 288k 4
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +2-+7
+*0
+*10
+=13 D 296k 4
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1-+7
+*0
+*10
+=14 D 304k 4
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +18-+3 +2
+*0
+*10
+=15 D 504k 4
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +12-+10
+*0
+*1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*1
+=16 D 544k 2
+=17 D 40k 2
+=18 D 64k 2
+=19 D 88k 2
+=20 D 720k 2
+*17
+*18
+*19
+$VALUES
+V 1
+U
+R 2 4 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*1
+=21 D 584k 2
+*19
+R 1 2 *18
+=22 D 696k 2
+*19
+R 1 2 *18
+$VALUES
+V 1
+U
+R 2 4 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*1
+=23 D 176k 2
+=24 D 32k 2
+=25 D 376k 2
+*24
+=26 D 56k 2
+R 1 5 *24
+=27 D 256k 2
+*24
+*25
+*24
+*26
+R 1 5 *24
+$VALUES
+V 1
+U
+R 2 10 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*1
+*23
+R 1 3 *2
+=28 D 320k 2
+=29 D 24k 2
+R 1 5 *2
+=30 D 8k 2
+R 1 12 *2
+=31 D 240k 2
+R 1 3 *2
+*28
+*29
+R 1 5 *2
+*30
+R 1 12 *2
+$VALUES
+V 1
+U
+R 2 24 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*1
+*23
+R 1 6 *30
+=32 D 144k 2
+=33 D 200k 2
+R 1 9 *30
+*2
+R 1 25 *30
+=34 D 232k 2
+R 1 6 *30
+*32
+*33
+R 1 9 *30
+*2
+R 1 25 *30
+$VALUES
+V 1
+U
+R 2 44 0 1
+V 1
+0
+$END
+$WAVES +3
+*0
+=35 D 31k 3
+=36 D 200k 3
+R 1 2 =37 D 8k 3
+=38 D 32k 3
+*37
+=39 D 24k 3
+=40 D 160k 3
+*39
+R 1 2 *37
+=41 D 456k 3
+*37
+=42 D 168k 3
+R 1 2 *37
+*38
+*37
+*39
+*40
+*39
+R 1 2 *37
+=43 D 88k 3
+=44 D 16k 3
+=45 D 352k 3
+*37
+$VALUES
+V 1
+U
+R 2 13 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*35
+=46 D 136k 3
+=47 D 72k 3
+*37
+*38
+R 1 2 *44
+*40
+*37
+*39
+*37
+=48 D 448k 3
+*37
+*44
+*37
+*43
+*47
+*37
+*38
+R 1 2 *44
+*40
+*37
+*39
+*37
+*43
+*44
+=49 D 344k 3
+*37
+*44
+*37
+$VALUES
+V 1
+U
+R 2 15 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*35
+*36
+R 1 2 *37
+*38
+*37
+*39
+*42
+*37
+*44
+*37
+*48
+R 1 3 *37
+*40
+R 1 2 *37
+*38
+*37
+*39
+*42
+*37
+*44
+*37
+*43
+*44
+*49
+R 1 3 *37
+$VALUES
+V 1
+U
+R 2 15 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*35
+*46
+*47
+*37
+*38
+R 1 2 *44
+=50 D 104k 3
+*37
+=51 D 80k 3
+*37
+*38
+*37
+=52 D 416k 3
+R 1 3 *37
+*43
+*47
+*37
+*38
+R 1 2 *44
+*50
+*37
+*51
+*37
+*38
+*37
+=53 D 48k 3
+*44
+*45
+R 1 3 *37
+$VALUES
+V 1
+U
+R 2 17 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*35
+*36
+R 1 2 *37
+*38
+*37
+*39
+*44
+*37
+=54 D 144k 3
+*37
+=55 D 472k 3
+*39
+*40
+R 1 2 *37
+*38
+*37
+*39
+*44
+*37
+*54
+*37
+=56 D 112k 3
+*44
+*49
+*39
+$VALUES
+V 1
+U
+R 2 13 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*35
+*46
+*47
+*37
+=57 D 40k 3
+*37
+*44
+=58 D 176k 3
+R 1 3 *37
+*48
+*38
+*43
+*47
+*37
+*57
+*37
+*44
+*58
+R 1 3 *37
+*43
+*44
+*49
+*38
+$VALUES
+V 1
+U
+R 2 13 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*35
+*36
+R 1 2 *37
+*38
+*37
+*39
+*46
+R 2 2 *37 *57
+*37
+*44
+*37
+=59 D 384k 3
+*37
+*44
+*37
+=60 D 152k 3
+R 1 2 *37
+*38
+*37
+*39
+*46
+R 2 2 *37 *57
+*37
+*53
+*44
+*49
+*37
+*44
+*37
+$VALUES
+V 1
+U
+R 2 18 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*35
+*46
+*47
+*37
+*57
+*37
+*44
+*50
+*37
+*39
+*37
+*38
+*37
+*55
+R 1 3 *37
+*43
+*47
+*37
+*57
+*37
+*44
+*50
+*37
+*39
+*37
+*38
+*37
+*51
+*37
+R 1 2 *44
+*45
+R 1 3 *37
+$VALUES
+V 1
+U
+R 2 18 0 1
+V 1
+0
+$END
+$WAVES +10
+*0
+*1
+=61 D 224k 2
+=62 D 768k 2
+*32
+*62
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +5
+*0
+=63 T 3k
+R 1 9999 =64 T 4k
+$VALUES
+V 1
+U
+R 2 5000 0 1
+$END
+$WAVES +1
+*0
+=65 T 146500
+=66 T 825301
+=67 T 86999
+*66
+$VALUES
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +2
+*0
+=68 T 211200
+=69 T 9600
+=70 T 8k
+=71 T 30800
+=72 T 6600
+=73 T 26900
+=74 T 158800
+=75 T 20700
+=76 T 11060
+=77 T 9440
+=78 T 445700
+=79 T 1400
+R 1 2 *70
+=80 T 167300
+*69
+*70
+*71
+*72
+*73
+*74
+*75
+*76
+*77
+=81 T 88800
+=82 T 14300
+=83 T 342600
+*79
+R 1 2 *70
+$VALUES
+R 2 15 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+=84 T 145900
+=85 T 65k
+=86 T 300
+*69
+*70
+*71
+=87 T 14700
+=88 T 18800
+*74
+=89 T 6300
+=90 T 25460
+*77
+*78
+=91 T 9400
+=92 T 16k
+*70
+=93 T 86k
+*85
+*86
+*69
+*70
+*71
+*87
+*88
+*74
+*89
+*90
+*77
+*81
+*82
+*83
+*91
+*92
+*70
+$VALUES
+R 2 17 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*68
+*69
+*70
+*71
+*72
+*73
+=94 T 165100
+=95 T 7200
+=96 T 18260
+*77
+=97 T 447100
+R 1 3 *70
+=98 T 159300
+*69
+*70
+*71
+*72
+*73
+*94
+*95
+*96
+*77
+*81
+*82
+=99 T 344k
+R 1 3 *70
+$VALUES
+R 2 15 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*84
+*85
+*86
+*69
+*70
+*71
+*87
+*88
+=100 T 104800
+=101 T 6500
+=102 T 79260
+*77
+=103 T 27195
+=104 T 9105
+=105 T 418800
+R 1 3 *70
+*93
+*85
+*86
+*69
+*70
+*71
+*87
+*88
+*100
+*101
+*102
+*77
+*103
+*104
+=106 T 52500
+*82
+=107 T 352k
+R 1 3 *70
+$VALUES
+R 2 19 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*68
+*69
+*70
+*71
+*72
+*73
+=108 T 13900
+=109 T 8400
+=110 T 142800
+*95
+=111 T 474800
+=112 T 24k
+*98
+*69
+*70
+*71
+*72
+*73
+*108
+*109
+*110
+*95
+=113 T 116500
+*82
+*99
+*112
+$VALUES
+R 2 13 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*84
+*85
+*86
+*69
+*70
+=114 T 37400
+=115 T 8100
+*88
+=116 T 172300
+*95
+*76
+*77
+*97
+=117 T 32k
+*93
+*85
+*86
+*69
+*70
+*114
+*115
+*88
+*116
+*95
+*76
+*77
+*81
+*82
+*99
+*117
+$VALUES
+R 2 15 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*68
+*69
+*70
+*71
+*72
+*73
+=118 T 134100
+=119 T 8900
+=120 T 36500
+=121 T 7460
+=122 T 40235
+*104
+=123 T 17701
+=124 T 9504
+=125 T 383595
+*70
+*92
+*70
+=126 T 151300
+*69
+*70
+*71
+*72
+*73
+*118
+*119
+*120
+*121
+*122
+*104
+*106
+*82
+*99
+*70
+*92
+*70
+$VALUES
+R 2 18 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*84
+*85
+*86
+*69
+*70
+*114
+*115
+*88
+*100
+*101
+=127 T 22800
+*119
+=128 T 29300
+*95
+=129 T 475600
+R 1 3 *70
+*93
+*85
+*86
+*69
+*70
+*114
+*115
+*88
+*100
+*101
+*127
+*119
+*128
+*95
+=130 T 82800
+=131 T 10k
+=132 T 16500
+*82
+*107
+R 1 3 *70
+$VALUES
+R 2 20 0 1
+V 1
+0
+$END
+$WAVES +2-+63 +2-+15 +17-+32 +608-+63 +29-+15 +17-+31 +2
+*0
+*5
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 431-+15 +749-+15
+*0
+*5
+=133 D 1880k 2
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES 480
+*0
+=134 D 15k 3
+=135 D 1880k 3
+*37
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +2
+*0
+=136 D 3k 2
+R 1 9999 =137 D 4k 2
+$VALUES
+V 1
+U
+R 2 5000 0 1
+$END
+$WAVES +2
+*0
+*5
+=138 D 2048k 2
+*30
+*26
+R 1 3 *30
+=139 D 96k 2
+*30
+*2
+*24
+*30
+*29
+*2
+*30
+*33
+*29
+=140 D 496k 2
+*30
+*26
+R 1 3 *30
+*26
+*30
+*24
+*30
+R 1 2 *29
+*30
+*29
+*2
+*30
+*29
+*30
+=141 D 11680k 2
+*2
+$VALUES
+V 1
+U
+R 2 18 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*5
+=142 D 1992k 2
+R 1 2 *18
+*2
+R 2 2 *24 *30
+*24
+R 1 2 *29
+*30
+*24
+*30
+=143 D 120k 2
+*30
+=144 D 72k 2
+*30
+=145 D 456k 2
+R 1 2 *18
+*2
+*24
+*30
+*2
+R 1 3 *30
+*24
+R 1 2 *29
+*30
+*24
+*30
+=146 D 80k 2
+R 1 726 *2
+*29
+R 1 2 *30
+$VALUES
+V 1
+U
+R 2 382 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*5
+=147 D 2128k 2
+*30
+*26
+*29
+*24
+*2
+R 1 2 *30
+*29
+*30
+*32
+*30
+*144
+*30
+=148 D 600k 2
+*30
+*18
+*2
+*24
+*30
+*2
+*30
+*29
+*30
+*26
+*30
+*17
+R 1 1454 *30
+*29
+R 1 2 *30
+$VALUES
+V 1
+U
+R 2 742 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*5
+*142
+R 1 2 *18
+*30
+*144
+*2
+R 1 2 *29
+*144
+*30
+*29
+*30
+*144
+*29
+*144
+*2
+=149 D 448k 2
+R 1 2 *18
+*30
+*144
+*2
+R 1 2 *29
+*144
+*30
+*29
+*30
+*24
+=150 D 11648k 2
+R 1 4 *30
+$VALUES
+V 1
+U
+R 2 17 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*5
+*147
+*30
+*2
+*30
+*9
+*30
+*24
+*2
+R 1 2 *30
+*29
+*30
+*61
+*30
+*2
+*30
+=151 D 576k 2
+*30
+*2
+*30
+*24
+R 1 3 *30
+*26
+*30
+*29
+R 2 2 *30 *26
+R 2 363 *30 *29
+R 2 2 *30 *30
+*30
+$VALUES
+V 1
+U
+R 2 381 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*5
+*142
+R 1 2 *18
+*2
+*24
+*30
+R 1 2 *2
+*144
+*30
+*29
+R 1 3 *30
+*143
+*2
+*18
+*29
+*149
+R 1 2 *18
+*2
+*24
+R 1 2 *30
+*29
+*17
+R 2 2 *30 *29
+*30
+*30
+*30
+*29
+*30
+*9
+R 1 727 *2
+*30
+*2
+R 1 2 *30
+$VALUES
+V 1
+U
+R 2 384 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*5
+=152 D 2144k 2
+*30
+*17
+*30
+*26
+*30
+*29
+R 2 2 *30 *24
+*30
+*144
+R 1 3 *30
+*144
+*2
+*148
+*30
+*17
+*30
+*26
+*30
+*29
+R 2 3 *30 *24
+R 2 729 *30 *30
+*30
+$VALUES
+V 1
+U
+R 2 745 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*5
+*142
+R 1 2 *18
+*30
+*17
+*30
+R 2 2 *29 *2
+R 2 2 *29 *30
+*30
+*2
+*33
+*29
+=153 D 440k 2
+R 1 2 *18
+*30
+*17
+R 1 4 *30
+*2
+*29
+*30
+*24
+*30
+*29
+R 1 2 *30
+R 1 2 *2
+*30
+*29
+*2
+=154 D 11664k 2
+*30
+$VALUES
+V 1
+U
+R 2 21 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*5
+*142
+*151
+*153
+=155 D 12096k 2
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1 +1 +79-+7 35844-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=156 D 0 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 495 +677 35847 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*156
+$VALUES
+V 2
+U
+1
+$END
+$WAVES 496 +747
+*0
+*5
+*133
+*30
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES 582
+*0
+=157 D 7k 3
+=158 D 504k 3
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*157
+*158
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*157
+*158
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*157
+*158
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1 +2-+9 +2-+4 +2 +3-+6/2 +17-+15 +2-+8 +35-+2 822-+2
+*0
+*157
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 587
+*0
+*157
+*158
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +17 +2
+*0
+*157
+=159 D 280k 3
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1-+6/2
+*0
+*157
+=160 D 288k 3
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +2-+7
+*0
+*157
+=161 D 296k 3
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1-+7
+*0
+*157
+=162 D 304k 3
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +27
+*0
+=163 D 7k 1
+=164 D 16k 1
+$VALUES
+V 3
+U
+1
+0
+$END
+$WAVES +2
+*0
+=165 D 15k 1
+=166 D 2512k 1
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1 +3 +4 +2 +43 826 +91 +1 +2-+6 +2 +2-+6 +3-+15 +17-+31 +2-+2 +4 +163 +3 +76-+6 +2-+7 +9 +7 +1 +7 +1 +7 +1 +7 +1 +7 +1 +7 +1 +7 +1 +7 +13-+5 +5 +3 +4 +2 +109 +3 +4 +2
+*0
+*165
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 661 +1 +2 +1 +816 +1 +2 +1
+*0
+*165
+*166
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES 666
+*0
+*165
+=167 D 1952k 1
+=168 D 560k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +2 +820
+*0
+*165
+*167
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES 670
+*0
+*157
+=169 D 2384k 3
+*51
+=170 D 936k 3
+=171 D 11664k 3
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +2 27032-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=172 D 1951k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 673
+*0
+*172
+=173 D 512k 1
+=174 D 48k 1
+=175 D 928k 1
+R 1 726 *164
+$VALUES
+V 1
+U
+R 2 365 0 1
+$END
+$WAVES +1
+*0
+*172
+=176 D 504k 1
+=177 D 8k 1
+=178 D 968k 1
+R 1 1454 *177
+$VALUES
+V 1
+U
+R 2 729 0 1
+$END
+$WAVES +1
+*0
+*172
+=179 D 496k 1
+=180 D 64k 1
+=181 D 912k 1
+$VALUES
+V 1
+U
+R 2 2 0 1
+$END
+$WAVES +1
+*0
+*172
+=182 D 1496k 1
+R 2 363 *177 =183 D 24k 1
+$VALUES
+V 1
+U
+R 2 364 0 1
+$END
+$WAVES +1
+*0
+*172
+*176
+=184 D 56k 1
+=185 D 920k 1
+R 1 727 *164
+$VALUES
+V 1
+U
+R 2 365 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*172
+*179
+R 1 2 *177
+*174
+*181
+R 1 1455 *177
+$VALUES
+V 1
+U
+R 2 730 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*172
+*168
+*181
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*165
+=186 D 1960k 1
+*176
+*173
+=187 D 12088k 1
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*5
+=188 D 560k 2
+*146
+=189 D 832k 2
+*146
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +2-+7 814-+7
+*0
+*157
+=190 D 432k 3
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES 695
+*0
+*5
+=191 D 1504k 2
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*5
+*191
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*5
+*191
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*5
+*191
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*5
+*191
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*5
+*191
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*5
+*188
+*30
+=192 D 936k 2
+*2
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*5
+=193 D 1480k 2
+*30
+R 1 2 *2
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*156
+*163
+$VALUES
+V 3
+U
+X
+0
+$END
+$WAVES +1
+*0
+*157
+=194 D 1976k 3
+=195 D 1000k 3
+*44
+=196 D 12520k 3
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +2 +93 +221 +133 +18 +6 18729-+7 +2 35979
+*0
+*163
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 708 +566
+*0
+*163
+$VALUES
+V 2
+U
+1
+$END
+$WAVES 710
+*0
+=197 D 583k 1
+*181
+$VALUES
+V 3
+U
+1
+0
+$END
+$WAVES +1 902-+5 +2
+*0
+*197
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 714-+7
+*0
+=198 D 655k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1-+7
+*0
+=199 D 647k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+=200 D 639k 1
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*200
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*200
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*200
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*200
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*200
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*200
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*200
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+=201 D 631k 1
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*201
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*201
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*201
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*201
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*201
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*201
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*201
+*175
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+=202 D 623k 1
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*202
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*202
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*202
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*202
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*202
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*202
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*202
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+=203 D 615k 1
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*203
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*203
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*203
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*203
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*203
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*203
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*203
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+=204 D 607k 1
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*204
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*204
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*204
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*204
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*204
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*204
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*204
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+=205 D 599k 1
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*205
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*205
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*205
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*205
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*205
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*205
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*205
+*175
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*165
+=206 D 640k 1
+*177
+=207 D 904k 1
+*177
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*206
+*177
+*207
+*177
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +2-+6 +3-+6 +98-+6
+*0
+=208 D 591k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 788
+*0
+*208
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +9
+*0
+*208
+*177
+*207
+*177
+$VALUES
+V 1
+U
+R 2 2 0 1
+$END
+$WAVES +3
+*0
+*63
+R 1 9999 *64
+$VALUES
+V 1
+U
+R 2 5000 0 1
+$END
+$WAVES +2
+*0
+*163
+*164
+$VALUES
+V 3
+U
+1
+0
+$END
+$WAVES +1
+*0
+*156
+*163
+$VALUES
+V 3
+U
+X
+0
+$END
+$WAVES +2
+*0
+*5
+*191
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*5
+*191
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*5
+*191
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*5
+*191
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*5
+*191
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*5
+*191
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*5
+*188
+*30
+*192
+*2
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*5
+*193
+*30
+R 1 2 *2
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +13
+*0
+*5
+*188
+*146
+*189
+*146
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +3-+7 18594-+7
+*0
+=209 D 655k 2
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 836-+7 18602-+7
+*0
+=210 D 647k 2
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 844
+*0
+=211 D 639k 2
+=212 D 928k 2
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*211
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*211
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*211
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*211
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*211
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*211
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*211
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+=213 D 631k 2
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*213
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*213
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*213
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*213
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*213
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*213
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*213
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+=214 D 623k 2
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*214
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*214
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*214
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*214
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*214
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*214
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*214
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+=215 D 615k 2
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*215
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*215
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*215
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*215
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*215
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*215
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*215
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+=216 D 607k 2
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*216
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*216
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*216
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*216
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*216
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*216
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*216
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+=217 D 599k 2
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*217
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*217
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*217
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*217
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*217
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*217
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*217
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*5
+=218 D 640k 2
+*30
+=219 D 904k 2
+*30
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +9
+*0
+*208
+*181
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +7
+*0
+*197
+*181
+$VALUES
+V 3
+U
+1
+0
+$END
+$WAVES +2
+*0
+*5
+*218
+*30
+*219
+*30
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +4
+*0
+*165
+=220 D 568k 1
+=221 D 336k 1
+=222 D 576k 1
+*221
+$VALUES
+V 1
+U
+R 2 2 1 0
+V 1
+1
+$END
+$WAVES +2
+*0
+*165
+*175
+*181
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +11
+*0
+*165
+=223 D 1840k 1
+*174
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +10
+*0
+*165
+*223
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +18-+15
+*0
+*165
+=224 D 1880k 1
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +33
+*0
+*165
+*224
+*177
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +6
+*0
+*63
+R 1 9999 *64
+$VALUES
+V 1
+U
+R 2 5000 0 1
+$END
+$WAVES +2
+*0
+*163
+*164
+$VALUES
+V 3
+U
+1
+0
+$END
+$WAVES +2
+*0
+=225 D 791k 1
+=226 D 704k 1
+=227 D 208k 1
+$VALUES
+R 2 2 1 0
+$END
+$WAVES +1
+*0
+=228 D 727k 1
+R 1 2 *180
+*206
+=229 D 144k 1
+R 1 2 *180
+$VALUES
+R 2 4 1 0
+$END
+$WAVES +1
+*0
+=230 D 695k 1
+R 1 6 =231 D 32k 1
+=232 D 608k 1
+=233 D 112k 1
+R 1 6 *231
+$VALUES
+R 2 8 1 0
+$END
+$WAVES +1
+*0
+=234 D 679k 1
+R 1 14 *164
+=235 D 592k 1
+=236 D 96k 1
+R 1 14 *164
+$VALUES
+R 2 16 1 0
+$END
+$WAVES +1
+*0
+=237 D 671k 1
+R 1 30 *177
+=238 D 584k 1
+=239 D 88k 1
+R 1 30 *177
+$VALUES
+R 2 32 1 0
+$END
+$WAVES +1
+*0
+=240 D 23k 1
+*168
+=241 D 80k 1
+=242 D 832k 1
+*241
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+=243 D 663k 1
+*242
+*241
+$VALUES
+R 2 2 0 1
+$END
+$WAVES +3-+15 +17-+31 18659-+15 +17-+31
+*0
+=244 D 975k 2
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 1038-+15 18675-+15
+*0
+*244
+=245 D 912k 2
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES 1151
+*0
+*1
+*30
+*6
+*30
+*219
+*30
+$VALUES
+V 1
+U
+R 2 3 1 0
+$END
+$WAVES +1
+*0
+*156
+=246 D 679k 2
+*27
+=247 D 656k 2
+*27
+$VALUES
+V 1
+U
+R 2 2 1 0
+V 1
+1
+$END
+$WAVES +3-+6 +2-+5 +2
+*0
+=248 D 935k 2
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-8
+*0
+*248
+*245
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +7
+*0
+*248
+*245
+$VALUES
+V 3
+U
+1
+0
+$END
+$WAVES +5
+*0
+*5
+*188
+*146
+*189
+*146
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+=249 D 944k 1
+*231
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +72
+*0
+*163
+*177
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*165
+*181
+*177
+*207
+*177
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+=250 D 1888k 1
+*177
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*163
+*177
+*164
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +9
+*0
+*165
+*250
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +9
+*0
+*163
+=251 D 1896k 1
+*177
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +3
+*0
+*165
+=252 D 2416k 1
+*231
+=253 D 984k 1
+R 1 363 *231
+$VALUES
+V 1
+U
+R 2 183 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+=254 D 2400k 1
+R 1 3 *164
+*178
+R 1 727 *164
+$VALUES
+V 1
+U
+R 2 366 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+=255 D 2392k 1
+R 1 7 *177
+=256 D 960k 1
+R 1 1455 *177
+$VALUES
+V 1
+U
+R 2 732 0 1
+V 1
+0
+$END
+$WAVES +4
+*0
+*165
+=257 D 2440k 1
+*177
+*178
+R 1 727 *164
+$VALUES
+V 1
+U
+R 2 365 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+=258 D 2432k 1
+*177
+*178
+R 1 1455 *177
+$VALUES
+V 1
+U
+R 2 729 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+=259 D 2424k 1
+*183
+=260 D 528k 1
+$VALUES
+V 1
+U
+R 2 2 0 1
+$END
+$WAVES +1
+*0
+*165
+=261 D 3424k 1
+R 2 363 *177 *183
+*177
+$VALUES
+V 1
+U
+R 2 364 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*258
+*164
+*256
+R 1 727 *164
+$VALUES
+V 1
+U
+R 2 365 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*259
+R 1 3 *177
+*260
+=262 D 432k 1
+R 1 1455 *177
+$VALUES
+V 1
+U
+R 2 731 0 1
+$END
+$WAVES +3
+*0
+*165
+*258
+*177
+*178
+R 1 727 *164
+$VALUES
+V 1
+U
+R 2 365 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*259
+*177
+=263 D 544k 1
+*262
+R 1 1455 *177
+$VALUES
+V 1
+U
+R 2 730 0 1
+$END
+$WAVES +1
+*0
+*165
+*252
+*183
+=264 D 536k 1
+=265 D 480k 1
+R 2 181 *177 *184
+*177
+$VALUES
+V 1
+U
+R 2 184 0 1
+$END
+$WAVES +1
+*0
+*165
+=266 D 3416k 1
+R 2 363 *177 *183
+*177
+$VALUES
+V 1
+U
+R 2 364 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*259
+*164
+*264
+=267 D 440k 1
+R 1 727 *164
+$VALUES
+V 1
+U
+R 2 366 0 1
+$END
+$WAVES +1
+*0
+*165
+*252
+R 1 3 *177
+*178
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+$VALUES
+V 1
+U
+R 2 548 0 1
+V 1
+0
+$END
+$WAVES +3
+*0
+*165
+*259
+*177
+*263
+*267
+R 1 727 *164
+$VALUES
+V 1
+U
+R 2 366 0 1
+$END
+$WAVES +1
+*0
+*165
+*252
+*177
+*253
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+$VALUES
+V 1
+U
+R 2 547 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+=268 D 2408k 1
+*183
+*263
+=269 D 472k 1
+R 2 181 *164 *174
+*164
+$VALUES
+V 1
+U
+R 2 184 0 1
+$END
+$WAVES +1
+*0
+*165
+=270 D 3408k 1
+R 2 363 *177 *183
+*177
+$VALUES
+V 1
+U
+R 2 364 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*252
+*164
+*263
+*262
+R 1 2 *164
+R 4 181 *183 *177 *164 *164
+*183
+$VALUES
+V 1
+U
+R 2 366 0 1
+$END
+$WAVES +1
+*0
+*165
+*268
+R 1 3 *177
+*263
+*262
+R 1 4 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+$VALUES
+V 1
+U
+R 2 549 0 1
+$END
+$WAVES +3
+*0
+*165
+*252
+*177
+=271 D 552k 1
+*262
+R 1 2 *164
+R 4 181 *183 *177 *164 *164
+*183
+$VALUES
+V 1
+U
+R 2 366 0 1
+$END
+$WAVES +1
+*0
+*165
+*268
+*177
+*168
+*262
+R 1 4 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+R 1 5 *177
+*183
+$VALUES
+V 1
+U
+R 2 548 0 1
+$END
+$WAVES +1
+*0
+*165
+*254
+*183
+*271
+=272 D 464k 1
+R 2 181 *183 =273 D 40k 1
+*183
+$VALUES
+V 1
+U
+R 2 184 0 1
+$END
+$WAVES +1
+*0
+*165
+=274 D 2976k 1
+*262
+R 2 363 *183 *177
+*183
+$VALUES
+V 1
+U
+R 2 365 0 1
+$END
+$WAVES +1
+*0
+*165
+*268
+*164
+=275 D 992k 1
+R 2 181 *164 *174
+*164
+$VALUES
+V 1
+U
+R 2 183 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*254
+R 1 3 *177
+*253
+R 1 3 *177
+R 4 181 *273 *177 *177 *177
+$VALUES
+V 1
+U
+R 2 366 0 1
+V 1
+0
+$END
+$WAVES +3
+*0
+*165
+*268
+*177
+=276 D 1000k 1
+R 2 181 *164 *174
+*164
+$VALUES
+V 1
+U
+R 2 183 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*254
+*177
+*276
+R 1 3 *177
+R 4 181 *273 *177 *177 *177
+$VALUES
+V 1
+U
+R 2 365 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*255
+*183
+*168
+=277 D 456k 1
+R 1 363 *231
+$VALUES
+V 1
+U
+R 2 184 0 1
+$END
+$WAVES +1
+*0
+*165
+*261
+R 2 181 *177 *184
+*177
+$VALUES
+V 1
+U
+R 2 182 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*254
+*164
+*275
+R 2 181 *164 *174
+*164
+$VALUES
+V 1
+U
+R 2 183 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*255
+R 1 3 *177
+*168
+*262
+R 1 2 *177
+R 4 181 *273 *177 *177 *177
+*273
+$VALUES
+V 1
+U
+R 2 367 0 1
+$END
+$WAVES +3
+*0
+*165
+*254
+*177
+*276
+R 2 181 *164 *174
+*164
+$VALUES
+V 1
+U
+R 2 183 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*255
+*177
+*222
+*262
+R 1 2 *177
+R 4 181 *273 *177 *177 *177
+*273
+$VALUES
+V 1
+U
+R 2 366 0 1
+$END
+$WAVES +1
+*0
+*165
+*186
+=278 D 448k 1
+*273
+=279 D 976k 1
+R 2 181 *273 *183
+*273
+$VALUES
+V 1
+U
+R 2 184 0 1
+$END
+$WAVES +1
+*0
+*165
+*266
+R 2 181 *177 *184
+*177
+$VALUES
+V 1
+U
+R 2 182 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*255
+*164
+*220
+*267
+R 2 181 *174 *164
+*174
+$VALUES
+V 1
+U
+R 2 184 0 1
+$END
+$WAVES +1
+*0
+*165
+*186
+*262
+R 1 2 *177
+*273
+*260
+*262
+R 2 181 *177 *184
+*177
+$VALUES
+V 1
+U
+R 2 185 0 1
+V 1
+0
+$END
+$WAVES +3
+*0
+*165
+*255
+*177
+*222
+*267
+R 2 181 *174 *164
+*174
+$VALUES
+V 1
+U
+R 2 184 0 1
+$END
+$WAVES +1
+*0
+*165
+*186
+*262
+*184
+*260
+*262
+R 2 181 *177 *184
+*177
+$VALUES
+V 1
+U
+R 2 184 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*186
+*267
+*174
+*178
+R 2 181 *174 *164
+*174
+$VALUES
+V 1
+U
+R 2 184 0 1
+$END
+$WAVES +1
+*0
+*165
+*270
+R 2 181 *177 *184
+*177
+$VALUES
+V 1
+U
+R 2 182 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*186
+*267
+*174
+*256
+R 2 181 *184 *177
+*184
+$VALUES
+V 1
+U
+R 2 184 0 1
+$END
+$WAVES +1
+*0
+*165
+*255
+*177
+*222
+*262
+R 2 181 *184 *177
+*184
+$VALUES
+V 1
+U
+R 2 184 0 1
+$END
+$WAVES +3
+*0
+*165
+*186
+*262
+*184
+*256
+R 2 181 *184 *177
+*184
+$VALUES
+V 1
+U
+R 2 184 0 1
+$END
+$WAVES +1
+*0
+*165
+*274
+*262
+R 2 181 *184 *177
+*184
+$VALUES
+V 1
+U
+R 2 183 0 1
+$END
+$WAVES +1
+*0
+*165
+*186
+*262
+*184
+*256
+R 2 181 *184 *177
+*184
+$VALUES
+V 1
+U
+R 2 184 0 1
+$END
+$WAVES +1
+*0
+*165
+*274
+*262
+R 2 181 *184 *177
+*184
+$VALUES
+V 1
+U
+R 2 183 0 1
+$END
+$WAVES +1
+*0
+*165
+*186
+*262
+*184
+*260
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+*186
+*262
+*184
+*260
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +2
+*0
+*165
+=280 D 1936k 1
+*177
+*271
+*177
+*185
+R 2 180 *177 *184
+*177
+$VALUES
+V 1
+U
+R 2 183 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*165
+=281 D 1920k 1
+*177
+*271
+*177
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +17
+*0
+*165
+=282 D 15064k 1
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*165
+=283 D 2464k 1
+=284 D 12600k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +2 +2 +1 +2 +1
+*0
+*165
+=285 D 2496k 1
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*165
+*280
+*168
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +2
+*0
+*165
+=286 D 1944k 1
+*271
+*177
+$VALUES
+V 1
+U
+R 2 2 0 1
+$END
+$WAVES +3
+*0
+*63
+R 1 9999 *64
+$VALUES
+V 1
+U
+R 2 5000 0 1
+$END
+$WAVES +1 35989
+*0
+*156
+=287 D 991k 2
+$VALUES
+V 3
+U
+1
+0
+$END
+$WAVES 1376
+*0
+=288 D 1959k 3
+=289 D 536k 2
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+1
+U
+0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+1
+U
+0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+1
+U
+0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+V 4
+U
+1
+U
+0
+$END
+$WAVES +1
+*0
+*288
+*289
+*39
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +5
+*0
+=290 D 1943k 3
+=291 D 552k 2
+*37
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*290
+*291
+*37
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*290
+*291
+*37
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*290
+*291
+*37
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*290
+*291
+*37
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*290
+*291
+*37
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*290
+*291
+*37
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*290
+*291
+*37
+$VALUES
+V 4
+U
+1
+U
+0
+$END
+$WAVES +1
+*0
+*290
+*291
+*37
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*290
+*291
+*37
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*290
+*291
+*37
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*290
+*291
+*37
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*290
+*291
+*37
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*290
+*291
+*37
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*290
+*291
+*37
+$VALUES
+R 2 2 U 0
+$END
+$WAVES +1
+*0
+*290
+*291
+*37
+$VALUES
+V 4
+U
+0
+U
+1
+$END
+$WAVES +1
+*0
+*163
+*164
+$VALUES
+V 3
+U
+1
+0
+$END
+$WAVES +2
+*0
+*157
+*169
+*51
+*170
+*171
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +2
+*0
+*5
+=292 D 1936k 2
+*30
+*291
+*30
+=293 D 920k 2
+R 2 180 *30 *26
+*30
+$VALUES
+V 1
+U
+R 2 183 0 1
+V 1
+0
+$END
+$WAVES +2
+*0
+*5
+=294 D 1920k 2
+*30
+*291
+*30
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +2
+*0
+*165
+*186
+*176
+*173
+*187
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +11
+*0
+*165
+*166
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +7
+*0
+*165
+*167
+*168
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +366-+63
+*0
+*243
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +2-+15 +17-+31 23977-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=295 D 1575k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 1933-+15 23980 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*295
+$VALUES
+V 2
+U
+1
+$END
+$WAVES 18498
+*0
+*295
+$VALUES
+V 2
+0
+1
+$END
+$WAVES +1
+*0
+*243
+*181
+$VALUES
+V 3
+0
+1
+0
+$END
+$WAVES +8
+*0
+=296 D 1583k 1
+$VALUES
+V 2
+0
+1
+$END
+$WAVES +1
+*0
+*237
+*181
+$VALUES
+V 3
+0
+1
+0
+$END
+$WAVES +8
+*0
+=297 D 1887k 1
+$VALUES
+V 2
+0
+1
+$END
+$WAVES +1
+*0
+=298 D 975k 1
+*181
+$VALUES
+V 3
+0
+1
+0
+$END
+$WAVES +10
+*0
+*234
+=299 D 296k 1
+=300 D 616k 1
+*299
+$VALUES
+R 2 2 1 0
+V 1
+1
+$END
+$WAVES +2-+15 +17-+31 +510-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+*298
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-620-+15
+*0
+*298
+*181
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +50
+*0
+*211
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*211
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*211
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*211
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*211
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*211
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*211
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*211
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*213
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*213
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*213
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*213
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*213
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*213
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*213
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*213
+*212
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*214
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*214
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*214
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*214
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*214
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*214
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*214
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*214
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*215
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*215
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*215
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*215
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*215
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*215
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*215
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*215
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*216
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*216
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*216
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*216
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*216
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*216
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*216
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*216
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*217
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*217
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*217
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*217
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*217
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*217
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*217
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*217
+*212
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +66
+*0
+*63
+R 1 9999 *64
+$VALUES
+V 1
+U
+R 2 5000 0 1
+$END
+$WAVES +1
+*0
+*63
+R 1 9999 *64
+$VALUES
+V 1
+U
+R 2 5000 0 1
+$END
+$WAVES +1
+*0
+*5
+*218
+*30
+*219
+*30
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*1
+*30
+*6
+*30
+*219
+*30
+$VALUES
+V 1
+U
+R 2 3 1 0
+$END
+$WAVES +1
+*0
+*1
+*29
+$VALUES
+V 3
+U
+1
+0
+$END
+$WAVES +10
+*0
+*163
+=301 D 672k 1
+=302 D 304k 1
+*232
+*302
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +2
+*0
+*156
+*246
+=303 D 296k 2
+=304 D 616k 2
+*303
+$VALUES
+V 1
+U
+R 2 2 1 0
+V 1
+1
+$END
+$WAVES +366 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*298
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=305 D 983k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*305
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=306 D 991k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*306
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=307 D 999k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*307
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=308 D 1007k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*308
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=309 D 1015k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*309
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=310 D 1023k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*310
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=311 D 1031k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*311
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=312 D 1039k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*312
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=313 D 1047k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*313
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=314 D 1055k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*314
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=315 D 1063k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*315
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=316 D 1071k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*316
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=317 D 1079k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*317
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=318 D 1087k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*318
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=319 D 1095k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*319
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=320 D 1103k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*320
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=321 D 1111k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*321
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=322 D 1119k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*322
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=323 D 1127k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*323
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=324 D 1135k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*324
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=325 D 1143k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*325
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=326 D 1151k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*326
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=327 D 1159k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*327
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1167k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1167k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1175k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1175k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1183k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1183k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1191k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1191k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1199k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1199k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1207k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1207k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1215k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1215k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1223k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1223k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1231k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1231k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1239k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1239k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1247k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1247k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1255k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1255k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1263k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1263k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1271k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1271k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1279k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1279k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1287k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1287k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1295k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1295k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1303k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1303k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1311k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1311k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1319k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1319k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1327k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1327k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1335k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1335k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1343k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1343k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1351k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1351k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1359k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1359k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1367k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1367k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1375k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1375k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1383k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1383k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1391k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1391k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1399k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1399k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1407k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1407k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1415k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1415k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1423k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1423k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1431k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1431k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1439k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1439k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1447k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1447k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1455k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1455k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1463k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1463k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1471k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1471k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1479k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1479k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1487k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1487k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1495k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1495k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1503k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1503k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1511k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1511k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1519k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1519k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1527k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1527k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1535k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1535k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1543k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1543k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1551k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1551k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1559k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1559k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1567k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1567k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +70-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+*296
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*296
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1591k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1591k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1599k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1599k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1607k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1607k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1615k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1615k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1623k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1623k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1631k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1631k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1639k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1639k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1647k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1647k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1655k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1655k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1663k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1663k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1671k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1671k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1679k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1679k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1687k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1687k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1695k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1695k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1703k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1703k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1711k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1711k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1719k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1719k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1727k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1727k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1735k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1735k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1743k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1743k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1751k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1751k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1759k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1759k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1767k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1767k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1775k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1775k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1783k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1783k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1791k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1791k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1799k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1799k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1807k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1807k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1815k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1815k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1823k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1823k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1831k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1831k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1839k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1839k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1847k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1847k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1855k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1855k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1863k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1863k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1871k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1871k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1879k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1879k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+*297
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*297
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1895k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1895k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1903k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1903k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1911k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1911k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1919k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1919k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1927k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1927k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1935k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1935k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1943k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1943k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +8 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*172
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1959k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1959k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1967k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1967k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1975k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1975k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1983k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1983k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1991k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1991k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 1999k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 1999k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2007k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2007k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2015k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2015k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2023k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2023k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2031k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2031k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2039k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2039k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2047k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2047k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2055k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2055k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2063k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2063k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2071k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2071k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2079k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2079k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2087k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2087k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2095k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2095k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2103k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2103k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2111k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2111k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2119k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2119k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2127k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2127k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2135k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2135k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2143k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2143k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2151k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2151k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2159k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2159k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2167k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2167k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2175k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2175k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2183k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2183k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2191k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2191k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2199k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2199k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2207k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2207k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2215k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2215k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2223k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2223k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2231k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2231k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2239k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2239k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2247k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2247k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2255k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2255k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2263k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2263k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2271k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2271k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2279k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2279k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2287k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2287k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2295k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2295k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2303k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2303k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2311k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2311k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2319k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2319k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2327k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2327k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2335k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2335k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2343k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2343k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2351k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2351k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2359k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2359k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2367k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2367k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2375k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2375k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2383k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2383k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2391k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2391k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2399k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2399k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2407k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2407k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2415k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2415k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2423k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2423k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2431k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2431k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2439k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2439k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2447k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2447k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2455k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2455k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2463k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2463k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2471k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2471k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2479k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2479k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2487k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2487k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2495k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2495k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2503k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2503k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2511k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2511k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2 +4069-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2519k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 31650 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +4075 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2519k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES 31712-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2527k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2527k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2535k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2535k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2543k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2543k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2551k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2551k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2559k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2559k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2567k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2567k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2575k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2575k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2583k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2583k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2591k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2591k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2599k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2599k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2607k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2607k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2615k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2615k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2623k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2623k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2631k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2631k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2639k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2639k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2647k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2647k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2655k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2655k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2663k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2663k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2671k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2671k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2679k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2679k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2687k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2687k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2695k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2695k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2703k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2703k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2711k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2711k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2719k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2719k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2727k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2727k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2735k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2735k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2743k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2743k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2751k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2751k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2759k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2759k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2767k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2767k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2775k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2775k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2783k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2783k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2791k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2791k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2799k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2799k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2807k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2807k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2815k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2815k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2823k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2823k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2831k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2831k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2839k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2839k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2847k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2847k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2855k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2855k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2863k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2863k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2871k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2871k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2879k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2879k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2887k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2887k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2895k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2895k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2903k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2903k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2911k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2911k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2919k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2919k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2927k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2927k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2935k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2935k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2943k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2943k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2951k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2951k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2959k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2959k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2967k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2967k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2975k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2975k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2983k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2983k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2991k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2991k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 2999k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 2999k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 3007k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 3007k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+D 3015k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+D 3015k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +5
+*0
+D 1991k 1
+D 1024k 1
+$VALUES
+V 3
+0
+1
+0
+$END
+$WAVES +1
+*0
+D 1479k 1
+R 1 3 *173
+$VALUES
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+D 1223k 1
+R 1 7 D 256k 1
+$VALUES
+R 2 4 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*319
+R 1 15 D 128k 1
+D 1408k 1
+$VALUES
+R 2 9 0 1
+$END
+$WAVES +1
+*0
+*311
+R 1 31 *180
+D 896k 1
+R 1 2 *173
+$VALUES
+R 2 18 0 1
+$END
+$WAVES +1
+*0
+*307
+R 1 63 *231
+*206
+R 1 5 D 256k 1
+$VALUES
+R 2 35 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*305
+R 1 127 *164
+*173
+R 1 12 D 128k 1
+$VALUES
+R 2 71 0 1
+$END
+$WAVES +1
+*0
+*298
+R 1 255 *177
+*278
+R 1 26 *180
+$VALUES
+R 2 142 0 1
+$END
+$WAVES +2
+*0
+D 1999k 1
+D 1024k 1
+$VALUES
+V 3
+0
+1
+0
+$END
+$WAVES +1
+*0
+D 1487k 1
+R 1 3 *173
+$VALUES
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+D 1231k 1
+R 1 7 D 256k 1
+$VALUES
+R 2 4 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*320
+R 1 15 D 128k 1
+D 1408k 1
+$VALUES
+R 2 9 0 1
+$END
+$WAVES +1
+*0
+*312
+R 1 31 *180
+D 896k 1
+R 1 2 *173
+$VALUES
+R 2 18 0 1
+$END
+$WAVES +1
+*0
+*308
+R 1 63 *231
+*206
+R 1 5 D 256k 1
+$VALUES
+R 2 35 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*306
+R 1 127 *164
+*173
+R 1 12 D 128k 1
+$VALUES
+R 2 71 0 1
+$END
+$WAVES +1
+*0
+*305
+R 1 255 *177
+*278
+R 1 26 *180
+$VALUES
+R 2 142 0 1
+$END
+$WAVES +2
+*0
+D 11511k 1
+$VALUES
+V 2
+0
+1
+$END
+$WAVES +1
+*0
+D 7415k 1
+D 4096k 1
+$VALUES
+V 3
+0
+1
+0
+$END
+$WAVES +1
+*0
+D 5367k 1
+R 1 4 D 2048k 1
+$VALUES
+R 2 3 0 1
+$END
+$WAVES +1
+*0
+D 4343k 1
+R 1 10 D 1024k 1
+$VALUES
+R 2 6 0 1
+$END
+$WAVES +1
+*0
+D 3831k 1
+R 1 21 *173
+$VALUES
+R 2 11 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+D 3575k 1
+R 1 44 D 256k 1
+$VALUES
+R 2 23 0 1
+$END
+$WAVES +1
+*0
+D 3447k 1
+R 1 90 D 128k 1
+$VALUES
+R 2 46 0 1
+$END
+$WAVES +1
+*0
+D 2519k 1
+*175
+R 1 180 *180
+$VALUES
+R 2 91 0 1
+V 1
+0
+$END
+$WAVES +10
+*0
+*306
+$VALUES
+V 2
+1
+0
+$END
+$WAVES +132-+2 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+5 +2 +1 +2-+2 +3 +2-+2 +2 +2 +3 +1 +5-+2
+*0
+=328 D 2519k 2
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +-60 +3 +4 +1 +2 +4-+4/2 +1 +3-+3 +7 +3 +4 +1 +2 +4-+4/2 +1 +3-+3
+*0
+*328
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +4
+*0
+*63
+R 1 9999 *64
+$VALUES
+V 1
+U
+R 2 5000 0 1
+$END
+$WAVES +1
+*0
+*63
+R 1 9999 *64
+$VALUES
+V 1
+U
+R 2 5000 0 1
+$END
+$WAVES +1
+*0
+*5
+*6
+*7
+*8
+R 2 26 *2 *9
+*2
+D 34865k 1
+$VALUES
+V 1
+U
+R 2 29 0 1
+$END
+$WAVES +1
+*0
+*156
+D 2511k 3
+*37
+D 920k 3
+R 2 180 *37 D 56k 3
+*37
+$VALUES
+V 1
+U
+R 2 182 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*163
+*164
+$VALUES
+V 3
+U
+1
+0
+$END
+$WAVES +3
+*0
+*163
+D 2000k 1
+D 11304k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*163
+D 1488k 1
+R 1 2 *173
+D 6696k 1
+D 4096k 1
+$VALUES
+V 1
+U
+R 2 3 0 1
+$END
+$WAVES +1
+*0
+*163
+D 1232k 1
+R 1 5 D 256k 1
+D 264k 1
+D 4384k 1
+R 1 3 D 2048k 1
+$VALUES
+V 1
+U
+R 2 6 0 1
+$END
+$WAVES +1
+*0
+*163
+D 1104k 1
+R 1 11 D 128k 1
+D 136k 1
+R 1 2 D 128k 1
+D 3232k 1
+R 1 8 D 1024k 1
+$VALUES
+V 1
+U
+R 2 12 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*163
+D 1040k 1
+R 1 23 *180
+D 72k 1
+R 1 6 *180
+D 2656k 1
+R 1 18 *173
+$VALUES
+V 1
+U
+R 2 25 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*163
+D 1008k 1
+R 1 47 *231
+*273
+R 1 14 *231
+D 2368k 1
+R 1 37 D 256k 1
+$VALUES
+V 1
+U
+R 2 51 0 1
+$END
+$WAVES +1
+*0
+*163
+*275
+R 1 95 *164
+*183
+R 1 30 *164
+D 2224k 1
+R 1 76 D 128k 1
+$VALUES
+V 1
+U
+R 2 102 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*163
+*253
+R 1 191 *177
+*164
+R 1 62 *177
+D 424k 1
+R 2 27 *183 *273
+R 1 153 *180
+$VALUES
+V 1
+U
+R 2 232 0 1
+$END
+$WAVES +1
+*0
+*163
+D 3016k 1
+*262
+R 2 27 *164 *174
+$VALUES
+V 1
+U
+R 2 28 0 1
+V 1
+0
+$END
+$WAVES 314
+*0
+D 23k 2
+D 152k 2
+*30
+*9
+R 1 43 *30
+*144
+*30
+D 208k 2
+R 1 2 *30
+*143
+R 1 2 *30
+*144
+*30
+*9
+R 1 43 *30
+*144
+*30
+D 208k 2
+R 1 2 *30
+*143
+R 1 2 *30
+$VALUES
+V 110
+idle
+ready
+recvpacket_preamble_s50
+recvpacket_preamble_s51
+recvpacket_preamble_s54
+recvpacket_dest_s22
+recvpacket_dest_s11
+recvpacket_dest_s12
+recvpacket_dest_s13
+recvpacket_dest_s14
+recvpacket_dest_s15
+recvpacket_src_s42
+recvpacket_src_s44
+recvpacket_src_s43
+recvpacket_src_s47
+recvpacket_src_s46
+recvpacket_src_s45
+recvpacket_type_s26
+recvpacket_type_s29
+recvpacket_ip_payload_ip_versionandheader
+recvpacket_ip_payload_ip_tos
+recvpacket_ip_payload_ip_totlength1
+recvpacket_ip_payload_ip_totlength2
+recvpacket_ip_payload_ip_id1
+recvpacket_ip_payload_ip_id2
+recvpacket_ip_payload_ip_flagsandfrag
+recvpacket_ip_payload_ip_fragmentoffset
+recvpacket_ip_payload_ip_ttl
+recvpacket_ip_payload_ip_protocol
+recvpacket_ip_payload_ip_checksum1
+recvpacket_ip_payload_ip_checksum2
+recvpacket_ip_payload_ip_sourceaddr1
+recvpacket_ip_payload_ip_sourceaddr2
+recvpacket_ip_payload_ip_sourceaddr3
+recvpacket_ip_payload_ip_sourceaddr4
+recvpacket_ip_payload_ip_destaddr1
+recvpacket_ip_payload_ip_destaddr2
+recvpacket_ip_payload_ip_destaddr3
+recvpacket_ip_payload_ip_destaddr4
+recvpacket_ip_payload_udp_sourceport1
+recvpacket_ip_payload_udp_sourceport2
+recvpacket_ip_payload_udp_destport1
+recvpacket_ip_payload_udp_destport2
+recvpacket_ip_payload_udp_length1
+recvpacket_ip_payload_udp_length2
+recvpacket_ip_payload_udp_checksum1
+recvpacket_ip_payload_udp_checksum2
+recvpacket_ip_payload_udp_recvdataloop
+recvpacket_crc_ip_s55
+recvpacket_crc_ip_s56
+recvpacket_crc_ip_crc9
+recvpacket_crc_ip_crc8
+recvpacket_crc_ip_crc7
+recvpacket_crc_ip_crc6
+idle
+ready
+recvpacket_preamble_s50
+recvpacket_preamble_s51
+recvpacket_preamble_s54
+recvpacket_dest_s22
+recvpacket_dest_s11
+recvpacket_dest_s12
+recvpacket_dest_s13
+recvpacket_dest_s14
+recvpacket_dest_s15
+recvpacket_src_s42
+recvpacket_src_s44
+recvpacket_src_s43
+recvpacket_src_s47
+recvpacket_src_s46
+recvpacket_src_s45
+recvpacket_type_s26
+recvpacket_type_s29
+recvpacket_ip_payload_ip_versionandheader
+recvpacket_ip_payload_ip_tos
+recvpacket_ip_payload_ip_totlength1
+recvpacket_ip_payload_ip_totlength2
+recvpacket_ip_payload_ip_id1
+recvpacket_ip_payload_ip_id2
+recvpacket_ip_payload_ip_flagsandfrag
+recvpacket_ip_payload_ip_fragmentoffset
+recvpacket_ip_payload_ip_ttl
+recvpacket_ip_payload_ip_protocol
+recvpacket_ip_payload_ip_checksum1
+recvpacket_ip_payload_ip_checksum2
+recvpacket_ip_payload_ip_sourceaddr1
+recvpacket_ip_payload_ip_sourceaddr2
+recvpacket_ip_payload_ip_sourceaddr3
+recvpacket_ip_payload_ip_sourceaddr4
+recvpacket_ip_payload_ip_destaddr1
+recvpacket_ip_payload_ip_destaddr2
+recvpacket_ip_payload_ip_destaddr3
+recvpacket_ip_payload_ip_destaddr4
+recvpacket_ip_payload_udp_sourceport1
+recvpacket_ip_payload_udp_sourceport2
+recvpacket_ip_payload_udp_destport1
+recvpacket_ip_payload_udp_destport2
+recvpacket_ip_payload_udp_length1
+recvpacket_ip_payload_udp_length2
+recvpacket_ip_payload_udp_checksum1
+recvpacket_ip_payload_udp_checksum2
+recvpacket_ip_payload_udp_recvdataloop
+recvpacket_crc_ip_s55
+recvpacket_crc_ip_s56
+recvpacket_crc_ip_crc9
+recvpacket_crc_ip_crc8
+recvpacket_crc_ip_crc7
+recvpacket_crc_ip_crc6
+idle
+ready
+$END
+$WAVES +11
+*0
+D 31k 6
+D 200k 6
+R 1 2 D 8k 6
+D 32k 6
+D 8k 6
+D 24k 6
+D 160k 6
+D 24k 6
+R 1 2 D 8k 6
+D 456k 6
+D 8k 6
+D 168k 6
+R 1 2 D 8k 6
+D 32k 6
+D 8k 6
+D 24k 6
+D 160k 6
+D 24k 6
+R 1 2 D 8k 6
+D 88k 6
+D 16k 6
+D 352k 6
+D 8k 6
+$VALUES
+V 1
+x
+R 2 13 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+D 31k 6
+D 136k 6
+D 72k 6
+D 8k 6
+D 32k 6
+R 1 2 D 16k 6
+D 160k 6
+D 8k 6
+D 24k 6
+D 8k 6
+D 448k 6
+D 8k 6
+D 16k 6
+D 8k 6
+D 88k 6
+D 72k 6
+D 8k 6
+D 32k 6
+R 1 2 D 16k 6
+D 160k 6
+D 8k 6
+D 24k 6
+D 8k 6
+D 88k 6
+D 16k 6
+D 344k 6
+D 8k 6
+D 16k 6
+D 8k 6
+$VALUES
+V 1
+x
+R 2 15 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+D 31k 6
+D 200k 6
+R 1 2 D 8k 6
+D 32k 6
+D 8k 6
+D 24k 6
+D 168k 6
+D 8k 6
+D 16k 6
+D 8k 6
+D 448k 6
+R 1 3 D 8k 6
+D 160k 6
+R 1 2 D 8k 6
+D 32k 6
+D 8k 6
+D 24k 6
+D 168k 6
+D 8k 6
+D 16k 6
+D 8k 6
+D 88k 6
+D 16k 6
+D 344k 6
+R 1 3 D 8k 6
+$VALUES
+V 1
+x
+R 2 15 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+D 31k 6
+D 136k 6
+D 72k 6
+D 8k 6
+D 32k 6
+R 1 2 D 16k 6
+D 104k 6
+D 8k 6
+D 80k 6
+D 8k 6
+D 32k 6
+D 8k 6
+D 416k 6
+R 1 3 D 8k 6
+D 88k 6
+D 72k 6
+D 8k 6
+D 32k 6
+R 1 2 D 16k 6
+D 104k 6
+D 8k 6
+D 80k 6
+D 8k 6
+D 32k 6
+D 8k 6
+D 48k 6
+D 16k 6
+D 352k 6
+R 1 3 D 8k 6
+$VALUES
+V 1
+x
+R 2 17 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+D 31k 6
+D 200k 6
+R 1 2 D 8k 6
+D 32k 6
+D 8k 6
+D 24k 6
+D 16k 6
+D 8k 6
+D 144k 6
+D 8k 6
+D 472k 6
+D 24k 6
+D 160k 6
+R 1 2 D 8k 6
+D 32k 6
+D 8k 6
+D 24k 6
+D 16k 6
+D 8k 6
+D 144k 6
+D 8k 6
+D 112k 6
+D 16k 6
+D 344k 6
+D 24k 6
+$VALUES
+V 1
+x
+R 2 13 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+D 31k 6
+D 136k 6
+D 72k 6
+D 8k 6
+D 40k 6
+D 8k 6
+D 16k 6
+D 176k 6
+R 1 3 D 8k 6
+D 448k 6
+D 32k 6
+D 88k 6
+D 72k 6
+D 8k 6
+D 40k 6
+D 8k 6
+D 16k 6
+D 176k 6
+R 1 3 D 8k 6
+D 88k 6
+D 16k 6
+D 344k 6
+D 32k 6
+$VALUES
+V 1
+x
+R 2 13 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+D 31k 6
+D 200k 6
+R 1 2 D 8k 6
+D 32k 6
+D 8k 6
+D 24k 6
+D 136k 6
+R 2 2 D 8k 6 D 40k 6
+D 8k 6
+D 16k 6
+D 8k 6
+D 384k 6
+D 8k 6
+D 16k 6
+D 8k 6
+D 152k 6
+R 1 2 D 8k 6
+D 32k 6
+D 8k 6
+D 24k 6
+D 136k 6
+R 2 2 D 8k 6 D 40k 6
+D 8k 6
+D 48k 6
+D 16k 6
+D 344k 6
+D 8k 6
+D 16k 6
+D 8k 6
+$VALUES
+V 1
+x
+R 2 18 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+D 31k 6
+D 136k 6
+D 72k 6
+D 8k 6
+D 40k 6
+D 8k 6
+D 16k 6
+D 104k 6
+D 8k 6
+D 24k 6
+D 8k 6
+D 32k 6
+D 8k 6
+D 472k 6
+R 1 3 D 8k 6
+D 88k 6
+D 72k 6
+D 8k 6
+D 40k 6
+D 8k 6
+D 16k 6
+D 104k 6
+D 8k 6
+D 24k 6
+D 8k 6
+D 32k 6
+D 8k 6
+D 80k 6
+D 8k 6
+R 1 2 D 16k 6
+D 352k 6
+R 1 3 D 8k 6
+$VALUES
+V 1
+x
+R 2 18 0 1
+V 1
+0
+$END
+$WAVES +3
+*0
+=329 T 7k
+$VALUES
+V 2
+x
+0
+$END
+$WAVES +2
+*0
+*157
+*195
+*37
+D 904k 3
+*37
+$VALUES
+V 1
+x
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES 798
+*0
+*165
+*220
+R 1 9 *177
+D 840k 1
+R 1 9 *177
+$VALUES
+V 22
+s3_s4
+idle
+s13
+s3_s4
+s3_s5
+s3_s6
+s3_s7
+s3_s8
+s3_s9
+s3_s10
+s3_s11
+idle
+s13
+s3_s4
+s3_s5
+s3_s6
+s3_s7
+s3_s8
+s3_s9
+s3_s10
+s3_s11
+idle
+$END
+$WAVES +209
+*0
+*163
+*177
+*181
+R 1 9 *177
+D 840k 1
+R 1 10 *177
+$VALUES
+V 24
+write_com_s8
+write_com_s40
+idle
+get_comm
+pro_comm
+err_dec
+dec_comm
+burst_strt_s33
+burst_strt_s31
+burst_strt_s30
+burst_strt_s34
+return_st
+idle
+get_comm
+pro_comm
+err_dec
+dec_comm
+read_com_s1
+read_com_s14
+read_com_s18
+read_com_s13
+read_com_s15
+return_st
+idle
+$END
+$WAVES +365
+*0
+*165
+*281
+R 1 5 *177
+D 424k 1
+D 72k 1
+R 1 7 *177
+*272
+D 424k 1
+D 11656k 1
+R 1 2 *177
+$VALUES
+V 22
+s7
+idle
+read_ififo
+savecount
+s1
+s2
+chk_busy
+trgrd
+s5
+s7
+txmtdone
+idle
+read_ififo
+savecount
+s1
+s2
+chk_busy
+trgrd
+s5
+s7
+txmtdone
+idle
+$END
+$ENDWAVE

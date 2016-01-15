@@ -47,7 +47,7 @@ begin
 		if (RESET = '1') then
 			WAddress <= (others => '0');
 		elsif (WCLOCK'event and WCLOCK = '1') then
-			if (WE = '1') then
+			if (WE = '1' and (not((WAddress = RAddress-1) or ((WAddress = depth-1) and (RAddress = 0))))) then
 				if (WAddress = words) then
 					WAddress <= (others => '0');
 				else
@@ -60,7 +60,7 @@ begin
 	WRITE_RAM : process (WCLOCK)
 	begin
 		if (WCLOCK'event and WCLOCK = '1') then
-			if (WE = '1') then
+			if (WE = '1' and (not((WAddress = RAddress-1) or ((WAddress = depth-1) and (RAddress = 0))))) then
 				ramTmp (conv_integer (WAddress)) <= DATA;
 			end if;
 		end if;
@@ -114,10 +114,8 @@ begin
 		if (RESET = '1') then
 			FULL <= '0';
 		elsif (RCLOCK'event and RCLOCK = '1') then
-			if (WE = '1' and RE = '0') then
-				if ((WAddress = RAddress-1) or ((WAddress = depth-1) and (RAddress = 0))) then
-					FULL <= '1';
-				end if;
+			if ((WAddress = RAddress-1) or ((WAddress = depth-1) and (RAddress = 0))) then
+				FULL <= '1';
 			else
 				FULL <= '0';
 			end if;

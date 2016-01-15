@@ -41,62 +41,74 @@ end data_manager;
 
 architecture BEHAVIORAL of data_manager is	  
 
-   signal burst_done                           : std_logic;
-   signal burst_start                          : std_logic;
-   signal burst_stop                           : std_logic;
-   signal clear_delay_count                    : std_logic;
-   signal crc_err_flag, clear_crc_err_flag     : std_logic;
-   signal data_fifo_full                       : std_logic;	 
-   signal tx_data_fifo_rd_data                 : std_logic_vector (63 downto 0);
-   signal rx_data_fifo_wren                    : std_logic;
-   signal rx_data_fifo_wr_data                 : std_logic_vector (63 downto 0);
-   signal delay_count                          : std_logic;
-   signal info_fifo_rd_data                    : std_logic_vector (15 downto 0);
-   signal rx_info_fifo_wren                       : std_logic;
-   signal rx_info_fifo_wr_data                    : std_logic_vector (15 downto 0);
-   signal rx_data_fifo_empty                   : std_logic;
-   signal rx_data_fifo_read_enable             : std_logic;
-   signal rx_fifo_reset                        : std_logic;
-   signal rx_fifo_reset_sig                    : std_logic;
-   signal rx_info_fifo_empty                   : std_logic;	 
-   signal rx_info_fifo_full	                   : std_logic;	
-   signal rx_data_fifo_full	                   : std_logic;	   
-   signal rx_info_fifo_rden                    : std_logic;
-   signal start_delay_count                    : std_logic;	      
-   signal tx_data_fifo_din                     : std_logic_vector (63 downto 0);
-   signal tx_data_fifo_empty                   : std_logic;
-   signal tx_data_fifo_full                    : std_logic;
-   signal tx_data_fifo_rden                    : std_logic;
-   signal tx_data_fifo_read_enable             : std_logic;	 
-   signal tx_data_fifo_src_sel                 : std_logic;
-   signal tx_data_fifo_wr_en                   : std_logic;
-   signal tx_fifo_reset                        : std_logic;
-   signal tx_fifo_reset_sig                    : std_logic;
-   signal tx_info_fifo_data_burst              : std_logic_vector (15 downto 0);
-   signal tx_info_fifo_data_comm               : std_logic_vector (15 downto 0);
-   signal tx_info_fifo_din                     : std_logic_vector (15 downto 0);
-   signal tx_info_fifo_dout                    : std_logic_vector (15 downto 0);
-   signal tx_info_fifo_empty                   : std_logic;
-   signal tx_info_fifo_full                    : std_logic;
-   signal tx_info_fifo_rden                    : std_logic;
-   signal tx_info_fifo_src_sel                 : std_logic;
-   signal tx_info_fifo_wren_burst              : std_logic;
-   signal tx_info_fifo_wren_comm               : std_logic;
-   signal tx_info_fifo_wr_en                   : std_logic;	   
-   signal rx_data_sig                          : std_logic_vector (63 downto 0);	  	
-   																				 														  
-   signal tx_data_reg			               : std_logic_vector (63 downto 0); 
-   signal rx_data_fifo_rd_data	               : std_logic_vector (63 downto 0); 	   
+   signal burst_done                           	: std_logic;                                
+   signal burst_start                          	: std_logic;
+   signal burst_stop                           	: std_logic;
+   signal clear_delay_count                    	: std_logic;
+   signal crc_err_flag, clear_crc_err_flag     	: std_logic;
+   signal data_fifo_full                       	: std_logic;	 
+   signal rx_data_fifo_wren                    	: std_logic;
+   signal rx_data_fifo_wr_data                 	: std_logic_vector (63 downto 0);
+   signal delay_count                          	: std_logic;
+   signal rx_info_fifo_wren                    	: std_logic;                                   
+   signal rx_info_fifo_wr_data                 	: std_logic_vector (15 downto 0);
+   signal rx_data_fifo_empty                   	: std_logic;
+   signal rx_data_fifo_read_enable             	: std_logic;
+   signal rx_fifo_reset                        	: std_logic;
+   signal rx_fifo_reset_sig                    	: std_logic;
+   signal rx_info_fifo_empty                   	: std_logic;	 
+   signal rx_info_fifo_full	                   	: std_logic;	
+   signal rx_data_fifo_full	                   	: std_logic;	   
+   signal rx_info_fifo_rden                    	: std_logic;
+   signal start_delay_count                    	: std_logic;	      
+   signal tx_data_fifo_din                     	: std_logic_vector (63 downto 0);
+   signal tx_data_fifo_empty                   	: std_logic;
+   signal tx_data_fifo_full                    	: std_logic;
+   signal tx_data_fifo_rden                    	: std_logic;
+   signal tx_data_fifo_read_enable             	: std_logic;	 
+   signal tx_data_fifo_src_sel                 	: std_logic;
+   signal tx_data_fifo_wr_en                   	: std_logic;
+   signal tx_fifo_reset                        	: std_logic;
+   signal tx_fifo_reset_sig                    	: std_logic;
+   signal tx_info_fifo_data_comm               	: std_logic_vector (15 downto 0);
+   signal tx_info_fifo_full                    	: std_logic;
+   signal tx_info_fifo_rden                    	: std_logic;
+   signal tx_info_fifo_src_sel                 	: std_logic;
+   signal tx_info_fifo_wren_burst              	: std_logic;
+   signal tx_info_fifo_wren_comm               	: std_logic;	   
+   signal rx_data_sig                          	: std_logic_vector (63 downto 0);	  	
+   																					 														  
+   signal tx_data_reg			               	: std_logic_vector (63 downto 0); 
+   signal rx_data_fifo_rd_data	               	: std_logic_vector (63 downto 0); 	   
+                                               	
+   																   
+      
+   signal tx_ctrl_fifo_din                     	: std_logic_vector (63 downto 0);
+   signal tx_ctrl_fifo_empty                   	: std_logic;
+   signal tx_ctrl_fifo_full                    	: std_logic;
+   signal tx_ctrl_fifo_rden                    	: std_logic;
+   signal tx_ctrl_fifo_read_enable             	: std_logic;	 
+ 				  												   
+   signal tx_ctrl_fifo_wr_en              	   	: std_logic;	 
+   signal tx_ctrl_fifo_reset_sig			   	: std_logic;   
+   signal comm_dec_tx_fifo_reset				: std_logic;   
+   signal tx_seq_ctl_sel						: std_logic;	  
+   signal tx_data_info_fifo_empty				: std_logic; 
+   signal tx_ctrl_info_fifo_empty				: std_logic;	  
+   signal tx_data_info_fifo_wr_en				: std_logic;
+   signal tx_ctrl_info_fifo_wr_en				: std_logic;	 
    
-   															   
-   signal tx_ctrl_fifo_rd_data                 : std_logic_vector (63 downto 0); 	   
-   signal tx_ctrl_fifo_din                     : std_logic_vector (63 downto 0);
-   signal tx_ctrl_fifo_empty                   : std_logic;
-   signal tx_ctrl_fifo_full                    : std_logic;
-   signal tx_ctrl_fifo_rden                    : std_logic;
-   signal tx_ctrl_fifo_read_enable             : std_logic;	 
- 				  											   
-   signal tx_ctrl_fifo_wr_en              	   : std_logic;
+   signal tx_data_info_fifo_din                 : std_logic_vector (15 downto 0);
+   signal tx_data_info_fifo_dout               	: std_logic_vector (15 downto 0);
+   signal tx_ctrl_info_fifo_din                 : std_logic_vector (15 downto 0);
+   signal tx_ctrl_info_fifo_dout               	: std_logic_vector (15 downto 0);	  
+   signal tx_ctrl_fifo_dout            	    	: std_logic_vector (63 downto 0); 
+   signal tx_data_fifo_dout                 	: std_logic_vector (63 downto 0);	
+   signal rx_info_fifo_rd_data                  : std_logic_vector (15 downto 0);	 
+   signal tx_info_fifo_dout						: std_logic_vector (15 downto 0);  
+   signal tx_seq_data_fifo_dout					: std_logic_vector (63 downto 0);	
+   signal tx_ctrl_info_fifo_read_enable			: std_logic;
+   signal tx_data_info_fifo_read_enable			: std_logic;
    
 --       component DATA_FIFO_0
 --       port ( clk   : in    std_logic; 
@@ -132,7 +144,7 @@ begin
                 DATA(63 downto 0)=>rx_data_fifo_wr_data(63 downto 0),	--SCRIPT COMMENT OUT
                 RE=>rx_data_fifo_read_enable,						 	--SCRIPT COMMENT OUT
                 RESET=>rx_fifo_reset_sig,							 	--SCRIPT COMMENT OUT
-                WE=>rx_data_fifo_wren,									 	--SCRIPT COMMENT OUT
+                WE=>rx_data_fifo_wren,									--SCRIPT COMMENT OUT                        
                 Q(63 downto 0)=>rx_data_fifo_rd_data(63 downto 0),	 	--SCRIPT COMMENT OUT
 				RD_COUNT=>open,										 	--SCRIPT COMMENT OUT
                 EMPTY=>rx_data_fifo_empty,							 	--SCRIPT COMMENT OUT
@@ -146,7 +158,7 @@ begin
                 RE=>rx_info_fifo_rden,								    --SCRIPT COMMENT OUT   
                 RESET=>rx_fifo_reset_sig,							    --SCRIPT COMMENT OUT   
                 WE=>rx_info_fifo_wren,									    --SCRIPT COMMENT OUT   
-                Q(15 downto 0)=>info_fifo_rd_data(15 downto 0),	  	    --SCRIPT COMMENT OUT   
+                Q(15 downto 0)=>rx_info_fifo_rd_data(15 downto 0),	  	    --SCRIPT COMMENT OUT   
 				RD_COUNT=>open,										    --SCRIPT COMMENT OUT   
                 EMPTY=>rx_info_fifo_empty,							    --SCRIPT COMMENT OUT   
                 FULL=>rx_info_fifo_full);							    --SCRIPT COMMENT OUT    
@@ -159,24 +171,24 @@ begin
 	 			RCLOCK=>MASTER_CLK,										 --SCRIPT COMMENT OUT   
                 DATA(63 downto 0)=>tx_data_fifo_din(63 downto 0),		 --SCRIPT COMMENT OUT   
                 RE=>tx_data_fifo_read_enable,							 --SCRIPT COMMENT OUT   
-                RESET=>tx_fifo_reset_sig,								 --SCRIPT COMMENT OUT   
+                RESET=>reset,											 --SCRIPT COMMENT OUT   
                 WE=>tx_data_fifo_wr_en,									 --SCRIPT COMMENT OUT   
-                Q(63 downto 0)=>tx_data_fifo_rd_data(63 downto 0),	  	 --SCRIPT COMMENT OUT   
+                Q(63 downto 0)=>tx_data_fifo_dout(63 downto 0),	  	 	 --SCRIPT COMMENT OUT   
 				RD_COUNT=>open,											 --SCRIPT COMMENT OUT   
                 EMPTY=>tx_data_fifo_empty,								 --SCRIPT COMMENT OUT   
                 FULL=>tx_data_fifo_full);								 --SCRIPT COMMENT OUT    
 	
- 	TX_DATA_INFO_FIFO : entity work.reg_fifo									 --SCRIPT COMMENT OUT    
+ 	TX_DATA_INFO_FIFO : entity work.reg_fifo							 --SCRIPT COMMENT OUT    
    	  generic map (width => 16,	depth => 16,addr => 4)					 --SCRIPT COMMENT OUT    
       port map (WCLOCK=>MASTER_CLK,										 --SCRIPT COMMENT OUT   
 	 			RCLOCK=>MASTER_CLK,										 --SCRIPT COMMENT OUT   
-                DATA(15 downto 0)=>tx_info_fifo_din(15 downto 0),		 --SCRIPT COMMENT OUT   
-                RE=>tx_info_fifo_rden,									 --SCRIPT COMMENT OUT   
-                RESET=>tx_fifo_reset_sig,								 --SCRIPT COMMENT OUT   
-                WE=>tx_info_fifo_wr_en,									 --SCRIPT COMMENT OUT   
-                Q(15 downto 0)=>tx_info_fifo_dout(15 downto 0),	  	   	 --SCRIPT COMMENT OUT   
+                DATA(15 downto 0)=>tx_data_info_fifo_din(15 downto 0),	 --SCRIPT COMMENT OUT   
+                RE=>tx_data_info_fifo_read_enable,						 --SCRIPT COMMENT OUT   
+                RESET=>reset,											 --SCRIPT COMMENT OUT   
+                WE=>tx_data_info_fifo_wr_en,							 --SCRIPT COMMENT OUT   
+                Q(15 downto 0)=>tx_data_info_fifo_dout(15 downto 0),	 --SCRIPT COMMENT OUT   
 				RD_COUNT=>open,											 --SCRIPT COMMENT OUT   
-                EMPTY=>tx_info_fifo_empty,								 --SCRIPT COMMENT OUT   
+                EMPTY=>tx_data_info_fifo_empty,							 --SCRIPT COMMENT OUT   
                 FULL=>tx_info_fifo_full);								 --SCRIPT COMMENT OUT    
 
   	TX_CTRL_FIFO : entity work.reg_fifo			  					 	 --SCRIPT COMMENT OUT    
@@ -185,35 +197,38 @@ begin
 	 			RCLOCK=>MASTER_CLK,										 --SCRIPT COMMENT OUT   
                 DATA(63 downto 0)=>tx_ctrl_fifo_din(63 downto 0),		 --SCRIPT COMMENT OUT   
                 RE=>tx_ctrl_fifo_read_enable,							 --SCRIPT COMMENT OUT   
-                RESET=>tx_fifo_reset_sig,								 --SCRIPT COMMENT OUT   
+                RESET=>tx_ctrl_fifo_reset_sig,							 --SCRIPT COMMENT OUT   
                 WE=>tx_ctrl_fifo_wr_en,									 --SCRIPT COMMENT OUT   
-                Q(63 downto 0)=>tx_ctrl_fifo_rd_data(63 downto 0),	  	 --SCRIPT COMMENT OUT   
+                Q(63 downto 0)=>tx_ctrl_fifo_dout(63 downto 0),	  	 --SCRIPT COMMENT OUT   
 				RD_COUNT=>open,											 --SCRIPT COMMENT OUT   
                 EMPTY=>tx_ctrl_fifo_empty,								 --SCRIPT COMMENT OUT   
                 FULL=>tx_ctrl_fifo_full);								 --SCRIPT COMMENT OUT    
 	
- 	TX_CTRL_INFO_FIFO : entity work.reg_fifo								 --SCRIPT COMMENT OUT    
+ 	TX_CTRL_INFO_FIFO : entity work.reg_fifo							 --SCRIPT COMMENT OUT    
    	  generic map (width => 16,	depth => 16,addr => 4)					 --SCRIPT COMMENT OUT    
       port map (WCLOCK=>MASTER_CLK,										 --SCRIPT COMMENT OUT   
 	 			RCLOCK=>MASTER_CLK,										 --SCRIPT COMMENT OUT   
-                DATA(15 downto 0)=>tx_info_fifo_din(15 downto 0),		 --SCRIPT COMMENT OUT   
-                RE=>tx_info_fifo_rden,									 --SCRIPT COMMENT OUT   
-                RESET=>tx_fifo_reset_sig,								 --SCRIPT COMMENT OUT   
-                WE=>tx_info_fifo_wr_en,									 --SCRIPT COMMENT OUT   
-                Q(15 downto 0)=>tx_info_fifo_dout(15 downto 0),	  	   	 --SCRIPT COMMENT OUT   
+                DATA(15 downto 0)=>tx_ctrl_info_fifo_din(15 downto 0), 	 --SCRIPT COMMENT OUT   
+                RE=>tx_ctrl_info_fifo_read_enable,						 --SCRIPT COMMENT OUT   
+                RESET=>tx_ctrl_fifo_reset_sig,							 --SCRIPT COMMENT OUT   
+                WE=>tx_ctrl_info_fifo_wr_en,							 --SCRIPT COMMENT OUT   
+                Q(15 downto 0)=>tx_ctrl_info_fifo_dout(15 downto 0),  	 --SCRIPT COMMENT OUT   
 				RD_COUNT=>open,											 --SCRIPT COMMENT OUT   
-                EMPTY=>tx_info_fifo_empty,								 --SCRIPT COMMENT OUT   
+                EMPTY=>tx_ctrl_info_fifo_empty,							 --SCRIPT COMMENT OUT   
                 FULL=>tx_info_fifo_full);								 --SCRIPT COMMENT OUT    				
 				
 				  	   
-	tx_fifo_reset_sig <=  tx_fifo_reset or reset;	 
+	tx_ctrl_fifo_reset_sig <=  comm_dec_tx_fifo_reset or reset;	 
 	
 	-- SCRIPT COMMENT OUT -- 	-- assume there is a select signal from TX_CTRL		
 	-- SCRIPT COMMENT OUT -- 	-- tx_seq_ctl_sel = 0 for ctrl fifo and 1 for burst data fifo	 
-	tx_ctrl_fifo_reset <= tx_fifo_reset_sig when tx_seq_ctl_sel = '0' else '0';
-	tx_data_fifo_reset <= tx_fifo_reset_sig when tx_seq_ctl_sel = '1' else '0';		 
 	tx_ctrl_fifo_read_enable <= tx_data_fifo_rden when tx_seq_ctl_sel = '0' else '0';
-	tx_data_fifo_read_enable <= tx_data_fifo_rden when tx_seq_ctl_sel = '1' else '0';		
+	tx_data_fifo_read_enable <= tx_data_fifo_rden when tx_seq_ctl_sel = '1' else '0'; 
+	tx_ctrl_info_fifo_read_enable <= tx_info_fifo_rden when tx_seq_ctl_sel = '0' else '0';
+	tx_data_info_fifo_read_enable <= tx_info_fifo_rden when tx_seq_ctl_sel = '1' else '0';
+	tx_info_fifo_dout <= tx_data_info_fifo_dout when tx_seq_ctl_sel = '1' else tx_ctrl_info_fifo_dout;
+	tx_seq_data_fifo_dout <= tx_data_fifo_dout when tx_seq_ctl_sel = '1' else tx_ctrl_fifo_dout;
+		
 													
 			
 	-- SCRIPT COMMENT OUT -- 	-- latch tx_data once for timing to be right for tx_wren from RAM_COMM_DEC
@@ -223,9 +238,6 @@ begin
 			tx_ctrl_fifo_din <= tx_data;
 		end if;
 	end process;
-	
-	tx_info_fifo_din(15 downto 0) <= tx_info_fifo_data_comm(15 downto 0) when  tx_info_fifo_src_sel = '0' else tx_info_fifo_data_burst(15 downto 0);
-	tx_info_fifo_wr_en <= tx_info_fifo_wren_comm when  tx_info_fifo_src_sel = '0' else tx_info_fifo_wren_burst;
 
 		
 	tx_data_fifo_din <= b_data;		  							
@@ -303,8 +315,8 @@ begin
                 tx_info_full=>tx_info_fifo_full,   
                 b_enable=>b_enable,
                 tx_data_we=>tx_data_fifo_wr_en,
-                tx_info(15 downto 0)=>tx_info_fifo_data_burst(15 downto 0),
-                tx_info_we=>tx_info_fifo_wr_en);
+                tx_info(15 downto 0)=>tx_data_info_fifo_din(15 downto 0),
+                tx_info_we=>tx_data_info_fifo_wr_en);
 					 
    
    GEC_RX_CTRL : entity work.rx_ctl
@@ -334,7 +346,7 @@ begin
                 rx_info_fifo_empty=>rx_info_fifo_empty,							  
 				rx_info_fifo_full=>rx_info_fifo_full,	   
 				rx_data_fifo_full=>rx_data_fifo_full,
-                rx_info_fifo_rd_data(15 downto 0)=>info_fifo_rd_data(15 downto 0),				
+                rx_info_fifo_rd_data(15 downto 0)=>rx_info_fifo_rd_data(15 downto 0),				
                 tx_info_fifo_full=>tx_info_fifo_full,	 
                 burst_start=>burst_start,
                 burst_stop=>burst_stop,					   	 
@@ -348,12 +360,11 @@ begin
                 rx_data_fifo_rden=>rx_data_fifo_read_enable,
                 Rx_FIFO_Reset=>rx_fifo_reset,
                 rx_info_fifo_rden=>rx_info_fifo_rden,		 
-                --tx_data_fifo_src_sel=>tx_data_fifo_src_sel,
                 tx_data_fifo_wren=>tx_ctrl_fifo_wr_en,
-                Tx_FIFO_Reset=>tx_fifo_reset,
-                tx_info_fifo_src_sel=>tx_info_fifo_src_sel,
-                tx_info_fifo_wren=>tx_ctrl_fifo_wr_en,
-                tx_info_fifo_wr_data(15 downto 0)=>tx_info_fifo_data_comm(15 downto 0));
+                Tx_FIFO_Reset=>comm_dec_tx_fifo_reset,
+
+                tx_info_fifo_wren=>tx_ctrl_info_fifo_wr_en,
+                tx_info_fifo_wr_data(15 downto 0)=>tx_ctrl_info_fifo_din(15 downto 0));
    
    GEC_TX_SEQ_CTL : entity work.tx_seq_ctl
       port map (					   
@@ -363,14 +374,14 @@ begin
                 four_bit_mode=>four_bit_mode,
                 dest_busy=>user_busy,			
 				fifo_sel=>tx_seq_ctl_sel,
-                data_fifo_rd_data(63 downto 0)=>tx_data_fifo_rd_data(63 downto 0),	  
+                data_fifo_rd_data(63 downto 0)=>tx_seq_data_fifo_dout(63 downto 0),	  
                 user_tx_enable_out=>user_tx_enable_out,
                 data_info_fifo_empty=>tx_data_info_fifo_empty,	
                 ctrl_info_fifo_empty=>tx_ctrl_info_fifo_empty,				
                 info_fifo_rd_data(15 downto 0)=>tx_info_fifo_dout(15 downto 0),	 
                 data_fifo_rden=>tx_data_fifo_rden,	   
                 user_trigger=>user_trigger,
-                user_tx_data_in(7 downto 0)=>user_tx_data_in(7 downto 0),
+                tx_data(7 downto 0)=>user_tx_data_in(7 downto 0),
                 user_tx_size_in(10 downto 0)=>user_tx_size_in(10 downto 0),
                 info_fifo_rden=>tx_info_fifo_rden);
    									

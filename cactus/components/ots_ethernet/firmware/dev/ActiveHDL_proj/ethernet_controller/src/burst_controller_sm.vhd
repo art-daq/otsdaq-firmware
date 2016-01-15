@@ -125,6 +125,7 @@ begin
 				tx_info(1 downto 0) <= "01";
 				b_enable_sig <= '0'; 
 				first_packet_sig <= '1';	 
+				tx_info(15 downto 8) <= (others => '0');
 			else						  
 				case Sreg0 is						  
 					when Wait_for_End =>
