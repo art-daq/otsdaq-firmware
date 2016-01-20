@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : D:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\ram_comm_dec.vhd
--- Generated   : 12/13/15 13:03:32
--- From        : D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ram_comm_dec.asf
+-- File        : C:\Users\phansen2\Desktop\ActiveHDL_proj\ethernet_controller\compile\ram_comm_dec.vhd
+-- Generated   : 01/12/16 15:42:01
+-- From        : C:/Users/phansen2/Desktop/ActiveHDL_proj/ethernet_controller/src/ram_comm_dec.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -25,7 +25,6 @@ use work.params_package.all;
 
 entity ram_comm_dec is 
 	port (
-		burst_done: in STD_LOGIC;
 		clock: in STD_LOGIC;
 		crc_err_flag: in STD_LOGIC;
 		reset: in STD_LOGIC;
@@ -47,10 +46,8 @@ entity ram_comm_dec is
 		rx_data_fifo_rden: out STD_LOGIC;
 		Rx_FIFO_Reset: out STD_LOGIC;
 		rx_info_fifo_rden: out STD_LOGIC;
-		tx_data_fifo_src_sel: out STD_LOGIC;
 		tx_data_fifo_wren: out STD_LOGIC;
 		Tx_FIFO_Reset: out STD_LOGIC;
-		tx_info_fifo_src_sel: out STD_LOGIC;
 		tx_info_fifo_wr_data: out STD_LOGIC_VECTOR (15 downto 0);
 		tx_info_fifo_wren: out STD_LOGIC);
 end ram_comm_dec;
@@ -58,8 +55,6 @@ end ram_comm_dec;
 architecture arch of ram_comm_dec is
 
 -- diagram signals declarations
-signal burst_active: STD_LOGIC;
-signal burst_complete_flag: STD_LOGIC;
 signal comm_dec_ready: STD_LOGIC;
 signal comm_reg: UNSIGNED (1 downto 0);
 signal crc_err: STD_LOGIC;
@@ -81,7 +76,7 @@ attribute ENUM_ENCODING: string;
 type Sreg0_type is (
     write_com_S8, read_com_S13, read_com_S14, read_com_S15, read_com_S1, read_com_S18, burst_strt_S30, burst_strt_S31, burst_strt_S33,
     burst_strt_S34, burst_stp_S36, burst_stp_S37, burst_stp_S38, burst_stp_S39, write_com_S42, write_com_S40, write_com_S9, pro_comm,
-    dec_comm, idle, return_st, get_comm, err_dec, brst_wait
+    dec_comm, idle, return_st, get_comm, err_dec
 );
 attribute ENUM_ENCODING of Sreg0_type: type is
 	"00000 " &		-- write_com_S8
@@ -98,16 +93,15 @@ attribute ENUM_ENCODING of Sreg0_type: type is
 	"01011 " &		-- burst_stp_S37
 	"01100 " &		-- burst_stp_S38
 	"01101 " &		-- burst_stp_S39
-	"10111 " &		-- write_com_S42
-	"10101 " &		-- write_com_S40
-	"10110 " &		-- write_com_S9
-	"01110 " &		-- pro_comm
-	"01111 " &		-- dec_comm
-	"10000 " &		-- idle
-	"10001 " &		-- return_st
-	"10010 " &		-- get_comm
-	"10011 " &		-- err_dec
-	"10100" ;		-- brst_wait
+	"01110 " &		-- write_com_S42
+	"01111 " &		-- write_com_S40
+	"10000 " &		-- write_com_S9
+	"10001 " &		-- pro_comm
+	"10010 " &		-- dec_comm
+	"10011 " &		-- idle
+	"10100 " &		-- return_st
+	"10101 " &		-- get_comm
+	"10110" ;		-- err_dec
 
 signal Sreg0: Sreg0_type;
 
@@ -142,20 +136,22 @@ begin
 				rx_info_fifo_full_flag <= '0';
 				rx_data_fifo_full_flag <= '0';
 			else
+-- manage comm_dec_ready signal
 				if (old_rx_v = '0' and user_rx_valid_out = '1') then
 -- reset signal at start of receiving a packet
 					comm_dec_ready <= '0';
 					is_counting <= '0';
 					tmp_cnt <= (others => '1');
-				end if;
-				if (old_rx_v = '1' and user_rx_valid_out = '0') then
-					is_counting <= '1';
-					-- start counting after packet rcv'd
-				end if;
-				if (tmp_cnt = 0) then	-- dont waiting for crc, let's go!
-					comm_dec_ready <= '1';
-				elsif (is_counting = '1') then	-- count down waiting for crc
-					tmp_cnt <= tmp_cnt - 1;
+				else
+					if (old_rx_v = '1' and user_rx_valid_out = '0') then
+						is_counting <= '1';
+						-- start counting after packet rcv'd
+					end if;
+					if (tmp_cnt = 0) then	-- done waiting for crc, let's go!
+						comm_dec_ready <= '1';
+					elsif (is_counting = '1') then	-- count down waiting for crc
+						tmp_cnt <= tmp_cnt - 1;
+					end if;
 				end if;
 				if (rx_info_fifo_full = '1') then
 					rx_info_fifo_full_flag <= '1';
@@ -187,7 +183,6 @@ begin
 			comm_reg <= (others => '0');
 			q_w_count_reg <= (others => '0');
 			mem_loc_count_reg <= (others => '0');
-			burst_active <= '0';
 			crc_err <= '0';
 			rx_protocol_err_flag <= '0';
 			--indicates err in packets received (sz 0 read/write?!)
@@ -195,9 +190,6 @@ begin
 			tx_info_fifo_wr_data <= (others => '0');
 			tx_info_fifo_wren <= '0';
 			tx_data_fifo_wren <= '0';
--- mux controls
-			tx_data_fifo_src_sel <= '0';
-			tx_info_fifo_src_sel <= '0';
 -- ram controls
 			ram_wdata <= (others => '0');
 			ram_addr_sig <= (others => '0');
@@ -210,7 +202,6 @@ begin
 			Rx_FIFO_Reset <= '1';
 			-- Reset FIFOs
 			Tx_FIFO_Reset <= '1';
-			burst_complete_flag <= '0';
 			no_addrs_incr <= '0';
 			first_write_qword <= '0';
 			user_ready_mask <= '0';
@@ -235,11 +226,6 @@ begin
 					no_addrs_incr <= rx_info_fifo_rd_data(3);
 					-- get the no addr increment flag
 					mem_loc_count_reg <= unsigned(rx_info_fifo_rd_data(15 downto 8));
-					-- burst stop occurred previously.. now this is the next command
-					-- so clear tx_fifo to start in reasonable place
-					if (burst_complete_flag = '1') then
-					  Tx_FIFO_Reset <= '1';
-					end if;
 					-- definition of bits written to tx_info_fifo
 					-- bits 15-8: quad word count (read data)
 					-- bit 7: crc err since last reset
@@ -263,15 +249,10 @@ begin
 					if comm_reg = 3 then
 						Sreg0 <= burst_stp_S38;
 						burst_stop <= '1';
-					elsif comm_reg(1 downto 0) = 2 and burst_active = '0' then
+					elsif comm_reg(1 downto 0) = 2 then
 						Sreg0 <= burst_strt_S33;
-						burst_active <= '1';
 						burst_start <= '1';
-						-- Point FIFO muxes towards
-						-- burst controller
-						tx_data_fifo_src_sel <= '1';
-						tx_info_fifo_src_sel <= '1';
-					elsif comm_reg(1 downto 0) = 0 and burst_active = '0' then
+					elsif comm_reg(1 downto 0) = 0 then
 						Sreg0 <= read_com_S1;
 					elsif comm_reg(1 downto 0) = 1 then
 						Sreg0 <= write_com_S8;
@@ -279,13 +260,11 @@ begin
 						-- read address qword
 					else
 						Sreg0 <= return_st;
+						--unrecognized command!
 						Rx_FIFO_Reset <= '1';
 					end if;
 				when idle =>
-					if burst_done = '1' and
-						burst_active = '1' then
-						Sreg0 <= brst_wait;
-					elsif comm_dec_ready = '1' and rx_info_fifo_empty = '0' then
+					if comm_dec_ready = '1' and rx_info_fifo_empty = '0' then
 						Sreg0 <= get_comm;
 						rx_info_fifo_rden <= '1';
 					end if;
@@ -297,24 +276,10 @@ begin
 				when err_dec =>
 					if crc_err = '1' then
 						Sreg0 <= return_st;
-						burst_complete_flag <= '0';
 						Rx_FIFO_Reset <= '1';
 						clear_crc_err_flag <= '1';
 					else
 						Sreg0 <= dec_comm;
-						burst_complete_flag <= '0';
-					end if;
-				when brst_wait =>
-					if burst_done = '1' then
-						Sreg0 <= return_st;
-						burst_active <= '0';
-						burst_stop <= '0';
-						-- Point FIFO muxes away from
-						-- burst controller
-						tx_data_fifo_src_sel <= '0';
-						tx_info_fifo_src_sel <= '0';
-						--force the next comm_dec operation to clear tx fifo
-						burst_complete_flag <= '1';
 					end if;
 				when burst_stp_S36 =>
 					Sreg0 <= burst_stp_S37;
@@ -329,7 +294,8 @@ begin
 					-- because of the address quadword
 					rx_data_fifo_rden_sig <= '1';
 				when burst_stp_S39 =>
-					Sreg0 <= brst_wait;
+					Sreg0 <= return_st;
+					burst_stop <= '0';
 				when read_com_S13 =>
 					if (mem_loc_count_reg = 1 and user_ready = '1') then
 						ram_rden_sig <= '0';

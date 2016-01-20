@@ -1,1 +1,1 @@
--w -s "c:\Users\phansen2\Desktop\ActiveHDL_proj\library.cfg"  -j "c:\Users\phansen2\Desktop\ActiveHDL_proj\ethernet_controller\projlib.cfg"  -d "c:\Users\phansen2\Desktop\ActiveHDL_proj\ethernet_controller\compile"   -work ethernet_controller  -O3 -e 100 -o -2002 ".\..\compile\top_tmp.vhd"
+-w -s "c:\Users\phansen2\Desktop\ActiveHDL_proj\library.cfg"  -j "c:\Users\phansen2\Desktop\ActiveHDL_proj\ethernet_controller\projlib.cfg"  -d "c:\Users\phansen2\Desktop\ActiveHDL_proj\ethernet_controller\compile"   -work ethernet_controller  -O3 -e 100 -2002 ".\..\compile\top_tmp.vhd"

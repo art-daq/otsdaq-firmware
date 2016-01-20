@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : D:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\icmp_ping_checksum_calc.vhd
--- Generated   : 12/13/15 13:03:23
--- From        : D:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/icmp_ping_checksum_calc.asf
+-- File        : C:\Users\phansen2\Desktop\ActiveHDL_proj\ethernet_controller\compile\icmp_ping_checksum_calc.vhd
+-- Generated   : 01/12/16 15:41:54
+-- From        : C:/Users/phansen2/Desktop/ActiveHDL_proj/ethernet_controller/src/icmp_ping_checksum_calc.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
