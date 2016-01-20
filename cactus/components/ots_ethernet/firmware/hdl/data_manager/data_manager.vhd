@@ -109,6 +109,9 @@ architecture BEHAVIORAL of data_manager is
    signal tx_seq_data_fifo_dout					: std_logic_vector (63 downto 0);	
    signal tx_ctrl_info_fifo_read_enable			: std_logic;
    signal tx_data_info_fifo_read_enable			: std_logic;
+   signal tx_data_info_fifo_full				: std_logic;
+   signal tx_ctrl_info_fifo_full				: std_logic;
+   
    
        component DATA_FIFO_0
        port ( clk   : in    std_logic; 
