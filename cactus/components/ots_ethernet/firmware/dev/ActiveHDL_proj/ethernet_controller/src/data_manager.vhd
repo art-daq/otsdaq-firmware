@@ -109,6 +109,9 @@ architecture BEHAVIORAL of data_manager is
    signal tx_seq_data_fifo_dout					: std_logic_vector (63 downto 0);	
    signal tx_ctrl_info_fifo_read_enable			: std_logic;
    signal tx_data_info_fifo_read_enable			: std_logic;
+   signal tx_data_info_fifo_full				: std_logic;
+   signal tx_ctrl_info_fifo_full				: std_logic;
+   
    
 --       component DATA_FIFO_0
 --       port ( clk   : in    std_logic; 
@@ -189,7 +192,7 @@ begin
                 Q(15 downto 0)=>tx_data_info_fifo_dout(15 downto 0),	 --SCRIPT COMMENT OUT   
 				RD_COUNT=>open,											 --SCRIPT COMMENT OUT   
                 EMPTY=>tx_data_info_fifo_empty,							 --SCRIPT COMMENT OUT   
-                FULL=>tx_info_fifo_full);								 --SCRIPT COMMENT OUT    
+                FULL=>tx_data_info_fifo_full);							 --SCRIPT COMMENT OUT    
 
   	TX_CTRL_FIFO : entity work.reg_fifo			  					 	 --SCRIPT COMMENT OUT    
    	  generic map (width => 64,depth => 256,addr => 8)					 --SCRIPT COMMENT OUT    
@@ -215,7 +218,7 @@ begin
                 Q(15 downto 0)=>tx_ctrl_info_fifo_dout(15 downto 0),  	 --SCRIPT COMMENT OUT   
 				RD_COUNT=>open,											 --SCRIPT COMMENT OUT   
                 EMPTY=>tx_ctrl_info_fifo_empty,							 --SCRIPT COMMENT OUT   
-                FULL=>tx_info_fifo_full);								 --SCRIPT COMMENT OUT    				
+                FULL=>tx_ctrl_info_fifo_full);							 --SCRIPT COMMENT OUT    				
 				
 				  	   
 	tx_ctrl_fifo_reset_sig <=  comm_dec_tx_fifo_reset or reset;	 

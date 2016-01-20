@@ -270,37 +270,37 @@ begin
                     rd_en=>tx_data_fifo_read_enable,
                     srst=>tx_fifo_reset_sig,
                     wr_en=>tx_data_fifo_wr_en,
-                    dout(63 downto 0)=>tx_data_fifo_rd_data(63 downto 0),
+                    dout(63 downto 0)=>tx_data_fifo_dout(63 downto 0),
                     empty=>tx_data_fifo_empty,
                     full=>tx_data_fifo_full);
 				
    TX_DATA_INFO_FIFO : INFO_FIFO_0
       port map (clk=>MASTER_CLK,
-                din(15 downto 0)=>tx_info_fifo_din(15 downto 0),
+                din(15 downto 0)=>tx_data_info_fifo_din(15 downto 0),
                 rd_en=>tx_info_fifo_rden,
                 srst=>tx_fifo_reset_sig,
                 wr_en=>tx_info_fifo_wr_en,
-                dout(15 downto 0)=>tx_info_fifo_dout(15 downto 0),
+                dout(15 downto 0)=>tx_data_info_fifo_dout(15 downto 0),
                 empty=>tx_info_fifo_empty,
                 full=>tx_info_fifo_full);
 
        TX_CTRL_FIFO : DATA_FIFO_0
           port map (clk=>MASTER_CLK,
-                    din(63 downto 0)=>tx_data_fifo_din(63 downto 0),
+                    din(63 downto 0)=>tx_ctrl_fifo_din(63 downto 0),
                     rd_en=>tx_data_fifo_read_enable,
                     srst=>tx_fifo_reset_sig,
                     wr_en=>tx_data_fifo_wr_en,
-                    dout(63 downto 0)=>tx_data_fifo_rd_data(63 downto 0),
+                    dout(63 downto 0)=>tx_ctrl_fifo_dout(63 downto 0),
                     empty=>tx_data_fifo_empty,
                     full=>tx_data_fifo_full);
 				
    TX_CTRL_INFO_FIFO : INFO_FIFO_0
       port map (clk=>MASTER_CLK,
-                din(15 downto 0)=>tx_info_fifo_din(15 downto 0),
+                din(15 downto 0)=>tx_ctrl_info_fifo_din(15 downto 0),
                 rd_en=>tx_info_fifo_rden,
                 srst=>tx_fifo_reset_sig,
                 wr_en=>tx_info_fifo_wr_en,
-                dout(15 downto 0)=>tx_info_fifo_dout(15 downto 0),
+                dout(15 downto 0)=>tx_ctrl_info_fifo_dout(15 downto 0),
                 empty=>tx_info_fifo_empty,
                 full=>tx_info_fifo_full);
    
