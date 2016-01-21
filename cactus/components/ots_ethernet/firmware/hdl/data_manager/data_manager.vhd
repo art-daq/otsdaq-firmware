@@ -263,7 +263,7 @@ begin
                     rd_en=>rx_info_fifo_rden,
                     srst=>rx_fifo_reset_sig,
                     wr_en=>rx_info_fifo_wren,
-                    dout(15 downto 0)=>info_fifo_rd_data(15 downto 0),
+                    dout(15 downto 0)=>rx_info_fifo_rd_data(15 downto 0),
                     empty=>rx_info_fifo_empty,
                     full=>rx_info_fifo_full);
                                    	
@@ -271,7 +271,7 @@ begin
           port map (clk=>MASTER_CLK,
                     din(63 downto 0)=>tx_data_fifo_din(63 downto 0),
                     rd_en=>tx_data_fifo_read_enable,
-                    srst=>tx_fifo_reset_sig,
+                    srst=>reset,
                     wr_en=>tx_data_fifo_wr_en,
                     dout(63 downto 0)=>tx_data_fifo_dout(63 downto 0),
                     empty=>tx_data_fifo_empty,
@@ -280,32 +280,32 @@ begin
    TX_DATA_INFO_FIFO : INFO_FIFO_0
       port map (clk=>MASTER_CLK,
                 din(15 downto 0)=>tx_data_info_fifo_din(15 downto 0),
-                rd_en=>tx_info_fifo_rden,
-                srst=>tx_fifo_reset_sig,
-                wr_en=>tx_info_fifo_wr_en,
+                rd_en=>tx_data_info_fifo_read_enable,
+                srst=>reset,
+                wr_en=>tx_data_info_fifo_wr_en,
                 dout(15 downto 0)=>tx_data_info_fifo_dout(15 downto 0),
-                empty=>tx_info_fifo_empty,
-                full=>tx_info_fifo_full);
+                empty=>tx_data_info_fifo_empty,
+                full=>tx_data_info_fifo_full);
 
        TX_CTRL_FIFO : DATA_FIFO_0
           port map (clk=>MASTER_CLK,
                     din(63 downto 0)=>tx_ctrl_fifo_din(63 downto 0),
-                    rd_en=>tx_data_fifo_read_enable,
-                    srst=>tx_fifo_reset_sig,
-                    wr_en=>tx_data_fifo_wr_en,
+                    rd_en=>tx_ctrl_fifo_read_enable,
+                    srst=>tx_ctrl_fifo_reset_sig,
+                    wr_en=>tx_ctrl_fifo_wr_en,
                     dout(63 downto 0)=>tx_ctrl_fifo_dout(63 downto 0),
-                    empty=>tx_data_fifo_empty,
-                    full=>tx_data_fifo_full);
+                    empty=>tx_ctrl_fifo_empty,
+                    full=>tx_ctrl_fifo_full);
 				
    TX_CTRL_INFO_FIFO : INFO_FIFO_0
       port map (clk=>MASTER_CLK,
                 din(15 downto 0)=>tx_ctrl_info_fifo_din(15 downto 0),
-                rd_en=>tx_info_fifo_rden,
-                srst=>tx_fifo_reset_sig,
-                wr_en=>tx_info_fifo_wr_en,
+                rd_en=>tx_ctrl_info_fifo_read_enable,
+                srst=>tx_ctrl_fifo_reset_sig,
+                wr_en=>tx_ctrl_info_fifo_wr_en,
                 dout(15 downto 0)=>tx_ctrl_info_fifo_dout(15 downto 0),
-                empty=>tx_info_fifo_empty,
-                full=>tx_info_fifo_full);
+                empty=>tx_ctrl_info_fifo_empty,
+                full=>tx_ctrl_info_fifo_full);
    
    burst_controller_sm : entity work.burst_controller_sm
       port map (burst_start=>burst_start,
