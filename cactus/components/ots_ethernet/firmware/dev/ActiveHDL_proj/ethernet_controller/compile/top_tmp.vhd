@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : C:\Users\phansen2\Desktop\ActiveHDL_proj\ethernet_controller\compile\top_tmp.vhd
--- Generated   : Tue Jan 12 15:42:21 2016
--- From        : C:/Users/phansen2/Desktop/ActiveHDL_proj/ethernet_controller/src/top_tmp.bde
+-- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\top_tmp.vhd
+-- Generated   : Thu Jan 28 10:54:08 2016
+-- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/top_tmp.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------

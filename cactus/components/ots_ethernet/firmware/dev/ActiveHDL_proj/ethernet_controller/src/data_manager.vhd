@@ -66,16 +66,16 @@ architecture BEHAVIORAL of data_manager is
    signal tx_data_fifo_full                    	: std_logic;
    signal tx_data_fifo_rden                    	: std_logic;
    signal tx_data_fifo_read_enable             	: std_logic;	 
-   signal tx_data_fifo_src_sel                 	: std_logic;
+--   signal tx_data_fifo_src_sel                 	: std_logic;
    signal tx_data_fifo_wr_en                   	: std_logic;
-   signal tx_fifo_reset                        	: std_logic;
-   signal tx_fifo_reset_sig                    	: std_logic;
-   signal tx_info_fifo_data_comm               	: std_logic_vector (15 downto 0);
-   signal tx_info_fifo_full                    	: std_logic;
+--   signal tx_fifo_reset                        	: std_logic;
+--   signal tx_fifo_reset_sig                    	: std_logic;
+--   signal tx_info_fifo_data_comm               	: std_logic_vector (15 downto 0);
+--   signal tx_info_fifo_full                    	: std_logic;
    signal tx_info_fifo_rden                    	: std_logic;
-   signal tx_info_fifo_src_sel                 	: std_logic;
-   signal tx_info_fifo_wren_burst              	: std_logic;
-   signal tx_info_fifo_wren_comm               	: std_logic;	   
+--   signal tx_info_fifo_src_sel                 	: std_logic;
+--   signal tx_info_fifo_wren_burst              	: std_logic;
+--   signal tx_info_fifo_wren_comm               	: std_logic;	   
    signal rx_data_sig                          	: std_logic_vector (63 downto 0);	  	
    																					 														  
    signal tx_data_reg			               	: std_logic_vector (63 downto 0); 
@@ -315,7 +315,7 @@ begin
                 clk=>MASTER_CLK,
                 reset=>reset,
                 tx_data_full=>tx_data_fifo_full,
-                tx_info_full=>tx_info_fifo_full,   
+                tx_info_full=>tx_data_info_fifo_full,   
                 b_enable=>b_enable,
                 tx_data_we=>tx_data_fifo_wr_en,
                 tx_info(15 downto 0)=>tx_data_info_fifo_din(15 downto 0),
@@ -350,7 +350,7 @@ begin
 				rx_info_fifo_full=>rx_info_fifo_full,	   
 				rx_data_fifo_full=>rx_data_fifo_full,
                 rx_info_fifo_rd_data(15 downto 0)=>rx_info_fifo_rd_data(15 downto 0),				
-                tx_info_fifo_full=>tx_info_fifo_full,	 
+                tx_info_fifo_full=>tx_ctrl_info_fifo_full,	 
                 burst_start=>burst_start,
                 burst_stop=>burst_stop,					   	 
                 ram_addr(63 downto 0)=>ram_addr(63 downto 0),
