@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\ethernet_controller.vhd
--- Generated   : Thu Jan 28 10:54:01 2016
+-- Generated   : Thu Feb  4 09:57:00 2016
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -27,13 +27,16 @@ entity ethernet_controller is
        GMII_RX_CLK : in STD_LOGIC;
        GMII_RX_DV : in STD_LOGIC;
        GMII_RX_ER : in STD_LOGIC;
+       arp_announce : in STD_LOGIC;
        reset : in STD_LOGIC;
        trigger : in STD_LOGIC;
        GMII_RXD : in STD_LOGIC_VECTOR(7 downto 0);
-       addrs : in STD_LOGIC_VECTOR(7 downto 0);
-       dest_addrs : in STD_LOGIC_VECTOR(7 downto 0);
+       dest_addr : in STD_LOGIC_VECTOR(31 downto 0);
        dest_mac : in STD_LOGIC_VECTOR(47 downto 0);
        dest_port : in STD_LOGIC_VECTOR(15 downto 0);
+       self_addr : in STD_LOGIC_VECTOR(31 downto 0);
+       self_mac : in STD_LOGIC_VECTOR(47 downto 0);
+       self_port : in STD_LOGIC_VECTOR(15 downto 0);
        user_tx_data_in : in std_logic_vector(7 downto 0);
        user_tx_size_in : in STD_LOGIC_VECTOR(10 downto 0);
        GMII_GTX_CLK : out STD_LOGIC;
@@ -48,11 +51,12 @@ entity ethernet_controller is
        crc_gen_rd : out std_logic;
        en_tx_data : out STD_LOGIC;
        four_bit_mode_out : out STD_LOGIC;
-       src_capture : out STD_LOGIC;
+       src_capture_for_ctrl : out STD_LOGIC;
+       src_capture_for_data : out STD_LOGIC;
        user_rx_valid_out : out STD_LOGIC;
        GMII_TXD : out STD_LOGIC_VECTOR(7 downto 0);
        crc_chk_din : out STD_LOGIC_VECTOR(7 downto 0);
-       src_addrs : out STD_LOGIC_VECTOR(7 downto 0);
+       src_addr : out STD_LOGIC_VECTOR(7 downto 0);
        src_mac : out STD_LOGIC_VECTOR(47 downto 0);
        src_port : out STD_LOGIC_VECTOR(15 downto 0);
        udp_data_count : out STD_LOGIC_VECTOR(10 downto 0);
@@ -67,14 +71,12 @@ architecture arch of ethernet_controller is
 
 component address_container
   port (
-       addr_in : in STD_LOGIC_VECTOR(7 downto 0);
        capture : in STD_LOGIC;
        clk : in STD_LOGIC;
-       reset : in STD_LOGIC;
-       user_addr_in : in STD_LOGIC_VECTOR(7 downto 0);
-       addr : out STD_LOGIC_VECTOR(7 downto 0);
-       arp_announce_strobe : out STD_LOGIC;
-       protocol_ping_strobe : out STD_LOGIC
+       data_in : in STD_LOGIC_VECTOR(7 downto 0);
+       protocol_ping_strobe : out STD_LOGIC;
+       set_ctrl_dest_strobe : out STD_LOGIC;
+       set_data_dest_strobe : out STD_LOGIC
   );
 end component;
 component icmp_ping_checksum_calc
@@ -95,24 +97,37 @@ component icmp_ping_shift_reg
        dout : out STD_LOGIC_VECTOR(7 downto 0)
   );
 end component;
+component ip_checksum_calc
+  port (
+       clk : in STD_LOGIC;
+       dest_in : in STD_LOGIC_VECTOR(31 downto 0);
+       icmp_mode : in STD_LOGIC;
+       length_in : in STD_LOGIC_VECTOR(10 downto 0);
+       reset : in STD_LOGIC;
+       src_in : in STD_LOGIC_VECTOR(31 downto 0);
+       trigger : in STD_LOGIC;
+       cs : out STD_LOGIC_VECTOR(15 downto 0)
+  );
+end component;
 component user_addrs_mux
   port (
-       icmp_dest_addr : in STD_LOGIC_VECTOR(7 downto 0);
+       icmp_dest_addr : in STD_LOGIC_VECTOR(31 downto 0);
        icmp_length : in STD_LOGIC_VECTOR(10 downto 0);
        icmp_mode : in STD_LOGIC;
        ping_mode : in STD_LOGIC;
-       user_dest_addr : in STD_LOGIC_VECTOR(7 downto 0);
+       user_dest_addr : in STD_LOGIC_VECTOR(31 downto 0);
        user_length : in STD_LOGIC_VECTOR(10 downto 0);
-       ip_dest_addr : out STD_LOGIC_VECTOR(7 downto 0);
+       ip_dest_addr : out STD_LOGIC_VECTOR(31 downto 0);
        ip_tx_length : out STD_LOGIC_VECTOR(10 downto 0)
   );
 end component;
 component arp_reply
   port (
-       addrs : in STD_LOGIC_VECTOR(7 downto 0);
+       addrs : in STD_LOGIC_VECTOR(31 downto 0);
        arp_announce : in STD_LOGIC;
        clk : in STD_LOGIC;
        four_bit_mode : in STD_LOGIC;
+       mac : in STD_LOGIC_VECTOR(47 downto 0);
        reset : in STD_LOGIC;
        tip : in STD_LOGIC_VECTOR(31 downto 0);
        tmac : in STD_LOGIC_VECTOR(47 downto 0);
@@ -129,7 +144,7 @@ component arp_reply
 end component;
 component create_packet
   port (
-       addrs : in STD_LOGIC_VECTOR(7 downto 0);
+       addrs : in STD_LOGIC_VECTOR(31 downto 0);
        arp_busy : in STD_LOGIC;
        checksum : in STD_LOGIC_VECTOR(15 downto 0);
        clk : in STD_LOGIC;
@@ -143,10 +158,12 @@ component create_packet
        icmp_ip : in STD_LOGIC_VECTOR(31 downto 0);
        icmp_mac : in STD_LOGIC_VECTOR(47 downto 0);
        icmp_ping : in STD_LOGIC;
+       mac : in STD_LOGIC_VECTOR(47 downto 0);
        ping : in STD_LOGIC;
        reset : in STD_LOGIC;
        trigger : in STD_LOGIC;
        busy : out STD_LOGIC;
+       checksum_trig : out STD_LOGIC := '0';
        clken_out : out STD_LOGIC;
        crc_gen_en : out STD_LOGIC;
        crc_gen_init : out STD_LOGIC;
@@ -176,12 +193,13 @@ component dataout_mux
 end component;
 component decipherer
   port (
-       addrs : in STD_LOGIC_VECTOR(7 downto 0);
        clk : in STD_LOGIC;
        data_in : in STD_LOGIC_VECTOR(7 downto 0);
        dv : in STD_LOGIC;
        er : in STD_LOGIC;
        reset : in STD_LOGIC;
+       self_addrs : in STD_LOGIC_VECTOR(31 downto 0);
+       self_port : in STD_LOGIC_VECTOR(15 downto 0);
        arp_req_ip : out STD_LOGIC_VECTOR(31 downto 0);
        arp_req_mac : out STD_LOGIC_VECTOR(47 downto 0);
        arp_search_ip : out STD_LOGIC_VECTOR(31 downto 0);
@@ -194,6 +212,7 @@ component decipherer
        dest_mac : out STD_LOGIC_VECTOR(47 downto 0);
        four_bit_mode_out : out STD_LOGIC;
        icmp_checksum : out STD_LOGIC_VECTOR(15 downto 0);
+       ip_data_count : out STD_LOGIC_VECTOR(10 downto 0);
        is_arp : out STD_LOGIC;
        is_icmp_ping : out STD_LOGIC;
        is_idle : out STD_LOGIC;
@@ -202,15 +221,9 @@ component decipherer
        src_mac : out STD_LOGIC_VECTOR(47 downto 0);
        udp_data_count : out STD_LOGIC_VECTOR(10 downto 0);
        udp_data_valid : out STD_LOGIC;
-       udp_dest_port : out STD_LOGIC_VECTOR(15 downto 0);
+       udp_dest_port_out : out STD_LOGIC_VECTOR(15 downto 0);
        udp_src_ip : out STD_LOGIC_VECTOR(31 downto 0);
        udp_src_port : out STD_LOGIC_VECTOR(15 downto 0)
-  );
-end component;
-component dest_info_container
-  port (
-       dest_addrs_in : in STD_LOGIC_VECTOR(7 downto 0);
-       dest_ip : out STD_LOGIC_VECTOR(31 downto 0)
   );
 end component;
 component filter_data_out
@@ -221,18 +234,6 @@ component filter_data_out
        us_clken : in STD_LOGIC;
        out_data : out STD_LOGIC_VECTOR(7 downto 0);
        out_data_valid : out STD_LOGIC
-  );
-end component;
-component ip_checksum_calc
-  port (
-       addrsDest : in STD_LOGIC_VECTOR(7 downto 0);
-       addrsSrc : in STD_LOGIC_VECTOR(7 downto 0);
-       clk : in STD_LOGIC;
-       icmp_mode : in STD_LOGIC;
-       length : in STD_LOGIC_VECTOR(10 downto 0);
-       reset : in STD_LOGIC;
-       trigger : in STD_LOGIC;
-       cs : out STD_LOGIC_VECTOR(15 downto 0)
   );
 end component;
 component or33
@@ -270,6 +271,7 @@ signal arp_tx_en : STD_LOGIC;
 signal arp_tx_er : STD_LOGIC;
 signal busy_sig : STD_LOGIC;
 signal capture_addrs : STD_LOGIC;
+signal checksum_trig : STD_LOGIC;
 signal clk : STD_LOGIC;
 signal crc_chk_en_sig : STD_LOGIC;
 signal crc_chk_init_sig : STD_LOGIC;
@@ -289,6 +291,8 @@ signal oei_protocol_ping_strobe : STD_LOGIC;
 signal rx_dv : STD_LOGIC;
 signal rx_er : STD_LOGIC;
 signal sel_udp : STD_LOGIC;
+signal set_ctrl_dest_strobe : STD_LOGIC;
+signal set_data_dest_strobe : STD_LOGIC;
 signal trigger_sig : STD_LOGIC;
 signal tx_en : STD_LOGIC;
 signal tx_er : STD_LOGIC;
@@ -299,27 +303,25 @@ signal udp_crc_gen_rd_sig : std_logic;
 signal udp_data_valid : STD_LOGIC;
 signal udp_tx_en : STD_LOGIC;
 signal udp_tx_er : STD_LOGIC;
-signal addrs_sig : STD_LOGIC_VECTOR(7 downto 0);
 signal arp_data_out : STD_LOGIC_VECTOR(7 downto 0);
 signal arp_req_ip : STD_LOGIC_VECTOR(31 downto 0);
 signal arp_req_mac : STD_LOGIC_VECTOR(47 downto 0);
 signal checksum : STD_LOGIC_VECTOR(15 downto 0);
 signal data_out : STD_LOGIC_VECTOR(7 downto 0);
 signal decipher_dout : STD_LOGIC_VECTOR(7 downto 0);
-signal dest_ip : STD_LOGIC_VECTOR(31 downto 0);
 signal frame_src_mac : STD_LOGIC_VECTOR(47 downto 0);
 signal icmp_checksum : STD_LOGIC_VECTOR(15 downto 0);
 signal icmp_req_checksum : STD_LOGIC_VECTOR(15 downto 0);
 signal ip_data_count_sig : STD_LOGIC_VECTOR(10 downto 0);
-signal ip_dest_addrs : STD_LOGIC_VECTOR(7 downto 0);
+signal ip_dest_addr : STD_LOGIC_VECTOR(31 downto 0);
 signal ping_data_delayed : STD_LOGIC_VECTOR(7 downto 0);
 signal rxd : STD_LOGIC_VECTOR(7 downto 0);
+signal udp_data_count_sig : STD_LOGIC_VECTOR(10 downto 0);
 signal udp_data_out : STD_LOGIC_VECTOR(7 downto 0);
 signal udp_gen_data : STD_LOGIC_VECTOR(7 downto 0);
 signal udp_src_ip : STD_LOGIC_VECTOR(31 downto 0);
 signal udp_src_port : STD_LOGIC_VECTOR(15 downto 0);
 signal udp_tx_length : STD_LOGIC_VECTOR(10 downto 0);
-signal user_addr_in : STD_LOGIC_VECTOR(7 downto 0);
 signal user_tx_size_in_latched : STD_LOGIC_VECTOR(10 downto 0);
 
 begin
@@ -328,19 +330,17 @@ begin
 
 AddressContainer : address_container
   port map(
-       addr => addrs_sig,
-       addr_in => decipher_dout,
-       arp_announce_strobe => arp_announce_strobe,
        capture => capture_addrs,
        clk => clk,
+       data_in => decipher_dout,
        protocol_ping_strobe => oei_protocol_ping_strobe,
-       reset => reset,
-       user_addr_in => user_addr_in
+       set_ctrl_dest_strobe => set_ctrl_dest_strobe,
+       set_data_dest_strobe => set_data_dest_strobe
   );
 
 ArpReplyBlock : arp_reply
   port map(
-       addrs => addrs_sig,
+       addrs => self_addr,
        arp_announce => arp_announce_strobe,
        arp_busy => arp_busy,
        clk => clk,
@@ -349,6 +349,7 @@ ArpReplyBlock : arp_reply
        crc_gen_rd => arp_crc_gen_rd_sig,
        dataout => arp_data_out,
        four_bit_mode => four_bit_mode,
+       mac => self_mac,
        reset => reset,
        tip => arp_req_ip,
        tmac => arp_req_mac,
@@ -373,22 +374,23 @@ CRC_OR : or33
 
 ChecksumCalcBlock : ip_checksum_calc
   port map(
-       addrsDest => ip_dest_addrs,
-       addrsSrc => addrs_sig,
        clk => clk,
        cs => checksum,
+       dest_in => ip_dest_addr,
        icmp_mode => tx_icmp_packet,
-       length => user_tx_size_in_latched,
+       length_in => user_tx_size_in_latched,
        reset => reset,
-       trigger => trigger_sig
+       src_in => self_addr,
+       trigger => checksum_trig
   );
 
 CreatePacketBlock : create_packet
   port map(
-       addrs => addrs_sig,
+       addrs => self_addr,
        arp_busy => arp_busy,
        busy => busy_sig,
        checksum => checksum,
+       checksum_trig => checksum_trig,
        clk => clk,
        clken_out => create_clken,
        crc_gen_en => udp_crc_gen_en_sig,
@@ -396,7 +398,7 @@ CreatePacketBlock : create_packet
        crc_gen_rd => udp_crc_gen_rd_sig,
        data_length => udp_tx_length,
        dataout => udp_gen_data,
-       dest_ip => dest_ip,
+       dest_ip => dest_addr,
        dest_mac => dest_mac,
        dest_port => dest_port,
        en_tx_data => en_tx_data_sig,
@@ -407,6 +409,7 @@ CreatePacketBlock : create_packet
        icmp_mac => frame_src_mac,
        icmp_ping => is_icmp_packet_sig,
        length_count_out => user_tx_size_in_latched,
+       mac => self_mac,
        ping => oei_protocol_ping_strobe,
        reset => reset,
        trigger => trigger_sig,
@@ -432,7 +435,6 @@ DataoutMux : dataout_mux
 
 DecipherBlock : decipherer
   port map(
-       addrs => addrs_sig,
        arp_req_ip => arp_req_ip,
        arp_req_mac => arp_req_mac,
        capture_source_addrs => capture_addrs,
@@ -447,22 +449,19 @@ DecipherBlock : decipherer
        er => rx_er,
        four_bit_mode_out => four_bit_mode,
        icmp_checksum => icmp_req_checksum,
+       ip_data_count => ip_data_count_sig,
        is_arp => is_arp_packet_sig,
        is_icmp_ping => is_icmp_packet_sig,
        is_ip => is_ip_packet_sig,
        reset => reset,
+       self_addrs => self_addr,
+       self_port => self_port,
        src_mac => frame_src_mac,
-       udp_data_count => ip_data_count_sig,
+       udp_data_count => udp_data_count_sig,
        udp_data_valid => udp_data_valid,
-       udp_dest_port => udp_dest_port,
+       udp_dest_port_out => udp_dest_port,
        udp_src_ip => udp_src_ip,
        udp_src_port => udp_src_port
-  );
-
-DestInfoContainer : dest_info_container
-  port map(
-       dest_addrs_in => dest_addrs,
-       dest_ip => dest_ip
   );
 
 FilterDataOutBlock : filter_data_out
@@ -510,20 +509,13 @@ UDPDataSplicer : udp_data_splicer
 
 UdpLengthMux : user_addrs_mux
   port map(
-       icmp_dest_addr(0) => udp_src_ip(0),
-       icmp_dest_addr(1) => udp_src_ip(1),
-       icmp_dest_addr(2) => udp_src_ip(2),
-       icmp_dest_addr(3) => udp_src_ip(3),
-       icmp_dest_addr(4) => udp_src_ip(4),
-       icmp_dest_addr(5) => udp_src_ip(5),
-       icmp_dest_addr(6) => udp_src_ip(6),
-       icmp_dest_addr(7) => udp_src_ip(7),
+       icmp_dest_addr => udp_src_ip,
        icmp_length => ip_data_count_sig,
        icmp_mode => tx_icmp_packet,
-       ip_dest_addr => ip_dest_addrs,
+       ip_dest_addr => ip_dest_addr,
        ip_tx_length => udp_tx_length,
        ping_mode => capture_addrs,
-       user_dest_addr => dest_addrs,
+       user_dest_addr => dest_addr,
        user_length => user_tx_size_in
   );
 
@@ -535,7 +527,7 @@ UdpLengthMux : user_addrs_mux
 	clk <= GMII_RX_CLK;
 	rx_dv <= GMII_RX_DV;
 	rx_er <= GMII_RX_ER;
-	user_addr_in <= addrs;
+	arp_announce_strobe <= arp_announce;
 
     -- Output\buffer terminals
 	GMII_GTX_CLK <= clk;
@@ -552,18 +544,19 @@ UdpLengthMux : user_addrs_mux
 	crc_gen_rd <= crc_gen_rd_sig;
 	en_tx_data <= en_tx_data_sig;
 	four_bit_mode_out <= four_bit_mode;
-	src_addrs(0) <= udp_src_ip(0);
-	src_addrs(1) <= udp_src_ip(1);
-	src_addrs(2) <= udp_src_ip(2);
-	src_addrs(3) <= udp_src_ip(3);
-	src_addrs(4) <= udp_src_ip(4);
-	src_addrs(5) <= udp_src_ip(5);
-	src_addrs(6) <= udp_src_ip(6);
-	src_addrs(7) <= udp_src_ip(7);
-	src_capture <= oei_protocol_ping_strobe;
+	src_addr(0) <= udp_src_ip(0);
+	src_addr(1) <= udp_src_ip(1);
+	src_addr(2) <= udp_src_ip(2);
+	src_addr(3) <= udp_src_ip(3);
+	src_addr(4) <= udp_src_ip(4);
+	src_addr(5) <= udp_src_ip(5);
+	src_addr(6) <= udp_src_ip(6);
+	src_addr(7) <= udp_src_ip(7);
+	src_capture_for_ctrl <= set_ctrl_dest_strobe;
+	src_capture_for_data <= set_data_dest_strobe;
 	src_mac <= frame_src_mac;
 	src_port <= udp_src_port;
-	udp_data_count <= ip_data_count_sig;
+	udp_data_count <= udp_data_count_sig;
 
 
 end arch;

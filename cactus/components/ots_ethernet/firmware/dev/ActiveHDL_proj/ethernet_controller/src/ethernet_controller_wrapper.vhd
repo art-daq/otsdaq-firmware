@@ -22,36 +22,49 @@ use ieee.numeric_std.ALL;
 
 
 entity ethernet_controller_wrapper is
-  port(
-       GMII_RX_CLK : in STD_LOGIC;
-       GMII_RX_DV : in STD_LOGIC;
-       GMII_RX_ER : in STD_LOGIC;
-       reset : in STD_LOGIC;
-       user_trigger : in STD_LOGIC;
-       GMII_RXD : in STD_LOGIC_VECTOR(7 downto 0);
-       user_addrs : in STD_LOGIC_VECTOR(7 downto 0);
-       user_dest_addrs : in STD_LOGIC_VECTOR(7 downto 0);
-       user_dest_mac : in STD_LOGIC_VECTOR(47 downto 0);
-       user_dest_port : in STD_LOGIC_VECTOR(15 downto 0);
-       user_tx_data_in : in STD_LOGIC_VECTOR(7 downto 0);
-       user_tx_size_in : in STD_LOGIC_VECTOR(10 downto 0);
-       GMII_TX_EN : out STD_LOGIC;
-       GMII_TX_ER : out STD_LOGIC;
+  port(							  
+       reset : in STD_LOGIC;		   
+       user_busy : out STD_LOGIC;
+	   
+       GMII_RX_CLK : in STD_LOGIC;	 
+	   
+       GMII_RX_DV : in STD_LOGIC;	  
+       GMII_RXD : in STD_LOGIC_VECTOR(7 downto 0);	
+       GMII_RX_ER : in STD_LOGIC;	    
+       GMII_TX_EN : out STD_LOGIC;	 
+       GMII_TXD : out STD_LOGIC_VECTOR(7 downto 0);
+       GMII_TX_ER : out STD_LOGIC;	 
        GTX_CLK : out STD_LOGIC;	 
+	   													 
+       self_addr : in STD_LOGIC_VECTOR(31 downto 0);
+       self_mac : in STD_LOGIC_VECTOR(47 downto 0);	  
+	   self_port : in STD_LOGIC_VECTOR(15 downto 0);  
+       arp_announce : in STD_LOGIC;	  
+	   
+       user_tx_dest_addr : in STD_LOGIC_VECTOR(31 downto 0);
+       user_tx_dest_mac : in STD_LOGIC_VECTOR(47 downto 0);
+       user_tx_dest_port : in STD_LOGIC_VECTOR(15 downto 0);  
+	   
+	   
+       user_rx_valid_out : out STD_LOGIC;	
+       user_rx_data_out : out STD_LOGIC_VECTOR(7 downto 0);
+       user_rx_size_out : out STD_LOGIC_VECTOR(10 downto 0);			  
+       user_tx_enable_out : out STD_LOGIC;	
+       user_tx_data_in : in STD_LOGIC_VECTOR(7 downto 0);
+       user_tx_size_in : in STD_LOGIC_VECTOR(10 downto 0);	  
+       user_tx_trigger : in STD_LOGIC;	 
+	   
        crc_err : out STD_LOGIC;
        crc_chk_out : out STD_LOGIC;
-       four_bit_mode_out : out STD_LOGIC;
-       user_busy : out STD_LOGIC;
-       user_rx_valid_out : out STD_LOGIC;
-       user_src_capture : out STD_LOGIC;
-       user_tx_enable_out : out STD_LOGIC;
-       GMII_TXD : out STD_LOGIC_VECTOR(7 downto 0);
-       udp_fwd_port : out STD_LOGIC_VECTOR(15 downto 0);
-       user_rx_data_out : out STD_LOGIC_VECTOR(7 downto 0);
-       user_rx_size_out : out STD_LOGIC_VECTOR(10 downto 0);
-       user_src_addrs : out STD_LOGIC_VECTOR(7 downto 0);
-       user_src_mac : out STD_LOGIC_VECTOR(47 downto 0);
-       user_src_port : out STD_LOGIC_VECTOR(15 downto 0)
+       four_bit_mode_out : out STD_LOGIC;  
+	   									 	  		 
+       udp_fwd_port : out STD_LOGIC_VECTOR(15 downto 0); 
+	   													   	
+       user_rx_src_capture_for_ctrl : out STD_LOGIC;		 		   	
+       user_rx_src_capture_for_data : out STD_LOGIC;
+       user_rx_src_addr : out STD_LOGIC_VECTOR(7 downto 0);
+       user_rx_src_mac : out STD_LOGIC_VECTOR(47 downto 0);
+       user_rx_src_port : out STD_LOGIC_VECTOR(15 downto 0)
   );
 end entity	;
 
@@ -122,29 +135,39 @@ begin
 	       GMII_RX_ER => rx_er_handled,
 	       GMII_TXD => txd,
 	       GMII_TX_EN => tx_dv,
-	       GMII_TX_ER => tx_er,
-	       addrs => user_addrs,
-	       busy => user_busy,
+	       GMII_TX_ER => tx_er,		 
+		   						 
+	       four_bit_mode_out => four_bit_mode,
+	       reset => reset,
+		   
+	       self_addr => self_addr,	 
+	       self_mac => self_mac,	 
+	       self_port => self_port,	
+	       busy => user_busy,	
+	       trigger => user_tx_trigger, 		 		   
+		   dest_addr => user_tx_dest_addr,
+	       dest_mac => user_tx_dest_mac,
+	       dest_port => user_tx_dest_port,	
+	       arp_announce => arp_announce,	 
+		   
+	       src_addr => user_rx_src_addr,		 
+	       src_mac => user_rx_src_mac,
+	       src_port => user_rx_src_port,			   
+	       src_capture_for_ctrl => user_rx_src_capture_for_ctrl,	  
+	       src_capture_for_data => user_rx_src_capture_for_data,
+		   
 	       crc_chk_din => crc_chk_din,
 	       crc_chk_en => crc_chk_en,
 	       crc_chk_init => crc_chk_init,
 	       crc_chk_rd => crc_chk_rd,
 	       crc_gen_en => crc_gen_en,
 	       crc_gen_init => crc_gen_init,
-	       crc_gen_rd => crc_gen_rd,
-	       dest_addrs => user_dest_addrs,
-	       dest_mac => user_dest_mac,
-	       dest_port => user_dest_port,
-	       en_tx_data => user_tx_enable_out,
-	       four_bit_mode_out => four_bit_mode,
-	       reset => reset,
-	       src_addrs => user_src_addrs,
-	       src_capture => user_src_capture,
-	       src_mac => user_src_mac,
-	       src_port => user_src_port,
-	       trigger => user_trigger,
+	       crc_gen_rd => crc_gen_rd,	
+	      									   
+	       udp_dest_port => udp_fwd_port,	--could be used as additional address space for user firmware	  
+		   
+	       en_tx_data => user_tx_enable_out,  
 	       udp_data_count => user_rx_size_out,
-	       udp_dest_port => udp_fwd_port,
 	       user_rx_data_out => user_rx_data_out,
 	       user_rx_valid_out => user_rx_valid_out,
 	       user_tx_data_in => user_tx_data_in,

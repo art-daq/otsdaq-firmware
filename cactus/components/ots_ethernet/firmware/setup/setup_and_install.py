@@ -27,6 +27,8 @@ parser.add_argument('-s','--simple',nargs='?',const='YES',
                     'some inputs/outputs from the interface that are less commonly used.')
 parser.add_argument('-i','--ip',type=int,default=2,
                     help='IP address low-byte default for 192.168.133.##')
+parser.add_argument('-t','--port',type=int,default=2001,
+                    help='UDP 16-bit port for the interface')
 
 args = parser.parse_args()
 
@@ -172,13 +174,26 @@ print
 ip = 2;
 if(args.ip > 0 and args.ip < 255):
     ip = args.ip
-os.system("sed -i s/ETH_CONTROLLER_DEFAULT_ADDRS.*\;/" + \
-              "ETH_CONTROLLER_DEFAULT_ADDRS\:\ std_logic_vector\(7\ downto\ 0\)\ \:\=\ " + \
+os.system("sed -i s/ETH_CONTROLLER_DEFAULT_ADDR.*\;/" + \
+              "ETH_CONTROLLER_DEFAULT_ADDR\:\ std_logic_vector\(7\ downto\ 0\)\ \:\=\ " + \
               "std_logic_vector\(to_unsigned\("+str(ip)+",8\)\)\;/g " + dest + \
               "/ethernet_controller/params_package.vhd")
 
 print "Set Default IP Address: " + str(ip)
 print
+
+#set default PORT address
+port = 2001;
+if(args.port > -1 and args.port < 65536):
+    port = args.port
+os.system("sed -i s/ETH_CONTROLLER_DEFAULT_PORT.*\;/" + \
+              "ETH_CONTROLLER_DEFAULT_PORT\:\ std_logic_vector\(15\ downto\ 0\)\ \:\=\ " + \
+              "std_logic_vector\(to_unsigned\("+str(port)+",16\)\)\;/g " + dest + \
+              "/ethernet_controller/params_package.vhd")
+
+print "Set Default Port: " + str(port)
+print
+
 
 print
 print 'Moving files...'

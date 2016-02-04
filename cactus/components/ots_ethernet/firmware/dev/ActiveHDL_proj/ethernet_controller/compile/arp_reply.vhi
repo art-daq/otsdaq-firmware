@@ -1,9 +1,10 @@
 component arp_reply
 	port (
-		addrs: in STD_LOGIC_VECTOR (7 downto 0);
+		addrs: in STD_LOGIC_VECTOR (31 downto 0);
 		arp_announce: in STD_LOGIC;
 		clk: in STD_LOGIC;
 		four_bit_mode: in STD_LOGIC;
+		mac: in STD_LOGIC_VECTOR (47 downto 0);
 		reset: in STD_LOGIC;
 		tip: in STD_LOGIC_VECTOR (31 downto 0);
 		tmac: in STD_LOGIC_VECTOR (47 downto 0);
@@ -29,6 +30,7 @@ instance_name : arp_reply
  crc_gen_rd => ,
  dataout => ,
  four_bit_mode => ,
+ mac => ,
  reset => ,
  tip => ,
  tmac => ,

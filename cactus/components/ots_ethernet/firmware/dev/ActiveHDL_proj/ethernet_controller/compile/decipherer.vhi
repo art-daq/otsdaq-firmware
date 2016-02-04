@@ -1,11 +1,12 @@
 component decipherer
 	port (
-		addrs: in STD_LOGIC_VECTOR (7 downto 0);
 		clk: in STD_LOGIC;
 		data_in: in STD_LOGIC_VECTOR (7 downto 0);
 		dv: in STD_LOGIC;
 		er: in STD_LOGIC;
 		reset: in STD_LOGIC;
+		self_addrs: in STD_LOGIC_VECTOR (31 downto 0);
+		self_port: in STD_LOGIC_VECTOR (15 downto 0);
 		arp_req_ip: out STD_LOGIC_VECTOR (31 downto 0);
 		arp_req_mac: out STD_LOGIC_VECTOR (47 downto 0);
 		arp_search_ip: out STD_LOGIC_VECTOR (31 downto 0);
@@ -18,6 +19,7 @@ component decipherer
 		dest_mac: out STD_LOGIC_VECTOR (47 downto 0);
 		four_bit_mode_out: out STD_LOGIC;
 		icmp_checksum: out STD_LOGIC_VECTOR (15 downto 0);
+		ip_data_count: out STD_LOGIC_VECTOR (10 downto 0);
 		is_arp: out STD_LOGIC;
 		is_icmp_ping: out STD_LOGIC;
 		is_idle: out STD_LOGIC;
@@ -26,15 +28,14 @@ component decipherer
 		src_mac: out STD_LOGIC_VECTOR (47 downto 0);
 		udp_data_count: out STD_LOGIC_VECTOR (10 downto 0);
 		udp_data_valid: out STD_LOGIC;
-		udp_dest_port: out STD_LOGIC_VECTOR (15 downto 0);
+		udp_dest_port_out: out STD_LOGIC_VECTOR (15 downto 0);
 		udp_src_ip: out STD_LOGIC_VECTOR (31 downto 0);
 		udp_src_port: out STD_LOGIC_VECTOR (15 downto 0));
 end component;
 
 
 instance_name : decipherer
-( addrs => ,
- arp_req_ip => ,
+( arp_req_ip => ,
  arp_req_mac => ,
  arp_search_ip => ,
  capture_source_addrs => ,
@@ -50,15 +51,18 @@ instance_name : decipherer
  er => ,
  four_bit_mode_out => ,
  icmp_checksum => ,
+ ip_data_count => ,
  is_arp => ,
  is_icmp_ping => ,
  is_idle => ,
  is_ip => ,
  is_udp => ,
  reset => ,
+ self_addrs => ,
+ self_port => ,
  src_mac => ,
  udp_data_count => ,
  udp_data_valid => ,
- udp_dest_port => ,
+ udp_dest_port_out => ,
  udp_src_ip => ,
  udp_src_port => );
