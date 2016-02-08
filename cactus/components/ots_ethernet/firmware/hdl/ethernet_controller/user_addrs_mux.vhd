@@ -8,14 +8,14 @@ use IEEE.std_logic_unsigned.all;
 entity user_addrs_mux is
 	port (											  	  
 		user_length : in std_logic_vector(10 downto 0);	 	
-		user_dest_addr : in std_logic_vector(7 downto 0);	 
+		user_dest_addr : in std_logic_vector(31 downto 0);	 
 		ping_mode : in std_logic;					    
 		
 		icmp_mode : in std_logic;		
 		icmp_length : in std_logic_vector(10 downto 0);		 
-		icmp_dest_addr : in std_logic_vector(7 downto 0);
+		icmp_dest_addr : in std_logic_vector(31 downto 0);
 															
-		ip_dest_addr : out std_logic_vector(7 downto 0);
+		ip_dest_addr : out std_logic_vector(31 downto 0);
 		ip_tx_length : out std_logic_vector(10 downto 0)
 	) ;
 end;

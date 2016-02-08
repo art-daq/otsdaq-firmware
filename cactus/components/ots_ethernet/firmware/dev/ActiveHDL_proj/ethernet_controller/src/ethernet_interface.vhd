@@ -123,9 +123,10 @@ architecture BEHAVIORAL of ethernet_interface is
 	-- comments denoted as -- simple -- will be removed in this case by install script
 	-- and lines with --SCRIPT COMMENT OUT  will be commented out	
     -- simple -- signal internal_block_sel  		: std_logic_vector (31 downto 0) := (others => '0'); 	  
-    -- simple -- signal internal_addr  			: std_logic_vector (31 downto 0):= (others => '0');  	  
+    -- simple -- signal internal_addr  				: std_logic_vector (31 downto 0):= (others => '0');  	  
 	-- simple -- signal internal_we					: std_logic := '0';							
-    -- simple -- signal internal_din				: std_logic_vector (63 downto 0):= (others => '0'); 	 
+    -- simple -- signal internal_din				: std_logic_vector (63 downto 0):= (others => '0'); 	  
+    -- simple -- signal internal_dout				: std_logic_vector (63 downto 0):= (others => '0'); 	
 	-------- end simple declaration section -----------	
   	 											  								     
 begin										 

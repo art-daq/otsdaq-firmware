@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\create_packet.vhd
--- Generated   : 01/28/16 10:53:50
+-- Generated   : 02/02/16 14:27:39
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/create_packet.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -26,7 +26,7 @@ use IEEE.std_logic_unsigned.all;
 use work.params_package.all;
 entity create_packet is 
 	port (
-		addrs: in STD_LOGIC_VECTOR (7 downto 0);
+		addrs: in STD_LOGIC_VECTOR (31 downto 0);
 		arp_busy: in STD_LOGIC;
 		checksum: in STD_LOGIC_VECTOR (15 downto 0);
 		clk: in STD_LOGIC;
@@ -40,10 +40,12 @@ entity create_packet is
 		icmp_ip: in STD_LOGIC_VECTOR (31 downto 0);
 		icmp_mac: in STD_LOGIC_VECTOR (47 downto 0);
 		icmp_ping: in STD_LOGIC;
+		mac: in STD_LOGIC_VECTOR (47 downto 0);
 		ping: in STD_LOGIC;
 		reset: in STD_LOGIC;
 		trigger: in STD_LOGIC;
 		busy: out STD_LOGIC;
+		checksum_trig: out STD_LOGIC;
 		clken_out: out STD_LOGIC;
 		crc_gen_en: out STD_LOGIC;
 		crc_gen_init: out STD_LOGIC;
@@ -149,7 +151,7 @@ begin
 		if reset = '1' then
 			Sreg0 <= Idle;
 			-- Set default values for outputs, signals and variables
-			-- ...
+			checksum_trig <= '0';
 			dataout <= x"00";
 			udp_data_sel <= '0';
 			-- used as select line for output mux and to
@@ -172,7 +174,7 @@ begin
 		else
 			if clken = '1' then
 				-- Set default values for outputs, signals and variables
-				-- ...
+				checksum_trig <= '0';
 				case Sreg0 is
 					when Idle =>
 						dataout <= x"00";
@@ -261,22 +263,28 @@ begin
 						crc_gen_en <= '1';
 						Sreg0 <= SendPacket_Dest_S60;
 					when SendPacket_Src_S16 =>
-						dataout <= x"00";
+						dataout <= mac(47 downto 40);
+						--x"00";
 						Sreg0 <= SendPacket_Src_S18;
 					when SendPacket_Src_S18 =>
-						dataout <= x"80";
+						dataout <= mac(39 downto 32);
+						--x"80";
 						Sreg0 <= SendPacket_Src_S17;
 					when SendPacket_Src_S19 =>
-						dataout <= addrs;
+						dataout <= mac(7 downto 0);
+						--addrs;
 						Sreg0 <= SendPacket_Type_S26;
 					when SendPacket_Src_S20 =>
-						dataout <= x"00";
+						dataout <= mac(15 downto 8);
+						--x"00";
 						Sreg0 <= SendPacket_Src_S19;
 					when SendPacket_Src_S21 =>
-						dataout <= x"EC";
+						dataout <= mac(23 downto 16);
+						--x"EC";
 						Sreg0 <= SendPacket_Src_S20;
 					when SendPacket_Src_S17 =>
-						dataout <= x"55";
+						dataout <= mac(31 downto 24);
+						--x"55";
 						Sreg0 <= SendPacket_Src_S21;
 					when SendPacket_Type_S26 =>
 						dataout <= x"08";
@@ -387,22 +395,26 @@ begin
 						dataout <= checksum(7 downto 0);
 						Sreg0 <= SendPacket_Payload_IP_SourceAddr1;
 					when SendPacket_Payload_IP_SourceAddr1 =>
-						dataout <= x"C0";
+						dataout <= addrs(31 downto 24);
+						--x"C0";
 						Sreg0 <= SendPacket_Payload_IP_SourceAddr2;
 					when SendPacket_Payload_IP_icmpTotLength2 =>
 						dataout <= icmp_data;
 						Sreg0 <= SendPacket_Payload_IP_ID1;
 					when SendPacket_Payload_IP_SourceAddr2 =>
-						dataout <= x"A8";
+						dataout <= addrs(23 downto 16);
+						--x"A8";
 						Sreg0 <= SendPacket_Payload_IP_SourceAddr3;
 					when SendPacket_Payload_IP_SourceAddr3 =>
-						dataout <= x"85";
+						dataout <= addrs(15 downto 8);
+						--x"85";
 						Sreg0 <= SendPacket_Payload_IP_SourceAddr4;
 					when SendPacket_Payload_IP_ID1 =>
 						dataout <= x"35";
 						Sreg0 <= SendPacket_Payload_IP_ID2;
 					when SendPacket_Payload_IP_SourceAddr4 =>
-						dataout <= addrs;
+						dataout <= addrs(7 downto 0);
+						--addrs;
 						if icmp_ping_packet = '1' then
 							Sreg0 <= SendPacket_Payload_IP_DestAddr6;
 						else
@@ -481,11 +493,13 @@ begin
 						dataout <= x"D5";
 						if icmp_ping_packet = '1' then
 							Sreg0 <= SendPacket_Dest_S65;
+							checksum_trig <= '1';
 							--latch length for checksum
 							length_count_out <= data_length-20;
 							--the length comes a little late.. since the icmp ping is trying to be as responsive as possible
 						else
 							Sreg0 <= SendPacket_Dest_S22;
+							checksum_trig <= '1';
 							--latch length for checksum
 							length_count_out <= length_count;
 							--latch the already latched value for checksum

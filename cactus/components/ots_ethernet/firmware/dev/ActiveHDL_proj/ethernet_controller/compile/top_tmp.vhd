@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\top_tmp.vhd
--- Generated   : Mon Feb  8 11:47:43 2016
+-- Generated   : Mon Feb  8 16:53:06 2016
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/top_tmp.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -38,7 +38,7 @@ component ethernet_interface
        b_data : in STD_LOGIC_VECTOR(63 downto 0);
        b_data_we : in STD_LOGIC;
        b_force_packet : in STD_LOGIC;
-       internal_addrs : in STD_LOGIC_VECTOR(31 downto 0);
+       internal_addr : in STD_LOGIC_VECTOR(31 downto 0);
        internal_block_sel : in STD_LOGIC_VECTOR(31 downto 0);
        internal_din : in STD_LOGIC_VECTOR(63 downto 0);
        internal_we : in STD_LOGIC;
@@ -135,38 +135,38 @@ U1 : ethernet_interface
        b_data(61) => Dangling_Input_Signal,
        b_data(62) => Dangling_Input_Signal,
        b_data(63) => Dangling_Input_Signal,
-       internal_addrs(0) => Dangling_Input_Signal,
-       internal_addrs(1) => Dangling_Input_Signal,
-       internal_addrs(2) => Dangling_Input_Signal,
-       internal_addrs(3) => Dangling_Input_Signal,
-       internal_addrs(4) => Dangling_Input_Signal,
-       internal_addrs(5) => Dangling_Input_Signal,
-       internal_addrs(6) => Dangling_Input_Signal,
-       internal_addrs(7) => Dangling_Input_Signal,
-       internal_addrs(8) => Dangling_Input_Signal,
-       internal_addrs(9) => Dangling_Input_Signal,
-       internal_addrs(10) => Dangling_Input_Signal,
-       internal_addrs(11) => Dangling_Input_Signal,
-       internal_addrs(12) => Dangling_Input_Signal,
-       internal_addrs(13) => Dangling_Input_Signal,
-       internal_addrs(14) => Dangling_Input_Signal,
-       internal_addrs(15) => Dangling_Input_Signal,
-       internal_addrs(16) => Dangling_Input_Signal,
-       internal_addrs(17) => Dangling_Input_Signal,
-       internal_addrs(18) => Dangling_Input_Signal,
-       internal_addrs(19) => Dangling_Input_Signal,
-       internal_addrs(20) => Dangling_Input_Signal,
-       internal_addrs(21) => Dangling_Input_Signal,
-       internal_addrs(22) => Dangling_Input_Signal,
-       internal_addrs(23) => Dangling_Input_Signal,
-       internal_addrs(24) => Dangling_Input_Signal,
-       internal_addrs(25) => Dangling_Input_Signal,
-       internal_addrs(26) => Dangling_Input_Signal,
-       internal_addrs(27) => Dangling_Input_Signal,
-       internal_addrs(28) => Dangling_Input_Signal,
-       internal_addrs(29) => Dangling_Input_Signal,
-       internal_addrs(30) => Dangling_Input_Signal,
-       internal_addrs(31) => Dangling_Input_Signal,
+       internal_addr(0) => Dangling_Input_Signal,
+       internal_addr(1) => Dangling_Input_Signal,
+       internal_addr(2) => Dangling_Input_Signal,
+       internal_addr(3) => Dangling_Input_Signal,
+       internal_addr(4) => Dangling_Input_Signal,
+       internal_addr(5) => Dangling_Input_Signal,
+       internal_addr(6) => Dangling_Input_Signal,
+       internal_addr(7) => Dangling_Input_Signal,
+       internal_addr(8) => Dangling_Input_Signal,
+       internal_addr(9) => Dangling_Input_Signal,
+       internal_addr(10) => Dangling_Input_Signal,
+       internal_addr(11) => Dangling_Input_Signal,
+       internal_addr(12) => Dangling_Input_Signal,
+       internal_addr(13) => Dangling_Input_Signal,
+       internal_addr(14) => Dangling_Input_Signal,
+       internal_addr(15) => Dangling_Input_Signal,
+       internal_addr(16) => Dangling_Input_Signal,
+       internal_addr(17) => Dangling_Input_Signal,
+       internal_addr(18) => Dangling_Input_Signal,
+       internal_addr(19) => Dangling_Input_Signal,
+       internal_addr(20) => Dangling_Input_Signal,
+       internal_addr(21) => Dangling_Input_Signal,
+       internal_addr(22) => Dangling_Input_Signal,
+       internal_addr(23) => Dangling_Input_Signal,
+       internal_addr(24) => Dangling_Input_Signal,
+       internal_addr(25) => Dangling_Input_Signal,
+       internal_addr(26) => Dangling_Input_Signal,
+       internal_addr(27) => Dangling_Input_Signal,
+       internal_addr(28) => Dangling_Input_Signal,
+       internal_addr(29) => Dangling_Input_Signal,
+       internal_addr(30) => Dangling_Input_Signal,
+       internal_addr(31) => Dangling_Input_Signal,
        internal_block_sel(0) => Dangling_Input_Signal,
        internal_block_sel(1) => Dangling_Input_Signal,
        internal_block_sel(2) => Dangling_Input_Signal,

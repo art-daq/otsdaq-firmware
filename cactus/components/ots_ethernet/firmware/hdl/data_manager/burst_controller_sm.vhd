@@ -5,14 +5,7 @@
 -- Author      : Ryan Rivera
 -- Company     : FNAL
 --
--------------------------------------------------------------------------------
---
--- File        : C:\Documents and Settings\rrivera\Desktop\CAPTAN_burst_controller_1\burst_controller\compile\burst_controller_sm.vhd
--- Generated   : 04/08/11 10:17:01
--- From        : C:/Documents and Settings/rrivera/Desktop/CAPTAN_burst_controller_1/burst_controller/src/burst_controller_sm.asf
--- By          : FSM2VHDL ver. 5.0.7.2
---
--------------------------------------------------------------------------------
+--------------------------------
 --
 -- Description : 
 --
@@ -28,8 +21,7 @@ entity burst_controller_sm is
 		clk: in STD_LOGIC;
 		reset: in STD_LOGIC;
 									 					  
-		burst_start: in STD_LOGIC;
-		burst_stop: in STD_LOGIC;	
+		b_mode: in STD_LOGIC; 
 		
 		b_data_we: in STD_LOGIC;	 
 		b_end_packet: in STD_LOGIC;	  
@@ -129,7 +121,7 @@ begin
 			else						  
 				case Sreg0 is						  
 					when Wait_for_End =>
-						if burst_stop = '1' then 	  
+						if b_mode = '0' then 	  
 							Sreg0 <= Reset_Size;
 							reset_packet_size <= '1';
 							tx_info(15 downto 8) <= b_packet_qw_size;
@@ -156,7 +148,7 @@ begin
 						b_enable_sig <= '0';	
 						first_packet_sig <= '1';	
 					when Idle =>
-						if burst_start = '1' then	
+						if b_mode = '1' then	
 							Sreg0 <= Wait_for_End;
 							b_enable_sig <= '1';   
 						end if;		

@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd
--- Generated   : 01/28/16 10:53:44
+-- Generated   : 02/03/16 13:39:25
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -25,12 +25,13 @@ use IEEE.std_logic_unsigned.all;
 
 entity decipherer is 
 	port (
-		addrs: in STD_LOGIC_VECTOR (7 downto 0);
 		clk: in STD_LOGIC;
 		data_in: in STD_LOGIC_VECTOR (7 downto 0);
 		dv: in STD_LOGIC;
 		er: in STD_LOGIC;
 		reset: in STD_LOGIC;
+		self_addrs: in STD_LOGIC_VECTOR (31 downto 0);
+		self_port: in STD_LOGIC_VECTOR (15 downto 0);
 		arp_req_ip: out STD_LOGIC_VECTOR (31 downto 0);
 		arp_req_mac: out STD_LOGIC_VECTOR (47 downto 0);
 		arp_search_ip: out STD_LOGIC_VECTOR (31 downto 0);
@@ -43,6 +44,7 @@ entity decipherer is
 		dest_mac: out STD_LOGIC_VECTOR (47 downto 0);
 		four_bit_mode_out: out STD_LOGIC;
 		icmp_checksum: out STD_LOGIC_VECTOR (15 downto 0);
+		ip_data_count: out STD_LOGIC_VECTOR (10 downto 0);
 		is_arp: out STD_LOGIC;
 		is_icmp_ping: out STD_LOGIC;
 		is_idle: out STD_LOGIC;
@@ -51,7 +53,7 @@ entity decipherer is
 		src_mac: out STD_LOGIC_VECTOR (47 downto 0);
 		udp_data_count: out STD_LOGIC_VECTOR (10 downto 0);
 		udp_data_valid: out STD_LOGIC;
-		udp_dest_port: out STD_LOGIC_VECTOR (15 downto 0);
+		udp_dest_port_out: out STD_LOGIC_VECTOR (15 downto 0);
 		udp_src_ip: out STD_LOGIC_VECTOR (31 downto 0);
 		udp_src_port: out STD_LOGIC_VECTOR (15 downto 0));
 end decipherer;
@@ -78,6 +80,7 @@ signal is_udp_sig: STD_LOGIC;
 signal udp_countdown: STD_LOGIC_VECTOR (15 downto 0);
 signal udp_data_valid_sig: STD_LOGIC;
 signal udp_dest_ip: STD_LOGIC_VECTOR (31 downto 0);
+signal udp_dest_port: STD_LOGIC_VECTOR (15 downto 0);
 signal udp_zeros: STD_LOGIC_VECTOR (10 downto 0);
 
 -- SYMBOLIC ENCODED state machine: Sreg0
@@ -148,8 +151,7 @@ begin
 				four_bit_count <= (others => '0');
 			end if;
 		elsif (four_bit_mode = '1') then
-			if (four_bit_count < 9) then
--- let data catch up to state machine by withholding clken
+			if (four_bit_count < 9) then  -- let data catch up to state machine by withholding clken
 				four_bit_count <= four_bit_count + 1;
 				clken <= '0';
 			else
@@ -172,7 +174,9 @@ if rising_edge(clk) then
 	if reset = '1' then
 		udp_data_count <= (others => '0');
 		udp_zeros <= (others => '0');
-	elsif Sreg0 = recvpacket_ip_payload_ip_checksum1 then
+	elsif Sreg0 = recvpacket_ip_payload_ip_checksum1 then		 -- ip length for icmp
+		ip_data_count <= udp_countdown(10 downto 0) - ("000" & x"08");
+	elsif Sreg0 = recvpacket_ip_payload_udp_length2 then		 -- udp length for rx output
 		udp_data_count <= udp_countdown(10 downto 0) - ("000" & x"08");
 -- if number of bytes < 18 then need to add 0's	(header is 8)
 		if udp_countdown(10 downto 0) < ("000" & x"1A")	then
@@ -183,13 +187,18 @@ if rising_edge(clk) then
 	end if;
 end if;
 end process;
--- First 3 bytes of IP address are assumed to be C0 A8 85
+udp_dest_port_out <= udp_dest_port;
+-- Change Feb 2016 (no longer assume first 3 bytes of IP)
+-- NOTE: Only IP and PORT are matched. Any mac is accepted
 match_proc : process(clk)
 begin
 if rising_edge(clk) then
 	addrs_match_sig <= '0';
-	if udp_dest_ip = (x"C0A885" & addrs) then --this UDP packet was intended for this firmware.
+	if (udp_dest_ip = self_addrs ) then--and
+--(self_port = 0 or udp_dest_port = self_port)) then
+--(x"C0A885" & addrs) then --this UDP packet was intended for this firmware.
 -- Removed feature: -- or udp_dest_ip = x"C0A885FE" then --0xFE is CAPTAN broadcast
+-- Note: this is not considering the mac address (shouldn't matter if ARP works?)
 		addrs_match_sig <= '1';
 	end if;
 end if;
