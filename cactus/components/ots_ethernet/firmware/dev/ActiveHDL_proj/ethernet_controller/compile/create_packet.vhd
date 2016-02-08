@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\create_packet.vhd
--- Generated   : 02/02/16 14:27:39
+-- Generated   : 02/08/16 17:09:27
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/create_packet.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
