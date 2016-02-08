@@ -424,7 +424,7 @@ begin
 --   		             srst=>tx_ctrl_fifo_reset_sig,
 --   		             wr_en=>tx_ctrl_info_fifo_wr_en,
 --   		             dout(31 downto 0)=>tx_ctrl_addr_fifo_dout(31 downto 0),  
---   		             dout(15 downto 0)=>tx_ctrl_port_fifo_dout(15 downto 0),
+--   		             dout(47 downto 32)=>tx_ctrl_port_fifo_dout(15 downto 0),
 --   		             empty=>open,
 --   		             full=>open);	
 --

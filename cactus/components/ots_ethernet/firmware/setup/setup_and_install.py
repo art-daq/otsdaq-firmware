@@ -206,8 +206,6 @@ os.system("mv " + dest + "/ethernet_controller/tx_seq_ctl.vhd " + dest + \
               "/data_manager/")
 os.system("mv " + dest + "/ethernet_controller/ram_comm_dec.vhd " + dest + \
               "/data_manager/")
-os.system("mv " + dest + "/ethernet_controller/delay_counter.vhd " + dest + \
-              "/data_manager/")
 os.system("mv " + dest + "/ethernet_controller/data_manager.vhd " + dest + \
               "/data_manager/")
 os.system("mv " + dest + \

@@ -15,6 +15,14 @@ int main()
   int sz = 11;
   string specialStrobeSig = "arp_announce";
 
+  string htmlFilename = "address_space.html";
+  FILE * fp = fopen(htmlFilename.c_str(),"w");
+  if(!fp)
+  {
+	  cout << "html file fail." << endl;
+	  return 0;
+  }
+
   string name[] = 
     {
       "self_addr",
@@ -68,12 +76,34 @@ int main()
   printf("\tinternal_dout <= (others => '0');\n");	
   printf("\t%s <= '0';\n", specialStrobeSig.c_str());	
 
+  fprintf(fp,"<table style='border:1px solid gray;cellpadding:0;cellspacing=0'>");
+
+  fprintf(fp,"<tr>");
+  fprintf(fp,"<td>Block</td>");
+  fprintf(fp,"<td>Address</td>");
+  fprintf(fp,"<td>Field Name</td>");
+  fprintf(fp,"<td>Field Size</td>");
+  fprintf(fp,"<td>Triggers ARP</td>");
+  fprintf(fp,"</tr>");
+
+
+
   //WRITE Ethernet interface ===================
   printf("\n\tif ( ots_wren = '1' and  \t\t\t\t-- WRITE eth ===========\n");
   printf("\t\t ots_block_sel = %d) then -- %s\n", block, blockName.c_str());
 
   for(int i=0;i<sz;++i)
     {
+
+	  //web page
+	  fprintf(fp,"<tr>");
+	  fprintf(fp,"<td>0x%8.8X</td>",block);
+	  fprintf(fp,"<td>0x%8.8X</td>",address[i]);
+	  fprintf(fp,"<td>%s</td>",name[i].c_str());
+	  fprintf(fp,"<td>%db</td>",fieldSz[i]);
+	  fprintf(fp,"<td>%s</td>",specialStrobe[i]?"YES":"");
+	  fprintf(fp,"</tr>");
+
       if(readOnly[i]) continue;
 
       printf("\t\t%sif ( ots_block_addr = %d ) then \n", (i?"els":""), address[i]);
@@ -156,7 +186,8 @@ int main()
   printf("\t\tend if;\n");
   printf("\tend if;\n");
   
-
+  fprintf(fp,"</table>");
+  fclose(fp);
 
   return 0;
 }
