@@ -2,7 +2,7 @@ SCHM0105
 
 HEADER
 {
- FREEID 19292
+ FREEID 19310
  VARIABLES
  {
   #ARCHITECTURE="arch"
@@ -30,7 +30,7 @@ HEADER
   #DEFAULT_RANGE19="<range<name=\"self_addr\"><left=\"31\"><direction=\"downto\"><right=\"0\"><initial_value=\"\"><delay=\"\">>"
   #DEFAULT_RANGE20="<range<name=\"self_mac\"><left=\"47\"><direction=\"downto\"><right=\"0\"><initial_value=\"\"><delay=\"\">>"
   #DEFAULT_RANGE21="<range<name=\"self_port\"><left=\"15\"><direction=\"downto\"><right=\"0\"><initial_value=\"\"><delay=\"\">>"
-  #DEFAULT_RANGE22="<range<name=\"src_addr\"><left=\"7\"><direction=\"downto\"><right=\"0\"><initial_value=\"\"><delay=\"\">>"
+  #DEFAULT_RANGE22="<range<name=\"src_addr\"><left=\"31\"><direction=\"downto\"><right=\"0\"><initial_value=\"\"><delay=\"\">>"
   #DEFAULT_RANGE23="<range<name=\"src_mac\"><left=\"47\"><direction=\"downto\"><right=\"0\"><initial_value=\"\"><delay=\"\">>"
   #DEFAULT_RANGE24="<range<name=\"src_port\"><left=\"15\"><direction=\"downto\"><right=\"0\"><initial_value=\"\"><delay=\"\">>"
   #DEFAULT_RANGE25="<range<name=\"udp_data_count\"><left=\"10\"><direction=\"downto\"><right=\"0\"><initial_value=\"\"><delay=\"\">>"
@@ -5211,7 +5211,7 @@ PAGE ""
   TEXT  7588, 0, 0
   {
    TEXT "$#NAME"
-   RECT (2095,991,2265,1020)
+   RECT (2089,991,2272,1020)
    ALIGN 9
    MARGINS (1,1)
    PARENT 17123
@@ -5224,7 +5224,7 @@ PAGE ""
     #CUSTOM_NAME=""
     #DOWNTO="1"
     #LIBRARY="#terminals"
-    #REFERENCE="src_addr(7:0)"
+    #REFERENCE="src_addr(31:0)"
     #SYMBOL="BusOutput"
     #SYMBOL_GLOBALLY_UNIQUE_IDENTIFIER=""
    }
@@ -5234,7 +5234,7 @@ PAGE ""
   TEXT  7593, 0, 0
   {
    TEXT "$#REFERENCE"
-   RECT (2412,1003,2588,1038)
+   RECT (2412,1003,2604,1038)
    ALIGN 4
    MARGINS (1,1)
    PARENT 7592
@@ -5249,13 +5249,6 @@ PAGE ""
    MARGINS (1,1)
    COLOR (0,0,0)
    FONT (12,0,0,400,0,0,0,"Arial")
-  }
-  NET BUS  7601, 0, 0
-  {
-   VARIABLES
-   {
-    #NAME="udp_src_ip(7:0)"
-   }
   }
   INSTANCE  7661, 0, 0
   {
@@ -6105,7 +6098,7 @@ PAGE ""
   }
   BUS  17123, 0, 0
   {
-   NET 7601
+   NET 19292
    VTX 17117, 17118
   }
   BUS  17124, 0, 0
@@ -6284,6 +6277,13 @@ PAGE ""
    VARIABLES
    {
     #NAME="udp_data_count_sig(10:0)"
+   }
+  }
+  NET BUS  19292, 0, 0
+  {
+   VARIABLES
+   {
+    #NAME="udp_src_ip(31:0)"
    }
   }
  }
@@ -9894,14 +9894,14 @@ PAGE ""
    #BLOCKTABLE_VISIBLE="0"
    #MODIFIED="1429321352"
    PAGENAME=""
-   PAGENUMBER="3"
+   PAGENUMBER="1"
    REVISION="1.0"
   }
  }
  
  BODY
  {
-  TEXT  19275, 0, 0
+  TEXT  19293, 0, 0
   {
    PAGEALIGN 10
    OUTLINE 5,1, (0,0,0)
@@ -9912,7 +9912,7 @@ PAGE ""
    COLOR (0,0,0)
    FONT (12,0,0,700,0,0,0,"Arial")
   }
-  TEXT  19276, 0, 0
+  TEXT  19294, 0, 0
   {
    PAGEALIGN 10
    TEXT "$CREATIONDATE"
@@ -9923,7 +9923,7 @@ PAGE ""
    FONT (12,0,0,700,0,128,0,"Arial")
    UPDATE 0
   }
-  TEXT  19277, 0, 0
+  TEXT  19295, 0, 0
   {
    PAGEALIGN 10
    TEXT "Title:"
@@ -9933,7 +9933,7 @@ PAGE ""
    COLOR (0,0,0)
    FONT (12,0,0,700,0,0,0,"Arial")
   }
-  TEXT  19278, 0, 0
+  TEXT  19296, 0, 0
   {
    PAGEALIGN 10
    OUTLINE 5,1, (0,0,0)
@@ -9945,7 +9945,7 @@ PAGE ""
    FONT (12,0,0,700,0,128,0,"Arial")
    UPDATE 0
   }
-  TEXT  19279, 0, 0
+  TEXT  19297, 0, 0
   {
    PAGEALIGN 10
    TEXT 
@@ -9958,7 +9958,7 @@ PAGE ""
    FONT (12,0,0,700,0,0,0,"Arial")
    MULTILINE
   }
-  TEXT  19280, 0, 0
+  TEXT  19298, 0, 0
   {
    PAGEALIGN 10
    TEXT "Page:"
@@ -9968,7 +9968,7 @@ PAGE ""
    COLOR (0,0,0)
    FONT (12,0,0,700,0,0,0,"Arial")
   }
-  TEXT  19281, 0, 0
+  TEXT  19299, 0, 0
   {
    PAGEALIGN 10
    OUTLINE 5,1, (0,0,0)
@@ -9980,7 +9980,7 @@ PAGE ""
    FONT (12,0,0,700,0,128,0,"Arial")
    UPDATE 0
   }
-  TEXT  19282, 0, 0
+  TEXT  19300, 0, 0
   {
    PAGEALIGN 10
    TEXT "Revision:"
@@ -9990,7 +9990,7 @@ PAGE ""
    COLOR (0,0,0)
    FONT (12,0,0,700,0,0,0,"Arial")
   }
-  TEXT  19283, 0, 0
+  TEXT  19301, 0, 0
   {
    PAGEALIGN 10
    TEXT "$Revision"
@@ -10001,7 +10001,7 @@ PAGE ""
    FONT (12,0,0,700,0,204,0,"Arial")
    UPDATE 0
   }
-  GROUP  19284, 0, 0
+  GROUP  19302, 0, 0
   {
    PAGEALIGN 10
    RECT (2320,1620,3201,2001)
@@ -10013,7 +10013,7 @@ PAGE ""
     FILL (1,(0,0,0),0)
    }
   }
-  GROUP  19285, 0, 0
+  GROUP  19303, 0, 0
   {
    PAGEALIGN 10
    RECT (2320,1820,3201,1821)
@@ -10025,7 +10025,7 @@ PAGE ""
     FILL (1,(0,0,0),0)
    }
   }
-  GROUP  19286, 0, 0
+  GROUP  19304, 0, 0
   {
    PAGEALIGN 10
    RECT (2320,1760,3201,1761)
@@ -10037,7 +10037,7 @@ PAGE ""
     FILL (1,(0,0,0),0)
    }
   }
-  GROUP  19287, 0, 0
+  GROUP  19305, 0, 0
   {
    PAGEALIGN 10
    RECT (2320,1880,3201,1881)
@@ -10049,7 +10049,7 @@ PAGE ""
     FILL (1,(0,0,0),0)
    }
   }
-  GROUP  19288, 0, 0
+  GROUP  19306, 0, 0
   {
    PAGEALIGN 10
    RECT (2320,1940,3201,1941)
@@ -10061,7 +10061,7 @@ PAGE ""
     FILL (1,(0,0,0),0)
    }
   }
-  GROUP  19289, 0, 0
+  GROUP  19307, 0, 0
   {
    PAGEALIGN 10
    RECT (2500,1620,2501,1761)
@@ -10072,7 +10072,7 @@ PAGE ""
     POINTS ( (0,0), (0,140) )
    }
   }
-  GROUP  19290, 0, 0
+  GROUP  19308, 0, 0
   {
    PAGEALIGN 10
    RECT (2500,1760,2501,2001)
@@ -10083,7 +10083,7 @@ PAGE ""
     POINTS ( (0,0), (0,240) )
    }
   }
-  BMPPICT  19291, 0, 0
+  BMPPICT  19309, 0, 0
   {
    PAGEALIGN 10
    RECT (2340,1680,2479,1725)

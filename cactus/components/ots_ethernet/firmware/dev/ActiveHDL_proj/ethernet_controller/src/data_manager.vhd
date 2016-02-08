@@ -21,16 +21,30 @@ entity data_manager is
           four_bit_mode          	: in    std_logic; 
           user_busy          		: in    std_logic; 
           user_crc_err       		: in    std_logic; 	  
-		  user_crc_chk				: in    std_logic;
+		  user_crc_chk				: in    std_logic;		
+		  
           user_rx_data_out   		: in    std_logic_vector (7 downto 0); 	 
-          user_rx_valid_out  		: in    std_logic; 
+          user_rx_valid_out  		: in    std_logic; 			   	
+		  user_rx_src_addr   		: in	std_logic_vector (31 downto 0); 	
+		  user_rx_src_mac     		: in	std_logic_vector (47 downto 0); 
+		  user_rx_src_port    		: in	std_logic_vector (15 downto 0); 	
+		  
+		  tx_ctrl_dest_addr   		: in	std_logic_vector (31 downto 0); 	
+		  tx_ctrl_dest_mac     		: in	std_logic_vector (47 downto 0); 
+		  tx_ctrl_dest_port    		: in	std_logic_vector (15 downto 0); 
+		  tx_data_dest_addr   		: in	std_logic_vector (31 downto 0); 	
+		  tx_data_dest_mac     		: in	std_logic_vector (47 downto 0); 
+		  tx_data_dest_port    		: in	std_logic_vector (15 downto 0); 
+		  user_tx_dest_addr   		: out	std_logic_vector (31 downto 0); 	
+		  user_tx_dest_mac     		: out	std_logic_vector (47 downto 0); 
+		  user_tx_dest_port    		: out	std_logic_vector (15 downto 0);  		   		 
+		
           user_tx_enable_out 		: in    std_logic; 	 
 		  user_ready	 			: in    std_logic;
           MASTER_CLK             	: in    std_logic; 
           reset                  	: in    std_logic;  
           tx_data                	: in    std_logic_vector (63 downto 0); 
-          b_enable               	: out   std_logic; 
-		  ctrl_or_data_sel		    : out   std_logic; 
+          b_enable               	: out   std_logic; 			
           user_tx_trigger       	: out   std_logic; 
           user_tx_data_in    		: out   std_logic_vector (7 downto 0); 
           user_tx_size_in    		: out   std_logic_vector (10 downto 0); 
@@ -71,7 +85,12 @@ architecture BEHAVIORAL of data_manager is
    signal tx_data_reg			               	: std_logic_vector (63 downto 0); 
    signal rx_data_fifo_rd_data	               	: std_logic_vector (63 downto 0); 	   
                                                	
-   																   
+   																				 
+   signal rx_src_addr_fifo_dout	               	: std_logic_vector (47 downto 0); 	
+   signal rx_src_mac_fifo_dout	               	: std_logic_vector (47 downto 0); 	
+   signal tx_ctrl_addr_fifo_dout	        	: std_logic_vector (31 downto 0); 
+   signal tx_ctrl_port_fifo_dout	        	: std_logic_vector (15 downto 0); 	
+   signal tx_ctrl_mac_fifo_dout	        		: std_logic_vector (47 downto 0); 
       
    signal tx_ctrl_fifo_din                     	: std_logic_vector (63 downto 0);
    signal tx_ctrl_fifo_empty                   	: std_logic;
@@ -82,7 +101,8 @@ architecture BEHAVIORAL of data_manager is
    signal tx_ctrl_fifo_wr_en              	   	: std_logic;	 
    signal tx_ctrl_fifo_reset_sig			   	: std_logic;   
    signal comm_dec_tx_fifo_reset				: std_logic;   
-   signal tx_seq_ctl_sel						: std_logic;	  
+   signal tx_seq_ctl_sel						: std_logic;	 
+   signal tx_seq_ret_to_sender						: std_logic;    
    signal tx_data_info_fifo_empty				: std_logic; 
    signal tx_ctrl_info_fifo_empty				: std_logic;	  
    signal tx_data_info_fifo_wr_en				: std_logic;
@@ -128,8 +148,18 @@ architecture BEHAVIORAL of data_manager is
    										
 begin
 
-	rx_data(63 downto 0) <= rx_data_sig(63 downto 0);  
-	ctrl_or_data_sel <= tx_seq_ctl_sel;
+	rx_data(63 downto 0) <= rx_data_sig(63 downto 0);  	  	
+	
+	user_tx_dest_addr  <= 	tx_data_dest_addr when tx_seq_ctl_sel = '1'	else
+							tx_ctrl_addr_fifo_dout when tx_seq_ret_to_sender = '1' else 
+							tx_ctrl_dest_addr;	 
+	user_tx_dest_port  <= 	tx_data_dest_port when tx_seq_ctl_sel = '1'	else
+							tx_ctrl_port_fifo_dout when tx_seq_ret_to_sender = '1' else 
+							tx_ctrl_dest_port;	  
+	user_tx_dest_mac   <= 	tx_data_dest_mac when tx_seq_ctl_sel = '1'	else
+							tx_ctrl_mac_fifo_dout when tx_seq_ret_to_sender = '1' else 
+							tx_ctrl_dest_mac;	  								 		  
+		
    		  
   	RX_DATA_FIFO : entity work.reg_fifo							 		--SCRIPT COMMENT OUT
    	  generic map (width => 64,	depth => 256, addr => 8)			 	--SCRIPT COMMENT OUT
@@ -156,9 +186,36 @@ begin
 				RD_COUNT=>open,										    --SCRIPT COMMENT OUT   
                 EMPTY=>rx_info_fifo_empty,							    --SCRIPT COMMENT OUT   
                 FULL=>rx_info_fifo_full);							    --SCRIPT COMMENT OUT    
+																									 																
+ 	RX_SRC_ADDR_FIFO : entity work.reg_fifo								--SCRIPT COMMENT OUT                               
+   	  generic map (width => 48,	depth => 16, addr => 4)				    --SCRIPT COMMENT OUT    
+      port map (WCLOCK=>MASTER_CLK,									    --SCRIPT COMMENT OUT   
+	 			RCLOCK=>MASTER_CLK,									    --SCRIPT COMMENT OUT   
+                DATA(31 downto 0)=>user_rx_src_addr,					--SCRIPT COMMENT OUT   
+                DATA(47 downto 32)=>user_rx_src_port,					--SCRIPT COMMENT OUT   
+                RE=>rx_info_fifo_rden,								    --SCRIPT COMMENT OUT   
+                RESET=>rx_fifo_reset_sig,							    --SCRIPT COMMENT OUT   
+                WE=>rx_info_fifo_wren,									--SCRIPT COMMENT OUT   
+                Q(47 downto 0)=>rx_src_addr_fifo_dout(47 downto 0),	  	--SCRIPT COMMENT OUT   
+				RD_COUNT=>open,										    --SCRIPT COMMENT OUT   
+                EMPTY=>open,							    			--SCRIPT COMMENT OUT   
+                FULL=>open);							    			--SCRIPT COMMENT OUT  
 				
-							   
-
+ 	RX_SRC_MAC_FIFO : entity work.reg_fifo								--SCRIPT COMMENT OUT                               
+   	  generic map (width => 48,	depth => 16, addr => 4)				    --SCRIPT COMMENT OUT    
+      port map (WCLOCK=>MASTER_CLK,									    --SCRIPT COMMENT OUT   
+	 			RCLOCK=>MASTER_CLK,									    --SCRIPT COMMENT OUT   
+                DATA(47 downto 0)=>user_rx_src_mac,						--SCRIPT COMMENT OUT   
+                RE=>rx_info_fifo_rden,								    --SCRIPT COMMENT OUT   
+                RESET=>rx_fifo_reset_sig,							    --SCRIPT COMMENT OUT   
+                WE=>rx_info_fifo_wren,									--SCRIPT COMMENT OUT   
+                Q(47 downto 0)=>rx_src_mac_fifo_dout(47 downto 0),	  	--SCRIPT COMMENT OUT   
+				RD_COUNT=>open,										    --SCRIPT COMMENT OUT   
+                EMPTY=>open,							    			--SCRIPT COMMENT OUT   
+                FULL=>open);							    			--SCRIPT COMMENT OUT  
+													
+				
+				
  	TX_DATA_FIFO : entity work.reg_fifo			  					 	--SCRIPT COMMENT OUT                        
    	  generic map (width => 64,depth => 256,addr => 8)					--SCRIPT COMMENT OUT    
       port map (WCLOCK=>MASTER_CLK,										--SCRIPT COMMENT OUT   
@@ -209,7 +266,34 @@ begin
                 Q(15 downto 0)=>tx_ctrl_info_fifo_dout(15 downto 0),  	--SCRIPT COMMENT OUT   
 				RD_COUNT=>open,											--SCRIPT COMMENT OUT   
                 EMPTY=>tx_ctrl_info_fifo_empty,							--SCRIPT COMMENT OUT   
-                FULL=>tx_ctrl_info_fifo_full);							--SCRIPT COMMENT OUT    				
+                FULL=>tx_ctrl_info_fifo_full);							--SCRIPT COMMENT OUT    
+				 	
+ 	TX_CTRL_ADDR_FIFO : entity work.reg_fifo							--SCRIPT COMMENT OUT    
+   	  generic map (width => 48,	depth => 16,addr => 4)					--SCRIPT COMMENT OUT    
+      port map (WCLOCK=>MASTER_CLK,										--SCRIPT COMMENT OUT   
+	 			RCLOCK=>MASTER_CLK,										--SCRIPT COMMENT OUT   
+                DATA(47 downto 0)=>rx_src_addr_fifo_dout(47 downto 0), 	--SCRIPT COMMENT OUT   
+                RE=>tx_ctrl_info_fifo_read_enable,						--SCRIPT COMMENT OUT   
+                RESET=>tx_ctrl_fifo_reset_sig,							--SCRIPT COMMENT OUT   
+                WE=>tx_ctrl_info_fifo_wr_en,							--SCRIPT COMMENT OUT   
+                Q(31 downto 0)=>tx_ctrl_addr_fifo_dout(31 downto 0),  	--SCRIPT COMMENT OUT    
+                Q(47 downto 32)=>tx_ctrl_port_fifo_dout(15 downto 0),  	--SCRIPT COMMENT OUT  
+				RD_COUNT=>open,											--SCRIPT COMMENT OUT   
+                EMPTY=>open,											--SCRIPT COMMENT OUT   
+                FULL=>open);											--SCRIPT COMMENT OUT  	
+				
+ 	TX_CTRL_MAC_FIFO : entity work.reg_fifo							--SCRIPT COMMENT OUT    
+   	  generic map (width => 48,	depth => 16,addr => 4)					--SCRIPT COMMENT OUT    
+      port map (WCLOCK=>MASTER_CLK,										--SCRIPT COMMENT OUT   
+	 			RCLOCK=>MASTER_CLK,										--SCRIPT COMMENT OUT   
+                DATA(47 downto 0)=>rx_src_mac_fifo_dout(47 downto 0), 	--SCRIPT COMMENT OUT   
+                RE=>tx_ctrl_info_fifo_read_enable,						--SCRIPT COMMENT OUT   
+                RESET=>tx_ctrl_fifo_reset_sig,							--SCRIPT COMMENT OUT   
+                WE=>tx_ctrl_info_fifo_wr_en,							--SCRIPT COMMENT OUT   
+                Q(47 downto 0)=>tx_ctrl_mac_fifo_dout(47 downto 0),  	--SCRIPT COMMENT OUT   
+				RD_COUNT=>open,											--SCRIPT COMMENT OUT   
+                EMPTY=>open,											--SCRIPT COMMENT OUT   
+                FULL=>open);											--SCRIPT COMMENT OUT  
 				
 				  	   
 	tx_ctrl_fifo_reset_sig <=  comm_dec_tx_fifo_reset or reset;	 
@@ -321,7 +405,7 @@ begin
 				user_crc_chk=>user_crc_chk,
                 user_rx_data_out(7 downto 0)=>user_rx_data_out(7 downto 0),	   
                 user_rx_valid_out=>user_rx_valid_out,
-                reset=>reset,
+                reset=>reset,						
                 crc_err_flag=>crc_err_flag,	  
                 clear_crc_err_flag=>clear_crc_err_flag,
                 data_fifo_wdata(63 downto 0)=>rx_data_fifo_wr_data(63 downto 0),
@@ -360,20 +444,26 @@ begin
    GEC_TX_SEQ_CTL : entity work.tx_seq_ctl
       port map (					   
                 reset=>reset,						   
-                clk=>MASTER_CLK,
-                data_fifo_empty=>tx_data_fifo_empty,				
-                four_bit_mode=>four_bit_mode,
-                dest_busy=>user_busy,			
-				fifo_sel=>tx_seq_ctl_sel,
-                data_fifo_rd_data(63 downto 0)=>tx_seq_data_fifo_dout(63 downto 0),	  
-                user_tx_enable_out=>user_tx_enable_out,
-                data_info_fifo_empty=>tx_data_info_fifo_empty,	
-                ctrl_info_fifo_empty=>tx_ctrl_info_fifo_empty,				
-                info_fifo_rd_data(15 downto 0)=>tx_info_fifo_dout(15 downto 0),	 
-                data_fifo_rden=>tx_data_fifo_rden,	   
-                user_trigger=>user_tx_trigger,
-                tx_data(7 downto 0)=>user_tx_data_in(7 downto 0),
+                clk=>MASTER_CLK,					   			
+                four_bit_mode=>four_bit_mode,	 
+				
+                dest_busy=>user_busy,		 
+                user_trigger=>user_tx_trigger,	   
+                user_tx_enable_out=>user_tx_enable_out,	  
+                tx_data(7 downto 0)=>user_tx_data_in(7 downto 0), 
                 user_tx_size_in(10 downto 0)=>user_tx_size_in(10 downto 0),
+				
+				fifo_sel=>tx_seq_ctl_sel, 
+				ret_to_sender=>tx_seq_ret_to_sender,
+																					  
+                data_fifo_empty=>tx_data_fifo_empty,	
+                data_fifo_rd_data(63 downto 0)=>tx_seq_data_fifo_dout(63 downto 0),	   
+                data_fifo_rden=>tx_data_fifo_rden,	  
+														 
+                data_info_fifo_empty=>tx_data_info_fifo_empty,	
+                ctrl_info_fifo_empty=>tx_ctrl_info_fifo_empty,	
+				
+                info_fifo_rd_data(15 downto 0)=>tx_info_fifo_dout(15 downto 0),	
                 info_fifo_rden=>tx_info_fifo_rden);
    									
 

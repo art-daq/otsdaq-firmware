@@ -107,8 +107,7 @@ architecture BEHAVIORAL of ethernet_interface is
 	signal ots_user_mask  			: std_logic := '0'; 							   
     signal internal_eth_dout      	: std_logic_vector (63 downto 0); 		
 	
-	signal arp_announce				: std_logic := '0';  
-	signal ctrl_or_data_sel			: std_logic;   	 
+	signal arp_announce				: std_logic := '0';  	
 	signal burst_mode				: std_logic := '0';
 	signal self_addr				: std_logic_vector(31 downto 0) := x"C0A885" & ETH_CONTROLLER_DEFAULT_ADDR;	 --192.168.133.X;  
 	signal self_mac 				: std_logic_vector(47 downto 0) := x"008055EC00" & ETH_CONTROLLER_DEFAULT_ADDR;                
@@ -155,7 +154,7 @@ begin
 															  
                 user_rx_src_capture_for_ctrl=>user_rx_src_capture_for_ctrl,	 
                 user_rx_src_capture_for_data=>user_rx_src_capture_for_data,
-                user_rx_src_addr(7 downto 0)=>user_rx_src_addr(7 downto 0),  
+                user_rx_src_addr(31 downto 0)=>user_rx_src_addr(31 downto 0),  
                 user_rx_src_mac(47 downto 0)=>user_rx_src_mac(47 downto 0),
                 user_rx_src_port(15 downto 0)=>user_rx_src_port(15 downto 0),	
 																				 
@@ -181,17 +180,33 @@ begin
                 user_busy=>user_busy,
                 user_crc_err=>user_crc_err,	
 				user_crc_chk=>crc_chk_out,
-                user_rx_data_out(7 downto 0)=>user_rx_data_out(7 downto 0),	  
-                user_rx_valid_out=>user_rx_valid_out,
-                user_tx_enable_out=>user_tx_enable_out,
+                
+				user_rx_data_out(7 downto 0)=>user_rx_data_out(7 downto 0),	  
+                user_rx_valid_out=>user_rx_valid_out,	   
+				user_rx_src_addr=>user_rx_src_addr,  
+                user_rx_src_mac=>user_rx_src_mac,
+                user_rx_src_port=>user_rx_src_port,	
+				
+				tx_ctrl_dest_addr=>tx_ctrl_dest_addr,  
+                tx_ctrl_dest_mac=>tx_ctrl_dest_mac,
+                tx_ctrl_dest_port=>tx_ctrl_dest_port,		  
+				tx_data_dest_addr=>tx_data_dest_addr,  
+                tx_data_dest_mac=>tx_data_dest_mac,
+                tx_data_dest_port=>tx_data_dest_port,	  
+				user_tx_dest_addr=>user_tx_dest_addr,  
+                user_tx_dest_mac=>user_tx_dest_mac,
+                user_tx_dest_port=>user_tx_dest_port,							
+														   
                 MASTER_CLK=>MASTER_CLK,
                 reset=>reset,		  
                 tx_data(63 downto 0)=>ots_dout(63 downto 0),
-                b_enable=>b_enable,			 
-				ctrl_or_data_sel=>ctrl_or_data_sel,
-                user_tx_trigger=>user_tx_trigger,
+                b_enable=>b_enable,			 					
+				
+                user_tx_trigger=>user_tx_trigger,		 
+                user_tx_enable_out=>user_tx_enable_out,
                 user_tx_data_in(7 downto 0)=>user_tx_data_in(7 downto 0),
-                user_tx_size_in(10 downto 0)=>user_tx_size_in(10 downto 0),
+                user_tx_size_in(10 downto 0)=>user_tx_size_in(10 downto 0),		 
+				
                 ram_addr(63 downto 0)=>ots_addr,
                 ram_rden=>ots_rden,							
                 ram_wren=>ots_wren,								   
@@ -237,10 +252,7 @@ begin
 	
 	ots_dout <= tx_data when (ots_user_mask = '1') else internal_eth_dout;
 	ots_ready <= (not ots_user_mask) or user_ready; -- ots address space is always ready
-	
-	user_tx_dest_addr  <= tx_ctrl_dest_addr when ctrl_or_data_sel = '0' else tx_data_dest_addr;
-	user_tx_dest_mac   <= tx_ctrl_dest_mac	when ctrl_or_data_sel = '0' else tx_data_dest_mac;					
-	user_tx_dest_port  <= tx_ctrl_dest_port when ctrl_or_data_sel = '0' else tx_data_dest_port;
+																								  
 	
 	process(MASTER_CLK)
 	begin

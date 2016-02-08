@@ -13,6 +13,7 @@ component tx_seq_ctl
 		data_fifo_rden: out STD_LOGIC;
 		fifo_sel: out STD_LOGIC;
 		info_fifo_rden: out STD_LOGIC;
+		ret_to_sender: out STD_LOGIC;
 		tx_data: out STD_LOGIC_VECTOR (7 downto 0);
 		user_trigger: out STD_LOGIC;
 		user_tx_size_in: out STD_LOGIC_VECTOR (10 downto 0));
@@ -32,6 +33,7 @@ instance_name : tx_seq_ctl
  info_fifo_rd_data => ,
  info_fifo_rden => ,
  reset => ,
+ ret_to_sender => ,
  tx_data => ,
  user_trigger => ,
  user_tx_enable_out => ,

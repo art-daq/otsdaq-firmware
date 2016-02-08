@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\ethernet_controller.vhd
--- Generated   : Thu Feb  4 09:57:00 2016
+-- Generated   : Mon Feb  8 13:49:39 2016
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -56,7 +56,7 @@ entity ethernet_controller is
        user_rx_valid_out : out STD_LOGIC;
        GMII_TXD : out STD_LOGIC_VECTOR(7 downto 0);
        crc_chk_din : out STD_LOGIC_VECTOR(7 downto 0);
-       src_addr : out STD_LOGIC_VECTOR(7 downto 0);
+       src_addr : out STD_LOGIC_VECTOR(31 downto 0);
        src_mac : out STD_LOGIC_VECTOR(47 downto 0);
        src_port : out STD_LOGIC_VECTOR(15 downto 0);
        udp_data_count : out STD_LOGIC_VECTOR(10 downto 0);
@@ -544,14 +544,7 @@ UdpLengthMux : user_addrs_mux
 	crc_gen_rd <= crc_gen_rd_sig;
 	en_tx_data <= en_tx_data_sig;
 	four_bit_mode_out <= four_bit_mode;
-	src_addr(0) <= udp_src_ip(0);
-	src_addr(1) <= udp_src_ip(1);
-	src_addr(2) <= udp_src_ip(2);
-	src_addr(3) <= udp_src_ip(3);
-	src_addr(4) <= udp_src_ip(4);
-	src_addr(5) <= udp_src_ip(5);
-	src_addr(6) <= udp_src_ip(6);
-	src_addr(7) <= udp_src_ip(7);
+	src_addr <= udp_src_ip;
 	src_capture_for_ctrl <= set_ctrl_dest_strobe;
 	src_capture_for_data <= set_data_dest_strobe;
 	src_mac <= frame_src_mac;

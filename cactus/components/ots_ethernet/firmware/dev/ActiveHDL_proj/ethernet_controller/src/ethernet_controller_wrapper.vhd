@@ -62,7 +62,7 @@ entity ethernet_controller_wrapper is
 	   													   	
        user_rx_src_capture_for_ctrl : out STD_LOGIC;		 		   	
        user_rx_src_capture_for_data : out STD_LOGIC;
-       user_rx_src_addr : out STD_LOGIC_VECTOR(7 downto 0);
+       user_rx_src_addr : out STD_LOGIC_VECTOR(31 downto 0);
        user_rx_src_mac : out STD_LOGIC_VECTOR(47 downto 0);
        user_rx_src_port : out STD_LOGIC_VECTOR(15 downto 0)
   );

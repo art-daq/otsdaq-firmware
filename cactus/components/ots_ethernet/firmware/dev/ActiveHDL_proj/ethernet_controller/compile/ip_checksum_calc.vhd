@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\ip_checksum_calc.vhd
--- Generated   : 01/28/16 10:53:41
+-- Generated   : 01/29/16 09:46:18
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ip_checksum_calc.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -105,7 +105,9 @@ begin
 					Sreg0 <= S6;
 				when S10 =>
 					cs <= not cs_sig(15 downto 0);
-					Sreg0 <= S1;
+					if trigger = '1' then
+						Sreg0 <= S1;
+					end if;
 				when S6 =>
 					cs_sig <= cs_sig + dest_sig;
 					Sreg0 <= S7;
