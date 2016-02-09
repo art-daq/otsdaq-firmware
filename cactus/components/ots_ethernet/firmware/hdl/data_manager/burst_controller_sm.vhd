@@ -41,7 +41,8 @@ architecture burst_controller_sm_arch of burst_controller_sm is
 
 	-- diagram signals declarations
 	signal b_enable_sig: STD_LOGIC;
-	signal b_packet_qw_size: STD_LOGIC_VECTOR (7 downto 0);
+	signal b_packet_qw_size: STD_LOGIC_VECTOR (7 downto 0);	   --this count should always be 
+						-- equal to data_manager/burst_traffic_controller/writes_in_curr_burst
 	signal first_packet_sig, b_end_packet_old: STD_LOGIC;
 	signal just_reset: STD_LOGIC;
 	signal reset_packet_size: STD_LOGIC;
