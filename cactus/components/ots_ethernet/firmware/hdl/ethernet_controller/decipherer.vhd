@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd
--- Generated   : 02/09/16 14:33:25
+-- Generated   : 02/09/16 15:17:28
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -31,7 +31,6 @@ entity decipherer is
 		er: in STD_LOGIC;
 		reset: in STD_LOGIC;
 		self_addrs: in STD_LOGIC_VECTOR (31 downto 0);
-		self_port: in STD_LOGIC_VECTOR (15 downto 0);
 		arp_req_ip: out STD_LOGIC_VECTOR (31 downto 0);
 		arp_req_mac: out STD_LOGIC_VECTOR (47 downto 0);
 		arp_search_ip: out STD_LOGIC_VECTOR (31 downto 0);
@@ -189,13 +188,14 @@ end if;
 end process;
 udp_dest_port_out <= udp_dest_port;
 -- Change Feb 2016 (no longer assume first 3 bytes of IP)
--- NOTE: Only IP and PORT are matched. Any mac is accepted
+-- NOTE: Only IP is matched. Any mac and port are accepted
 match_proc : process(clk)
 begin
 if rising_edge(clk) then
 	addrs_match_sig <= '0';
-	if (udp_dest_ip = self_addrs and
-		(self_port = 0 or udp_dest_port = self_port)) then
+	if (udp_dest_ip = self_addrs) then -- and
+--(self_port = 0 or udp_dest_port = self_port)) then
+-- Note: rejecting the port presented a problem for ICMP matching logic
 --(x"C0A885" & addrs) then --this UDP packet was intended for this firmware.
 -- Removed feature: -- or udp_dest_ip = x"C0A885FE" then --0xFE is CAPTAN broadcast
 -- Note: this is not considering the mac address (shouldn't matter if ARP works?)

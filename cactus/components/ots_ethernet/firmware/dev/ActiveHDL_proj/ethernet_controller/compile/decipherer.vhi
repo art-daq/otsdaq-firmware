@@ -6,7 +6,6 @@ component decipherer
 		er: in STD_LOGIC;
 		reset: in STD_LOGIC;
 		self_addrs: in STD_LOGIC_VECTOR (31 downto 0);
-		self_port: in STD_LOGIC_VECTOR (15 downto 0);
 		arp_req_ip: out STD_LOGIC_VECTOR (31 downto 0);
 		arp_req_mac: out STD_LOGIC_VECTOR (47 downto 0);
 		arp_search_ip: out STD_LOGIC_VECTOR (31 downto 0);
@@ -59,7 +58,6 @@ instance_name : decipherer
  is_udp => ,
  reset => ,
  self_addrs => ,
- self_port => ,
  src_mac => ,
  udp_data_count => ,
  udp_data_valid => ,

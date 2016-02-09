@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\ethernet_controller.vhd
--- Generated   : Mon Feb  8 17:09:35 2016
+-- Generated   : Tue Feb  9 15:19:36 2016
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -199,7 +199,6 @@ component decipherer
        er : in STD_LOGIC;
        reset : in STD_LOGIC;
        self_addrs : in STD_LOGIC_VECTOR(31 downto 0);
-       self_port : in STD_LOGIC_VECTOR(15 downto 0);
        arp_req_ip : out STD_LOGIC_VECTOR(31 downto 0);
        arp_req_mac : out STD_LOGIC_VECTOR(47 downto 0);
        arp_search_ip : out STD_LOGIC_VECTOR(31 downto 0);
@@ -455,7 +454,6 @@ DecipherBlock : decipherer
        is_ip => is_ip_packet_sig,
        reset => reset,
        self_addrs => self_addr,
-       self_port => self_port,
        src_mac => frame_src_mac,
        udp_data_count => udp_data_count_sig,
        udp_data_valid => udp_data_valid,

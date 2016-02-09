@@ -277,7 +277,7 @@ begin
 			else
 				user_addr_sig <= user_addr;		 
 			end if;								  			
-						
+								
 			internal_eth_dout <= (others => '0');
 			internal_dout <= (others => '0');
 			arp_announce <= '0';
@@ -288,10 +288,11 @@ begin
 					 self_addr <= ots_din(23 downto 0); 
 					 arp_announce <= '1';
 				elsif ( ots_block_addr = 1 ) then 
-					 self_mac <= ots_din(47 downto 0); 
+					 user_addr_byte <= ots_din(7 downto 0); 
 					 arp_announce <= '1';
 				elsif ( ots_block_addr = 2 ) then 
-					 self_port <= ots_din(15 downto 0); 
+					 self_mac <= ots_din(47 downto 0); 
+					 arp_announce <= '1';
 				elsif ( ots_block_addr = 3 ) then 
 					 tx_ctrl_dest_addr <= ots_din(31 downto 0); 
 				elsif ( ots_block_addr = 4 ) then 
@@ -306,9 +307,6 @@ begin
 					 tx_data_dest_port <= ots_din(15 downto 0); 
 				elsif ( ots_block_addr = 9 ) then 
 					 burst_mode <= ots_din(0); 
-				elsif ( ots_block_addr = 10 ) then 
-					 user_addr_byte <= ots_din(7 downto 0); 
-					 arp_announce <= '1';
 				end if;
 			elsif ( internal_we = '1' and  				-- WRITE internal ===========
 				 unsigned(internal_block_sel) = 1) then -- Ethernet block address space
@@ -316,10 +314,11 @@ begin
 					 self_addr <= internal_din(23 downto 0); 
 					 arp_announce <= '1';
 				elsif ( unsigned(internal_addr) = 1 ) then 
-					 self_mac <= internal_din(47 downto 0); 
+					 user_addr_byte <= internal_din(7 downto 0); 
 					 arp_announce <= '1';
 				elsif ( unsigned(internal_addr) = 2 ) then 
-					 self_port <= internal_din(15 downto 0); 
+					 self_mac <= internal_din(47 downto 0); 
+					 arp_announce <= '1';
 				elsif ( unsigned(internal_addr) = 3 ) then 
 					 tx_ctrl_dest_addr <= internal_din(31 downto 0); 
 				elsif ( unsigned(internal_addr) = 4 ) then 
@@ -334,9 +333,6 @@ begin
 					 tx_data_dest_port <= internal_din(15 downto 0); 
 				elsif ( unsigned(internal_addr) = 9 ) then 
 					 burst_mode <= internal_din(0); 
-				elsif ( unsigned(internal_addr) = 10 ) then 
-					 user_addr_byte <= internal_din(7 downto 0); 
-					 arp_announce <= '1';
 				end if;
 			elsif ( user_rx_src_capture_for_ctrl = '1' ) then  				-- SPECIAL WRITE for source capture for ctrl ===========
 				 tx_ctrl_dest_addr <= user_rx_src_addr;
@@ -353,9 +349,9 @@ begin
 				if ( ots_block_addr = 0 ) then 
 					 internal_eth_dout(23 downto 0) <= self_addr; 
 				elsif ( ots_block_addr = 1 ) then 
-					 internal_eth_dout(47 downto 0) <= self_mac; 
+					 internal_eth_dout(7 downto 0) <= user_addr_byte; 
 				elsif ( ots_block_addr = 2 ) then 
-					 internal_eth_dout(15 downto 0) <= self_port; 
+					 internal_eth_dout(47 downto 0) <= self_mac; 
 				elsif ( ots_block_addr = 3 ) then 
 					 internal_eth_dout(31 downto 0) <= tx_ctrl_dest_addr; 
 				elsif ( ots_block_addr = 4 ) then 
@@ -372,8 +368,6 @@ begin
 					 internal_eth_dout(0) <= burst_mode; 
 				elsif ( ots_block_addr = 100 ) then 
 					 internal_eth_dout(15 downto 0) <= ETH_INTERFACE_VERSION; 
-				elsif ( ots_block_addr = 10 ) then 
-					 internal_eth_dout(7 downto 0) <= user_addr_byte; 
 				end if;
 			end if;
 		
@@ -382,9 +376,9 @@ begin
 				if ( unsigned(internal_addr) = 0 ) then 
 					 internal_dout(23 downto 0) <= self_addr; 
 				elsif ( unsigned(internal_addr) = 1 ) then 
-					 internal_dout(47 downto 0) <= self_mac; 
+					 internal_dout(7 downto 0) <= user_addr_byte; 
 				elsif ( unsigned(internal_addr) = 2 ) then 
-					 internal_dout(15 downto 0) <= self_port; 
+					 internal_dout(47 downto 0) <= self_mac; 
 				elsif ( unsigned(internal_addr) = 3 ) then 
 					 internal_dout(31 downto 0) <= tx_ctrl_dest_addr; 
 				elsif ( unsigned(internal_addr) = 4 ) then 
@@ -401,10 +395,9 @@ begin
 					 internal_dout(0) <= burst_mode; 
 				elsif ( unsigned(internal_addr) = 100 ) then 
 					 internal_dout(15 downto 0) <= ETH_INTERFACE_VERSION; 
-				elsif ( unsigned(internal_addr) = 10 ) then 
-					 internal_dout(7 downto 0) <= user_addr_byte; 
 				end if;
 			end if;
+
 
 			
 		end if;

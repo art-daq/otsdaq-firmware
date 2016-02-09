@@ -23,12 +23,12 @@ int main()
 	  return 0;
   }
 
-  int sz = 12;
+  int sz = 11;
   string name[] = 
     {
       "self_addr",
+      "user_addr_byte",
       "self_mac",
-      "self_port",
       "tx_ctrl_dest_addr",
       "tx_ctrl_dest_mac",
       "tx_ctrl_dest_port",
@@ -37,7 +37,6 @@ int main()
       "tx_data_dest_port",
       "burst_mode",
       "ETH_INTERFACE_VERSION",
-      "user_addr_byte",
      };
   sz = sz; //DONT FORGET TO UPDATE SIZE!!!!!!!
   unsigned int address[] = 
@@ -47,25 +46,22 @@ int main()
       6, 7, 8,
       9,
       100,
-	  10,
     };
   unsigned int fieldSz[] = 
     {
-      24, 48, 16,
+      24, 8, 48,
       32, 48, 16,
       32, 48, 16,
       1,
       16,
-	  8
     };
   unsigned int specialStrobe[] = 
     {
-      1, 1, 0,
+      1, 1, 1,
       0, 0, 0,
       0, 0, 0,
       0,
       0,
-	  1,
     };
   unsigned int readOnly[] = 
     {
@@ -74,7 +70,6 @@ int main()
       0, 0, 0,
       0,
       1,
-	  0,
     };
 
   //write ots port and then user port

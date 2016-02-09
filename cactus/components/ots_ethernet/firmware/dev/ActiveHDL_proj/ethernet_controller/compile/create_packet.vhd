@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\create_packet.vhd
--- Generated   : 02/08/16 17:09:27
+-- Generated   : 02/09/16 15:24:07
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/create_packet.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -298,14 +298,12 @@ begin
 						Sreg0 <= SendPacket_Payload_UDP_SourcePort2;
 					when SendPacket_Payload_UDP_DestPort1 =>
 						dataout <= dest_port(15 downto 8);
-						--0x07D0 => port 2000
 						Sreg0 <= SendPacket_Payload_UDP_DestPort2;
 					when SendPacket_Payload_UDP_Length1 =>
 						dataout <= UDP_length(15 downto 8);
 						Sreg0 <= SendPacket_Payload_UDP_Length2;
 					when SendPacket_Payload_UDP_DestPort2 =>
 						dataout <= dest_port(7 downto 0);
-						--0x07D0 => port 2000
 						Sreg0 <= SendPacket_Payload_UDP_Length1;
 					when SendPacket_Payload_UDP_SourcePort2 =>
 						dataout <= x"D1";

@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\top_tmp.vhd
--- Generated   : Mon Feb  8 17:09:48 2016
+-- Generated   : Tue Feb  9 15:20:22 2016
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/top_tmp.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -45,6 +45,7 @@ component ethernet_interface
        ready : in STD_LOGIC;
        reset_in : in STD_LOGIC;
        tx_data : in STD_LOGIC_VECTOR(63 downto 0);
+       user_addr : in STD_LOGIC_VECTOR(7 downto 0);
        PHY_TXD : out STD_LOGIC_VECTOR(7 downto 0);
        PHY_TX_EN : out STD_LOGIC;
        PHY_TX_ER : out STD_LOGIC;
@@ -338,6 +339,14 @@ U1 : ethernet_interface
        tx_data(61) => Dangling_Input_Signal,
        tx_data(62) => Dangling_Input_Signal,
        tx_data(63) => Dangling_Input_Signal,
+       user_addr(0) => Dangling_Input_Signal,
+       user_addr(1) => Dangling_Input_Signal,
+       user_addr(2) => Dangling_Input_Signal,
+       user_addr(3) => Dangling_Input_Signal,
+       user_addr(4) => Dangling_Input_Signal,
+       user_addr(5) => Dangling_Input_Signal,
+       user_addr(6) => Dangling_Input_Signal,
+       user_addr(7) => Dangling_Input_Signal,
        b_data_we => Dangling_Input_Signal,
        b_force_packet => Dangling_Input_Signal,
        internal_we => Dangling_Input_Signal,
