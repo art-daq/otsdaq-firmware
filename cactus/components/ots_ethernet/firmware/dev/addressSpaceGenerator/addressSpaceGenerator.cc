@@ -12,7 +12,7 @@ int main()
 
   unsigned int block = 1;
   string blockName = "Ethernet block address space";
-  int sz = 11;
+
   string specialStrobeSig = "arp_announce";
 
   string htmlFilename = "address_space.html";
@@ -23,6 +23,7 @@ int main()
 	  return 0;
   }
 
+  int sz = 12;
   string name[] = 
     {
       "self_addr",
@@ -36,22 +37,26 @@ int main()
       "tx_data_dest_port",
       "burst_mode",
       "ETH_INTERFACE_VERSION",
+      "user_addr_byte",
      };
+  sz = sz; //DONT FORGET TO UPDATE SIZE!!!!!!!
   unsigned int address[] = 
     {
       0, 1, 2,
       3, 4, 5,
       6, 7, 8,
       9,
-      10,
+      100,
+	  10,
     };
   unsigned int fieldSz[] = 
     {
-      32, 48, 16,
+      24, 48, 16,
       32, 48, 16,
       32, 48, 16,
       1,
-      16
+      16,
+	  8
     };
   unsigned int specialStrobe[] = 
     {
@@ -60,6 +65,7 @@ int main()
       0, 0, 0,
       0,
       0,
+	  1,
     };
   unsigned int readOnly[] = 
     {
@@ -68,6 +74,7 @@ int main()
       0, 0, 0,
       0,
       1,
+	  0,
     };
 
   //write ots port and then user port
@@ -119,13 +126,13 @@ int main()
 
   //WRITE Internal ===================
   printf("\telsif ( internal_we = '1' and  \t\t\t\t-- WRITE internal ===========\n");
-  printf("\t\t ots_block_sel = %d) then -- %s\n", block, blockName.c_str());
+  printf("\t\t unsigned(internal_block_sel) = %d) then -- %s\n", block, blockName.c_str());
 
   for(int i=0;i<sz;++i)
     {
       if(readOnly[i]) continue;
 
-      printf("\t\t%sif ( ots_block_addr = %d ) then \n", (i?"els":""), address[i]);
+      printf("\t\t%sif ( unsigned(internal_addr) = %d ) then \n", (i?"els":""), address[i]);
       if(fieldSz[i] > 1)
 	printf("\t\t\t %s <= internal_din(%d downto 0); \n", name[i].c_str(), fieldSz[i]-1);
       else
@@ -173,11 +180,11 @@ int main()
 
   //READ Internal interface ===================
   printf("\n\tif ( \t\t\t\t-- always READ internal ===========\n");
-  printf("\t\t ots_block_sel = %d) then -- %s\n", block, blockName.c_str());
+  printf("\t\t unsigned(internal_block_sel) = %d) then -- %s\n", block, blockName.c_str());
 
   for(int i=0;i<sz;++i)
     {
-      printf("\t\t%sif ( ots_block_addr = %d ) then \n", (i?"els":""), address[i]);
+      printf("\t\t%sif ( unsigned(internal_addr) = %d ) then \n", (i?"els":""), address[i]);
       if(fieldSz[i] > 1)
 	printf("\t\t\t internal_dout(%d downto 0) <= %s; \n", fieldSz[i]-1, name[i].c_str());
       else

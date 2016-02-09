@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\rx_ctl.vhd
--- Generated   : 02/08/16 17:09:31
+-- Generated   : 02/09/16 09:35:31
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/rx_ctl.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -121,6 +121,11 @@ begin
 			-- Set default values for outputs, signals and variables
 			data_fifo_wren_sig <= '0';
 			info_fifo_wren_sig <= '0';
+			info_fifo_wr_data(7 downto 0) <= (others=>'0');
+			com_code <= '0';
+			q_w_count <= (others=>'0');
+			q_w_counter <= (others=>'0');
+			data_fifo_wdata_sig <= (others=>'0');
 		else
 			if clken = '1' then
 				-- Set default values for outputs, signals and variables

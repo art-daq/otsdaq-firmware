@@ -47,7 +47,9 @@ entity ethernet_interface is
           internal_addr  		: in    std_logic_vector (31 downto 0); 	--SCRIPT COMMENT OUT   
 		  internal_we			: in 	std_logic;							--SCRIPT COMMENT OUT					   
           internal_din			: in    std_logic_vector (63 downto 0);		--SCRIPT COMMENT OUT					   
-          internal_dout			: out   std_logic_vector (63 downto 0); 	--SCRIPT COMMENT OUT  	 		  
+          internal_dout			: out   std_logic_vector (63 downto 0); 	--SCRIPT COMMENT OUT  
+		   
+          user_addr  			: in    std_logic_vector (7 downto 0); 		--SCRIPT COMMENT OUT  
 		  
 		  
 		  -- PHY interface signals
@@ -68,7 +70,9 @@ end ethernet_interface;
 
 architecture BEHAVIORAL of ethernet_interface is	   
 											 
-	signal b_end_packet           	: std_logic;
+	signal b_end_packet           	: std_logic;  
+	signal b_masked_we           	: std_logic;  
+	signal b_enable_sig           	: std_logic;
 	signal four_bit_mode          	: std_logic;
 	signal user_busy          		: std_logic;
 	signal user_crc_err       		: std_logic;
@@ -109,9 +113,11 @@ architecture BEHAVIORAL of ethernet_interface is
 	
 	signal arp_announce				: std_logic := '0';  	
 	signal burst_mode				: std_logic := '0';
-	signal self_addr				: std_logic_vector(31 downto 0) := x"C0A885" & ETH_CONTROLLER_DEFAULT_ADDR;	 --192.168.133.X;  
+	signal self_addr				: std_logic_vector(23 downto 0) := x"C0A885" ;	 --192.168.133.X;  
 	signal self_mac 				: std_logic_vector(47 downto 0) := x"008055EC00" & ETH_CONTROLLER_DEFAULT_ADDR;                
-	signal self_port				: std_logic_vector(15 downto 0) := x"07D1"; --2001	
+	signal self_port				: std_logic_vector(15 downto 0) := x"07D1"; --2001							                
+	signal user_addr_byte			: std_logic_vector(7 downto 0)  := ETH_CONTROLLER_DEFAULT_ADDR;	
+	signal user_addr_sig			: std_logic_vector(7 downto 0)  := ETH_CONTROLLER_DEFAULT_ADDR;	
 	signal tx_data_dest_addr 		: std_logic_vector(31 downto 0);
 	signal tx_data_dest_mac 		: std_logic_vector(47 downto 0);
 	signal tx_data_dest_port 		: std_logic_vector(15 downto 0);
@@ -127,6 +133,8 @@ architecture BEHAVIORAL of ethernet_interface is
 	-- simple -- signal internal_we					: std_logic := '0';							
     -- simple -- signal internal_din				: std_logic_vector (63 downto 0):= (others => '0'); 	  
     -- simple -- signal internal_dout				: std_logic_vector (63 downto 0):= (others => '0'); 	
+		  
+    -- simple -- signal user_addr					: std_logic_vector (7 downto 0):= (others => '0'); 
 	-------- end simple declaration section -----------	
   	 											  								     
 begin										 
@@ -144,7 +152,8 @@ begin
 				
                 reset=>reset,	
 										   	   
-                self_addr=>self_addr,
+                self_addr(31 downto 8)=>self_addr,
+				self_addr(7 downto 0)=>user_addr_sig,
                 self_mac=>self_mac,	  
                 self_port=>self_port,	  
 				arp_announce=>arp_announce,								
@@ -201,7 +210,7 @@ begin
                 MASTER_CLK=>MASTER_CLK,
                 reset=>reset,		  
                 tx_data(63 downto 0)=>ots_dout(63 downto 0),
-                b_enable=>b_enable,			 					
+                b_enable=>b_enable_sig,			 					
 				
                 user_tx_trigger=>user_tx_trigger,		 
                 user_tx_enable_out=>user_tx_enable_out,
@@ -213,9 +222,13 @@ begin
                 ram_wren=>ots_wren,								   
 				user_ready=>ots_ready,
                 rx_data(63 downto 0)=>ots_din(63 downto 0));
-   
+				
+				
+	b_masked_we <= b_data_we and b_enable_sig;
+	b_enable <= b_enable_sig;
+	
    burst_traffic_controller_blk : entity work.burst_traffic_controller
-      port map (BURST_WE=>b_data_we,
+      port map (BURST_WE=>b_masked_we,
 	  			MASTER_CLK=>MASTER_CLK,		
 	  			BURST_FORCE_PACKET=>user_b_force_packet,
                 RESET=>reset,
@@ -257,7 +270,14 @@ begin
 	
 	process(MASTER_CLK)
 	begin
-		if (rising_edge(MASTER_CLK)) then 
+		if (rising_edge(MASTER_CLK)) then 		
+			
+			if(unsigned(user_addr) = 0) then --take internally if user_addr is 0	 
+				user_addr_sig <= user_addr_byte;
+			else
+				user_addr_sig <= user_addr;		 
+			end if;								  			
+						
 			internal_eth_dout <= (others => '0');
 			internal_dout <= (others => '0');
 			arp_announce <= '0';
@@ -265,7 +285,7 @@ begin
 			if ( ots_wren = '1' and  				-- WRITE eth ===========
 				 ots_block_sel = 1) then -- Ethernet block address space
 				if ( ots_block_addr = 0 ) then 
-					 self_addr <= ots_din(31 downto 0); 
+					 self_addr <= ots_din(23 downto 0); 
 					 arp_announce <= '1';
 				elsif ( ots_block_addr = 1 ) then 
 					 self_mac <= ots_din(47 downto 0); 
@@ -286,31 +306,37 @@ begin
 					 tx_data_dest_port <= ots_din(15 downto 0); 
 				elsif ( ots_block_addr = 9 ) then 
 					 burst_mode <= ots_din(0); 
+				elsif ( ots_block_addr = 10 ) then 
+					 user_addr_byte <= ots_din(7 downto 0); 
+					 arp_announce <= '1';
 				end if;
 			elsif ( internal_we = '1' and  				-- WRITE internal ===========
-				 ots_block_sel = 1) then -- Ethernet block address space
-				if ( ots_block_addr = 0 ) then 
-					 self_addr <= internal_din(31 downto 0); 
+				 unsigned(internal_block_sel) = 1) then -- Ethernet block address space
+				if ( unsigned(internal_addr) = 0 ) then 
+					 self_addr <= internal_din(23 downto 0); 
 					 arp_announce <= '1';
-				elsif ( ots_block_addr = 1 ) then 
+				elsif ( unsigned(internal_addr) = 1 ) then 
 					 self_mac <= internal_din(47 downto 0); 
 					 arp_announce <= '1';
-				elsif ( ots_block_addr = 2 ) then 
+				elsif ( unsigned(internal_addr) = 2 ) then 
 					 self_port <= internal_din(15 downto 0); 
-				elsif ( ots_block_addr = 3 ) then 
+				elsif ( unsigned(internal_addr) = 3 ) then 
 					 tx_ctrl_dest_addr <= internal_din(31 downto 0); 
-				elsif ( ots_block_addr = 4 ) then 
+				elsif ( unsigned(internal_addr) = 4 ) then 
 					 tx_ctrl_dest_mac <= internal_din(47 downto 0); 
-				elsif ( ots_block_addr = 5 ) then 
+				elsif ( unsigned(internal_addr) = 5 ) then 
 					 tx_ctrl_dest_port <= internal_din(15 downto 0); 
-				elsif ( ots_block_addr = 6 ) then 
+				elsif ( unsigned(internal_addr) = 6 ) then 
 					 tx_data_dest_addr <= internal_din(31 downto 0); 
-				elsif ( ots_block_addr = 7 ) then 
+				elsif ( unsigned(internal_addr) = 7 ) then 
 					 tx_data_dest_mac <= internal_din(47 downto 0); 
-				elsif ( ots_block_addr = 8 ) then 
+				elsif ( unsigned(internal_addr) = 8 ) then 
 					 tx_data_dest_port <= internal_din(15 downto 0); 
-				elsif ( ots_block_addr = 9 ) then 
+				elsif ( unsigned(internal_addr) = 9 ) then 
 					 burst_mode <= internal_din(0); 
+				elsif ( unsigned(internal_addr) = 10 ) then 
+					 user_addr_byte <= internal_din(7 downto 0); 
+					 arp_announce <= '1';
 				end if;
 			elsif ( user_rx_src_capture_for_ctrl = '1' ) then  				-- SPECIAL WRITE for source capture for ctrl ===========
 				 tx_ctrl_dest_addr <= user_rx_src_addr;
@@ -325,7 +351,7 @@ begin
 			if ( ots_rden = '1' and  				-- READ eth ===========
 				 ots_block_sel = 1) then -- Ethernet block address space
 				if ( ots_block_addr = 0 ) then 
-					 internal_eth_dout(31 downto 0) <= self_addr; 
+					 internal_eth_dout(23 downto 0) <= self_addr; 
 				elsif ( ots_block_addr = 1 ) then 
 					 internal_eth_dout(47 downto 0) <= self_mac; 
 				elsif ( ots_block_addr = 2 ) then 
@@ -344,39 +370,42 @@ begin
 					 internal_eth_dout(15 downto 0) <= tx_data_dest_port; 
 				elsif ( ots_block_addr = 9 ) then 
 					 internal_eth_dout(0) <= burst_mode; 
-				elsif ( ots_block_addr = 10 ) then 
+				elsif ( ots_block_addr = 100 ) then 
 					 internal_eth_dout(15 downto 0) <= ETH_INTERFACE_VERSION; 
+				elsif ( ots_block_addr = 10 ) then 
+					 internal_eth_dout(7 downto 0) <= user_addr_byte; 
 				end if;
 			end if;
 		
 			if ( 				-- always READ internal ===========
-				 ots_block_sel = 1) then -- Ethernet block address space
-				if ( ots_block_addr = 0 ) then 
-					 internal_dout(31 downto 0) <= self_addr; 
-				elsif ( ots_block_addr = 1 ) then 
+				 unsigned(internal_block_sel) = 1) then -- Ethernet block address space
+				if ( unsigned(internal_addr) = 0 ) then 
+					 internal_dout(23 downto 0) <= self_addr; 
+				elsif ( unsigned(internal_addr) = 1 ) then 
 					 internal_dout(47 downto 0) <= self_mac; 
-				elsif ( ots_block_addr = 2 ) then 
+				elsif ( unsigned(internal_addr) = 2 ) then 
 					 internal_dout(15 downto 0) <= self_port; 
-				elsif ( ots_block_addr = 3 ) then 
+				elsif ( unsigned(internal_addr) = 3 ) then 
 					 internal_dout(31 downto 0) <= tx_ctrl_dest_addr; 
-				elsif ( ots_block_addr = 4 ) then 
+				elsif ( unsigned(internal_addr) = 4 ) then 
 					 internal_dout(47 downto 0) <= tx_ctrl_dest_mac; 
-				elsif ( ots_block_addr = 5 ) then 
+				elsif ( unsigned(internal_addr) = 5 ) then 
 					 internal_dout(15 downto 0) <= tx_ctrl_dest_port; 
-				elsif ( ots_block_addr = 6 ) then 
+				elsif ( unsigned(internal_addr) = 6 ) then 
 					 internal_dout(31 downto 0) <= tx_data_dest_addr; 
-				elsif ( ots_block_addr = 7 ) then 
+				elsif ( unsigned(internal_addr) = 7 ) then 
 					 internal_dout(47 downto 0) <= tx_data_dest_mac; 
-				elsif ( ots_block_addr = 8 ) then 
+				elsif ( unsigned(internal_addr) = 8 ) then 
 					 internal_dout(15 downto 0) <= tx_data_dest_port; 
-				elsif ( ots_block_addr = 9 ) then 
+				elsif ( unsigned(internal_addr) = 9 ) then 
 					 internal_dout(0) <= burst_mode; 
-				elsif ( ots_block_addr = 10 ) then 
+				elsif ( unsigned(internal_addr) = 100 ) then 
 					 internal_dout(15 downto 0) <= ETH_INTERFACE_VERSION; 
+				elsif ( unsigned(internal_addr) = 10 ) then 
+					 internal_dout(7 downto 0) <= user_addr_byte; 
 				end if;
 			end if;
 
-			
 			
 		end if;
 	end process;
