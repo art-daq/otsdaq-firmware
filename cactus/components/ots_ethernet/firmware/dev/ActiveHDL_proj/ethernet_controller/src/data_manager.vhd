@@ -92,7 +92,7 @@ architecture BEHAVIORAL of data_manager is
    signal tx_ctrl_port_fifo_dout	        	: std_logic_vector (15 downto 0); 	
    signal tx_ctrl_mac_fifo_dout	        		: std_logic_vector (47 downto 0); 
       
-   signal tx_ctrl_fifo_din                     	: std_logic_vector (63 downto 0);
+ 
    signal tx_ctrl_fifo_empty                   	: std_logic;
    signal tx_ctrl_fifo_full                    	: std_logic;
    signal tx_ctrl_fifo_rden                    	: std_logic;
@@ -258,7 +258,7 @@ begin
    	  generic map (width => 64,depth => 256,addr => 8)					--SCRIPT COMMENT OUT    
       port map (WCLOCK=>MASTER_CLK,										--SCRIPT COMMENT OUT   
 	 			RCLOCK=>MASTER_CLK,										--SCRIPT COMMENT OUT   
-                DATA(63 downto 0)=>tx_ctrl_fifo_din(63 downto 0),		--SCRIPT COMMENT OUT   
+                DATA(63 downto 0)=>tx_data(63 downto 0),				--SCRIPT COMMENT OUT   
                 RE=>tx_ctrl_fifo_read_enable,							--SCRIPT COMMENT OUT   
                 RESET=>tx_ctrl_fifo_reset_sig,							--SCRIPT COMMENT OUT   
                 WE=>tx_ctrl_fifo_wr_en,									--SCRIPT COMMENT OUT   
@@ -321,14 +321,7 @@ begin
 		
 													
 			
-	-- SCRIPT COMMENT OUT -- 	-- latch tx_data once for timing to be right for tx_wren from RAM_COMM_DEC
-	process(MASTER_CLK)
-	begin
-		if (rising_edge(MASTER_CLK)) then
-			tx_ctrl_fifo_din <= tx_data;
-		end if;
-	end process;
-
+	
 		
 	tx_data_fifo_din <= b_data;		  							
 	rx_fifo_reset_sig <= rx_fifo_reset or reset;
@@ -399,7 +392,7 @@ begin
 --      	
 --      	TX_CTRL_FIFO : DATA_FIFO_0
 --      	   port map (clk=>MASTER_CLK,
---      	             din(63 downto 0)=>tx_ctrl_fifo_din(63 downto 0),
+--      	             din(63 downto 0)=>tx_data(63 downto 0),
 --      	             rd_en=>tx_ctrl_fifo_read_enable,
 --      	             srst=>tx_ctrl_fifo_reset_sig,
 --      	             wr_en=>tx_ctrl_fifo_wr_en,

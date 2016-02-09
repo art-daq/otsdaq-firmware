@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd
--- Generated   : 02/09/16 11:32:42
+-- Generated   : 02/09/16 14:33:25
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -194,8 +194,8 @@ match_proc : process(clk)
 begin
 if rising_edge(clk) then
 	addrs_match_sig <= '0';
-	if (udp_dest_ip = self_addrs ) then--and
---(self_port = 0 or udp_dest_port = self_port)) then
+	if (udp_dest_ip = self_addrs and
+		(self_port = 0 or udp_dest_port = self_port)) then
 --(x"C0A885" & addrs) then --this UDP packet was intended for this firmware.
 -- Removed feature: -- or udp_dest_ip = x"C0A885FE" then --0xFE is CAPTAN broadcast
 -- Note: this is not considering the mac address (shouldn't matter if ARP works?)
