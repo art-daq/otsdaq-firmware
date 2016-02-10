@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\ram_comm_dec.vhd
--- Generated   : 02/08/16 17:09:29
+-- Generated   : 02/10/16 11:42:07
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ram_comm_dec.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -59,6 +59,7 @@ signal crc_err: STD_LOGIC;
 signal first_write_qword: STD_LOGIC;
 signal mem_loc_count_reg: UNSIGNED (7 downto 0);
 signal no_addrs_incr: STD_LOGIC;
+signal no_ret_to_sender: STD_LOGIC;
 signal q_w_count_reg: UNSIGNED (7 downto 0);
 signal ram_addr_sig: UNSIGNED (63 downto 0);
 signal ram_rden_sig: STD_LOGIC;
@@ -210,6 +211,8 @@ begin
 					-- get the crc error indicator
 					no_addrs_incr <= rx_info_fifo_rd_data(3);
 					-- get the no addr increment flag
+					no_ret_to_sender <= rx_info_fifo_rd_data(1);
+					-- get the no return to sender flag
 					mem_loc_count_reg <= unsigned(rx_info_fifo_rd_data(15 downto 8));
 					tx_info_fifo_wr_data(7) <= rx_info_fifo_rd_data(7);
 					tx_info_fifo_wr_data(6) <= crc_err_flag;
@@ -272,16 +275,10 @@ begin
 					if mem_loc_count_reg = 1 and user_ready = '1' then	-- done with read
 						Sreg0 <= read_com_S15;
 						tx_info_fifo_wr_data(15 downto 8) <= std_logic_vector(q_w_count_reg);
-						tx_info_fifo_wr_data(2 downto 0) <= (others => '0');
+						tx_info_fifo_wr_data(1) <= no_ret_to_sender;
+						tx_info_fifo_wr_data(2) <= '0';
+						tx_info_fifo_wr_data(0) <= '0';
 						tx_info_fifo_wren <= '1';
-						-- definition of bits written to tx_info_fifo
-						-- bits 15-8: quad word count (read data)
-						-- bit 7: crc err detected in received packet
-						-- bit 6: rx info fifo has been full since last reset
-						-- bit 5: rx data fifo has been full since last reset
-						-- bit 4: err detected in protocol since last reset
-						-- bits 3-0: op code
-						-- (bit 3 is no address increment, bit 2 is ack, 1:0 is command)
 					end if;
 				when read_com_S14 =>
 					Sreg0 <= read_com_S18;
@@ -296,16 +293,10 @@ begin
 						--err in protocol!
 						Rx_FIFO_Reset <= '1';
 						tx_info_fifo_wr_data(15 downto 8) <= std_logic_vector(q_w_count_reg);
-						tx_info_fifo_wr_data(2 downto 0) <= (others => '0');
+						tx_info_fifo_wr_data(1) <= no_ret_to_sender;
+						tx_info_fifo_wr_data(2) <= '0';
+						tx_info_fifo_wr_data(0) <= '0';
 						tx_info_fifo_wren <= '1';
-						-- definition of bits written to tx_info_fifo
-						-- bits 15-8: quad word count (read data)
-						-- bit 7: crc err detected in received packet
-						-- bit 6: rx info fifo has been full since last reset
-						-- bit 5: rx data fifo has been full since last reset
-						-- bit 4: err detected in protocol since last reset
-						-- bits 3-0: op code
-						-- (bit 3 is no address increment, bit 2 is ack, 1:0 is command)
 					else
 						Sreg0 <= read_com_S14;
 						-- there is at least one quad word in the data fifo
