@@ -27,8 +27,8 @@ parser.add_argument('-s','--simple',nargs='?',const='YES',
                     'some inputs/outputs from the interface that are less commonly used.')
 parser.add_argument('-i','--ip',type=int,default=2,
                     help='IP address low-byte default for 192.168.133.##')
-parser.add_argument('-t','--port',type=int,default=2001,
-                    help='UDP 16-bit port for the interface')
+#parser.add_argument('-t','--port',type=int,default=2001,
+#                    help='UDP 16-bit port for the interface')
 
 args = parser.parse_args()
 
@@ -182,17 +182,18 @@ os.system("sed -i s/ETH_CONTROLLER_DEFAULT_ADDR.*\;/" + \
 print "Set Default IP Address: " + str(ip)
 print
 
+#NOTE: port currently not in use!
 #set default PORT address
-port = 2001;
-if(args.port > -1 and args.port < 65536):
-    port = args.port
-os.system("sed -i s/ETH_CONTROLLER_DEFAULT_PORT.*\;/" + \
-              "ETH_CONTROLLER_DEFAULT_PORT\:\ std_logic_vector\(15\ downto\ 0\)\ \:\=\ " + \
-              "std_logic_vector\(to_unsigned\("+str(port)+",16\)\)\;/g " + dest + \
-              "/ethernet_controller/params_package.vhd")
-
-print "Set Default Port: " + str(port)
-print
+#port = 2001;
+#if(args.port > -1 and args.port < 65536):
+#    port = args.port
+#os.system("sed -i s/ETH_CONTROLLER_DEFAULT_PORT.*\;/" + \
+#              "ETH_CONTROLLER_DEFAULT_PORT\:\ std_logic_vector\(15\ downto\ 0\)\ \:\=\ " + \
+#              "std_logic_vector\(to_unsigned\("+str(port)+",16\)\)\;/g " + dest + \
+#              "/ethernet_controller/params_package.vhd")
+#
+#print "Set Default Port: " + str(port)
+#print
 
 
 print
