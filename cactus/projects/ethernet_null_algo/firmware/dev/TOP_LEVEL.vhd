@@ -78,7 +78,7 @@ architecture BEHAVIORAL of top is
     signal psi_status               : std_logic_vector (63 downto 0);
     signal reset                    : std_logic;
     signal reset_n                  : std_logic;
-    signal rx_addr                  : std_logic_vector (63 downto 0);
+    signal rx_addr                  : std_logic_vector (31 downto 0);
     signal rx_data                  : std_logic_vector (63 downto 0);
     signal rx_wren                  : std_logic;
     signal secondary_clk, secondary_clk_sig       : std_logic;
@@ -175,7 +175,7 @@ begin
                 PHY_TXD(7 downto 0)=>PHY_TXD_sig(7 downto 0),
                 PHY_TX_EN=>PHY_TXEN_sig,
                 PHY_TX_ER=>PHY_TXER_sig,
-                rx_addr(63 downto 0)=>rx_addr(63 downto 0),
+                rx_addr(31 downto 0)=>rx_addr(31 downto 0),
                 rx_data(63 downto 0)=>rx_data(63 downto 0),
                 rx_wren=>rx_wren);
                      

@@ -8,36 +8,34 @@ use UNISIM.Vcomponents.ALL;
 
 entity top is
    port ( 
-          PHY_RXCLK      : in    std_logic; 
-          PHY_RXCTL_RXDV   : in    std_logic; 
-          PHY_RXD0       : in    std_logic; 
-          PHY_RXD1       : in    std_logic; 
-          PHY_RXD2       : in    std_logic; 
-          PHY_RXD3       : in    std_logic; 
-                    PHY_RXD4       : in    std_logic; 
-                    PHY_RXD5       : in    std_logic; 
-                    PHY_RXD6       : in    std_logic; 
-                    PHY_RXD7       : in    std_logic; 
-						  
-                    --PHY_RXER       : in    std_logic; 
-                    --USER_CLOCK     : in    std_logic; 
+		PHY_RXCLK      : in    std_logic; 
+		PHY_RXCTL_RXDV : in    std_logic; 
+		PHY_RXD0       : in    std_logic; 
+		PHY_RXD1       : in    std_logic; 
+		PHY_RXD2       : in    std_logic; 
+		PHY_RXD3       : in    std_logic; 
+		PHY_RXD4       : in    std_logic; 
+		PHY_RXD5       : in    std_logic; 
+		PHY_RXD6       : in    std_logic; 
+		PHY_RXD7       : in    std_logic; 
+		  
+		--PHY_RXER     : in    std_logic; 
+		--USER_CLOCK   : in    std_logic; 
           
-			 PHY_RESET      : out    std_logic; 
-          
-          PHY_TXCTL_TXEN   : out   std_logic; 
-          PHY_TXD0       : out   std_logic; 
-          PHY_TXD1       : out   std_logic; 
-          PHY_TXD2       : out   std_logic; 
-          PHY_TXD3       : out   std_logic;
-                    PHY_TXD4       : out   std_logic; 
-                    PHY_TXD5       : out   std_logic; 
-                    PHY_TXD6       : out   std_logic; 
-                    PHY_TXD7       : out   std_logic; 
-                    PHY_TXER       : out   std_logic;
+		PHY_RESET      : out    std_logic; 
+		
+		PHY_TXCTL_TXEN : out   std_logic; 
+		PHY_TXD0       : out   std_logic; 
+		PHY_TXD1       : out   std_logic; 
+		PHY_TXD2       : out   std_logic; 
+		PHY_TXD3       : out   std_logic;
+		PHY_TXD4       : out   std_logic; 
+		PHY_TXD5       : out   std_logic; 
+		PHY_TXD6       : out   std_logic; 
+		PHY_TXD7       : out   std_logic; 
+		PHY_TXER       : out   std_logic;
 						  
-						  
-						  
-          PHY_TXC_GTXCLK : out   std_logic
+		PHY_TXC_GTXCLK : out   std_logic
           
               
           ); 
@@ -78,7 +76,7 @@ architecture BEHAVIORAL of top is
     signal psi_status               : std_logic_vector (63 downto 0);
     signal reset                    : std_logic;
     signal reset_n                  : std_logic;
-    signal rx_addr                  : std_logic_vector (63 downto 0);
+    signal rx_addr                  : std_logic_vector (31 downto 0);
     signal rx_data                  : std_logic_vector (63 downto 0);
     signal rx_wren                  : std_logic;
     signal secondary_clk, secondary_clk_sig       : std_logic;
@@ -150,38 +148,88 @@ begin
    
 	gnd <= '0';
     
-   reset_n <= not reset;
+	reset_n <= not reset;
 	reset_btn <= '0';
-   
---	reset_ibuf : IBUF       -- SW3 on board is active high
- --     port map (I=>GPIO_SW_W,  O=>reset_btn);
---   user_led1: OBUF   -- LED display of RESET
---      port map (I=>reset,    O=>PZ_ULED_1);        
+
+	--	reset_ibuf : IBUF       -- SW3 on board is active high
+	--     port map (I=>GPIO_SW_W,  O=>reset_btn);
+	--   user_led1: OBUF   -- LED display of RESET
+	--      port map (I=>reset,    O=>PZ_ULED_1);        
       
    
-   -- start simple OEI
-  eth_interface : entity work.Ethernet_Interface
-      port map (b_data(63 downto 0)=>b_data(63 downto 0),
-                b_data_we=>b_data_we,
-                PHY_RXD(7 downto 0)=>GMII_RXD_0_sig(7 downto 0),
-                PHY_RX_DV=>GMII_RX_DV_0_sig,
-                PHY_RX_ER=>GMII_RX_ER_0_sig,
-                MASTER_CLK=>MASTER_CLK,                
-                reset_in=>reset_btn,
-                reset_out => reset,
-                tx_data(63 downto 0)=>tx_data(63 downto 0),
-                b_enable=>open,
-                TX_CLK=>GTX_CLK_0_sig,
-                PHY_TXD(7 downto 0)=>PHY_TXD_sig(7 downto 0),
-                PHY_TX_EN=>PHY_TXEN_sig,
-                PHY_TX_ER=>PHY_TXER_sig,
-                rx_addr(63 downto 0)=>rx_addr(63 downto 0),
-                rx_data(63 downto 0)=>rx_data(63 downto 0),
-                rx_wren=>rx_wren);
-                     
-  -- end simple OEI
-  
+	-- start simple OEI
+	eth_interface : entity work.Ethernet_Interface
+	  port map (b_data(63 downto 0)=>b_data(63 downto 0),
+				b_data_we=>b_data_we,
+				PHY_RXD(7 downto 0)=>GMII_RXD_0_sig(7 downto 0),
+				PHY_RX_DV=>GMII_RX_DV_0_sig,
+				PHY_RX_ER=>GMII_RX_ER_0_sig,
+				MASTER_CLK=>MASTER_CLK,                
+				reset_in=>reset_btn,
+				reset_out => reset,
+				tx_data(63 downto 0)=>tx_data(63 downto 0),
+				b_enable=>open,
+				TX_CLK=>GTX_CLK_0_sig,
+				PHY_TXD(7 downto 0)=>PHY_TXD_sig(7 downto 0),
+				PHY_TX_EN=>PHY_TXEN_sig,
+				PHY_TX_ER=>PHY_TXER_sig,
+				rx_addr(31 downto 0)=>rx_addr(31 downto 0),
+				rx_data(63 downto 0)=>rx_data(63 downto 0),
+				rx_wren=>rx_wren);
+					 
+	-- end simple OEI
+
      
+
+
+  
+	-- start data gen block
+	dataGenGen : for i in 0 to 0 generate
+		signal reg_cnt : unsigned(63 downto 0) := (others => '0'); -- 1s is infinite
+		signal reg_rate : unsigned(63 downto 0) := (others => '0');  -- delay between 8 clock periods
+		
+		signal cnt : unsigned(2 downto 0) := (others => '0');
+		signal delay_cnt : unsigned(63 downto 0) := (others => '0');
+		signal data_cnt : unsigned(31 downto 0) := (others => '0');
+	begin
+		process(MASTER_CLK)
+		begin
+			if (rising_edge(MASTER_CLK)) then
+				
+				b_data_we <= '0';
+				
+				-- register map
+				if (rx_wren = '1') then 	
+					if (unsigned(rx_addr) = x"1001") then --reg_cnt
+						reg_cnt <= unsigned(rx_data); 
+					elsif (unsigned(rx_addr) = x"1002") then --reg_rate
+						reg_rate <= unsigned(rx_data); 						
+					end if;
+					delay_cnt <= (others => '0'); --reset delay and execute burst write
+				end if;
+				
+				cnt <= cnt + 1; 
+				if (cnt = 0) then	--count groups of 8 with wrap around
+					delay_cnt <= delay_cnt + 1;
+					
+					if (delay_cnt = reg_rate and reg_cnt /= 0) then
+						delay_cnt <= (others => '0'); --reset delay and execute burst write
+						b_data(63 downto 32) <= std_logic_vector(data_cnt);
+						b_data(31 downto 0) <= tx_data(31 downto 0); -- last saved write
+						b_data_we <= '1';
+						data_cnt <= data_cnt + 1;
+						
+						if ( and_reduce(std_logic_vector(reg_cnt)) /= '1' ) then --count down pulses, if not infinite
+							reg_cnt <= reg_cnt - 1;
+						end if;
+					end if;
+				end if;				
+			end if;			
+		
+		end process;	
+	end generate;	
+	
+	-- end data gen block
    
    
    makeSlowClock : for i in 0 to 0 generate
@@ -215,8 +263,7 @@ begin
     -----------------------
     ----------------------- IBUF 's 
     
-     IBUF_PHY_RXDV : IBUF
-      port map (I=>PHY_RXCTL_RXDV,  O=>GMII_RX_DV_0_sig);
+     IBUF_PHY_RXDV : IBUF       port map (I=>PHY_RXCTL_RXDV,  O=>GMII_RX_DV_0_sig);
       
      --GMII_RXD_0_sig(7 downto 4) <= (others => '0'); -- for RGMII or SGMII
      
@@ -231,25 +278,20 @@ begin
      
      GMII_RX_ER_0_sig <= '0';
      
-     IBUF_PHY_RXCLK : IBUFG
-        port map (I=>PHY_RXCLK,  O=>MASTER_CLK);
+     IBUF_PHY_RXCLK : IBUFG      port map (I=>PHY_RXCLK,  O=>MASTER_CLK);
         
     -----------------------
     ----------------------- OBUF 's 
     	 
-    OBUF_PHY_RESET : OBUF
-       port map (I=>'1',  O=>PHY_RESET); --hold not reset
+    OBUF_PHY_RESET : OBUF	   port map (I=>'1',  O=>PHY_RESET); --hold not reset
 		 
-    OBUF_PHY_TXER : OBUF
-       port map (I=>PHY_TXER_sig,  O=>PHY_TXER);
+    OBUF_PHY_TXER : OBUF       port map (I=>PHY_TXER_sig,  O=>PHY_TXER);
 	 
-    OBUF_PHY_TXEN : OBUF
-       port map (I=>PHY_TXEN_sig,  O=>PHY_TXCTL_TXEN);
+    OBUF_PHY_TXEN : OBUF       port map (I=>PHY_TXEN_sig,  O=>PHY_TXCTL_TXEN);
     
-    OBUF_PHY_TXCLK : OBUF
-       port map (I=>GTX_CLK_0_sig, O=>PHY_TXC_GTXCLK);
+    OBUF_PHY_TXCLK : OBUF      port map (I=>GTX_CLK_0_sig, O=>PHY_TXC_GTXCLK);
     
-    OBUF_PHY_TXD7 : OBUF   	 port map (I=>PHY_TXD_sig(7), O=>PHY_TXD7);    
+    OBUF_PHY_TXD7 : OBUF   	   port map (I=>PHY_TXD_sig(7), O=>PHY_TXD7);    
     OBUF_PHY_TXD6 : OBUF       port map (I=>PHY_TXD_sig(6), O=>PHY_TXD6);    
     OBUF_PHY_TXD5 : OBUF       port map (I=>PHY_TXD_sig(5), O=>PHY_TXD5);    
     OBUF_PHY_TXD4 : OBUF       port map (I=>PHY_TXD_sig(4), O=>PHY_TXD4);    

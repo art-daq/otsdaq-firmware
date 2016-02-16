@@ -20,6 +20,7 @@ parser = argparse.ArgumentParser(description='Setup and Install for Off-the-Shel
 parser.add_argument('-d','--dest',help='Destination path')
 parser.add_argument('-p','--phy',default='MII_100_1000',
                     help='Phy solution (e.g. XILINX_7SERIES_RGMII or ' +\
+						'XILINX_7SERIES_MII or ' +\
                         'MII_100_1000 or LOGIC_RGMII) default is ' +\
                         'MII_100_1000')
 parser.add_argument('-s','--simple',nargs='?',const='YES',
@@ -151,6 +152,24 @@ phy = "MII_100_1000" #default phy
 if (args.phy):     #if option used, then use args.phy
     phy = args.phy
 
+
+#uncomment dependecy coregen
+os.system("sed -i s/.*\?toolset/\?toolset/g " + dest + \
+            "/../cfg/ots_ethernet.dep")
+if (phy != "XILINX_7SERIES_MII" or 
+	phy != "XILINX_7SERIES_RGMII"): #insert jamieson fifo
+	os.system("cp " + src + "/data_manager_xilinx_fifo.vhd " + \
+			dest + \
+			"/ethernet_controller/data_manager.vhd")
+	os.system("cp " + src + \
+	              "/fifo.vhd " + \
+	               dest + "/ethernet_controller/")
+	os.system("sed -i s/.*\?toolset/\#\?toolset/g " + dest + \
+			   "/../cfg/ots_ethernet.dep")
+
+if (phy == "XILINX_7SERIES_MII"):
+	phy = "MII_100_1000" #for xmii handler choice
+	
 if (phy != "XILINX_7SERIES_RGMII" and
     phy != "MII_100_1000" and
     phy != "LOGIC_RGMII"):
