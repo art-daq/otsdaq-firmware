@@ -19,17 +19,21 @@ parser = argparse.ArgumentParser(description='Setup and Install for Off-the-Shel
 
 parser.add_argument('-d','--dest',help='Destination path')
 parser.add_argument('-p','--phy',default='MII_100_1000',
-                    help='Phy solution (e.g. XILINX_7SERIES_RGMII or ' +\
+		choices=['XILINX_7SERIES_RGMII','XILINX_7SERIES_MII',	
+                 'MII_100_1000','LOGIC_RGMII'],
+				 help='Phy solution (e.g. XILINX_7SERIES_RGMII or ' +\
 						'XILINX_7SERIES_MII or ' +\
                         'MII_100_1000 or LOGIC_RGMII) default is ' +\
-                        'MII_100_1000')
+                        'MII_100_1000', metavar='')
 parser.add_argument('-s','--simple',nargs='?',const='YES',
                     help='Select simplified interface. This removes ' +\
                     'some inputs/outputs from the interface that are less commonly used.')
 parser.add_argument('-i','--ip',type=int,default=2,
-                    help='IP address low-byte default for 192.168.133.##')
+		choices=range(1,254),
+                    help='IP address low-byte default for 192.168.133.##', metavar='')
 #parser.add_argument('-t','--port',type=int,default=2001,
-#                    help='UDP 16-bit port for the interface')
+#		choices=range(0,65535),					
+#                    help='UDP 16-bit port for the interface', metavar='')
 
 args = parser.parse_args()
 
@@ -214,6 +218,11 @@ print
 #print "Set Default Port: " + str(port)
 #print
 
+print "Increase reset size for real life situations to 100 clocks"
+print
+
+os.system("sed -i s/cnt.*\<.*then/cnt\ \<\ 100\ then/g " + dest + \
+		"/ethernet_controller/reset_mgr.vhd")
 
 print
 print 'Moving files...'
@@ -241,6 +250,11 @@ os.system("mv " + dest + \
               "/ethernet_controller/ethernet_interface.vhd " + dest + "/")
 os.system("mv " + dest + \
               "/ethernet_controller/burst_traffic_controller.vhd " + dest + "/")
+os.system("mv " + dest + \
+		"/ethernet_controller/reset_mgr.vhd " + dest + "/")
+
+		
+
 
 print
 print 'Removing files for tidiness...'

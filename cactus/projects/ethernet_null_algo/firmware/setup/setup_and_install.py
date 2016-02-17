@@ -85,7 +85,7 @@ print  'Board selected as: ' + args.board
     
 os.system("sed -i s/boards.\*/boards\\\/"+args.board+"/g " + scriptDir + "/../cfg/top.dep")
 
-print  'PHY interface selected as: ' + str(args.phy) #1, 4, 8
+print  'PHY interface pin count selected as: ' + str(args.phy) #1, 4, 8
 if (args.phy < 1):
 	args.phy = 1
 if (args.phy > 8):
@@ -119,9 +119,11 @@ else:
 
 #handle reset arg flag
 if (args.reset):	
+	print  'PHY interface reset pin added.'
 	os.system("sed -i s/.\*PHY\_RESET.\*\:\ out/\\\tPHY\_RESET\\\t\:\ out/g " + scriptDir + "/../hdl/TOP_LEVEL.vhd")
 	os.system("sed -i s/.\*OBUF\_PHY\_RESET/\\\tOBUF\_PHY\_RESET/g " + scriptDir + "/../hdl/TOP_LEVEL.vhd")
 else:
+	print  'PHY interface reset pin removed.'
 	os.system("sed -i s/.\*PHY\_RESET.\*\:\ out/--\\\tPHY\_RESET\\\t\:\ out/g " + scriptDir + "/../hdl/TOP_LEVEL.vhd")
 	os.system("sed -i s/.\*OBUF\_PHY\_RESET/--\\\tOBUF\_PHY\_RESET/g " + scriptDir + "/../hdl/TOP_LEVEL.vhd")
 

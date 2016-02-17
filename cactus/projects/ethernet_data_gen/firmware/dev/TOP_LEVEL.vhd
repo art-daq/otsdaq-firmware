@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.ALL;
+use ieee.std_logic_misc.ALL;
 
 library UNISIM;
 use UNISIM.Vcomponents.ALL;
@@ -91,6 +92,7 @@ architecture BEHAVIORAL of top is
     attribute mark_debug of PHY_TXD_sig : signal is "true";
     attribute mark_debug of PHY_TXEN_sig : signal is "true";
     attribute mark_debug of rx_wren : signal is "true";
+    attribute mark_debug of CLK15NS : signal is "true";
     
         --    attribute mark_debug of GMII_RXD_0_sig : signal is "true";
         --    attribute mark_debug of GMII_RX_DV_0_sig : signal is "true";
