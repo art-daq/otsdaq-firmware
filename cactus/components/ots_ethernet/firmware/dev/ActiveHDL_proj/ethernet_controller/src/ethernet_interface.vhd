@@ -113,8 +113,8 @@ architecture BEHAVIORAL of ethernet_interface is
 	
 	signal arp_announce				: std_logic := '0';  	
 	signal burst_mode				: std_logic := '0';
-	signal self_addr				: std_logic_vector(23 downto 0) := x"C0A885" ;	 --192.168.133.X;  
-	signal self_mac 				: std_logic_vector(47 downto 0) := x"008055EC00" & ETH_CONTROLLER_DEFAULT_ADDR;                
+	signal self_addr				: std_logic_vector(23 downto 0) := x"C0A885";	 --192.168.133.X;  
+	signal self_mac 				: std_logic_vector(39 downto 0) := x"008055EC00";                
 	signal self_port				: std_logic_vector(15 downto 0) := ETH_CONTROLLER_DEFAULT_PORT;							                
 	signal user_addr_byte			: std_logic_vector(7 downto 0)  := ETH_CONTROLLER_DEFAULT_ADDR;	
 	signal user_addr_sig			: std_logic_vector(7 downto 0)  := ETH_CONTROLLER_DEFAULT_ADDR;	
@@ -154,7 +154,8 @@ begin
 										   	   
                 self_addr(31 downto 8)=>self_addr,
 				self_addr(7 downto 0)=>user_addr_sig,
-                self_mac=>self_mac,	  
+                self_mac(47 downto 8)=>self_mac,	  				  
+                self_mac(7 downto 0)=>user_addr_sig,	  
                 self_port=>self_port,	  
 				arp_announce=>arp_announce,								
 				
@@ -276,8 +277,8 @@ begin
 				user_addr_sig <= user_addr_byte;
 			else
 				user_addr_sig <= user_addr;		 
-			end if;								  			
-								
+			end if;				
+			
 			internal_eth_dout <= (others => '0');
 			internal_dout <= (others => '0');
 			arp_announce <= '0';
@@ -291,7 +292,7 @@ begin
 					 user_addr_byte <= ots_din(7 downto 0); 
 					 arp_announce <= '1';
 				elsif ( ots_block_addr = 2 ) then 
-					 self_mac <= ots_din(47 downto 0); 
+					 self_mac <= ots_din(39 downto 0); 
 					 arp_announce <= '1';
 				elsif ( ots_block_addr = 3 ) then 
 					 tx_ctrl_dest_addr <= ots_din(31 downto 0); 
@@ -317,7 +318,7 @@ begin
 					 user_addr_byte <= internal_din(7 downto 0); 
 					 arp_announce <= '1';
 				elsif ( unsigned(internal_addr) = 2 ) then 
-					 self_mac <= internal_din(47 downto 0); 
+					 self_mac <= internal_din(39 downto 0); 
 					 arp_announce <= '1';
 				elsif ( unsigned(internal_addr) = 3 ) then 
 					 tx_ctrl_dest_addr <= internal_din(31 downto 0); 
@@ -351,7 +352,7 @@ begin
 				elsif ( ots_block_addr = 1 ) then 
 					 internal_eth_dout(7 downto 0) <= user_addr_byte; 
 				elsif ( ots_block_addr = 2 ) then 
-					 internal_eth_dout(47 downto 0) <= self_mac; 
+					 internal_eth_dout(39 downto 0) <= self_mac; 
 				elsif ( ots_block_addr = 3 ) then 
 					 internal_eth_dout(31 downto 0) <= tx_ctrl_dest_addr; 
 				elsif ( ots_block_addr = 4 ) then 
@@ -378,7 +379,7 @@ begin
 				elsif ( unsigned(internal_addr) = 1 ) then 
 					 internal_dout(7 downto 0) <= user_addr_byte; 
 				elsif ( unsigned(internal_addr) = 2 ) then 
-					 internal_dout(47 downto 0) <= self_mac; 
+					 internal_dout(39 downto 0) <= self_mac; 
 				elsif ( unsigned(internal_addr) = 3 ) then 
 					 internal_dout(31 downto 0) <= tx_ctrl_dest_addr; 
 				elsif ( unsigned(internal_addr) = 4 ) then 

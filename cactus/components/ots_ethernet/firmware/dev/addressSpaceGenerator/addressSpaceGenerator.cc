@@ -39,6 +39,21 @@ int main()
       "ETH_INTERFACE_VERSION",
      };
   sz = sz; //DONT FORGET TO UPDATE SIZE!!!!!!!
+  string desc[] =
+    {
+      "Upper 24-bits of self IP Address",
+      "lower 7-bits of self IP and MAC Address",
+      "Upper 40-bits of self MAC Address",
+      "Destination IP for Normal mode transmission",
+      "Destination MAC for Normal mode transmission",
+      "Destination PORT for Normal mode transmission",
+      "Destination IP for Burst mode transmission",
+      "Destination MAC for Burst mode transmission",
+      "Destination PORT for Burst mode transmission",
+      "Enable Burst mode",
+      "OEI Ethernet Interface Version",
+     };
+  sz = sz; //DONT FORGET TO UPDATE SIZE!!!!!!!
   unsigned int address[] = 
     {
       0, 1, 2,
@@ -49,7 +64,7 @@ int main()
     };
   unsigned int fieldSz[] = 
     {
-      24, 8, 48,
+      24, 8, 40,
       32, 48, 16,
       32, 48, 16,
       1,
@@ -81,11 +96,13 @@ int main()
   fprintf(fp,"<table style='border:1px solid gray;cellpadding:0;cellspacing=0'>");
 
   fprintf(fp,"<tr>");
-  fprintf(fp,"<td>Block</td>");
-  fprintf(fp,"<td>Address</td>");
-  fprintf(fp,"<td>Field Name</td>");
-  fprintf(fp,"<td>Field Size</td>");
-  fprintf(fp,"<td>Triggers ARP</td>");
+  fprintf(fp,"<td style='padding:5px;font-weight:heavy;text-decoration:underline'>Block</td>");
+  fprintf(fp,"<td style='padding:5px;font-weight:heavy;text-decoration:underline'>Address</td>");
+  fprintf(fp,"<td style='padding:5px;font-weight:heavy;text-decoration:underline'>Field-Name</td>");
+  fprintf(fp,"<td style='padding:5px;font-weight:heavy;text-decoration:underline'>Field-Size</td>");
+  fprintf(fp,"<td style='padding:5px;font-weight:heavy;text-decoration:underline'>Triggers-ARP</td>");
+  fprintf(fp,"<td style='padding:5px;font-weight:heavy;text-decoration:underline'>Read/Write</td>");
+  fprintf(fp,"<td style='padding:5px;font-weight:heavy;text-decoration:underline'>Description</td>");
   fprintf(fp,"</tr>");
 
 
@@ -104,6 +121,8 @@ int main()
 	  fprintf(fp,"<td>%s</td>",name[i].c_str());
 	  fprintf(fp,"<td>%db</td>",fieldSz[i]);
 	  fprintf(fp,"<td>%s</td>",specialStrobe[i]?"YES":"");
+	  fprintf(fp,"<td>%s</td>",readOnly[i]?"R":"R/W");
+	  fprintf(fp,"<td>%s</td>",desc[i].c_str());
 	  fprintf(fp,"</tr>");
 
       if(readOnly[i]) continue;
