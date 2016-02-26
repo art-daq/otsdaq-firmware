@@ -182,7 +182,7 @@ set_property IOSTANDARD LVCMOS25 [get_ports PZ_ULED_1]
 
 # In xdc, all clocks are related by default. This differs from ucf, where clocks are unrelated unless specified otherwise. As a result, you may now see cross-clock paths that were previously unconstrained in ucf. Commented out xdc false path constraints have been generated and can be uncommented, should you wish to remove these new paths. These commands are located after the last clock definition
 
-# D:/Projects/CAPTANplusX/fw_00/GEL_CAPTAN/TOP_LEVEL.ucf:66
+# D:/Projects/OtsUDPplusX/fw_00/GEL_OtsUDP/TOP_LEVEL.ucf:66
 create_clock -name PHY_RXCLK -period 8.000 [get_ports PHY_RXCLK]
 create_clock -name CLK15NS -period 16.000 [get_pins CLK15NS_bufg/O]
 create_clock -name CLK5MHZ -period 256.000 [get_pins CLK5MHz_bufg/O]
@@ -199,22 +199,22 @@ set_false_path -from [get_clocks CLK15NS] -to [get_clocks [list  MCLK_A_strips_m
 
 
 #Created by Constraints Editor (xc6vlx240t-ff1156-1) - 2012/08/15
-# D:/Projects/CAPTANplusX/fw_00/GEL_CAPTAN/TOP_LEVEL.ucf:69
+# D:/Projects/OtsUDPplusX/fw_00/GEL_OtsUDP/TOP_LEVEL.ucf:69
 # A PERIOD placed on an internal net will result in a clock defined with an internal source. Any upstream source clock latency will not be analyzed
 #create_clock -name user_clk -period 8.000 [get_pins XLXI_6101/O]
-# D:/Projects/CAPTANplusX/fw_00/GEL_CAPTAN/TOP_LEVEL.ucf:71
+# D:/Projects/OtsUDPplusX/fw_00/GEL_OtsUDP/TOP_LEVEL.ucf:71
 ## A PERIOD placed on an internal net will result in a clock defined with an internal source. Any upstream source clock latency will not be analyzed
 #create_clock -name q_tmp -period 16.000 [get_pins XLXI_6035/q_tmp_reg/Q]
-### D:/Projects/CAPTANplusX/fw_00/GEL_CAPTAN/TOP_LEVEL.ucf:73
+### D:/Projects/OtsUDPplusX/fw_00/GEL_OtsUDP/TOP_LEVEL.ucf:73
 ### A PERIOD placed on an internal net will result in a clock defined with an internal source. Any upstream source clock latency will not be analyzed
 #create_clock -name q_tmp_1 -period 20.000 [get_pins XLXI_6040/q_tmp_reg/Q]
-### D:/Projects/CAPTANplusX/fw_00/GEL_CAPTAN/TOP_LEVEL.ucf:75
+### D:/Projects/OtsUDPplusX/fw_00/GEL_OtsUDP/TOP_LEVEL.ucf:75
 ### A PERIOD placed on an internal net will result in a clock defined with an internal source. Any upstream source clock latency will not be analyzed
 #create_clock -name q_tmp_2 -period 40.000 [get_pins XLXI_6055/q_tmp_reg/Q]
-### D:/Projects/CAPTANplusX/fw_00/GEL_CAPTAN/TOP_LEVEL.ucf:77
+### D:/Projects/OtsUDPplusX/fw_00/GEL_OtsUDP/TOP_LEVEL.ucf:77
 ### A PERIOD placed on an internal net will result in a clock defined with an internal source. Any upstream source clock latency will not be analyzed
 #create_clock -name q_tmp_3 -period 40.000 [get_pins XLXI_6058/q_tmp_reg/Q]
-### D:/Projects/CAPTANplusX/fw_00/GEL_CAPTAN/TOP_LEVEL.ucf:79
+### D:/Projects/OtsUDPplusX/fw_00/GEL_OtsUDP/TOP_LEVEL.ucf:79
 ### A PERIOD placed on an internal net will result in a clock defined with an internal source. Any upstream source clock latency will not be analyzed
 #create_clock -name q_tmp_4 -period 40.000 [get_pins XLXI_6032/q_tmp_reg/Q]
 

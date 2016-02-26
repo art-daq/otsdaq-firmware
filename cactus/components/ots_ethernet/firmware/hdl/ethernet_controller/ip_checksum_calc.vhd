@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : C:\Users\phansen2\Desktop\ActiveHDL_proj\ethernet_controller\compile\ip_checksum_calc.vhd
--- Generated   : 01/12/16 15:41:50
--- From        : C:/Users/phansen2/Desktop/ActiveHDL_proj/ethernet_controller/src/ip_checksum_calc.asf
+-- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\ip_checksum_calc.vhd
+-- Generated   : 01/28/16 10:53:41
+-- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ip_checksum_calc.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------

@@ -4,7 +4,7 @@
 -- 	
 -- This block takes decipher data on rising edge of capture_source_sig, if not 0 or 255	   
 --
--- This allows the 1 byte packet ("CAPTAN Ping") to change the ip addrs of the GEI remotely
+-- This allows the 1 byte packet ("OtsUDPHardware Ping") to change the ip addrs of the GEI remotely
 --
 -- NOTE: reseting returns the GEI to the default address as specified by user logic.
 -------------------------------------   
@@ -59,11 +59,11 @@ begin
 				addr_sig <= ETH_CONTROLLER_DEFAULT_ADDRS;	  		-- take default addr from params_package
 			elsif (	capture_old = '0' and capture = '1') then   -- rising edge of source capture
 				if (addr_in /= x"00" and addr_in /= x"FF") then		 --and not illegal addr
-					addr_sig <= addr_in;			-- take "CAPTAN Ping" addr	
+					addr_sig <= addr_in;			-- take "OtsUDPHardware Ping" addr	
 					arp_announce_strobe <= '1';
-				elsif (addr_in = x"00") then		-- 0s is used as "CAPTAN ping"	
+				elsif (addr_in = x"00") then		-- 0s is used as "OtsUDPHardware ping"	
 					protocol_ping_strobe <= '1';									
-				--else (addr_in = x"FF")			-- 1s is used as "CAPTAN no-op"	
+				--else (addr_in = x"FF")			-- 1s is used as "OtsUDPHardware no-op"	
 				end if;
 			else
 				addr_sig <= addr_sig;		-- give explicit registering behavior (Vivado seems to not be sure?)

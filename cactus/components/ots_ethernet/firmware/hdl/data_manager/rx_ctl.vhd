@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : C:\Users\phansen2\Desktop\ActiveHDL_proj\ethernet_controller\compile\rx_ctl.vhd
--- Generated   : 01/12/16 15:42:03
--- From        : C:/Users/phansen2/Desktop/ActiveHDL_proj/ethernet_controller/src/rx_ctl.asf
+-- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\rx_ctl.vhd
+-- Generated   : 01/28/16 10:53:57
+-- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/rx_ctl.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------

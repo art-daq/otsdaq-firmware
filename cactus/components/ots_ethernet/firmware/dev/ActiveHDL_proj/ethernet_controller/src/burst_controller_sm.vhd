@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : C:\Documents and Settings\rrivera\Desktop\CAPTAN_burst_controller_1\burst_controller\compile\burst_controller_sm.vhd
+-- File        : C:\Documents and Settings\rrivera\Desktop\OtsUDP_burst_controller_1\burst_controller\compile\burst_controller_sm.vhd
 -- Generated   : 04/08/11 10:17:01
--- From        : C:/Documents and Settings/rrivera/Desktop/CAPTAN_burst_controller_1/burst_controller/src/burst_controller_sm.asf
+-- From        : C:/Documents and Settings/rrivera/Desktop/OtsUDP_burst_controller_1/burst_controller/src/burst_controller_sm.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------

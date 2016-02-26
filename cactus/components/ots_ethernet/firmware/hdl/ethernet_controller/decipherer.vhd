@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : C:\Users\phansen2\Desktop\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd
--- Generated   : 01/12/16 15:41:52
--- From        : C:/Users/phansen2/Desktop/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
+-- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd
+-- Generated   : 01/28/16 10:53:44
+-- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -189,7 +189,7 @@ begin
 if rising_edge(clk) then
 	addrs_match_sig <= '0';
 	if udp_dest_ip = (x"C0A885" & addrs) then --this UDP packet was intended for this firmware.
--- Removed feature: -- or udp_dest_ip = x"C0A885FE" then --0xFE is CAPTAN broadcast
+-- Removed feature: -- or udp_dest_ip = x"C0A885FE" then --0xFE is OtsUDPHardware broadcast
 		addrs_match_sig <= '1';
 	end if;
 end if;
@@ -277,7 +277,7 @@ begin
 					when RecvPacket_IP_Payload_UDP_SourcePort1 =>
 						Sreg0 <= RecvPacket_IP_Payload_UDP_SourcePort2;
 						udp_src_port(7 downto 0) <= data;
-						-- acquire src port to be used as destination port from CAPTAN
+						-- acquire src port to be used as destination port from OtsUDPHardware
 					when RecvPacket_IP_Payload_UDP_DestPort1 =>
 						Sreg0 <= RecvPacket_IP_Payload_UDP_DestPort2;
 						udp_dest_port(7 downto 0) <= data;
@@ -374,7 +374,7 @@ begin
 						elsif is_udp_sig = '1' then
 							Sreg0 <= RecvPacket_IP_Payload_UDP_SourcePort1;
 							udp_src_port(15 downto 8) <= data;
-							-- acquire src port to be used as destination port from CAPTAN
+							-- acquire src port to be used as destination port from OtsUDPHardware
 						end if;
 					when RecvPacket_IP_Payload_IP_DestAddr3 =>
 						Sreg0 <= RecvPacket_IP_Payload_IP_DestAddr4;

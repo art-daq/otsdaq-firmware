@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : C:\Users\phansen2\Desktop\ActiveHDL_proj\ethernet_controller\compile\delay_counter.vhd
--- Generated   : 01/12/16 15:41:59
--- From        : C:/Users/phansen2/Desktop/ActiveHDL_proj/ethernet_controller/src/delay_counter.asf
+-- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\delay_counter.vhd
+-- Generated   : 01/28/16 10:53:52
+-- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/delay_counter.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------

@@ -11,7 +11,7 @@
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
---Command: sch2hdl -intstyle ise -family kintex7 -flat -suppress -vhdl D:/Projects/CAPTANplusX/fw_00/GEL_CAPTAN/TOP_LEVEL.vhf -w D:/Projects/CAPTANplusX/fw_00/GEL_CAPTAN/TOP_LEVEL.sch
+--Command: sch2hdl -intstyle ise -family kintex7 -flat -suppress -vhdl D:/Projects/OtsUDPplusX/fw_00/GEL_OtsUDP/TOP_LEVEL.vhf -w D:/Projects/OtsUDPplusX/fw_00/GEL_OtsUDP/TOP_LEVEL.sch
 --Design Name: TOP_LEVEL
 --Device: kintex7
 --Purpose:
