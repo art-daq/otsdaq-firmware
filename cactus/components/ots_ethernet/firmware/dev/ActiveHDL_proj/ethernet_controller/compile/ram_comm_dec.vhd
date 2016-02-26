@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\ram_comm_dec.vhd
--- Generated   : 01/28/16 10:53:54
+-- Generated   : 02/10/16 11:42:07
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ram_comm_dec.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -36,8 +36,6 @@ entity ram_comm_dec is
 		tx_info_fifo_full: in STD_LOGIC;
 		user_ready: in STD_LOGIC;
 		user_rx_valid_out: in STD_LOGIC;
-		burst_start: out STD_LOGIC;
-		burst_stop: out STD_LOGIC;
 		clear_crc_err_flag: out STD_LOGIC;
 		ram_addr: out STD_LOGIC_VECTOR (63 downto 0);
 		ram_rden: out STD_LOGIC;
@@ -56,11 +54,12 @@ architecture arch of ram_comm_dec is
 
 -- diagram signals declarations
 signal comm_dec_ready: STD_LOGIC;
-signal comm_reg: UNSIGNED (1 downto 0);
+signal comm_reg: STD_LOGIC;
 signal crc_err: STD_LOGIC;
 signal first_write_qword: STD_LOGIC;
 signal mem_loc_count_reg: UNSIGNED (7 downto 0);
 signal no_addrs_incr: STD_LOGIC;
+signal no_ret_to_sender: STD_LOGIC;
 signal q_w_count_reg: UNSIGNED (7 downto 0);
 signal ram_addr_sig: UNSIGNED (63 downto 0);
 signal ram_rden_sig: STD_LOGIC;
@@ -74,34 +73,25 @@ signal user_ready_mask: STD_LOGIC;
 -- BINARY ENCODED state machine: Sreg0
 attribute ENUM_ENCODING: string;
 type Sreg0_type is (
-    write_com_S8, read_com_S13, read_com_S14, read_com_S15, read_com_S1, read_com_S18, burst_strt_S30, burst_strt_S31, burst_strt_S33,
-    burst_strt_S34, burst_stp_S36, burst_stp_S37, burst_stp_S38, burst_stp_S39, write_com_S42, write_com_S40, write_com_S9, pro_comm,
-    dec_comm, idle, return_st, get_comm, err_dec
+    write_com_S8, read_com_S13, read_com_S14, read_com_S15, read_com_S1, read_com_S18, write_com_S42, write_com_S40, write_com_S9,
+    pro_comm, dec_comm, idle, return_st, get_comm, err_dec
 );
 attribute ENUM_ENCODING of Sreg0_type: type is
-	"00000 " &		-- write_com_S8
-	"00001 " &		-- read_com_S13
-	"00010 " &		-- read_com_S14
-	"00011 " &		-- read_com_S15
-	"00100 " &		-- read_com_S1
-	"00101 " &		-- read_com_S18
-	"00110 " &		-- burst_strt_S30
-	"00111 " &		-- burst_strt_S31
-	"01000 " &		-- burst_strt_S33
-	"01001 " &		-- burst_strt_S34
-	"01010 " &		-- burst_stp_S36
-	"01011 " &		-- burst_stp_S37
-	"01100 " &		-- burst_stp_S38
-	"01101 " &		-- burst_stp_S39
-	"01110 " &		-- write_com_S42
-	"01111 " &		-- write_com_S40
-	"10000 " &		-- write_com_S9
-	"10001 " &		-- pro_comm
-	"10010 " &		-- dec_comm
-	"10011 " &		-- idle
-	"10100 " &		-- return_st
-	"10101 " &		-- get_comm
-	"10110" ;		-- err_dec
+	"0000 " &		-- write_com_S8
+	"0001 " &		-- read_com_S13
+	"0010 " &		-- read_com_S14
+	"0011 " &		-- read_com_S15
+	"0100 " &		-- read_com_S1
+	"0101 " &		-- read_com_S18
+	"0110 " &		-- write_com_S42
+	"0111 " &		-- write_com_S40
+	"1000 " &		-- write_com_S9
+	"1001 " &		-- pro_comm
+	"1010 " &		-- dec_comm
+	"1011 " &		-- idle
+	"1100 " &		-- return_st
+	"1101 " &		-- get_comm
+	"1110" ;		-- err_dec
 
 signal Sreg0: Sreg0_type;
 
@@ -180,7 +170,7 @@ begin
 			Tx_FIFO_Reset <= '0';
 			clear_crc_err_flag <= '0';
 -- Initialize registers
-			comm_reg <= (others => '0');
+			comm_reg <= '0';
 			q_w_count_reg <= (others => '0');
 			mem_loc_count_reg <= (others => '0');
 			crc_err <= '0';
@@ -195,8 +185,6 @@ begin
 			ram_addr_sig <= (others => '0');
 			ram_wren_sig <= '0';
 			ram_rden_sig <= '0';
-			burst_start <= '0';
-			burst_stop <= '0';
 			rx_info_fifo_rden <= '0';
 			rx_data_fifo_rden_sig <= '0';
 			Rx_FIFO_Reset <= '1';
@@ -214,26 +202,18 @@ begin
 			case Sreg0 is
 				when pro_comm =>
 					Sreg0 <= err_dec;
-					comm_reg <= unsigned(rx_info_fifo_rd_data(1 downto 0));
-					-- Get the command code from
-					-- the receive info fifo word
+					comm_reg <= rx_info_fifo_rd_data(0);
+					-- 1 write/0 read
 					q_w_count_reg <= unsigned(rx_info_fifo_rd_data(15 downto 8));
 					-- get the number of 8 byte quad words from
 					-- the info fifo word
 					crc_err <= crc_err_flag;
-					--rx_info_fifo_rd_data(7);
 					-- get the crc error indicator
 					no_addrs_incr <= rx_info_fifo_rd_data(3);
 					-- get the no addr increment flag
+					no_ret_to_sender <= rx_info_fifo_rd_data(1);
+					-- get the no return to sender flag
 					mem_loc_count_reg <= unsigned(rx_info_fifo_rd_data(15 downto 8));
-					-- definition of bits written to tx_info_fifo
-					-- bits 15-8: quad word count (read data)
-					-- bit 7: crc err since last reset
-					-- bit 6: crc err detected in received packet
-					-- bit 5: rx fifo overflow since last reset
-					-- bit 4: err detected in protocol since last reset
-					-- bits 3-0: op code
-					-- (bit 3 is no address increment, bit 2 is ack, 1:0 is command)
 					tx_info_fifo_wr_data(7) <= rx_info_fifo_rd_data(7);
 					tx_info_fifo_wr_data(6) <= crc_err_flag;
 					tx_info_fifo_wr_data(5) <= rx_data_fifo_full_flag or rx_info_fifo_full_flag;
@@ -241,20 +221,15 @@ begin
 					if (rx_info_fifo_rd_data(2) = '1' or crc_err_flag = '1') then --ACK
 					-- handle ACK info (no data for ACK)
 						tx_info_fifo_wr_data(15 downto 8) <= (others => '0');
+						--size 0
 						tx_info_fifo_wr_data(3 downto 0) <= rx_info_fifo_rd_data(3 downto 0);
 						tx_info_fifo_wren <= '1';
 						-- write to tx info fifo
 					end if;
 				when dec_comm =>
-					if comm_reg = 3 then
-						Sreg0 <= burst_stp_S38;
-						burst_stop <= '1';
-					elsif comm_reg(1 downto 0) = 2 then
-						Sreg0 <= burst_strt_S33;
-						burst_start <= '1';
-					elsif comm_reg(1 downto 0) = 0 then
+					if comm_reg = '0' then
 						Sreg0 <= read_com_S1;
-					elsif comm_reg(1 downto 0) = 1 then
+					elsif comm_reg = '1' then
 						Sreg0 <= write_com_S8;
 						rx_data_fifo_rden_sig <= '1';
 						-- read address qword
@@ -281,21 +256,6 @@ begin
 					else
 						Sreg0 <= dec_comm;
 					end if;
-				when burst_stp_S36 =>
-					Sreg0 <= burst_stp_S37;
-					rx_data_fifo_rden_sig <= '0';
-				when burst_stp_S37 =>
-					Sreg0 <= burst_stp_S39;
-					ram_addr_sig <= unsigned(rx_data_fifo_rd_data);
-					-- obtain starting address
-				when burst_stp_S38 =>
-					Sreg0 <= burst_stp_S36;
-					-- there is at least one quad word in the data fifo
-					-- because of the address quadword
-					rx_data_fifo_rden_sig <= '1';
-				when burst_stp_S39 =>
-					Sreg0 <= return_st;
-					burst_stop <= '0';
 				when read_com_S13 =>
 					if (mem_loc_count_reg = 1 and user_ready = '1') then
 						ram_rden_sig <= '0';
@@ -315,16 +275,10 @@ begin
 					if mem_loc_count_reg = 1 and user_ready = '1' then	-- done with read
 						Sreg0 <= read_com_S15;
 						tx_info_fifo_wr_data(15 downto 8) <= std_logic_vector(q_w_count_reg);
-						tx_info_fifo_wr_data(2 downto 0) <= (others => '0');
+						tx_info_fifo_wr_data(1) <= no_ret_to_sender;
+						tx_info_fifo_wr_data(2) <= '0';
+						tx_info_fifo_wr_data(0) <= '0';
 						tx_info_fifo_wren <= '1';
-						-- definition of bits written to tx_info_fifo
-						-- bits 15-8: quad word count (read data)
-						-- bit 7: crc err detected in received packet
-						-- bit 6: rx info fifo has been full since last reset
-						-- bit 5: rx data fifo has been full since last reset
-						-- bit 4: err detected in protocol since last reset
-						-- bits 3-0: op code
-						-- (bit 3 is no address increment, bit 2 is ack, 1:0 is command)
 					end if;
 				when read_com_S14 =>
 					Sreg0 <= read_com_S18;
@@ -339,16 +293,10 @@ begin
 						--err in protocol!
 						Rx_FIFO_Reset <= '1';
 						tx_info_fifo_wr_data(15 downto 8) <= std_logic_vector(q_w_count_reg);
-						tx_info_fifo_wr_data(2 downto 0) <= (others => '0');
+						tx_info_fifo_wr_data(1) <= no_ret_to_sender;
+						tx_info_fifo_wr_data(2) <= '0';
+						tx_info_fifo_wr_data(0) <= '0';
 						tx_info_fifo_wren <= '1';
-						-- definition of bits written to tx_info_fifo
-						-- bits 15-8: quad word count (read data)
-						-- bit 7: crc err detected in received packet
-						-- bit 6: rx info fifo has been full since last reset
-						-- bit 5: rx data fifo has been full since last reset
-						-- bit 4: err detected in protocol since last reset
-						-- bits 3-0: op code
-						-- (bit 3 is no address increment, bit 2 is ack, 1:0 is command)
 					else
 						Sreg0 <= read_com_S14;
 						-- there is at least one quad word in the data fifo
@@ -360,21 +308,6 @@ begin
 					-- obtain starting address
 					ram_rden_sig <= '1';
 					-- enable ram read
-				when burst_strt_S30 =>
-					Sreg0 <= burst_strt_S34;
-					ram_addr_sig <= unsigned(rx_data_fifo_rd_data);
-					-- obtain starting address
-				when burst_strt_S31 =>
-					Sreg0 <= burst_strt_S30;
-					rx_data_fifo_rden_sig <= '0';
-				when burst_strt_S33 =>
-					Sreg0 <= burst_strt_S31;
-					-- there is at least one quad word in the data fifo
-					-- because of the address quadword
-					rx_data_fifo_rden_sig <= '1';
-				when burst_strt_S34 =>
-					Sreg0 <= return_st;
-					burst_start <= '0';
 				when write_com_S8 =>
 					if q_w_count_reg = 0 then	-- err? there is no starting address
 						Sreg0 <= return_st;

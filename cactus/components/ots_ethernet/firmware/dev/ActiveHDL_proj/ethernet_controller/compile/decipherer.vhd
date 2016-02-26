@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd
--- Generated   : 01/28/16 10:53:44
+-- Generated   : 02/09/16 15:17:28
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -25,12 +25,12 @@ use IEEE.std_logic_unsigned.all;
 
 entity decipherer is 
 	port (
-		addrs: in STD_LOGIC_VECTOR (7 downto 0);
 		clk: in STD_LOGIC;
 		data_in: in STD_LOGIC_VECTOR (7 downto 0);
 		dv: in STD_LOGIC;
 		er: in STD_LOGIC;
 		reset: in STD_LOGIC;
+		self_addrs: in STD_LOGIC_VECTOR (31 downto 0);
 		arp_req_ip: out STD_LOGIC_VECTOR (31 downto 0);
 		arp_req_mac: out STD_LOGIC_VECTOR (47 downto 0);
 		arp_search_ip: out STD_LOGIC_VECTOR (31 downto 0);
@@ -43,6 +43,7 @@ entity decipherer is
 		dest_mac: out STD_LOGIC_VECTOR (47 downto 0);
 		four_bit_mode_out: out STD_LOGIC;
 		icmp_checksum: out STD_LOGIC_VECTOR (15 downto 0);
+		ip_data_count: out STD_LOGIC_VECTOR (10 downto 0);
 		is_arp: out STD_LOGIC;
 		is_icmp_ping: out STD_LOGIC;
 		is_idle: out STD_LOGIC;
@@ -51,7 +52,7 @@ entity decipherer is
 		src_mac: out STD_LOGIC_VECTOR (47 downto 0);
 		udp_data_count: out STD_LOGIC_VECTOR (10 downto 0);
 		udp_data_valid: out STD_LOGIC;
-		udp_dest_port: out STD_LOGIC_VECTOR (15 downto 0);
+		udp_dest_port_out: out STD_LOGIC_VECTOR (15 downto 0);
 		udp_src_ip: out STD_LOGIC_VECTOR (31 downto 0);
 		udp_src_port: out STD_LOGIC_VECTOR (15 downto 0));
 end decipherer;
@@ -78,6 +79,7 @@ signal is_udp_sig: STD_LOGIC;
 signal udp_countdown: STD_LOGIC_VECTOR (15 downto 0);
 signal udp_data_valid_sig: STD_LOGIC;
 signal udp_dest_ip: STD_LOGIC_VECTOR (31 downto 0);
+signal udp_dest_port: STD_LOGIC_VECTOR (15 downto 0);
 signal udp_zeros: STD_LOGIC_VECTOR (10 downto 0);
 
 -- SYMBOLIC ENCODED state machine: Sreg0
@@ -98,10 +100,10 @@ type Sreg0_type is (
     RecvPacket_ARP_Payload_Sip2, RecvPacket_ARP_Payload_Sip3, RecvPacket_ARP_Payload_Sip4, RecvPacket_ARP_Payload_TMac1, RecvPacket_ARP_Payload_TMac2,
     RecvPacket_ARP_Payload_TMac3, RecvPacket_ARP_Payload_TMac4, RecvPacket_ARP_Payload_TMac5, RecvPacket_ARP_Payload_TMac6, RecvPacket_ARP_Payload_Tip1,
     RecvPacket_ARP_Payload_Tip2, RecvPacket_ARP_Payload_Tip3, RecvPacket_ARP_Payload_Tip4, RecvPacket_IP_Payload_ICMP_ID1, RecvPacket_ARP_Payload_Op2,
-    RecvPacket_IP_Payload_ICMP_ID2, RecvPacket_Preamble_S50, RecvPacket_Preamble_S51, RecvPacket_CRC_ARP_S52, RecvPacket_IP_Payload_ICMP_SeqNum1,
-    RecvPacket_CRC_ARP_S53, RecvPacket_CRC_ARP_crc1, RecvPacket_IP_Payload_ICMP_SeqNum2, RecvPacket_CRC_ARP_crc2, RecvPacket_CRC_ARP_crc3,
-    RecvPacket_CRC_ARP_crc4, RecvPacket_IP_Payload_ICMP_DataLoop, RecvPacket_Preamble_S54, RecvPacket_CRC_IP_S55, RecvPacket_CRC_IP_crc6,
-    RecvPacket_CRC_IP_crc7, RecvPacket_CRC_IP_crc8, RecvPacket_CRC_IP_crc9, RecvPacket_CRC_IP_S56, Ready, RecvPacket_IP_Payload_ICMP_Type,
+    RecvPacket_IP_Payload_ICMP_ID2, RecvPacket_Preamble_S50, RecvPacket_CRC_ARP_S52, RecvPacket_IP_Payload_ICMP_SeqNum1, RecvPacket_CRC_ARP_S53,
+    RecvPacket_CRC_ARP_crc1, RecvPacket_IP_Payload_ICMP_SeqNum2, RecvPacket_CRC_ARP_crc2, RecvPacket_CRC_ARP_crc3, RecvPacket_CRC_ARP_crc4,
+    RecvPacket_IP_Payload_ICMP_DataLoop, RecvPacket_Preamble_S54, RecvPacket_CRC_IP_S55, RecvPacket_CRC_IP_crc6, RecvPacket_CRC_IP_crc7,
+    RecvPacket_CRC_IP_crc8, RecvPacket_CRC_IP_crc9, RecvPacket_CRC_IP_S56, RecvPacket_Preamble_S57, Ready, RecvPacket_IP_Payload_ICMP_Type,
     RecvPacket_IP_Payload_ICMP_Code, RecvPacket_IP_Payload_ICMP_Checksum1, RecvPacket_IP_Payload_ICMP_Checksum2
 );
 -- attribute ENUM_ENCODING of Sreg0_type: type is ... -- enum_encoding attribute is not supported for symbolic encoding
@@ -148,8 +150,7 @@ begin
 				four_bit_count <= (others => '0');
 			end if;
 		elsif (four_bit_mode = '1') then
-			if (four_bit_count < 9) then
--- let data catch up to state machine by withholding clken
+			if (four_bit_count < 9) then  -- let data catch up to state machine by withholding clken
 				four_bit_count <= four_bit_count + 1;
 				clken <= '0';
 			else
@@ -172,7 +173,9 @@ if rising_edge(clk) then
 	if reset = '1' then
 		udp_data_count <= (others => '0');
 		udp_zeros <= (others => '0');
-	elsif Sreg0 = recvpacket_ip_payload_ip_checksum1 then
+	elsif Sreg0 = recvpacket_ip_payload_ip_checksum1 then		 -- ip length for icmp
+		ip_data_count <= udp_countdown(10 downto 0) - ("000" & x"08");
+	elsif Sreg0 = recvpacket_ip_payload_udp_length2 then		 -- udp length for rx output
 		udp_data_count <= udp_countdown(10 downto 0) - ("000" & x"08");
 -- if number of bytes < 18 then need to add 0's	(header is 8)
 		if udp_countdown(10 downto 0) < ("000" & x"1A")	then
@@ -183,13 +186,24 @@ if rising_edge(clk) then
 	end if;
 end if;
 end process;
--- First 3 bytes of IP address are assumed to be C0 A8 85
+udp_dest_port_out <= udp_dest_port;
+-- Change Feb 2016 (no longer assume first 3 bytes of IP)
+-- NOTE: Only IP is matched. Any mac and port are accepted
 match_proc : process(clk)
 begin
 if rising_edge(clk) then
 	addrs_match_sig <= '0';
+<<<<<<< HEAD
 	if udp_dest_ip = (x"C0A885" & addrs) then --this UDP packet was intended for this firmware.
 -- Removed feature: -- or udp_dest_ip = x"C0A885FE" then --0xFE is OtsUDPHardware broadcast
+=======
+	if (udp_dest_ip = self_addrs) then -- and
+--(self_port = 0 or udp_dest_port = self_port)) then
+-- Note: rejecting the port presented a problem for ICMP matching logic
+--(x"C0A885" & addrs) then --this UDP packet was intended for this firmware.
+-- Removed feature: -- or udp_dest_ip = x"C0A885FE" then --0xFE is CAPTAN broadcast
+-- Note: this is not considering the mac address (shouldn't matter if ARP works?)
+>>>>>>> d8d123dea39560d65ea87e5d07e11864781d38c7
 		addrs_match_sig <= '1';
 	end if;
 end if;
@@ -557,13 +571,7 @@ begin
 						udp_countdown <= x"0007";
 						-- idle during preamble reception
 						crc_chk_init <= '0';
-						Sreg0 <= RecvPacket_Preamble_S51;
-					when RecvPacket_Preamble_S51 =>
-						udp_countdown <= udp_countdown - 1;
-						if udp_countdown = x"0002" then
-							Sreg0 <= RecvPacket_Preamble_S54;
-							crc_chk_en_unmasked <= '1';
-						end if;
+						Sreg0 <= RecvPacket_Preamble_S57;
 					when RecvPacket_Preamble_S54 =>
 						Sreg0 <= RecvPacket_Dest_S22;
 						four_bit_mode_out <= four_bit_mode;
@@ -571,6 +579,12 @@ begin
 						-- can indicate if 100Mbps vs 1Gbps
 						-- but RGMII is handled upstream DIG_GEC.. so appears to be 8_bit mode (after first packet glitch)
 						dest_mac(47 downto 40) <= data;
+					when RecvPacket_Preamble_S57 =>
+						udp_countdown <= udp_countdown -1;
+						if udp_countdown = 2 or data = x"D5" then
+							Sreg0 <= RecvPacket_Preamble_S54;
+							crc_chk_en_unmasked <= '1';
+						end if;
 					when RecvPacket_CRC_ARP_S52 =>
 						udp_countdown <= x"0011";
 						Sreg0 <= RecvPacket_CRC_ARP_S53;

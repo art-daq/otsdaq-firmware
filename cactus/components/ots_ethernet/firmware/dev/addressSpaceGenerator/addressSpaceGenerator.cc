@@ -7,83 +7,208 @@ using namespace std;
 
 int main()
 {
-  
+
   //for ethernet block address space
 
   unsigned int block = 1;
   string blockName = "Ethernet block address space";
-  string names[] = 
+
+  string specialStrobeSig = "arp_announce";
+
+  string htmlFilename = "address_space.html";
+  FILE * fp = fopen(htmlFilename.c_str(),"w");
+  if(!fp)
+  {
+	  cout << "html file fail." << endl;
+	  return 0;
+  }
+
+  int sz = 11;
+  string name[] = 
     {
-      "user_src_addr",
-      "user_src_mac",
-      "user_src_port",
-      "user_data_dest_addr",
-      "user_data_dest_mac",
-      "user_data_dest_port",
-      "user_ctrl_dest_addr",
-      "user_ctrl_dest_mac",
-      "user_ctrl_dest_port"
-    };
+      "self_addr",
+      "user_addr_byte",
+      "self_mac",
+      "tx_ctrl_dest_addr",
+      "tx_ctrl_dest_mac",
+      "tx_ctrl_dest_port",
+      "tx_data_dest_addr",
+      "tx_data_dest_mac",
+      "tx_data_dest_port",
+      "burst_mode",
+      "ETH_INTERFACE_VERSION",
+     };
+  sz = sz; //DONT FORGET TO UPDATE SIZE!!!!!!!
+  string desc[] =
+    {
+      "Upper 24-bits of self IP Address",
+      "lower 7-bits of self IP and MAC Address",
+      "Upper 40-bits of self MAC Address",
+      "Destination IP for Normal mode transmission",
+      "Destination MAC for Normal mode transmission",
+      "Destination PORT for Normal mode transmission",
+      "Destination IP for Burst mode transmission",
+      "Destination MAC for Burst mode transmission",
+      "Destination PORT for Burst mode transmission",
+      "Enable Burst mode",
+      "OEI Ethernet Interface Version",
+     };
+  sz = sz; //DONT FORGET TO UPDATE SIZE!!!!!!!
   unsigned int address[] = 
     {
       0, 1, 2,
       3, 4, 5,
-      6, 7, 8
+      6, 7, 8,
+      9,
+      100,
+    };
+  unsigned int fieldSz[] = 
+    {
+      24, 8, 40,
+      32, 48, 16,
+      32, 48, 16,
+      1,
+      16,
+    };
+  unsigned int specialStrobe[] = 
+    {
+      1, 1, 1,
+      0, 0, 0,
+      0, 0, 0,
+      0,
+      0,
+    };
+  unsigned int readOnly[] = 
+    {
+      0, 0, 0,
+      0, 0, 0,
+      0, 0, 0,
+      0,
+      1,
     };
 
   //write ots port and then user port
+  
+  printf("\tinternal_eth_dout <= (others => '0');\n");	
+  printf("\tinternal_dout <= (others => '0');\n");	
+  printf("\t%s <= '0';\n", specialStrobeSig.c_str());	
 
-  //       (unsigned(internal_block_sel) = 2)) then 		-- ethernet interface space
+  fprintf(fp,"<table style='border:1px solid gray;cellpadding:0;cellspacing=0'>");
 
-  cout << "\tif ( ots_wren = '1' ) then -- WRITE eth";
-  cout << "\tif ( (ots_block_sel = " << block << " then " <<
-    " -- " << blockName 
- 
-    
+  fprintf(fp,"<tr>");
+  fprintf(fp,"<td style='padding:5px;font-weight:heavy;text-decoration:underline'>Block</td>");
+  fprintf(fp,"<td style='padding:5px;font-weight:heavy;text-decoration:underline'>Address</td>");
+  fprintf(fp,"<td style='padding:5px;font-weight:heavy;text-decoration:underline'>Field-Name</td>");
+  fprintf(fp,"<td style='padding:5px;font-weight:heavy;text-decoration:underline'>Field-Size</td>");
+  fprintf(fp,"<td style='padding:5px;font-weight:heavy;text-decoration:underline'>Triggers-ARP</td>");
+  fprintf(fp,"<td style='padding:5px;font-weight:heavy;text-decoration:underline'>Read/Write</td>");
+  fprintf(fp,"<td style='padding:5px;font-weight:heavy;text-decoration:underline'>Description</td>");
+  fprintf(fp,"</tr>");
 
 
-					     if ( ots_block_addr = 32 or
-						  unsigned(internal_addrs) = 32) then		-- source address   
-										   if (ots_wren = '1') then 		-- WRITE eth
-													 user_src_addrs <= ots_din(7 downto 0); 				  
-					else							-- READ eth
-						internal_eth_dout(7 downto 0) <= user_src_addrs;
-					end if;					
-					
-					if (internal_we = '1') then 	-- WRITE eth
-						user_src_addrs <= internal_din(7 downto 0); 				  
-					else							-- READ eth
-						internal_dout(7 downto 0) <= user_src_addrs;
-					end if;
-						 
-				end if;				
-			end if;	   
-			
-		end if;
-	end process;
-  unsigned int cs=0;
 
-  unsigned int vals[] = 
+  //WRITE Ethernet interface ===================
+  printf("\n\tif ( ots_wren = '1' and  \t\t\t\t-- WRITE eth ===========\n");
+  printf("\t\t ots_block_sel = %d) then -- %s\n", block, blockName.c_str());
+
+  for(int i=0;i<sz;++i)
     {
-      0x3579, //id
-      0x4500, //vers/header
-      0x8011, //tts/protocol
-      0x001C, //header length
 
-      0xC0A8, //ip 192.168.133
-      0x8500,
-      0xC0A8,
-      0x8500};
+	  //web page
+	  fprintf(fp,"<tr>");
+	  fprintf(fp,"<td>0x%8.8X</td>",block);
+	  fprintf(fp,"<td>0x%8.8X</td>",address[i]);
+	  fprintf(fp,"<td>%s</td>",name[i].c_str());
+	  fprintf(fp,"<td>%db</td>",fieldSz[i]);
+	  fprintf(fp,"<td>%s</td>",specialStrobe[i]?"YES":"");
+	  fprintf(fp,"<td>%s</td>",readOnly[i]?"R":"R/W");
+	  fprintf(fp,"<td>%s</td>",desc[i].c_str());
+	  fprintf(fp,"</tr>");
 
-  for(int i=0;i<4;++i)
-  //for(int i=0;i<8;++i) //if using the prefix ip
-    {
-      cs += vals[i];
-      if((cs>>16)&1) ++cs;
-      cs &= 0xFFFF;
-      printf("+ %4.4X = %4.4X\n",vals[i],cs);
+      if(readOnly[i]) continue;
+
+      printf("\t\t%sif ( ots_block_addr = %d ) then \n", (i?"els":""), address[i]);
+      if(fieldSz[i] > 1)
+	printf("\t\t\t %s <= ots_din(%d downto 0); \n", name[i].c_str(), fieldSz[i]-1);
+      else
+	printf("\t\t\t %s <= ots_din(0); \n", name[i].c_str());
+      if(specialStrobe[i])
+	printf("\t\t\t %s <= '1';\n", specialStrobeSig.c_str());
     }
 
+  printf("\t\tend if;\n");
+
+  //WRITE Internal ===================
+  printf("\telsif ( internal_we = '1' and  \t\t\t\t-- WRITE internal ===========\n");
+  printf("\t\t unsigned(internal_block_sel) = %d) then -- %s\n", block, blockName.c_str());
+
+  for(int i=0;i<sz;++i)
+    {
+      if(readOnly[i]) continue;
+
+      printf("\t\t%sif ( unsigned(internal_addr) = %d ) then \n", (i?"els":""), address[i]);
+      if(fieldSz[i] > 1)
+	printf("\t\t\t %s <= internal_din(%d downto 0); \n", name[i].c_str(), fieldSz[i]-1);
+      else
+	printf("\t\t\t %s <= internal_din(0); \n", name[i].c_str());
+
+      if(specialStrobe[i])
+	printf("\t\t\t %s <= '1';\n", specialStrobeSig.c_str());
+    }
+  printf("\t\tend if;\n");
+
+
+  //FIXME :: uncomment next line and delete rest for other blocks!
+  //printf("\tend if;\n");
+  //SPECIAL WRITE for single byte source capture ===================
+  printf("\telsif ( user_rx_src_capture_for_ctrl = '1' ) then  \t\t\t\t-- SPECIAL WRITE for source capture for ctrl ===========\n");
+  printf("\t\t %s <= user_rx_src_addr;\n", name[3].c_str());
+  printf("\t\t %s <= user_rx_src_mac;\n", name[4].c_str());
+  printf("\t\t %s <= user_rx_src_port;\n", name[5].c_str());
+
+  //SPECIAL WRITE for single byte source capture ===================
+  printf("\telsif ( user_rx_src_capture_for_data = '1' ) then  \t\t\t\t-- SPECIAL WRITE for source capture for data ===========\n");
+  printf("\t\t %s <= user_rx_src_addr;\n", name[6].c_str());
+  printf("\t\t %s <= user_rx_src_mac;\n", name[7].c_str());
+  printf("\t\t %s <= user_rx_src_port;\n", name[8].c_str());
+
+
+  printf("\tend if;\n");
+
+
+
+  //READ Ethernet interface ===================
+  printf("\n\tif ( ots_rden = '1' and  \t\t\t\t-- READ eth ===========\n");
+  printf("\t\t ots_block_sel = %d) then -- %s\n", block, blockName.c_str());
+
+  for(int i=0;i<sz;++i)
+    {
+      printf("\t\t%sif ( ots_block_addr = %d ) then \n", (i?"els":""), address[i]);
+      if(fieldSz[i] > 1)
+	printf("\t\t\t internal_eth_dout(%d downto 0) <= %s; \n", fieldSz[i]-1, name[i].c_str());
+      else
+	printf("\t\t\t internal_eth_dout(0) <= %s; \n", name[i].c_str());
+    }
+  printf("\t\tend if;\n");
+  printf("\tend if;\n");
+
+  //READ Internal interface ===================
+  printf("\n\tif ( \t\t\t\t-- always READ internal ===========\n");
+  printf("\t\t unsigned(internal_block_sel) = %d) then -- %s\n", block, blockName.c_str());
+
+  for(int i=0;i<sz;++i)
+    {
+      printf("\t\t%sif ( unsigned(internal_addr) = %d ) then \n", (i?"els":""), address[i]);
+      if(fieldSz[i] > 1)
+	printf("\t\t\t internal_dout(%d downto 0) <= %s; \n", fieldSz[i]-1, name[i].c_str());
+      else
+	printf("\t\t\t internal_dout(0) <= %s; \n", name[i].c_str());
+    }
+  printf("\t\tend if;\n");
+  printf("\tend if;\n");
+  
+  fprintf(fp,"</table>");
+  fclose(fp);
 
   return 0;
 }

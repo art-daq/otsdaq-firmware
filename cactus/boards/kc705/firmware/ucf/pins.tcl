@@ -67,12 +67,12 @@ set_property IOSTANDARD LVCMOS25 [get_ports PHY_TXD6]
 set_property PACKAGE_PIN T20 [get_ports PHY_TXD7]
 set_property IOSTANDARD LVCMOS25 [get_ports PHY_TXD7]
 
-#Not sure where external reset should come from for PicoZed
-# trying using SW3 on carrier
+
 set_property PACKAGE_PIN U20 [get_ports PHY_RESET]
 set_property IOSTANDARD LVCMOS25 [get_ports PHY_RESET]
 
 
+<<<<<<< HEAD
 
 
 #Created by Constraints Editor (xc4vlx25-ff668-10) - 2011/09/17
@@ -89,3 +89,5 @@ create_clock -name CLK5MHZ -period 256.000 [get_pins CLK5MHz_bufg/O]
 set_false_path -from [get_clocks CLK5MHZ] -to [get_clocks [list PHY_RXCLK   CLK15NS]]
 set_false_path -from [get_clocks CLK15NS] -to [get_clocks [list PHY_RXCLK   CLK5MHZ]]
 set_false_path -from [get_clocks PHY_RXCLK] -to [get_clocks [list CLK5MHZ   CLK15NS]]
+=======
+>>>>>>> d8d123dea39560d65ea87e5d07e11864781d38c7

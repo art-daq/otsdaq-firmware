@@ -5,6 +5,7 @@
 -- Author      : Ryan Rivera
 -- Company     : FNAL
 --
+<<<<<<< HEAD
 -------------------------------------------------------------------------------
 --
 -- File        : C:\Documents and Settings\rrivera\Desktop\OtsUDP_burst_controller_1\burst_controller\compile\burst_controller_sm.vhd
@@ -13,6 +14,9 @@
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
+=======
+--------------------------------
+>>>>>>> d8d123dea39560d65ea87e5d07e11864781d38c7
 --
 -- Description : 
 --
@@ -28,8 +32,7 @@ entity burst_controller_sm is
 		clk: in STD_LOGIC;
 		reset: in STD_LOGIC;
 									 					  
-		burst_start: in STD_LOGIC;
-		burst_stop: in STD_LOGIC;	
+		b_mode: in STD_LOGIC; 
 		
 		b_data_we: in STD_LOGIC;	 
 		b_end_packet: in STD_LOGIC;	  
@@ -49,7 +52,8 @@ architecture burst_controller_sm_arch of burst_controller_sm is
 
 	-- diagram signals declarations
 	signal b_enable_sig: STD_LOGIC;
-	signal b_packet_qw_size: STD_LOGIC_VECTOR (7 downto 0);
+	signal b_packet_qw_size: STD_LOGIC_VECTOR (7 downto 0);	   --this count should always be 
+						-- equal to data_manager/burst_traffic_controller/writes_in_curr_burst
 	signal first_packet_sig, b_end_packet_old: STD_LOGIC;
 	signal just_reset: STD_LOGIC;
 	signal reset_packet_size: STD_LOGIC;
@@ -129,7 +133,7 @@ begin
 			else						  
 				case Sreg0 is						  
 					when Wait_for_End =>
-						if burst_stop = '1' then 	  
+						if b_mode = '0' then 	  
 							Sreg0 <= Reset_Size;
 							reset_packet_size <= '1';
 							tx_info(15 downto 8) <= b_packet_qw_size;
@@ -156,7 +160,7 @@ begin
 						b_enable_sig <= '0';	
 						first_packet_sig <= '1';	
 					when Idle =>
-						if burst_start = '1' then	
+						if b_mode = '1' then	
 							Sreg0 <= Wait_for_End;
 							b_enable_sig <= '1';   
 						end if;		

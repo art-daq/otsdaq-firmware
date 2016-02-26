@@ -11,8 +11,6 @@ component ram_comm_dec
 		tx_info_fifo_full: in STD_LOGIC;
 		user_ready: in STD_LOGIC;
 		user_rx_valid_out: in STD_LOGIC;
-		burst_start: out STD_LOGIC;
-		burst_stop: out STD_LOGIC;
 		clear_crc_err_flag: out STD_LOGIC;
 		ram_addr: out STD_LOGIC_VECTOR (63 downto 0);
 		ram_rden: out STD_LOGIC;
@@ -29,9 +27,7 @@ end component;
 
 
 instance_name : ram_comm_dec
-( burst_start => ,
- burst_stop => ,
- clear_crc_err_flag => ,
+( clear_crc_err_flag => ,
  clock => ,
  crc_err_flag => ,
  ram_addr => ,

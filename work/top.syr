@@ -1,0 +1,2117 @@
+Release 14.7 - xst P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.04 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.04 secs
+ 
+--> 
+Reading design: top.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "top.prj"
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "top"
+Output Format                      : NGC
+Target Device                      : xc7k325t-2-ffg900
+
+---- Source Options
+Top Module Name                    : top
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Shift Register Extraction          : YES
+ROM Style                          : Auto
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Shift Register Minimum Size        : 2
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Auto
+Reduce Control Sets                : Auto
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 32
+Register Duplication               : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : Soft
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+---- Other Options
+Cores Search Directories           : {"ipcore_dir"  }
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/crc_gen.v" into library work
+Parsing module <crc_gen>.
+Analyzing Verilog file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/crc_chk.v" into library work
+Parsing module <crc_chk>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/work/ipcore_dir/INFO_FIFO_0.vhd" into library work
+Parsing entity <INFO_FIFO_0>.
+Parsing architecture <INFO_FIFO_0_a> of entity <info_fifo_0>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/work/ipcore_dir/DATA_FIFO_0.vhd" into library work
+Parsing entity <DATA_FIFO_0>.
+Parsing architecture <DATA_FIFO_0_a> of entity <data_fifo_0>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/params_package.vhd" into library work
+Parsing package <params_package>.
+Parsing package body <params_package>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/user_addrs_mux.vhd" into library work
+Parsing entity <user_addrs_mux>.
+Parsing architecture <user_addrs_mux_arch> of entity <user_addrs_mux>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/udp_data_splicer.vhd" into library work
+Parsing entity <udp_data_splicer>.
+Parsing architecture <udp_data_splicer_arch> of entity <udp_data_splicer>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/or33.vhd" into library work
+Parsing entity <or33>.
+Parsing architecture <or33_arch> of entity <or33>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/ip_checksum_calc.vhd" into library work
+Parsing entity <ip_checksum_calc>.
+Parsing architecture <ip_checksum_calc_arch> of entity <ip_checksum_calc>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/icmp_ping_shift_reg.vhd" into library work
+Parsing entity <icmp_ping_shift_reg>.
+Parsing architecture <arch> of entity <icmp_ping_shift_reg>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/icmp_ping_checksum_calc.vhd" into library work
+Parsing entity <icmp_ping_checksum_calc>.
+Parsing architecture <icmp_ping_checksum_calc_arch> of entity <icmp_ping_checksum_calc>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/filter_data_out.vhd" into library work
+Parsing entity <filter_data_out>.
+Parsing architecture <filter_data_out_arch> of entity <filter_data_out>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/dest_info_container.vhd" into library work
+Parsing entity <dest_info_container>.
+Parsing architecture <dest_info_container_arch> of entity <dest_info_container>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/decipherer.vhd" into library work
+Parsing entity <decipherer>.
+Parsing architecture <decipherer_arch> of entity <decipherer>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/dataout_mux.vhd" into library work
+Parsing entity <dataout_mux>.
+Parsing architecture <dataout_mux_arch> of entity <dataout_mux>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/create_packet.vhd" into library work
+Parsing entity <create_packet>.
+Parsing architecture <create_packet_arch> of entity <create_packet>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/arp_reply.vhd" into library work
+Parsing entity <arp_reply>.
+Parsing architecture <arp_reply_arch> of entity <arp_reply>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/address_container.vhd" into library work
+Parsing entity <address_container>.
+Parsing architecture <arch> of entity <address_container>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/xmii_handler.vhd" into library work
+Parsing entity <MII_100_1000_handler>.
+Parsing architecture <arch> of entity <mii_100_1000_handler>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/ethernet_controller.vhd" into library work
+Parsing entity <ethernet_controller>.
+Parsing architecture <arch> of entity <ethernet_controller>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/crc_splice.vhd" into library work
+Parsing entity <crc_splice>.
+Parsing architecture <arch> of entity <crc_splice>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/tx_seq_ctl.vhd" into library work
+Parsing entity <tx_seq_ctl>.
+Parsing architecture <arch> of entity <tx_seq_ctl>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/rx_ctl.vhd" into library work
+Parsing entity <rx_ctl>.
+Parsing architecture <arch> of entity <rx_ctl>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/ram_comm_dec.vhd" into library work
+Parsing entity <ram_comm_dec>.
+Parsing architecture <arch> of entity <ram_comm_dec>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/burst_controller_sm.vhd" into library work
+Parsing entity <burst_controller_sm>.
+Parsing architecture <burst_controller_sm_arch> of entity <burst_controller_sm>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/reset_mgr.vhd" into library work
+Parsing entity <reset_mgr>.
+Parsing architecture <Behavioral> of entity <reset_mgr>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/ethernet_controller_wrapper.vhd" into library work
+Parsing entity <ethernet_controller_wrapper>.
+Parsing architecture <arch> of entity <ethernet_controller_wrapper>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/data_manager.vhd" into library work
+Parsing entity <data_manager>.
+Parsing architecture <BEHAVIORAL> of entity <data_manager>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/burst_traffic_controller.vhd" into library work
+Parsing entity <burst_traffic_controller>.
+Parsing architecture <burst_traffic_controller_arch> of entity <burst_traffic_controller>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_interface.vhd" into library work
+Parsing entity <ethernet_interface>.
+Parsing architecture <BEHAVIORAL> of entity <ethernet_interface>.
+Parsing VHDL file "/home/swu/mrbots/srcs/otsdaq-firmware/work/TOP_LEVEL.vhd" into library work
+Parsing entity <top>.
+Parsing architecture <BEHAVIORAL> of entity <top>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating entity <top> (architecture <BEHAVIORAL>) from library <work>.
+WARNING:HDLCompiler:1127 - "/home/swu/mrbots/srcs/otsdaq-firmware/work/TOP_LEVEL.vhd" Line 152: Assignment to gnd ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/home/swu/mrbots/srcs/otsdaq-firmware/work/TOP_LEVEL.vhd" Line 154: Assignment to reset_n ignored, since the identifier is never used
+
+Elaborating entity <ethernet_interface> (architecture <BEHAVIORAL>) from library <work>.
+
+Elaborating entity <ethernet_controller_wrapper> (architecture <arch>) from library <work>.
+
+Elaborating entity <ethernet_controller> (architecture <arch>) from library <work>.
+
+Elaborating entity <address_container> (architecture <arch>) from library <work>.
+
+Elaborating entity <arp_reply> (architecture <arp_reply_arch>) from library <work>.
+INFO:HDLCompiler:679 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/arp_reply.vhd" Line 398. Case statement is complete. others clause is never selected
+
+Elaborating entity <or33> (architecture <or33_arch>) from library <work>.
+
+Elaborating entity <ip_checksum_calc> (architecture <ip_checksum_calc_arch>) from library <work>.
+INFO:HDLCompiler:679 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/ip_checksum_calc.vhd" Line 119. Case statement is complete. others clause is never selected
+
+Elaborating entity <create_packet> (architecture <create_packet_arch>) from library <work>.
+WARNING:HDLCompiler:92 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/create_packet.vhd" Line 118: clken should be on the sensitivity list of the process
+INFO:HDLCompiler:679 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/create_packet.vhd" Line 529. Case statement is complete. others clause is never selected
+
+Elaborating entity <dataout_mux> (architecture <dataout_mux_arch>) from library <work>.
+
+Elaborating entity <decipherer> (architecture <decipherer_arch>) from library <work>.
+INFO:HDLCompiler:679 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/decipherer.vhd" Line 622. Case statement is complete. others clause is never selected
+
+Elaborating entity <dest_info_container> (architecture <dest_info_container_arch>) from library <work>.
+
+Elaborating entity <filter_data_out> (architecture <filter_data_out_arch>) from library <work>.
+
+Elaborating entity <icmp_ping_checksum_calc> (architecture <icmp_ping_checksum_calc_arch>) from library <work>.
+INFO:HDLCompiler:679 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/icmp_ping_checksum_calc.vhd" Line 85. Case statement is complete. others clause is never selected
+
+Elaborating entity <icmp_ping_shift_reg> (architecture <arch>) from library <work>.
+
+Elaborating entity <udp_data_splicer> (architecture <udp_data_splicer_arch>) from library <work>.
+
+Elaborating entity <user_addrs_mux> (architecture <user_addrs_mux_arch>) from library <work>.
+
+Elaborating entity <MII_100_1000_handler> (architecture <arch>) from library <work>.
+Going to verilog side to elaborate module crc_chk
+
+Elaborating module <crc_chk>.
+Back to vhdl to continue elaboration
+Going to verilog side to elaborate module crc_gen
+
+Elaborating module <crc_gen>.
+WARNING:HDLCompiler:413 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/crc_gen.v" Line 159: Result of 5-bit expression is truncated to fit in 4-bit target.
+Back to vhdl to continue elaboration
+Going to verilog side to elaborate module crc_gen
+Back to vhdl to continue elaboration
+
+Elaborating entity <crc_splice> (architecture <arch>) from library <work>.
+
+Elaborating entity <data_manager> (architecture <BEHAVIORAL>) from library <work>.
+
+Elaborating entity <DATA_FIFO_0> (architecture <DATA_FIFO_0_a>) from library <work>.
+
+Elaborating entity <INFO_FIFO_0> (architecture <INFO_FIFO_0_a>) from library <work>.
+
+Elaborating entity <burst_controller_sm> (architecture <burst_controller_sm_arch>) from library <work>.
+INFO:HDLCompiler:679 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/burst_controller_sm.vhd" Line 163. Case statement is complete. others clause is never selected
+
+Elaborating entity <rx_ctl> (architecture <arch>) from library <work>.
+INFO:HDLCompiler:679 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/rx_ctl.vhd" Line 222. Case statement is complete. others clause is never selected
+
+Elaborating entity <ram_comm_dec> (architecture <arch>) from library <work>.
+INFO:HDLCompiler:679 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/ram_comm_dec.vhd" Line 445. Case statement is complete. others clause is never selected
+
+Elaborating entity <tx_seq_ctl> (architecture <arch>) from library <work>.
+INFO:HDLCompiler:679 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/tx_seq_ctl.vhd" Line 203. Case statement is complete. others clause is never selected
+
+Elaborating entity <burst_traffic_controller> (architecture <burst_traffic_controller_arch>) from library <work>.
+
+Elaborating entity <reset_mgr> (architecture <Behavioral>) from library <work>.
+WARNING:HDLCompiler:92 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_interface.vhd" Line 198: user_src_capture should be on the sensitivity list of the process
+WARNING:HDLCompiler:92 - "/home/swu/mrbots/srcs/otsdaq-firmware/work/TOP_LEVEL.vhd" Line 263: rx_wren should be on the sensitivity list of the process
+WARNING:Xst:2972 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/ethernet_controller_wrapper.vhd" line 220. All outputs of instance <genDbgCRC[0].crcGenDebug> of block <crc_gen> are unconnected in block <ethernet_controller_wrapper>. Underlying logic will be removed.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <top>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/work/TOP_LEVEL.vhd".
+    Set property "IOSTANDARD = DEFAULT" for instance <IBUF_PHY_RXDV>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <IBUF_PHY_RXDV>.
+    Set property "IOSTANDARD = DEFAULT" for instance <IBUF_PHY_RXD7>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <IBUF_PHY_RXD7>.
+    Set property "IOSTANDARD = DEFAULT" for instance <IBUF_PHY_RXD6>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <IBUF_PHY_RXD6>.
+    Set property "IOSTANDARD = DEFAULT" for instance <IBUF_PHY_RXD5>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <IBUF_PHY_RXD5>.
+    Set property "IOSTANDARD = DEFAULT" for instance <IBUF_PHY_RXD4>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <IBUF_PHY_RXD4>.
+    Set property "IOSTANDARD = DEFAULT" for instance <IBUF_PHY_RXD3>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <IBUF_PHY_RXD3>.
+    Set property "IOSTANDARD = DEFAULT" for instance <IBUF_PHY_RXD2>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <IBUF_PHY_RXD2>.
+    Set property "IOSTANDARD = DEFAULT" for instance <IBUF_PHY_RXD1>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <IBUF_PHY_RXD1>.
+    Set property "IOSTANDARD = DEFAULT" for instance <IBUF_PHY_RXD0>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <IBUF_PHY_RXD0>.
+    Set property "IOSTANDARD = DEFAULT" for instance <IBUF_PHY_RXCLK>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <IBUF_PHY_RXCLK>.
+    Set property "IBUF_LOW_PWR = TRUE" for instance <IBUF_PHY_RXCLK>.
+    Set property "IOSTANDARD = DEFAULT" for instance <OBUF_PHY_RESET>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <OBUF_PHY_RESET>.
+    Set property "SLEW = SLOW" for instance <OBUF_PHY_RESET>.
+    Set property "DRIVE = 12" for instance <OBUF_PHY_RESET>.
+    Set property "IOSTANDARD = DEFAULT" for instance <OBUF_PHY_TXER>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <OBUF_PHY_TXER>.
+    Set property "SLEW = SLOW" for instance <OBUF_PHY_TXER>.
+    Set property "DRIVE = 12" for instance <OBUF_PHY_TXER>.
+    Set property "IOSTANDARD = DEFAULT" for instance <OBUF_PHY_TXEN>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <OBUF_PHY_TXEN>.
+    Set property "SLEW = SLOW" for instance <OBUF_PHY_TXEN>.
+    Set property "DRIVE = 12" for instance <OBUF_PHY_TXEN>.
+    Set property "IOSTANDARD = DEFAULT" for instance <OBUF_PHY_TXCLK>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <OBUF_PHY_TXCLK>.
+    Set property "SLEW = SLOW" for instance <OBUF_PHY_TXCLK>.
+    Set property "DRIVE = 12" for instance <OBUF_PHY_TXCLK>.
+    Set property "IOSTANDARD = DEFAULT" for instance <OBUF_PHY_TXD7>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <OBUF_PHY_TXD7>.
+    Set property "SLEW = SLOW" for instance <OBUF_PHY_TXD7>.
+    Set property "DRIVE = 12" for instance <OBUF_PHY_TXD7>.
+    Set property "IOSTANDARD = DEFAULT" for instance <OBUF_PHY_TXD6>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <OBUF_PHY_TXD6>.
+    Set property "SLEW = SLOW" for instance <OBUF_PHY_TXD6>.
+    Set property "DRIVE = 12" for instance <OBUF_PHY_TXD6>.
+    Set property "IOSTANDARD = DEFAULT" for instance <OBUF_PHY_TXD5>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <OBUF_PHY_TXD5>.
+    Set property "SLEW = SLOW" for instance <OBUF_PHY_TXD5>.
+    Set property "DRIVE = 12" for instance <OBUF_PHY_TXD5>.
+    Set property "IOSTANDARD = DEFAULT" for instance <OBUF_PHY_TXD4>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <OBUF_PHY_TXD4>.
+    Set property "SLEW = SLOW" for instance <OBUF_PHY_TXD4>.
+    Set property "DRIVE = 12" for instance <OBUF_PHY_TXD4>.
+    Set property "IOSTANDARD = DEFAULT" for instance <OBUF_PHY_TXD3>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <OBUF_PHY_TXD3>.
+    Set property "SLEW = SLOW" for instance <OBUF_PHY_TXD3>.
+    Set property "DRIVE = 12" for instance <OBUF_PHY_TXD3>.
+    Set property "IOSTANDARD = DEFAULT" for instance <OBUF_PHY_TXD2>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <OBUF_PHY_TXD2>.
+    Set property "SLEW = SLOW" for instance <OBUF_PHY_TXD2>.
+    Set property "DRIVE = 12" for instance <OBUF_PHY_TXD2>.
+    Set property "IOSTANDARD = DEFAULT" for instance <OBUF_PHY_TXD1>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <OBUF_PHY_TXD1>.
+    Set property "SLEW = SLOW" for instance <OBUF_PHY_TXD1>.
+    Set property "DRIVE = 12" for instance <OBUF_PHY_TXD1>.
+    Set property "IOSTANDARD = DEFAULT" for instance <OBUF_PHY_TXD0>.
+    Set property "CAPACITANCE = DONT_CARE" for instance <OBUF_PHY_TXD0>.
+    Set property "SLEW = SLOW" for instance <OBUF_PHY_TXD0>.
+    Set property "DRIVE = 12" for instance <OBUF_PHY_TXD0>.
+    Set property "MARK_DEBUG = TRUE" for signal <PHY_TXD_sig>.
+    Set property "MARK_DEBUG = TRUE" for signal <MASTER_CLK>.
+    Set property "MARK_DEBUG = TRUE" for signal <PHY_TXEN_sig>.
+    Set property "MARK_DEBUG = TRUE" for signal <rx_wren>.
+    Set property "MARK_DEBUG = TRUE" for signal <secondary_clk>.
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/work/TOP_LEVEL.vhd" line 164: Output port <reset_out> of the instance <eth_interface> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/work/TOP_LEVEL.vhd" line 164: Output port <b_enable> of the instance <eth_interface> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/work/TOP_LEVEL.vhd" line 253: Output port <O> of the instance <CLK5MHz_bufg> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/work/TOP_LEVEL.vhd" line 256: Output port <O> of the instance <CLK15NS_bufg> is unconnected or connected to loadless signal.
+    Found 64-bit register for signal <dataGenGen[0].reg_cnt>.
+    Found 64-bit register for signal <dataGenGen[0].reg_rate>.
+    Found 64-bit register for signal <dataGenGen[0].delay_cnt>.
+    Found 3-bit register for signal <dataGenGen[0].cnt>.
+    Found 64-bit register for signal <b_data>.
+    Found 32-bit register for signal <dataGenGen[0].data_cnt>.
+    Found 5-bit register for signal <makeSlowClock[0].cnt>.
+    Found 1-bit register for signal <tx_data<31>>.
+    Found 1-bit register for signal <tx_data<30>>.
+    Found 1-bit register for signal <tx_data<29>>.
+    Found 1-bit register for signal <tx_data<28>>.
+    Found 1-bit register for signal <tx_data<27>>.
+    Found 1-bit register for signal <tx_data<26>>.
+    Found 1-bit register for signal <tx_data<25>>.
+    Found 1-bit register for signal <tx_data<24>>.
+    Found 1-bit register for signal <tx_data<23>>.
+    Found 1-bit register for signal <tx_data<22>>.
+    Found 1-bit register for signal <tx_data<21>>.
+    Found 1-bit register for signal <tx_data<20>>.
+    Found 1-bit register for signal <tx_data<19>>.
+    Found 1-bit register for signal <tx_data<18>>.
+    Found 1-bit register for signal <tx_data<17>>.
+    Found 1-bit register for signal <tx_data<16>>.
+    Found 1-bit register for signal <tx_data<15>>.
+    Found 1-bit register for signal <tx_data<14>>.
+    Found 1-bit register for signal <tx_data<13>>.
+    Found 1-bit register for signal <tx_data<12>>.
+    Found 1-bit register for signal <tx_data<11>>.
+    Found 1-bit register for signal <tx_data<10>>.
+    Found 1-bit register for signal <tx_data<9>>.
+    Found 1-bit register for signal <tx_data<8>>.
+    Found 1-bit register for signal <tx_data<7>>.
+    Found 1-bit register for signal <tx_data<6>>.
+    Found 1-bit register for signal <tx_data<5>>.
+    Found 1-bit register for signal <tx_data<4>>.
+    Found 1-bit register for signal <tx_data<3>>.
+    Found 1-bit register for signal <tx_data<2>>.
+    Found 1-bit register for signal <tx_data<1>>.
+    Found 1-bit register for signal <tx_data<0>>.
+    Found 1-bit register for signal <b_data_we>.
+    Found 3-bit adder for signal <dataGenGen[0].cnt[2]_GND_6_o_add_8_OUT> created at line 1241.
+    Found 64-bit adder for signal <dataGenGen[0].delay_cnt[63]_GND_6_o_add_10_OUT> created at line 1241.
+    Found 32-bit adder for signal <dataGenGen[0].data_cnt[31]_GND_6_o_add_13_OUT> created at line 1241.
+    Found 5-bit adder for signal <makeSlowClock[0].cnt[4]_GND_6_o_add_31_OUT> created at line 1241.
+    Found 64-bit subtractor for signal <GND_6_o_GND_6_o_sub_16_OUT<63:0>> created at line 1308.
+    Found 64-bit comparator equal for signal <dataGenGen[0].delay_cnt[63]_dataGenGen[0].reg_rate[63]_equal_12_o> created at line 215
+INFO:Xst:2774 - HDL ADVISOR - MARK_DEBUG property attached to signal MASTER_CLK may hinder XST clustering optimizations.
+    Summary:
+	inferred   5 Adder/Subtractor(s).
+	inferred 329 D-type flip-flop(s).
+	inferred   1 Comparator(s).
+	inferred   3 Multiplexer(s).
+Unit <top> synthesized.
+
+Synthesizing Unit <ethernet_interface>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_interface.vhd".
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_interface.vhd" line 99: Output port <udp_fwd_port> of the instance <ec_wrapper> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_interface.vhd" line 130: Output port <ram_rden> of the instance <data_manager_blk> is unconnected or connected to loadless signal.
+    Found 48-bit register for signal <user_dest_mac>.
+    Found 16-bit register for signal <user_dest_port>.
+    Found 8-bit register for signal <user_dest_addrs>.
+    Summary:
+	inferred  72 D-type flip-flop(s).
+Unit <ethernet_interface> synthesized.
+
+Synthesizing Unit <ethernet_controller_wrapper>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/ethernet_controller_wrapper.vhd".
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/ethernet_controller_wrapper.vhd" line 189: Output port <CRC_end> of the instance <crcGen> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/ethernet_controller_wrapper.vhd" line 220: Output port <CRC_out> of the instance <genDbgCRC[0].crcGenDebug> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/ethernet_controller_wrapper.vhd" line 220: Output port <CRC_end> of the instance <genDbgCRC[0].crcGenDebug> is unconnected or connected to loadless signal.
+    Summary:
+	no macro.
+Unit <ethernet_controller_wrapper> synthesized.
+
+Synthesizing Unit <ethernet_controller>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/ethernet_controller.vhd".
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/ethernet_controller.vhd" line 433: Output port <arp_search_ip> of the instance <DecipherBlock> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/ethernet_controller.vhd" line 433: Output port <dest_mac> of the instance <DecipherBlock> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/ethernet_controller.vhd" line 433: Output port <is_idle> of the instance <DecipherBlock> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/ethernet_controller.vhd" line 433: Output port <is_udp> of the instance <DecipherBlock> is unconnected or connected to loadless signal.
+    Summary:
+	no macro.
+Unit <ethernet_controller> synthesized.
+
+Synthesizing Unit <address_container>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/address_container.vhd".
+    Found 1-bit register for signal <arp_announce_strobe>.
+    Found 1-bit register for signal <protocol_ping_strobe>.
+    Found 8-bit register for signal <addr_sig>.
+    Found 1-bit register for signal <capture_old>.
+    Summary:
+	inferred  11 D-type flip-flop(s).
+	inferred   4 Multiplexer(s).
+Unit <address_container> synthesized.
+
+Synthesizing Unit <arp_reply>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/arp_reply.vhd".
+    Found 7-bit register for signal <Sreg0>.
+    Found 16-bit register for signal <delay_count>.
+    Found 1-bit register for signal <arp_busy>.
+    Found 8-bit register for signal <dataout>.
+    Found 1-bit register for signal <tx_er>.
+    Found 1-bit register for signal <tx_en>.
+    Found 1-bit register for signal <crc_gen_en>.
+    Found 1-bit register for signal <crc_gen_init>.
+    Found 1-bit register for signal <crc_gen_rd>.
+    Found 1-bit register for signal <announce_sig>.
+    Found 1-bit register for signal <clken>.
+    Found finite state machine <FSM_0> for signal <Sreg0>.
+    -----------------------------------------------------------------------
+    | States             | 66                                             |
+    | Transitions        | 141                                            |
+    | Inputs             | 5                                              |
+    | Outputs            | 44                                             |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | reset (positive)                               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | idle                                           |
+    | Power Up State     | idle                                           |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 16-bit subtractor for signal <GND_14_o_GND_14_o_sub_25_OUT<15:0>> created at line 391.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  31 D-type flip-flop(s).
+	inferred  47 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <arp_reply> synthesized.
+
+Synthesizing Unit <or33>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/or33.vhd".
+    Summary:
+	no macro.
+Unit <or33> synthesized.
+
+Synthesizing Unit <ip_checksum_calc>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/ip_checksum_calc.vhd".
+WARNING:Xst:647 - Input <trigger> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 16-bit register for signal <cs>.
+    Found 17-bit register for signal <cs_sig>.
+    Found 3-bit register for signal <Sreg0>.
+    Found finite state machine <FSM_1> for signal <Sreg0>.
+    -----------------------------------------------------------------------
+    | States             | 8                                              |
+    | Transitions        | 15                                             |
+    | Inputs             | 1                                              |
+    | Outputs            | 3                                              |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | reset (positive)                               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | s10                                            |
+    | Power Up State     | s1                                             |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 17-bit adder for signal <cs_sig[16]_length_sig[16]_add_5_OUT> created at line 89.
+    Found 17-bit adder for signal <cs_sig[16]_src_sig[16]_add_8_OUT> created at line 98.
+    Found 17-bit adder for signal <cs_sig[16]_dest_sig[16]_add_12_OUT> created at line 110.
+    Found 16-bit adder for signal <cs_sig[15]_GND_16_o_add_13_OUT> created at line 114.
+    Summary:
+	inferred   2 Adder/Subtractor(s).
+	inferred  33 D-type flip-flop(s).
+	inferred  12 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <ip_checksum_calc> synthesized.
+
+Synthesizing Unit <create_packet>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/create_packet.vhd".
+    Found 16-bit register for signal <IP_length>.
+    Found 16-bit register for signal <UDP_length>.
+    Found 11-bit register for signal <zero_fill_count>.
+    Found 7-bit register for signal <Sreg0>.
+    Found 8-bit register for signal <dataout>.
+    Found 1-bit register for signal <udp_data_sel>.
+    Found 16-bit register for signal <sleep_count>.
+    Found 1-bit register for signal <en_tx_data>.
+    Found 1-bit register for signal <busy>.
+    Found 1-bit register for signal <tx_er>.
+    Found 1-bit register for signal <tx_en>.
+    Found 1-bit register for signal <crc_gen_en>.
+    Found 1-bit register for signal <crc_gen_init>.
+    Found 1-bit register for signal <crc_gen_rd>.
+    Found 1-bit register for signal <ping_packet>.
+    Found 1-bit register for signal <icmp_ping_packet>.
+    Found 11-bit register for signal <length_count>.
+    Found 16-bit register for signal <delay_count>.
+    Found 8-bit register for signal <test_data>.
+    Found 11-bit register for signal <length_count_out>.
+    Found 1-bit register for signal <clken>.
+    Found finite state machine <FSM_2> for signal <Sreg0>.
+    -----------------------------------------------------------------------
+    | States             | 76                                             |
+    | Transitions        | 242                                            |
+    | Inputs             | 9                                              |
+    | Outputs            | 36                                             |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | reset (positive)                               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | idle                                           |
+    | Power Up State     | sendpacket_dest_s11                            |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+INFO:Xst:1799 - State 01011010 is never reached in FSM <test_data>.
+INFO:Xst:1799 - State 01000001 is never reached in FSM <test_data>.
+    Found finite state machine <FSM_4> for signal <test_data>.
+    -----------------------------------------------------------------------
+    | States             | 4                                              |
+    | Transitions        | 4                                              |
+    | Inputs             | 1                                              |
+    | Outputs            | 5                                              |
+    | Clock              | clk (rising_edge)                              |
+    | Clock enable       | _n0477 (negative)                              |
+    | Reset              | Sreg0<0> (negative)                            |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 10101010                                       |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 11-bit adder for signal <data_length[10]_GND_17_o_add_0_OUT> created at line 121.
+    Found 11-bit adder for signal <data_length[10]_GND_17_o_add_1_OUT> created at line 124.
+    Found 11-bit subtractor for signal <GND_17_o_GND_17_o_sub_4_OUT<10:0>> created at line 127.
+    Found 11-bit subtractor for signal <GND_17_o_GND_17_o_sub_7_OUT<10:0>> created at line 135.
+    Found 16-bit subtractor for signal <GND_17_o_GND_17_o_sub_21_OUT<15:0>> created at line 209.
+    Found 11-bit subtractor for signal <GND_17_o_GND_17_o_sub_37_OUT<10:0>> created at line 473.
+    Found 11-bit subtractor for signal <GND_17_o_GND_17_o_sub_40_OUT<10:0>> created at line 485.
+    Found 16-bit subtractor for signal <GND_17_o_GND_17_o_sub_46_OUT<15:0>> created at line 510.
+    Found 11-bit comparator lessequal for signal <data_length[10]_GND_17_o_LessThan_3_o> created at line 126
+    Found 11-bit comparator lessequal for signal <data_length[10]_GND_17_o_LessThan_6_o> created at line 134
+    HDL ADVISOR - Describing an operational reset or an explicit power-up state for register <test_data> would allow inference of a finite state machine and as consequence better performance and smaller area.
+    Summary:
+	inferred   7 Adder/Subtractor(s).
+	inferred 115 D-type flip-flop(s).
+	inferred   2 Comparator(s).
+	inferred  70 Multiplexer(s).
+	inferred   2 Finite State Machine(s).
+Unit <create_packet> synthesized.
+
+Synthesizing Unit <dataout_mux>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/dataout_mux.vhd".
+    Summary:
+	inferred   3 Multiplexer(s).
+Unit <dataout_mux> synthesized.
+
+Synthesizing Unit <decipherer>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/decipherer.vhd".
+    Found 5-bit register for signal <four_bit_count>.
+    Found 3-bit register for signal <first_bytes_count>.
+    Found 1-bit register for signal <four_bit_mode>.
+    Found 1-bit register for signal <clken>.
+    Found 8-bit register for signal <four_bit_data>.
+    Found 11-bit register for signal <udp_data_count>.
+    Found 11-bit register for signal <udp_zeros>.
+    Found 1-bit register for signal <addrs_match_sig>.
+    Found 7-bit register for signal <Sreg0>.
+    Found 48-bit register for signal <dest_mac>.
+    Found 48-bit register for signal <src_mac>.
+    Found 48-bit register for signal <arp_req_mac>.
+    Found 32-bit register for signal <arp_req_ip>.
+    Found 32-bit register for signal <arp_search_ip>.
+    Found 32-bit register for signal <udp_src_ip>.
+    Found 16-bit register for signal <udp_src_port>.
+    Found 32-bit register for signal <udp_dest_ip>.
+    Found 1-bit register for signal <four_bit_mode_out>.
+    Found 1-bit register for signal <is_ip_sig>.
+    Found 1-bit register for signal <is_arp_sig>.
+    Found 1-bit register for signal <is_idle>.
+    Found 1-bit register for signal <is_udp_sig>.
+    Found 1-bit register for signal <is_icmp_ping_sig>.
+    Found 1-bit register for signal <icmp_trigger_sig>.
+    Found 1-bit register for signal <udp_data_valid_sig>.
+    Found 16-bit register for signal <udp_countdown>.
+    Found 1-bit register for signal <crc_chk_init>.
+    Found 1-bit register for signal <crc_chk_en_unmasked>.
+    Found 1-bit register for signal <crc_chk_rd>.
+    Found 1-bit register for signal <capture_source_addrs_sig>.
+    Found 16-bit register for signal <udp_dest_port>.
+    Found 16-bit register for signal <icmp_checksum>.
+    Found 1-bit register for signal <dv_old>.
+    Found finite state machine <FSM_5> for signal <Sreg0>.
+    -----------------------------------------------------------------------
+    | States             | 100                                            |
+    | Transitions        | 227                                            |
+    | Inputs             | 18                                             |
+    | Outputs            | 20                                             |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | reset (positive)                               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | idle                                           |
+    | Power Up State     | idle                                           |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 3-bit adder for signal <first_bytes_count[2]_GND_19_o_add_4_OUT> created at line 141.
+    Found 5-bit adder for signal <four_bit_count[4]_GND_19_o_add_11_OUT> created at line 153.
+    Found 11-bit subtractor for signal <GND_19_o_GND_19_o_sub_27_OUT<10:0>> created at line 176.
+    Found 11-bit subtractor for signal <GND_19_o_GND_19_o_sub_29_OUT<10:0>> created at line 179.
+    Found 16-bit subtractor for signal <GND_19_o_GND_19_o_sub_55_OUT<15:0>> created at line 368.
+    Found 16-bit subtractor for signal <GND_19_o_GND_19_o_sub_85_OUT<15:0>> created at line 617.
+    Found 3-bit comparator greater for signal <first_bytes_count[2]_PWR_21_o_LessThan_4_o> created at line 139
+    Found 5-bit comparator greater for signal <GND_19_o_four_bit_count[4]_LessThan_9_o> created at line 146
+    Found 5-bit comparator greater for signal <four_bit_count[4]_GND_19_o_LessThan_11_o> created at line 151
+    Found 11-bit comparator greater for signal <udp_countdown[10]_GND_19_o_LessThan_28_o> created at line 178
+    Found 32-bit comparator equal for signal <udp_dest_ip[31]_PWR_21_o_equal_37_o> created at line 191
+    Found 16-bit comparator greater for signal <n0072> created at line 292
+    Found 16-bit comparator greater for signal <n0147> created at line 618
+    Summary:
+	inferred   6 Adder/Subtractor(s).
+	inferred 390 D-type flip-flop(s).
+	inferred   7 Comparator(s).
+	inferred  76 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <decipherer> synthesized.
+
+Synthesizing Unit <dest_info_container>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/dest_info_container.vhd".
+    Summary:
+	no macro.
+Unit <dest_info_container> synthesized.
+
+Synthesizing Unit <filter_data_out>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/filter_data_out.vhd".
+    Found 1-bit register for signal <out_data_valid>.
+    Found 8-bit register for signal <out_data>.
+    Summary:
+	inferred   9 D-type flip-flop(s).
+Unit <filter_data_out> synthesized.
+
+Synthesizing Unit <icmp_ping_checksum_calc>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/icmp_ping_checksum_calc.vhd".
+WARNING:Xst:647 - Input <trigger> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 17-bit register for signal <req_chk_sum_sig>.
+    Found 16-bit register for signal <resp_chk_sum>.
+    Found 3-bit register for signal <Sreg0>.
+    Found finite state machine <FSM_6> for signal <Sreg0>.
+    -----------------------------------------------------------------------
+    | States             | 5                                              |
+    | Transitions        | 5                                              |
+    | Inputs             | 0                                              |
+    | Outputs            | 3                                              |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | reset (positive)                               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | init                                           |
+    | Power Up State     | init                                           |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 17-bit adder for signal <req_chk_sum_sig[16]_GND_22_o_add_1_OUT> created at line 72.
+    Found 16-bit adder for signal <req_chk_sum_sig[15]_GND_22_o_add_2_OUT> created at line 1241.
+    Summary:
+	inferred   2 Adder/Subtractor(s).
+	inferred  33 D-type flip-flop(s).
+	inferred   2 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <icmp_ping_checksum_calc> synthesized.
+
+Synthesizing Unit <icmp_ping_shift_reg>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/icmp_ping_shift_reg.vhd".
+    Found 8-bit register for signal <shReg<43>>.
+    Found 8-bit register for signal <shReg<42>>.
+    Found 8-bit register for signal <shReg<41>>.
+    Found 8-bit register for signal <shReg<40>>.
+    Found 8-bit register for signal <shReg<39>>.
+    Found 8-bit register for signal <shReg<38>>.
+    Found 8-bit register for signal <shReg<37>>.
+    Found 8-bit register for signal <shReg<36>>.
+    Found 8-bit register for signal <shReg<35>>.
+    Found 8-bit register for signal <shReg<34>>.
+    Found 8-bit register for signal <shReg<33>>.
+    Found 8-bit register for signal <shReg<32>>.
+    Found 8-bit register for signal <shReg<31>>.
+    Found 8-bit register for signal <shReg<30>>.
+    Found 8-bit register for signal <shReg<29>>.
+    Found 8-bit register for signal <shReg<28>>.
+    Found 8-bit register for signal <shReg<27>>.
+    Found 8-bit register for signal <shReg<26>>.
+    Found 8-bit register for signal <shReg<25>>.
+    Found 8-bit register for signal <shReg<24>>.
+    Found 8-bit register for signal <shReg<23>>.
+    Found 8-bit register for signal <shReg<22>>.
+    Found 8-bit register for signal <shReg<21>>.
+    Found 8-bit register for signal <shReg<20>>.
+    Found 8-bit register for signal <shReg<19>>.
+    Found 8-bit register for signal <shReg<18>>.
+    Found 8-bit register for signal <shReg<17>>.
+    Found 8-bit register for signal <shReg<16>>.
+    Found 8-bit register for signal <shReg<15>>.
+    Found 8-bit register for signal <shReg<14>>.
+    Found 8-bit register for signal <shReg<13>>.
+    Found 8-bit register for signal <shReg<12>>.
+    Found 8-bit register for signal <shReg<11>>.
+    Found 8-bit register for signal <shReg<10>>.
+    Found 8-bit register for signal <shReg<9>>.
+    Found 8-bit register for signal <shReg<8>>.
+    Found 8-bit register for signal <shReg<7>>.
+    Found 8-bit register for signal <shReg<6>>.
+    Found 8-bit register for signal <shReg<5>>.
+    Found 8-bit register for signal <shReg<4>>.
+    Found 8-bit register for signal <shReg<3>>.
+    Found 8-bit register for signal <shReg<2>>.
+    Found 8-bit register for signal <shReg<1>>.
+    Found 8-bit register for signal <shReg<0>>.
+    Found 8-bit register for signal <din_latch>.
+    Summary:
+	inferred 360 D-type flip-flop(s).
+Unit <icmp_ping_shift_reg> synthesized.
+
+Synthesizing Unit <udp_data_splicer>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/udp_data_splicer.vhd".
+    Found 1-bit register for signal <delay_sel_user>.
+    Found 8-bit register for signal <latched_user_data>.
+    Summary:
+	inferred   9 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <udp_data_splicer> synthesized.
+
+Synthesizing Unit <user_addrs_mux>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/user_addrs_mux.vhd".
+    Summary:
+	inferred   3 Multiplexer(s).
+Unit <user_addrs_mux> synthesized.
+
+Synthesizing Unit <MII_100_1000_handler>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/xmii_handler.vhd".
+WARNING:Xst:647 - Input <clk> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <MII_100_1000_handler> synthesized.
+
+Synthesizing Unit <crc_chk>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/crc_chk.v".
+    Found 32-bit register for signal <CRC_reg>.
+    Summary:
+	inferred  32 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <crc_chk> synthesized.
+
+Synthesizing Unit <crc_gen>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/crc_gen.v".
+    Found 32-bit register for signal <CRC_reg>.
+    Found 4-bit register for signal <Counter>.
+    Found 4-bit adder for signal <Counter[3]_GND_30_o_add_6_OUT> created at line 159.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  36 D-type flip-flop(s).
+	inferred   4 Multiplexer(s).
+Unit <crc_gen> synthesized.
+
+Synthesizing Unit <crc_splice>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/crc_splice.vhd".
+    Found 1-bit register for signal <tx_er>.
+    Found 8-bit register for signal <txd>.
+    Found 1-bit register for signal <flip_flop>.
+    Found 4-bit register for signal <nibble_reg>.
+    Found 1-bit register for signal <tx_en>.
+    Summary:
+	inferred  15 D-type flip-flop(s).
+	inferred   7 Multiplexer(s).
+Unit <crc_splice> synthesized.
+
+Synthesizing Unit <data_manager>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/data_manager.vhd".
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/data_manager.vhd" line 251: Output port <empty> of the instance <RX_DATA_FIFO> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/data_manager.vhd" line 290: Output port <full> of the instance <TX_CTRL_FIFO> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/data_manager.vhd" line 290: Output port <empty> of the instance <TX_CTRL_FIFO> is unconnected or connected to loadless signal.
+    Found 64-bit register for signal <tx_ctrl_fifo_din>.
+    Summary:
+	inferred  64 D-type flip-flop(s).
+	inferred   6 Multiplexer(s).
+Unit <data_manager> synthesized.
+
+Synthesizing Unit <burst_controller_sm>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/burst_controller_sm.vhd".
+    Register <reset_packet_size> equivalent to <tx_info_we> has been removed
+    Found 1-bit register for signal <just_reset>.
+    Found 1-bit register for signal <tx_info_we>.
+    Found 1-bit register for signal <b_end_packet_old>.
+    Found 2-bit register for signal <Sreg0>.
+    Found 1-bit register for signal <tx_info<15>>.
+    Found 1-bit register for signal <tx_info<14>>.
+    Found 1-bit register for signal <tx_info<13>>.
+    Found 1-bit register for signal <tx_info<12>>.
+    Found 1-bit register for signal <tx_info<11>>.
+    Found 1-bit register for signal <tx_info<10>>.
+    Found 1-bit register for signal <tx_info<9>>.
+    Found 1-bit register for signal <tx_info<8>>.
+    Found 1-bit register for signal <tx_info<1>>.
+    Found 1-bit register for signal <tx_info<0>>.
+    Found 1-bit register for signal <b_enable_sig>.
+    Found 1-bit register for signal <first_packet_sig>.
+    Found 8-bit register for signal <b_packet_qw_size>.
+    Found finite state machine <FSM_7> for signal <Sreg0>.
+    -----------------------------------------------------------------------
+    | States             | 3                                              |
+    | Transitions        | 7                                              |
+    | Inputs             | 4                                              |
+    | Outputs            | 3                                              |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | reset (positive)                               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | idle                                           |
+    | Power Up State     | wait_for_end                                   |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 8-bit adder for signal <b_packet_qw_size[7]_GND_36_o_add_1_OUT> created at line 91.
+    Found 1-bit 3-to-1 multiplexer for signal <Sreg0[1]_X_34_o_Mux_26_o> created at line 130.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  23 D-type flip-flop(s).
+	inferred   9 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <burst_controller_sm> synthesized.
+
+Synthesizing Unit <rx_ctl>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/rx_ctl.vhd".
+WARNING:Xst:37 - Detected unknown constraint/property "STATE_VECTOR". This constraint/property is not supported by the current software release and will be ignored.
+    Set property "enum_encoding = 0000 0001 0010 0011 0100 0101 0110 0111 1000 1001 1010 1011" for signal <Sreg0>.
+    Found 1-bit register for signal <crc_err_reg>.
+    Found 1-bit register for signal <crc_err_flag>.
+    Found 4-bit register for signal <Sreg0>.
+    Found 1-bit register for signal <data_fifo_wren_sig>.
+    Found 1-bit register for signal <info_fifo_wren_sig>.
+    Found 16-bit register for signal <info_fifo_wr_data>.
+    Found 2-bit register for signal <com_code>.
+    Found 8-bit register for signal <q_w_counter>.
+    Found 8-bit register for signal <q_w_count>.
+    Found 64-bit register for signal <data_fifo_wdata_sig>.
+    Found 1-bit register for signal <clken>.
+    Found finite state machine <FSM_8> for signal <Sreg0>.
+    -----------------------------------------------------------------------
+    | States             | 12                                             |
+    | Transitions        | 42                                             |
+    | Inputs             | 7                                              |
+    | Outputs            | 5                                              |
+    | Clock              | clock (rising_edge)                            |
+    | Reset              | reset (positive)                               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | idle                                           |
+    | Power Up State     | s3_s4                                          |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 8-bit adder for signal <user_rx_data_out[7]_GND_37_o_add_10_OUT> created at line 1241.
+    Found 8-bit adder for signal <q_w_counter[7]_GND_37_o_add_12_OUT> created at line 1241.
+    Found 11-bit comparator greater for signal <GND_37_o_user_rx_size_out[10]_LessThan_3_o> created at line 139
+    Found 8-bit comparator equal for signal <q_w_counter[7]_q_w_count[7]_equal_14_o> created at line 195
+    Summary:
+	inferred   2 Adder/Subtractor(s).
+	inferred 103 D-type flip-flop(s).
+	inferred   2 Comparator(s).
+	inferred  16 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <rx_ctl> synthesized.
+
+Synthesizing Unit <ram_comm_dec>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/ram_comm_dec.vhd".
+WARNING:Xst:37 - Detected unknown constraint/property "STATE_VECTOR". This constraint/property is not supported by the current software release and will be ignored.
+    Set property "enum_encoding = 00000 00001 00010 00011 00100 00101 00110 00111 01000 01001 01010 01011 01100 01101 01110 01111 10000 10001 10010 10011 10100 10101 10110" for signal <Sreg0>.
+WARNING:Xst:647 - Input <rx_info_fifo_rd_data<6:4>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <tx_info_fifo_full> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 5-bit register for signal <flag_handling_gen[0].tmp_cnt>.
+    Found 1-bit register for signal <comm_dec_ready>.
+    Found 1-bit register for signal <rx_info_fifo_full_flag>.
+    Found 1-bit register for signal <rx_data_fifo_full_flag>.
+    Found 1-bit register for signal <flag_handling_gen[0].is_counting>.
+    Found 5-bit register for signal <Sreg0>.
+    Found 1-bit register for signal <tx_info_fifo_wren>.
+    Found 1-bit register for signal <Rx_FIFO_Reset>.
+    Found 1-bit register for signal <Tx_FIFO_Reset>.
+    Found 1-bit register for signal <clear_crc_err_flag>.
+    Found 2-bit register for signal <comm_reg>.
+    Found 8-bit register for signal <q_w_count_reg>.
+    Found 8-bit register for signal <mem_loc_count_reg>.
+    Found 1-bit register for signal <crc_err>.
+    Found 1-bit register for signal <rx_protocol_err_flag>.
+    Found 16-bit register for signal <tx_info_fifo_wr_data>.
+    Found 1-bit register for signal <tx_data_fifo_wren>.
+    Found 64-bit register for signal <ram_wdata>.
+    Found 64-bit register for signal <ram_addr_sig>.
+    Found 1-bit register for signal <ram_wren_sig>.
+    Found 1-bit register for signal <ram_rden_sig>.
+    Found 1-bit register for signal <burst_start>.
+    Found 1-bit register for signal <burst_stop>.
+    Found 1-bit register for signal <rx_info_fifo_rden>.
+    Found 1-bit register for signal <rx_data_fifo_rden_sig>.
+    Found 1-bit register for signal <no_addrs_incr>.
+    Found 1-bit register for signal <first_write_qword>.
+    Found 1-bit register for signal <user_ready_mask>.
+    Found 1-bit register for signal <flag_handling_gen[0].old_rx_v>.
+    Found finite state machine <FSM_9> for signal <Sreg0>.
+    -----------------------------------------------------------------------
+    | States             | 23                                             |
+    | Transitions        | 55                                             |
+    | Inputs             | 9                                              |
+    | Outputs            | 14                                             |
+    | Clock              | clock (rising_edge)                            |
+    | Reset              | reset (positive)                               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | idle                                           |
+    | Power Up State     | write_com_s8                                   |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 64-bit adder for signal <ram_addr_sig[63]_GND_38_o_add_35_OUT> created at line 1241.
+    Found 5-bit subtractor for signal <GND_38_o_GND_38_o_sub_2_OUT<4:0>> created at line 1308.
+    Found 8-bit subtractor for signal <mem_loc_count_reg[7]_GND_38_o_mux_38_OUT> created at line 436.
+    Summary:
+	inferred   3 Adder/Subtractor(s).
+	inferred 188 D-type flip-flop(s).
+	inferred  56 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <ram_comm_dec> synthesized.
+
+Synthesizing Unit <tx_seq_ctl>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/data_manager/tx_seq_ctl.vhd".
+WARNING:Xst:37 - Detected unknown constraint/property "STATE_VECTOR". This constraint/property is not supported by the current software release and will be ignored.
+    Set property "enum_encoding = 0000 0001 0010 0011 0100 0101 0110 0111 1000 1001" for signal <Sreg0>.
+WARNING:Xst:647 - Input <data_fifo_empty> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 4-bit register for signal <Sreg0>.
+    Found 1-bit register for signal <info_fifo_rden_sig>.
+    Found 1-bit register for signal <data_fifo_rden_sig>.
+    Found 8-bit register for signal <seq_count>.
+    Found 1-bit register for signal <user_trigger>.
+    Found 11-bit register for signal <user_tx_size_in>.
+    Found 8-bit register for signal <qw_count>.
+    Found 11-bit register for signal <tx_data_count>.
+    Found 64-bit register for signal <data_fifo_rd_data_reg>.
+    Found 3-bit register for signal <byte_count>.
+    Found 1-bit register for signal <fifo_sel>.
+    Found 8-bit register for signal <tx_data>.
+    Found 1-bit register for signal <clken>.
+    Found finite state machine <FSM_10> for signal <Sreg0>.
+    -----------------------------------------------------------------------
+    | States             | 10                                             |
+    | Transitions        | 35                                             |
+    | Inputs             | 7                                              |
+    | Outputs            | 5                                              |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | reset (positive)                               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | idle                                           |
+    | Power Up State     | s7                                             |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 8-bit adder for signal <seq_count[7]_GND_39_o_add_0_OUT> created at line 1241.
+    Found 11-bit adder for signal <tx_data_count[10]_GND_39_o_add_1_OUT> created at line 1241.
+    Found 3-bit adder for signal <byte_count[2]_GND_39_o_add_10_OUT> created at line 1241.
+    Found 8-bit subtractor for signal <GND_39_o_GND_39_o_sub_15_OUT<7:0>> created at line 1308.
+    Found 8-bit comparator greater for signal <GND_39_o_qw_count[7]_LessThan_13_o> created at line 181
+    Summary:
+	inferred   4 Adder/Subtractor(s).
+	inferred 118 D-type flip-flop(s).
+	inferred   1 Comparator(s).
+	inferred  11 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <tx_seq_ctl> synthesized.
+
+Synthesizing Unit <burst_traffic_controller>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/burst_traffic_controller.vhd".
+    Found 34-bit register for signal <clocks_since_send>.
+    Found 8-bit register for signal <writes_in_curr_burst>.
+    Found 1-bit register for signal <BURST_END_PACKET>.
+    Found 34-bit adder for signal <clocks_since_send[33]_GND_40_o_add_1_OUT> created at line 50.
+    Found 8-bit adder for signal <writes_in_curr_burst[7]_GND_40_o_add_4_OUT> created at line 59.
+    Found 8-bit comparator greater for signal <n0004> created at line 55
+    Found 34-bit comparator lessequal for signal <n0013> created at line 69
+    Summary:
+	inferred   2 Adder/Subtractor(s).
+	inferred  43 D-type flip-flop(s).
+	inferred   2 Comparator(s).
+	inferred   6 Multiplexer(s).
+Unit <burst_traffic_controller> synthesized.
+
+Synthesizing Unit <reset_mgr>.
+    Related source file is "/home/swu/mrbots/srcs/otsdaq-firmware/cactus/components/ots_ethernet/firmware/hdl/ethernet_controller/reset_mgr.vhd".
+    Found 16-bit register for signal <cnt>.
+    Found 1-bit register for signal <reset>.
+    Found 16-bit adder for signal <cnt[15]_GND_41_o_add_1_OUT> created at line 1241.
+    Found 16-bit comparator greater for signal <cnt[15]_GND_41_o_LessThan_1_o> created at line 46
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  17 D-type flip-flop(s).
+	inferred   1 Comparator(s).
+Unit <reset_mgr> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 37
+ 11-bit adder                                          : 3
+ 11-bit subtractor                                     : 5
+ 16-bit adder                                          : 3
+ 16-bit subtractor                                     : 5
+ 17-bit adder                                          : 2
+ 3-bit adder                                           : 3
+ 32-bit adder                                          : 1
+ 34-bit adder                                          : 1
+ 4-bit adder                                           : 1
+ 5-bit adder                                           : 2
+ 5-bit subtractor                                      : 1
+ 64-bit adder                                          : 2
+ 64-bit subtractor                                     : 1
+ 8-bit adder                                           : 5
+ 8-bit subtractor                                      : 2
+# Registers                                            : 239
+ 1-bit register                                        : 122
+ 11-bit register                                       : 7
+ 16-bit register                                       : 15
+ 17-bit register                                       : 2
+ 2-bit register                                        : 2
+ 3-bit register                                        : 3
+ 32-bit register                                       : 7
+ 34-bit register                                       : 1
+ 4-bit register                                        : 2
+ 48-bit register                                       : 4
+ 5-bit register                                        : 3
+ 64-bit register                                       : 9
+ 8-bit register                                        : 62
+# Comparators                                          : 16
+ 11-bit comparator greater                             : 2
+ 11-bit comparator lessequal                           : 2
+ 16-bit comparator greater                             : 3
+ 3-bit comparator greater                              : 1
+ 32-bit comparator equal                               : 1
+ 34-bit comparator lessequal                           : 1
+ 5-bit comparator greater                              : 2
+ 64-bit comparator equal                               : 1
+ 8-bit comparator equal                                : 1
+ 8-bit comparator greater                              : 2
+# Multiplexers                                         : 337
+ 1-bit 2-to-1 multiplexer                              : 113
+ 1-bit 3-to-1 multiplexer                              : 1
+ 11-bit 2-to-1 multiplexer                             : 9
+ 16-bit 2-to-1 multiplexer                             : 35
+ 17-bit 2-to-1 multiplexer                             : 14
+ 3-bit 2-to-1 multiplexer                              : 1
+ 32-bit 2-to-1 multiplexer                             : 16
+ 34-bit 2-to-1 multiplexer                             : 3
+ 4-bit 2-to-1 multiplexer                              : 1
+ 48-bit 2-to-1 multiplexer                             : 15
+ 5-bit 2-to-1 multiplexer                              : 3
+ 64-bit 2-to-1 multiplexer                             : 9
+ 8-bit 2-to-1 multiplexer                              : 117
+# FSMs                                                 : 10
+# Xors                                                 : 104
+ 1-bit xor2                                            : 66
+ 1-bit xor3                                            : 32
+ 1-bit xor4                                            : 6
+
+=========================================================================
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Reading core <ipcore_dir/DATA_FIFO_0.ngc>.
+Reading core <ipcore_dir/INFO_FIFO_0.ngc>.
+Loading core <DATA_FIFO_0> for timing and area information for instance <TX_DATA_FIFO>.
+Loading core <DATA_FIFO_0> for timing and area information for instance <RX_DATA_FIFO>.
+Loading core <INFO_FIFO_0> for timing and area information for instance <RX_DATA_INFO_FIFO>.
+Loading core <INFO_FIFO_0> for timing and area information for instance <TX_DATA_INFO_FIFO>.
+Loading core <DATA_FIFO_0> for timing and area information for instance <TX_CTRL_FIFO>.
+Loading core <INFO_FIFO_0> for timing and area information for instance <TX_CTRL_INFO_FIFO>.
+INFO:Xst:2261 - The FF/Latch <UDP_length_11> in Unit <CreatePacketBlock> is equivalent to the following 9 FFs/Latches, which will be removed : <UDP_length_12> <UDP_length_13> <UDP_length_14> <UDP_length_15> <IP_length_11> <IP_length_12> <IP_length_13> <IP_length_14> <IP_length_15> 
+WARNING:Xst:1710 - FF/Latch <UDP_length_11> (without init value) has a constant value of 0 in block <CreatePacketBlock>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2404 -  FFs/Latches <IP_length<15:11>> (without init value) have a constant value of 0 in block <create_packet>.
+WARNING:Xst:2404 -  FFs/Latches <UDP_length<15:11>> (without init value) have a constant value of 0 in block <create_packet>.
+
+Synthesizing (advanced) Unit <crc_gen>.
+The following registers are absorbed into counter <Counter>: 1 register on signal <Counter>.
+Unit <crc_gen> synthesized (advanced).
+
+Synthesizing (advanced) Unit <decipherer>.
+The following registers are absorbed into counter <first_bytes_count>: 1 register on signal <first_bytes_count>.
+Unit <decipherer> synthesized (advanced).
+
+Synthesizing (advanced) Unit <ram_comm_dec>.
+The following registers are absorbed into counter <flag_handling_gen[0].tmp_cnt>: 1 register on signal <flag_handling_gen[0].tmp_cnt>.
+Unit <ram_comm_dec> synthesized (advanced).
+
+Synthesizing (advanced) Unit <reset_mgr>.
+The following registers are absorbed into counter <cnt>: 1 register on signal <cnt>.
+Unit <reset_mgr> synthesized (advanced).
+
+Synthesizing (advanced) Unit <rx_ctl>.
+The following registers are absorbed into counter <q_w_counter>: 1 register on signal <q_w_counter>.
+Unit <rx_ctl> synthesized (advanced).
+
+Synthesizing (advanced) Unit <top>.
+The following registers are absorbed into counter <dataGenGen[0].cnt>: 1 register on signal <dataGenGen[0].cnt>.
+The following registers are absorbed into counter <makeSlowClock[0].cnt>: 1 register on signal <makeSlowClock[0].cnt>.
+The following registers are absorbed into counter <dataGenGen[0].data_cnt>: 1 register on signal <dataGenGen[0].data_cnt>.
+The following registers are absorbed into counter <dataGenGen[0].delay_cnt>: 1 register on signal <dataGenGen[0].delay_cnt>.
+Unit <top> synthesized (advanced).
+
+Synthesizing (advanced) Unit <tx_seq_ctl>.
+The following registers are absorbed into counter <seq_count>: 1 register on signal <seq_count>.
+The following registers are absorbed into counter <qw_count>: 1 register on signal <qw_count>.
+The following registers are absorbed into counter <byte_count>: 1 register on signal <byte_count>.
+Unit <tx_seq_ctl> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 25
+ 11-bit adder                                          : 3
+ 11-bit subtractor                                     : 5
+ 16-bit adder                                          : 2
+ 16-bit subtractor                                     : 5
+ 17-bit adder                                          : 2
+ 34-bit adder                                          : 1
+ 5-bit adder                                           : 1
+ 64-bit adder                                          : 1
+ 64-bit subtractor                                     : 1
+ 8-bit adder                                           : 3
+ 8-bit subtractor                                      : 1
+# Counters                                             : 12
+ 16-bit up counter                                     : 1
+ 3-bit up counter                                      : 3
+ 32-bit up counter                                     : 1
+ 4-bit up counter                                      : 1
+ 5-bit down counter                                    : 1
+ 5-bit up counter                                      : 1
+ 64-bit up counter                                     : 1
+ 8-bit down counter                                    : 1
+ 8-bit up counter                                      : 2
+# Registers                                            : 1862
+ Flip-Flops                                            : 1862
+# Comparators                                          : 16
+ 11-bit comparator greater                             : 2
+ 11-bit comparator lessequal                           : 2
+ 16-bit comparator greater                             : 3
+ 3-bit comparator greater                              : 1
+ 32-bit comparator equal                               : 1
+ 34-bit comparator lessequal                           : 1
+ 5-bit comparator greater                              : 2
+ 64-bit comparator equal                               : 1
+ 8-bit comparator equal                                : 1
+ 8-bit comparator greater                              : 2
+# Multiplexers                                         : 361
+ 1-bit 2-to-1 multiplexer                              : 145
+ 1-bit 3-to-1 multiplexer                              : 1
+ 11-bit 2-to-1 multiplexer                             : 9
+ 16-bit 2-to-1 multiplexer                             : 34
+ 17-bit 2-to-1 multiplexer                             : 14
+ 32-bit 2-to-1 multiplexer                             : 16
+ 34-bit 2-to-1 multiplexer                             : 3
+ 48-bit 2-to-1 multiplexer                             : 15
+ 5-bit 2-to-1 multiplexer                              : 2
+ 64-bit 2-to-1 multiplexer                             : 9
+ 8-bit 2-to-1 multiplexer                              : 113
+# FSMs                                                 : 10
+# Xors                                                 : 104
+ 1-bit xor2                                            : 66
+ 1-bit xor3                                            : 32
+ 1-bit xor4                                            : 6
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <eth_interface/data_manager_blk/GEC_RX_CTRL/FSM_8> on signal <Sreg0[1:4]> with user encoding.
+------------------------
+ State      | Encoding
+------------------------
+ s3_s4      | 0000
+ s3_s7      | 0001
+ s3_s8      | 0010
+ s3_s9      | 0011
+ s3_s10     | 0100
+ s3_s11     | 0101
+ s3_s6      | 0110
+ s3_s5      | 0111
+ idle       | 1000
+ insert_crc | 1001
+ rcvdone    | 1010
+ s13        | 1011
+------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <eth_interface/data_manager_blk/burst_controller_sm/FSM_7> on signal <Sreg0[1:2]> with user encoding.
+--------------------------
+ State        | Encoding
+--------------------------
+ wait_for_end | 00
+ reset_size   | 01
+ idle         | 10
+--------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <eth_interface/data_manager_blk/GEC_TX_SEQ_CTL/FSM_10> on signal <Sreg0[1:4]> with user encoding.
+------------------------
+ State      | Encoding
+------------------------
+ s7         | 0000
+ s1         | 0001
+ savecount  | 0010
+ read_ififo | 0011
+ s2         | 0100
+ idle       | 0101
+ txmtdone   | 0110
+ chk_busy   | 0111
+ s5         | 1000
+ trgrd      | 1001
+------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <eth_interface/data_manager_blk/RAM_COMM_DEC/FSM_9> on signal <Sreg0[1:5]> with user encoding.
+----------------------------
+ State          | Encoding
+----------------------------
+ write_com_s8   | 00000
+ read_com_s13   | 00001
+ read_com_s14   | 00010
+ read_com_s15   | 00011
+ read_com_s1    | 00100
+ read_com_s18   | 00101
+ burst_strt_s30 | 00110
+ burst_strt_s31 | 00111
+ burst_strt_s33 | 01000
+ burst_strt_s34 | 01001
+ burst_stp_s36  | 01010
+ burst_stp_s37  | 01011
+ burst_stp_s38  | 01100
+ burst_stp_s39  | 01101
+ write_com_s42  | 01110
+ write_com_s40  | 01111
+ write_com_s9   | 10000
+ pro_comm       | 10001
+ dec_comm       | 10010
+ idle           | 10011
+ return_st      | 10100
+ get_comm       | 10101
+ err_dec        | 10110
+----------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <eth_interface/ec_wrapper/ethernet_controller/DecipherBlock/FSM_5> on signal <Sreg0[1:100]> with one-hot encoding.
+---------------------------------------------------------------------------------------------------------------------------------------------------
+ State                                     | Encoding
+---------------------------------------------------------------------------------------------------------------------------------------------------
+ idle                                      | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
+ recvpacket_ip_payload_udp_recvdataloop    | 0000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000
+ recvpacket_type_s29                       | 0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000
+ recvpacket_ip_payload_ip_totlength2       | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000
+ recvpacket_ip_payload_udp_sourceport1     | 0000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000
+ recvpacket_ip_payload_ip_versionandheader | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000
+ recvpacket_dest_s22                       | 0000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_ip_payload_ip_totlength1       | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000
+ recvpacket_ip_payload_ip_tos              | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000
+ recvpacket_dest_s11                       | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000
+ recvpacket_ip_payload_udp_destport1       | 0000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000
+ recvpacket_ip_payload_ip_ttl              | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000
+ recvpacket_ip_payload_ip_fragmentoffset   | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000
+ recvpacket_ip_payload_ip_flagsandfrag     | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000
+ recvpacket_ip_payload_ip_id2              | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000
+ recvpacket_ip_payload_ip_id1              | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000
+ recvpacket_dest_s12                       | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000
+ recvpacket_dest_s13                       | 0000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000
+ recvpacket_dest_s14                       | 0000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000
+ recvpacket_dest_s15                       | 0000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000
+ recvpacket_ip_payload_ip_sourceaddr1      | 0000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000
+ recvpacket_ip_payload_ip_checksum2        | 0000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000
+ recvpacket_ip_payload_ip_checksum1        | 0000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000
+ recvpacket_ip_payload_ip_protocol         | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000
+ recvpacket_ip_payload_ip_sourceaddr3      | 0000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000
+ recvpacket_ip_payload_ip_sourceaddr2      | 0000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000
+ recvpacket_ip_payload_ip_destaddr2        | 0000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000
+ recvpacket_ip_payload_ip_destaddr1        | 0000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000
+ recvpacket_ip_payload_ip_sourceaddr4      | 0000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000
+ recvpacket_ip_payload_ip_destaddr4        | 0000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000
+ recvpacket_ip_payload_ip_destaddr3        | 0000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000
+ recvpacket_type_s26                       | 0000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000
+ recvpacket_ip_payload_udp_destport2       | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000
+ recvpacket_ip_payload_udp_length1         | 0000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000
+ recvpacket_ip_payload_udp_checksum2       | 0000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000
+ recvpacket_ip_payload_udp_checksum1       | 0000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000
+ recvpacket_ip_payload_udp_length2         | 0000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000
+ recvpacket_ip_payload_udp_sourceport2     | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000
+ recvpacket_src_s42                        | 0000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000
+ recvpacket_src_s44                        | 0000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000
+ recvpacket_src_s45                        | 0000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000
+ recvpacket_src_s46                        | 0000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000
+ recvpacket_src_s47                        | 0000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000
+ recvpacket_src_s43                        | 0000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000
+ recvpacket_type_s1                        | 0000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000
+ recvpacket_type_s48                       | 0000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000
+ recvpacket_type_s49                       | 0000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000
+ recvpacket_arp_payload_htype2             | 0000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_htype1             | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000
+ recvpacket_arp_payload_ptype1             | 0000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_ptype2             | 0000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_hlen               | 0000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_plen               | 0000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_op1                | 0000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_smac1              | 0000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_smac2              | 0000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_smac3              | 0000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_smac4              | 0000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_smac5              | 0000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_smac6              | 0000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_sip1               | 0000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_sip2               | 0000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_sip3               | 0000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_sip4               | 0000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_tmac1              | 0000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_tmac2              | 0000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_tmac3              | 0000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_tmac4              | 0000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_tmac5              | 0000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_tmac6              | 0000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_tip1               | 0000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_tip2               | 0000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_tip3               | 0000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_tip4               | 0000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_ip_payload_icmp_id1            | 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_arp_payload_op2                | 0000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000
+ recvpacket_ip_payload_icmp_id2            | 0000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_preamble_s50                   | 0000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_preamble_s51                   | 0000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_crc_arp_s52                    | 0000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_ip_payload_icmp_seqnum1        | 0000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_crc_arp_s53                    | 0000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_crc_arp_crc1                   | 0000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_ip_payload_icmp_seqnum2        | 0000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_crc_arp_crc2                   | 0000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_crc_arp_crc3                   | 0000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_crc_arp_crc4                   | 0000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_ip_payload_icmp_dataloop       | 0000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_preamble_s54                   | 0000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_crc_ip_s55                     | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100
+ recvpacket_crc_ip_crc6                    | 0000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_crc_ip_crc7                    | 0000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_crc_ip_crc8                    | 0000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_crc_ip_crc9                    | 0000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_crc_ip_s56                     | 0000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ ready                                     | 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010
+ recvpacket_ip_payload_icmp_type           | 0000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000
+ recvpacket_ip_payload_icmp_code           | 0001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_ip_payload_icmp_checksum1      | 0010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ recvpacket_ip_payload_icmp_checksum2      | 0100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+---------------------------------------------------------------------------------------------------------------------------------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <eth_interface/ec_wrapper/ethernet_controller/CreatePacketBlock/FSM_2> on signal <Sreg0[1:7]> with user encoding.
+----------------------------------------------------
+ State                                  | Encoding
+----------------------------------------------------
+ sendpacket_dest_s11                    | 0000000
+ sendpacket_dest_s12                    | 0000001
+ sendpacket_dest_s13                    | 0000010
+ sendpacket_dest_s14                    | 0000011
+ sendpacket_dest_s15                    | 0000100
+ sendpacket_src_s16                     | 0000101
+ sendpacket_src_s18                     | 0000110
+ sendpacket_payload_ip_icmpprotocol     | 0000111
+ sendpacket_src_s19                     | 0001000
+ sendpacket_src_s20                     | 0001001
+ sendpacket_src_s21                     | 0001010
+ sendpacket_src_s17                     | 0001011
+ sendpacket_type_s26                    | 0001100
+ sendpacket_type_s29                    | 0001101
+ sendpacket_dest_s22                    | 0001110
+ sendpacket_payload_ip_totlength2       | 0001111
+ sendpacket_payload_ip_versionandheader | 0010000
+ sendpacket_payload_ip_totlength1       | 0010001
+ sendpacket_payload_ip_tos1             | 0010010
+ sendpacket_payload_udp_sourceport1     | 0010011
+ sendpacket_payload_udp_destport1       | 0010100
+ sendpacket_payload_ip_id2              | 0010101
+ sendpacket_payload_ip_flagsandfrag     | 0010110
+ sendpacket_payload_ip_fragmentoffset   | 0010111
+ sendpacket_payload_ip_icmptotlength1   | 0011000
+ sendpacket_payload_ip_ttl              | 0011001
+ sendpacket_payload_ip_protocol         | 0011010
+ sendpacket_payload_ip_checksum1        | 0011011
+ sendpacket_payload_ip_checksum2        | 0011100
+ sendpacket_payload_ip_sourceaddr1      | 0011101
+ sendpacket_payload_ip_icmptotlength2   | 0011110
+ sendpacket_payload_ip_sourceaddr2      | 0011111
+ sendpacket_payload_ip_sourceaddr3      | 0100000
+ sendpacket_payload_ip_id1              | 0100001
+ sendpacket_payload_ip_sourceaddr4      | 0100010
+ sendpacket_payload_ip_destaddr1        | 0100011
+ sendpacket_payload_ip_destaddr2        | 0100100
+ sendpacket_payload_ip_destaddr3        | 0100101
+ sendpacket_payload_ip_destaddr4        | 0100110
+ sendpacket_payload_udp_length1         | 0100111
+ sendpacket_payload_udp_destport2       | 0101000
+ sendpacket_payload_udp_sourceport2     | 0101001
+ sendpacket_payload_udp_length2         | 0101010
+ sendpacket_payload_udp_checksum1       | 0101011
+ sendpacket_payload_udp_checksum2       | 0101100
+ sendpacket_payload_udp_dataloop        | 0101101
+ idle                                   | 0101110
+ sleep                                  | 0101111
+ checkbusy                              | 0110000
+ sendpacket_preamble_s58                | 0110001
+ sendpacket_preamble_s57                | 0110010
+ sendpacket_crc_crc4                    | 0110011
+ sendpacket_crc_crc3                    | 0110100
+ sendpacket_crc_crc2                    | 0110101
+ sendpacket_crc_s59                     | 0110110
+ sendpacket_crc_crc1                    | 0110111
+ sendpacket_crc_s1                      | 0111000
+ sendpacket_payload_icmp_type           | 0111001
+ sendpacket_payload_icmp_code           | 0111010
+ sendpacket_payload_icmp_checksum1      | 0111011
+ sendpacket_payload_icmp_id1            | 0111100
+ sendpacket_payload_icmp_checksum2      | 0111101
+ sendpacket_payload_icmp_id2            | 0111110
+ sendpacket_payload_icmp_seqnum1        | 0111111
+ sendpacket_payload_icmp_seqnum2        | 1000000
+ sendpacket_payload_icmp_dataloop       | 1000001
+ sendpacket_dest_s60                    | 1000010
+ sendpacket_dest_s61                    | 1000011
+ sendpacket_dest_s62                    | 1000100
+ sendpacket_dest_s63                    | 1000101
+ sendpacket_dest_s64                    | 1000110
+ sendpacket_dest_s65                    | 1000111
+ sendpacket_payload_ip_destaddr6        | 1001000
+ sendpacket_payload_ip_destaddr5        | 1001001
+ sendpacket_payload_ip_destaddr8        | 1001010
+ sendpacket_payload_ip_destaddr7        | 1001011
+----------------------------------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <eth_interface/ec_wrapper/ethernet_controller/CreatePacketBlock/FSM_4> on signal <test_data[1:8]> with user encoding.
+----------------------
+ State    | Encoding
+----------------------
+ 10101010 | 10101010
+ 01011010 | unreached
+ 10111010 | 10111010
+ 01000001 | unreached
+----------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <eth_interface/ec_wrapper/ethernet_controller/ArpReplyBlock/FSM_0> on signal <Sreg0[1:66]> with one-hot encoding.
+------------------------------------------------------------------------------------------------------
+ State                          | Encoding
+------------------------------------------------------------------------------------------------------
+ idle                           | 000000000000000000000000000000000000000000000000000000000000000001
+ delay                          | 000000000000000000100000000000000000000000000000000000000000000000
+ arpresponse_arp_payload_ptype2 | 000000000000000000000000000100000000000000000000000000000000000000
+ arpresponse_arp_payload_hlen   | 000000000000000000000000000000000000000000000000000000000000001000
+ arpresponse_arp_payload_plen   | 000000000000000000000000000000000000000000000000000000000000010000
+ arpresponse_arp_payload_smac1  | 000000000000000000010000000000000000000000000000000000000000000000
+ arpresponse_arp_payload_smac2  | 000000000000000000000000000000000000000000000000000000000010000000
+ arpresponse_arp_payload_smac3  | 000000000000000000000000000000000000000000000000000000000100000000
+ arpresponse_arp_payload_smac4  | 000000000000000000000000000000000000000000000000000000001000000000
+ arpresponse_arp_payload_smac5  | 000000000000000000000000000000000000000000000000000000010000000000
+ arpresponse_arp_payload_smac6  | 000000000000000000000000000000000000000000000000000000100000000000
+ arpresponse_arp_payload_sip1   | 000000000000000000000000000000000000000000000000000001000000000000
+ arpresponse_arp_payload_sip2   | 000000000000000000000000000000000000000000000000000010000000000000
+ arpresponse_arp_payload_sip3   | 000000000000000000000000000000000000000000000000000100000000000000
+ arpresponse_arp_payload_sip4   | 000000000000000000000000000000000000000000000000001000000000000000
+ arpresponse_arp_payload_tmac1  | 000000000000000000000000000000000000000000000000010000000000000000
+ arpresponse_arp_payload_tmac2  | 000000000000000000000000000000000000000000000001000000000000000000
+ arpresponse_arp_payload_tmac3  | 000000000000000000000000000000000000000000000010000000000000000000
+ arpresponse_arp_payload_tmac4  | 000000000000000000000000000000000000000000000100000000000000000000
+ arpresponse_arp_payload_tmac5  | 000000000000000000000000000000000000000000001000000000000000000000
+ arpresponse_arp_payload_tmac6  | 000000000000000000000000000000000000000000010000000000000000000000
+ arpresponse_arp_payload_tip1   | 000000000000000000000000000000000000000000100000000000000000000000
+ arpresponse_arp_payload_tip2   | 000000000000000000000000000000000000000001000000000000000000000000
+ arpresponse_arp_payload_tip3   | 000000000000000000000000000000000000000010000000000000000000000000
+ arpresponse_type_s1            | 000000000000000000000000000000000000010000000000000000000000000000
+ arpresponse_type_s48           | 000000000000000000000000100000000000000000000000000000000000000000
+ arpresponse_dest_s22           | 000000000000000010000000000000000000000000000000000000000000000000
+ arpresponse_dest_s11           | 000000000000000000000000000000000000100000000000000000000000000000
+ arpresponse_dest_s12           | 000000000000000000000000000000000001000000000000000000000000000000
+ arpresponse_dest_s13           | 000000000000000000000000000000000010000000000000000000000000000000
+ arpresponse_dest_s14           | 000000000000000000000000000000000100000000000000000000000000000000
+ arpresponse_dest_s15           | 000000000000000000000000000000001000000000000000000000000000000000
+ arpresponse_arp_payload_htype1 | 000000000000000000000000000000000000001000000000000000000000000000
+ arpresponse_arp_payload_tip4   | 000000000000000000000000000000000000000100000000000000000000000000
+ arpresponse_arp_payload_htype2 | 000000000000000000000000000000100000000000000000000000000000000000
+ arpresponse_arp_payload_ptype1 | 000000000000000000000000000010000000000000000000000000000000000000
+ arpresponse_src_s50            | 000000000000000000000000010000000000000000000000000000000000000000
+ arpresponse_src_s51            | 000000000000000000000000000000010000000000000000000000000000000000
+ arpresponse_src_s52            | 000000000000000000000001000000000000000000000000000000000000000000
+ arpresponse_src_s53            | 000000000000000000000010000000000000000000000000000000000000000000
+ arpresponse_src_s54            | 000000000000000000001000000000000000000000000000000000000000000000
+ arpresponse_arp_payload_op1    | 000000000000000000000000000000000000000000000000000000000000100000
+ arpresponse_src_s55            | 000000000000000000000000001000000000000000000000000000000000000000
+ arpresponse_arp_payload_op2    | 000000000000000000000100000000000000000000000000000000000000000000
+ delay1                         | 000000000000100000000000000000000000000000000000000000000000000000
+ checkbusy                      | 000000000010000000000000000000000000000000000000000000000000000000
+ arpresponse_preamble_s57       | 000000000000000000000000000000000000000000000000000000000000000100
+ arpresponse_preamble_s58       | 000000000000000001000000000000000000000000000000000000000000000000
+ arpresponse_crc_crc1           | 000000000001000000000000000000000000000000000000000000000000000000
+ arpresponse_crc_crc2           | 000000000000000100000000000000000000000000000000000000000000000000
+ arpresponse_crc_crc3           | 000000000000001000000000000000000000000000000000000000000000000000
+ arpresponse_crc_crc4           | 000000000000010000000000000000000000000000000000000000000000000000
+ arpresponse_crc_s59            | 000000000000000000000000000001000000000000000000000000000000000000
+ precheckbusy                   | 000000000000000000000000000000000000000000000000000000000000000010
+ arpresponse_arp_payload_op3    | 000000000000000000000000000000000000000000000000000000000001000000
+ arpresponse_arp_payload_op4    | 000000000100000000000000000000000000000000000000000000000000000000
+ arpresponse_arp_payload_tmac7  | 000000000000000000000000000000000000000000000000100000000000000000
+ arpresponse_arp_payload_tmac8  | 000000001000000000000000000000000000000000000000000000000000000000
+ arpresponse_arp_payload_tmac9  | 000000010000000000000000000000000000000000000000000000000000000000
+ arpresponse_arp_payload_tmac10 | 000000100000000000000000000000000000000000000000000000000000000000
+ arpresponse_arp_payload_tmac11 | 000001000000000000000000000000000000000000000000000000000000000000
+ arpresponse_arp_payload_tmac12 | 000010000000000000000000000000000000000000000000000000000000000000
+ arpresponse_arp_payload_tip5   | 000100000000000000000000000000000000000000000000000000000000000000
+ arpresponse_arp_payload_tip6   | 001000000000000000000000000000000000000000000000000000000000000000
+ arpresponse_arp_payload_tip7   | 010000000000000000000000000000000000000000000000000000000000000000
+ arpresponse_arp_payload_tip8   | 100000000000000000000000000000000000000000000000000000000000000000
+------------------------------------------------------------------------------------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <eth_interface/ec_wrapper/ethernet_controller/ChecksumCalcBlock/FSM_1> on signal <Sreg0[1:3]> with user encoding.
+-------------------
+ State | Encoding
+-------------------
+ s1    | 000
+ s2    | 001
+ s3    | 010
+ s4    | 011
+ s5    | 100
+ s10   | 101
+ s6    | 110
+ s7    | 111
+-------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <eth_interface/ec_wrapper/ethernet_controller/ICMPPingChecksumCalcBlock/FSM_6> on signal <Sreg0[1:5]> with one-hot encoding.
+-------------------
+ State | Encoding
+-------------------
+ init  | 00001
+ s1    | 00010
+ s2    | 00100
+ s3    | 01000
+ s4    | 10000
+-------------------
+WARNING:Xst:1710 - FF/Latch <tx_data_count_0> (without init value) has a constant value of 0 in block <tx_seq_ctl>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <user_tx_size_in_0> (without init value) has a constant value of 0 in block <tx_seq_ctl>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <UDP_length_1> in Unit <create_packet> is equivalent to the following FF/Latch, which will be removed : <IP_length_1> 
+INFO:Xst:2261 - The FF/Latch <UDP_length_0> in Unit <create_packet> is equivalent to the following FF/Latch, which will be removed : <IP_length_0> 
+
+Optimizing unit <ethernet_interface> ...
+
+Optimizing unit <MII_100_1000_handler> ...
+
+Optimizing unit <dest_info_container> ...
+
+Optimizing unit <icmp_ping_shift_reg> ...
+
+Optimizing unit <top> ...
+
+Optimizing unit <data_manager> ...
+
+Optimizing unit <rx_ctl> ...
+
+Optimizing unit <burst_controller_sm> ...
+
+Optimizing unit <tx_seq_ctl> ...
+
+Optimizing unit <ram_comm_dec> ...
+
+Optimizing unit <ethernet_controller_wrapper> ...
+
+Optimizing unit <DataoutMux> ...
+
+Optimizing unit <ethernet_controller> ...
+
+Optimizing unit <decipherer> ...
+
+Optimizing unit <user_addrs_mux> ...
+
+Optimizing unit <create_packet> ...
+
+Optimizing unit <udp_data_splicer> ...
+
+Optimizing unit <address_container> ...
+
+Optimizing unit <arp_reply> ...
+
+Optimizing unit <ip_checksum_calc> ...
+
+Optimizing unit <filter_data_out> ...
+
+Optimizing unit <icmp_ping_checksum_calc> ...
+
+Optimizing unit <or33> ...
+
+Optimizing unit <crc_chk> ...
+
+Optimizing unit <crc_gen> ...
+
+Optimizing unit <crc_splice> ...
+
+Optimizing unit <burst_traffic_controller> ...
+
+Optimizing unit <reset_mgr> ...
+WARNING:Xst:1710 - FF/Latch <tx_er> (without init value) has a constant value of 0 in block <crcSplice>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <is_idle> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_0> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_1> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_2> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_3> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_4> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_5> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_6> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_7> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_8> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_9> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_10> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_11> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_12> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_13> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_14> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <udp_dest_port_15> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_0> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_1> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_2> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_3> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_4> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_5> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_6> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_7> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_8> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_9> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_10> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_11> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_12> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_13> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_14> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_15> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_16> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_17> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_18> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_19> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_20> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_21> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_22> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_23> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_24> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_25> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_26> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_27> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_28> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_29> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_30> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <arp_search_ip_31> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_0> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_1> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_2> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_3> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_4> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_5> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_6> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_7> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_8> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_9> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_10> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_11> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_12> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_13> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_14> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_15> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_16> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_17> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_18> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_19> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_20> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_21> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_22> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_23> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_24> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_25> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_26> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_27> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_28> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_29> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_30> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_31> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_32> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_33> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_34> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_35> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_36> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_37> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_38> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_39> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_40> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_41> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_42> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_43> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_44> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_45> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_46> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <dest_mac_47> of sequential type is unconnected in block <DecipherBlock>.
+WARNING:Xst:2677 - Node <Counter_0> of sequential type is unconnected in block <crcGen>.
+WARNING:Xst:2677 - Node <Counter_1> of sequential type is unconnected in block <crcGen>.
+WARNING:Xst:2677 - Node <Counter_2> of sequential type is unconnected in block <crcGen>.
+WARNING:Xst:2677 - Node <Counter_3> of sequential type is unconnected in block <crcGen>.
+WARNING:Xst:1710 - FF/Latch <udp_zeros_5> (without init value) has a constant value of 0 in block <DecipherBlock>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <udp_zeros_6> (without init value) has a constant value of 0 in block <DecipherBlock>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <udp_zeros_7> (without init value) has a constant value of 0 in block <DecipherBlock>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <udp_zeros_8> (without init value) has a constant value of 0 in block <DecipherBlock>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <udp_zeros_9> (without init value) has a constant value of 0 in block <DecipherBlock>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <udp_zeros_10> (without init value) has a constant value of 0 in block <DecipherBlock>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <four_bit_count_4> (without init value) has a constant value of 0 in block <DecipherBlock>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <zero_fill_count_6> (without init value) has a constant value of 0 in block <CreatePacketBlock>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <zero_fill_count_7> (without init value) has a constant value of 0 in block <CreatePacketBlock>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <zero_fill_count_8> (without init value) has a constant value of 0 in block <CreatePacketBlock>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <zero_fill_count_9> (without init value) has a constant value of 0 in block <CreatePacketBlock>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <zero_fill_count_10> (without init value) has a constant value of 0 in block <CreatePacketBlock>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <clocks_since_send_33> (without init value) has a constant value of 0 in block <burst_traffic_controller_blk>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cnt_2> has a constant value of 0 in block <reset_mgr>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cnt_3> has a constant value of 0 in block <reset_mgr>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cnt_4> has a constant value of 0 in block <reset_mgr>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cnt_5> has a constant value of 0 in block <reset_mgr>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cnt_6> has a constant value of 0 in block <reset_mgr>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cnt_7> has a constant value of 0 in block <reset_mgr>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cnt_8> has a constant value of 0 in block <reset_mgr>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cnt_9> has a constant value of 0 in block <reset_mgr>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cnt_10> has a constant value of 0 in block <reset_mgr>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cnt_11> has a constant value of 0 in block <reset_mgr>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cnt_12> has a constant value of 0 in block <reset_mgr>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cnt_13> has a constant value of 0 in block <reset_mgr>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cnt_14> has a constant value of 0 in block <reset_mgr>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <cnt_15> has a constant value of 0 in block <reset_mgr>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <dataGenGen[0].cnt_0> in Unit <top> is equivalent to the following FF/Latch, which will be removed : <makeSlowClock[0].cnt_0> 
+INFO:Xst:2261 - The FF/Latch <dataGenGen[0].cnt_1> in Unit <top> is equivalent to the following FF/Latch, which will be removed : <makeSlowClock[0].cnt_1> 
+INFO:Xst:2261 - The FF/Latch <dataGenGen[0].cnt_2> in Unit <top> is equivalent to the following FF/Latch, which will be removed : <makeSlowClock[0].cnt_2> 
+INFO:Xst:2261 - The FF/Latch <crc_err> in Unit <RAM_COMM_DEC> is equivalent to the following FF/Latch, which will be removed : <tx_info_fifo_wr_data_6> 
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block top, actual ratio is 0.
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_CTRL_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_CTRL_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <RX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <RX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_CTRL_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_CTRL_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <RX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <RX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_CTRL_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_CTRL_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <RX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <RX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_CTRL_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_CTRL_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <RX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <RX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_CTRL_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_CTRL_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <RX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <RX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_CTRL_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_CTRL_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <RX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <RX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_CTRL_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_CTRL_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <RX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <RX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_DATA_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_CTRL_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_CTRL_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <TX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <TX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i> in Unit <RX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i> 
+INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i> in Unit <RX_DATA_INFO_FIFO> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_fb_i> 
+
+Final Macro Processing ...
+
+Processing Unit <ICMPPingShiftRegBlock> :
+	Found 44-bit shift register for signal <shReg_43_0>.
+	Found 44-bit shift register for signal <shReg_43_1>.
+	Found 44-bit shift register for signal <shReg_43_2>.
+	Found 44-bit shift register for signal <shReg_43_3>.
+	Found 44-bit shift register for signal <shReg_43_4>.
+	Found 44-bit shift register for signal <shReg_43_5>.
+	Found 44-bit shift register for signal <shReg_43_6>.
+	Found 44-bit shift register for signal <shReg_43_7>.
+Unit <ICMPPingShiftRegBlock> processed.
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 1729
+ Flip-Flops                                            : 1729
+# Shift Registers                                      : 8
+ 44-bit shift register                                 : 8
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : top.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 3807
+#      GND                         : 26
+#      INV                         : 218
+#      LUT1                        : 279
+#      LUT2                        : 163
+#      LUT3                        : 479
+#      LUT4                        : 187
+#      LUT5                        : 454
+#      LUT6                        : 957
+#      MUXCY                       : 514
+#      MUXF7                       : 32
+#      VCC                         : 17
+#      XORCY                       : 481
+# FlipFlops/Latches                : 1899
+#      FD                          : 124
+#      FDE                         : 620
+#      FDPE                        : 64
+#      FDR                         : 226
+#      FDRE                        : 824
+#      FDS                         : 23
+#      FDSE                        : 18
+# RAMS                             : 6
+#      RAMB18E1                    : 3
+#      RAMB36E1                    : 3
+# Shift Registers                  : 16
+#      SRLC32E                     : 16
+# Clock Buffers                    : 3
+#      BUFG                        : 3
+# IO Buffers                       : 22
+#      IBUF                        : 9
+#      IBUFG                       : 1
+#      OBUF                        : 12
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 7k325tffg900-2 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:            1899  out of  407600     0%  
+ Number of Slice LUTs:                 2753  out of  203800     1%  
+    Number used as Logic:              2737  out of  203800     1%  
+    Number used as Memory:               16  out of  64000     0%  
+       Number used as SRL:               16
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:   3377
+   Number with an unused Flip Flop:    1478  out of   3377    43%  
+   Number with an unused LUT:           624  out of   3377    18%  
+   Number of fully used LUT-FF pairs:  1275  out of   3377    37%  
+   Number of unique control sets:       109
+
+IO Utilization: 
+ Number of IOs:                          22
+ Number of bonded IOBs:                  22  out of    500     4%  
+
+Specific Feature Utilization:
+ Number of Block RAM/FIFO:                5  out of    445     1%  
+    Number using Block RAM only:          5
+ Number of BUFG/BUFGCTRLs:                3  out of     32     9%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+PHY_RXCLK                          | IBUFG+BUFG             | 1921  |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+Control Signal                                                                                                                                                                                                                                                                                                                                                                | Buffer(FF name)                                                                                                                                                                                                                       | Load  |
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+eth_interface/data_manager_blk/RX_DATA_FIFO/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/gnativebmg.native_blk_mem_gen/valid.cstr/DBITERR(eth_interface/data_manager_blk/RX_DATA_FIFO/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/gnativebmg.native_blk_mem_gen/valid.cstr/XST_GND:G)| NONE(eth_interface/data_manager_blk/RX_DATA_FIFO/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v6_noinit.ram/SDP.WIDE_PRIM36.ram)| 2     |
+eth_interface/data_manager_blk/TX_CTRL_FIFO/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/gnativebmg.native_blk_mem_gen/valid.cstr/DBITERR(eth_interface/data_manager_blk/TX_CTRL_FIFO/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/gnativebmg.native_blk_mem_gen/valid.cstr/XST_GND:G)| NONE(eth_interface/data_manager_blk/TX_CTRL_FIFO/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v6_noinit.ram/SDP.WIDE_PRIM36.ram)| 2     |
+eth_interface/data_manager_blk/TX_DATA_FIFO/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/gnativebmg.native_blk_mem_gen/valid.cstr/DBITERR(eth_interface/data_manager_blk/TX_DATA_FIFO/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/gnativebmg.native_blk_mem_gen/valid.cstr/XST_GND:G)| NONE(eth_interface/data_manager_blk/TX_DATA_FIFO/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v6_noinit.ram/SDP.WIDE_PRIM36.ram)| 2     |
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -2
+
+   Minimum period: 3.381ns (Maximum Frequency: 295.814MHz)
+   Minimum input arrival time before clock: 2.830ns
+   Maximum output required time after clock: 0.580ns
+   Maximum combinational path delay: No path found
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'PHY_RXCLK'
+  Clock period: 3.381ns (frequency: 295.814MHz)
+  Total number of paths / destination ports: 136702 / 4636
+-------------------------------------------------------------------------
+Delay:               3.381ns (Levels of Logic = 5)
+  Source:            dataGenGen[0].reg_cnt_24 (FF)
+  Destination:       dataGenGen[0].reg_cnt_0 (FF)
+  Source Clock:      PHY_RXCLK rising
+  Destination Clock: PHY_RXCLK rising
+
+  Data Path: dataGenGen[0].reg_cnt_24 to dataGenGen[0].reg_cnt_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q              3   0.236   0.625  dataGenGen[0].reg_cnt_24 (dataGenGen[0].reg_cnt_24)
+     LUT6:I0->O            1   0.043   0.613  Mmux_dataGenGen[0].reg_cnt[63]_dataGenGen[0].reg_cnt[63]_mux_24_OUT1103 (Mmux_dataGenGen[0].reg_cnt[63]_dataGenGen[0].reg_cnt[63]_mux_24_OUT1103)
+     LUT6:I0->O            1   0.043   0.350  Mmux_dataGenGen[0].reg_cnt[63]_dataGenGen[0].reg_cnt[63]_mux_24_OUT11014_SW0 (N0)
+     LUT6:I5->O            2   0.043   0.355  Mmux_dataGenGen[0].reg_cnt[63]_dataGenGen[0].reg_cnt[63]_mux_24_OUT11014 (Mmux_dataGenGen[0].reg_cnt[63]_dataGenGen[0].reg_cnt[63]_mux_24_OUT11014)
+     LUT6:I5->O            1   0.043   0.350  Mmux_dataGenGen[0].reg_cnt[63]_dataGenGen[0].reg_cnt[63]_mux_24_OUT11015_1 (Mmux_dataGenGen[0].reg_cnt[63]_dataGenGen[0].reg_cnt[63]_mux_24_OUT11015)
+     LUT4:I3->O           64   0.043   0.475  _n0181_inv2 (_n0181_inv)
+     FDE:CE                    0.161          dataGenGen[0].reg_cnt_0
+    ----------------------------------------
+    Total                      3.381ns (0.612ns logic, 2.769ns route)
+                                       (18.1% logic, 81.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'PHY_RXCLK'
+  Total number of paths / destination ports: 845 / 420
+-------------------------------------------------------------------------
+Offset:              2.830ns (Levels of Logic = 8)
+  Source:            PHY_RXD1 (PAD)
+  Destination:       eth_interface/ec_wrapper/ethernet_controller/DecipherBlock/udp_countdown_0 (FF)
+  Destination Clock: PHY_RXCLK rising
+
+  Data Path: PHY_RXD1 to eth_interface/ec_wrapper/ethernet_controller/DecipherBlock/udp_countdown_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            19   0.000   0.596  IBUF_PHY_RXD1 (GMII_RXD_0_sig<1>)
+     begin scope: 'eth_interface:PHY_RXD<1>'
+     begin scope: 'eth_interface/ec_wrapper:GMII_RXD<1>'
+     begin scope: 'eth_interface/ec_wrapper/xgmii:rx_data<1>'
+     end scope: 'eth_interface/ec_wrapper/xgmii:rx_data_handled<1>'
+     begin scope: 'eth_interface/ec_wrapper/ethernet_controller:GMII_RXD<1>'
+     begin scope: 'eth_interface/ec_wrapper/ethernet_controller/DecipherBlock:data_in<1>'
+     LUT3:I0->O           34   0.043   0.733  mux1121 (data_out<1>)
+     LUT5:I0->O            4   0.043   0.367  data[7]_GND_19_o_equal_50_o<7>11 (data[7]_GND_19_o_equal_50_o<7>1)
+     LUT6:I5->O            6   0.043   0.378  data[7]_GND_19_o_equal_54_o<7>1 (data[7]_GND_19_o_equal_54_o)
+     LUT6:I5->O           16   0.043   0.422  Sreg0__n1415_inv4 (_n1415_inv)
+     FDRE:CE                   0.161          udp_countdown_0
+    ----------------------------------------
+    Total                      2.830ns (0.333ns logic, 2.497ns route)
+                                       (11.8% logic, 88.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'PHY_RXCLK'
+  Total number of paths / destination ports: 9 / 9
+-------------------------------------------------------------------------
+Offset:              0.580ns (Levels of Logic = 4)
+  Source:            eth_interface/ec_wrapper/crcSplice/txd_4 (FF)
+  Destination:       PHY_TXD4 (PAD)
+  Source Clock:      PHY_RXCLK rising
+
+  Data Path: eth_interface/ec_wrapper/crcSplice/txd_4 to PHY_TXD4
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               2   0.236   0.344  txd_4 (txd_4)
+     end scope: 'eth_interface/ec_wrapper/crcSplice:txd<4>'
+     begin scope: 'eth_interface/ec_wrapper/xgmii:tx_data<4>'
+     end scope: 'eth_interface/ec_wrapper/xgmii:tx_data_handled<4>'
+     end scope: 'eth_interface/ec_wrapper:GMII_TXD<4>'
+     end scope: 'eth_interface:PHY_TXD<4>'
+     OBUF:I->O                 0.000          OBUF_PHY_TXD4 (PHY_TXD4)
+    ----------------------------------------
+    Total                      0.580ns (0.236ns logic, 0.344ns route)
+                                       (40.7% logic, 59.3% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock PHY_RXCLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+PHY_RXCLK      |    3.381|         |         |         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 51.00 secs
+Total CPU time to Xst completion: 51.15 secs
+ 
+--> 
+
+
+Total memory usage is 645212 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  151 (   0 filtered)
+Number of infos    :   75 (   0 filtered)
+

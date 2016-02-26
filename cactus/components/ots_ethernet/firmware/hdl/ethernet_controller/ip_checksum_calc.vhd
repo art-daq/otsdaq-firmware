@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -------------------------------------------------------------------------------
 --
 -- Title       : Checksum Calc
@@ -22,106 +23,118 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.std_logic_arith.all;
 use IEEE.std_logic_unsigned.all;
+=======
+-------------------------------------
+-- Author: Ryan Rivera, FNAL			  
+-- Created: Jan 29, 2016																							  
+-- 	
+-- xFAA6 is the one's complement checksum (non-inverted) without the dest and src
+>>>>>>> d8d123dea39560d65ea87e5d07e11864781d38c7
 
-entity ip_checksum_calc is 
-	port (
-		addrsDest: in STD_LOGIC_VECTOR (7 downto 0);
-		addrsSrc: in STD_LOGIC_VECTOR (7 downto 0);
-		clk: in STD_LOGIC;
-		icmp_mode: in STD_LOGIC;
-		length: in STD_LOGIC_VECTOR (10 downto 0);
-		reset: in STD_LOGIC;
-		trigger: in STD_LOGIC;
-		cs: out STD_LOGIC_VECTOR (15 downto 0));
-end ip_checksum_calc;
+-- x85F9 is the checksum (non-inverted) without
+-- the data length and lower address word with. Include extra 0x1C for header length
+--increase above input length
+--
+--ID := x3579,
+--vers/header := x4500,
+--ToS := 0,
+--Flags/Frag := 0,
+--ttl/protocol := x8011,
+--dest := xC0 A8 85 __
+--src := xC0 A8 85 __		   
 
-architecture ip_checksum_calc_arch of ip_checksum_calc is
+--if (icmp_mode = '0') then -- normal udp mode
+--	cs_sig <= '0' & x"FAA6"; -- was 85F9 -- ttl/protocol := x8011
+--else					  -- icmp ping mode
+--	cs_sig <= '0' & x"FA96"; -- was 95E9 -- ttl/protocol := x8001
+--end if;							
 
--- diagram signals declarations
-signal cs_sig: STD_LOGIC_VECTOR (16 downto 0);
-signal dest_sig: STD_LOGIC_VECTOR (16 downto 0);
-signal length_sig: STD_LOGIC_VECTOR (16 downto 0);
-signal src_sig: STD_LOGIC_VECTOR (16 downto 0);
+-- correct result is 79FA for source 2 dest 0 on 192.168.133.X
+-------------------------------------   
 
--- SYMBOLIC ENCODED state machine: Sreg0
-type Sreg0_type is (
-    S1, S2, S3, S4, S5, S10, S6, S7
-);
--- attribute ENUM_ENCODING of Sreg0_type: type is ... -- enum_encoding attribute is not supported for symbolic encoding
 
-signal Sreg0: Sreg0_type;
+library IEEE;
+use IEEE.std_logic_1164.all;		  		
+use ieee.numeric_std.all;	   
 
-begin
+	  		
+use work.params_package.all;
+																	
+entity ip_checksum_calc is
+	port (						 			 					
+		clk : in std_logic;	 	  
+		reset : in std_logic;		   
+		trigger : in std_logic;		
+		
+		icmp_mode : in std_logic;	
+		
+		src_in : in std_logic_vector(31 downto 0);				  
+		dest_in : in std_logic_vector(31 downto 0);				  
+		length_in : in std_logic_vector(10 downto 0);		
+		
+		cs : out std_logic_vector(15 downto 0)
+		);
+end;
 
--- concurrent signals assignments
 
--- Diagram ACTION
---intermediates
-length_sig <= "00" & x"0" &length;
-src_sig <= '0' & x"00" & addrsSrc;
-dest_sig <= '0' & x"00" & addrsDest;
+architecture arch of ip_checksum_calc is	   
 
-----------------------------------------------------------------------
--- Machine: Sreg0
-----------------------------------------------------------------------
-Sreg0_machine: process (clk)
-begin
-	if clk'event and clk = '1' then
-		if reset = '1' then
-			Sreg0 <= S10;
-			-- Set default values for outputs, signals and variables
-			-- ...
-			cs <= not cs_sig(15 downto 0);
-		else
-			-- Set default values for outputs, signals and variables
-			-- ...
-			case Sreg0 is
-				when S1 =>
-					if (icmp_mode = '0') then -- normal udp mode
-						cs_sig <= '0' & x"85F9";
-						-- was 85F9 -- ttl/protocol := x8011
-					else					  -- icmp ping mode
-						cs_sig <= '0' & x"85E9";
-						-- ttl/protocol := x8001
-					end if;
-					Sreg0 <= S2;
-				when S2 =>
-					cs_sig <= cs_sig + length_sig;
-					Sreg0 <= S3;
-				when S3 =>
-					if cs_sig(16) = '1' then
-					  	cs_sig(15 downto 0) <= cs_sig(15 downto 0) + 1;
-					  	cs_sig(16) <= '0';
-					end if;
-					Sreg0 <= S4;
-				when S4 =>
-					cs_sig <= cs_sig + src_sig;
-					Sreg0 <= S5;
-				when S5 =>
-					if cs_sig(16) = '1' then
-					  	cs_sig(15 downto 0) <= cs_sig(15 downto 0) + 1;
-					  	cs_sig(16) <= '0';
-					end if;
-					Sreg0 <= S6;
-				when S10 =>
-					cs <= not cs_sig(15 downto 0);
-					Sreg0 <= S1;
-				when S6 =>
-					cs_sig <= cs_sig + dest_sig;
-					Sreg0 <= S7;
-				when S7 =>
-					if cs_sig(16) = '1' then
-					  	cs_sig(15 downto 0) <= cs_sig(15 downto 0) + 1;
-					  	cs_sig(16) <= '0';
-					end if;
-					Sreg0 <= S10;
---vhdl_cover_off
-				when others =>
-					null;
---vhdl_cover_on
-			end case;
-		end if;
-	end if;
-end process;
+	signal trigger_old : std_logic;
+	signal cs_sig : unsigned(16 downto 0) := (others => '0');	  
+	signal add_sig : unsigned(16 downto 0) := (others => '0');	 
+	signal state : unsigned(3 downto 0) := (others => '0');	 
 
-end ip_checksum_calc_arch;
+begin			 			   
+	cs <= std_logic_vector(not cs_sig(15 downto 0));
+		
+	process(clk)
+	begin
+		
+		if (rising_edge(clk)) then
+			
+			trigger_old <= trigger;	  				
+			
+			-- always be adding one's complement over 2 state counts
+			if(state(0) = '1') then
+				cs_sig <= cs_sig + add_sig;
+			elsif(cs_sig(16) = '1') then
+				cs_sig(15 downto 0) <= cs_sig(15 downto 0) + 1;
+  				cs_sig(16) <= '0';
+			end if;				
+			
+			
+			-- control state counter
+			if (reset = '1' or (trigger_old = '0' and trigger = '1')) then	-- reset state
+				state <= (others => '0');	
+				add_sig <= (others => '0');	
+				
+				if (icmp_mode = '0') then -- normal udp mode
+					cs_sig <= '0' & x"FAA6"; -- was 85F9 -- ttl/protocol := x8011
+				else					  -- icmp ping mode
+					cs_sig <= '0' & x"FA96"; -- was 95E9 -- ttl/protocol := x8001
+				end if;		
+			elsif(state < 9) then
+				state <= state + 1;						
+			end if;
+				  
+			
+			-- states
+			if(	state = 0 ) then
+				add_sig <= '0' & unsigned(src_in(15 downto 0));	 
+			elsif(	state = 2 ) then
+				add_sig <= '0' & unsigned(src_in(31 downto 16));	 
+			elsif(	state = 4 ) then
+				add_sig <= '0' & unsigned(dest_in(15 downto 0));
+			elsif(	state = 6 ) then
+				add_sig <= '0' & unsigned(dest_in(31 downto 16)); 
+			elsif(	state = 8 ) then
+				add_sig <= '0' & '0' & x"0" & unsigned(length_in(10 downto 0));  			
+			elsif(	state > 8 ) then
+				add_sig <= (others => '0'); -- add nothing
+			end if;
+				
+		end if;	
+		
+	end process;
+	
+end arch;

@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\tx_seq_ctl.vhd
--- Generated   : 01/28/16 10:53:59
+-- Generated   : 02/08/16 17:09:33
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/tx_seq_ctl.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -38,6 +38,7 @@ entity tx_seq_ctl is
 		data_fifo_rden: out STD_LOGIC;
 		fifo_sel: out STD_LOGIC;
 		info_fifo_rden: out STD_LOGIC;
+		ret_to_sender: out STD_LOGIC;
 		tx_data: out STD_LOGIC_VECTOR (7 downto 0);
 		user_trigger: out STD_LOGIC;
 		user_tx_size_in: out STD_LOGIC_VECTOR (10 downto 0));
@@ -114,6 +115,7 @@ begin
 			data_fifo_rd_data_reg <= (others => '0');
 			byte_count <= (others => '0');
 			fifo_sel <= '0';
+			ret_to_sender <= '0';
 		else
 			if clken = '1' then
 				-- Set default values for outputs, signals and variables
@@ -136,6 +138,7 @@ begin
 						-- assert the return code to the Ethernet Controller
 						-- so that the first byte is ready and waiting
 						tx_data <= info_fifo_rd_data(7 downto 0);
+						ret_to_sender <= not info_fifo_rd_data(1);
 						-- compute number of bytes in quad words to be returned to PC
 						-- multiplies quad word count by 8
 						tx_data_count <= unsigned(info_fifo_rd_data(15 downto 8) & "000");
@@ -176,7 +179,7 @@ begin
 							Sreg0 <= S7;
 						else
 							Sreg0 <= S5;
-							tx_data <= data_fifo_rd_data_reg(63 downto 56);
+							tx_data <= data_fifo_rd_data_reg(7 downto 0);
 							byte_count <= byte_count + 1;
 							if (byte_count = 2 and qw_count > 1)then
 							-- Read a new data quad word from data fifo with plenty of time to spare
@@ -188,7 +191,7 @@ begin
 							    qw_count <= qw_count - 1;
 							else 	-- on current quadword
 							-- shift next byte into position
-								data_fifo_rd_data_reg <= data_fifo_rd_data_reg(55 downto 0) & x"00";
+								data_fifo_rd_data_reg <= x"00" & data_fifo_rd_data_reg(63 downto 8);
 							end if;
 						end if;
 					when trgrd =>

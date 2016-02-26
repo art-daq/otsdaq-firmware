@@ -1,4 +1,4 @@
-Active-HDL 10.2.3312.5682  2016-01-28 4:16:03 PM
+Active-HDL 10.2.3312.5682  2016-02-17 5:01:46 PM
 
 Elaboration top modules:
 Architecture                  BEHAVIORAL(ethernet_interface)
@@ -18,11 +18,10 @@ crc_splice                  | arch                          | ethernet_controlle
 address_container           | arch                          | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 arp_reply                   | arp_reply_arch                | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 or33                        | or33_arch                     | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
-ip_checksum_calc            | ip_checksum_calc_arch         | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
+ip_checksum_calc            | arch                          | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 create_packet               | create_packet_arch            | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 dataout_mux                 | dataout_mux_arch              | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 decipherer                  | decipherer_arch               | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
-dest_info_container         | dest_info_container_arch      | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 filter_data_out             | filter_data_out_arch          | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 icmp_ping_checksum_calc     | icmp_ping_checksum_calc_arch  | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
 icmp_ping_shift_reg         | arch                          | ethernet_controller |      | 10.2.3312.5682  (Windows) | -O3
@@ -62,3 +61,9 @@ ethernet_controller                                         | None
 ieee                                                        | Standard IEEE packages library
 std                                                         | Standard VHDL library
 -------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Simulation Options: asim -O5 +access +r +m+ethernet_interface ethernet_interface BEHAVIORAL
+
+
+The performance of simulation is reduced. Version PE

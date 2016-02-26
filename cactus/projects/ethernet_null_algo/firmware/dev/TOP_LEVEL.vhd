@@ -78,7 +78,7 @@ architecture BEHAVIORAL of top is
     signal psi_status               : std_logic_vector (63 downto 0);
     signal reset                    : std_logic;
     signal reset_n                  : std_logic;
-    signal rx_addr                  : std_logic_vector (63 downto 0);
+    signal rx_addr                  : std_logic_vector (31 downto 0);
     signal rx_data                  : std_logic_vector (63 downto 0);
     signal rx_wren                  : std_logic;
     signal secondary_clk, secondary_clk_sig       : std_logic;
@@ -93,6 +93,7 @@ architecture BEHAVIORAL of top is
     attribute mark_debug of PHY_TXD_sig : signal is "true";
     attribute mark_debug of PHY_TXEN_sig : signal is "true";
     attribute mark_debug of rx_wren : signal is "true";
+    attribute mark_debug of CLK15NS : signal is "true";
     
         --    attribute mark_debug of GMII_RXD_0_sig : signal is "true";
         --    attribute mark_debug of GMII_RX_DV_0_sig : signal is "true";
@@ -175,7 +176,7 @@ begin
                 PHY_TXD(7 downto 0)=>PHY_TXD_sig(7 downto 0),
                 PHY_TX_EN=>PHY_TXEN_sig,
                 PHY_TX_ER=>PHY_TXER_sig,
-                rx_addr(63 downto 0)=>rx_addr(63 downto 0),
+                rx_addr(31 downto 0)=>rx_addr(31 downto 0),
                 rx_data(63 downto 0)=>rx_data(63 downto 0),
                 rx_wren=>rx_wren);
                      
@@ -215,8 +216,7 @@ begin
     -----------------------
     ----------------------- IBUF 's 
     
-     IBUF_PHY_RXDV : IBUF
-      port map (I=>PHY_RXCTL_RXDV,  O=>GMII_RX_DV_0_sig);
+     IBUF_PHY_RXDV : IBUF       port map (I=>PHY_RXCTL_RXDV,  O=>GMII_RX_DV_0_sig);
       
      --GMII_RXD_0_sig(7 downto 4) <= (others => '0'); -- for RGMII or SGMII
      
@@ -231,25 +231,20 @@ begin
      
      GMII_RX_ER_0_sig <= '0';
      
-     IBUF_PHY_RXCLK : IBUFG
-        port map (I=>PHY_RXCLK,  O=>MASTER_CLK);
+     IBUF_PHY_RXCLK : IBUFG      port map (I=>PHY_RXCLK,  O=>MASTER_CLK);
         
     -----------------------
     ----------------------- OBUF 's 
     	 
-    OBUF_PHY_RESET : OBUF
-       port map (I=>'1',  O=>PHY_RESET); --hold not reset
+    OBUF_PHY_RESET : OBUF	   port map (I=>'1',  O=>PHY_RESET); --hold not reset
 		 
-    OBUF_PHY_TXER : OBUF
-       port map (I=>PHY_TXER_sig,  O=>PHY_TXER);
+    OBUF_PHY_TXER : OBUF       port map (I=>PHY_TXER_sig,  O=>PHY_TXER);
 	 
-    OBUF_PHY_TXEN : OBUF
-       port map (I=>PHY_TXEN_sig,  O=>PHY_TXCTL_TXEN);
+    OBUF_PHY_TXEN : OBUF       port map (I=>PHY_TXEN_sig,  O=>PHY_TXCTL_TXEN);
     
-    OBUF_PHY_TXCLK : OBUF
-       port map (I=>GTX_CLK_0_sig, O=>PHY_TXC_GTXCLK);
+    OBUF_PHY_TXCLK : OBUF      port map (I=>GTX_CLK_0_sig, O=>PHY_TXC_GTXCLK);
     
-    OBUF_PHY_TXD7 : OBUF   	 port map (I=>PHY_TXD_sig(7), O=>PHY_TXD7);    
+    OBUF_PHY_TXD7 : OBUF   	   port map (I=>PHY_TXD_sig(7), O=>PHY_TXD7);    
     OBUF_PHY_TXD6 : OBUF       port map (I=>PHY_TXD_sig(6), O=>PHY_TXD6);    
     OBUF_PHY_TXD5 : OBUF       port map (I=>PHY_TXD_sig(5), O=>PHY_TXD5);    
     OBUF_PHY_TXD4 : OBUF       port map (I=>PHY_TXD_sig(4), O=>PHY_TXD4);    
@@ -258,6 +253,6 @@ begin
     OBUF_PHY_TXD1 : OBUF       port map (I=>PHY_TXD_sig(1), O=>PHY_TXD1);    
     OBUF_PHY_TXD0 : OBUF       port map (I=>PHY_TXD_sig(0), O=>PHY_TXD0);
            
-           
+    
 end BEHAVIORAL;
 

@@ -1,6 +1,6 @@
 component create_packet
 	port (
-		addrs: in STD_LOGIC_VECTOR (7 downto 0);
+		addrs: in STD_LOGIC_VECTOR (31 downto 0);
 		arp_busy: in STD_LOGIC;
 		checksum: in STD_LOGIC_VECTOR (15 downto 0);
 		clk: in STD_LOGIC;
@@ -14,10 +14,12 @@ component create_packet
 		icmp_ip: in STD_LOGIC_VECTOR (31 downto 0);
 		icmp_mac: in STD_LOGIC_VECTOR (47 downto 0);
 		icmp_ping: in STD_LOGIC;
+		mac: in STD_LOGIC_VECTOR (47 downto 0);
 		ping: in STD_LOGIC;
 		reset: in STD_LOGIC;
 		trigger: in STD_LOGIC;
 		busy: out STD_LOGIC;
+		checksum_trig: out STD_LOGIC;
 		clken_out: out STD_LOGIC;
 		crc_gen_en: out STD_LOGIC;
 		crc_gen_init: out STD_LOGIC;
@@ -37,6 +39,7 @@ instance_name : create_packet
  arp_busy => ,
  busy => ,
  checksum => ,
+ checksum_trig => ,
  clk => ,
  clken_out => ,
  crc_gen_en => ,
@@ -55,6 +58,7 @@ instance_name : create_packet
  icmp_mac => ,
  icmp_ping => ,
  length_count_out => ,
+ mac => ,
  ping => ,
  reset => ,
  trigger => ,

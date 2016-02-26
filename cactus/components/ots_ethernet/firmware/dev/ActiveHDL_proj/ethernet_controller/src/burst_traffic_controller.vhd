@@ -24,7 +24,8 @@ end burst_traffic_controller;
 architecture burst_traffic_controller_arch of burst_traffic_controller is		  
 
 	signal clocks_since_send : std_logic_vector(33 downto 0); 
-	signal writes_in_curr_burst : std_logic_vector(7 downto 0);	  
+	signal writes_in_curr_burst : std_logic_vector(7 downto 0);	 --this count should always be 
+						-- equal to burst_controller_sm/b_packet_qw_size 
 	signal force_packet_old : std_logic;
 	
 begin			 
