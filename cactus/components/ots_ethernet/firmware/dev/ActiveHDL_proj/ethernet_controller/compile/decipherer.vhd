@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd
--- Generated   : 02/09/16 15:17:28
+-- Generated   : 02/29/16 11:09:14
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -193,17 +193,12 @@ match_proc : process(clk)
 begin
 if rising_edge(clk) then
 	addrs_match_sig <= '0';
-<<<<<<< HEAD
-	if udp_dest_ip = (x"C0A885" & addrs) then --this UDP packet was intended for this firmware.
--- Removed feature: -- or udp_dest_ip = x"C0A885FE" then --0xFE is OtsUDPHardware broadcast
-=======
 	if (udp_dest_ip = self_addrs) then -- and
 --(self_port = 0 or udp_dest_port = self_port)) then
 -- Note: rejecting the port presented a problem for ICMP matching logic
 --(x"C0A885" & addrs) then --this UDP packet was intended for this firmware.
 -- Removed feature: -- or udp_dest_ip = x"C0A885FE" then --0xFE is CAPTAN broadcast
 -- Note: this is not considering the mac address (shouldn't matter if ARP works?)
->>>>>>> d8d123dea39560d65ea87e5d07e11864781d38c7
 		addrs_match_sig <= '1';
 	end if;
 end if;
@@ -291,7 +286,7 @@ begin
 					when RecvPacket_IP_Payload_UDP_SourcePort1 =>
 						Sreg0 <= RecvPacket_IP_Payload_UDP_SourcePort2;
 						udp_src_port(7 downto 0) <= data;
-						-- acquire src port to be used as destination port from OtsUDPHardware
+						-- acquire src port to be used as destination port from CAPTAN
 					when RecvPacket_IP_Payload_UDP_DestPort1 =>
 						Sreg0 <= RecvPacket_IP_Payload_UDP_DestPort2;
 						udp_dest_port(7 downto 0) <= data;
@@ -388,7 +383,7 @@ begin
 						elsif is_udp_sig = '1' then
 							Sreg0 <= RecvPacket_IP_Payload_UDP_SourcePort1;
 							udp_src_port(15 downto 8) <= data;
-							-- acquire src port to be used as destination port from OtsUDPHardware
+							-- acquire src port to be used as destination port from CAPTAN
 						end if;
 					when RecvPacket_IP_Payload_IP_DestAddr3 =>
 						Sreg0 <= RecvPacket_IP_Payload_IP_DestAddr4;

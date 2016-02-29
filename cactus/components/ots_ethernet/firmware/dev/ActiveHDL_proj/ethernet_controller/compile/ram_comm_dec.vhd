@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\ram_comm_dec.vhd
--- Generated   : 02/10/16 11:42:07
+-- Generated   : 02/29/16 11:09:23
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ram_comm_dec.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
