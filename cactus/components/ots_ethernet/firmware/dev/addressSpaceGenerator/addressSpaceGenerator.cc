@@ -15,7 +15,7 @@ int main()
 
 	string specialStrobeSig = "arp_announce";
 
-	string htmlFilename = "address_space.html";
+	string htmlFilename = "oei_address_space.html";
 	FILE * fp = fopen(htmlFilename.c_str(),"w");
 	if(!fp)
 	{
@@ -116,7 +116,7 @@ int main()
 
 	//WRITE Ethernet interface ===================
 	printf("\n\tif ( ots_wren = '1' and  \t\t\t\t-- WRITE eth ===========\n");
-	printf("\t\t ots_block_sel = %d) then -- %s\n", block, blockName.c_str());
+	printf("\t\t ots_block_sel = x\"%lX\") then -- %s\n", block, blockName.c_str());
 
 	for(int i=0;i<sz;++i)
 	{
@@ -134,7 +134,7 @@ int main()
 
 		if(((access[i]>>1)&1) == 0) continue; //no write access
 
-		printf("\t\t%sif ( ots_block_addr = %d ) then \n", (i?"els":""), address[i]);
+		printf("\t\t%sif ( ots_block_addr = x\"%lX\" ) then \n", (i?"els":""), address[i]);
 		if(fieldSz[i] > 1)
 			printf("\t\t\t %s <= ots_din(%d downto 0); \n", name[i].c_str(), fieldSz[i]-1);
 		else
@@ -147,13 +147,13 @@ int main()
 
 	//WRITE Internal ===================
 	printf("\telsif ( internal_we = '1' and  \t\t\t\t-- WRITE internal ===========\n");
-	printf("\t\t unsigned(internal_block_sel) = %d) then -- %s\n", block, blockName.c_str());
+	printf("\t\t unsigned(internal_block_sel) = x\"%lX\") then -- %s\n", block, blockName.c_str());
 
 	for(int i=0;i<sz;++i)
 	{
 		if(((access[i]>>1)&1) == 0) continue; //no write access
 
-		printf("\t\t%sif ( unsigned(internal_addr) = %d ) then \n", (i?"els":""), address[i]);
+		printf("\t\t%sif ( unsigned(internal_addr) = x\"%lX\" ) then \n", (i?"els":""), address[i]);
 		if(fieldSz[i] > 1)
 			printf("\t\t\t %s <= internal_din(%d downto 0); \n", name[i].c_str(), fieldSz[i]-1);
 		else
@@ -186,13 +186,13 @@ int main()
 
 	//READ Ethernet interface ===================
 	printf("\n\tif ( ots_rden = '1' and  \t\t\t\t-- READ eth ===========\n");
-	printf("\t\t ots_block_sel = %d) then -- %s\n", block, blockName.c_str());
+	printf("\t\t ots_block_sel = x\"%lX\") then -- %s\n", block, blockName.c_str());
 
 	for(int i=0;i<sz;++i)
 	{
 		if(((access[i]>>0)&1) == 0) continue; //no read access
 
-		printf("\t\t%sif ( ots_block_addr = %d ) then \n", (i?"els":""), address[i]);
+		printf("\t\t%sif ( ots_block_addr = x\"%lX\" ) then \n", (i?"els":""), address[i]);
 		if(fieldSz[i] > 1)
 			printf("\t\t\t internal_eth_dout(%d downto 0) <= %s; \n", fieldSz[i]-1, name[i].c_str());
 		else
@@ -203,13 +203,13 @@ int main()
 
 	//READ Internal interface ===================
 	printf("\n\tif ( \t\t\t\t-- always READ internal ===========\n");
-	printf("\t\t unsigned(internal_block_sel) = %d) then -- %s\n", block, blockName.c_str());
+	printf("\t\t unsigned(internal_block_sel) = x\"%lX\") then -- %s\n", block, blockName.c_str());
 
 	for(int i=0;i<sz;++i)
 	{
 		if(((access[i]>>0)&1) == 0) continue; //no read access
 
-		printf("\t\t%sif ( unsigned(internal_addr) = %d ) then \n", (i?"els":""), address[i]);
+		printf("\t\t%sif ( unsigned(internal_addr) = x\"%lX\" ) then \n", (i?"els":""), address[i]);
 		if(fieldSz[i] > 1)
 			printf("\t\t\t internal_dout(%d downto 0) <= %s; \n", fieldSz[i]-1, name[i].c_str());
 		else
