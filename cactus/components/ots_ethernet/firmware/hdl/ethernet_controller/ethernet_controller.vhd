@@ -8,11 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\ethernet_controller.vhd
-<<<<<<< HEAD
--- Generated   : Thu Jan 28 10:54:01 2016
-=======
--- Generated   : Tue Feb  9 15:19:36 2016
->>>>>>> d8d123dea39560d65ea87e5d07e11864781d38c7
+-- Generated   : Mon Feb 29 11:09:28 2016
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
