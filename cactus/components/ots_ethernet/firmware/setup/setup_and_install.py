@@ -18,19 +18,25 @@ print			# new line
 parser = argparse.ArgumentParser(description='Setup and Install for Off-the-Shelf DAQ')
 
 parser.add_argument('-d','--dest',help='Destination path')
+
 parser.add_argument('-p','--phy',default='MII_100_1000',
-		choices=['XILINX_7SERIES_RGMII','XILINX_7SERIES_MII',	
+		choices=['XILINX_7SERIES_RGMII',	
                  'MII_100_1000','LOGIC_RGMII'],
-				 help='Phy solution (e.g. XILINX_7SERIES_RGMII or ' +\
-						'XILINX_7SERIES_MII or ' +\
-                        'MII_100_1000 or LOGIC_RGMII) default is ' +\
-                        'MII_100_1000', metavar='')
+				 help='Select PHY olution. Default is ' +\
+                        'MII_100_1000')
+						
+parser.add_argument('-f','--fifo',default='XILINX_COREGEN',
+		choices=['XILINX_7_INFERRED','XILINX_COREGEN'],
+				 help='Select FIFO solution. Default choice is XILINX_COREGEN.')	
+				 
 parser.add_argument('-s','--simple',nargs='?',const='YES',
                     help='Select simplified interface. This removes ' +\
                     'some inputs/outputs from the interface that are less commonly used.')
+					
 parser.add_argument('-i','--ip',type=int,default=2,
 		choices=range(1,254),
                     help='IP address low-byte default for 192.168.133.##', metavar='')
+					
 #parser.add_argument('-t','--port',type=int,default=2001,
 #		choices=range(0,65535),					
 #                    help='UDP 16-bit port for the interface', metavar='')
@@ -150,18 +156,21 @@ if (args.simple):
               "--erased\ for\ simple\ interface/g " + dest + \
               "/ethernet_controller/ethernet_interface.vhd")
 
+	
 
-#replace PHY_SOLUTION
-phy = "MII_100_1000" #default phy
-if (args.phy):     #if option used, then use args.phy
-    phy = args.phy
+#replace FIFO SOLUTION
+fifo = args.fifo
 
+if (fifo != "XILINX_COREGEN" and
+		fifo != "XILINX_7_INFERRED"):
+    print "WARNING: Unrecognized -f FIFO argument " + \
+        "(may want to use -h for help): '" + \
+		fifo + "'?"
 
 #uncomment dependecy coregen
 os.system("sed -i s/.*\?toolset/\?toolset/g " + dest + \
             "/../cfg/ots_ethernet.dep")
-if (phy != "XILINX_7SERIES_MII" or 
-	phy != "XILINX_7SERIES_RGMII"): #insert jamieson fifo
+if (fifo == "XILINX_7_INFERRED"):	
 	os.system("cp " + src + "/data_manager_xilinx_fifo.vhd " + \
 			dest + \
 			"/ethernet_controller/data_manager.vhd")
@@ -170,6 +179,25 @@ if (phy != "XILINX_7SERIES_MII" or
 	               dest + "/ethernet_controller/")
 	os.system("sed -i s/.*\?toolset/\#\?toolset/g " + dest + \
 			   "/../cfg/ots_ethernet.dep")
+
+print "Installed Chosen FIFO Solution: " + fifo
+print
+
+#replace PHY SOLUTION
+phy = "MII_100_1000" #default phy
+if (args.phy):     #if option used, then use args.phy
+    phy = args.phy
+	
+#if (phy != "XILINX_7SERIES_MII" or 
+#	phy != "XILINX_7SERIES_RGMII"): #insert jamieson fifo
+#	os.system("cp " + src + "/data_manager_xilinx_fifo.vhd " + \
+#			dest + \
+#			"/ethernet_controller/data_manager.vhd")
+#	os.system("cp " + src + \
+#	              "/fifo.vhd " + \
+#	               dest + "/ethernet_controller/")
+#	os.system("sed -i s/.*\?toolset/\#\?toolset/g " + dest + \
+#			   "/../cfg/ots_ethernet.dep")
 
 if (phy == "XILINX_7SERIES_MII"):
 	phy = "MII_100_1000" #for xmii handler choice
