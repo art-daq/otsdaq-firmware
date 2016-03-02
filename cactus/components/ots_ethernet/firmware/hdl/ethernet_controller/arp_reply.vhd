@@ -8,11 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\arp_reply.vhd
-<<<<<<< HEAD
--- Generated   : 01/28/16 10:53:48
-=======
--- Generated   : 02/08/16 17:09:25
->>>>>>> d8d123dea39560d65ea87e5d07e11864781d38c7
+-- Generated   : 02/29/16 11:09:18
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/arp_reply.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --

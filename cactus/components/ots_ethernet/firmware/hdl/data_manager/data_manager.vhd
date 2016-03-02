@@ -439,13 +439,7 @@ begin
 				rx_info_fifo_full=>rx_info_fifo_full,	   
 				rx_data_fifo_full=>rx_data_fifo_full,
                 rx_info_fifo_rd_data(15 downto 0)=>rx_info_fifo_rd_data(15 downto 0),				
-<<<<<<< HEAD
-                tx_info_fifo_full=>tx_ctrl_info_fifo_full,	 
-                burst_start=>burst_start,
-                burst_stop=>burst_stop,					   	 
-=======
                 tx_info_fifo_full=>tx_ctrl_info_fifo_full,	  
->>>>>>> d8d123dea39560d65ea87e5d07e11864781d38c7
                 ram_addr(63 downto 0)=>ram_addr(63 downto 0),
                 ram_rden=>ram_rden,
                 ram_wren=>ram_wren,		   			

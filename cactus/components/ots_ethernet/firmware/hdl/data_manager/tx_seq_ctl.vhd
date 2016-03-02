@@ -8,11 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\tx_seq_ctl.vhd
-<<<<<<< HEAD
--- Generated   : 01/28/16 10:53:59
-=======
--- Generated   : 02/08/16 17:09:33
->>>>>>> d8d123dea39560d65ea87e5d07e11864781d38c7
+-- Generated   : 02/29/16 11:06:13
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/tx_seq_ctl.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -55,6 +51,7 @@ signal byte_count: UNSIGNED (2 downto 0);
 signal clken: STD_LOGIC;
 signal data_fifo_rd_data_reg: STD_LOGIC_VECTOR (63 downto 0);
 signal data_fifo_rden_sig: STD_LOGIC;
+signal fifo_sel_sig: STD_LOGIC;
 signal info_fifo_rden_sig: STD_LOGIC;
 signal qw_count: UNSIGNED (7 downto 0);
 signal seq_count: UNSIGNED (7 downto 0);
@@ -89,6 +86,7 @@ begin
 -- Diagram ACTION
 info_fifo_rden <= info_fifo_rden_sig and clken;
 data_fifo_rden <= data_fifo_rden_sig and clken;
+fifo_sel <= fifo_sel_sig;
 four_bit_proc : process (clk)
 begin
 	if rising_edge(clk) then
@@ -110,6 +108,7 @@ begin
 			Sreg0 <= idle;
 			-- Set default values for outputs, signals and variables
 			info_fifo_rden_sig <= '0';
+			fifo_sel_sig <= '0';
 			data_fifo_rden_sig <= '0';
 			seq_count <= (others => '0');
 			user_trigger <= '0';
@@ -118,12 +117,13 @@ begin
 			tx_data_count <= (others => '0');
 			data_fifo_rd_data_reg <= (others => '0');
 			byte_count <= (others => '0');
-			fifo_sel <= '0';
+			fifo_sel_sig <= '0';
 			ret_to_sender <= '0';
 		else
 			if clken = '1' then
 				-- Set default values for outputs, signals and variables
 				info_fifo_rden_sig <= '0';
+				fifo_sel_sig <= '0';
 				data_fifo_rden_sig <= '0';
 				case Sreg0 is
 					when S7 =>
@@ -141,8 +141,14 @@ begin
 						qw_count <= unsigned(info_fifo_rd_data(15 downto 8));
 						-- assert the return code to the Ethernet Controller
 						-- so that the first byte is ready and waiting
-						tx_data <= info_fifo_rd_data(7 downto 0);
-						ret_to_sender <= not info_fifo_rd_data(1);
+						tx_data(7 downto 2) <= info_fifo_rd_data(7 downto 2);
+						if(fifo_sel_sig = '1') then -- data fifo, use burst codes
+							tx_data(1 downto 0) <= info_fifo_rd_data(1 downto 0);
+							ret_to_sender <= '0';
+						else -- ctrl fifo, use ret to sender bit
+							tx_data(1 downto 0) <= '0' & info_fifo_rd_data(0);
+							ret_to_sender <= not info_fifo_rd_data(1);
+						end if;
 						-- compute number of bytes in quad words to be returned to PC
 						-- multiplies quad word count by 8
 						tx_data_count <= unsigned(info_fifo_rd_data(15 downto 8) & "000");
@@ -164,7 +170,7 @@ begin
 							info_fifo_rden_sig <= '1';
 							byte_count <= (others => '0');
 							-- 0 for ctrl fifo, 1 for burst data fifo
-							fifo_sel <= not data_info_fifo_empty;
+							fifo_sel_sig <= not data_info_fifo_empty;
 						end if;
 					when txmtdone =>
 						Sreg0 <= idle;

@@ -1,6 +1,0 @@
-xst -intstyle ise -ifn "/home/swu/mrbots/srcs/otsdaq-firmware/work/top.xst" -ofn "/home/swu/mrbots/srcs/otsdaq-firmware/work/top.syr" 
-ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc /home/swu/mrbots/srcs/otsdaq-firmware/cactus/boards/kc705/firmware/ucf/pins.ucf -uc /home/swu/mrbots/srcs/otsdaq-firmware/cactus/projects/ethernet_null_algo/firmware/ucf/clock_constraints.ucf -p xc7k325t-ffg900-2 top_cs.ngc top.ngd  
-map -intstyle ise -p xc7k325t-ffg900-2 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication on -r 4 -mt 2 -detail -ir off -ignore_keep_hierarchy -pr b -lc auto -power off -o top_map.ncd top.ngd top.pcf 
-par -w -intstyle ise -ol high -mt 2 top_map.ncd top.ncd top.pcf 
-trce -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml top.twx top.ncd -o top.twr top.pcf 
-bitgen -intstyle ise -f top.ut top.ncd 
