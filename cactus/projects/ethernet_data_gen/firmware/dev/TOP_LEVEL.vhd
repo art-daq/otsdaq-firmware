@@ -261,6 +261,20 @@ begin
             tx_data(31 downto 0) <= rx_data(31 downto 0); 
         end if;    
     end process;  
+    
+    process(CLK15NS)
+    begin
+		if (rising_edge(CLK15NS)) then
+			tx_data(31 downto 24) <= tx_data(31 downto 24) + 1; 
+		end if;    
+    end process;  
+    
+    process(secondary_clk)
+    begin
+		if (rising_edge(secondary_clk)) then
+			tx_data(23 downto 16) <= tx_data(23 downto 16) + 1; 
+		end if;    
+    end process;  
    
     -----------------------
     ----------------------- IBUF 's 
