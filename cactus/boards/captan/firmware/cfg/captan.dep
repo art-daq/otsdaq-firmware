@@ -1,0 +1,14 @@
+@device_family = "virtex4"
+@device_name = "xc4vlx25"
+@device_package = "ff668"
+@device_speed = "-2"
+@boardname = "captan"
+
+?toolset=="ISE"? setup settings_v7.ise.tcl
+
+include constraints.dep
+
+#need to setup coregen project for ISE to include xco files
+?toolset=="ISE"? setup -z coregen.cgp
+
+
