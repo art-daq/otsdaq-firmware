@@ -258,23 +258,23 @@ begin
     process(MASTER_CLK)
     begin
         if (rising_edge(MASTER_CLK) and rx_wren='1') then
-            tx_data(31 downto 0) <= rx_data(31 downto 0); 
+			tx_data(15 downto 0) <= rx_data(15 downto 0); 
         end if;    
     end process;  
     
     process(CLK15NS)
     begin
 		if (rising_edge(CLK15NS)) then
-			tx_data(31 downto 24) <= tx_data(31 downto 24) + 1; 
+			tx_data(31 downto 24) <= std_logic_vector(unsigned(tx_data(31 downto 24)) + 1); 
 		end if;    
     end process;  
     
     process(secondary_clk)
     begin
 		if (rising_edge(secondary_clk)) then
-			tx_data(23 downto 16) <= tx_data(23 downto 16) + 1; 
+			tx_data(23 downto 16) <= std_logic_vector(unsigned(tx_data(23 downto 16)) + 1); 
 		end if;    
-    end process;  
+    end process;
    
     -----------------------
     ----------------------- IBUF 's 
