@@ -1,6 +1,10 @@
 src TOP_LEVEL.vhd
 include algo.dep
-include -c boards/picozed
+include -c boards/kc705
 
-?toolset=="Vivado"? src --cd ../ucf gei_picozed.tcl 
+?toolset=="Vivado"? src --cd ../ucf pins_kc705.tcl 
+?toolset=="ISE"? src ../ucf/pins_kc705.ucf
+
+?toolset=="Vivado"? src ../ucf/clock_constraints.tcl
+?toolset=="ISE"? src ../ucf/clock_constraints.ucf
 

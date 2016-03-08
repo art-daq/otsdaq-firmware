@@ -1,0 +1,72 @@
+# constraints for PicoZed
+# Created March 2016 by rrivera at fnal dot gov
+
+
+
+####################################################################################
+# PTA Connector definitions
+####################################################################################
+
+# PTA Connector J2 on FMC-to-PTA board
+#pta 13    STRIP_MCLKA0_PAD_P]		    
+#pta 14    STRIP_MCLKA0_PAD_N]		    
+#pta 19    STRIP_MCLKB0_PAD_P]		    
+#pta 20    STRIP_MCLKB0_PAD_N]		    
+                                     
+#pta 25    STRIP_BCOCLK_PAD_P<0>]	
+#pta 26    STRIP_BCOCLK_PAD_N<0>]	
+#pta 43    STRIP_RESET_PAD_P<0>]	
+#pta 44    STRIP_RESET_PAD_N<0>]	
+#pta 37    STRIP_SHIFT_PAD_P<0>]	
+#pta 38    STRIP_SHIFT_PAD_N<0>]	
+#pta 35    STRIP_SCIN_PAD_P<0>]		    
+#pta 36    STRIP_SCIN_PAD_N<0>]		    
+#pta 47    STRIP_SCOUT_PAD_P<0>]	
+#pta 48    STRIP_SCOUT_PAD_N<0>]	
+#pta 5     STRIP_GOTHITOR_PAD_P<0>]	    
+#pta 6     STRIP_GOTHITOR_PAD_N<0>]	    
+#pta 49    STRIP_OUT1_0_PAD_P<0>]	
+#pta 50    STRIP_OUT1_0_PAD_N<0>]	
+#pta 45    STRIP_OUT1_1_PAD_P<0>]	
+#pta 46    STRIP_OUT1_1_PAD_N<0>]	
+#pta 39    STRIP_OUT1_2_PAD_P<0>]	
+#pta 40    STRIP_OUT1_2_PAD_N<0>]	
+#pta 33    STRIP_OUT1_3_PAD_P<0>]	
+#pta 34    STRIP_OUT1_3_PAD_N<0>]	
+#pta 27    STRIP_OUT1_4_PAD_P<0>]	
+#pta 28    STRIP_OUT1_4_PAD_N<0>]	
+
+net  fmc_lpc_la17_cc_p         loc = ab27 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l12p_t1_mrcc_13
+net  fmc_lpc_la17_cc_n         loc = ac27 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l12n_t1_mrcc_13
+net  fmc_lpc_clk1_m2c_p        loc = ag29 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l13p_t2_mrcc_13
+net  fmc_lpc_clk1_m2c_n        loc = ah29 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l13n_t2_mrcc_13
+
+net  fmc_lpc_la23_p            loc = ah26 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l22p_t3_13
+net  fmc_lpc_la23_n            loc = ah27 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l22n_t3_13
+net  fmc_lpc_la30_p            loc = ab29 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l10p_t1_13
+net  fmc_lpc_la30_n            loc = ab30 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l10n_t1_13
+net  fmc_lpc_la28_p            loc = ae30 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l16p_t2_13
+net  fmc_lpc_la28_n            loc = af30 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l16n_t2_13
+net  fmc_lpc_la27_p            loc = aj28 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l17p_t2_13
+net  fmc_lpc_la27_n            loc = aj29 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l17n_t2_13
+net  fmc_lpc_la32_p            loc = y30  | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l8p_t1_13
+net  fmc_lpc_la32_n            loc = aa30 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l8n_t1_13
+net  fmc_lpc_la18_cc_p         loc = ad27 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l11p_t1_srcc_13
+net  fmc_lpc_la18_cc_n         loc = ad28 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l11n_t1_srcc_13
+net  fmc_lpc_la33_p            loc = ac29 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l7p_t1_13
+net  fmc_lpc_la33_n            loc = ac30 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l7n_t1_13
+net  fmc_lpc_la31_p            loc = ad29 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l9p_t1_dqs_13
+net  fmc_lpc_la31_n            loc = ae29 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l9n_t1_dqs_13
+net  fmc_lpc_la29_p            loc = ae28 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l14p_t2_srcc_13
+net  fmc_lpc_la29_n            loc = af28 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l14n_t2_srcc_13
+net  fmc_lpc_la26_p            loc = ak29 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l15p_t2_dqs_13
+net  fmc_lpc_la26_n            loc = ak30 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l15n_t2_dqs_13
+net  fmc_lpc_la24_p            loc = ag30 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l18p_t2_13
+net  fmc_lpc_la24_n            loc = ah30 | iostandard=LVDS_25; # bank  13 vcco - vadj_fpga - io_l18n_t2_13
+
+
+####################################################################################
+# end PTA connector definitions
+####################################################################################
+
+

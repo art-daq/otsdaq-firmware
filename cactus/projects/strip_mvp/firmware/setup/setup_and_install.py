@@ -21,9 +21,9 @@ parser = argparse.ArgumentParser(description='Setup Firmware Component')
 parser.add_argument('-d','--dest',help='Destination path')
 parser.add_argument('-b','--board',default='kc705',
 		help='Select a board by directory name within in the project\'s cactus library. ' + \
-		'Default is picozed.')
+		'Default is kc705.')
 parser.add_argument('-p','--phy',type=int,default='8',
-		choices=['8','4'],
+		choices=[8,4],
 		help='Number of rx or tx pins used by Ethernet PHY. Default is 8 ' +\
 		'(e.g. use 8 for GMII, 4 for RGMII)') #, 1 for SGMII)')
 parser.add_argument('-r','--reset',nargs='?',const='YES',
@@ -85,9 +85,15 @@ os.system("cp " + scriptDir + \
 
 print  'Modifying files...'
 print
+   
 print  'Board selected as: ' + args.board
-    
+
 os.system("sed -i s/boards.\*/boards\\\/"+args.board+"/g " + scriptDir + "/../cfg/top.dep")
+os.system("sed -i s/pins\_.\*ucf/pins\_"+args.board+"\.ucf/g " + scriptDir + "/../cfg/top.dep")
+os.system("sed -i s/pins\_.\*tcl/pins\_"+args.board+"\.tcl/g " + scriptDir + "/../cfg/top.dep")
+
+print  'Board selection complete for ' + args.board
+
 
 print  'PHY interface pin count selected as: ' + str(args.phy) #1, 4, 8
 if (args.phy < 1):

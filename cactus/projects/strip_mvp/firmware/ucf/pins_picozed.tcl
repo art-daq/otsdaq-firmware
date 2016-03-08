@@ -1,4 +1,4 @@
-# constratins for PicoZed
+# constraints for PicoZed
 # Created Aug 2015 by rrivera at fnal dot gov
 
 
