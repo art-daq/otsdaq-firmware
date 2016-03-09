@@ -128,7 +128,7 @@ else:
 	os.system("sed -i s/.\*OBUF\_PHY\_TXER/\\\tOBUF\_PHY\_TXER/g " + scriptDir + "/../hdl/TOP_LEVEL.vhd")
 
 #handle reset arg flag
-if (args.reset or args.board == "kc705"):	
+if (args.reset or args.board == "kc705"):	#we know the kc705 needs reset held high
 	print  'PHY interface reset pin added.'
 	os.system("sed -i s/.\*PHY\_RESET.\*\:\ out/\\\tPHY\_RESET\\\t\:\ out/g " + scriptDir + "/../hdl/TOP_LEVEL.vhd")
 	os.system("sed -i s/.\*OBUF\_PHY\_RESET/\\\tOBUF\_PHY\_RESET/g " + scriptDir + "/../hdl/TOP_LEVEL.vhd")
