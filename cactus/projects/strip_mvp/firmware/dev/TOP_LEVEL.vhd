@@ -316,8 +316,8 @@ begin
 	       STREAM_CKSUM => open,--STREAM_CKSUM,
 	       STREAM_STROBE => open,--STREAM_STROBE,
 	       STREAM_READY => gnd,--STREAM_READY,
-	       SERDES_DATA => open,--SERDES_STRIP_DATA,
-	       SERDES_DATA_WE => open,--SERDES_STRIP_DATA_WE,
+	       SERDES_DATA => b_data(31 downto 0),--SERDES_STRIP_DATA,
+	       SERDES_DATA_WE => b_data_we,--SERDES_STRIP_DATA_WE,
 	       STRIP_DEBUG => open,--STRIP_DEBUG,
 	       DEBUG_SELECT => open--STRIP_DEBUG_SELECT
 	     );
