@@ -299,7 +299,7 @@ begin
     -----------------------
     ----------------------- OBUF 's 
     	 
-    OBUF_PHY_RESET : OBUF	   port map (I=>'1',  O=>PHY_RESET); --hold not reset
+    OBUF_PHY_RESET : OBUF	   port map (I=>reset_n,  O=>PHY_RESET); --hold not reset
 		 
     OBUF_PHY_TXER : OBUF       port map (I=>PHY_TXER_sig,  O=>PHY_TXER);
 	 
