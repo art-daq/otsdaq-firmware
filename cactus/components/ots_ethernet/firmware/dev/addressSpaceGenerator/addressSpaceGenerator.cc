@@ -39,7 +39,7 @@ int main()
 			"ETH_INTERFACE_VERSION",
 			"internal_reset",
 	};
-	sz = sz; //DONT FORGET TO UPDATE SIZE!!!!!!!
+	//sz = sz; //DONT FORGET TO UPDATE SIZE!!!!!!!
 	string desc[] =
 	{
 			"Upper 24-bits of self IP Address",
@@ -55,7 +55,7 @@ int main()
 			"OEI Ethernet Interface Version",
 			"Force reset of OEI status/errors/FIFOs/FSMs",
 	};
-	sz = sz; //DONT FORGET TO UPDATE SIZE!!!!!!!
+	//sz = sz; //DONT FORGET TO UPDATE SIZE!!!!!!!
 	unsigned int address[] =
 	{
 			0, 1, 2,
