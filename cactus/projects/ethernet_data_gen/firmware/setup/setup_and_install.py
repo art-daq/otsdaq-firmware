@@ -22,8 +22,8 @@ parser.add_argument('-d','--dest',help='Destination path')
 parser.add_argument('-b','--board',default='kc705',
 		help='Select a board by directory name within in the project\'s cactus library. ' + \
 		'Default is picozed.')
-parser.add_argument('-p','--phy',type=int,default='8',
-		choices=['8','4'],
+parser.add_argument('-p','--phy',type=int,default=8,
+		choices=[8,4],
 		help='Number of rx or tx pins used by Ethernet PHY. Default is 8 ' +\
 		'(e.g. use 8 for GMII, 4 for RGMII)') #, 1 for SGMII)')
 parser.add_argument('-r','--reset',nargs='?',const='YES',
