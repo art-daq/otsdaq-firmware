@@ -149,8 +149,28 @@ architecture BEHAVIORAL of top is
     
         --    attribute mark_debug of GMII_RXD_0_sig : signal is "true";
         --    attribute mark_debug of GMII_RX_DV_0_sig : signal is "true";
-        --    attribute mark_debug of rx_addr : signal is "true";
-        --    attribute mark_debug of rx_data : signal is "true";
+	
+	attribute mark_debug of STRIP_OUT1_0 : signal is "true";
+	attribute mark_debug of STRIP_OUT1_1 : signal is "true";
+	attribute mark_debug of STRIP_OUT1_2 : signal is "true";
+	attribute mark_debug of STRIP_OUT1_3 : signal is "true";
+	attribute mark_debug of STRIP_OUT1_4 : signal is "true";    
+	
+	attribute mark_debug of STRIP_SCIN : signal is "true";
+	attribute mark_debug of STRIP_SCOUT : signal is "true";
+	attribute mark_debug of STRIP_RESET : signal is "true";
+	attribute mark_debug of STRIP_SHIFT : signal is "true";
+	attribute mark_debug of STRIP_DATA_AVAILABLE : signal is "true";
+	
+	attribute mark_debug of STRIP_SYNC_ERROR : signal is "true";
+	attribute mark_debug of STRIP_BCO_ZERO : signal is "true";
+	attribute mark_debug of STRIP_HITOR : signal is "true";
+	
+	attribute mark_debug of rx_addr : signal is "true";
+	attribute mark_debug of tx_data : signal is "true";
+	attribute mark_debug of rx_data : signal is "true";
+	attribute mark_debug of b_data : signal is "true";
+	attribute mark_debug of b_data_we : signal is "true";
        
    
    
@@ -197,13 +217,59 @@ architecture BEHAVIORAL of top is
              reset       : out   std_logic);
    end component;
    
-   
+	
+	
+	signal strip_ready : std_logic := '0';
+	signal strip_ready_cnt : unsigned(8 downto 0) := (others => '0');
+	signal strip_tx_data : std_logic_vector(31 downto 0);
+	
+	signal tx_rden : std_logic;
+	signal eth_strobe_mask : std_logic := '1';
+	signal masked_tx_rden, masked_rx_wren : std_logic;
+	
+	
+	signal strip_bwe, strip_old_bwe : std_logic;
+	
+	
+	attribute mark_debug of strip_ready : signal is "true";
+	attribute mark_debug of tx_rden : signal is "true";
+	attribute mark_debug of eth_strobe_mask : signal is "true";
+	attribute mark_debug of masked_tx_rden : signal is "true";
+	attribute mark_debug of masked_rx_wren : signal is "true";
    
    
    
    
 begin
-   
+
+	masked_tx_rden <= tx_rden and eth_strobe_mask;
+	masked_rx_wren <= rx_wren and eth_strobe_mask;
+	-- process to create delayed ready to each write and read
+	process(MASTER_CLK)
+	begin
+	 if rising_edge(MASTER_CLK) then
+		 
+		 strip_ready <= '0';
+		 
+		 if(strip_ready_cnt /= 0) then -- countdown to ready again
+		 
+			 strip_ready_cnt <= strip_ready_cnt - 1;               
+			 if(strip_ready_cnt = 1) then -- ready now!
+				  strip_ready <= '1';
+			 end if;            
+			 
+		 elsif (eth_strobe_mask = '1' and (tx_rden = '1' or rx_wren = '1')) then
+			 strip_ready_cnt <= (others => '1');
+			 eth_strobe_mask <= '0';
+		 else
+			 eth_strobe_mask <= '1';
+		 end if;          
+		   
+		 
+	 end if;
+	end process;
+
+
 	gnd <= '0';
     
 	reset_n <= not reset;
@@ -215,27 +281,29 @@ begin
 	--      port map (I=>reset,    O=>PZ_ULED_1);        
       
    
-	-- start simple OEI
-	eth_interface : entity work.Ethernet_Interface
-	  port map (b_data(63 downto 0)=>b_data(63 downto 0),
-				b_data_we=>b_data_we,
-				PHY_RXD(7 downto 0)=>GMII_RXD_0_sig(7 downto 0),
-				PHY_RX_DV=>GMII_RX_DV_0_sig,
-				PHY_RX_ER=>GMII_RX_ER_0_sig,
-				MASTER_CLK=>MASTER_CLK,                
-				reset_in=>reset_btn,
-				reset_out => reset,
-				tx_data(63 downto 0)=>tx_data(63 downto 0),
-				b_enable=>open,
-				TX_CLK=>GTX_CLK_0_sig,
-				PHY_TXD(7 downto 0)=>PHY_TXD_sig(7 downto 0),
-				PHY_TX_EN=>PHY_TXEN_sig,
-				PHY_TX_ER=>PHY_TXER_sig,
-				rx_addr(31 downto 0)=>rx_addr(31 downto 0),
-				rx_data(63 downto 0)=>rx_data(63 downto 0),
-				rx_wren=>rx_wren);
-					 
-	-- end simple OEI
+	-- start full OEI
+		eth_interface : entity work.Ethernet_Interface
+		  port map (b_data(63 downto 0)=>b_data(63 downto 0),
+					b_data_we=>b_data_we,
+					PHY_RXD(7 downto 0)=>GMII_RXD_0_sig(7 downto 0),
+					PHY_RX_DV=>GMII_RX_DV_0_sig,
+					PHY_RX_ER=>GMII_RX_ER_0_sig,
+					MASTER_CLK=>MASTER_CLK,                
+					reset_in=>reset_btn,
+					user_ready=>strip_ready,
+	                tx_rden=>tx_rden,
+					reset_out => reset,
+					tx_data(63 downto 0)=>tx_data(63 downto 0),
+					b_enable=>open,
+					TX_CLK=>GTX_CLK_0_sig,
+					PHY_TXD(7 downto 0)=>PHY_TXD_sig(7 downto 0),
+					PHY_TX_EN=>PHY_TXEN_sig,
+					PHY_TX_ER=>PHY_TXER_sig,
+					rx_addr(31 downto 0)=>rx_addr(31 downto 0),
+					rx_data(63 downto 0)=>rx_data(63 downto 0),
+					rx_wren=>rx_wren);
+						 
+	-- end full OEI
 
      
 
@@ -261,23 +329,36 @@ begin
 	   CLK15NS_bufg : BUFG
 	    port map (I=>CLK15NS_sig,  O=>CLK15NS);
 	      
-
-	      
+	     
 	    iobus.IO_Addr_Strobe <= '1';
 	    iobus.IO_Read_Strobe <= '1';
-	    iobus.IO_Write_Strobe <= rx_wren;
+	    iobus.IO_Write_Strobe <= masked_rx_wren;
 	    iobus.IO_Address <= rx_addr(31 downto 0);
 	    iobus.IO_Byte_Enable <= x"F";
 	    iobus.IO_Write_Data <= rx_data(31 downto 0);
 	                
 	    tx_data(63 downto 32) <= x"ABCD0000";
+	    -- add an extra clock for read data since it keeps failing timing
+	    process(MASTER_CLK)
+       begin
+          if (rising_edge(MASTER_CLK)) then
+              tx_data(31 downto 0) <= strip_tx_data;    
+              
+              -- since strips running at half speed.. take edge
+              b_data_we <= '0';
+              strip_old_bwe <= strip_bwe;
+              if(strip_old_bwe = '0' and strip_bwe = '1') then
+               b_data_we <= '1';
+              end if; 
+          end if;
+       end process; 
 	                
 	    strip_imp : entity work.strip_interface
 	     GENERIC MAP ( NSENSOR => NSENSOR_PADS )
 	     PORT MAP (
-	       CLK => CLK15NS,
+	       CLK => MASTER_CLK,--CLK15NS,
 	       IOBUS => iobus, --SLAVE_IOBUS(3),
-	       WRITE_DATA => tx_data(31 downto 0), --SLAVE_WRITE_DATA(3),
+	       WRITE_DATA => strip_tx_data, --tx_data(31 downto 0), --SLAVE_WRITE_DATA(3),
 	       IOBUS_READY => open, --SLAVE_READY(3),
 	       CLKX => CLK15NS,
 	       CLKY => secondary_clk,--CLK5MHZ,
@@ -317,7 +398,7 @@ begin
 	       STREAM_STROBE => open,--STREAM_STROBE,
 	       STREAM_READY => gnd,--STREAM_READY,
 	       SERDES_DATA => b_data(31 downto 0),--SERDES_STRIP_DATA,
-	       SERDES_DATA_WE => b_data_we,--SERDES_STRIP_DATA_WE,
+	       SERDES_DATA_WE => strip_bwe,--SERDES_STRIP_DATA_WE,
 	       STRIP_DEBUG => open,--STRIP_DEBUG,
 	       DEBUG_SELECT => open--STRIP_DEBUG_SELECT
 	     );
