@@ -24,7 +24,8 @@ parser.add_argument('-b','--board',default='picozed',
 parser.add_argument('-p','--phy',type=int,default='8',
 		help='Number of rx or tx pins used by Ethernet PHY. Default is 8 (e.g. use 8 for GMII, 4 for RGMII') #, 1 for SGMII)')
 parser.add_argument('-r','--reset',nargs='?',const='YES',
-		help='Flag to add reset pin to top. If not present, the reset pin is commented.')
+		help='Flag to add reset output pin to top level. If not present, the reset pin is commented.' + \
+		' (e.g. It may be necessary to hold the PHY reset high)')
 							
 args = parser.parse_args()
 

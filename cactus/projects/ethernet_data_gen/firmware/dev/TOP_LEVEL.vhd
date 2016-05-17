@@ -94,10 +94,15 @@ architecture BEHAVIORAL of top is
     attribute mark_debug of rx_wren : signal is "true";
     attribute mark_debug of CLK15NS : signal is "true";
     
-        --    attribute mark_debug of GMII_RXD_0_sig : signal is "true";
-        --    attribute mark_debug of GMII_RX_DV_0_sig : signal is "true";
-        --    attribute mark_debug of rx_addr : signal is "true";
-        --    attribute mark_debug of rx_data : signal is "true";
+
+    attribute mark_debug of rx_addr : signal is "true";
+    attribute mark_debug of tx_data : signal is "true";
+    attribute mark_debug of rx_data : signal is "true";
+    attribute mark_debug of b_data : signal is "true";
+    attribute mark_debug of b_data_we : signal is "true";
+    
+	--    attribute mark_debug of GMII_RXD_0_sig : signal is "true";
+	--    attribute mark_debug of GMII_RX_DV_0_sig : signal is "true";
        
    
    
@@ -193,6 +198,13 @@ begin
 		signal cnt : unsigned(2 downto 0) := (others => '0');
 		signal delay_cnt : unsigned(63 downto 0) := (others => '0');
 		signal data_cnt : unsigned(31 downto 0) := (others => '0');
+		
+
+        attribute mark_debug of reg_cnt : signal is "true";
+        attribute mark_debug of reg_rate : signal is "true";
+        attribute mark_debug of cnt : signal is "true";
+        attribute mark_debug of delay_cnt : signal is "true";
+        attribute mark_debug of data_cnt : signal is "true";
 	begin
 		process(MASTER_CLK)
 		begin
