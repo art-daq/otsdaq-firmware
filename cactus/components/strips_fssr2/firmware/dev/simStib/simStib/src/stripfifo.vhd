@@ -89,6 +89,14 @@ architecture Behavioral of stripfifo is
   SIGNAL CHECKED_TRIGGER : STD_LOGIC;
   SIGNAL TRIGGERED_DATA : STD_LOGIC_VECTOR(31 DOWNTO 0);
   
+	
+	attribute mark_debug : string;
+	attribute mark_debug of FIFO_WE : signal is "true";
+	attribute mark_debug of STRIP_FIFO_EMPTY : signal is "true";
+	attribute mark_debug of READ_ENABLE : signal is "true";
+	attribute mark_debug of TOKEN_IN : signal is "true";
+	attribute mark_debug of TOKEN_OUT : signal is "true";  
+	
 BEGIN
 	
 	

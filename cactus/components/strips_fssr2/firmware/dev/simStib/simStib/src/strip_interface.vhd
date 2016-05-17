@@ -20,6 +20,8 @@
 -- SCRIPT COMMENT OUT -- Tool versions:  ISE 14.4 / 14.6
 -- SCRIPT COMMENT OUT -- Description:    Defines a MicroBlaze LMB slave that interfaces with the
 -- SCRIPT COMMENT OUT --                 strip sensor hybrids
+-- SCRIPT COMMENT OUT --								   
+-- SCRIPT COMMENT OUT -- Edit by rrivera at fnal dot gov for KC705 in Vivado 2015.2
 -- SCRIPT COMMENT OUT --
 -- SCRIPT COMMENT OUT -- Dependencies:
 -- SCRIPT COMMENT OUT --
@@ -74,7 +76,7 @@ use IEEE.numeric_std.all;
 --- use UNISIM.VComponents.all;
 
 entity strip_interface is
-  generic ( nsensor : integer := 2 );
+  generic ( nsensor : integer := 1 );
   port (
     clk : in std_logic;                                      -- bus clock
     iobus : in iobus_t;
@@ -246,7 +248,8 @@ architecture behavioral of strip_interface is
     );
     port (
       reset : in std_logic;
-      enable : in std_logic;
+      enable : in std_logic;  
+      clk : in std_logic;
       mclk : in std_logic;
       din : in std_logic;
       serdes_input : out std_logic;
@@ -830,14 +833,14 @@ begin
     BCOCLK(I) <= DCM_BCOCLK;
 	
 	strip_mclk(i) <= DCM_MCLK_A when strip_trim_csr(8+i) = '0' else DCM_MCLK_B;	 -- SCRIPT COMMENT OUT
----    bufgmux_imp : BUFGMUX
----    port map (
----      o => strip_mclk(i),
----      i0 => DCM_MCLK_A,
----      i1 => DCM_MCLK_B,
----      s => strip_trim_csr(8+i)
----    );
-
+--    bufgmux_imp : BUFGMUX
+--    port map (
+--      o => strip_mclk(i),
+--      i0 => DCM_MCLK_A,
+--      i1 => DCM_MCLK_B,
+--      s => strip_trim_csr(8+i)
+--    );
+		   		 
     chipserdes4_imp : chipserdes
     GENERIC MAP (
       CHIPID => 5,
@@ -847,7 +850,8 @@ begin
     PORT MAP (
       RESET => STRIP_SERDES_RESET(I),
       ENABLE => SENSOR_ENABLE(I),
-      MCLK => strip_mclk(i),
+            CLK => clk,--strip_mclk(i),
+            MCLK => DCM_MCLK_A,
       DIN => OUT1_4(I),
       SERDES_INPUT => STRIP_SERDES_INPUT(I,5),
       OUTCLK => DCM_OUTCLK,
@@ -869,7 +873,8 @@ begin
     PORT MAP (
       RESET => STRIP_SERDES_RESET(I),
       ENABLE => SENSOR_ENABLE(I),
-      MCLK => strip_mclk(i),
+            CLK => clk,--strip_mclk(i),
+            MCLK => DCM_MCLK_A,
       DIN => OUT1_3(I),
       SERDES_INPUT => STRIP_SERDES_INPUT(I,4),
       OUTCLK => DCM_OUTCLK,
@@ -891,7 +896,8 @@ begin
     PORT MAP (
       RESET => STRIP_SERDES_RESET(I),
       ENABLE => SENSOR_ENABLE(I),
-      MCLK => strip_mclk(i),
+            CLK => clk,--strip_mclk(i),
+            MCLK => DCM_MCLK_A,
       DIN => OUT1_2(I),
       SERDES_INPUT => STRIP_SERDES_INPUT(I,3),
       OUTCLK => DCM_OUTCLK,
@@ -913,7 +919,8 @@ begin
     PORT MAP (
       RESET => STRIP_SERDES_RESET(I),
       ENABLE => SENSOR_ENABLE(I),
-      MCLK => strip_mclk(i),
+            CLK => clk,--strip_mclk(i),
+            MCLK => DCM_MCLK_A,
       DIN => OUT1_1(I),
       SERDES_INPUT => STRIP_SERDES_INPUT(I,2),
       OUTCLK => DCM_OUTCLK,
@@ -935,7 +942,8 @@ begin
     PORT MAP (
       RESET => STRIP_SERDES_RESET(I),
       ENABLE => SENSOR_ENABLE(I),
-      MCLK => strip_mclk(i),
+          CLK => clk,--strip_mclk(i),
+          MCLK => DCM_MCLK_A,
       DIN => OUT1_0(I),
       SERDES_INPUT => STRIP_SERDES_INPUT(I,1),
       OUTCLK => DCM_OUTCLK,

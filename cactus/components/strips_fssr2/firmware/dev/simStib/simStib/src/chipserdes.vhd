@@ -9,7 +9,9 @@
 -- Project Name:   STIB firmware
 -- Target Devices: xc4vlx25ff668-10
 -- Tool versions:  ISE 14.4 / 14.6
--- Description:    Deserializes data from FSSR2 chips
+-- Description:    Deserializes data from FSSR2 chips		
+-- 
+-- Edit by rrivera at fnal dot gov for KC705 in Vivado 2015.2
 --
 -- Dependencies:
 --
@@ -18,7 +20,7 @@
 -- Additional Comments: 
 --
 --------------------------------------------------------------------------------
-
+											   									
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
@@ -34,6 +36,7 @@ ENTITY chipserdes IS
   PORT (
     RESET : IN STD_LOGIC;
     ENABLE : IN STD_LOGIC;
+    CLK : IN STD_LOGIC;
     MCLK : IN STD_LOGIC;
     DIN : IN STD_LOGIC;
     SERDES_INPUT : OUT STD_LOGIC;
@@ -88,17 +91,176 @@ architecture RTL of chipserdes is
 
   SIGNAL VALID_STRIP_NUMBER : STD_LOGIC;
   SIGNAL VALID_SET_NUMBER : STD_LOGIC;
-
+  
+  
+    --SIGNAL DDLY : STD_LOGIC; --RAR	 	
+--           attribute IODELAY_GROUP : STRING;
+--           attribute IODELAY_GROUP of IDELAYE2_inst: label is "serdes_idelay_group";
+           
+           
+    attribute mark_debug : string;
+    attribute mark_debug of Q : signal is "true";
+    attribute mark_debug of ALIGNED : signal is "true";
+    attribute mark_debug of INTERNAL_STATE : signal is "true";
+    attribute mark_debug of NEXT_BITSLIP : signal is "true";
+    attribute mark_debug of SYNC_COUNT : signal is "true";
+    attribute mark_debug of DATA_LOST : signal is "true";
+    attribute mark_debug of SYNC_VALID : signal is "true";
+    attribute mark_debug of CHIP_STATUS : signal is "true";
+    attribute mark_debug of DOUT : signal is "true";
+    attribute mark_debug of DATA_VALID : signal is "true";
+    attribute mark_debug of ENABLE : signal is "true";
+    attribute mark_debug of ACK : signal is "true";
+    attribute mark_debug of NEXT_VALID_DATA : signal is "true";
+    attribute mark_debug of VALID_SYNC_WORD : signal is "true";
+    attribute mark_debug of VALID_STRIP_NUMBER : signal is "true";
+    attribute mark_debug of VALID_SET_NUMBER : signal is "true";
+    										   
+    
+	
+	SIGNAL ddr_count : UNSIGNED(2 DOWNTO 0) := (others => '0');
+	SIGNAL ddr_bitslip_count : UNSIGNED(2 DOWNTO 0) := (others => '0');
+	SIGNAL ddr_shr : STD_LOGIC_VECTOR(7 DOWNTO 0);
+	SIGNAL ddr_old_bitslip : STD_LOGIC;
+    
 begin	 
 	
 	
-	process(MCLK)
-	begin
-		
-		if (rising_edge(MCLK)) then
-			Q <= Q(6 downto 0) & DIN;
+	-- "equivalent" functionality to ISERDES 
+	--  seems to interpret serial data properly
+	--  .. could present problem if clock not in good sampling position
+		-- consider using IDDR flip flop
+	process(CLK)
+	begin		
+		if (rising_edge(CLK)) then
+			ddr_shr <= DIN & ddr_shr(7 downto 1);
+			ddr_count <= ddr_count + 1;
+			ddr_old_bitslip <= BITSLIP;
+			if(ddr_old_bitslip = '0' and BITSLIP = '1') then
+			     ddr_bitslip_count <= ddr_bitslip_count + 1;			     
+			end if;
+			
+			if( ddr_bitslip_count = ddr_count) then 
+			     Q <= ddr_shr;
+			end if;			
 		end if;
 	end process;
+	
+	
+	
+	
+   -- IDELAYE2: Input Fixed or Variable Delay Element
+   --           Kintex-7
+   -- Xilinx HDL Language Template, version 2015.2
+
+--   IDELAYE2_inst : IDELAYE2
+--   generic map (
+--      CINVCTRL_SEL => "FALSE",          -- Enable dynamic clock inversion (FALSE, TRUE)
+--      DELAY_SRC => "IDATAIN",           -- Delay input (IDATAIN, DATAIN)
+--      HIGH_PERFORMANCE_MODE => "TRUE", -- Reduced jitter ("TRUE"), Reduced power ("FALSE")
+--      IDELAY_TYPE => "VARIABLE",           -- FIXED, VARIABLE, VAR_LOAD, VAR_LOAD_PIPE
+--      IDELAY_VALUE => IOBDELAY_VALUE,      -- Input delay tap setting (0-31)
+--      PIPE_SEL => "FALSE",              -- Select pipelined mode, FALSE, TRUE
+--      REFCLK_FREQUENCY => 200.0,        -- IDELAYCTRL clock input frequency in MHz (190.0-210.0, 290.0-310.0).
+--      SIGNAL_PATTERN => "DATA"          -- DATA, CLOCK input signal
+--   )
+--   port map (
+--      CNTVALUEOUT => open, -- 5-bit output: Counter value output
+--      DATAOUT => DDLY,         -- 1-bit output: Delayed data output
+--      C => OUTCLK,                     -- 1-bit input: Clock input
+--      CE => DLYCE,                   -- 1-bit input: Active high enable increment/decrement input
+--      CINVCTRL => '0',       -- 1-bit input: Dynamic clock inversion input
+--      CNTVALUEIN => (others => '0'),   -- 5-bit input: Counter value input
+--      DATAIN => '0',           -- 1-bit input: Internal delay data input
+--      IDATAIN => DIN,         -- 1-bit input: Data input from the I/O
+--      INC => DLYINC,                 -- 1-bit input: Increment / Decrement tap delay input
+--      LD => '0',                   -- 1-bit input: Load IDELAY_VALUE input
+--      LDPIPEEN => '0',       -- 1-bit input: Enable PIPELINE register to load data input
+--      REGRST => DLYRST            -- 1-bit input: Active-high reset tap-delay input
+      
+--   );
+
+--   -- End of IDELAYE2_inst instantiation
+					
+--   -- ISERDESE2: Input SERial/DESerializer with Bitslip
+--   --            Kintex-7
+--   -- Xilinx HDL Language Template, version 2015.2
+
+--   ISERDESE2_inst : ISERDESE2
+--   generic map (
+     
+--      DATA_RATE => "DDR",           -- DDR, SDR
+--      DATA_WIDTH => 8,              -- Parallel data width (2-8,10,14)
+--      DYN_CLKDIV_INV_EN => "FALSE", -- Enable DYNCLKDIVINVSEL inversion (FALSE, TRUE)
+--      DYN_CLK_INV_EN => "FALSE",    -- Enable DYNCLKINVSEL inversion (FALSE, TRUE)
+--      -- INIT_Q1 - INIT_Q4: Initial value on the Q outputs (0/1)
+--      INIT_Q1 => '0',
+--      INIT_Q2 => '0',
+--      INIT_Q3 => '0',
+--      INIT_Q4 => '0',
+--      INTERFACE_TYPE => "NETWORKING",   -- MEMORY, MEMORY_DDR3, MEMORY_QDR, NETWORKING, OVERSAMPLE
+--      IOBDELAY => "BOTH",           -- NONE, BOTH, IBUF, IFD      
+--      --OBDELAY_TYPE => "VARIABLE",
+--      --IOBDELAY_VALUE => IOBDELAY_VALUE,
+--      NUM_CE => 1,                  -- Number of clock enables (1,2)
+--      OFB_USED => "FALSE",          -- Select OFB path (FALSE, TRUE)
+--      SERDES_MODE => "MASTER",      -- MASTER, SLAVE
+--      -- SRVAL_Q1 - SRVAL_Q4: Q output values when SR is used (0/1)
+--      SRVAL_Q1 => '0',
+--      SRVAL_Q2 => '0',
+--      SRVAL_Q3 => '0',
+--      SRVAL_Q4 => '0' 
+--   )
+--   port map (
+--      O => SERDES_INPUT,                       -- 1-bit output: Combinatorial output
+--      -- Q1 - Q8: 1-bit (each) output: Registered data outputs
+--      Q1 => Q(7),
+--      Q2 => Q(6),
+--      Q3 => Q(5),
+--      Q4 => Q(4),
+--      Q5 => Q(3),
+--      Q6 => Q(2),
+--      Q7 => Q(1),
+--      Q8 => Q(0),
+--      -- SHIFTOUT1, SHIFTOUT2: 1-bit (each) output: Data width expansion output ports
+--      SHIFTOUT1 => open,
+--      SHIFTOUT2 => open,
+--      BITSLIP => BITSLIP,           -- 1-bit input: The BITSLIP pin performs a Bitslip operation synchronous to
+--                                    -- CLKDIV when asserted (active High). Subsequently, the data seen on the
+--                                    -- Q1 to Q8 output ports will shift, as in a barrel-shifter operation, one
+--                                    -- position every time Bitslip is invoked (DDR operation is different from
+--                                    -- SDR).
+                                    
+       
+
+--      -- CE1, CE2: 1-bit (each) input: Data register clock enable inputs
+--      CE1 => SERDES_ENABLE,          --CE1 => SERDES_ENABLE
+--      CE2 => '0', 
+--      CLKDIVP => '0',           -- 1-bit input: TBD
+--      -- Clocks: 1-bit (each) input: ISERDESE2 clock input ports
+--      CLK => MCLK,                   -- 1-bit input: High-speed clock
+--      CLKB => '0',                 -- 1-bit input: High-speed secondary clock
+--      CLKDIV => OUTCLK,             -- 1-bit input: Divided clock
+--      OCLK => '0',                 -- 1-bit input: High speed output clock used when INTERFACE_TYPE="MEMORY" 
+--      -- Dynamic Clock Inversions: 1-bit (each) input: Dynamic clock inversion pins to switch clock polarity
+--     DYNCLKDIVSEL => '0', -- 1-bit input: Dynamic CLKDIV inversion
+--     DYNCLKSEL => '0',       -- 1-bit input: Dynamic CLK/CLKB inversion
+--      -- Input Data: 1-bit (each) input: ISERDESE2 data input ports
+--      D => '0',                       -- 1-bit input: Data input
+--      DDLY => DDLY,                 -- 1-bit input: Serial data from IDELAYE2
+--      OFB => '0',                   -- 1-bit input: Data feedback from OSERDESE2
+--      OCLKB => '0',               -- 1-bit input: High speed negative edge output clock
+--      RST => SERDES_RESET,                   -- 1-bit input: Active high asynchronous reset
+--      -- SHIFTIN1, SHIFTIN2: 1-bit (each) input: Data width expansion input ports
+--      SHIFTIN1 => '0',
+--      SHIFTIN2 => '0' 
+--   );
+
+   -- End of ISERDESE2_inst instantiation
+                        
+                    
+	
+	
 --  iserdes_master_imp : ISERDES
 --  GENERIC MAP (
 --    BITSLIP_ENABLE => TRUE,
