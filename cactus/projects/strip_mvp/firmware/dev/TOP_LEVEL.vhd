@@ -237,36 +237,65 @@ architecture BEHAVIORAL of top is
 	attribute mark_debug of masked_tx_rden : signal is "true";
 	attribute mark_debug of masked_rx_wren : signal is "true";
    
-   
-   
-   
+	attribute mark_debug of ext_clk : signal is "true";
+	attribute mark_debug of ext_trig : signal is "true";
+	attribute mark_debug of ext_trig_strobe : signal is "true";
+	
 begin
-
-	masked_tx_rden <= tx_rden and eth_strobe_mask;
-	masked_rx_wren <= rx_wren and eth_strobe_mask;
+	
+	-- emulate external clock and external trigger
+	ext_clk_bufg : BUFG
+	port map (I=>CLK15NS_sig,  O=>ext_clk);
+	
+	process(ext_clk)
+	begin
+	   if rising_edge(ext_clk) then
+	   
+			ext_trig <= '0';
+			ext_trig_cnt <= ext_trig_cnt + 1;
+			if(ext_trig_cnt = 0) then
+				ext_trig <= '1';
+			elsif(ext_trig_cnt = 2) then
+				ext_trig <= '1';
+			end if;
+	   end if;   
+	end process;
+	
+	ext_trig_handler : entity work.External_Trigger_Handler
+	Port Map ( xclk => ext_clk,	 -- external clock
+			 ext_trig_line_in => ext_trig,  -- "10100000..." is trigger 
+			 ext_trigger => ext_trig_strobe);
+			 
+			 
+	
 	-- process to create delayed ready to each write and read
 	process(MASTER_CLK)
 	begin
-	 if rising_edge(MASTER_CLK) then
-		 
-		 strip_ready <= '0';
-		 
-		 if(strip_ready_cnt /= 0) then -- countdown to ready again
-		 
-			 strip_ready_cnt <= strip_ready_cnt - 1;               
-			 if(strip_ready_cnt = 1) then -- ready now!
-				  strip_ready <= '1';
-			 end if;            
-			 
-		 elsif (eth_strobe_mask = '1' and (tx_rden = '1' or rx_wren = '1')) then
-			 strip_ready_cnt <= (others => '1');
-			 eth_strobe_mask <= '0';
-		 else
-			 eth_strobe_mask <= '1';
-		 end if;          
-		   
-		 
-	 end if;
+	if rising_edge(MASTER_CLK) then
+		
+		strip_ready <= '0';
+		
+		if(strip_ready_cnt /= 0) then -- countdown to ready again
+		
+			strip_ready_cnt <= strip_ready_cnt - 1;               
+			if(strip_ready_cnt = 1) then -- ready now!
+				 strip_ready <= '1';
+			end if;            
+			
+		elsif (eth_strobe_mask = '1' and (tx_rden = '1' or rx_wren = '1')) then
+			strip_ready_cnt <= (others => '1');
+			eth_strobe_mask <= '0';
+		else
+			eth_strobe_mask <= '1';
+		end if;          
+		  
+		--delay by 1 clock the strobes.. so that address can be registered once to ease timing
+		masked_tx_rden <= tx_rden and eth_strobe_mask;
+		masked_rx_wren <= rx_wren and eth_strobe_mask;
+		
+		rx_addr_reg <= rx_addr;
+		
+	end if;
 	end process;
 
 
