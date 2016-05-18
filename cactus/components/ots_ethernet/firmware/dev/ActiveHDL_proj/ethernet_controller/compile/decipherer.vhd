@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd
--- Generated   : 05/17/16 16:44:53
+-- Generated   : 05/18/16 11:48:04
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -194,9 +194,8 @@ match_proc : process(clk)
 begin
 if rising_edge(clk) then
 	addrs_match_sig <= '0';
-	udp_dest_ip_reg <= udp_dest_ip;
-	--add register to help meet timing
-	if (udp_dest_ip_reg = self_addrs) then -- and
+--udp_dest_ip_reg <= udp_dest_ip; --add register to help meet timing --FIXME .. adding this extra reg breaks icmp reply timing
+	if (udp_dest_ip = self_addrs) then -- and
 --(self_port = 0 or udp_dest_port = self_port)) then
 -- Note: rejecting the port presented a problem for ICMP matching logic
 --(x"C0A885" & addrs) then --this UDP packet was intended for this firmware.
