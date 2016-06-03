@@ -29,7 +29,12 @@ parser.add_argument('-p','--phy',type=int,default='8',
 parser.add_argument('-r','--reset',nargs='?',const='YES',
 		help='Flag to add reset output pin to top level. If not present, the reset pin is commented.' + \
 		' (e.g. It maybe necessary to hold the PHY reset high)')
-							
+
+parser.add_argument('-n','--nsensor',type=int,default=2,
+		choices=range(1,8),
+		help='Number of sensors. Default is 2.', metavar='')
+								
+		
 args = parser.parse_args()
 
 print
@@ -137,6 +142,18 @@ else:
 	os.system("sed -i s/.\*PHY\_RESET.\*\:\ out/--\\\tPHY\_RESET\\\t\:\ out/g " + scriptDir + "/../hdl/TOP_LEVEL.vhd")
 	os.system("sed -i s/.\*OBUF\_PHY\_RESET/--\\\tOBUF\_PHY\_RESET/g " + scriptDir + "/../hdl/TOP_LEVEL.vhd")
 
+
+#set default number of sensors
+nsensor = 2;
+if(args.nsensor > 0 and args.nsensor < 9):
+	nsensor = args.nsensor
+os.system("sed -i s/NSENSOR_PADS.*\:.*\;/" + \
+              "NSENSOR_PADS\ \:\ INTEGER\ \:\=\ " + \
+              str(nsensor)+"\ \)\;/g " + scriptDir + "/../hdl/TOP_LEVEL.vhd")
+
+print "Set Default Number of Sensors, nsensor: " + str(nsensor)
+print	
+	
 
 print
 print "***********************\n"

@@ -9,7 +9,7 @@ use UNISIM.Vcomponents.ALL;
 use work.iobus.ALL;
 
 entity top is
-	GENERIC ( NSENSOR_PADS : INTEGER := 1 );
+	GENERIC ( NSENSOR_PADS : INTEGER := 2 );
    port ( 
 		PHY_RXCLK      : in    std_logic; 
 		PHY_RXCTL_RXDV : in    std_logic; 
@@ -39,7 +39,12 @@ entity top is
 	PHY_TXER	: out   std_logic;
 						  
 		PHY_TXC_GTXCLK : out   std_logic;
-          
+
+	    EXT_CLK_PAD_P : IN STD_LOGIC;
+	    EXT_CLK_PAD_N : IN STD_LOGIC;
+	    EXT_TRIG_PAD_P : IN STD_LOGIC;
+	    EXT_TRIG_PAD_N : IN STD_LOGIC;
+	    
 		STRIP_RESET_PAD_P : OUT STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
 		STRIP_RESET_PAD_N : OUT STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
 		STRIP_SHIFT_PAD_P : OUT STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
@@ -137,15 +142,44 @@ architecture BEHAVIORAL of top is
     SIGNAL STRIP_BCO_ZERO : STD_LOGIC;
     SIGNAL STRIP_HITOR : STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
 
-     
+
+    SIGNAL b_data_alert : STD_LOGIC;   
    
     attribute mark_debug : string;
     attribute mark_debug of MASTER_CLK : signal is "true";
-    attribute mark_debug of secondary_clk : signal is "true";
+    -- attribute mark_debug of secondary_clk : signal is "true";
     attribute mark_debug of PHY_TXD_sig : signal is "true";
     attribute mark_debug of PHY_TXEN_sig : signal is "true";
     attribute mark_debug of rx_wren : signal is "true";
     attribute mark_debug of CLK15NS : signal is "true";
+    
+    
+    --    attribute mark_debug of STRIP_OUT1_0 : signal is "true";
+    --    attribute mark_debug of STRIP_OUT1_1 : signal is "true";
+    --    attribute mark_debug of STRIP_OUT1_2 : signal is "true";
+    --    attribute mark_debug of STRIP_OUT1_3 : signal is "true";
+    --    attribute mark_debug of STRIP_OUT1_4 : signal is "true";    
+	
+	attribute mark_debug of STRIP_SCIN : signal is "true";
+	attribute mark_debug of STRIP_SCOUT : signal is "true";
+	attribute mark_debug of STRIP_RESET : signal is "true";
+	attribute mark_debug of STRIP_SHIFT : signal is "true";
+	attribute mark_debug of STRIP_DATA_AVAILABLE : signal is "true";
+	
+	attribute mark_debug of STRIP_SYNC_ERROR : signal is "true";
+	attribute mark_debug of STRIP_BCO_ZERO : signal is "true";
+	attribute mark_debug of STRIP_HITOR : signal is "true";
+	
+	attribute mark_debug of rx_addr : signal is "true";
+	attribute mark_debug of tx_data : signal is "true";
+	attribute mark_debug of rx_data : signal is "true";
+	attribute mark_debug of b_data : signal is "true";
+	attribute mark_debug of b_data_we : signal is "true";
+
+    
+    attribute mark_debug of b_data_alert : signal is "true";
+    
+    
     
         --    attribute mark_debug of GMII_RXD_0_sig : signal is "true";
         --    attribute mark_debug of GMII_RX_DV_0_sig : signal is "true";
@@ -191,19 +225,128 @@ architecture BEHAVIORAL of top is
    end component;
    attribute BOX_TYPE of BUFG : component is "BLACK_BOX";
    
-   component reset_mgr
-      port ( slow_clk    : in    std_logic; 
-             reset_start : in    std_logic; 
-             reset       : out   std_logic);
-   end component;
+
    
-   
-   
-   
-   
-   
+	COMPONENT trigpattern 
+		GENERIC (
+			PATTERN : STD_LOGIC_VECTOR := "000";
+			CLOCK_EDGE : STRING := "RISING";
+			WIDTH : INTEGER := 1
+		);
+		PORT (
+			CLK : IN STD_LOGIC;
+			D : IN STD_LOGIC;
+			TRIGGER : OUT STD_LOGIC
+		);
+	END COMPONENT;
+	
+	
+	SIGNAL HALT : STD_LOGIC;
+	SIGNAL START : STD_LOGIC;
+	SIGNAL TRIGGER : STD_LOGIC;
+	
+	
+	signal strip_ready : std_logic := '0';
+	signal strip_ready_cnt : unsigned(8 downto 0) := (others => '0');
+	signal strip_tx_data : std_logic_vector(31 downto 0);
+	
+	signal tx_rden : std_logic;
+	signal eth_strobe_mask : std_logic := '1';
+	signal masked_tx_rden, masked_rx_wren : std_logic;
+	signal masked_rx_wren2 : std_logic;
+	
+	signal EXT_CLK_input : std_logic;
+	signal strip_clocks_locked, strip_busy : std_logic;  
+	
+	signal strip_bwe             : std_logic;
+	signal rx_addr_reg               : std_logic_vector (31 downto 0);
+	signal rx_addr_reg2               : std_logic_vector (31 downto 0);
+	
+	
+	signal b_data_chk               : std_logic_vector (31 downto 0);
+	signal b_data_cnt               : unsigned (31 downto 0) := (others => '0');
+	
+	signal bwe_and             : std_logic;
+	
+	
+	signal ext_clk, ext_cmd : std_logic;-- ext_trig, ext_trig_strobe : std_logic;
+	--signal ext_trig_cnt : unsigned(9 downto 0) := (others => '0');
+	
+	attribute mark_debug of strip_ready : signal is "true";
+	attribute mark_debug of tx_rden : signal is "true";
+	attribute mark_debug of eth_strobe_mask : signal is "true";
+	attribute mark_debug of masked_tx_rden : signal is "true";
+	attribute mark_debug of masked_rx_wren : signal is "true";
+	attribute mark_debug of ext_clk : signal is "true";
+	attribute mark_debug of EXT_CMD : signal is "true";
+	attribute mark_debug of HALT : signal is "true";
+	attribute mark_debug of START : signal is "true";
+	attribute mark_debug of TRIGGER : signal is "true";
+	attribute mark_debug of strip_clocks_locked : signal is "true";
+	attribute mark_debug of strip_bwe : signal is "true";
+	attribute mark_debug of b_data_cnt : signal is "true";
 begin
+	
+--    -- emulate external clock and external trigger
+--   ext_clk_bufg : BUFG
+--    port map (I=>CLK15NS_sig,  O=>ext_clk);
    
+--   process(ext_clk)
+--   begin
+--       if rising_edge(ext_clk) then
+       
+--            ext_trig <= '0';
+--            ext_trig_cnt <= ext_trig_cnt + 1;
+--            if(ext_trig_cnt = 0) then
+--                ext_trig <= '1';
+--            elsif(ext_trig_cnt = 2) then
+--                ext_trig <= '1';
+--            end if;
+--       end if;   
+--   end process;
+   
+--   ext_trig_handler : entity work.External_Trigger_Handler
+--    Port Map ( xclk => ext_clk,	 -- external clock
+--             ext_trig_line_in => ext_trig,  -- "10100000..." is trigger 
+--             ext_trigger => ext_trig_strobe);
+			 
+			 
+rocess to create delayed ready to each write and read
+   process(MASTER_CLK)
+   begin
+    if rising_edge(MASTER_CLK) then
+        
+        strip_ready <= '0';
+        
+        if(strip_ready_cnt /= 0) then -- countdown to ready again
+        
+            if(strip_clocks_locked = '1' and strip_busy = '0') then
+                strip_ready_cnt <= strip_ready_cnt - 1;               
+                if(strip_ready_cnt = 1) then -- ready now!
+                     strip_ready <= '1';
+                end if;            
+            end if;
+            
+        elsif (eth_strobe_mask = '1' and (tx_rden = '1' or rx_wren = '1')) then
+            strip_ready_cnt <= (others => '1');
+            eth_strobe_mask <= '0';
+        else
+            eth_strobe_mask <= '1';
+        end if;          
+          
+        --delay by 2 clock the strobes.. so that address can be registered twice to ease timing
+        masked_tx_rden <= tx_rden and eth_strobe_mask;
+        masked_rx_wren <= rx_wren and eth_strobe_mask;
+        
+        rx_addr_reg <= rx_addr;
+        
+        masked_rx_wren2 <= masked_rx_wren;
+        rx_addr_reg2 <= rx_addr_reg;
+    end if;
+   end process;
+   
+
+
 	gnd <= '0';
     
 	reset_n <= not reset;
@@ -215,15 +358,17 @@ begin
 	--      port map (I=>reset,    O=>PZ_ULED_1);        
       
    
-	-- start simple OEI
+	-- start full OEI
 	eth_interface : entity work.Ethernet_Interface
 	  port map (b_data(63 downto 0)=>b_data(63 downto 0),
-				b_data_we=>b_data_we,
+				b_data_we=>bwe_and,--b_data_we,
 				PHY_RXD(7 downto 0)=>GMII_RXD_0_sig(7 downto 0),
 				PHY_RX_DV=>GMII_RX_DV_0_sig,
 				PHY_RX_ER=>GMII_RX_ER_0_sig,
 				MASTER_CLK=>MASTER_CLK,                
 				reset_in=>reset_btn,
+				user_ready=>strip_ready,
+                tx_rden=>tx_rden,
 				reset_out => reset,
 				tx_data(63 downto 0)=>tx_data(63 downto 0),
 				b_enable=>open,
@@ -234,14 +379,13 @@ begin
 				rx_addr(31 downto 0)=>rx_addr(31 downto 0),
 				rx_data(63 downto 0)=>rx_data(63 downto 0),
 				rx_wren=>rx_wren);
-					 
-	-- end simple OEI
+						 
+	-- end full OEI
 
      
 
 
 
-	   
 	   makeSlowClock : for i in 0 to 0 generate
 	        signal cnt : unsigned(4 downto 0) := (others => '0');
 	   begin
@@ -261,30 +405,59 @@ begin
 	   CLK15NS_bufg : BUFG
 	    port map (I=>CLK15NS_sig,  O=>CLK15NS);
 	      
-
 	      
 	    iobus.IO_Addr_Strobe <= '1';
-	    iobus.IO_Read_Strobe <= '1';
-	    iobus.IO_Write_Strobe <= rx_wren;
-	    iobus.IO_Address <= rx_addr(31 downto 0);
+	    iobus.IO_Read_Strobe <= tx_rden; --extend pulse to aid readback (was '1' but created a problem for ext commands changing bits)
+	    iobus.IO_Write_Strobe <= masked_rx_wren2;
+	    iobus.IO_Address <= rx_addr_reg2(31 downto 0);
 	    iobus.IO_Byte_Enable <= x"F";
 	    iobus.IO_Write_Data <= rx_data(31 downto 0);
 	                
 	    tx_data(63 downto 32) <= x"ABCD0000";
+	    bwe_and <= b_data_we and strip_bwe; -- might stop timing glitch? (seeing strip_bwe 3-wide causing 2 b_data_we strobes)
+	    
+	    -- add an extra clock for read data since it keeps failing timing
+	    process(MASTER_CLK)
+       begin
+          if (rising_edge(MASTER_CLK)) then
+              tx_data(31 downto 0) <= strip_tx_data;    
+              
+              -- since strips running at half speed.. take every other strobe (allow for consecutive slow strobes) 
+              b_data_we <= '0';
+              b_data_alert <= '0';
+              if(b_data_we = '0' and strip_bwe = '1') then 
+                   b_data_we <= '1';
+                                --  b_data_cnt <= b_data_cnt + 1;
+                   b_data(63 downto 32) <= std_logic_vector(b_data_cnt);
+              end if; 
+              
+              if(bwe_and = '1') then 
+                    b_data_cnt <= b_data_cnt + 1;
+              end if;
+              
+              if(b_data_we = '1') then
+                  b_data_chk <= b_data(31 downto 0);
+                  if(b_data_chk = b_data(31 downto 0)) then -- check if data is repeat
+                      b_data_alert <= '1';
+                  end if;
+              end if;
+              
+          end if;
+       end process; 
 	                
 	    strip_imp : entity work.strip_interface
 	     GENERIC MAP ( NSENSOR => NSENSOR_PADS )
 	     PORT MAP (
-	       CLK => CLK15NS,
+	       CLK => MASTER_CLK,--CLK15NS,
 	       IOBUS => iobus, --SLAVE_IOBUS(3),
-	       WRITE_DATA => tx_data(31 downto 0), --SLAVE_WRITE_DATA(3),
+	       WRITE_DATA => strip_tx_data, --tx_data(31 downto 0), --SLAVE_WRITE_DATA(3),
 	       IOBUS_READY => open, --SLAVE_READY(3),
 	       CLKX => CLK15NS,
 	       CLKY => secondary_clk,--CLK5MHZ,
-	       EXT_CLK => gnd,--EXT_CLK,
-	       EXT_TRIG => gnd,--TRIGGER,
-	       EXT_HALT => gnd,--HALT,
-	       EXT_START => gnd,--START,
+	       EXT_CLK => ext_clk,--EXT_CLK,
+	       EXT_TRIG => TRIGGER,--ext_trig_strobe,--TRIGGER,
+	       EXT_HALT => HALT,--gnd,--HALT,
+	       EXT_START => START,--gnd,--START,
 	       DAC_CS => open,--STRIP_DAC_CS,
 	       DAC_SDI => open,--STRIP_DAC_SDI,
 	       DAC_SDO => gnd,--STRIP_DAC_SDO,
@@ -293,6 +466,8 @@ begin
 	       DAC_BUSAB => open,--STRIP_DAC_BUSAB,
 	       DAC_CLK => open,--STRIP_DAC_CLK,
 	       DAC_DATACLK => open,--STRIP_DAC_DATACLK,
+	       clocks_locked => strip_clocks_locked,
+	       something_busy => strip_busy,
 	       MCLKA => STRIP_MCLKA,
 	       MCLKB => STRIP_MCLKB,
 	       BCOCLK => STRIP_BCOCLK,
@@ -316,11 +491,49 @@ begin
 	       STREAM_CKSUM => open,--STREAM_CKSUM,
 	       STREAM_STROBE => open,--STREAM_STROBE,
 	       STREAM_READY => gnd,--STREAM_READY,
-	       SERDES_DATA => open,--SERDES_STRIP_DATA,
-	       SERDES_DATA_WE => open,--SERDES_STRIP_DATA_WE,
+	       SERDES_DATA => b_data(31 downto 0),--SERDES_STRIP_DATA,
+	       SERDES_DATA_WE => strip_bwe,--SERDES_STRIP_DATA_WE,
 	       STRIP_DEBUG => open,--STRIP_DEBUG,
 	       DEBUG_SELECT => open--STRIP_DEBUG_SELECT
 	     );
+	     
+	 -- handle external trigger
+	 
+      trigpattern_imp : trigpattern
+      GENERIC MAP (
+        PATTERN => "01010",
+        CLOCK_EDGE => "FALLING",
+        WIDTH => 1
+      )
+      PORT MAP (
+        CLK => EXT_CLK,
+        D => EXT_CMD,
+        TRIGGER => TRIGGER
+      );
+    
+      startpattern_imp : trigpattern
+      GENERIC MAP (
+        PATTERN => "01101",
+        CLOCK_EDGE => "FALLING",
+        WIDTH => 4
+      )
+      PORT MAP (
+        CLK => EXT_CLK,
+        D => EXT_CMD,
+        TRIGGER => START
+      );
+    
+      haltpattern_imp : trigpattern
+      GENERIC MAP (
+        PATTERN => "00111",
+        CLOCK_EDGE => "FALLING",
+        WIDTH => 2
+      )
+      PORT MAP (
+        CLK => EXT_CLK,
+        D => EXT_CMD,
+        TRIGGER => HALT
+      );
    
     -----------------------
     ----------------------- IBUF 's 
@@ -365,6 +578,30 @@ begin
            
     -----------------------
        ----------------------- Strip Pad O/I BUFs 
+       ext_bcoclk_ibuf : IBUFDS
+           GENERIC MAP ( IOSTANDARD => "LVDS_25",
+                         DIFF_TERM => TRUE )
+           PORT MAP (
+             I => EXT_CLK_PAD_P,
+             IB => EXT_CLK_PAD_N,
+             O => EXT_CLK_input
+           );
+           
+              ext_bcoclk_bufg : bufg    
+                 port map (
+                   i => EXT_CLK_input,
+                   o => EXT_CLK
+                 );
+       
+       
+       ext_trig_ibuf : IBUFDS
+           GENERIC MAP ( IOSTANDARD => "LVDS_25",
+                         DIFF_TERM => TRUE )
+           PORT MAP (
+             I => EXT_TRIG_PAD_P,
+             IB => EXT_TRIG_PAD_N,
+             O => EXT_CMD
+           );
        
         strip_mclka0_obuf : OBUFDS
         GENERIC MAP ( IOSTANDARD => "LVDS_25" )
@@ -379,6 +616,22 @@ begin
           I => STRIP_MCLKB,
           O => STRIP_MCLKB0_PAD_P,
           OB => STRIP_MCLKB0_PAD_N
+        );
+        
+
+        strip_mclka1_obuf : OBUFDS
+        GENERIC MAP ( IOSTANDARD => "LVDS_25" )
+        PORT MAP (
+         I => STRIP_MCLKA,
+         O => STRIP_MCLKA1_PAD_P,
+         OB => STRIP_MCLKA1_PAD_N
+        );
+        strip_mclkb1_obuf : OBUFDS
+        GENERIC MAP ( IOSTANDARD => "LVDS_25" )
+        PORT MAP (
+         I => STRIP_MCLKB,
+         O => STRIP_MCLKB1_PAD_P,
+         OB => STRIP_MCLKB1_PAD_N
         );
         
        strip_pad_gen : FOR I IN 0 TO NSENSOR_PADS-1 GENERATE

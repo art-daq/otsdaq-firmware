@@ -128,15 +128,17 @@ begin
 
 	trigcounter_imp : for i in 0 to 0 generate
 		signal tmpcnt : unsigned(39 downto 0) := (others => '0');
+		signal old_trigger_count_enable : std_logic;
 	begin			
 		trigger_count <= std_logic_vector(tmpcnt);
 		process(bcoclk)
 		begin	 
 			if (rising_edge(bcoclk)) then
 				
+				old_trigger_count_enable <= trigger_count_enable;
 				if (clear = '1') then
 					tmpcnt <= (others => '0');					
-				elsif (trigger_count_enable = '1') then
+				elsif (old_trigger_count_enable = '0' and trigger_count_enable = '1') then --RAR edit to avoid double counting
 					tmpcnt <= tmpcnt + 1;
 				end if;
 				

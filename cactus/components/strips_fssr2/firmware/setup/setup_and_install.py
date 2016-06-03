@@ -21,7 +21,7 @@ parser.add_argument('-d','--dest',help='Destination path')
 
 parser.add_argument('-n','--nsensor',type=int,default=2,
 		choices=range(1,8),
-                    help='Number of sensors. Default is 2.', metavar='')
+        help='Number of sensors. Default is 2.', metavar='')
 					
 args = parser.parse_args()
 

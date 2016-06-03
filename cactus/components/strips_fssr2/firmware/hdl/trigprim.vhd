@@ -100,6 +100,15 @@ architecture Behavioral of trigprim is
   SIGNAL TRIG_FIFO_FULL : STD_LOGIC;
   SIGNAL FIFO_OUTPUT : STD_LOGIC_VECTOR(35 DOWNTO 0);
 
+  
+  attribute mark_debug : string;
+  attribute mark_debug of fifo_empty : signal is "true";
+  attribute mark_debug of trig_input : signal is "true";
+  attribute mark_debug of enable_input : signal is "true";
+  attribute mark_debug of token_in : signal is "true";
+  attribute mark_debug of token_out : signal is "true";
+  attribute mark_debug of dout_valid : signal is "true";
+
 begin
 	  
 					   			

@@ -82,6 +82,16 @@ architecture Behavioral of stripsc is
   SIGNAL LAST_BCO : STD_LOGIC_VECTOR(7 DOWNTO 0);
   CONSTANT BCO_TRIGGER : STD_LOGIC_VECTOR(7 DOWNTO 0) := X"F0";
 -- This positions the falling SHIFT edge to coincide with BCO = 0.
+	
+		
+--    attribute mark_debug : string;
+--    attribute mark_debug of BCO_SYNC : signal is "true";
+--    attribute mark_debug of RAW : signal is "true";
+--    attribute mark_debug of BCO_ZERO : signal is "true";
+--    attribute mark_debug of BCO : signal is "true";
+--    attribute mark_debug of IBIT : signal is "true";
+--    attribute mark_debug of NBIT : signal is "true";
+--    attribute mark_debug of ISEL : signal is "true";
 
 begin
   PROCESS ( CLK, LATCHED_STROBE ) BEGIN
