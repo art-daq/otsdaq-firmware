@@ -20,6 +20,8 @@
 --erased -- Tool versions:  ISE 14.4 / 14.6
 --erased -- Description:    Defines a MicroBlaze LMB slave that interfaces with the
 --erased --                 strip sensor hybrids
+--erased --								   
+--erased -- Edit by rrivera at fnal dot gov for KC705 in Vivado 2015.2
 --erased --
 --erased -- Dependencies:
 --erased --
@@ -96,6 +98,8 @@ entity strip_interface is
     dac_clk : out std_logic;
     dac_dataclk : out std_logic;
 
+    clocks_locked : out std_logic; 
+    something_busy : out std_logic; 
     mclka : out std_logic;                                    -- 66.667 mhz phase 0 deg
     mclkb : out std_logic;                                    -- 66.667 mhz phase 90 deg
     bcoclk : out std_logic_vector(nsensor-1 downto 0);        -- synthesized bco clk to chips - variable frequency
@@ -246,7 +250,8 @@ architecture behavioral of strip_interface is
     );
     port (
       reset : in std_logic;
-      enable : in std_logic;
+      enable : in std_logic;  
+      clk : in std_logic;
       mclk : in std_logic;
       din : in std_logic;
       serdes_input : out std_logic;
@@ -681,7 +686,7 @@ architecture behavioral of strip_interface is
   TYPE dly_enable_t IS ARRAY(NSENSOR-1 DOWNTO 0) OF STD_LOGIC_VECTOR(5 DOWNTO 1);
   SIGNAL dly_enable : dly_enable_t;
   SIGNAL dly_reset : dly_enable_t;
-  signal strip_trim_csr : std_logic_vector(31 downto 0) := x"10000010";
+  signal strip_trim_csr : std_logic_vector(31 downto 0) := x"0000001a"; -- RAR... was x"10000010";
   signal trim_count : unsigned(5 downto 0) := "000000";
   signal strip_mclk : std_logic_vector(nsensor-1 downto 0);
 
@@ -704,39 +709,58 @@ architecture behavioral of strip_interface is
                                             (0,0,0,0,0),
                                             (0,0,0,0,0),
                                             (0,0,0,0,0) );
+  
+  
+  attribute mark_debug : string;
+  attribute mark_debug of do_reset : signal is "true";
+  attribute mark_debug of reset_mask : signal is "true";
+    
+  attribute mark_debug of do_sc : signal is "true";
+  attribute mark_debug of dcm_bcoclk : signal is "true";
+  --attribute mark_debug of strip_csr : signal is "true";
+  attribute mark_debug of something_busy : signal is "true";
+      
+  attribute mark_debug of reset_busy : signal is "true";
+  attribute mark_debug of sc_busy : signal is "true";
+  attribute mark_debug of bco_reset_busy : signal is "true";
+      
+      
 begin
 
-  stripclk_imp : stripclk
-  port map (
-    clk_x => clkx,
-    clk_y => clky,
-    clk_ext => ext_clk,
-    clksel => strip_csr(16),      -- ext_bcoclk field: selects external bco clock source
-    mclk_a => dcm_mclk_a,
-    mclk_b => dcm_mclk_b,
-    outclk => dcm_outclk,
-    bcoclk => dcm_bcoclk,
-    dacclk => strip_dac_clk,
-    reset => dcm_reset,
-    locked => strip_clk_locked,
-    arm_bco_reset => arm_bco_reset,  -- arm the BCO reset logic
-    bco_reset_armed => bco_reset_armed,   -- bco reset status
-    bco_reset_busy => bco_reset_busy,   -- bco reset in progress
-    bco_reset => ext_start,         -- reset bco to zero when armed
-    bco_reset_now => do_bco_reset,  -- reset bco to zero when armed
-    bco => strip_bco_counter,
-    fracbcoclk => fracbcoclk,
-    fracbco => fracbco,
-    bcoclk_data_in => bcoclk_data(15 downto 0),
-    bcoclk_data_out => bcoclk_data_out,
-    bcoclk_addr => bcoclk_data(22 downto 16),
-    bcoclk_we => bcoclk_data_we,
-    bcoclk_en => bcoclk_den,
-    busclk => clk,
-    bcoclk_busy => bcoclk_busy,
-    debug => debug_reset
-  );
-
+	clocks_locked <= '1' when (dcm_reset = '1' or (strip_clk_locked(1) = '1' and strip_clk_locked(0) = '1'))
+		else '0';
+	                  
+	stripclk_imp : stripclk
+	port map (
+		clk_x => clkx,
+		clk_y => clky,
+		clk_ext => ext_clk,
+		clksel => strip_csr(16),      -- ext_bcoclk field: selects external bco clock source
+		mclk_a => dcm_mclk_a,
+		mclk_b => dcm_mclk_b,
+		outclk => dcm_outclk,
+		bcoclk => dcm_bcoclk,
+		dacclk => strip_dac_clk,
+		reset => dcm_reset,
+		locked => strip_clk_locked,
+		arm_bco_reset => arm_bco_reset,  -- arm the BCO reset logic
+		bco_reset_armed => bco_reset_armed,   -- bco reset status
+		bco_reset_busy => bco_reset_busy,   -- bco reset in progress
+		bco_reset => ext_start,         -- reset bco to zero when armed
+		bco_reset_now => do_bco_reset,  -- reset bco to zero when armed
+		bco => strip_bco_counter,
+		fracbcoclk => fracbcoclk,
+		fracbco => fracbco,
+		bcoclk_data_in => bcoclk_data(15 downto 0),
+		bcoclk_data_out => bcoclk_data_out,
+		bcoclk_addr => bcoclk_data(22 downto 16),
+		bcoclk_we => bcoclk_data_we,
+		bcoclk_en => bcoclk_den,
+		busclk => clk,
+		bcoclk_busy => bcoclk_busy,
+		debug => debug_reset
+	);
+	
 --  bcoclk_bufr_imp : bufr
 --  port map (
 --    i => dcm_bcoclk,
@@ -830,14 +854,14 @@ begin
     BCOCLK(I) <= DCM_BCOCLK;
 	
 --erased
-   bufgmux_imp : BUFGMUX
-   port map (
-     o => strip_mclk(i),
-     i0 => DCM_MCLK_A,
-     i1 => DCM_MCLK_B,
-     s => strip_trim_csr(8+i)
-   );
-
+--    bufgmux_imp : BUFGMUX
+--    port map (
+--      o => strip_mclk(i),
+--      i0 => DCM_MCLK_A,
+--      i1 => DCM_MCLK_B,
+--      s => strip_trim_csr(8+i)
+--    );
+		   		 
     chipserdes4_imp : chipserdes
     GENERIC MAP (
       CHIPID => 5,
@@ -847,7 +871,8 @@ begin
     PORT MAP (
       RESET => STRIP_SERDES_RESET(I),
       ENABLE => SENSOR_ENABLE(I),
-      MCLK => strip_mclk(i),
+            CLK => clk,--strip_mclk(i),
+            MCLK => DCM_MCLK_A,
       DIN => OUT1_4(I),
       SERDES_INPUT => STRIP_SERDES_INPUT(I,5),
       OUTCLK => DCM_OUTCLK,
@@ -869,7 +894,8 @@ begin
     PORT MAP (
       RESET => STRIP_SERDES_RESET(I),
       ENABLE => SENSOR_ENABLE(I),
-      MCLK => strip_mclk(i),
+            CLK => clk,--strip_mclk(i),
+            MCLK => DCM_MCLK_A,
       DIN => OUT1_3(I),
       SERDES_INPUT => STRIP_SERDES_INPUT(I,4),
       OUTCLK => DCM_OUTCLK,
@@ -891,7 +917,8 @@ begin
     PORT MAP (
       RESET => STRIP_SERDES_RESET(I),
       ENABLE => SENSOR_ENABLE(I),
-      MCLK => strip_mclk(i),
+            CLK => clk,--strip_mclk(i),
+            MCLK => DCM_MCLK_A,
       DIN => OUT1_2(I),
       SERDES_INPUT => STRIP_SERDES_INPUT(I,3),
       OUTCLK => DCM_OUTCLK,
@@ -913,7 +940,8 @@ begin
     PORT MAP (
       RESET => STRIP_SERDES_RESET(I),
       ENABLE => SENSOR_ENABLE(I),
-      MCLK => strip_mclk(i),
+            CLK => clk,--strip_mclk(i),
+            MCLK => DCM_MCLK_A,
       DIN => OUT1_1(I),
       SERDES_INPUT => STRIP_SERDES_INPUT(I,2),
       OUTCLK => DCM_OUTCLK,
@@ -935,7 +963,8 @@ begin
     PORT MAP (
       RESET => STRIP_SERDES_RESET(I),
       ENABLE => SENSOR_ENABLE(I),
-      MCLK => strip_mclk(i),
+          CLK => clk,--strip_mclk(i),
+          MCLK => DCM_MCLK_A,
       DIN => OUT1_0(I),
       SERDES_INPUT => STRIP_SERDES_INPUT(I,1),
       OUTCLK => DCM_OUTCLK,
@@ -1284,6 +1313,9 @@ trigbuf_imp : trigbuf
     variable chan_index : integer range 0 to nsensor-1;
   begin
     if ( clk'event and clk = '1' ) then
+    		
+      something_busy <= sc_busy;
+  
       if ( do_reset /= x"00" and reset_busy = '1' ) then
         do_reset <= ( others => '0' );
       end if;
@@ -1576,41 +1608,48 @@ trigbuf_imp : trigbuf
     end if;
   end process;
 
-  process ( dcm_outclk, do_trim ) begin
-    if ( dcm_outclk'event and dcm_outclk = '1' ) then
-      if ( trim_busy = '0' ) then
-        if ( do_trim = '1' ) then
-          trim_busy <= '1';
-          for i in 0 to nsensor-1 loop
-            if ( i = to_integer(unsigned(strip_trim_csr(2 downto 0))) ) then
-              if ( strip_trim_csr(30) = '0' ) then
-                dly_enable(i) <= strip_trim_csr(7 downto 3);
-                dly_reset(i) <= ( others => '0' );
-                if ( strip_trim_csr(28) = '0' ) then
-                  trim_count <= trim_count - 1;
-                else
-                  trim_count <= trim_count + 1;
-                end if;
-              else
-                dly_reset(i) <= strip_trim_csr(7 downto 3);
-                dly_enable(i) <= ( others => '0' );
-                trim_count <= "000000";
-              end if;
-            else
-              dly_reset(i) <= ( others => '0' );
-              dly_enable(i) <= ( others => '0' );
-            end if;
-          end loop;
-        end if;
-      else
-        for i in 0 to nsensor-1 loop
-          dly_reset(i) <= ( others => '0' );
-          dly_enable(i) <= ( others => '0' );
-        end loop;
-        trim_busy <= do_trim;
-      end if;
-    end if;
+  -- RAR re-map to iddr select for chipserdes 
+  process (strip_trim_csr) begin
+      for i in 0 to nsensor-1 loop
+          dly_enable(i) <= strip_trim_csr(i*8+4 downto i*8);
+      end loop;
   end process;
+  
+-- process ( dcm_outclk, do_trim ) begin
+--    if ( dcm_outclk'event and dcm_outclk = '1' ) then
+--      if ( trim_busy = '0' ) then
+--        if ( do_trim = '1' ) then
+--          trim_busy <= '1';
+--          for i in 0 to nsensor-1 loop
+--            if ( i = to_integer(unsigned(strip_trim_csr(2 downto 0))) ) then
+--              if ( strip_trim_csr(30) = '0' ) then
+--                dly_enable(i) <= strip_trim_csr(7 downto 3);
+--                dly_reset(i) <= ( others => '0' );
+--                if ( strip_trim_csr(28) = '0' ) then
+--                  trim_count <= trim_count - 1;
+--                else
+--                  trim_count <= trim_count + 1;
+--                end if;
+--              else
+--                dly_reset(i) <= strip_trim_csr(7 downto 3);
+--                dly_enable(i) <= ( others => '0' );
+--                trim_count <= "000000";
+--              end if;
+--            else
+--              dly_reset(i) <= ( others => '0' );
+--              dly_enable(i) <= ( others => '0' );
+--            end if;
+--          end loop;
+--        end if;
+--      else
+--        for i in 0 to nsensor-1 loop
+--          dly_reset(i) <= ( others => '0' );
+--          dly_enable(i) <= ( others => '0' );
+--        end loop;
+--        trim_busy <= do_trim;
+--      end if;
+--    end if;
+--  end process;
 
   process ( ext_clk, ext_trig, ext_start, ext_halt ) begin
     if ( ext_clk'event and ext_clk = '1' ) then

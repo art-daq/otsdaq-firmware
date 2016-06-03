@@ -20,6 +20,8 @@
 -- Tool versions:  ISE 14.4 / 14.6
 -- Description:    Generates clock signals used by strip sensor hybrids
 --
+--erased -- Edit by rrivera at fnal dot gov for KC705 in Vivado 2015.2
+--
 -- Dependencies:
 --
 -- Revision: 
@@ -176,7 +178,11 @@ architecture Behavioral of stripclk is
  ATTRIBUTE BLACK_BOX_PAD_PIN OF bcoclk_pmcd : COMPONENT IS "clk_in,clk_out,reset,locked";
  
  -- COMP_TAG_END ---End COMPONENT Declaration ------------
-  
+	
+	attribute mark_debug : string;
+	attribute mark_debug of reset : signal is "true";
+	attribute mark_debug of outclk : signal is "true";
+	attribute mark_debug of dcm_mclk_locked : signal is "true";
 
 begin
 
@@ -282,18 +288,56 @@ begin
        MCLK_A => mclk_a,        -- 66.667 mhz
        MCLK_B => mclk_b,        -- 66.667 mhz phase 90
        MCLK_DIV4 => outclk,    -- 16.667 mhz, ISERDES output clock
-       MCLK_MULT3 => clk_fx,   -- 200 mhz, drives the dac
+       MCLK_MULT3 => open, --clk_fx,   -- 200 mhz, drives the dac
        -- Status and control signals                
        reset => reset,
        locked => dcm_mclk_locked            
    );
    -- INST_TAG_END ------End INSTANTIATION Template --------------
 
+	clk_fx <= '0';
+	
+	clk_q <= clk_ext;--clk_x when clksel = '0' else clk_ext;
+	clk_z <= clk_q;
+	
+	-- the bufg is at top level!
+	 
+	bco_makeSlowClock : for i in 0 to 0 generate
+	  signal cnt : unsigned(1 downto 0) := (others => '0');
+	begin
+	  dcm_bco_div <= cnt(0); -- 2 times slower clock than MASTER_CLK
+	  process(clk_z)
+	  begin
+		  if (rising_edge(clk_z)) then
+			  cnt <= cnt + 1;        
+		  end if;
+	  end process;   
+	end generate;
+	
+	
+	dcm_fbco <= clk_z; -- Fractional BCO clock   
+	
+--erased --
+---	dcm_bco_div_inst : bufg
+---		port map (
+---		  o => dcm_bco,                -- BCO clock
+---		  i => dcm_bco_div
+---		);
+	
+
+	bcoclk <= dcm_bco;
+	fracbcoclk <= dcm_fbco;
+	
+	dcm_fbco_locked <= dcm_mclk_locked; --FIX ME if different bco handling?
+	
+	
+	dacclk <= clk_fx;
+	idelayctrl_reset <= not dcm_mclk_locked;
+	
+	
 	
   
   
-  dacclk <= clk_fx;
-  idelayctrl_reset <= not dcm_mclk_locked;
 
 --
 --  The bufgmux should not be used because you won't be able to switch
@@ -307,20 +351,19 @@ begin
 --    o => clk_z,
 --    s => clksel
 --  );
-																			
---erased
- bcoclkmux : bufgctrl													
- port map (																
-   i0 => clk_x,															
-   i1 => clk_ext,
-   o => clk_z,
-   s0 => not clksel,
-   s1 => clksel,
-   ce1 => '1',
-   ce0 => '1',
-   ignore1 => '1',
-   ignore0 => '1'
- );
+																	
+-- bcoclkmux : bufgctrl													
+--  port map (																
+--    i0 => clk_x,															
+--    i1 => clk_ext,
+--    o => clk_z,
+--    s0 => not clksel,
+--    s1 => clksel,
+--    ce1 => '1',
+--    ce0 => '1',
+--    ignore1 => '1',
+--    ignore0 => '1'
+--  );
 --erased
 --erased
 --erased
@@ -431,78 +474,29 @@ begin
 --    i => dcm_bco_a
 --  );	   
 --  					
-
-------NOTE: RAR.. there was a DCM here with in clk_z (possibly external clock)
------- and output controllable clk_q. But removed for simplicity in transfer to picoZed
----	   
- clk_q <= clk_z;
- --bcoclk_mux : bufg    
- --port map (
- --  i => clk_z,
- --  o => clk_q
- --);
- 
- 
-   -- NOTE: RAR.. replaced pll with divide by 4 logic (inclk = clk_q, outclk = dcm_bco_div)
-   gen_div_by4_clk : for i in 0 to 0 generate
-     signal cnt : unsigned(1 downto 0) := (others => '0');
-     signal tmp_clk : std_logic;
-   begin
-       tmp_clk <= cnt(1);
-       
-       bcoclk_mux : bufg    
-         port map (
-           i => tmp_clk,
-           o => dcm_bco_div
-         );
-       
-       process(clk_q, bcoclk_reset)
-       begin
-         if (bcoclk_reset = '1') then
-             cnt <= (others => '0');
-         elsif (rising_edge(clk_q)) then        
-             cnt <= cnt + 1;
-         end if;      
-       end process;
-   end generate;			   
----	
- dcm_fbco <= clk_q; -- Fractional BCO clock			 
-															 
-															 
-															 
---erased
- bcoclk_bufg : bufg
- port map (
-   o => dcm_bco,                -- BCO clock
-   i => dcm_bco_div
- );
-
-  bcoclk <= dcm_bco;
-  fracbcoclk <= dcm_fbco;
-  
   									   
 --erased
- bcoclkmux_imp : bufgctrl
- port map (
-   o => bcocounter_clock,
-   i0 => dcm_bco,
-   i1 => clk_z,
-   ignore0 => '1',
-   ignore1 => '0',
-   ce0 => '1',
-   ce1 => '1',
-   s0 => not bco_clear,
-   s1 => bco_clear
- );
+--  bcoclkmux_imp : bufgctrl
+--  port map (
+--    o => bcocounter_clock,
+--    i0 => dcm_bco,
+--    i1 => clk_z,
+--    ignore0 => '1',
+--    ignore1 => '0',
+--    ce0 => '1',
+--    ce1 => '1',
+--    s0 => not bco_clear,
+--    s1 => bco_clear
+--  );
 
 
 	binaryCnt: for i in 0 downto 0 generate 
 		signal tmpcnt : unsigned(47 downto 0) := (others => '0');
 	begin
-		process(bcocounter_clock)											 
+		process(dcm_bco)--bcocounter_clock)											 
 		begin							
 			bco <= std_logic_vector(tmpcnt);
-			if (rising_edge(bcocounter_clock)) then	
+			if (rising_edge(dcm_bco)) then --bcocounter_clock)) then	
 				if(	bco_clear = '1' ) then
 					tmpcnt <= (others => '0');
 				else

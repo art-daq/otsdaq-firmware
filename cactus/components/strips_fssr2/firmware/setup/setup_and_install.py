@@ -19,6 +19,10 @@ parser = argparse.ArgumentParser(description='Setup and Install for Off-the-Shel
 
 parser.add_argument('-d','--dest',help='Destination path')
 
+parser.add_argument('-n','--nsensor',type=int,default=2,
+		choices=range(1,8),
+                    help='Number of sensors. Default is 2.', metavar='')
+					
 args = parser.parse_args()
 
 print
@@ -100,7 +104,8 @@ print 'Modifying files...'
 print
 
 
-#modify strip interface
+#modify strip interface 
+#(note: do for all strip files.. not particular ones anymore)
 os.system("sed -i s/---\ //g " + dest + "/*.vhd")
 os.system("sed -i s/.\*SCRIPT\ COMMENT\ OUT/--erased/g " + dest + \
           "/*.vhd")
@@ -124,6 +129,19 @@ os.system("sed -i s/.\*SCRIPT\ COMMENT\ OUT/--erased/g " + dest + \
 #          "/trigproc.vhd")
 
 
+#set default number of sensors
+nsensor = 2;
+if(args.nsensor > 0 and args.nsensor < 9):
+	nsensor = args.nsensor
+os.system("sed -i s/nsensor.*\:.*\;/" + \
+              "nsensor\ \:\ integer\ \:\=\ " + \
+              str(nsensor)+"\ \)\;/g " + dest + \
+              "/strip_interface.vhd")
+
+print "Set Default Number of Sensors, nsensor: " + str(nsensor)
+print
+		  
+		  
 print
 print 'Removing files for tidiness...'
 print

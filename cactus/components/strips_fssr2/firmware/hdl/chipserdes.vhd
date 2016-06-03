@@ -1,3 +1,12 @@
+--erased --------------------------------------------------------------------------------
+
+--erased -- IMPORTANT!! IMPORTANT!! 				
+--erased -- It's very important to note!!!   	
+--erased -- 										
+--erased -- The script that moves these files into a Firmware project will 		   
+--erased --  remove all "" comments.. 												
+--erased" 
+
 --------------------------------------------------------------------------------
 --
 -- Company:
@@ -9,7 +18,9 @@
 -- Project Name:   STIB firmware
 -- Target Devices: xc4vlx25ff668-10
 -- Tool versions:  ISE 14.4 / 14.6
--- Description:    Deserializes data from FSSR2 chips
+-- Description:    Deserializes data from FSSR2 chips		
+-- 
+-- Edit by rrivera at fnal dot gov for KC705 in Vivado 2015.2
 --
 -- Dependencies:
 --
@@ -23,8 +34,8 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
---library UNISIM;
---use UNISIM.VComponents.all;
+library UNISIM;
+use UNISIM.VComponents.all;
 
 ENTITY chipserdes IS
   GENERIC ( CHIPID : INTEGER := 0;
@@ -34,6 +45,7 @@ ENTITY chipserdes IS
   PORT (
     RESET : IN STD_LOGIC;
     ENABLE : IN STD_LOGIC;
+    CLK : IN STD_LOGIC;
     MCLK : IN STD_LOGIC;
     DIN : IN STD_LOGIC;
     SERDES_INPUT : OUT STD_LOGIC;
@@ -88,17 +100,117 @@ architecture RTL of chipserdes is
 
   SIGNAL VALID_STRIP_NUMBER : STD_LOGIC;
   SIGNAL VALID_SET_NUMBER : STD_LOGIC;
+  
+  
+    SIGNAL DDLY : STD_LOGIC; --RAR
+    
+    
+--           attribute IODELAY_GROUP : STRING;
+--           attribute IODELAY_GROUP of IDELAYE2_inst: label is "serdes_idelay_group";
+           
+           
+    attribute mark_debug : string;
+    --attribute mark_debug of Q : signal is "true";
+    attribute mark_debug of ALIGNED : signal is "true";
+    --attribute mark_debug of INTERNAL_STATE : signal is "true";
+    attribute mark_debug of NEXT_BITSLIP : signal is "true";
+    --attribute mark_debug of SYNC_COUNT : signal is "true";
+    attribute mark_debug of DATA_LOST : signal is "true";
+    attribute mark_debug of SYNC_VALID : signal is "true";
+    attribute mark_debug of CHIP_STATUS : signal is "true";
+    attribute mark_debug of DOUT : signal is "true";
+    attribute mark_debug of DATA_VALID : signal is "true";
+    attribute mark_debug of ENABLE : signal is "true";
+    --attribute mark_debug of ACK : signal is "true";
+    attribute mark_debug of NEXT_VALID_DATA : signal is "true";
+    attribute mark_debug of VALID_SYNC_WORD : signal is "true";
+    attribute mark_debug of VALID_STRIP_NUMBER : signal is "true";
+    attribute mark_debug of VALID_SET_NUMBER : signal is "true";
+	
+	
+	
+	
+	
+	
+	SIGNAL ddr_count : UNSIGNED(2 DOWNTO 0) := (others => '0');
+	SIGNAL ddr_bitslip_count : UNSIGNED(2 DOWNTO 0) := (others => '0');
+	SIGNAL ddr_shr : STD_LOGIC_VECTOR(7 DOWNTO 0);
+	SIGNAL ddr_old_bitslip : STD_LOGIC;
+	SIGNAL iddrq : STD_LOGIC_VECTOR(1 DOWNTO 0);
+	SIGNAL iddr_old_DLYCE : STD_LOGIC;
+	SIGNAL iddr_dsel : STD_LOGIC;
+	
+	
+	attribute mark_debug of iddrq : signal is "true";
+	attribute mark_debug of SYNC_ERROR : signal is "true";
+	attribute mark_debug of DLYCE : signal is "true";
 
 begin	 
 	
 	
-	process(MCLK)
-	begin
-		
-		if (rising_edge(MCLK)) then
-			Q <= Q(6 downto 0) & DIN;
-		end if;
-	end process;
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+--erased
+					
+		-- IDDR attempt working for Kintext-7
+---
+   IDDR_fssr_inst : IDDR
+   generic map (
+       DDR_CLK_EDGE => "SAME_EDGE_PIPELINED", -- "OPPOSITE_EDGE", "SAME_EDGE"
+       -- or "SAME_EDGE_PIPELINED"
+       INIT_Q1 => '0', -- Initial value of Q1: '0' or '1'
+       INIT_Q2 => '0', -- Initial value of Q2: '0' or '1'
+       SRTYPE => "SYNC") -- Set/Reset type: "SYNC" or "ASYNC"
+   port map (
+       Q1 => iddrq(0), -- 1-bit output for positive edge of clock
+       Q2 => iddrq(1), -- 1-bit output for negative edge of clock
+       C => clk, -- 1-bit clock input
+       CE => '1', -- 1-bit clock enable input
+       D => DIN, -- 1-bit DDR data input
+       R => '0', -- 1-bit reset
+       S => '0' -- 1-bit set
+   );	
+   
+   
+   iddr_dsel <= iddrq(0) when DLYCE = '0' else iddrq(1);
+   process(CLK)
+   begin        
+       if (rising_edge(CLK)) then
+           
+           ddr_shr <= iddr_dsel & ddr_shr(7 downto 1);
+           ddr_count <= ddr_count + 1;
+           ddr_old_bitslip <= BITSLIP;
+           if(ddr_old_bitslip = '0' and BITSLIP = '1') then
+                ddr_bitslip_count <= ddr_bitslip_count + 1;                 
+           end if;
+           
+           if( ddr_bitslip_count = ddr_count) then 
+                Q <= ddr_shr;
+           end if;            
+       end if;
+   end process;
+	
+	
+					  			  
+                    
+	
+-- purdue implementation for Virtex IV
 --  iserdes_master_imp : ISERDES
 --  GENERIC MAP (
 --    BITSLIP_ENABLE => TRUE,
@@ -335,13 +447,13 @@ begin
 
   PROCESS ( MCLK ) BEGIN
     IF ( MCLK'EVENT AND MCLK = '1' ) THEN
-      IF ( DLYCE = '1' OR DLYRST = '1' ) THEN
-        TRIMMED <= '1';
-      ELSE
-        IF ( STATE = Align1 ) THEN
-          TRIMMED <= '0';
-        END IF;
-      END IF;
+--      IF ( DLYCE = '1' OR DLYRST = '1' ) THEN
+--        TRIMMED <= '1';
+--      ELSE
+--        IF ( STATE = Align1 ) THEN
+--          TRIMMED <= '0';
+--        END IF;
+--      END IF;
       IF ( GET_READY = '1' ) THEN
         ACKED <= '0';
       ELSIF ( ACK = '1' ) THEN
