@@ -154,59 +154,70 @@ begin
 --    q => trigger_count
 --  );
 --
-  process ( fbcoclk, fbco, trig_input ) begin
-    if ( fbcoclk'event and fbcoclk = '1' ) then
-      if ( trigger_state = '0') then
-        if ( fbco(1 downto 0) = "01" and trig_input /= "0000" ) then
-          trig_fifo_input <= "0000" & trigger_count(15 downto 0) & trigger_write_addr & x"a8";
-          trigger_state <= '1';
-          trig_fifo_we <= send_trignum;
-          spy_data <= trigger_count(15 downto 0) & trigger_write_addr & x"a8";
-          spy_data_valid <= '1';
-        else
-          trig_fifo_we <= '0';
-          spy_data_valid <= '0';
-        end if;
-      else
-        trig_fifo_input <= "0000" & trigger_count(39 downto 16) & x"b8";
-        trigger_state <= '0';
-        trig_fifo_we <= send_trignum;
-        spy_data <= trigger_count(39 downto 16) & x"b8";
-        spy_data_valid <= '1';
-      end if;
-    end if;
-  end process;
+process ( fbcoclk, fbco, trig_input ) begin
+   if ( fbcoclk'event and fbcoclk = '1' ) then
+       old_send_trig <= trig_input(3);
+       trig_fifo_we <= '0';
+     if ( trigger_state = '0') then
+       if ( old_send_trig = '0' and -- get rising edge of trigger input 3 
+           fbco(1 downto 0) = "01" and trig_input /= "0000" ) then
+           
+         trigger_count_last <= trigger_count(3 downto 0);
+            
+         if (trigger_count_last /= trigger_count(3 downto 0)) then -- avoid repeats
+             trig_fifo_input <= "0000" & trigger_count(15 downto 0) & 
+               std_logic_vector(unsigned(trigger_write_addr)+1) & x"a8";          
+             trigger_state <= '1';
+             trig_fifo_we <= '1';          
+             spy_data <= trigger_count(15 downto 0) & trigger_write_addr & x"a8";
+             spy_data_valid <= '1';
+         end if;
+         
+       else
+         trig_fifo_we <= '0';
+         spy_data_valid <= '0';
+       end if;
+     else
+       trig_fifo_input <= "0000" & trigger_count(39 downto 16) & x"b8";
+       trigger_state <= '0';
 
-  process ( rdclk ) begin
-    if ( rdclk'event and rdclk = '1' ) then
-      if ( reset = '1' ) then
-        token <= '0';
-      else
-        if ( trig_fifo_empty = '0' ) then
-          if ( token_in = '1' ) then
-            token <= '1';
-            dout_valid <= '1';
-          else
-            token <= '0';
-            dout_valid <= '0';
-          end if;
-        else
-          token <= '0';
-          dout_valid <= '0';
-        end if;
-      end if;
-    end if;
-  end process;
+       trig_fifo_we <= '1';                  
+       spy_data <= trigger_count(39 downto 16) & x"b8";
+       spy_data_valid <= '1';
+     end if;
+   end if;
+ end process;
 
-  trigger_write_addr <= std_logic_vector(unsigned(bco)-unsigned(bco_offset));
-  addr <= trigger_write_addr;
-  trigger_count_enable <= '1' when trig_input /= "0000" else '0';
+ process ( rdclk ) begin
+   if ( rdclk'event and rdclk = '1' ) then
+     if ( reset = '1' ) then
+       token <= '0';
+     else
+       if ( trig_fifo_empty = '0' ) then
+         if ( token_in = '1' ) then
+           token <= '1';
+           dout_valid <= '1';
+         else
+           token <= '0';
+           dout_valid <= '0';
+         end if;
+       else
+         token <= '0';
+         dout_valid <= '0';
+       end if;
+     end if;
+   end if;
+ end process;
 
-  read_enable <= token_in and not trig_fifo_empty;
-  fifo_empty <= trig_fifo_empty;
-  dout <= fifo_output(31 downto 0);
-  token_out <= token or token_in when trig_fifo_empty = '1' else token;
-  trigger_number <= trigger_count;
- 
+ trigger_write_addr <= std_logic_vector(unsigned(bco)-unsigned(bco_offset));
+ addr <= trigger_write_addr;
+ trigger_count_enable <= '1' when trig_input /= "0000" else '0';
+
+ read_enable <= token_in and not trig_fifo_empty;
+ fifo_empty <= trig_fifo_empty;
+ dout <= fifo_output(31 downto 0);
+ token_out <= token or token_in when trig_fifo_empty = '1' else token;
+ trigger_number <= trigger_count;
+
 end Behavioral;
 
