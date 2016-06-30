@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\tx_seq_ctl.vhd
--- Generated   : 02/29/16 11:06:13
+-- Generated   : 06/01/16 15:03:44
 -- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/tx_seq_ctl.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -108,7 +108,6 @@ begin
 			Sreg0 <= idle;
 			-- Set default values for outputs, signals and variables
 			info_fifo_rden_sig <= '0';
-			fifo_sel_sig <= '0';
 			data_fifo_rden_sig <= '0';
 			seq_count <= (others => '0');
 			user_trigger <= '0';
@@ -123,7 +122,6 @@ begin
 			if clken = '1' then
 				-- Set default values for outputs, signals and variables
 				info_fifo_rden_sig <= '0';
-				fifo_sel_sig <= '0';
 				data_fifo_rden_sig <= '0';
 				case Sreg0 is
 					when S7 =>

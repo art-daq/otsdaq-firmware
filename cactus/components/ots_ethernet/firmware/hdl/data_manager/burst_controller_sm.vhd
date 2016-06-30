@@ -37,7 +37,7 @@ end burst_controller_sm;
 
 architecture burst_controller_sm_arch of burst_controller_sm is
 
-	constant max_packet_64_size: STD_LOGIC_VECTOR (7 downto 0) := x"B6";  -- 182;	
+	constant max_packet_64_size: STD_LOGIC_VECTOR (7 downto 0) := x"B6";  -- B6 = 182;	
 
 	-- diagram signals declarations
 	signal b_enable_sig: STD_LOGIC;
@@ -128,21 +128,24 @@ begin
 							tx_info(15 downto 8) <= b_packet_qw_size;
 							tx_info(1 downto 0) <= "11";  --indicate last in burst
 							tx_info_we <= '1';
-							b_enable_sig <= '0';
-						elsif ( (b_end_packet_old = '0' and b_end_packet = '1') or 
-							b_packet_qw_size = max_packet_64_size ) then	-- end of packet detected	 						
-							Sreg0 <= Wait_for_End;
-							tx_info(15 downto 8) <= b_packet_qw_size;	
-							
-							if first_packet_sig = '1' then
-								tx_info(1 downto 0) <= "01";  --indicate first in burst
-								first_packet_sig <= '0';   
-							else		 
-								tx_info(1 downto 0) <= "10";  --indicate middle of burst								
-							end if;			   			
-							
-							tx_info_we <= '1';
-							reset_packet_size <= '1';
+							b_enable_sig <= '0';						
+						elsif (reset_packet_size = '0' ) then -- block back to back packets 
+														--(because it takes an extra clock to reset size on wrap around case)
+							if ( (b_end_packet_old = '0' and b_end_packet = '1') or 
+								b_packet_qw_size = max_packet_64_size ) then	-- end of packet detected	 						
+								Sreg0 <= Wait_for_End;
+								tx_info(15 downto 8) <= b_packet_qw_size;	
+								
+								if first_packet_sig = '1' then
+									tx_info(1 downto 0) <= "01";  --indicate first in burst
+									first_packet_sig <= '0';   
+								else		 
+									tx_info(1 downto 0) <= "10";  --indicate middle of burst								
+								end if;			   			
+								
+								tx_info_we <= '1';
+								reset_packet_size <= '1';
+							end if;
 						end if;			
 					when Reset_Size =>
 						Sreg0 <= Idle;						   
