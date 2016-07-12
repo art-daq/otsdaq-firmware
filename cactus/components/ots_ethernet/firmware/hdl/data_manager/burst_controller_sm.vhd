@@ -37,7 +37,7 @@ end burst_controller_sm;
 
 architecture burst_controller_sm_arch of burst_controller_sm is
 
-	constant max_packet_64_size: STD_LOGIC_VECTOR (7 downto 0) := x"B6";  -- B6 = 182;	
+	constant max_packet_64_size: STD_LOGIC_VECTOR (7 downto 0) := x"B6";  -- xB6 = 182;	
 
 	-- diagram signals declarations
 	signal b_enable_sig: STD_LOGIC;

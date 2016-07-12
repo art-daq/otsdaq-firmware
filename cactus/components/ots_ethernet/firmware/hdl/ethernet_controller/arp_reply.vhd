@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\arp_reply.vhd
--- Generated   : 02/29/16 11:09:18
--- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/arp_reply.asf
+-- File        : D:\elewis\ActiveHDL_proj\ethernet_controller\compile\arp_reply.vhd
+-- Generated   : 07/11/16 14:33:37
+-- From        : D:/elewis/ActiveHDL_proj/ethernet_controller/src/arp_reply.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -25,12 +25,14 @@ use IEEE.std_logic_unsigned.all;
 
 entity arp_reply is 
 	port (
+		addr_to_resolve: in STD_LOGIC_VECTOR (31 downto 0);
 		addrs: in STD_LOGIC_VECTOR (31 downto 0);
 		arp_announce: in STD_LOGIC;
 		clk: in STD_LOGIC;
 		four_bit_mode: in STD_LOGIC;
 		mac: in STD_LOGIC_VECTOR (47 downto 0);
 		reset: in STD_LOGIC;
+		resolve_mac: in STD_LOGIC;
 		tip: in STD_LOGIC_VECTOR (31 downto 0);
 		tmac: in STD_LOGIC_VECTOR (47 downto 0);
 		trigger: in STD_LOGIC;
@@ -51,22 +53,25 @@ signal announce_sig: STD_LOGIC;
 signal clken: STD_LOGIC;
 signal delay_count: INTEGER range 0 to 65535;
 signal old_trig: STD_LOGIC;
+signal resolve_mac_sig: STD_LOGIC;
 signal trigger_sig: STD_LOGIC;
 
 -- SYMBOLIC ENCODED state machine: Sreg0
 type Sreg0_type is (
-    idle, delay, ArpResponse_ARP_Payload_PType2, ArpResponse_ARP_Payload_HLen, ArpResponse_ARP_Payload_PLen, ArpResponse_ARP_Payload_SMac1,
-    ArpResponse_ARP_Payload_SMac2, ArpResponse_ARP_Payload_SMac3, ArpResponse_ARP_Payload_SMac4, ArpResponse_ARP_Payload_SMac5, ArpResponse_ARP_Payload_SMac6,
-    ArpResponse_ARP_Payload_Sip1, ArpResponse_ARP_Payload_Sip2, ArpResponse_ARP_Payload_Sip3, ArpResponse_ARP_Payload_Sip4, ArpResponse_ARP_Payload_TMac1,
-    ArpResponse_ARP_Payload_TMac2, ArpResponse_ARP_Payload_TMac3, ArpResponse_ARP_Payload_TMac4, ArpResponse_ARP_Payload_TMac5, ArpResponse_ARP_Payload_TMac6,
-    ArpResponse_ARP_Payload_Tip1, ArpResponse_ARP_Payload_Tip2, ArpResponse_ARP_Payload_Tip3, ArpResponse_Type_S1, ArpResponse_Type_S48,
-    ArpResponse_Dest_S22, ArpResponse_Dest_S11, ArpResponse_Dest_S12, ArpResponse_Dest_S13, ArpResponse_Dest_S14, ArpResponse_Dest_S15,
-    ArpResponse_ARP_Payload_HType1, ArpResponse_ARP_Payload_Tip4, ArpResponse_ARP_Payload_HType2, ArpResponse_ARP_Payload_PType1, ArpResponse_Src_S50,
-    ArpResponse_Src_S51, ArpResponse_Src_S52, ArpResponse_Src_S53, ArpResponse_Src_S54, ArpResponse_ARP_Payload_Op1, ArpResponse_Src_S55,
-    ArpResponse_ARP_Payload_Op2, delay1, CheckBusy, ArpResponse_Preamble_S57, ArpResponse_Preamble_S58, ArpResponse_CRC_crc1, ArpResponse_CRC_crc2,
-    ArpResponse_CRC_crc3, ArpResponse_CRC_crc4, ArpResponse_CRC_S59, PreCheckBusy, ArpResponse_ARP_Payload_Op3, ArpResponse_ARP_Payload_Op4,
-    ArpResponse_ARP_Payload_TMac7, ArpResponse_ARP_Payload_TMac8, ArpResponse_ARP_Payload_TMac9, ArpResponse_ARP_Payload_TMac10, ArpResponse_ARP_Payload_TMac11,
-    ArpResponse_ARP_Payload_TMac12, ArpResponse_ARP_Payload_Tip5, ArpResponse_ARP_Payload_Tip6, ArpResponse_ARP_Payload_Tip7, ArpResponse_ARP_Payload_Tip8
+    idle, delay, ArpResponse_Type_S1, ArpResponse_Type_S48, ArpResponse_Dest_S22, ArpResponse_Dest_S11, ArpResponse_Dest_S12, ArpResponse_Dest_S13,
+    ArpResponse_Dest_S14, ArpResponse_Dest_S15, ArpResponse_Src_S50, ArpResponse_Src_S51, ArpResponse_Src_S52, ArpResponse_Src_S53,
+    ArpResponse_Src_S54, ArpResponse_Src_S55, delay1, CheckBusy, ArpResponse_Preamble_S57, ArpResponse_Preamble_S58, ArpResponse_CRC_crc1,
+    ArpResponse_CRC_crc2, ArpResponse_CRC_crc3, ArpResponse_CRC_crc4, ArpResponse_CRC_S59, ArpResponse_ARP_Payload_Op2, ArpResponse_ARP_Payload_Op3,
+    PreCheckBusy, ArpResponse_ARP_Payload_TMac9, ArpResponse_ARP_Payload_TMac8, ArpResponse_ARP_Payload_TMac7, ArpResponse_ARP_Payload_Op4,
+    ArpResponse_ARP_Payload_TMac12, ArpResponse_ARP_Payload_TMac11, ArpResponse_ARP_Payload_TMac10, ArpResponse_ARP_Payload_Op1, ArpResponse_ARP_Payload_PLen,
+    ArpResponse_ARP_Payload_HLen, ArpResponse_ARP_Payload_PType2, ArpResponse_ARP_Payload_Tip8, ArpResponse_ARP_Payload_Tip7, ArpResponse_ARP_Payload_Tip6,
+    ArpResponse_ARP_Payload_Tip5, ArpResponse_ARP_Payload_Sip2, ArpResponse_ARP_Payload_Sip1, ArpResponse_ARP_Payload_SMac6, ArpResponse_ARP_Payload_SMac5,
+    ArpResponse_ARP_Payload_SMac4, ArpResponse_ARP_Payload_SMac3, ArpResponse_ARP_Payload_SMac2, ArpResponse_ARP_Payload_SMac1, ArpResponse_ARP_Payload_TMac4,
+    ArpResponse_ARP_Payload_TMac3, ArpResponse_ARP_Payload_TMac2, ArpResponse_ARP_Payload_TMac1, ArpResponse_ARP_Payload_Sip4, ArpResponse_ARP_Payload_Sip3,
+    ArpResponse_ARP_Payload_Tip3, ArpResponse_ARP_Payload_Tip2, ArpResponse_ARP_Payload_Tip1, ArpResponse_ARP_Payload_TMac6, ArpResponse_ARP_Payload_TMac5,
+    ArpResponse_ARP_Payload_PType1, ArpResponse_ARP_Payload_HType2, ArpResponse_ARP_Payload_Tip4, ArpResponse_ARP_Payload_HType1, ArpResponse_ARP_Payload_Tip9,
+    ArpResponse_ARP_Payload_Tip10, ArpResponse_ARP_Payload_Tip11, ArpResponse_ARP_Payload_Tip12, ArpResponse_ARP_Payload_TMac13, ArpResponse_ARP_Payload_TMac14,
+    ArpResponse_ARP_Payload_TMac15, ArpResponse_ARP_Payload_TMac16, ArpResponse_ARP_Payload_TMac17, ArpResponse_ARP_Payload_TMac18
 );
 -- attribute ENUM_ENCODING of Sreg0_type: type is ... -- enum_encoding attribute is not supported for symbolic encoding
 
@@ -112,6 +117,7 @@ begin
 			crc_gen_init <= '0';
 			crc_gen_rd <= '0';
 			announce_sig <= '0';
+			resolve_mac_sig <= '0';
 		else
 			if clken = '1' then
 				-- Set default values for outputs, signals and variables
@@ -130,11 +136,15 @@ begin
 						crc_gen_init <= '0';
 						crc_gen_rd <= '0';
 						announce_sig <= '0';
+						resolve_mac_sig <= '0';
 						if trigger_sig = '1' then
 							Sreg0 <= PreCheckBusy;
 							arp_busy <= '1';
 							if (arp_announce = '1') then
 							 announce_sig <= '1';
+							end if;
+							if (resolve_mac = '1') then
+							 resolve_mac_sig <= '1';
 							end if;
 						end if;
 					when delay =>
@@ -228,12 +238,41 @@ begin
 					when ArpResponse_Type_S48 =>
 						Sreg0 <= ArpResponse_Type_S1;
 						dataout <= x"06";
-					when ArpResponse_ARP_Payload_PType2 =>
-						Sreg0 <= ArpResponse_ARP_Payload_HLen;
-						dataout <= x"06";
-					when ArpResponse_ARP_Payload_HLen =>
-						Sreg0 <= ArpResponse_ARP_Payload_PLen;
-						dataout <= x"04";
+					when ArpResponse_ARP_Payload_Op2 =>
+						Sreg0 <= ArpResponse_ARP_Payload_SMac1;
+						dataout <= mac(47 downto 40);
+						--x"00";
+					when ArpResponse_ARP_Payload_Op3 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Op4;
+						dataout <= x"01";
+						-- ARP request
+					when ArpResponse_ARP_Payload_TMac9 =>
+						Sreg0 <= ArpResponse_ARP_Payload_TMac10;
+						dataout <= x"00";
+					when ArpResponse_ARP_Payload_TMac8 =>
+						Sreg0 <= ArpResponse_ARP_Payload_TMac9;
+						dataout <= x"00";
+					when ArpResponse_ARP_Payload_TMac7 =>
+						Sreg0 <= ArpResponse_ARP_Payload_TMac8;
+						dataout <= x"00";
+					when ArpResponse_ARP_Payload_Op4 =>
+						Sreg0 <= ArpResponse_ARP_Payload_SMac1;
+						dataout <= mac(47 downto 40);
+						--x"00";
+					when ArpResponse_ARP_Payload_TMac12 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Tip5;
+						dataout <= addrs(31 downto 24);
+						--x"C0";
+					when ArpResponse_ARP_Payload_TMac11 =>
+						Sreg0 <= ArpResponse_ARP_Payload_TMac12;
+						dataout <= x"00";
+					when ArpResponse_ARP_Payload_TMac10 =>
+						Sreg0 <= ArpResponse_ARP_Payload_TMac11;
+						dataout <= x"00";
+					when ArpResponse_ARP_Payload_Op1 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Op2;
+						dataout <= x"02";
+						-- ARP reply
 					when ArpResponse_ARP_Payload_PLen =>
 						if announce_sig = '1' then
 							Sreg0 <= ArpResponse_ARP_Payload_Op3;
@@ -244,145 +283,151 @@ begin
 							dataout <= x"00";
 							-- ARP reply
 						end if;
-					when ArpResponse_ARP_Payload_SMac1 =>
-						Sreg0 <= ArpResponse_ARP_Payload_SMac2;
-						dataout <= mac(39 downto 32);
-						--x"80";
-					when ArpResponse_ARP_Payload_SMac2 =>
-						Sreg0 <= ArpResponse_ARP_Payload_SMac3;
-						dataout <= mac(31 downto 24);
-						--x"55";
-					when ArpResponse_ARP_Payload_SMac3 =>
-						Sreg0 <= ArpResponse_ARP_Payload_SMac4;
-						dataout <= mac(23 downto 16);
-						--x"EC";
-					when ArpResponse_ARP_Payload_SMac4 =>
-						Sreg0 <= ArpResponse_ARP_Payload_SMac5;
-						dataout <= mac(15 downto 8);
-						--x"00";
-					when ArpResponse_ARP_Payload_SMac5 =>
-						Sreg0 <= ArpResponse_ARP_Payload_SMac6;
-						dataout <= mac(7 downto 0);
+					when ArpResponse_ARP_Payload_HLen =>
+						Sreg0 <= ArpResponse_ARP_Payload_PLen;
+						dataout <= x"04";
+					when ArpResponse_ARP_Payload_PType2 =>
+						Sreg0 <= ArpResponse_ARP_Payload_HLen;
+						dataout <= x"06";
+					when ArpResponse_ARP_Payload_Tip8 =>
+						Sreg0 <= ArpResponse_CRC_S59;
+						dataout <= (others => '0');
+						-- crc may need buffered 0 input
+						delay_count <= 18;
+					when ArpResponse_ARP_Payload_Tip7 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Tip8;
+						dataout <= addrs(7 downto 0);
 						--addrs;
-					when ArpResponse_ARP_Payload_SMac6 =>
-						Sreg0 <= ArpResponse_ARP_Payload_Sip1;
-						dataout <= addrs(31 downto 24);
-						--x"C0";
-					when ArpResponse_ARP_Payload_Sip1 =>
-						Sreg0 <= ArpResponse_ARP_Payload_Sip2;
+					when ArpResponse_ARP_Payload_Tip6 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Tip7;
+						dataout <= addrs(15 downto 8);
+						--x"85";
+					when ArpResponse_ARP_Payload_Tip5 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Tip6;
 						dataout <= addrs(23 downto 16);
 						--x"A8";
 					when ArpResponse_ARP_Payload_Sip2 =>
 						Sreg0 <= ArpResponse_ARP_Payload_Sip3;
 						dataout <= addrs(15 downto 8);
 						--x"85";
-					when ArpResponse_ARP_Payload_Sip3 =>
-						Sreg0 <= ArpResponse_ARP_Payload_Sip4;
-						dataout <= addrs(7 downto 0);
+					when ArpResponse_ARP_Payload_Sip1 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Sip2;
+						dataout <= addrs(23 downto 16);
+						--x"A8";
+					when ArpResponse_ARP_Payload_SMac6 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Sip1;
+						dataout <= addrs(31 downto 24);
+						--x"C0";
+					when ArpResponse_ARP_Payload_SMac5 =>
+						Sreg0 <= ArpResponse_ARP_Payload_SMac6;
+						dataout <= mac(7 downto 0);
 						--addrs;
+					when ArpResponse_ARP_Payload_SMac4 =>
+						Sreg0 <= ArpResponse_ARP_Payload_SMac5;
+						dataout <= mac(15 downto 8);
+						--x"00";
+					when ArpResponse_ARP_Payload_SMac3 =>
+						Sreg0 <= ArpResponse_ARP_Payload_SMac4;
+						dataout <= mac(23 downto 16);
+						--x"EC";
+					when ArpResponse_ARP_Payload_SMac2 =>
+						Sreg0 <= ArpResponse_ARP_Payload_SMac3;
+						dataout <= mac(31 downto 24);
+						--x"55";
+					when ArpResponse_ARP_Payload_SMac1 =>
+						Sreg0 <= ArpResponse_ARP_Payload_SMac2;
+						dataout <= mac(39 downto 32);
+						--x"80";
+					when ArpResponse_ARP_Payload_TMac4 =>
+						Sreg0 <= ArpResponse_ARP_Payload_TMac5;
+						dataout <= tmac(15 downto 8);
+					when ArpResponse_ARP_Payload_TMac3 =>
+						Sreg0 <= ArpResponse_ARP_Payload_TMac4;
+						dataout <= tmac(23 downto 16);
+					when ArpResponse_ARP_Payload_TMac2 =>
+						Sreg0 <= ArpResponse_ARP_Payload_TMac3;
+						dataout <= tmac(31 downto 24);
+					when ArpResponse_ARP_Payload_TMac1 =>
+						Sreg0 <= ArpResponse_ARP_Payload_TMac2;
+						dataout <= tmac(39 downto 32);
 					when ArpResponse_ARP_Payload_Sip4 =>
-						if announce_sig = '1' then
+						if resolve_mac_sig= '1' then
+							Sreg0 <= ArpResponse_ARP_Payload_TMac13;
+							dataout <= x"FF";
+						elsif announce_sig = '1' and resolve_mac_sig = '0' then
 							Sreg0 <= ArpResponse_ARP_Payload_TMac7;
 							dataout <= x"00";
 						else
 							Sreg0 <= ArpResponse_ARP_Payload_TMac1;
 							dataout <= tmac(47 downto 40);
 						end if;
-					when ArpResponse_ARP_Payload_TMac1 =>
-						Sreg0 <= ArpResponse_ARP_Payload_TMac2;
-						dataout <= tmac(39 downto 32);
-					when ArpResponse_ARP_Payload_TMac2 =>
-						Sreg0 <= ArpResponse_ARP_Payload_TMac3;
-						dataout <= tmac(31 downto 24);
-					when ArpResponse_ARP_Payload_TMac3 =>
-						Sreg0 <= ArpResponse_ARP_Payload_TMac4;
-						dataout <= tmac(23 downto 16);
-					when ArpResponse_ARP_Payload_TMac4 =>
-						Sreg0 <= ArpResponse_ARP_Payload_TMac5;
-						dataout <= tmac(15 downto 8);
-					when ArpResponse_ARP_Payload_TMac5 =>
-						Sreg0 <= ArpResponse_ARP_Payload_TMac6;
-						dataout <= tmac(7 downto 0);
-					when ArpResponse_ARP_Payload_TMac6 =>
-						Sreg0 <= ArpResponse_ARP_Payload_Tip1;
-						dataout <= tip(31 downto 24);
-					when ArpResponse_ARP_Payload_Tip1 =>
-						Sreg0 <= ArpResponse_ARP_Payload_Tip2;
-						dataout <= tip(23 downto 16);
-					when ArpResponse_ARP_Payload_Tip2 =>
-						Sreg0 <= ArpResponse_ARP_Payload_Tip3;
-						dataout <= tip(15 downto 8);
+					when ArpResponse_ARP_Payload_Sip3 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Sip4;
+						dataout <= addrs(7 downto 0);
+						--addrs;
 					when ArpResponse_ARP_Payload_Tip3 =>
 						Sreg0 <= ArpResponse_ARP_Payload_Tip4;
 						dataout <= tip(7 downto 0);
-					when ArpResponse_ARP_Payload_HType1 =>
-						Sreg0 <= ArpResponse_ARP_Payload_HType2;
-						dataout <= x"01";
-						--ethernet
+					when ArpResponse_ARP_Payload_Tip2 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Tip3;
+						dataout <= tip(15 downto 8);
+					when ArpResponse_ARP_Payload_Tip1 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Tip2;
+						dataout <= tip(23 downto 16);
+					when ArpResponse_ARP_Payload_TMac6 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Tip1;
+						dataout <= tip(31 downto 24);
+					when ArpResponse_ARP_Payload_TMac5 =>
+						Sreg0 <= ArpResponse_ARP_Payload_TMac6;
+						dataout <= tmac(7 downto 0);
+					when ArpResponse_ARP_Payload_PType1 =>
+						Sreg0 <= ArpResponse_ARP_Payload_PType2;
+						dataout <= x"00";
+					when ArpResponse_ARP_Payload_HType2 =>
+						Sreg0 <= ArpResponse_ARP_Payload_PType1;
+						dataout <= x"08";
+						--IPv4
 					when ArpResponse_ARP_Payload_Tip4 =>
 						Sreg0 <= ArpResponse_CRC_S59;
 						dataout <= (others => '0');
 						-- crc may need buffered 0 input
 						delay_count <= 18;
-					when ArpResponse_ARP_Payload_HType2 =>
-						Sreg0 <= ArpResponse_ARP_Payload_PType1;
-						dataout <= x"08";
-						--IPv4
-					when ArpResponse_ARP_Payload_PType1 =>
-						Sreg0 <= ArpResponse_ARP_Payload_PType2;
-						dataout <= x"00";
-					when ArpResponse_ARP_Payload_Op1 =>
-						Sreg0 <= ArpResponse_ARP_Payload_Op2;
-						dataout <= x"02";
-						-- ARP reply
-					when ArpResponse_ARP_Payload_Op2 =>
-						Sreg0 <= ArpResponse_ARP_Payload_SMac1;
-						dataout <= mac(47 downto 40);
-						--x"00";
-					when ArpResponse_ARP_Payload_Op3 =>
-						Sreg0 <= ArpResponse_ARP_Payload_Op4;
+					when ArpResponse_ARP_Payload_HType1 =>
+						Sreg0 <= ArpResponse_ARP_Payload_HType2;
 						dataout <= x"01";
-						-- ARP request
-					when ArpResponse_ARP_Payload_Op4 =>
-						Sreg0 <= ArpResponse_ARP_Payload_SMac1;
-						dataout <= mac(47 downto 40);
-						--x"00";
-					when ArpResponse_ARP_Payload_TMac7 =>
-						Sreg0 <= ArpResponse_ARP_Payload_TMac8;
-						dataout <= x"00";
-					when ArpResponse_ARP_Payload_TMac8 =>
-						Sreg0 <= ArpResponse_ARP_Payload_TMac9;
-						dataout <= x"00";
-					when ArpResponse_ARP_Payload_TMac9 =>
-						Sreg0 <= ArpResponse_ARP_Payload_TMac10;
-						dataout <= x"00";
-					when ArpResponse_ARP_Payload_TMac10 =>
-						Sreg0 <= ArpResponse_ARP_Payload_TMac11;
-						dataout <= x"00";
-					when ArpResponse_ARP_Payload_TMac11 =>
-						Sreg0 <= ArpResponse_ARP_Payload_TMac12;
-						dataout <= x"00";
-					when ArpResponse_ARP_Payload_TMac12 =>
-						Sreg0 <= ArpResponse_ARP_Payload_Tip5;
-						dataout <= addrs(31 downto 24);
-						--x"C0";
-					when ArpResponse_ARP_Payload_Tip5 =>
-						Sreg0 <= ArpResponse_ARP_Payload_Tip6;
-						dataout <= addrs(23 downto 16);
-						--x"A8";
-					when ArpResponse_ARP_Payload_Tip6 =>
-						Sreg0 <= ArpResponse_ARP_Payload_Tip7;
-						dataout <= addrs(15 downto 8);
-						--x"85";
-					when ArpResponse_ARP_Payload_Tip7 =>
-						Sreg0 <= ArpResponse_ARP_Payload_Tip8;
-						dataout <= addrs(7 downto 0);
-						--addrs;
-					when ArpResponse_ARP_Payload_Tip8 =>
+						--ethernet
+					when ArpResponse_ARP_Payload_Tip9 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Tip10;
+						dataout <= addr_to_resolve(23 downto 16);
+					when ArpResponse_ARP_Payload_Tip10 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Tip11;
+						dataout <= addr_to_resolve(15 downto 8);
+					when ArpResponse_ARP_Payload_Tip11 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Tip12;
+						dataout <= addr_to_resolve(7 downto 0);
+					when ArpResponse_ARP_Payload_Tip12 =>
 						Sreg0 <= ArpResponse_CRC_S59;
 						dataout <= (others => '0');
 						-- crc may need buffered 0 input
 						delay_count <= 18;
+					when ArpResponse_ARP_Payload_TMac13 =>
+						Sreg0 <= ArpResponse_ARP_Payload_TMac14;
+						dataout <= x"FF";
+					when ArpResponse_ARP_Payload_TMac14 =>
+						Sreg0 <= ArpResponse_ARP_Payload_TMac15;
+						dataout <= x"FF";
+					when ArpResponse_ARP_Payload_TMac15 =>
+						Sreg0 <= ArpResponse_ARP_Payload_TMac16;
+						dataout <= x"FF";
+					when ArpResponse_ARP_Payload_TMac16 =>
+						Sreg0 <= ArpResponse_ARP_Payload_TMac17;
+						dataout <= x"FF";
+					when ArpResponse_ARP_Payload_TMac17 =>
+						Sreg0 <= ArpResponse_ARP_Payload_TMac18;
+						dataout <= x"FF";
+					when ArpResponse_ARP_Payload_TMac18 =>
+						Sreg0 <= ArpResponse_ARP_Payload_Tip9;
+						dataout <= addr_to_resolve(31 downto 24);
 					when ArpResponse_Preamble_S57 =>
 						delay_count <= delay_count - 1;
 						if delay_count = 1 then

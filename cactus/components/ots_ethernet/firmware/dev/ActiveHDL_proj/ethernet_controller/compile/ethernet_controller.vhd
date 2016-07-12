@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\ethernet_controller.vhd
--- Generated   : Mon Feb 29 11:09:28 2016
--- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde
+-- File        : D:\elewis\ActiveHDL_proj\ethernet_controller\compile\ethernet_controller.vhd
+-- Generated   : Mon Jul 11 14:40:10 2016
+-- From        : D:/elewis/ActiveHDL_proj/ethernet_controller/src/ethernet_controller.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -29,8 +29,10 @@ entity ethernet_controller is
        GMII_RX_ER : in STD_LOGIC;
        arp_announce : in STD_LOGIC;
        reset : in STD_LOGIC;
+       resolve_mac : in STD_LOGIC;
        trigger : in STD_LOGIC;
        GMII_RXD : in STD_LOGIC_VECTOR(7 downto 0);
+       addr_to_resolve : in STD_LOGIC_VECTOR(31 downto 0);
        dest_addr : in STD_LOGIC_VECTOR(31 downto 0);
        dest_mac : in STD_LOGIC_VECTOR(47 downto 0);
        dest_port : in STD_LOGIC_VECTOR(15 downto 0);
@@ -42,6 +44,7 @@ entity ethernet_controller is
        GMII_GTX_CLK : out STD_LOGIC;
        GMII_TX_EN : out STD_LOGIC;
        GMII_TX_ER : out STD_LOGIC;
+       arp_busy_out : out STD_LOGIC;
        busy : out STD_LOGIC;
        crc_chk_en : out STD_LOGIC;
        crc_chk_init : out STD_LOGIC;
@@ -51,11 +54,14 @@ entity ethernet_controller is
        crc_gen_rd : out std_logic;
        en_tx_data : out STD_LOGIC;
        four_bit_mode_out : out STD_LOGIC;
+       mac_resolved : out STD_LOGIC;
        src_capture_for_ctrl : out STD_LOGIC;
        src_capture_for_data : out STD_LOGIC;
        user_rx_valid_out : out STD_LOGIC;
        GMII_TXD : out STD_LOGIC_VECTOR(7 downto 0);
        crc_chk_din : out STD_LOGIC_VECTOR(7 downto 0);
+       resolved_addr : out STD_LOGIC_VECTOR(31 downto 0);
+       resolved_mac : out STD_LOGIC_VECTOR(47 downto 0);
        src_addr : out STD_LOGIC_VECTOR(31 downto 0);
        src_mac : out STD_LOGIC_VECTOR(47 downto 0);
        src_port : out STD_LOGIC_VECTOR(15 downto 0);
@@ -123,12 +129,14 @@ component user_addrs_mux
 end component;
 component arp_reply
   port (
+       addr_to_resolve : in STD_LOGIC_VECTOR(31 downto 0);
        addrs : in STD_LOGIC_VECTOR(31 downto 0);
        arp_announce : in STD_LOGIC;
        clk : in STD_LOGIC;
        four_bit_mode : in STD_LOGIC;
        mac : in STD_LOGIC_VECTOR(47 downto 0);
        reset : in STD_LOGIC;
+       resolve_mac : in STD_LOGIC;
        tip : in STD_LOGIC_VECTOR(31 downto 0);
        tmac : in STD_LOGIC_VECTOR(47 downto 0);
        trigger : in STD_LOGIC;
@@ -199,6 +207,8 @@ component decipherer
        er : in STD_LOGIC;
        reset : in STD_LOGIC;
        self_addrs : in STD_LOGIC_VECTOR(31 downto 0);
+       arp_reply_ip : out STD_LOGIC_VECTOR(31 downto 0);
+       arp_reply_mac : out STD_LOGIC_VECTOR(47 downto 0);
        arp_req_ip : out STD_LOGIC_VECTOR(31 downto 0);
        arp_req_mac : out STD_LOGIC_VECTOR(47 downto 0);
        arp_search_ip : out STD_LOGIC_VECTOR(31 downto 0);
@@ -213,6 +223,8 @@ component decipherer
        icmp_checksum : out STD_LOGIC_VECTOR(15 downto 0);
        ip_data_count : out STD_LOGIC_VECTOR(10 downto 0);
        is_arp : out STD_LOGIC;
+       is_arp_reply : out STD_LOGIC;
+       is_arp_req : out STD_LOGIC;
        is_icmp_ping : out STD_LOGIC;
        is_idle : out STD_LOGIC;
        is_ip : out STD_LOGIC;
@@ -260,11 +272,13 @@ end component;
 
 ---- Signal declarations used on the diagram ----
 
+signal arp_announce_sig : STD_LOGIC;
 signal arp_announce_strobe : STD_LOGIC;
 signal arp_busy : STD_LOGIC;
 signal arp_crc_gen_en_sig : STD_LOGIC;
 signal arp_crc_gen_init_sig : STD_LOGIC;
 signal arp_crc_gen_rd_sig : STD_LOGIC;
+signal arp_resolve_mac_sig : STD_LOGIC;
 signal arp_trigger : STD_LOGIC;
 signal arp_tx_en : STD_LOGIC;
 signal arp_tx_er : STD_LOGIC;
@@ -283,7 +297,8 @@ signal decipher_clken : STD_LOGIC;
 signal dec_chk_rd_sig : STD_LOGIC;
 signal en_tx_data_sig : STD_LOGIC;
 signal four_bit_mode : STD_LOGIC;
-signal is_arp_packet_sig : STD_LOGIC;
+signal is_arp_reply_sig : STD_LOGIC;
+signal is_arp_req_sig : STD_LOGIC;
 signal is_icmp_packet_sig : STD_LOGIC;
 signal is_ip_packet_sig : STD_LOGIC;
 signal oei_protocol_ping_strobe : STD_LOGIC;
@@ -302,7 +317,10 @@ signal udp_crc_gen_rd_sig : std_logic;
 signal udp_data_valid : STD_LOGIC;
 signal udp_tx_en : STD_LOGIC;
 signal udp_tx_er : STD_LOGIC;
+signal arp_addr_to_resolve : STD_LOGIC_VECTOR(31 downto 0);
 signal arp_data_out : STD_LOGIC_VECTOR(7 downto 0);
+signal arp_reply_ip : STD_LOGIC_VECTOR(31 downto 0);
+signal arp_reply_mac : STD_LOGIC_VECTOR(47 downto 0);
 signal arp_req_ip : STD_LOGIC_VECTOR(31 downto 0);
 signal arp_req_mac : STD_LOGIC_VECTOR(47 downto 0);
 signal checksum : STD_LOGIC_VECTOR(15 downto 0);
@@ -339,8 +357,9 @@ AddressContainer : address_container
 
 ArpReplyBlock : arp_reply
   port map(
+       addr_to_resolve => arp_addr_to_resolve,
        addrs => self_addr,
-       arp_announce => arp_announce_strobe,
+       arp_announce => arp_announce_sig,
        arp_busy => arp_busy,
        clk => clk,
        crc_gen_en => arp_crc_gen_en_sig,
@@ -350,6 +369,7 @@ ArpReplyBlock : arp_reply
        four_bit_mode => four_bit_mode,
        mac => self_mac,
        reset => reset,
+       resolve_mac => arp_resolve_mac_sig,
        tip => arp_req_ip,
        tmac => arp_req_mac,
        trigger => arp_trigger,
@@ -434,6 +454,8 @@ DataoutMux : dataout_mux
 
 DecipherBlock : decipherer
   port map(
+       arp_reply_ip => arp_reply_ip,
+       arp_reply_mac => arp_reply_mac,
        arp_req_ip => arp_req_ip,
        arp_req_mac => arp_req_mac,
        capture_source_addrs => capture_addrs,
@@ -449,7 +471,8 @@ DecipherBlock : decipherer
        four_bit_mode_out => four_bit_mode,
        icmp_checksum => icmp_req_checksum,
        ip_data_count => ip_data_count_sig,
-       is_arp => is_arp_packet_sig,
+       is_arp_reply => is_arp_reply_sig,
+       is_arp_req => is_arp_req_sig,
        is_icmp_ping => is_icmp_packet_sig,
        is_ip => is_ip_packet_sig,
        reset => reset,
@@ -494,7 +517,9 @@ trigger_sig <= trigger or oei_protocol_ping_strobe or is_icmp_packet_sig;
 
 crc_chk_rd_sig <= is_ip_packet_sig and dec_chk_rd_sig;
 
-arp_trigger <= arp_announce_strobe or is_arp_packet_sig;
+arp_trigger <= arp_announce_sig or is_arp_req_sig;
+
+arp_announce_sig <= arp_resolve_mac_sig or arp_announce_strobe;
 
 UDPDataSplicer : udp_data_splicer
   port map(
@@ -525,13 +550,16 @@ UdpLengthMux : user_addrs_mux
 	clk <= GMII_RX_CLK;
 	rx_dv <= GMII_RX_DV;
 	rx_er <= GMII_RX_ER;
+	arp_addr_to_resolve <= addr_to_resolve;
 	arp_announce_strobe <= arp_announce;
+	arp_resolve_mac_sig <= resolve_mac;
 
     -- Output\buffer terminals
 	GMII_GTX_CLK <= clk;
 	GMII_TXD <= data_out;
 	GMII_TX_EN <= tx_en;
 	GMII_TX_ER <= tx_er;
+	arp_busy_out <= arp_busy;
 	busy <= busy_sig;
 	crc_chk_din <= decipher_dout;
 	crc_chk_en <= crc_chk_en_sig;
@@ -542,6 +570,9 @@ UdpLengthMux : user_addrs_mux
 	crc_gen_rd <= crc_gen_rd_sig;
 	en_tx_data <= en_tx_data_sig;
 	four_bit_mode_out <= four_bit_mode;
+	mac_resolved <= is_arp_reply_sig;
+	resolved_addr <= arp_reply_ip;
+	resolved_mac <= arp_reply_mac;
 	src_addr <= udp_src_ip;
 	src_capture_for_ctrl <= set_ctrl_dest_strobe;
 	src_capture_for_data <= set_data_dest_strobe;

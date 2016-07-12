@@ -6,6 +6,8 @@ component decipherer
 		er: in STD_LOGIC;
 		reset: in STD_LOGIC;
 		self_addrs: in STD_LOGIC_VECTOR (31 downto 0);
+		arp_reply_ip: out STD_LOGIC_VECTOR (31 downto 0);
+		arp_reply_mac: out STD_LOGIC_VECTOR (47 downto 0);
 		arp_req_ip: out STD_LOGIC_VECTOR (31 downto 0);
 		arp_req_mac: out STD_LOGIC_VECTOR (47 downto 0);
 		arp_search_ip: out STD_LOGIC_VECTOR (31 downto 0);
@@ -20,6 +22,8 @@ component decipherer
 		icmp_checksum: out STD_LOGIC_VECTOR (15 downto 0);
 		ip_data_count: out STD_LOGIC_VECTOR (10 downto 0);
 		is_arp: out STD_LOGIC;
+		is_arp_reply: out STD_LOGIC;
+		is_arp_req: out STD_LOGIC;
 		is_icmp_ping: out STD_LOGIC;
 		is_idle: out STD_LOGIC;
 		is_ip: out STD_LOGIC;
@@ -34,7 +38,9 @@ end component;
 
 
 instance_name : decipherer
-( arp_req_ip => ,
+( arp_reply_ip => ,
+ arp_reply_mac => ,
+ arp_req_ip => ,
  arp_req_mac => ,
  arp_search_ip => ,
  capture_source_addrs => ,
@@ -52,6 +58,8 @@ instance_name : decipherer
  icmp_checksum => ,
  ip_data_count => ,
  is_arp => ,
+ is_arp_reply => ,
+ is_arp_req => ,
  is_icmp_ping => ,
  is_idle => ,
  is_ip => ,

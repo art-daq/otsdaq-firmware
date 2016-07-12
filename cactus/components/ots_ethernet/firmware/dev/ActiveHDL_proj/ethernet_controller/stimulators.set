@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <XML>
 	<document type="stimulators" version="1">
-		<set name="ASDB Stimulators" active="0"/>
+		<set name="ASDB Stimulators" active="0">
+			<stimulator>
+				<signal_path value="/mac_resolver/arp_reply_mac"/>
+				<rawdescription value="RND:FRM:Override:\RANDOM\1\0\0\1\100.000000ns\0.000000fs:Uniform Distribution:0:"/>
+			</stimulator>
+			<stimulator>
+				<signal_path value="/mac_resolver/clk"/>
+				<rawdescription value="CLK:FRM:Override:8.000000;2;1;3000000;50;1:Clock:1:"/>
+			</stimulator>
+		</set>
 		<set name="ASDB Stimulators ( wave-full_gec_icmp.awf )" active="0">
 			<stimulator>
 				<signal_path value="/GEC/GMII_RXD"/>
@@ -9,7 +18,7 @@
 			</stimulator>
 			<stimulator>
 				<signal_path value="/GEC/GMII_RX_CLK"/>
-				<rawdescription value="CLK:FRM:Override:8.000000;2;1;0;50;1:Clock:1:"/>
+				<rawdescription value="CLK:FRM:Override:8.000000;2;1;0;50;1:Clock:0:"/>
 			</stimulator>
 			<stimulator>
 				<signal_path value="/GEC/GMII_RX_DV"/>
@@ -82,61 +91,78 @@
 				<rawdescription value="CST:FRM:Override: :Cs:1:"/>
 			</stimulator>
 		</set>
-		<set name="ASDB Stimulators ( wave-full_eth_v2_burst-read.awf )" active="1">
+		<set name="ASDB Stimulators ( wave-full_eth_v2_burst-read.awf )" active="0">
 			<stimulator>
-				<signal_path value="/ethernet_interface/MASTER_CLK"/>
+				<signal_path value="/mac_resolver/clk"/>
 				<rawdescription value="CLK:FRM:Override:8.000000;2;1;3000000;50;1:Clock:1:"/>
 			</stimulator>
+		</set>
+		<set name="ASDB Stimulators ( Ethan_arp_tx_reply.awf )" active="0">
 			<stimulator>
-				<signal_path value="/ethernet_interface/PHY_RXD"/>
+				<signal_path value="/arp_reply/addr_to_resolve"/>
 				<rawdescription value="CST:FRM:Override: :Cs:1:"/>
 			</stimulator>
 			<stimulator>
-				<signal_path value="/ethernet_interface/PHY_RX_DV"/>
+				<signal_path value="/arp_reply/addrs"/>
 				<rawdescription value="CST:FRM:Override: :Cs:1:"/>
 			</stimulator>
 			<stimulator>
-				<signal_path value="/ethernet_interface/PHY_RX_ER"/>
+				<signal_path value="/arp_reply/arp_announce"/>
 				<rawdescription value="CST:FRM:Override: :Cs:1:"/>
 			</stimulator>
 			<stimulator>
-				<signal_path value="/ethernet_interface/addrs"/>
+				<signal_path value="/arp_reply/clk"/>
+				<rawdescription value="CLK:FRM:Override:8.000000;2;1;0;50;1:Clock:1:"/>
+			</stimulator>
+			<stimulator>
+				<signal_path value="/arp_reply/mac"/>
 				<rawdescription value="CST:FRM:Override: :Cs:1:"/>
 			</stimulator>
 			<stimulator>
-				<signal_path value="/ethernet_interface/b_data"/>
+				<signal_path value="/arp_reply/reset"/>
 				<rawdescription value="CST:FRM:Override: :Cs:1:"/>
 			</stimulator>
 			<stimulator>
-				<signal_path value="/ethernet_interface/b_data_we"/>
+				<signal_path value="/arp_reply/resolve_mac"/>
 				<rawdescription value="CST:FRM:Override: :Cs:1:"/>
 			</stimulator>
 			<stimulator>
-				<signal_path value="/ethernet_interface/b_force_packet"/>
+				<signal_path value="/arp_reply/trigger"/>
 				<rawdescription value="CST:FRM:Override: :Cs:1:"/>
 			</stimulator>
 			<stimulator>
-				<signal_path value="/ethernet_interface/ec_wrapper/crcChk/CRC_err"/>
+				<signal_path value="/arp_reply/udp_busy"/>
+				<rawdescription value="VAL:FRM:Override:0:&lt;= 0:1:"/>
+			</stimulator>
+		</set>
+		<set name="ASDB Stimulators ( Ethan_arp_rx.awf )" active="0"/>
+		<set name="ASDB Stimulators ( Ethan_mac_resolver.awf )" active="1">
+			<stimulator>
+				<signal_path value="/mac_resolver/addr_changed"/>
 				<rawdescription value="CST:FRM:Override: :Cs:1:"/>
 			</stimulator>
 			<stimulator>
-				<signal_path value="/ethernet_interface/ready"/>
+				<signal_path value="/mac_resolver/arp_reply_ip"/>
 				<rawdescription value="CST:FRM:Override: :Cs:1:"/>
 			</stimulator>
 			<stimulator>
-				<signal_path value="/ethernet_interface/reset_in"/>
+				<signal_path value="/mac_resolver/arp_reply_mac"/>
 				<rawdescription value="CST:FRM:Override: :Cs:1:"/>
 			</stimulator>
 			<stimulator>
-				<signal_path value="/ethernet_interface/user_dest_addrs"/>
+				<signal_path value="/mac_resolver/clk"/>
+				<rawdescription value="CLK:FRM:Override:8.000000;2;1;0;50;1:Clock:1:"/>
+			</stimulator>
+			<stimulator>
+				<signal_path value="/mac_resolver/enable_dmr"/>
+				<rawdescription value="VAL:FRM:Override:1:&lt;= 1:1:"/>
+			</stimulator>
+			<stimulator>
+				<signal_path value="/mac_resolver/got_arp_reply"/>
 				<rawdescription value="CST:FRM:Override: :Cs:1:"/>
 			</stimulator>
 			<stimulator>
-				<signal_path value="/ethernet_interface/user_dest_mac"/>
-				<rawdescription value="CST:FRM:Override: :Cs:1:"/>
-			</stimulator>
-			<stimulator>
-				<signal_path value="/ethernet_interface/user_dest_port"/>
+				<signal_path value="/mac_resolver/reset"/>
 				<rawdescription value="CST:FRM:Override: :Cs:1:"/>
 			</stimulator>
 		</set>

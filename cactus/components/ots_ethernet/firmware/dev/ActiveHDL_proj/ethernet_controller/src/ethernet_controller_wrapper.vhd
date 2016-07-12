@@ -41,7 +41,14 @@ entity ethernet_controller_wrapper is
 	   self_port : in STD_LOGIC_VECTOR(15 downto 0);  
        arp_announce : in STD_LOGIC;	  
 	   
-       user_tx_dest_addr : in STD_LOGIC_VECTOR(31 downto 0);
+	   arp_busy : out std_logic;
+	   resolve_mac : in std_logic;
+	   addr_to_resolve : in std_logic_vector(31 downto 0);
+	   mac_resolved : out std_logic;
+	   resolved_addr : out std_logic_vector(31 downto 0);
+	   resolved_mac : out std_logic_vector(47 downto 0);
+	   
+	   user_tx_dest_addr : in STD_LOGIC_VECTOR(31 downto 0);
        user_tx_dest_mac : in STD_LOGIC_VECTOR(47 downto 0);
        user_tx_dest_port : in STD_LOGIC_VECTOR(15 downto 0);  
 	   
@@ -166,7 +173,16 @@ begin
 	      									   
 	       udp_dest_port => udp_fwd_port,	--could be used as additional address space for user firmware	  
 		   
-	       en_tx_data => user_tx_enable_out,  
+	       
+			   
+		   arp_busy_out => arp_busy,
+		   resolve_mac => resolve_mac,   
+		   addr_to_resolve => addr_to_resolve,  
+		   mac_resolved => mac_resolved,   
+		   resolved_addr => resolved_addr,  
+		   resolved_mac => resolved_mac,   
+			   
+		   en_tx_data => user_tx_enable_out,  
 	       udp_data_count => user_rx_size_out,
 	       user_rx_data_out => user_rx_data_out,
 	       user_rx_valid_out => user_rx_valid_out,
@@ -240,7 +256,7 @@ begin
 			
 		end process;   
 		
-		crcGenDebug : crc_gen --Verilog component for debuggin
+		crcGenDebug : crc_gen --Verilog component for debugging
 		port map(
 		   CRC_out => open,
 		   CRC_rd => tmp_rd_sig,

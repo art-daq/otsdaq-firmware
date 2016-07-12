@@ -75,6 +75,8 @@ architecture BEHAVIORAL of ethernet_interface is
 	signal b_enable_sig           	: std_logic;
 	signal four_bit_mode          	: std_logic;
 	signal user_busy          		: std_logic;
+	signal arp_busy					: std_logic; -----------------
+	signal arp_waiting				: std_logic := '0'; -----------------
 	signal user_crc_err       		: std_logic;
 	signal user_rx_data_out   		: std_logic_vector (7 downto 0);
 	signal user_rx_size_out   		: std_logic_vector (10 downto 0);
@@ -114,6 +116,7 @@ architecture BEHAVIORAL of ethernet_interface is
 	signal reset_mgr_in  			: std_logic; 	   
 	
 	signal arp_announce				: std_logic := '0';  	
+	signal arp_announce_sig 		: std_logic;
 	signal burst_mode				: std_logic := '0';
 	signal self_addr				: std_logic_vector(23 downto 0) := x"C0A885";	 --192.168.133.X;  
 	signal self_mac 				: std_logic_vector(39 downto 0) := x"008055EC00";                
@@ -125,7 +128,18 @@ architecture BEHAVIORAL of ethernet_interface is
 	signal tx_data_dest_port 		: std_logic_vector(15 downto 0);
 	signal tx_ctrl_dest_addr 		: std_logic_vector(31 downto 0);
 	signal tx_ctrl_dest_mac 		: std_logic_vector(47 downto 0);
-	signal tx_ctrl_dest_port 		: std_logic_vector(15 downto 0);	  
+	signal tx_ctrl_dest_port 		: std_logic_vector(15 downto 0);
+	
+	signal ctrl_dynamic_mac_resolution		: std_logic := '0';
+	signal data_dynamic_mac_resolution		: std_logic := '0';
+	signal ctrl_addr_resolve		: std_logic := '0';
+	signal data_addr_resolve		: std_logic := '0';
+	signal resolve_mac				: std_logic;
+	signal addr_to_resolve			: std_logic_vector(31 downto 0);
+	signal mac_resolved				: std_logic;
+	signal resolved_addr			: std_logic_vector(31 downto 0);
+	signal resolved_mac 			: std_logic_vector(47 downto 0);
+	
 									 
 	-------- start simple declaration section -----------  	  
 	-- comments denoted as  will be removed in this case by install script
@@ -159,7 +173,15 @@ begin
                 self_mac(47 downto 8)=>self_mac,	  				  
                 self_mac(7 downto 0)=>user_addr_sig,	  
                 self_port=>self_port,	  
-				arp_announce=>arp_announce,								
+				arp_announce=>arp_announce,
+				arp_busy=>arp_busy, 
+				
+				resolve_mac=>resolve_mac,
+				addr_to_resolve=>addr_to_resolve,
+				mac_resolved=>mac_resolved, 
+				resolved_addr=>resolved_addr,
+				resolved_mac=>resolved_mac,
+				
 				
                 user_tx_dest_addr(31 downto 0)=>user_tx_dest_addr(31 downto 0),
                 user_tx_dest_mac(47 downto 0)=>user_tx_dest_mac(47 downto 0),
@@ -262,7 +284,10 @@ begin
 	rx_addr <= std_logic_vector(ots_block_addr);
 	rx_data <= ots_din;
 	
-	-- NOTE: User code is treated as "block 0"
+	
+	
+	
+	-- NOTE: User code is treated as "block 0"																																																																																																																																
 	ots_user_mask <= '1' when ( ots_block_sel = 0) else '0';  		
 	rx_wren <= ots_user_mask and ots_wren;		   
 	user_tx_rden <= ots_user_mask and ots_rden;	
@@ -285,34 +310,40 @@ begin
 			
 			internal_eth_dout <= (others => '0');
 			internal_dout <= (others => '0');
-			internal_reset <= '0';
-			arp_announce <= '0';
+			internal_reset <= '0'; 
+			
 		
 			if ( ots_wren = '1' and  				-- WRITE eth ===========
 				 ots_block_sel = x"1") then -- Ethernet block address space
 				if ( ots_block_addr = x"0" ) then 
 					 self_addr <= ots_din(23 downto 0); 
-					 arp_announce <= '1';
+					 arp_announce_sig <= '1';
 				elsif ( ots_block_addr = x"1" ) then 
 					 user_addr_byte <= ots_din(7 downto 0); 
-					 arp_announce <= '1';
+					 arp_announce_sig <= '1';
 				elsif ( ots_block_addr = x"2" ) then 
 					 self_mac <= ots_din(39 downto 0); 
-					 arp_announce <= '1';
+					 arp_announce_sig <= '1';
 				elsif ( ots_block_addr = x"3" ) then 
 					 tx_ctrl_dest_addr <= ots_din(31 downto 0); 
+					 ctrl_addr_resolve <= '1';
 				elsif ( ots_block_addr = x"4" ) then 
 					 tx_ctrl_dest_mac <= ots_din(47 downto 0); 
 				elsif ( ots_block_addr = x"5" ) then 
 					 tx_ctrl_dest_port <= ots_din(15 downto 0); 
 				elsif ( ots_block_addr = x"6" ) then 
 					 tx_data_dest_addr <= ots_din(31 downto 0); 
+					 data_addr_resolve <= '1';
 				elsif ( ots_block_addr = x"7" ) then 
 					 tx_data_dest_mac <= ots_din(47 downto 0); 
 				elsif ( ots_block_addr = x"8" ) then 
 					 tx_data_dest_port <= ots_din(15 downto 0); 
 				elsif ( ots_block_addr = x"9" ) then 
 					 burst_mode <= ots_din(0); 
+				elsif ( ots_block_addr = x"A" ) then 
+					 ctrl_dynamic_mac_resolution <= ots_din(0); 
+				elsif ( ots_block_addr = x"B" ) then 
+					 data_dynamic_mac_resolution <= ots_din(0); 
 				elsif ( ots_block_addr = x"FFFFFFFF" ) then 
 					 internal_reset <= ots_din(0); 
 				end if;
@@ -320,27 +351,33 @@ begin
 				 unsigned(internal_block_sel) = x"1") then -- Ethernet block address space
 				if ( unsigned(internal_addr) = x"0" ) then 
 					 self_addr <= internal_din(23 downto 0); 
-					 arp_announce <= '1';
+					 arp_announce_sig <= '1';
 				elsif ( unsigned(internal_addr) = x"1" ) then 
 					 user_addr_byte <= internal_din(7 downto 0); 
-					 arp_announce <= '1';
+					 arp_announce_sig <= '1';
 				elsif ( unsigned(internal_addr) = x"2" ) then 
 					 self_mac <= internal_din(39 downto 0); 
-					 arp_announce <= '1';
+					 arp_announce_sig <= '1';
 				elsif ( unsigned(internal_addr) = x"3" ) then 
 					 tx_ctrl_dest_addr <= internal_din(31 downto 0); 
+					 ctrl_addr_resolve <= '1';
 				elsif ( unsigned(internal_addr) = x"4" ) then 
 					 tx_ctrl_dest_mac <= internal_din(47 downto 0); 
 				elsif ( unsigned(internal_addr) = x"5" ) then 
 					 tx_ctrl_dest_port <= internal_din(15 downto 0); 
 				elsif ( unsigned(internal_addr) = x"6" ) then 
 					 tx_data_dest_addr <= internal_din(31 downto 0); 
+					 data_addr_resolve <= '1';
 				elsif ( unsigned(internal_addr) = x"7" ) then 
 					 tx_data_dest_mac <= internal_din(47 downto 0); 
 				elsif ( unsigned(internal_addr) = x"8" ) then 
 					 tx_data_dest_port <= internal_din(15 downto 0); 
 				elsif ( unsigned(internal_addr) = x"9" ) then 
 					 burst_mode <= internal_din(0); 
+				elsif ( unsigned(internal_addr) = x"A" ) then 
+					 ctrl_dynamic_mac_resolution <= internal_din(0); 
+				elsif ( unsigned(internal_addr) = x"B" ) then 
+					 data_dynamic_mac_resolution <= internal_din(0); 
 				elsif ( unsigned(internal_addr) = x"FFFFFFFF" ) then 
 					 internal_reset <= internal_din(0); 
 				end if;
@@ -376,6 +413,10 @@ begin
 					 internal_eth_dout(15 downto 0) <= tx_data_dest_port; 
 				elsif ( ots_block_addr = x"9" ) then 
 					 internal_eth_dout(0) <= burst_mode; 
+				elsif ( ots_block_addr = x"A" ) then 
+					 internal_eth_dout(0) <= ctrl_dynamic_mac_resolution; 
+				elsif ( ots_block_addr = x"B" ) then 
+					 internal_eth_dout(0) <= data_dynamic_mac_resolution; 
 				elsif ( ots_block_addr = x"64" ) then 
 					 internal_eth_dout(15 downto 0) <= ETH_INTERFACE_VERSION; 
 				end if;
@@ -403,13 +444,47 @@ begin
 					 internal_dout(15 downto 0) <= tx_data_dest_port; 
 				elsif ( unsigned(internal_addr) = x"9" ) then 
 					 internal_dout(0) <= burst_mode; 
+				elsif ( unsigned(internal_addr) = x"A" ) then 
+					 internal_dout(0) <= ctrl_dynamic_mac_resolution; 
+				elsif ( unsigned(internal_addr) = x"B" ) then 
+					 internal_dout(0) <= data_dynamic_mac_resolution; 
 				elsif ( unsigned(internal_addr) = x"64" ) then 
 					 internal_dout(15 downto 0) <= ETH_INTERFACE_VERSION; 
 				end if;
 			end if;
-
-
-
+			
+			--ARP QUEUE	FUNCTIONALITY
+			arp_announce <= '0';
+			resolve_mac <= '0';
+			--arp_waiting stays high for the one(?) clock tht it takes for arp_busy to go high 
+			--(would use arp_announce and resolve_mac but b/cthey are outputs, easier to use only one additional signal)
+			arp_waiting <= '0'; 
+			if ((arp_busy = '0') and (arp_waiting = '0')) then 
+				if (arp_announce_sig ='1') then
+					arp_announce_sig <= '0';
+					arp_announce <= '1';
+					arp_waiting <= '1';
+				elsif	(ctrl_dynamic_mac_resolution = '1') and (ctrl_addr_resolve = '1') then
+					resolve_mac	<= '1';	
+					ctrl_addr_resolve <= '0';
+					addr_to_resolve <= tx_ctrl_dest_addr;
+					arp_waiting <= '1';
+				elsif (data_dynamic_mac_resolution = '1') and (data_addr_resolve = '1') then
+					resolve_mac <= '1';	   
+					data_addr_resolve <= '0';
+					addr_to_resolve <= tx_data_dest_addr;
+					arp_waiting <= '1';
+				end if;
+			end if;
+			
+			if (mac_resolved = '1') then
+				if ((resolved_addr = tx_ctrl_dest_addr) and (ctrl_dynamic_mac_resolution = '1')) then
+					tx_ctrl_dest_mac <= resolved_mac;
+				end if;
+				if ((resolved_addr = tx_data_dest_addr) and (data_dynamic_mac_resolution = '1'))then
+					tx_data_dest_mac <= resolved_mac;
+				end if;
+			end if;	
 			
 		end if;
 	end process;

@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : d:\Projects\otsdaq\OtS Ethernet MAC firmware\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd
--- Generated   : 05/18/16 11:48:04
--- From        : d:/Projects/otsdaq/OtS Ethernet MAC firmware/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
+-- File        : D:\elewis\ActiveHDL_proj\ethernet_controller\compile\decipherer.vhd
+-- Generated   : 07/11/16 12:15:20
+-- From        : D:/elewis/ActiveHDL_proj/ethernet_controller/src/decipherer.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -31,6 +31,8 @@ entity decipherer is
 		er: in STD_LOGIC;
 		reset: in STD_LOGIC;
 		self_addrs: in STD_LOGIC_VECTOR (31 downto 0);
+		arp_reply_ip: out STD_LOGIC_VECTOR (31 downto 0);
+		arp_reply_mac: out STD_LOGIC_VECTOR (47 downto 0);
 		arp_req_ip: out STD_LOGIC_VECTOR (31 downto 0);
 		arp_req_mac: out STD_LOGIC_VECTOR (47 downto 0);
 		arp_search_ip: out STD_LOGIC_VECTOR (31 downto 0);
@@ -45,6 +47,8 @@ entity decipherer is
 		icmp_checksum: out STD_LOGIC_VECTOR (15 downto 0);
 		ip_data_count: out STD_LOGIC_VECTOR (10 downto 0);
 		is_arp: out STD_LOGIC;
+		is_arp_reply: out STD_LOGIC;
+		is_arp_req: out STD_LOGIC;
 		is_icmp_ping: out STD_LOGIC;
 		is_idle: out STD_LOGIC;
 		is_ip: out STD_LOGIC;
@@ -72,6 +76,8 @@ signal four_bit_count: STD_LOGIC_VECTOR (4 downto 0);
 signal four_bit_data: STD_LOGIC_VECTOR (7 downto 0);
 signal four_bit_mode: STD_LOGIC;
 signal icmp_trigger_sig: STD_LOGIC;
+signal is_arp_reply_sig: STD_LOGIC;
+signal is_arp_req_sig: STD_LOGIC;
 signal is_arp_sig: STD_LOGIC;
 signal is_icmp_ping_sig: STD_LOGIC;
 signal is_ip_sig: STD_LOGIC;
@@ -96,15 +102,17 @@ type Sreg0_type is (
     RecvPacket_IP_Payload_UDP_Checksum1, RecvPacket_IP_Payload_UDP_Length2, RecvPacket_IP_Payload_UDP_SourcePort2, RecvPacket_Src_S42,
     RecvPacket_Src_S44, RecvPacket_Src_S45, RecvPacket_Src_S46, RecvPacket_Src_S47, RecvPacket_Src_S43, RecvPacket_Type_S1, RecvPacket_Type_S48,
     RecvPacket_Type_S49, RecvPacket_ARP_Payload_HType2, RecvPacket_ARP_Payload_HType1, RecvPacket_ARP_Payload_PType1, RecvPacket_ARP_Payload_PType2,
-    RecvPacket_ARP_Payload_HLen, RecvPacket_ARP_Payload_PLen, RecvPacket_ARP_Payload_Op1, RecvPacket_ARP_Payload_SMac1, RecvPacket_ARP_Payload_SMac2,
-    RecvPacket_ARP_Payload_SMac3, RecvPacket_ARP_Payload_SMac4, RecvPacket_ARP_Payload_SMac5, RecvPacket_ARP_Payload_SMac6, RecvPacket_ARP_Payload_Sip1,
-    RecvPacket_ARP_Payload_Sip2, RecvPacket_ARP_Payload_Sip3, RecvPacket_ARP_Payload_Sip4, RecvPacket_ARP_Payload_TMac1, RecvPacket_ARP_Payload_TMac2,
-    RecvPacket_ARP_Payload_TMac3, RecvPacket_ARP_Payload_TMac4, RecvPacket_ARP_Payload_TMac5, RecvPacket_ARP_Payload_TMac6, RecvPacket_ARP_Payload_Tip1,
-    RecvPacket_ARP_Payload_Tip2, RecvPacket_ARP_Payload_Tip3, RecvPacket_ARP_Payload_Tip4, RecvPacket_IP_Payload_ICMP_ID1, RecvPacket_ARP_Payload_Op2,
-    RecvPacket_IP_Payload_ICMP_ID2, RecvPacket_Preamble_S50, RecvPacket_CRC_ARP_S52, RecvPacket_IP_Payload_ICMP_SeqNum1, RecvPacket_CRC_ARP_S53,
-    RecvPacket_CRC_ARP_crc1, RecvPacket_IP_Payload_ICMP_SeqNum2, RecvPacket_CRC_ARP_crc2, RecvPacket_CRC_ARP_crc3, RecvPacket_CRC_ARP_crc4,
-    RecvPacket_IP_Payload_ICMP_DataLoop, RecvPacket_Preamble_S54, RecvPacket_CRC_IP_S55, RecvPacket_CRC_IP_crc6, RecvPacket_CRC_IP_crc7,
-    RecvPacket_CRC_IP_crc8, RecvPacket_CRC_IP_crc9, RecvPacket_CRC_IP_S56, RecvPacket_Preamble_S57, Ready, RecvPacket_IP_Payload_ICMP_Type,
+    RecvPacket_ARP_Payload_HLen, RecvPacket_ARP_Payload_PLen, RecvPacket_ARP_Payload_Op1, RecvPacket_ARP_Payload_SMac2, RecvPacket_ARP_Payload_SMac3,
+    RecvPacket_ARP_Payload_SMac4, RecvPacket_ARP_Payload_SMac5, RecvPacket_ARP_Payload_SMac6, RecvPacket_ARP_Payload_Sip1, RecvPacket_ARP_Payload_Sip2,
+    RecvPacket_ARP_Payload_Sip3, RecvPacket_ARP_Payload_Sip4, RecvPacket_ARP_Payload_TMac1, RecvPacket_ARP_Payload_TMac2, RecvPacket_ARP_Payload_TMac3,
+    RecvPacket_ARP_Payload_TMac4, RecvPacket_ARP_Payload_TMac5, RecvPacket_ARP_Payload_TMac6, RecvPacket_ARP_Payload_Tip1, RecvPacket_ARP_Payload_Tip2,
+    RecvPacket_ARP_Payload_Tip3, RecvPacket_ARP_Payload_Tip4, RecvPacket_IP_Payload_ICMP_ID1, RecvPacket_IP_Payload_ICMP_ID2, RecvPacket_Preamble_S50,
+    RecvPacket_CRC_ARP_S52, RecvPacket_IP_Payload_ICMP_SeqNum1, RecvPacket_CRC_ARP_S53, RecvPacket_CRC_ARP_crc1, RecvPacket_IP_Payload_ICMP_SeqNum2,
+    RecvPacket_CRC_ARP_crc2, RecvPacket_CRC_ARP_crc4, RecvPacket_IP_Payload_ICMP_DataLoop, RecvPacket_Preamble_S54, RecvPacket_CRC_IP_S55,
+    RecvPacket_CRC_IP_crc6, RecvPacket_CRC_IP_crc7, RecvPacket_CRC_IP_crc8, RecvPacket_CRC_IP_crc9, RecvPacket_CRC_IP_S56, RecvPacket_CRC_ARP_crc3,
+    RecvPacket_ARP_Payload_Op2A, RecvPacket_ARP_Payload_SMac1, RecvPacket_ARP_Payload_SMac7, RecvPacket_ARP_Payload_SMac8, RecvPacket_ARP_Payload_SMac9,
+    RecvPacket_ARP_Payload_SMac10, RecvPacket_ARP_Payload_SMac11, RecvPacket_ARP_Payload_SMac12, RecvPacket_ARP_Payload_Sip5, RecvPacket_ARP_Payload_Sip6,
+    RecvPacket_ARP_Payload_Sip7, RecvPacket_ARP_Payload_Sip8, RecvPacket_ARP_Payload_Op2B, RecvPacket_Preamble_S57, Ready, RecvPacket_IP_Payload_ICMP_Type,
     RecvPacket_IP_Payload_ICMP_Code, RecvPacket_IP_Payload_ICMP_Checksum1, RecvPacket_IP_Payload_ICMP_Checksum2
 );
 -- attribute ENUM_ENCODING of Sreg0_type: type is ... -- enum_encoding attribute is not supported for symbolic encoding
@@ -117,6 +125,8 @@ begin
 
 -- Diagram ACTION
 is_arp <= is_arp_sig;
+is_arp_reply <= is_arp_reply_sig;
+is_arp_req <= is_arp_req_sig;
 is_ip <= is_ip_sig;
 is_udp <= is_udp_sig;
 is_icmp_ping <= icmp_trigger_sig and addrs_match_sig;
@@ -231,6 +241,8 @@ begin
 			four_bit_mode_out <= '0';
 			is_ip_sig <= '0';
 			is_arp_sig <= '0';
+			is_arp_req_sig <= '0';
+			is_arp_reply_sig <= '0';
 			is_idle <= '1';
 			is_udp_sig <= '0';
 			is_icmp_ping_sig <= '0';
@@ -253,6 +265,8 @@ begin
 					when Idle =>
 						is_ip_sig <= '0';
 						is_arp_sig <= '0';
+						is_arp_req_sig <= '0';
+						is_arp_reply_sig <= '0';
 						is_idle <= '1';
 						is_udp_sig <= '0';
 						is_icmp_ping_sig <= '0';
@@ -426,10 +440,15 @@ begin
 					when RecvPacket_ARP_Payload_PLen =>
 						Sreg0 <= RecvPacket_ARP_Payload_Op1;
 					when RecvPacket_ARP_Payload_Op1 =>
-						Sreg0 <= RecvPacket_ARP_Payload_Op2;
-					when RecvPacket_ARP_Payload_SMac1 =>
-						Sreg0 <= RecvPacket_ARP_Payload_SMac2;
-						arp_req_mac(39 downto 32) <= data;
+						if data = x"01" then
+							Sreg0 <= RecvPacket_ARP_Payload_Op2A;
+							is_arp_req_sig <= '1';
+						elsif data = x"02" then
+							Sreg0 <= RecvPacket_ARP_Payload_Op2B;
+							is_arp_reply_sig <= '1';
+						else
+							Sreg0 <= Idle;
+						end if;
 					when RecvPacket_ARP_Payload_SMac2 =>
 						Sreg0 <= RecvPacket_ARP_Payload_SMac3;
 						arp_req_mac(31 downto 24) <= data;
@@ -480,9 +499,44 @@ begin
 						arp_search_ip(7 downto 0) <= data;
 					when RecvPacket_ARP_Payload_Tip4 =>
 						Sreg0 <= RecvPacket_CRC_ARP_S52;
-					when RecvPacket_ARP_Payload_Op2 =>
+					when RecvPacket_ARP_Payload_Op2A =>
 						Sreg0 <= RecvPacket_ARP_Payload_SMac1;
 						arp_req_mac(47 downto 40) <= data;
+					when RecvPacket_ARP_Payload_SMac1 =>
+						Sreg0 <= RecvPacket_ARP_Payload_SMac2;
+						arp_req_mac(39 downto 32) <= data;
+					when RecvPacket_ARP_Payload_SMac7 =>
+						Sreg0 <= RecvPacket_ARP_Payload_SMac8;
+						arp_reply_mac(39 downto 32) <= data;
+					when RecvPacket_ARP_Payload_SMac8 =>
+						Sreg0 <= RecvPacket_ARP_Payload_SMac9;
+						arp_reply_mac(31 downto 24) <= data;
+					when RecvPacket_ARP_Payload_SMac9 =>
+						Sreg0 <= RecvPacket_ARP_Payload_SMac10;
+						arp_reply_mac(23 downto 16) <= data;
+					when RecvPacket_ARP_Payload_SMac10 =>
+						Sreg0 <= RecvPacket_ARP_Payload_SMac11;
+						arp_reply_mac(15 downto 8) <= data;
+					when RecvPacket_ARP_Payload_SMac11 =>
+						Sreg0 <= RecvPacket_ARP_Payload_SMac12;
+						arp_reply_mac(7 downto 0) <= data;
+					when RecvPacket_ARP_Payload_SMac12 =>
+						Sreg0 <= RecvPacket_ARP_Payload_Sip5;
+						arp_reply_ip(31 downto 24) <= data;
+					when RecvPacket_ARP_Payload_Sip5 =>
+						Sreg0 <= RecvPacket_ARP_Payload_Sip6;
+						arp_reply_ip(23 downto 16) <= data;
+					when RecvPacket_ARP_Payload_Sip6 =>
+						Sreg0 <= RecvPacket_ARP_Payload_Sip7;
+						arp_reply_ip(15 downto 8) <= data;
+					when RecvPacket_ARP_Payload_Sip7 =>
+						Sreg0 <= RecvPacket_ARP_Payload_Sip8;
+						arp_reply_ip(7 downto 0) <= data;
+					when RecvPacket_ARP_Payload_Sip8 =>
+						Sreg0 <= RecvPacket_ARP_Payload_TMac1;
+					when RecvPacket_ARP_Payload_Op2B =>
+						Sreg0 <= RecvPacket_ARP_Payload_SMac7;
+						arp_reply_mac(47 downto 40) <= data;
 					when RecvPacket_Dest_S22 =>
 						Sreg0 <= RecvPacket_Dest_S11;
 						dest_mac(39 downto 32) <= data;
@@ -594,15 +648,15 @@ begin
 						Sreg0 <= RecvPacket_CRC_ARP_crc2;
 					when RecvPacket_CRC_ARP_crc2 =>
 						Sreg0 <= RecvPacket_CRC_ARP_crc3;
+					when RecvPacket_CRC_ARP_crc4 =>
+						Sreg0 <= Idle;
+						crc_chk_rd <= '1';
+						-- this allows crc_chk to output error status
 					when RecvPacket_CRC_ARP_crc3 =>
 						if dv = '0' then	--packets may be padded before CRC
 							Sreg0 <= RecvPacket_CRC_ARP_crc4;
 							crc_chk_en_unmasked <= '0';
 						end if;
-					when RecvPacket_CRC_ARP_crc4 =>
-						Sreg0 <= Idle;
-						crc_chk_rd <= '1';
-						-- this allows crc_chk to output error status
 					when RecvPacket_CRC_IP_S55 =>
 						udp_countdown(10 downto 0) <= udp_zeros;
 						udp_countdown(15 downto 11) <= '0' & x"0";
