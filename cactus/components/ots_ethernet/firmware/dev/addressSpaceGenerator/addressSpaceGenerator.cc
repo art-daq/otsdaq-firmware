@@ -13,7 +13,13 @@ int main()
 	unsigned int block = 1;
 	string blockName = "Ethernet block address space";
 
-	string specialStrobeSig = "arp_announce";
+	int numSpecialStrobes = 3;
+	string specialStrobeSigs[] =
+	  {
+	    "arp_announce_sig",
+	    "ctrl_addr_resolve",
+	    "data_addr_resolve"
+	  };
 
 	string htmlFilename = "oei_address_space.html";
 	FILE * fp = fopen(htmlFilename.c_str(),"w");
@@ -23,7 +29,7 @@ int main()
 		return 0;
 	}
 
-	int sz = 12;
+	int sz = 14;
 	string name[] =
 	{
 			"self_addr",
@@ -36,6 +42,8 @@ int main()
 			"tx_data_dest_mac",
 			"tx_data_dest_port",
 			"burst_mode",
+			"ctrl_dynamic_mac_resolution",
+			"data_dynamic_mac_resolution",
 			"ETH_INTERFACE_VERSION",
 			"internal_reset",
 	};
@@ -52,6 +60,8 @@ int main()
 			"Destination MAC for Burst mode transmission",
 			"Destination PORT for Burst mode transmission",
 			"Enable Burst mode",
+			"Enable Dynamic MAC Address Resolution for Normal mode",
+			"Enable Dynamic MAC Address Resolution for Burst mode",
 			"OEI Ethernet Interface Version",
 			"Force reset of OEI status/errors/FIFOs/FSMs",
 	};
@@ -61,7 +71,8 @@ int main()
 			0, 1, 2,
 			3, 4, 5,
 			6, 7, 8,
-			9,
+			9, 
+			10, 11,
 			100,
 			-1,
 	};
@@ -71,15 +82,16 @@ int main()
 			32, 48, 16,
 			32, 48, 16,
 			1,
+			1, 1,
 			16,
 			1,
 	};
 	unsigned int specialStrobe[] =
 	{
 			1, 1, 1,
-			0, 0, 0,
-			0, 0, 0,
-			0,
+			2, 0, 0,
+			3, 0, 0,
+			0, 0,
 			0,
 			0,
 	};
@@ -88,7 +100,8 @@ int main()
 		3, 3, 3,
 		3, 3, 3,
 		3, 3, 3,
-		3,
+		3, 
+		3, 3,
 		1,
 		2,
 			};
@@ -98,7 +111,10 @@ int main()
 	printf("\tinternal_eth_dout <= (others => '0');\n");
 	printf("\tinternal_dout <= (others => '0');\n");
 	printf("\tinternal_reset <= '0';\n");
-	printf("\t%s <= '0';\n", specialStrobeSig.c_str());
+	//for (int i=0; i<numSpecialStrobes; i++) 
+	//printf("\t%s <= '0';\n", specialStrobeSigs[i].c_str());
+	//
+	
 
 	fprintf(fp,"<table style='border:1px solid gray;cellpadding:0;cellspacing=0'>");
 
@@ -127,7 +143,9 @@ int main()
 		fprintf(fp,"<td>0x%8.8X</td>",address[i]);
 		fprintf(fp,"<td>%s</td>",name[i].c_str());
 		fprintf(fp,"<td>%db</td>",fieldSz[i]);
-		fprintf(fp,"<td>%s</td>",specialStrobe[i]?"YES":"");
+		if (specialStrobe[i] == 1) fprintf(fp,"<td>YES</td>");
+		else if (specialStrobe[i] > 1) fprintf(fp,"<td>YES*</td>");
+		else fprintf(fp, "<td></td>");
 		fprintf(fp,"<td>%s</td>",access[i]==1?"R":(access[i]==2?"W":"R/W"));
 		fprintf(fp,"<td>%s</td>",desc[i].c_str());
 		fprintf(fp,"</tr>");
@@ -140,8 +158,11 @@ int main()
 		else
 			printf("\t\t\t %s <= ots_din(0); \n", name[i].c_str());
 		if(specialStrobe[i])
-			printf("\t\t\t %s <= '1';\n", specialStrobeSig.c_str());
+			printf("\t\t\t %s <= '1';\n", specialStrobeSigs[specialStrobe[i]-1].c_str());
+		
+	
 	}
+	
 
 	printf("\t\tend if;\n");
 
@@ -160,7 +181,7 @@ int main()
 			printf("\t\t\t %s <= internal_din(0); \n", name[i].c_str());
 
 		if(specialStrobe[i])
-			printf("\t\t\t %s <= '1';\n", specialStrobeSig.c_str());
+			printf("\t\t\t %s <= '1';\n", specialStrobeSigs[specialStrobe[i]-1].c_str());
 	}
 	printf("\t\tend if;\n");
 
@@ -219,6 +240,7 @@ int main()
 	printf("\tend if;\n");
 
 	fprintf(fp,"</table>");
+	fprintf(fp, "<tr><td><small>*Only if dynamic MAC resolution enabled.</small></td></tr>");
 	fclose(fp);
 
 	return 0;
