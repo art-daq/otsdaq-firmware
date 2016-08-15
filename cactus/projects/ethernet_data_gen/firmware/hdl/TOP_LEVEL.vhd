@@ -23,7 +23,7 @@ entity top is
 		--PHY_RXER     : in    std_logic; 
 		--USER_CLOCK   : in    std_logic; 
           
-	PHY_RESET	: out    std_logic; 
+--	PHY_RESET	: out    std_logic; 
 		
 		PHY_TXCTL_TXEN : out   std_logic; 
 	PHY_TXD0	: out   std_logic; 
@@ -312,7 +312,7 @@ begin
     -----------------------
     ----------------------- OBUF 's 
     	 
-	OBUF_PHY_RESET : OBUF	   port map (I=>'1',  O=>PHY_RESET); --hold not reset
+--	OBUF_PHY_RESET : OBUF	   port map (I=>'1',  O=>PHY_RESET); --hold not reset
 		 
 	OBUF_PHY_TXER : OBUF       port map (I=>PHY_TXER_sig,  O=>PHY_TXER);
 	 
