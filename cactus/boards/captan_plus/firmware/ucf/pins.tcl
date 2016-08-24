@@ -1,4 +1,4 @@
-# constraints for CAPTAN+X
+# constraints for CAPTAN+
 # Modified Mar 2016 by rrivera at fnal dot gov
 
 
