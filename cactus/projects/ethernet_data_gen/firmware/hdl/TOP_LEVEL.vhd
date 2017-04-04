@@ -101,8 +101,8 @@ architecture BEHAVIORAL of top is
     attribute mark_debug of b_data : signal is "true";
     attribute mark_debug of b_data_we : signal is "true";
     
-	attribute mark_debug of GMII_RXD_0_sig : signal is "true";
-	attribute mark_debug of GMII_RX_DV_0_sig : signal is "true";
+	--    attribute mark_debug of GMII_RXD_0_sig : signal is "true";
+	--    attribute mark_debug of GMII_RX_DV_0_sig : signal is "true";
        
    
    
@@ -307,7 +307,7 @@ begin
      
      GMII_RX_ER_0_sig <= '0';
      
-     IBUF_PHY_RXCLK : IBUFG      port map (I=>PHY_RXCLK,  O=>MASTER_CLK);
+     IBUF_PHY_RXCLK : BUFG      port map (I=>PHY_RXCLK,  O=>MASTER_CLK);
         
     -----------------------
     ----------------------- OBUF 's 

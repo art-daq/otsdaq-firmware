@@ -51,10 +51,11 @@ end;
 
 architecture arch of MII_100_1000_handler is	   
 begin				  	  
-						  
+									   
 	rx_data_handled <=	 	rx_data;
 	rx_dv_handled 	<=		rx_dv;										  
-	rx_er_handled 	<= 	 	rx_er;	 
+	rx_er_handled 	<= 	 	rx_er;	  
+	
 								   	   
 	
 	tx_data_handled	<=	 	tx_data;
