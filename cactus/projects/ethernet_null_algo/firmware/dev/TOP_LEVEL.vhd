@@ -231,7 +231,7 @@ begin
      
      GMII_RX_ER_0_sig <= '0';
      
-     IBUF_PHY_RXCLK : IBUFG      port map (I=>PHY_RXCLK,  O=>MASTER_CLK);
+     IBUF_PHY_RXCLK : BUFG      port map (I=>PHY_RXCLK,  O=>MASTER_CLK);
         
     -----------------------
     ----------------------- OBUF 's 
