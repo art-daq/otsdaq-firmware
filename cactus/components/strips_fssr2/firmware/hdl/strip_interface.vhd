@@ -76,7 +76,7 @@ library UNISIM;
 use UNISIM.VComponents.all;
 
 entity strip_interface is
-  generic ( nsensor : integer := 2 );
+  generic ( nsensor : integer := 6 );
   port (
     clk : in std_logic;                                      -- bus clock
     iobus : in iobus_t;
