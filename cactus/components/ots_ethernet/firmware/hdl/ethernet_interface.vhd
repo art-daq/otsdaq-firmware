@@ -453,7 +453,7 @@ begin
 				end if;
 			end if;
 			
-			--ARP QUEUE FUNCTIONALITY
+			--ARP QUEUE	FUNCTIONALITY
 			arp_announce <= '0';
 			resolve_mac <= '0';
 			--arp_waiting stays high for the one(?) clock tht it takes for arp_busy to go high 
