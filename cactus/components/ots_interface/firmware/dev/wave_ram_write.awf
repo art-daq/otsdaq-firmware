@@ -1,0 +1,223 @@
+$WAVE4
+$RESOLUTION 1000
+$ENDTIME 3000000
+I 1 "c#10#Sreg0_types79 idle configure_wren0 configure_wren1 configure_wren2 configure_wren3 configure_wren4 configure_wren5 configure_wren6 configure_wren7 configure_delay configure_delay1 configure_delay2 configure_config0 configure_config1 configure_config2 configure_config3 configure_config4 configure_config5 configure_config6 configure_config7 configure_srr1 configure_srr2 configure_srr3 configure_srr4 configure_srr5 configure_srr6 configure_srr7 configure_srr0 configure_status0 configure_status1 configure_status2 configure_status3 configure_status4 configure_status5 configure_status6 configure_status7 send_command_read_s5 send_command_erase_s3 send_command_check_instr8 send_command_check_instr13 send_command_check_instr12 send_command_check_instr11 send_command_check_instr10 send_command_check_instr9 send_command_check_p_err1 send_command_check_e_err1 send_command_check_bp5 send_command_check_bp4 send_command_check_bp3 send_command_check_wel1 send_command_check_inst3 send_command_check_instr14 first send_command_check_srwd1 send_command_check_wip1 error_handler_s6 send_command_write_addr_loop send_command_write_data_loop send_command_write_data_loop1 send_command_write_last_addr send_command_write_delay send_command_write_enable_wren8 send_command_write_enable_wren9 send_command_write_enable_wren10 send_command_write_enable_wren11 send_command_write_enable_wren12 send_command_write_enable_wren13 send_command_write_enable_wren14 send_command_write_enable_delay3 send_command_write_enable_wren15 send_command_delay4 send_command_write_instr_w0 send_command_write_instr_w1 send_command_write_instr_w2 send_command_write_instr_w3 send_command_write_instr_w4 send_command_write_instr_w5 send_command_write_instr_w6 send_command_write_instr_w7 "
+$S 1 1 "/ram_controller/Sreg0"
+$NOMODE 29 0 "FPGA InOut"
+I 2 "c#9#STD_LOGICc9 UX01ZWLH-"
+$IN 2 2 "/ram_controller/FLASH_CLK"
+$IN 4 2 16 0 reset_in
+I 3 "a#28#STD_LOGIC_VECTOR(7 downto 0)1 ricd7 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS IN 24 3 8 16 0 mode
+$SC 34-+7
+I 4 "a#29#STD_LOGIC_VECTOR(31 downto 0)1 ricd31 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS IN 25 4 32 16 1 siz
+$SC 42-73
+$BUS IN 26 4 32 17 0 tart_addr
+$SC 74-+31
+$IN 27 2 22 0 command
+I 5 "a#28#STD_LOGIC_VECTOR(3 downto 0)1 ricd3 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS IN +1 5 4 16 0 data_in
+$SC +78-+3
+$OUT 33 2 16 0 start_data
+$NOMODE 31 0 "RAM InOut"
+$OUT 3 2 "/ram_controller/SCLK"
+$OUT 5 2 16 0 reset
+$OUT 6 2 16 1 chip_selec
+$INOUT 8 2 16 0 io_0
+$INOUT 9 2 19 0 "1"
+$INOUT +1 2 19 0 "2"
+$INOUT +1 2 19 0 "3"
+$NOMODE 32 0 Signals
+$BUS S 12 5 4 "/ram_controller/io_in"
+$SC +1-+3
+$BUS S +1 5 4 19 0 out
+$SC +1-+3
+$S +1 2 16 0 chip_select_sig
+$S +1 2 16 5 rese
+$S 7 2 18 0 ceiving_from_ram
+P 0 1-29 +2-+78 CS "0"
+P 0 29 +2 +1 EmptyRow "1"
+P 0 2 Stimulator "CLK:FRM:Override:25.000000;2;1;0;50;1:Clock:1:"
+P 0 4 9 Stimulator "CST:FRM:Override: :Cs:1:"
+$WAVES 1
+=0 T 0
+R 1 37 =1 D 25k 1
+$VALUES
+V 38
+idle
+first
+configure_wren0
+configure_wren1
+configure_wren2
+configure_wren3
+configure_wren4
+configure_wren5
+configure_wren6
+configure_wren7
+configure_delay
+configure_delay1
+configure_delay2
+configure_srr0
+configure_srr1
+configure_srr2
+configure_srr3
+configure_srr4
+configure_srr5
+configure_srr6
+configure_srr7
+configure_status0
+configure_status1
+configure_status2
+configure_status3
+configure_status4
+configure_status5
+configure_status6
+configure_status7
+configure_config0
+configure_config1
+configure_config2
+configure_config3
+configure_config4
+configure_config5
+configure_config6
+configure_config7
+idle
+$END
+$WAVES 2
+*0
+R 1 240 =2 T 12500
+$VALUES
+R 2 120 0 1
+V 1
+0
+$END
+$WAVES 3 13-+3 27 +7-+75
+*0
+$VALUES
+V 1
+U
+$END
+$WAVES 4
+*0
+=3 T 9100
+=4 T 27k
+=5 T 963900
+$VALUES
+V 4
+0
+1
+0
+U
+$END
+$WAVES 5
+*0
+R 1 2 =6 D 25k 2
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES 6
+*0
+R 1 2 *6
+=7 D 200k 2
+=8 D 75k 2
+=9 D 600k 2
+$VALUES
+V 1
+U
+R 2 2 1 0
+V 1
+1
+$END
+$WAVES 7 18-+2
+*0
+*1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 8
+*0
+*6
+=10 D 150k 2
+=11 D 50k 2
+=12 D 275k 2
+*6
+*7
+*11
+=13 D 100k 2
+*6
+$VALUES
+V 1
+U
+R 2 4 0 1
+V 1
+0
+$END
+$WAVES 9
+*0
+=14 T 25k
+=15 T 1156600
+=16 T 14600
+=17 T 128900
+*14
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1 +1 33
+*0
+*6
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 21
+*0
+*1
+=18 D 150k 1
+=19 D 50k 1
+=20 D 275k 1
+*1
+=21 D 200k 1
+*19
+=22 D 100k 1
+*1
+$VALUES
+V 1
+U
+R 2 4 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+R 1 2 *1
+*21
+=23 D 75k 1
+=24 D 600k 1
+$VALUES
+V 1
+U
+R 2 2 1 0
+V 1
+1
+$END
+$WAVES +1
+*0
+R 1 2 *1
+$VALUES
+V 3
+U
+0
+1
+$END
+$ENDWAVE

@@ -1,0 +1,273 @@
+$WAVE4
+$RESOLUTION 1000
+$ENDTIME 16001
+I 1 "c#9#STD_LOGICc9 UX01ZWLH-"
+$IN 1 1 "/fifo_test/MASTER_CLK"
+I 2 "a#28#STD_LOGIC_VECTOR(3 downto 0)1 ricd3 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S 2 2 4 11 0 counter
+$SC 9-+3
+$S 3 1 11 0 reset
+$S 4 1 11 0 fifo_we
+$S 5 1 16 1 r
+I 3 "a#28#STD_LOGIC_VECTOR(7 downto 0)1 ricd7 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S 6 3 8 11 0 data_in
+$SC +7-+7
+$BUS S 7 3 8 16 0 out
+$SC 21-+7
+$S 8 1 11 1 tes
+P 0 1-28 CS "0"
+P 0 1 Stimulator "CLK:FRM:Override:1.000000;2;1;10;50;1:Clock:1:"
+$WAVES 1
+=0 T 0
+R 1 32 =1 T 500
+$VALUES
+R 2 16 0 1
+V 1
+0
+$END
+$WAVES 3
+*0
+R 1 2 =2 D 1k 1
+$VALUES
+V 3
+U
+1
+0
+$END
+$WAVES 4
+*0
+R 1 2 *2
+=3 D 4k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES 5
+*0
+*2
+=4 D 7k 1
+=5 D 2k 1
+*2
+*3
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES 8
+*0
+*2
+=6 D 11k 1
+*2
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES 9
+*0
+R 1 2 =7 D 8k 1
+$VALUES
+V 3
+0
+1
+0
+$END
+$WAVES +1
+*0
+R 1 4 *3
+$VALUES
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+R 1 8 *5
+$VALUES
+R 2 4 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+R 1 16 *2
+$VALUES
+R 2 8 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*5
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +1
+*0
+R 1 2 *5
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+R 1 2 *5
+$VALUES
+V 3
+U
+1
+0
+$END
+$WAVES +1
+*0
+*5
+R 1 3 *2
+$VALUES
+V 1
+U
+R 2 2 0 1
+$END
+$WAVES +1
+*0
+*5
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +1
+*0
+R 1 2 *5
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+R 1 2 *5
+$VALUES
+V 3
+U
+1
+0
+$END
+$WAVES +1
+*0
+*5
+R 1 3 *2
+$VALUES
+V 1
+U
+R 2 2 0 1
+$END
+$WAVES +1
+*0
+=8 D 8500 2
+=9 D 5500 1
+$VALUES
+V 3
+U
+1
+U
+$END
+$WAVES +1
+*0
+*8
+=10 D 3k 2
+=11 D 2500 1
+$VALUES
+V 4
+U
+0
+1
+U
+$END
+$WAVES +1
+*0
+*8
+*10
+*11
+$VALUES
+V 4
+U
+1
+0
+U
+$END
+$WAVES +1
+*0
+*8
+=12 D 1k 2
+=13 D 2k 2
+*12
+=14 D 1500 1
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+U
+$END
+$WAVES +1
+*0
+*8
+*9
+$VALUES
+V 3
+U
+1
+U
+$END
+$WAVES +1
+*0
+*8
+*10
+*11
+$VALUES
+V 4
+U
+0
+1
+U
+$END
+$WAVES +1
+*0
+*8
+*10
+*11
+$VALUES
+V 4
+U
+1
+0
+U
+$END
+$WAVES +1
+*0
+*8
+*12
+*13
+*12
+*14
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+U
+$END
+$ENDWAVE

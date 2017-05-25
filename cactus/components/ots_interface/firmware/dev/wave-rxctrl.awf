@@ -1,0 +1,27 @@
+$WAVE4
+$RESOLUTION 1000
+I 1 "c#9#STD_LOGICc9 UX01ZWLH-"
+$S 1 1 block_en
+$S 2 1 clock
+$S 3 1 data_fifo_full
+$S 4 1 10 0 wrerr
+$S 5 1 gec_user_crc_err
+I 2 "a#28#STD_LOGIC_VECTOR(7 downto 0)1 ricd7 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S 6 2 8 9 0 rx_data_out
+$SC 7-+7
+I 3 "a#29#STD_LOGIC_VECTOR(10 downto 0)1 ricd10 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 3 11 12 4 size
+$SC +1-26
+$S +1 1 12 4 valid
+$S +1 1 reset_n
+$S +1 1 crc_err_flag
+I 4 "a#29#STD_LOGIC_VECTOR(63 downto 0)1 ricd63 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 4 64 data_fifo_q_w_data
+$SC +1-94
+$S +1 1 10 0 wren
+I 5 "a#29#STD_LOGIC_VECTOR(15 downto 0)1 ricd15 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 5 16 info_fifo_wr_data
+$SC +1-+15
+$S +1 1 12 0 en
+P 0 1-113 CS "0"
+$ENDWAVE

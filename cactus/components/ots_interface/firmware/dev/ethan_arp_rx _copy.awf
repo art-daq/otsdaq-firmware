@@ -1,0 +1,1297 @@
+$WAVE4
+$RESOLUTION 1000
+$ENDTIME 600001
+I 1 "c#9#STD_LOGICc9 UX01ZWLH-"
+$S 1 1 "/decipherer/clken"
+$IN 2 1 15 0 ""
+$IN 3 1 12 0 reset
+$IN 4 1 12 0 dv
+$IN 5 1 12 0 er
+I 2 "c#10#Sreg0_types111 idle recvpacket_ip_payload_udp_recvdataloop recvpacket_type_s29 recvpacket_ip_payload_ip_totlength2 recvpacket_ip_payload_udp_sourceport1 recvpacket_ip_payload_ip_versionandheader recvpacket_dest_s22 recvpacket_ip_payload_ip_totlength1 recvpacket_ip_payload_ip_tos recvpacket_dest_s11 recvpacket_ip_payload_udp_destport1 recvpacket_ip_payload_ip_ttl recvpacket_ip_payload_ip_fragmentoffset recvpacket_ip_payload_ip_flagsandfrag recvpacket_ip_payload_ip_id2 recvpacket_ip_payload_ip_id1 recvpacket_dest_s12 recvpacket_dest_s13 recvpacket_dest_s14 recvpacket_dest_s15 recvpacket_ip_payload_ip_sourceaddr1 recvpacket_ip_payload_ip_checksum2 recvpacket_ip_payload_ip_checksum1 recvpacket_ip_payload_ip_protocol recvpacket_ip_payload_ip_sourceaddr3 recvpacket_ip_payload_ip_sourceaddr2 recvpacket_ip_payload_ip_destaddr2 recvpacket_ip_payload_ip_destaddr1 recvpacket_ip_payload_ip_sourceaddr4 recvpacket_ip_payload_ip_destaddr4 recvpacket_ip_payload_ip_destaddr3 recvpacket_type_s26 recvpacket_ip_payload_udp_destport2 recvpacket_ip_payload_udp_length1 recvpacket_ip_payload_udp_checksum2 recvpacket_ip_payload_udp_checksum1 recvpacket_ip_payload_udp_length2 recvpacket_ip_payload_udp_sourceport2 recvpacket_src_s42 recvpacket_src_s44 recvpacket_src_s45 recvpacket_src_s46 recvpacket_src_s47 recvpacket_src_s43 recvpacket_type_s1 recvpacket_type_s48 recvpacket_type_s49 recvpacket_arp_payload_htype2 recvpacket_arp_payload_htype1 recvpacket_arp_payload_ptype1 recvpacket_arp_payload_ptype2 recvpacket_arp_payload_hlen recvpacket_arp_payload_plen recvpacket_arp_payload_op1 recvpacket_arp_payload_smac2 recvpacket_arp_payload_smac3 recvpacket_arp_payload_smac4 recvpacket_arp_payload_smac5 recvpacket_arp_payload_smac6 recvpacket_arp_payload_sip1 recvpacket_arp_payload_sip2 recvpacket_arp_payload_sip3 recvpacket_arp_payload_sip4 recvpacket_arp_payload_tmac1 recvpacket_arp_payload_tmac2 recvpacket_arp_payload_tmac3 recvpacket_arp_payload_tmac4 recvpacket_arp_payload_tmac5 recvpacket_arp_payload_tmac6 recvpacket_arp_payload_tip1 recvpacket_arp_payload_tip2 recvpacket_arp_payload_tip3 recvpacket_arp_payload_tip4 recvpacket_ip_payload_icmp_id1 recvpacket_ip_payload_icmp_id2 recvpacket_preamble_s50 recvpacket_crc_arp_s52 recvpacket_ip_payload_icmp_seqnum1 recvpacket_crc_arp_s53 recvpacket_crc_arp_crc1 recvpacket_ip_payload_icmp_seqnum2 recvpacket_crc_arp_crc2 recvpacket_crc_arp_crc4 recvpacket_ip_payload_icmp_dataloop recvpacket_preamble_s54 recvpacket_crc_ip_s55 recvpacket_crc_ip_crc6 recvpacket_crc_ip_crc7 recvpacket_crc_ip_crc8 recvpacket_crc_ip_crc9 recvpacket_crc_ip_s56 recvpacket_crc_arp_crc3 recvpacket_arp_payload_op2a recvpacket_arp_payload_smac1 recvpacket_arp_payload_smac7 recvpacket_arp_payload_smac8 recvpacket_arp_payload_smac9 recvpacket_arp_payload_smac10 recvpacket_arp_payload_smac11 recvpacket_arp_payload_smac12 recvpacket_arp_payload_sip5 recvpacket_arp_payload_sip6 recvpacket_arp_payload_sip7 recvpacket_arp_payload_sip8 recvpacket_arp_payload_op2b recvpacket_preamble_s57 ready recvpacket_ip_payload_icmp_type recvpacket_ip_payload_icmp_code recvpacket_ip_payload_icmp_checksum1 recvpacket_ip_payload_icmp_checksum2 "
+$S 6 2 12 0 Sreg0
+$S 7 1 12 0 four_bit_mode
+$OUT 8 1 25 0 _out
+I 3 "a#28#STD_LOGIC_VECTOR(7 downto 0)1 ricd7 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS IN 9 3 8 12 0 data_in
+$SC +1-+7
+I 4 "a#29#STD_LOGIC_VECTOR(31 downto 0)1 ricd31 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS OUT +1 4 32 12 0 arp_req_ip
+$SC +1-50
+I 5 "a#29#STD_LOGIC_VECTOR(47 downto 0)1 ricd47 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS OUT +1 5 48 20 0 mac
+$SC +1-99
+$BUS OUT +1 4 32 18 0 ply_ip
+$SC +1-+31
+$BUS OUT +1 5 48 22 0 mac
+$SC +1-+47
+$S +1 1 12 0 is_arp_sig
+$S +1 1 19 4 reply
+$OUT +1 1 24 0 ""
+$S +1 1 21 0 q_sig
+$OUT +1 1 22 0 ""
+$BUS S +1 3 8 12 0 data
+$SC +1-+7
+P 0 1-195 CS "0"
+P 0 +-8-+8 Hidden "1"
+P 0 2 Stimulator "CLK:FRM:Override:8.000000;2;1;0;50;1:Clock:1:"
+P 0 3 4 9 Stimulator "CST:FRM:Override: :Cs:1:"
+P 0 5 Stimulator "VAL:FRM:Override:0:<= 0:1:"
+P 0 1 Stimulator "VAL:FRM:Override:1:<= 1:1:"
+$WAVES 1
+=0 T 0
+$VALUES
+V 1
+1
+$END
+$WAVES 2
+*0
+R 1 150 =1 T 4k
+$VALUES
+R 2 75 0 1
+V 1
+0
+$END
+$WAVES 3
+*0
+=2 T 9500
+=3 T 9k
+$VALUES
+V 3
+0
+1
+0
+$END
+$WAVES 4
+*0
+=4 T 26600
+=5 T 21600
+=6 T 51800
+=7 T 462200
+=8 T 19100
+$VALUES
+V 2
+0
+1
+R 2 2 0 U
+$END
+$WAVES 5
+*0
+$VALUES
+V 1
+0
+$END
+$WAVES 7
+*0
+=9 D 12k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 8
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +2
+*0
+=10 T 55400
+=11 T 6948
+=12 T 95852
+=13 T 17300
+=14 T 47600
+=15 T 94828
+=16 T 81972
+$VALUES
+V 2
+0
+1
+R 2 2 - 0
+V 2
+-
+U
+$END
+$WAVES +1
+*0
+=17 T 24900
+=18 T 37448
+*12
+*13
+*14
+=19 T 18300
+=20 T 76528
+*16
+$VALUES
+V 2
+0
+1
+R 2 2 - 0
+V 3
+1
+-
+U
+$END
+$WAVES +1
+*0
+=21 T 62348
+*12
+*13
+*14
+*15
+*16
+$VALUES
+R 2 3 0 -
+V 1
+U
+$END
+$WAVES +1
+*0
+*17
+*18
+*12
+*13
+*14
+*15
+*16
+$VALUES
+V 2
+0
+1
+R 2 2 - 0
+V 2
+-
+U
+$END
+$WAVES +1
+*0
+*21
+*12
+=22 T 9800
+=23 T 7500
+*14
+*15
+*16
+$VALUES
+V 3
+0
+-
+1
+R 2 2 0 -
+V 1
+U
+$END
+$WAVES +1
+*0
+*17
+*18
+*12
+*22
+*23
+*14
+*19
+*20
+*16
+$VALUES
+R 3 3 0 1 -
+V 1
+U
+$END
+$WAVES +1
+*0
+*21
+*12
+*22
+*23
+*14
+*15
+*16
+$VALUES
+V 8
+0
+-
+0
+1
+-
+0
+-
+U
+$END
+$WAVES +1
+*0
+*17
+*18
+*12
+*13
+*14
+*22
+=24 T 85028
+*16
+$VALUES
+V 2
+0
+1
+R 2 2 - 0
+V 3
+1
+-
+U
+$END
+$WAVES +2
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+=25 D 280k 1
+=26 D 308k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*25
+*26
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*25
+*26
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+=27 D 288k 1
+=28 D 300k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*27
+*28
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*27
+*28
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+=29 D 296k 1
+=30 D 292k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*29
+*30
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*29
+*30
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+=31 D 304k 1
+=32 D 284k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*31
+*32
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*31
+*32
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +2
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+=33 D 232k 1
+=34 D 356k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*33
+*34
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*33
+*34
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+=35 D 240k 1
+=36 D 348k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*35
+*36
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*35
+*36
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+=37 D 248k 1
+=38 D 340k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*37
+*38
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*37
+*38
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+=39 D 256k 1
+=40 D 332k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*39
+*40
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*39
+*40
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+=41 D 264k 1
+=42 D 324k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*41
+*42
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*41
+*42
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+=43 D 272k 1
+=44 D 316k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*43
+*44
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*9
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*9
+*43
+*44
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +2 +2-+2 +2-+4/2 +1 +1-+6/2 +1 +1-+6/2 +1 +1 +2 +3 +2-+2 +2-+4/2 +1 +1-+6/2 +1 +1-+6/2 +1 +1-+6/2 +1 +1-+6/2 +1 +1 +2
+*0
+=45 D 600k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 102 +4-+4/2 +4-+4/2 +4-+4/2 +4 +2 +3 +4-+4/2 +4-+4/2 +4-+4/2 +4-+4/2 +4-+4/2 +4 +2
+*0
+*45
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +1
+*0
+=46 D 4k 1
+=47 D 168k 1
+=48 D 416k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*46
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+=49 D 4k 2
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*46
+*33
+=50 D 352k 1
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*49
+=51 D 232k 2
+=52 D 352k 2
+*9
+$VALUES
+V 5
+U
+0
+1
+0
+U
+$END
+$WAVES +2
+*0
+=53 D 12k 2
+=54 D 43400 1
+=55 D 6948 1
+=56 D 95852 1
+=57 D 17300 1
+=58 D 47600 1
+=59 D 94828 1
+=60 D 81972 1
+$VALUES
+V 3
+U
+0
+1
+R 2 2 - 0
+V 2
+-
+U
+$END
+$WAVES +1
+*0
+*53
+*54
+*55
+*56
+*57
+*58
+=61 D 18300 1
+=62 D 76528 1
+*60
+$VALUES
+V 3
+U
+0
+1
+R 2 2 - 0
+V 3
+1
+-
+U
+$END
+$WAVES +1
+*0
+*53
+=63 D 50348 1
+*56
+*57
+*58
+*59
+*60
+$VALUES
+V 1
+U
+R 2 3 0 -
+V 1
+U
+$END
+$WAVES +1
+*0
+*53
+*54
+*55
+*56
+*57
+*58
+*59
+*60
+$VALUES
+V 3
+U
+0
+1
+R 2 2 - 0
+V 2
+-
+U
+$END
+$WAVES +1
+*0
+*53
+*63
+*56
+=64 D 9800 1
+=65 D 7500 1
+*58
+*59
+*60
+$VALUES
+V 4
+U
+0
+-
+1
+R 2 2 0 -
+V 1
+U
+$END
+$WAVES +1
+*0
+*53
+=66 D 12900 1
+=67 D 37448 1
+*56
+*64
+*65
+*58
+*61
+*62
+*60
+$VALUES
+V 1
+U
+R 3 3 0 1 -
+V 1
+U
+$END
+$WAVES +1
+*0
+*53
+*63
+*56
+*64
+*65
+*58
+*59
+*60
+$VALUES
+V 9
+U
+0
+-
+0
+1
+-
+0
+-
+U
+$END
+$WAVES +1
+*0
+*53
+*66
+*67
+*56
+*57
+*58
+*64
+=68 D 85028 1
+*60
+$VALUES
+V 3
+U
+0
+1
+R 2 2 - 0
+V 3
+1
+-
+U
+$END
+$WAVES 6
+*0
+*46
+R 1 4 =69 D 8k 1
+=70 D 24k 1
+R 1 44 *69
+=71 D 136k 1
+R 1 4 *69
+$VALUES
+R 2 2 idle ready
+V 52
+recvpacket_preamble_s50
+recvpacket_preamble_s57
+recvpacket_preamble_s54
+recvpacket_dest_s22
+recvpacket_dest_s11
+recvpacket_dest_s12
+recvpacket_dest_s13
+recvpacket_dest_s14
+recvpacket_dest_s15
+recvpacket_src_s42
+recvpacket_src_s44
+recvpacket_src_s43
+recvpacket_src_s47
+recvpacket_src_s46
+recvpacket_src_s45
+recvpacket_type_s26
+recvpacket_type_s49
+recvpacket_arp_payload_htype1
+recvpacket_arp_payload_htype2
+recvpacket_arp_payload_ptype1
+recvpacket_arp_payload_ptype2
+recvpacket_arp_payload_hlen
+recvpacket_arp_payload_plen
+recvpacket_arp_payload_op1
+recvpacket_arp_payload_op2a
+recvpacket_arp_payload_smac1
+recvpacket_arp_payload_smac2
+recvpacket_arp_payload_smac3
+recvpacket_arp_payload_smac4
+recvpacket_arp_payload_smac5
+recvpacket_arp_payload_smac6
+recvpacket_arp_payload_sip1
+recvpacket_arp_payload_sip2
+recvpacket_arp_payload_sip3
+recvpacket_arp_payload_sip4
+recvpacket_arp_payload_tmac1
+recvpacket_arp_payload_tmac2
+recvpacket_arp_payload_tmac3
+recvpacket_arp_payload_tmac4
+recvpacket_arp_payload_tmac5
+recvpacket_arp_payload_tmac6
+recvpacket_arp_payload_tip1
+recvpacket_arp_payload_tip2
+recvpacket_arp_payload_tip3
+recvpacket_arp_payload_tip4
+recvpacket_crc_arp_s52
+recvpacket_crc_arp_s53
+recvpacket_crc_arp_crc1
+recvpacket_crc_arp_crc2
+recvpacket_crc_arp_crc3
+recvpacket_crc_arp_crc4
+idle
+$END
+$ENDWAVE

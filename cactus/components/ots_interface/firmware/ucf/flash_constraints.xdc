@@ -1,0 +1,37 @@
+
+set_property PACKAGE_PIN R24 [get_ports FLASH_CLK]
+set_property IOSTANDARD LVCMOS33 [get_ports FLASH_CLK]
+
+set_property PACKAGE_PIN P24 [get_ports ram_io_0]
+set_property IOSTANDARD LVCMOS33 [get_ports ram_io_0]
+set_property PACKAGE_PIN R25 [get_ports ram_io_1]
+set_property IOSTANDARD LVCMOS33 [get_ports ram_io_1]
+set_property PACKAGE_PIN R20 [get_ports ram_io_2]
+set_property IOSTANDARD LVCMOS33 [get_ports ram_io_2]
+set_property PACKAGE_PIN R21 [get_ports ram_io_3]
+set_property IOSTANDARD LVCMOS33 [get_ports ram_io_3]
+
+set_property PACKAGE_PIN U19 [get_ports ram_chip_select]
+set_property IOSTANDARD LVCMOS33 [get_ports ram_chip_select]
+set_property PACKAGE_PIN T30 [get_ports spi_reset]
+set_property IOSTANDARD LVCMOS33 [get_ports spi_reset]
+
+create_clock -period 25.000 -name FLASH_CLK [get_ports FLASH_CLK]
+
+
+set_false_path -from [get_clocks PHY_RXCLK] -to [get_clocks FLASH_CLK]
+set_false_path -from [get_clocks FLASH_CLK] -to [get_clocks PHY_RXCLK]
+
+
+
+
+
+
+set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 4 [current_design]
+set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
+set_property BITSTREAM.CONFIG.CONFIGRATE 33 [current_design]
+set_property CONFIG_VOLTAGE 3.3 [current_design]
+set_property CFGBVS VCCO [current_design]
+set_property BITSTREAM.CONFIG.SPI_32BIT_ADDR YES [current_design]
+set_property BITSTREAM.CONFIG.SPI_FALL_EDGE YES [current_design]
+list_property_value BITSTREAM.CONFIG.EXTMASTERCCLK_EN div-1 [current_design]

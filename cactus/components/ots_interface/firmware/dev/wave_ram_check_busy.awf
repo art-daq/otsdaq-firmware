@@ -1,0 +1,305 @@
+$WAVE4
+$RESOLUTION 1000
+$ENDTIME 2000000
+I 1 "c#10#Sreg0_types54 send_command_s5 idle configure_wren0 configure_wren1 configure_wren2 configure_wren3 configure_wren4 configure_wren5 configure_wren6 configure_wren7 configure_delay configure_delay1 configure_delay2 configure_config0 configure_config1 configure_config2 configure_config3 configure_config4 configure_config5 configure_config6 configure_config7 configure_srr1 configure_srr2 configure_srr3 configure_srr4 configure_srr5 configure_srr6 configure_srr7 configure_srr0 configure_status0 configure_status1 configure_status2 configure_status3 configure_status4 configure_status5 configure_status6 configure_status7 first check_busy_instr0 check_busy_instr1 check_busy_inst2 check_busy_instr3 check_busy_instr4 check_busy_instr5 check_busy_instr6 check_busy_instr7 check_busy_srwd check_busy_p_err check_busy_e_err check_busy_bp2 check_busy_bp1 check_busy_bp0 check_busy_wel check_busy_wip "
+$S 8 1 "/ram_controller/Sreg0"
+I 2 "c#9#STD_LOGICc9 UX01ZWLH-"
+$IN 1 2 16 0 FLASH_CLK
+$OUT 3 2 16 3 S
+$IN 2 2 16 0 reset_in
+$OUT +8 2 21 0 ""
+$OUT 9 2 16 1 chip_selec
+$S +4 2 16 0 receiving_from_ram
+$INOUT 4 2 16 0 io_0
+$INOUT 5 2 19 0 "1"
+$INOUT 6 2 19 0 "2"
+$INOUT 7 2 19 0 "3"
+I 3 "a#28#STD_LOGIC_VECTOR(3 downto 0)1 ricd3 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +7 3 4 19 0 in
+$SC +1-+3
+$BUS S +1 3 4 19 0 out
+$SC +1-+3
+$S 11 2 16 0 chip_select_sig
+$S +1 2 16 5 rese
+P 0 1-23 CS "0"
+P 0 1 Stimulator "CLK:FRM:Override:25.000000;2;1;0;50;1:Clock:1:"
+P 0 2 5 Stimulator "CST:FRM:Override: :Cs:1:"
+$WAVES 8
+=0 T 0
+R 1 80 =1 D 25k 1
+$VALUES
+V 81
+send_command_s5
+first
+configure_wren0
+configure_wren1
+configure_wren2
+configure_wren3
+configure_wren4
+configure_wren5
+configure_wren6
+configure_wren7
+configure_delay
+configure_delay1
+configure_delay2
+configure_srr0
+configure_srr1
+configure_srr2
+configure_srr3
+configure_srr4
+configure_srr5
+configure_srr6
+configure_srr7
+configure_status0
+configure_status1
+configure_status2
+configure_status3
+configure_status4
+configure_status5
+configure_status6
+configure_status7
+configure_config0
+configure_config1
+configure_config2
+configure_config3
+configure_config4
+configure_config5
+configure_config6
+configure_config7
+idle
+check_busy_instr0
+check_busy_instr1
+check_busy_inst2
+check_busy_instr3
+check_busy_instr4
+check_busy_instr5
+check_busy_instr6
+check_busy_instr7
+check_busy_srwd
+check_busy_p_err
+check_busy_e_err
+check_busy_bp2
+check_busy_bp1
+check_busy_bp0
+check_busy_wel
+check_busy_wip
+check_busy_srwd
+check_busy_p_err
+check_busy_e_err
+check_busy_bp2
+check_busy_bp1
+check_busy_bp0
+check_busy_wel
+check_busy_wip
+send_command_s5
+idle
+check_busy_instr0
+check_busy_instr1
+check_busy_inst2
+check_busy_instr3
+check_busy_instr4
+check_busy_instr5
+check_busy_instr6
+check_busy_instr7
+check_busy_srwd
+check_busy_p_err
+check_busy_e_err
+check_busy_bp2
+check_busy_bp1
+check_busy_bp0
+check_busy_wel
+check_busy_wip
+send_command_s5
+$END
+$WAVES 1
+*0
+R 1 160 =2 T 12500
+$VALUES
+R 2 80 0 1
+V 1
+0
+$END
+$WAVES 2
+*0
+=3 T 9100
+=4 T 27k
+=5 T 963900
+$VALUES
+V 4
+0
+1
+0
+U
+$END
+$WAVES 3
+*0
+$VALUES
+V 1
+U
+$END
+$WAVES 4
+*0
+=6 D 25k 2
+=7 D 150k 2
+=8 D 50k 2
+=9 D 275k 2
+*6
+=10 D 200k 2
+*8
+=11 D 100k 2
+*6
+=12 D 175k 2
+R 1 2 *6
+=13 D 475k 2
+=14 D 125k 2
+R 1 2 *6
+$VALUES
+V 1
+U
+R 2 8 0 1
+$END
+$WAVES 5
+*0
+=15 T 25k
+=16 T 1156600
+=17 T 14600
+=18 T 128900
+*15
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES 6 7
+*0
+*6
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 9
+*0
+R 1 2 *6
+*10
+=19 D 75k 2
+=20 D 600k 2
+*6
+*20
+*8
+=21 D 400k 2
+=22 D 0 3
+$VALUES
+V 1
+U
+R 2 5 1 0
+$END
+$WAVES +1
+*0
+R 1 2 *6
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+R 1 2 *1
+=23 D 200k 1
+=24 D 75k 1
+=25 D 600k 1
+*1
+*25
+=26 D 50k 1
+=27 D 400k 1
+*22
+$VALUES
+V 1
+U
+R 2 5 1 0
+$END
+$WAVES +1
+*0
+R 1 2 *1
+$VALUES
+V 3
+U
+0
+1
+$END
+$WAVES +1
+*0
+*1
+=28 D 1125k 1
+*27
+=29 D 250k 1
+*23
+*22
+$VALUES
+V 1
+U
+R 2 3 0 1
+$END
+$WAVES +2 +1
+*0
+=30 D 1150k 2
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*30
+=31 D 31600 1
+=32 D 14600 1
+=33 D 128900 1
+*1
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*30
+$VALUES
+V 2
+U
+1
+$END
+$WAVES +2-+2
+*0
+*1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+*1
+=34 D 150k 1
+*26
+=35 D 275k 1
+*1
+*23
+*26
+=36 D 100k 1
+*1
+=37 D 175k 1
+R 1 2 *1
+=38 D 475k 1
+=39 D 125k 1
+R 1 2 *1
+$VALUES
+V 1
+U
+R 2 8 0 1
+$END
+$ENDWAVE

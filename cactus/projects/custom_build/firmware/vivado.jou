@@ -1,0 +1,20 @@
+#-----------------------------------------------------------
+# Vivado v2015.2 (64-bit)
+# SW Build 1266856 on Fri Jun 26 16:35:25 MDT 2015
+# IP Build 1264090 on Wed Jun 24 14:22:01 MDT 2015
+# Start of session at: Mon May 22 09:52:55 2017
+# Process ID: 19445
+# Log file: /home/elewis/summer2017/otsdaq-firmware/cactus/projects/custom_build/firmware/vivado.log
+# Journal file: /home/elewis/summer2017/otsdaq-firmware/cactus/projects/custom_build/firmware/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/elewis/_summer2016/vivado_proj/top/top.xpr
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+ipx::package_project -root_dir /home/elewis/_summer2016/vivado_proj/top/top.srcs -vendor user.org -library user -taxonomy /UserIP
+reset_run synth_1
+launch_runs synth_1 -jobs 6
+wait_on_run synth_1
+launch_runs impl_1 -jobs 6
+wait_on_run impl_1

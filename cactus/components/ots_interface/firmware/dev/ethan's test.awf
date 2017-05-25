@@ -1,0 +1,293 @@
+$WAVE4
+$RESOLUTION 1000
+$ENDTIME 1000001
+I 1 "c#9#STD_LOGICc9 UX01ZWLH-"
+$S 5 1 "/decipherer/clken"
+$IN 1 1 15 0 ""
+$IN 2 1 12 0 reset
+$IN 6 1 12 0 dv
+$IN 8 1 12 0 er
+I 2 "c#10#Sreg0_types100 idle recvpacket_ip_payload_udp_recvdataloop recvpacket_type_s29 recvpacket_ip_payload_ip_totlength2 recvpacket_ip_payload_udp_sourceport1 recvpacket_ip_payload_ip_versionandheader recvpacket_dest_s22 recvpacket_ip_payload_ip_totlength1 recvpacket_ip_payload_ip_tos recvpacket_dest_s11 recvpacket_ip_payload_udp_destport1 recvpacket_ip_payload_ip_ttl recvpacket_ip_payload_ip_fragmentoffset recvpacket_ip_payload_ip_flagsandfrag recvpacket_ip_payload_ip_id2 recvpacket_ip_payload_ip_id1 recvpacket_dest_s12 recvpacket_dest_s13 recvpacket_dest_s14 recvpacket_dest_s15 recvpacket_ip_payload_ip_sourceaddr1 recvpacket_ip_payload_ip_checksum2 recvpacket_ip_payload_ip_checksum1 recvpacket_ip_payload_ip_protocol recvpacket_ip_payload_ip_sourceaddr3 recvpacket_ip_payload_ip_sourceaddr2 recvpacket_ip_payload_ip_destaddr2 recvpacket_ip_payload_ip_destaddr1 recvpacket_ip_payload_ip_sourceaddr4 recvpacket_ip_payload_ip_destaddr4 recvpacket_ip_payload_ip_destaddr3 recvpacket_type_s26 recvpacket_ip_payload_udp_destport2 recvpacket_ip_payload_udp_length1 recvpacket_ip_payload_udp_checksum2 recvpacket_ip_payload_udp_checksum1 recvpacket_ip_payload_udp_length2 recvpacket_ip_payload_udp_sourceport2 recvpacket_src_s42 recvpacket_src_s44 recvpacket_src_s45 recvpacket_src_s46 recvpacket_src_s47 recvpacket_src_s43 recvpacket_type_s1 recvpacket_type_s48 recvpacket_type_s49 recvpacket_arp_payload_htype2 recvpacket_arp_payload_htype1 recvpacket_arp_payload_ptype1 recvpacket_arp_payload_ptype2 recvpacket_arp_payload_hlen recvpacket_arp_payload_plen recvpacket_arp_payload_op1 recvpacket_arp_payload_smac1 recvpacket_arp_payload_smac2 recvpacket_arp_payload_smac3 recvpacket_arp_payload_smac4 recvpacket_arp_payload_smac5 recvpacket_arp_payload_smac6 recvpacket_arp_payload_sip1 recvpacket_arp_payload_sip2 recvpacket_arp_payload_sip3 recvpacket_arp_payload_sip4 recvpacket_arp_payload_tmac1 recvpacket_arp_payload_tmac2 recvpacket_arp_payload_tmac3 recvpacket_arp_payload_tmac4 recvpacket_arp_payload_tmac5 recvpacket_arp_payload_tmac6 recvpacket_arp_payload_tip1 recvpacket_arp_payload_tip2 recvpacket_arp_payload_tip3 recvpacket_arp_payload_tip4 recvpacket_ip_payload_icmp_id1 recvpacket_arp_payload_op2 recvpacket_ip_payload_icmp_id2 recvpacket_preamble_s50 recvpacket_crc_arp_s52 recvpacket_ip_payload_icmp_seqnum1 recvpacket_crc_arp_s53 recvpacket_crc_arp_crc1 recvpacket_ip_payload_icmp_seqnum2 recvpacket_crc_arp_crc2 recvpacket_crc_arp_crc3 recvpacket_crc_arp_crc4 recvpacket_ip_payload_icmp_dataloop recvpacket_preamble_s54 recvpacket_crc_ip_s55 recvpacket_crc_ip_crc6 recvpacket_crc_ip_crc7 recvpacket_crc_ip_crc8 recvpacket_crc_ip_crc9 recvpacket_crc_ip_s56 recvpacket_preamble_s57 ready recvpacket_ip_payload_icmp_type recvpacket_ip_payload_icmp_code recvpacket_ip_payload_icmp_checksum1 recvpacket_ip_payload_icmp_checksum2 "
+$S 3 2 12 0 Sreg0
+$S 4 1 12 0 four_bit_mode
+$OUT 7 1 25 0 _out
+I 3 "a#28#STD_LOGIC_VECTOR(7 downto 0)1 ricd7 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS IN 9 3 8 12 0 data_in
+$SC +1-+7
+P 0 1-17 CS "0"
+P 0 1 Stimulator "CLK:FRM:Override:8.000000;2;1;0;50;1:Clock:1:"
+P 0 2 6 9 Stimulator "CST:FRM:Override: :Cs:1:"
+P 0 8 Stimulator "VAL:FRM:Override:0:<= 0:1:"
+P 0 5 Stimulator "VAL:FRM:Override:1:<= 1:0:"
+$WAVES 1
+=0 T 0
+R 1 250 =1 T 4k
+$VALUES
+R 2 125 0 1
+V 1
+0
+$END
+$WAVES 2
+*0
+=2 T 9500
+=3 T 9k
+$VALUES
+V 3
+0
+1
+0
+$END
+$WAVES 4
+*0
+=4 D 28k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 5
+*0
+=5 D 4k 1
+$VALUES
+V 2
+U
+1
+$END
+$WAVES 6
+*0
+=6 T 26600
+=7 T 21600
+=8 T 51800
+=9 T 462200
+=10 T 19100
+$VALUES
+V 2
+0
+1
+R 2 2 0 U
+$END
+$WAVES 7
+*0
+=11 D 12k 1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES 8
+*0
+$VALUES
+V 1
+0
+$END
+$WAVES +2
+*0
+=12 T 55400
+=13 T 6948
+=14 T 95852
+=15 T 17300
+=16 T 47600
+=17 T 94828
+=18 T 81972
+$VALUES
+V 2
+0
+1
+R 2 2 - 0
+V 2
+-
+U
+$END
+$WAVES +1
+*0
+*12
+*13
+*14
+*15
+*16
+=19 T 18300
+=20 T 76528
+*18
+$VALUES
+V 2
+0
+1
+R 2 2 - 0
+V 3
+1
+-
+U
+$END
+$WAVES +1
+*0
+=21 T 62348
+*14
+*15
+*16
+*17
+*18
+$VALUES
+R 2 3 0 -
+V 1
+U
+$END
+$WAVES +1
+*0
+*12
+*13
+*14
+*15
+*16
+*17
+*18
+$VALUES
+V 2
+0
+1
+R 2 2 - 0
+V 2
+-
+U
+$END
+$WAVES +1
+*0
+*21
+*14
+=22 T 9800
+=23 T 7500
+*16
+*17
+*18
+$VALUES
+V 3
+0
+-
+1
+R 2 2 0 -
+V 1
+U
+$END
+$WAVES +1
+*0
+=24 T 24900
+=25 T 37448
+*14
+*22
+*23
+*16
+*19
+*20
+*18
+$VALUES
+R 3 3 0 1 -
+V 1
+U
+$END
+$WAVES +1
+*0
+*21
+*14
+*22
+*23
+*16
+*22
+=26 T 8500
+*20
+*18
+$VALUES
+V 1
+0
+R 3 2 - 0 1
+V 3
+0
+-
+U
+$END
+$WAVES +1
+*0
+*24
+*25
+*14
+*15
+*16
+*19
+*20
+*18
+$VALUES
+V 2
+0
+1
+R 2 2 - 0
+V 3
+1
+-
+U
+$END
+$WAVES 3
+*0
+=27 D 20k 1
+R 1 2 =28 D 8k 1
+=29 D 24k 1
+R 1 44 *28
+=30 D 136k 1
+R 1 4 *28
+=31 D 420k 1
+$VALUES
+V 55
+idle
+ready
+recvpacket_preamble_s50
+recvpacket_preamble_s57
+recvpacket_preamble_s54
+recvpacket_dest_s22
+recvpacket_dest_s11
+recvpacket_dest_s12
+recvpacket_dest_s13
+recvpacket_dest_s14
+recvpacket_dest_s15
+recvpacket_src_s42
+recvpacket_src_s44
+recvpacket_src_s43
+recvpacket_src_s47
+recvpacket_src_s46
+recvpacket_src_s45
+recvpacket_type_s26
+recvpacket_type_s49
+recvpacket_arp_payload_htype1
+recvpacket_arp_payload_htype2
+recvpacket_arp_payload_ptype1
+recvpacket_arp_payload_ptype2
+recvpacket_arp_payload_hlen
+recvpacket_arp_payload_plen
+recvpacket_arp_payload_op1
+recvpacket_arp_payload_op2
+recvpacket_arp_payload_smac1
+recvpacket_arp_payload_smac2
+recvpacket_arp_payload_smac3
+recvpacket_arp_payload_smac4
+recvpacket_arp_payload_smac5
+recvpacket_arp_payload_smac6
+recvpacket_arp_payload_sip1
+recvpacket_arp_payload_sip2
+recvpacket_arp_payload_sip3
+recvpacket_arp_payload_sip4
+recvpacket_arp_payload_tmac1
+recvpacket_arp_payload_tmac2
+recvpacket_arp_payload_tmac3
+recvpacket_arp_payload_tmac4
+recvpacket_arp_payload_tmac5
+recvpacket_arp_payload_tmac6
+recvpacket_arp_payload_tip1
+recvpacket_arp_payload_tip2
+recvpacket_arp_payload_tip3
+recvpacket_arp_payload_tip4
+recvpacket_crc_arp_s52
+recvpacket_crc_arp_s53
+recvpacket_crc_arp_crc1
+recvpacket_crc_arp_crc2
+recvpacket_crc_arp_crc3
+recvpacket_crc_arp_crc4
+idle
+recvpacket_crc_arp_crc3
+$END
+$ENDWAVE
