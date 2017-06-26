@@ -301,7 +301,7 @@ begin
                       ots_wren => ots_wren,                                                                        --FLASH
                       ots_rden => ots_rden,                                                                        --FLASH
                       ots_block_sel_in => ots_addr(63 downto 32),                                                              --FLASH
-                      ots_block_addr_in => ots_addr(63 downto 32),                                                            --FLASH
+                      ots_block_addr_in => ots_addr(31 downto 0),                                                            --FLASH
                       ots_din => ots_din,                                                                          --FLASH
                       ots_dout=> ram_ots_dout,                                                                --FLASH
                       SCLK => SCLK,                                                                                --FLASH

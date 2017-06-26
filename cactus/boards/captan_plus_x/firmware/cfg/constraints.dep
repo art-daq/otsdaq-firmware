@@ -1,2 +1,11 @@
 ?toolset=="ISE"? src --cd ../ucf pins.ucf
-?toolset=="Vivado"? src --cd ../ucf pins.tcl 
+
+######################################################
+## Commented this out because pins.tcl depends on   ##
+## project; however, the only project with its own  ##
+## pins.tcl is "custom build"                       ##
+##                                                  ##
+?toolset=="Vivado"? src --cd ../ucf pins.tcl     ##
+######################################################
+
+#un-un-commented and will have to rely on choosing the right file by hand?

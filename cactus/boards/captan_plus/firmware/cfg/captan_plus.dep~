@@ -1,13 +1,13 @@
-@device_family = "kintex7"
-@device_name = "xc7k325t"
-@device_package = "ffg900"
+@device_family = "artix7"
+@device_name = "xc7a200t"
+@device_package = "ffg1156"
 @device_speed = "-2"
-@boardname = "captan_plus_x"
+@boardname = "captan_plus"
 
 ?toolset=="ISE"? setup settings_v7.ise.tcl
 ?toolset=="Vivado"? setup settings_v7.vivado.tcl
 
-#include constraints.dep
+include constraints.dep
 
 #need to setup coregen project for ISE to include xco files
 ?toolset=="ISE"? setup -z coregen.cgp

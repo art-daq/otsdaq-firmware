@@ -195,7 +195,7 @@ if (fifo == "XILINX_7_INFERRED"):
 	              "/fifo.vhd " + \
 	               dest + "/")
 	os.system("sed -i s/.*\?toolset/\#\?toolset/g " + dest + \
-			   "/../cfg/ots_ethernet.dep")
+			   "/../cfg/ots_interface.dep")
 
 print "Installed Chosen FIFO Solution: " + fifo
 print
@@ -214,7 +214,7 @@ if (args.phy):     #if option used, then use args.phy
 #	              "/fifo.vhd " + \
 #	               dest + "/ethernet_controller/")
 #	os.system("sed -i s/.*\?toolset/\#\?toolset/g " + dest + \
-#			   "/../cfg/ots_ethernet.dep")
+#			   "/../cfg/ots_interface.dep")
 
 if (phy == "XILINX_7SERIES_MII"):
 	phy = "MII_100_1000" #for xmii handler choice
