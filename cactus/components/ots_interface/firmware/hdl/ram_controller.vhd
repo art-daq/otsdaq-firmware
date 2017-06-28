@@ -102,6 +102,14 @@ type Sreg0_type is (
 
 signal Sreg0: Sreg0_type;
 
+
+
+attribute mark_debug : string;
+attribute mark_debug of chip_select_sig : signal is "true"; 
+attribute mark_debug of io_out : signal is "true"; 
+attribute mark_debug of io_in : signal is "true"; 
+attribute mark_debug of receiving_from_ram : signal is "true"; 
+attribute mark_debug of inner_data_countdown : signal is "true"; 
 begin
 
 -- concurrent signals assignments
@@ -190,7 +198,7 @@ begin
 					Sreg0 <= configure_WREN0;
 					reset_sig <= '1';
 					chip_select_sig <= '0';
-					io_out <= "0011";
+					io_out <= "1100";
 					--WP# and HOLD# need to be high (they are active low)
 				when send_command_auto_increment =>
 					if unsigned(data_countdown(31 downto 8)) = 0 then

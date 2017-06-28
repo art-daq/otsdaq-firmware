@@ -32,40 +32,40 @@ entity ots_interface is
           rx_data              	: out   std_logic_vector (63 downto 0);   	
           rx_wren              	: out   std_logic;												   
           tx_data              	: in    std_logic_vector (63 downto 0); 	 					 
-		  tx_rden			   	: out   std_logic;						  	--SCRIPT COMMENT OUT 
-		  ready		   			: in    std_logic; 						  	--SCRIPT COMMENT OUT 
+          tx_rden			   	: out   std_logic;						  	--SCRIPT COMMENT OUT
+          ready		   			: in    std_logic; 						  	--SCRIPT COMMENT OUT 
 		  
-		  -- burst signals
-   		  b_data               	: in    std_logic_vector (63 downto 0); 
+          -- burst signals
+          b_data               	: in    std_logic_vector (63 downto 0); 
           b_data_we            	: in    std_logic; 												                            
           b_enable             	: out   std_logic; 				  		  															 				   
-		  b_force_packet	   	: in    std_logic;						  	--SCRIPT COMMENT OUT  	
+          internal_we	        : in 	std_logic;							--SCRIPT COMMENT  	
 		  
 		  
 		  -- internal address space signals							   
           internal_block_sel  	: in    std_logic_vector (31 downto 0); 	--SCRIPT COMMENT OUT   
-          internal_addr  		: in    std_logic_vector (31 downto 0); 	--SCRIPT COMMENT OUT   
-		  internal_we			: in 	std_logic;							--SCRIPT COMMENT OUT					   
-          internal_din			: in    std_logic_vector (63 downto 0);		--SCRIPT COMMENT OUT					   
-          internal_dout			: out   std_logic_vector (63 downto 0); 	--SCRIPT COMMENT OUT  
-		   
-          user_addr  			: in    std_logic_vector (7 downto 0); 		--SCRIPT COMMENT OUT  
+          internal_addr  	: in    std_logic_vector (31 downto 0); 	--SCRIPT COMMENT OUT   
+          internal_we		: in 	std_logic;							--SCRIPT COMMENT OUT					   
+          internal_din		: in    std_logic_vector (63 downto 0);		--SCRIPT COMMENT OUT					   
+          internal_dout		: out   std_logic_vector (63 downto 0); 	--SCRIPT COMMENT OUT  
+          
+          user_addr  		: in    std_logic_vector (7 downto 0); 		--SCRIPT COMMENT OUT  
+          
 		  
-		  
-		  -- PHY interface signals
-		  MASTER_CLK           	: in    std_logic; 			
-		  
+          -- PHY interface signals
+          MASTER_CLK           	: in    std_logic; 			
+          
           PHY_RXD             	: in    std_logic_vector (7 downto 0); 
           PHY_RX_DV           	: in    std_logic; 
           PHY_RX_ER           	: in    std_logic; 				 	   
-		  
+          
           TX_CLK              	: out   std_logic; 
           PHY_TXD              	: out   std_logic_vector (7 downto 0); 
           PHY_TX_EN            	: out   std_logic; 
           PHY_TX_ER            	: out   std_logic;
-		  
-		  --below are IO pinouts from OTS blocks
-		  FLASH_CLK			: in    std_logic;		   --FLASH
+          
+          --below are IO pinouts from OTS blocks
+          FLASH_CLK			: in    std_logic;		   --FLASH
           SCLK            	: out   std_logic;    	   --FLASH
           spi_reset        	: out	std_logic;		   --FLASH
           ram_chip_select   	: out	std_logic;    	   --FLASH
@@ -73,7 +73,7 @@ entity ots_interface is
           ram_io_1			: inout std_logic;    	   --FLASH
           ram_io_2 			: inout	std_logic;    	   --FLASH
           ram_io_3 			: inout std_logic		   --FLASH
-		  
+          
 		  
 		  );
 end ots_interface;
@@ -154,26 +154,30 @@ architecture BEHAVIORAL of ots_interface is
 	
 	--start signals for OTS blocks
 	signal ram_ots_dout 			: std_logic_vector(63 downto 0);
-    --end signals for OTS blocks
+	signal ram_eth_ready            : std_logic;
+        --end signals for OTS blocks
 	
-									 
-	-------- start simple declaration section -----------  	  
+        attribute mark_debug : string;
+        attribute mark_debug of ots_wren : signal is "true";
+        attribute mark_debug of ots_rden : signal is "true";
+        
+        ------- start simple declaration section -----------  	  
 	-- comments denoted as -- simple -- will be removed in this case by install script
 	-- and lines with --SCRIPT COMMENT OUT  will be commented out	
-    -- simple -- signal internal_block_sel  		: std_logic_vector (31 downto 0) := (others => '0'); 	  
-    -- simple -- signal internal_addr  				: std_logic_vector (31 downto 0):= (others => '0');  	  
+        -- simple -- signal internal_block_sel  		: std_logic_vector (31 downto 0) := (others => '0'); 	  
+        -- simple -- signal internal_addr  				: std_logic_vector (31 downto 0):= (others => '0');  	  
 	-- simple -- signal internal_we					: std_logic := '0';							
-    -- simple -- signal internal_din				: std_logic_vector (63 downto 0):= (others => '0'); 	  
-    -- simple -- signal internal_dout				: std_logic_vector (63 downto 0):= (others => '0'); 	
-		  
-    -- simple -- signal user_addr					: std_logic_vector (7 downto 0):= (others => '0'); 
+        -- simple -- signal internal_din				: std_logic_vector (63 downto 0):= (others => '0'); 	  
+        -- simple -- signal internal_dout				: std_logic_vector (63 downto 0):= (others => '0'); 	
+        
+        -- simple -- signal user_addr					: std_logic_vector (7 downto 0):= (others => '0'); 
 	-------- end simple declaration section -----------	
-  	 											  								     
+        
 begin										 
 	
    ec_wrapper : entity work.ethernet_controller_wrapper
       port map (
-	  			GMII_RXD(7 downto 0)=>PHY_RXD(7 downto 0),
+	  	GMII_RXD(7 downto 0)=>PHY_RXD(7 downto 0),
                 GMII_RX_CLK=>MASTER_CLK,	
                 GMII_RX_DV=>PHY_RX_DV,
                 GMII_RX_ER=>PHY_RX_ER,		
@@ -181,39 +185,39 @@ begin
                 GMII_TX_EN=>PHY_TX_EN,
                 GMII_TX_ER=>PHY_TX_ER,
                 GTX_CLK=>TX_CLK,
-				
+                
                 reset=>reset,	
-										   	   
+                
                 self_addr(31 downto 8)=>self_addr,
-				self_addr(7 downto 0)=>user_addr_sig,
+                self_addr(7 downto 0)=>user_addr_sig,
                 self_mac(47 downto 8)=>self_mac,	  				  
                 self_mac(7 downto 0)=>user_addr_sig,	  
                 self_port=>self_port,	  
-				arp_announce=>arp_announce,
-				arp_busy=>arp_busy, 
-				
-				resolve_mac=>resolve_mac,
-				addr_to_resolve=>addr_to_resolve,
-				mac_resolved=>mac_resolved, 
-				resolved_addr=>resolved_addr,
-				resolved_mac=>resolved_mac,
-				
-				
+                arp_announce=>arp_announce,
+                arp_busy=>arp_busy, 
+                
+                resolve_mac=>resolve_mac,
+                addr_to_resolve=>addr_to_resolve,
+                mac_resolved=>mac_resolved, 
+                resolved_addr=>resolved_addr,
+                resolved_mac=>resolved_mac,
+                
+                
                 user_tx_dest_addr(31 downto 0)=>user_tx_dest_addr(31 downto 0),
                 user_tx_dest_mac(47 downto 0)=>user_tx_dest_mac(47 downto 0),
                 user_tx_dest_port(15 downto 0)=>user_tx_dest_port(15 downto 0),					
-															  
+                
                 user_rx_src_capture_for_ctrl=>user_rx_src_capture_for_ctrl,	 
                 user_rx_src_capture_for_data=>user_rx_src_capture_for_data,
                 user_rx_src_addr(31 downto 0)=>user_rx_src_addr(31 downto 0),  
                 user_rx_src_mac(47 downto 0)=>user_rx_src_mac(47 downto 0),
                 user_rx_src_port(15 downto 0)=>user_rx_src_port(15 downto 0),	
-																				 
+                
                 user_tx_trigger=>user_tx_trigger,
                 user_tx_data_in(7 downto 0)=>user_tx_data_in(7 downto 0),
                 user_tx_size_in(10 downto 0)=>user_tx_size_in(10 downto 0),
                 crc_err=>user_crc_err,	
-				crc_chk_out=>crc_chk_out,
+                crc_chk_out=>crc_chk_out,
                 four_bit_mode_out=>four_bit_mode,		 
                 udp_fwd_port=>open,	 -- could use this to reject packets that are not 2001, e.g. (or to choose between data manager and something else)
                 user_busy=>user_busy,
@@ -292,25 +296,26 @@ begin
 	   
 	-------- start instantiate ots blocks section ----------
 	
-	--start SPI FLASH RAM block                                                                                    --FLASH
-                                                                                                                   --FLASH
-     ram_interface : entity work.ram_interface                                                                     --FLASH
-          port map (  MASTER_CLK => MASTER_CLK,                                                                    --FLASH
-                      FLASH_CLK => FLASH_CLK,                                                                      --FLASH
-                      reset=>reset,                                                                            --FLASH
-                      ots_wren => ots_wren,                                                                        --FLASH
-                      ots_rden => ots_rden,                                                                        --FLASH
-                      ots_block_sel_in => ots_addr(63 downto 32),                                                              --FLASH
-                      ots_block_addr_in => ots_addr(31 downto 0),                                                            --FLASH
-                      ots_din => ots_din,                                                                          --FLASH
-                      ots_dout=> ram_ots_dout,                                                                --FLASH
+	--start SPI FLASH RAM block                                                                              --FLASH
+                                                                                                                 --FLASH
+     ram_interface : entity work.ram_interface                                                                   --FLASH
+          port map (  MASTER_CLK => MASTER_CLK,                                                                  --FLASH
+                      FLASH_CLK => FLASH_CLK,                                                                    --FLASH
+                      reset=>reset,                                                                              --FLASH
+                      ots_wren => ots_wren,                                                                      --FLASH
+                      ots_rden => ots_rden,                                                                      --FLASH
+                      ots_block_sel_in => ots_addr(63 downto 32),                                                --FLASH
+                      ots_block_addr_in => ots_addr(31 downto 0),                                                --FLASH
+                      ots_din => ots_din,                                                                        --FLASH
+                      ots_dout=> ram_ots_dout,                                                                   --FLASH
                       SCLK => SCLK,                                                                                --FLASH
                       spi_reset => spi_reset,                                                                      --FLASH
                       chip_select => ram_chip_select,                                                              --FLASH
                       io_0 => ram_io_0,                                                                            --FLASH
                       io_1 => ram_io_1,                                                                            --FLASH
                       io_2 => ram_io_2,                                                                            --FLASH
-                      io_3 => ram_io_3);                                                                           --FLASH
+                      io_3 => ram_io_3,                                                                            --FLASH
+                      eth_ready => ram_eth_ready);                                                                 --FLASH
                                                                                                                    --FLASH
     --end SPI FLASH RAM block                                                                                      --FLASH
 	   
@@ -332,17 +337,21 @@ begin
 	
 	
 	
-	-- NOTE: User code is treated as "block 0"																																																																																																																																
+	-- NOTE: User code is treated as "block 0"
+
 	ots_user_mask <= '1' when (ots_block_sel = 0) else '0';  		
 	rx_wren <= ots_user_mask and ots_wren;		   
 	user_tx_rden <= ots_user_mask and ots_rden;	
 	
-	--Bus to handle output from multipke ots blocks:
+	--Bus to handle output from multiple ots blocks:
 	ots_dout <= tx_data when (ots_user_mask = '1') else 
 				internal_eth_dout when (ots_block_sel = 1) else
-				ram_ots_dout when (ots_block_sel = 2) else
+				ram_ots_dout when (ots_block_sel = 2) else  --FLASH
 				(others => '0');
-	ots_ready <= (not ots_user_mask) or user_ready; -- ots address space is always ready	  
+	ots_ready <=   user_ready when ots_user_mask = '1' else
+	               '1' when ots_block_sel = 1 else         -- ots address space is always ready	
+	               ram_eth_ready when ots_block_sel = 2 else  --FLASH
+	               '1';   
 	
 	reset_mgr_in <= internal_reset or reset_in;		 
 	
@@ -508,7 +517,7 @@ begin
 			arp_announce <= '0';
 			resolve_mac <= '0';
 			--arp_waiting stays high for the one(?) clock tht it takes for arp_busy to go high 
-			--(would use arp_announce and resolve_mac but b/cthey are outputs, easier to use only one additional signal)
+			--(would use arp_announce and resolve_mac but b/c they are outputs, easier to use only one additional signal)
 			arp_waiting <= '0'; 
 			if ((arp_busy = '0') and (arp_waiting = '0')) then 
 				if (arp_announce_sig ='1') then
@@ -541,13 +550,12 @@ begin
 	end process;
 		
 				
-		  
-	-------- end internal address space section -----------
+       -------- end internal address space section -----------
 	   
 	   																  
 	user_ready <= ready;		  			--SCRIPT COMMENT OUT 	
 	tx_rden <= user_tx_rden;	  			--SCRIPT COMMENT OUT
-	user_b_force_packet <= b_force_packet;	--SCRIPT COMMENT OUT
+	user_b_force_packet <= b_force_packet;	                --SCRIPT COMMENT OUT
 	
 	-------- start simple section -----------  
 	-- comments denoted as -- simple -- will be removed in this case by install script
@@ -559,4 +567,6 @@ begin
 	-------- end simple section -----------
 	   
 end BEHAVIORAL;
+		  
+
 

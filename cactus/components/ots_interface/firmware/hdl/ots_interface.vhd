@@ -156,6 +156,9 @@ architecture BEHAVIORAL of ots_interface is
 	signal ram_ots_dout 			: std_logic_vector(63 downto 0);
     --end signals for OTS blocks
 	
+attribute mark_debug : string;
+    attribute mark_debug of ots_wren : signal is "true";
+    attribute mark_debug of ots_rden : signal is "true";
 									 
 	-------- start simple declaration section -----------  	  
 	-- comments denoted as  will be removed in this case by install script
@@ -301,7 +304,7 @@ begin
                       ots_wren => ots_wren,                                                                        --FLASH
                       ots_rden => ots_rden,                                                                        --FLASH
                       ots_block_sel_in => ots_addr(63 downto 32),                                                              --FLASH
-                      ots_block_addr_in => ots_addr(63 downto 32),                                                            --FLASH
+                      ots_block_addr_in => ots_addr(31 downto 0),                                                            --FLASH
                       ots_din => ots_din,                                                                          --FLASH
                       ots_dout=> ram_ots_dout,                                                                --FLASH
                       SCLK => SCLK,                                                                                --FLASH

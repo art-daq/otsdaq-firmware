@@ -5,7 +5,7 @@
 
 --Note:
 --Lines with "--iMPLEMENTATION" but with inverse case will be uncommented 
---and lines with "--SCRIPT COMMENT OUT" will be commented out by the setup script 
+--erased for implementation" will be commented out by the setup script 
 --(the lines need to have the dashes adjacent to the text without a space)
 	 
 	 		  
@@ -97,8 +97,10 @@ architecture ARCH of ram_interface is
 	signal force_next_page_trig : std_logic := '0';
 	signal next_page_trig_en, last_next_page_trig : std_logic := '0'; 	
 	signal fifo_in_write_counter, fifo_in_read_counter : std_logic_vector(31 downto 0) := (others => '0');
---Implementation  signal write_fifo_prog_full : std_logic;
+  signal write_fifo_prog_full : std_logic;
 	signal write_fifo_prog_empty : STD_LOGIC;
+signal write_fifo_full : std_logic;
+
 
 	signal ots_dout_sig : std_logic_vector(63 downto 0);
 --	signal internal_dout_sig : std_logic_vector(63 downto 0);
@@ -106,8 +108,9 @@ architecture ARCH of ram_interface is
 	signal ots_block_sel : unsigned (31 downto 0);
 	signal ots_block_addr : unsigned (31 downto 0);
 	
-
 	
+	signal temp_addr_out : std_logic_vector(23 downto 0);
+
 --Implementation	component RAM_WRITE_FIFO 							
 --Implementation    port(   rst : IN STD_LOGIC;							
 --Implementation            wr_clk : IN STD_LOGIC;						
@@ -134,14 +137,12 @@ architecture ARCH of ram_interface is
 --Implementation            empty : OUT STD_LOGIC);						
 --Implementation	end component;										
 	
-	
-
 	attribute mark_debug : string;
     attribute mark_debug of fifo_in_we  : signal is "true";
 	attribute mark_debug of fifo_in_re  : signal is "true";
-	attribute mark_debug of fifo_out_we : signal is "true";
+	--attribute mark_debug of fifo_out_we : signal is "true";
 	--attribute mark_debug of fifo_out_re : signal is "true";
-	--attribute mark_debug of command_info_complete  : signal is "true";
+	attribute mark_debug of command_info_complete  : signal is "true";
 	attribute mark_debug of ready_for_next_command : signal is "true";
 	--attribute mark_debug of intermediate_command_info_complete  : signal is "true";
 	--attribute mark_debug of intermediate_ready_for_next_command : signal is "true";
@@ -156,11 +157,15 @@ architecture ARCH of ram_interface is
 	attribute mark_debug of next_page_trig_en : signal is "true";
 	attribute mark_debug of force_next_page_trig : signal is "true";						
 		attribute mark_debug of write_fifo_empty : signal is "true";								
---	attribute mark_debug of write_fifo_prog_full : signal is "true"; --Implementation					
+	attribute mark_debug of write_fifo_prog_full : signal is "true"; 	
+	attribute mark_debug of write_fifo_full : signal is "true"; 				
  	attribute mark_debug of write_fifo_prog_empty : signal is "true"; 						
 	attribute mark_debug of reset : signal is "true";  
 	attribute mark_debug of fifo_in_write_counter : signal is "true";
 	attribute mark_debug of fifo_in_read_counter : signal is "true";
+   -- attribute mark_debug of ots_block_sel : signal is "true";   
+    --attribute mark_debug of ots_block_addr : signal is "true";
+
 
 	begin 
 	
@@ -173,6 +178,7 @@ architecture ARCH of ram_interface is
 	
 	CONTROLLER : entity work.ram_controller
 		port map(
+		temp_addr_out => temp_addr_out,
 		FLASH_CLK => FLASH_CLK,
 		reset_in => reset,
 		--Signals to controller
@@ -207,7 +213,7 @@ architecture ARCH of ram_interface is
 --Implementation                wr_en => fifo_in_we,					 
 --Implementation                rd_en => fifo_in_re,					 
 --Implementation                dout => ram_write_data_out,				 
---Implementation                full => open,							 
+--Implementation                full => write_fifo_full,							 
 --Implementation                empty => write_fifo_empty,			   
 --Implementation				  prog_full => write_fifo_prog_full,	 
 --Implementation				  prog_empty => write_fifo_prog_empty);
@@ -258,14 +264,15 @@ architecture ARCH of ram_interface is
 		
 		
 		
+		
 	--mux to determine if dout is latched data or fifo data
 	fifo_out_re_prelatch <= '1' when ots_block_sel = 2 and ots_block_addr = 5 and ots_rden = '1'  else '0';
-	ots_dout_sig <= ram_read_data_out when fifo_out_re = '1' else info_out;	
+	ots_dout <= ram_read_data_out when fifo_out_re = '1' else info_out;	
 --	internal_dout_sig <= ram_read_data_out when fifo_out_re = '1' else internal_info_out;
 		
 	
-	eth_ready <= '0' when ots_block_sel = 2 and ots_block_addr = 9 and ots_rden = '1' and ready_for_next_command = '0' and mode(0) = '1'
-						and next_page_trig = '0' and force_next_page_trig = '0'
+	eth_ready <= '0' when ots_block_sel = 2 and ots_block_addr = 9 and ots_rden = '1' and ready_for_next_command = '0' and mode(0) = '1' --checking if ready during write command
+						and next_page_trig = '0' and force_next_page_trig = '0'                           --and not ready
 						else '1'; 
 	
 	ots_block_sel <= unsigned(ots_block_sel_in);
@@ -334,6 +341,7 @@ architecture ARCH of ram_interface is
                     info_out(7 downto 0) <= mode; 
 				elsif ( ots_block_addr = 9 ) then --asking when to write ( or read?) next page
 					info_out(0) <= '1';	 
+					info_out(31 downto 8) <= temp_addr_out;
 					force_next_page_trig <= '0';
 					if (force_next_page_trig = '0') then
 						next_page_trig_en <= '1';

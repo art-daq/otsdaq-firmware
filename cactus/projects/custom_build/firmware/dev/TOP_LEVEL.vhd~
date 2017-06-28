@@ -370,7 +370,8 @@ begin
      GMII_RX_ER_0_sig <= '0';
      
      IBUF_PHY_RXCLK : BUFG      port map (I=>PHY_RXCLK,  O=>MASTER_CLK);
-        
+     IBUF_FLASH_CLK : IBUFG      port map (I=>FLASH_CLK,  O=>FLASH_CLK_sig);
+  
     -----------------------
     ----------------------- OBUF 's 
     	 
@@ -393,7 +394,6 @@ begin
                                                                                         
     OBUF_SPI_RESET : OBUF       port map (I=>spi_reset_sig, O=>spi_reset);              --FLASH
     OBUF_RAM_CS : OBUF       port map (I=>ram_chip_select_sig, O=>ram_chip_select);     --FLASH
-    OBUF_SCLK : OBUF       port map (I=>SCLK_sig, O=>SCLK);                             --FLASH
 
 
 end BEHAVIORAL;

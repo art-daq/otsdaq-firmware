@@ -102,22 +102,21 @@ architecture BEHAVIORAL of top is
     signal ram_chip_select_sig : std_logic;    --FLASH
     signal SCLK_sig : std_logic;               --FLASH
      
-   
+      
     attribute mark_debug : string;
     attribute mark_debug of MASTER_CLK : signal is "true";
-    attribute mark_debug of secondary_clk : signal is "true";
-    attribute mark_debug of PHY_TXD_sig : signal is "true";
-    attribute mark_debug of PHY_TXEN_sig : signal is "true";
-    attribute mark_debug of rx_wren : signal is "true";
-    attribute mark_debug of CLK15NS : signal is "true";
+   -- attribute mark_debug of secondary_clk : signal is "true";
+   -- attribute mark_debug of PHY_TXD_sig : signal is "true";
+   -- attribute mark_debug of PHY_TXEN_sig : signal is "true";
+   -- attribute mark_debug of rx_wren : signal is "true";
+   -- attribute mark_debug of CLK15NS : signal is "true";
     
 
-    attribute mark_debug of rx_addr : signal is "true";
-    attribute mark_debug of tx_data : signal is "true";
-    attribute mark_debug of rx_data : signal is "true";
-    attribute mark_debug of b_data : signal is "true";
-    attribute mark_debug of b_data_we : signal is "true";
-
+   -- attribute mark_debug of rx_addr : signal is "true";
+   -- attribute mark_debug of tx_data : signal is "true";
+   -- attribute mark_debug of rx_data : signal is "true";
+   -- attribute mark_debug of b_data : signal is "true";
+   -- attribute mark_debug of b_data_we : signal is "true";
     attribute mark_debug of FLASH_CLK_sig : signal is "true";  --FLASH
     
 	--    attribute mark_debug of GMII_RXD_0_sig : signal is "true";
@@ -370,7 +369,8 @@ begin
      GMII_RX_ER_0_sig <= '0';
      
      IBUF_PHY_RXCLK : BUFG      port map (I=>PHY_RXCLK,  O=>MASTER_CLK);
-        
+     IBUF_FLASH_CLK : IBUFG      port map (I=>FLASH_CLK,  O=>FLASH_CLK_sig);
+  
     -----------------------
     ----------------------- OBUF 's 
     	 

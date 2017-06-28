@@ -134,8 +134,6 @@ architecture ARCH of ram_interface is
             empty : OUT STD_LOGIC);						
 	end component;										
 	
-	
-
 	attribute mark_debug : string;
     attribute mark_debug of fifo_in_we  : signal is "true";
 	attribute mark_debug of fifo_in_re  : signal is "true";
@@ -161,6 +159,9 @@ architecture ARCH of ram_interface is
 	attribute mark_debug of reset : signal is "true";  
 	attribute mark_debug of fifo_in_write_counter : signal is "true";
 	attribute mark_debug of fifo_in_read_counter : signal is "true";
+   -- attribute mark_debug of ots_block_sel : signal is "true";   
+    --attribute mark_debug of ots_block_addr : signal is "true";
+
 
 	begin 
 	
@@ -260,7 +261,7 @@ architecture ARCH of ram_interface is
 		
 	--mux to determine if dout is latched data or fifo data
 	fifo_out_re_prelatch <= '1' when ots_block_sel = 2 and ots_block_addr = 5 and ots_rden = '1'  else '0';
-	ots_dout_sig <= ram_read_data_out when fifo_out_re = '1' else info_out;	
+	ots_dout <= ram_read_data_out when fifo_out_re = '1' else info_out;	
 --	internal_dout_sig <= ram_read_data_out when fifo_out_re = '1' else internal_info_out;
 		
 	
