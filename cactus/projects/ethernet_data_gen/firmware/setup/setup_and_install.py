@@ -87,7 +87,8 @@ print  'Modifying files...'
 print
 print  'Board selected as: ' + args.board
     
-os.system("sed -i s/boards.\*/boards\\\/"+args.board+"/g " + scriptDir + "/../cfg/top.dep")
+os.system("sed -i s/include.\*\-c.\*boards.\*/include\ \-c\ boards\\\/"+args.board+"/g " + scriptDir + "/../cfg/top.dep")
+os.system("sed -i s/boards\\\/\[\^\\\/]\*\\\//boards\\\/"+args.board+"\\\//g " + scriptDir + "/../cfg/top.dep")
 
 print  'PHY interface pin count selected as: ' + str(args.phy) #1, 4, 8
 if (args.phy < 1):
