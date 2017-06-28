@@ -39,7 +39,8 @@ parser.add_argument('-i','--ip',type=int,default=2,
 		choices=range(1,254),
                     help='IP address low-byte default for 192.168.133.##', metavar='')
 
-parser.add_argument("--flash", help = "Include SPI FLASH implementation", action = "store_true")
+parser.add_argument('--flash',nargs='?',const='YES',help='Include SPI FLASH implementation')
+#, action = "store_true")
 
 
 					

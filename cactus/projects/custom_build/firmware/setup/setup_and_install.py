@@ -30,7 +30,7 @@ parser.add_argument('-r','--reset',nargs='?',const='YES',
 		help='Flag to add reset output pin to top level. If not present, the reset pin is commented.' + \
 		' (e.g. It may be necessary to hold the PHY reset high)')
 
-parser.add_argument("--flash", help = "Include SPI FLASH implementation", action = "store_true")
+parser.add_argument('--flash',nargs='?',const='YES',help='Include SPI FLASH implementation')
 
 							
 args = parser.parse_args()

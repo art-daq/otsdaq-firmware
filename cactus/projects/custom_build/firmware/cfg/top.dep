@@ -1,8 +1,14 @@
 src TOP_LEVEL.vhd
+<<<<<<< Updated upstream
 ?toolset=="ISE"? src ../ucf/timing_constraints.ucf
 ?toolset=="Vivado"? src ../ucf/timing_constraints.tcl
 ?toolset=="Vivado"? src ../ucf/flash_timing_constraints.tcl
 
+=======
+?toolset=="ISE"? src ../ucf/clock_constraints.ucf
+?toolset=="Vivado"? src ../ucf/clock_constraints.tcl
+?toolset=="Vivado"? src ../ucf/overwritepins.tcl
+>>>>>>> Stashed changes
 include algo.dep
 include -c boards/captan_plus
 
