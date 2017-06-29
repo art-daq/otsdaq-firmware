@@ -26,6 +26,7 @@ library unisim; -- for xilinx IOBUF
 use unisim.vcomponents.all;
 entity ram_controller is 
 	port (
+		 temp_addr_out : out STD_LOGIC_VECTOR(23 downto 0);
 		data_in: in STD_LOGIC_VECTOR (3 downto 0);
 		FLASH_CLK: in STD_LOGIC;
 		mode: in STD_LOGIC_VECTOR (7 downto 0);
@@ -151,6 +152,7 @@ data_in_ready <= data_in_ready_sig;
 dv <= dv_sig;
 error <= error_sig;
 SCLK <= FLASH_CLK;
+temp_addr_out <= addr_sig(8 to 31);
 
 ----------------------------------------------------------------------
 -- Machine: Sreg0

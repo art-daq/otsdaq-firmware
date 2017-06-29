@@ -48,9 +48,12 @@ entity top is
         ram_io_0        : inout std_logic;  --FLASH
         ram_io_1        : inout std_logic;  --FLASH
         ram_io_2        : inout std_logic;  --FLASH
-        ram_io_3        : inout std_logic   --FLASH 
+        ram_io_3        : inout std_logic;   --FLASH 
 						  
-
+	WATCHDOG_IN     : out std_logic;				  
+        WATCHDOG_SET0   : out std_logic;
+        WATCHDOG_SET1   : out std_logic;
+        WATCHDOG_SET2   : out std_logic
           
               
           ); 
@@ -83,7 +86,8 @@ architecture BEHAVIORAL of top is
     
     signal reset_btn : std_logic;
     signal gnd : std_logic;
-   
+    signal restart_fpga : std_logic;   
+    signal watchdog_sig : std_logic;
     
     signal PHY_TXD_sig              : std_logic_vector (7 downto 0);
     signal PHY_TXEN_sig             : std_logic;
@@ -118,7 +122,8 @@ architecture BEHAVIORAL of top is
    -- attribute mark_debug of b_data : signal is "true";
    -- attribute mark_debug of b_data_we : signal is "true";
     attribute mark_debug of FLASH_CLK_sig : signal is "true";  --FLASH
-    
+    attribute mark_debug of watchdog_sig : signal is "true";
+    attribute mark_debug of restart_fpga : signal is "true";
 	--    attribute mark_debug of GMII_RXD_0_sig : signal is "true";
 	--    attribute mark_debug of GMII_RX_DV_0_sig : signal is "true";
        
@@ -175,6 +180,8 @@ begin
     
 	reset_n <= not reset;
 	reset_btn <= '0';
+        
+	watchdog_sig <= secondary_clk when restart_fpga = '0' else '0';
 
 	--	reset_ibuf : IBUF       -- SW3 on board is active high
 	--     port map (I=>GPIO_SW_W,  O=>reset_btn);
@@ -238,7 +245,8 @@ begin
 				PHY_TX_ER=>PHY_TXER_sig,
 				rx_addr(31 downto 0)=>rx_addr(31 downto 0),
 				rx_data(63 downto 0)=>rx_data(63 downto 0),
-				rx_wren=>rx_wren 
+				rx_wren=>rx_wren,
+				restart_fpga => restart_fpga 
 			    );                                                                                                                      
               
 					 
@@ -394,6 +402,10 @@ begin
     OBUF_SPI_RESET : OBUF       port map (I=>spi_reset_sig, O=>spi_reset);              --FLASH
     OBUF_RAM_CS : OBUF       port map (I=>ram_chip_select_sig, O=>ram_chip_select);     --FLASH
 
+    OBUF_WDI : OBUF       port map (I=>watchdog_sig, O=>WATCHDOG_IN);
+    OBUF_WDS0 : OBUF       port map (I=>'1', O=>WATCHDOG_SET0);
+    OBUF_WDS1 : OBUF       port map (I=>'0', O=>WATCHDOG_SET1);
+    OBUF_WDS2 : OBUF       port map (I=>'1', O=>WATCHDOG_SET2);
 
 end BEHAVIORAL;
 
