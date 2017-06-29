@@ -39,13 +39,13 @@ entity ots_interface is
           b_data               	: in    std_logic_vector (63 downto 0); 
           b_data_we            	: in    std_logic; 												                            
           b_enable             	: out   std_logic; 				  		  															 				   
-          internal_we	        : in 	std_logic;	--SCRIPT COMMENT OUT
+          
 		  
 		  
 		  -- internal address space signals							   
           internal_block_sel  	: in    std_logic_vector (31 downto 0); 	--SCRIPT COMMENT OUT   
           internal_addr  	: in    std_logic_vector (31 downto 0); 	--SCRIPT COMMENT OUT   
-          internal_we		: in 	std_logic;							--SCRIPT COMMENT OUT					   
+          internal_we		: in 	std_logic;            			--SCRIPT COMMENT OUT
           internal_din		: in    std_logic_vector (63 downto 0);		--SCRIPT COMMENT OUT					   
           internal_dout		: out   std_logic_vector (63 downto 0); 	--SCRIPT COMMENT OUT  
           
