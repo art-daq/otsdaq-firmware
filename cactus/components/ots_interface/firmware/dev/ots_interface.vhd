@@ -72,8 +72,8 @@ entity ots_interface is
           ram_io_0          : inout	std_logic;    	   --FLASH
           ram_io_1			: inout std_logic;    	   --FLASH
           ram_io_2 			: inout	std_logic;    	   --FLASH
-          ram_io_3 			: inout std_logic		   --FLASH
-          
+          ram_io_3 			: inout std_logic;		   --FLASH
+          restart_fpga : out std_logic := '0'
 		  
 		  );
 end ots_interface;
@@ -362,6 +362,12 @@ begin
 	begin
 		if (rising_edge(MASTER_CLK)) then 		
 			
+			if ((ots_addr = x"FFFFFFFFFFFFFFFF" and ots_wren = '1' and ots_din(0) = '1') or 
+			    (internal_addr =   x"FFFFFFFF" and internal_block_sel =   x"FFFFFFFF"  and internal_we = '1' and internal_din(0) = '1') )
+				then                                                                                                 
+                  		restart_fpga <='1';
+            		 end if;
+
 			if(unsigned(user_addr) = 0) then --take internally if user_addr is 0	 
 				user_addr_sig <= user_addr_byte;
 			else

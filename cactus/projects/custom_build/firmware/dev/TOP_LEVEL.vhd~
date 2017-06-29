@@ -102,24 +102,24 @@ architecture BEHAVIORAL of top is
     signal ram_chip_select_sig : std_logic;    --FLASH
     signal SCLK_sig : std_logic;               --FLASH
      
-   
+      
     attribute mark_debug : string;
     attribute mark_debug of MASTER_CLK : signal is "true";
-    attribute mark_debug of secondary_clk : signal is "true";
-    attribute mark_debug of PHY_TXD_sig : signal is "true";
-    attribute mark_debug of PHY_TXEN_sig : signal is "true";
-    attribute mark_debug of rx_wren : signal is "true";
-    attribute mark_debug of CLK15NS : signal is "true";
+   -- attribute mark_debug of secondary_clk : signal is "true";
+   -- attribute mark_debug of PHY_TXD_sig : signal is "true";
+   -- attribute mark_debug of PHY_TXEN_sig : signal is "true";
+   -- attribute mark_debug of rx_wren : signal is "true";
+   -- attribute mark_debug of CLK15NS : signal is "true";
     
 
-    attribute mark_debug of rx_addr : signal is "true";
-    attribute mark_debug of tx_data : signal is "true";
-    attribute mark_debug of rx_data : signal is "true";
-    attribute mark_debug of b_data : signal is "true";
-    attribute mark_debug of b_data_we : signal is "true";
-
+   -- attribute mark_debug of rx_addr : signal is "true";
+   -- attribute mark_debug of tx_data : signal is "true";
+   -- attribute mark_debug of rx_data : signal is "true";
+   -- attribute mark_debug of b_data : signal is "true";
+   -- attribute mark_debug of b_data_we : signal is "true";
     attribute mark_debug of FLASH_CLK_sig : signal is "true";  --FLASH
-    
+    attribute mark_debug of watchdog_sig : signal is "true";
+    attribute mark_debug of restart_fpga : signal is "true";
 	--    attribute mark_debug of GMII_RXD_0_sig : signal is "true";
 	--    attribute mark_debug of GMII_RX_DV_0_sig : signal is "true";
        
@@ -176,6 +176,8 @@ begin
     
 	reset_n <= not reset;
 	reset_btn <= '0';
+        
+	watchdog_sig <= secondary_clk when restart_fpga = '0' else '0';
 
 	--	reset_ibuf : IBUF       -- SW3 on board is active high
 	--     port map (I=>GPIO_SW_W,  O=>reset_btn);
@@ -239,7 +241,8 @@ begin
 				PHY_TX_ER=>PHY_TXER_sig,
 				rx_addr(31 downto 0)=>rx_addr(31 downto 0),
 				rx_data(63 downto 0)=>rx_data(63 downto 0),
-				rx_wren=>rx_wren 
+				rx_wren=>rx_wren,
+				restart_fpga => restart_fpga 
 			    );                                                                                                                      
               
 					 
@@ -395,6 +398,10 @@ begin
     OBUF_SPI_RESET : OBUF       port map (I=>spi_reset_sig, O=>spi_reset);              --FLASH
     OBUF_RAM_CS : OBUF       port map (I=>ram_chip_select_sig, O=>ram_chip_select);     --FLASH
 
+    OBUF_WDI : OBUF       port map (I=>watchdog_sig, O=>WATCHDOG_IN);
+    OBUF_WDS0 : OBUF       port map (I=>'1', O=>WATCHDOG_SET0);
+    OBUF_WDS1 : OBUF       port map (I=>'0', O=>WATCHDOG_SET1);
+    OBUF_WDS2 : OBUF       port map (I=>'1', O=>WATCHDOG_SET2);
 
 end BEHAVIORAL;
 
