@@ -32,6 +32,9 @@ parser.add_argument('-r','--reset',nargs='?',const='YES',
 
 parser.add_argument('--flash',nargs='?',const='YES',help='Include SPI FLASH implementation')
 
+parser.add_argument('-t','--type',default='alone',choices=['alone','golden','multiboot'],
+					help='Determines if project is "golden" firmware, a secondary multiboot, or will be alone')
+
 							
 args = parser.parse_args()
 
@@ -86,10 +89,8 @@ os.system("cp " + scriptDir + \
 #              dest + "/")
 
 if args.flash:
-	print "withflash"
 	os.system("cp "+scriptDir+"/../dev/topwithflash.dep " + scriptDir +"/../cfg/top.dep")
 else:
-	print "noflash"
 	os.system("cp "+scriptDir+"/../dev/topnoflash.dep " + scriptDir +"/../cfg/top.dep"   )          
 
 print  'Modifying files...'
@@ -101,8 +102,11 @@ os.system("sed -i s/include.\*\-c.\*boards.\*/include\ \-c\ boards\\\/"+args.boa
 os.system("sed -i s/boards\\\/\[\^\\\/]\*\\\//boards\\\/"+args.board+"\\\//g " + scriptDir + "/../cfg/top.dep")
 
 
-				
-
+if (args.type == "golden"):
+	os.system("sed -i s/.\*#setupputinmultiboot/src\ ..\\\\/ucf\\\\/golden.tcl/g "+scriptDir + "/../cfg/top.dep")
+if (args.type == "multiboot"):
+	os.system("sed -i s/.\*#setupputinmultiboot/src\ ..\\\\/ucf\\\\/multiboot.tcl/g "+scriptDir + "/../cfg/top.dep")
+	
 
 print  'PHY interface pin count selected as: ' + str(args.phy) #1, 4, 8
 if (args.phy < 1):
