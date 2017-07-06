@@ -33,7 +33,7 @@ parser.add_argument('-r','--reset',nargs='?',const='YES',
 parser.add_argument('--flash',nargs='?',const='YES',help='Include SPI FLASH implementation')
 
 parser.add_argument('-t','--type',default='alone',choices=['alone','golden','multiboot'],
-					help='Determines if project is "golden" firmware, a secondary multiboot, or will be alone')
+					help='Determines if project is golden firmware, a secondary multiboot, or will be alone')
 
 							
 args = parser.parse_args()

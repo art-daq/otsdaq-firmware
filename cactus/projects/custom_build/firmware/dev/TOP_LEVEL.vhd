@@ -11,30 +11,30 @@ entity top is
    port ( 
 		PHY_RXCLK      : in    std_logic; 
 		PHY_RXCTL_RXDV : in    std_logic; 
-		PHY_RXD0       : in    std_logic; 
-		PHY_RXD1       : in    std_logic; 
-		PHY_RXD2       : in    std_logic; 
-		PHY_RXD3       : in    std_logic; 
-		PHY_RXD4       : in    std_logic; 
-		PHY_RXD5       : in    std_logic; 
-		PHY_RXD6       : in    std_logic; 
-		PHY_RXD7       : in    std_logic; 
+	PHY_RXD0	: in    std_logic; 
+	PHY_RXD1	: in    std_logic; 
+	PHY_RXD2	: in    std_logic; 
+	PHY_RXD3	: in    std_logic; 
+	PHY_RXD4	: in    std_logic; 
+	PHY_RXD5	: in    std_logic; 
+	PHY_RXD6	: in    std_logic; 
+	PHY_RXD7	: in    std_logic; 
 		  
 		--PHY_RXER     : in    std_logic; 
 		--USER_CLOCK   : in    std_logic; 
           
-		PHY_RESET      : out    std_logic; 
+	
 		
 		PHY_TXCTL_TXEN : out   std_logic; 
-		PHY_TXD0       : out   std_logic; 
-		PHY_TXD1       : out   std_logic; 
-		PHY_TXD2       : out   std_logic; 
-		PHY_TXD3       : out   std_logic;
-		PHY_TXD4       : out   std_logic; 
-		PHY_TXD5       : out   std_logic; 
-		PHY_TXD6       : out   std_logic; 
-		PHY_TXD7       : out   std_logic; 
-		PHY_TXER       : out   std_logic;
+	PHY_TXD0	: out   std_logic; 
+	PHY_TXD1	: out   std_logic; 
+	PHY_TXD2	: out   std_logic; 
+	PHY_TXD3	: out   std_logic;
+	PHY_TXD4	: out   std_logic; 
+	PHY_TXD5	: out   std_logic; 
+	PHY_TXD6	: out   std_logic; 
+	PHY_TXD7	: out   std_logic; 
+	PHY_TXER	: out   std_logic;
 
 
  		PHY_TXC_GTXCLK : out   std_logic;
@@ -50,14 +50,13 @@ entity top is
         ram_io_2        : inout std_logic;  --FLASH
         ram_io_3        : inout std_logic;   --FLASH 
 						  
-	WATCHDOG_IN     : out std_logic;				  
-        WATCHDOG_SET0   : out std_logic;
-        WATCHDOG_SET1   : out std_logic;
-        WATCHDOG_SET2   : out std_logic
+	PHY_RESET	: out    std_logic 
           
               
           ); 
 end top;
+
+
 
 architecture BEHAVIORAL of top is
   
@@ -86,8 +85,7 @@ architecture BEHAVIORAL of top is
     
     signal reset_btn : std_logic;
     signal gnd : std_logic;
-    signal restart_fpga : std_logic;   
-    signal watchdog_sig : std_logic;
+    signal restart_fpga : std_logic; 
     
     signal PHY_TXD_sig              : std_logic_vector (7 downto 0);
     signal PHY_TXEN_sig             : std_logic;
@@ -105,7 +103,11 @@ architecture BEHAVIORAL of top is
     signal spi_reset_sig : std_logic;          --FLASH
     signal ram_chip_select_sig : std_logic;    --FLASH
     signal SCLK_sig : std_logic;               --FLASH
-     
+
+    signal ICAP_IN : STD_LOGIC_VECTOR(31 downto 0); 
+    signal ICAP_CSIB : STD_LOGIC;                   
+    signal ICAP_FSM : integer range 0 to 9 := 0;                  
+ 
       
     attribute mark_debug : string;
     attribute mark_debug of MASTER_CLK : signal is "true";
@@ -122,8 +124,7 @@ architecture BEHAVIORAL of top is
    -- attribute mark_debug of b_data : signal is "true";
    -- attribute mark_debug of b_data_we : signal is "true";
     attribute mark_debug of FLASH_CLK_sig : signal is "true";  --FLASH
-    attribute mark_debug of watchdog_sig : signal is "true";
-    attribute mark_debug of restart_fpga : signal is "true";
+    --attribute mark_debug of restart_fpga : signal is "true";
 	--    attribute mark_debug of GMII_RXD_0_sig : signal is "true";
 	--    attribute mark_debug of GMII_RX_DV_0_sig : signal is "true";
        
@@ -181,8 +182,7 @@ begin
 	reset_n <= not reset;
 	reset_btn <= '0';
         
-	watchdog_sig <= secondary_clk when restart_fpga = '0' else '0';
-
+	
 	--	reset_ibuf : IBUF       -- SW3 on board is active high
 	--     port map (I=>GPIO_SW_W,  O=>reset_btn);
 	--   user_led1: OBUF   -- LED display of RESET
@@ -214,6 +214,71 @@ begin
             );                                                                                                 --FLASH
         -- End of STARTUPE2_inst instantiation                                                                 --FLASH
    
+        -- ICAPE2: Internal Configuration Access Port                                                            
+        -- 7 Series                                                                                              
+        -- Xilinx HDL Libraries Guide, version 2017.2                                                            
+        ICAPE2_inst : ICAPE2                                                                                     
+        generic map (                                                                                            
+        DEVICE_ID => X"3651093", -- Specifies the pre-programmed Device ID value to be used for simulation       
+        -- purposes.                                                                                             
+        ICAP_WIDTH => "X32", -- Specifies the input and output data width.                                       
+        SIM_CFG_FILE_NAME => "None" -- Specifies the Raw Bitstream (RBT) file to be parsed by the simulation     
+        -- model.                                                                                                
+        )                                                                                                        
+        port map (                                                                                               
+            O => open, -- 32-bit output: Configuration data output bus                                               
+            CLK => MASTER_CLK, -- 1-bit input: Clock Input                                                           
+            CSIB => ICAP_CSIB, -- 1-bit input: Active-Low ICAP Enable                                                
+            I => ICAP_IN, -- 32-bit input: Configuration data input bus                                              
+            RDWRB => '0' -- 1-bit input: Read/Write Select input      [input is low]                                 
+        );                                                                                                       
+        -- End of ICAPE2_inst instantiation                                                                      
+                                                                                                                 
+        process(MASTER_CLK) begin                                                                                
+            if rising_edge(MASTER_CLK) then                                                                      
+                if ICAP_FSM = 0 then                                                                             
+                    ICAP_CSIB <= '1';                                                                            
+                    if restart_fpga='1' then                                                          
+                        ICAP_FSM <= 1;                                                                           
+                    end if;                                                                                      
+                -------------------------REMEMBER!----------------------                                         
+                -------INPUTS TO ICAPE2 ARE BITSWAPPED BY BYTE----------                                         
+                elsif ICAP_FSM = 1 then                                                                          
+                    ICAP_CSIB <= '0';                                                                            
+                    ICAP_IN <= x"FFFFFFFF";--dummy word                                                          
+                    ICAP_FSM <= 2;                                                                               
+                elsif ICAP_FSM = 2 then                                                                          
+                    ICAP_IN <= x"5599AA66";--sync word                                                           
+                    ICAP_FSM <= 3;                                                                               
+                elsif ICAP_FSM = 3 then                                                                          
+                    ICAP_IN <= x"04000000";--Type 1 NO OP                                                        
+                    ICAP_FSM <= 4;                                                                               
+                elsif ICAP_FSM = 4 then                                                                        
+                    ICAP_IN <= x"0C400080";--Type 1 Write 1 Words to WBSTAR                                    
+                    ICAP_FSM <= 5;                                                                             
+                elsif ICAP_FSM = 5 then                                                                        
+--                    case trigger_golden is --multiply 0x400000 by chosen bitsream for start address            
+--                        when "001" => ICAP_IN <= x"00020000";                                                  
+--                        when "010" => ICAP_IN <= x"00010000";                                                  
+--                        when "011" => ICAP_IN <= x"00030000"; --I'm aware there are more but I'm lazy right now
+--                        when others => ICAP_IN <= x"00020000";                                                 
+--                    end case;
+                    ICAP_IN <= x"00000000";--Set WBSTAR to 0x00                                                                                  
+                    ICAP_FSM <= 6;                                                                             
+                elsif ICAP_FSM =  6 then                                                                 
+                    ICAP_IN <= x"0C000180";--Type 1 Write 1 Words to CMD                                         
+                    ICAP_FSM <= 7;                                                                               
+                elsif ICAP_FSM = 7 then                                                                          
+                    ICAP_IN <= x"000000F0";--IPROG Command                                                       
+                    ICAP_FSM <= 8;                                                                               
+                elsif ICAP_FSM = 8 then                                                                          
+                    ICAP_IN <= x"04000000";--Type 1 NO OP                                                        
+                    ICAP_FSM <= 9;                                                                               
+                elsif ICAP_FSM = 9 then                                                                          
+                    ICAP_CSIB <= '1';                                                                            
+                end if;                                                                                          
+            end if;                                                                                              
+        end process;                                                                                             
 
 
         
@@ -402,10 +467,7 @@ begin
     OBUF_SPI_RESET : OBUF       port map (I=>spi_reset_sig, O=>spi_reset);              --FLASH
     OBUF_RAM_CS : OBUF       port map (I=>ram_chip_select_sig, O=>ram_chip_select);     --FLASH
 
-    OBUF_WDI : OBUF       port map (I=>watchdog_sig, O=>WATCHDOG_IN);
-    OBUF_WDS0 : OBUF       port map (I=>'1', O=>WATCHDOG_SET0);
-    OBUF_WDS1 : OBUF       port map (I=>'0', O=>WATCHDOG_SET1);
-    OBUF_WDS2 : OBUF       port map (I=>'1', O=>WATCHDOG_SET2);
+   
 
 end BEHAVIORAL;
 

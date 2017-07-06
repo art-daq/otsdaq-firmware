@@ -11,30 +11,30 @@ entity top is
    port ( 
 		PHY_RXCLK      : in    std_logic; 
 		PHY_RXCTL_RXDV : in    std_logic; 
-		PHY_RXD0       : in    std_logic; 
-		PHY_RXD1       : in    std_logic; 
-		PHY_RXD2       : in    std_logic; 
-		PHY_RXD3       : in    std_logic; 
-		PHY_RXD4       : in    std_logic; 
-		PHY_RXD5       : in    std_logic; 
-		PHY_RXD6       : in    std_logic; 
-		PHY_RXD7       : in    std_logic; 
+	PHY_RXD0	: in    std_logic; 
+	PHY_RXD1	: in    std_logic; 
+	PHY_RXD2	: in    std_logic; 
+	PHY_RXD3	: in    std_logic; 
+	PHY_RXD4	: in    std_logic; 
+	PHY_RXD5	: in    std_logic; 
+	PHY_RXD6	: in    std_logic; 
+	PHY_RXD7	: in    std_logic; 
 		  
 		--PHY_RXER     : in    std_logic; 
 		--USER_CLOCK   : in    std_logic; 
           
-		PHY_RESET      : out    std_logic; 
+	
 		
 		PHY_TXCTL_TXEN : out   std_logic; 
-		PHY_TXD0       : out   std_logic; 
-		PHY_TXD1       : out   std_logic; 
-		PHY_TXD2       : out   std_logic; 
-		PHY_TXD3       : out   std_logic;
-		PHY_TXD4       : out   std_logic; 
-		PHY_TXD5       : out   std_logic; 
-		PHY_TXD6       : out   std_logic; 
-		PHY_TXD7       : out   std_logic; 
-		PHY_TXER       : out   std_logic;
+	PHY_TXD0	: out   std_logic; 
+	PHY_TXD1	: out   std_logic; 
+	PHY_TXD2	: out   std_logic; 
+	PHY_TXD3	: out   std_logic;
+	PHY_TXD4	: out   std_logic; 
+	PHY_TXD5	: out   std_logic; 
+	PHY_TXD6	: out   std_logic; 
+	PHY_TXD7	: out   std_logic; 
+	PHY_TXER	: out   std_logic;
 
 
  		PHY_TXC_GTXCLK : out   std_logic;
@@ -48,13 +48,15 @@ entity top is
         ram_io_0        : inout std_logic;  --FLASH
         ram_io_1        : inout std_logic;  --FLASH
         ram_io_2        : inout std_logic;  --FLASH
-        ram_io_3        : inout std_logic   --FLASH 
+        ram_io_3        : inout std_logic;   --FLASH 
 						  
-
+	PHY_RESET	: out    std_logic 
           
               
           ); 
 end top;
+
+
 
 architecture BEHAVIORAL of top is
   
@@ -83,7 +85,7 @@ architecture BEHAVIORAL of top is
     
     signal reset_btn : std_logic;
     signal gnd : std_logic;
-   
+    signal restart_fpga : std_logic; 
     
     signal PHY_TXD_sig              : std_logic_vector (7 downto 0);
     signal PHY_TXEN_sig             : std_logic;
@@ -101,7 +103,11 @@ architecture BEHAVIORAL of top is
     signal spi_reset_sig : std_logic;          --FLASH
     signal ram_chip_select_sig : std_logic;    --FLASH
     signal SCLK_sig : std_logic;               --FLASH
-     
+
+    signal ICAP_IN : STD_LOGIC_VECTOR(31 downto 0); 
+    signal ICAP_CSIB : STD_LOGIC;                   
+    signal ICAP_FSM : integer range 0 to 9 := 0;                  
+ 
       
     attribute mark_debug : string;
     attribute mark_debug of MASTER_CLK : signal is "true";
@@ -118,8 +124,7 @@ architecture BEHAVIORAL of top is
    -- attribute mark_debug of b_data : signal is "true";
    -- attribute mark_debug of b_data_we : signal is "true";
     attribute mark_debug of FLASH_CLK_sig : signal is "true";  --FLASH
-    attribute mark_debug of watchdog_sig : signal is "true";
-    attribute mark_debug of restart_fpga : signal is "true";
+    --attribute mark_debug of restart_fpga : signal is "true";
 	--    attribute mark_debug of GMII_RXD_0_sig : signal is "true";
 	--    attribute mark_debug of GMII_RX_DV_0_sig : signal is "true";
        
@@ -177,8 +182,7 @@ begin
 	reset_n <= not reset;
 	reset_btn <= '0';
         
-	watchdog_sig <= secondary_clk when restart_fpga = '0' else '0';
-
+	
 	--	reset_ibuf : IBUF       -- SW3 on board is active high
 	--     port map (I=>GPIO_SW_W,  O=>reset_btn);
 	--   user_led1: OBUF   -- LED display of RESET
@@ -398,10 +402,7 @@ begin
     OBUF_SPI_RESET : OBUF       port map (I=>spi_reset_sig, O=>spi_reset);              --FLASH
     OBUF_RAM_CS : OBUF       port map (I=>ram_chip_select_sig, O=>ram_chip_select);     --FLASH
 
-    OBUF_WDI : OBUF       port map (I=>watchdog_sig, O=>WATCHDOG_IN);
-    OBUF_WDS0 : OBUF       port map (I=>'1', O=>WATCHDOG_SET0);
-    OBUF_WDS1 : OBUF       port map (I=>'0', O=>WATCHDOG_SET1);
-    OBUF_WDS2 : OBUF       port map (I=>'1', O=>WATCHDOG_SET2);
+   
 
 end BEHAVIORAL;
 
