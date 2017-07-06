@@ -70,13 +70,3 @@ set_property IOSTANDARD LVCMOS25 [get_ports PHY_TXD7]
 
 set_property PACKAGE_PIN Y33 [get_ports PHY_RESET]
 set_property IOSTANDARD LVCMOS25 [get_ports PHY_RESET]
-
-set_property  PACKAGE_PIN AA34 [get_ports WATCHDOG_IN]
-set_property IOSTANDARD LVCMOS25 [get_ports WATCHDOG_IN]
-
-set_property  PACKAGE_PIN AB34 [get_ports WATCHDOG_SET0]
-set_property IOSTANDARD LVCMOS25 [get_ports WATCHDOG_SET0]
-set_property  PACKAGE_PIN AC32 [get_ports WATCHDOG_SET1]
-set_property IOSTANDARD LVCMOS25 [get_ports WATCHDOG_SET1]
-set_property  PACKAGE_PIN AB32 [get_ports WATCHDOG_SET2]
-set_property IOSTANDARD LVCMOS25 [get_ports WATCHDOG_SET2]
