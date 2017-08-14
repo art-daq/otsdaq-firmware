@@ -38,8 +38,8 @@ entity ots_interface is
           -- burst signals
           b_data               	: in    std_logic_vector (63 downto 0); 
           b_data_we            	: in    std_logic; 												                            
-          b_enable             	: out   std_logic; 				  		  															 				   
-          
+          b_enable             	: out   std_logic; 				  		  		
+          b_force_packet	: in    std_logic;		  	--SCRIPT COMMENT OUT          
 		  
 		  
 		  -- internal address space signals							   
