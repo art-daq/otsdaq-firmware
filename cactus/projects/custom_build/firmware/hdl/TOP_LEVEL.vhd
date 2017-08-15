@@ -228,7 +228,7 @@ begin
         )                                                                                                        
         port map (                                                                                               
             O => open, -- 32-bit output: Configuration data output bus                                               
-            CLK => MASTER_CLK, -- 1-bit input: Clock Input                                                           
+            CLK => CLK15NS, -- 1-bit input: Clock Input                                                           
             CSIB => ICAP_CSIB, -- 1-bit input: Active-Low ICAP Enable                                                
             I => ICAP_IN, -- 32-bit input: Configuration data input bus                                              
             RDWRB => '0' -- 1-bit input: Read/Write Select input      [input is low]                                 

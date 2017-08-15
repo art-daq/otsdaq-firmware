@@ -53,7 +53,8 @@ entity ots_interface is
           
 		  
           -- PHY interface signals
-          MASTER_CLK           	: in    std_logic; 			
+          MASTER_CLK           	: in    std_logic; 		
+          slow_clk           	: in    std_logic; 			
           
           PHY_RXD             	: in    std_logic_vector (7 downto 0); 
           PHY_RX_DV           	: in    std_logic; 
@@ -284,7 +285,7 @@ begin
 	-- handle self reset for Eth Interface and input and output reset
 	reset_mgr : entity work.reset_mgr
 		port map (
-			slow_clk => MASTER_CLK,
+			slow_clk => slow_clk,
 			reset_start => reset_mgr_in,
 			reset => reset);
 						  		 
