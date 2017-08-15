@@ -134,6 +134,9 @@ print  'Copying files...'
 os.system("cp " + src + "/*.v " + dest + "/")
 os.system("cp " + src + "/*.vhd " + dest + "/")
 
+#remove xilinx inferred.. if needed will be added later
+os.system("rm -f " + dest + "/fifo.vhd")
+
  
 if args.flash:
     os.system("cp " + src + "/flash.dep " + dest + "/../cfg/flash.dep")
@@ -183,7 +186,7 @@ if (fifo != "XILINX_COREGEN" and
 		fifo != "XILINX_7_INFERRED"):
     print "WARNING: Unrecognized -f FIFO argument " + \
         "(may want to use -h for help): '" + \
-		fifo + "'?"
+		fifo + "'?"	
 
 #uncomment dependecy coregen
 os.system("sed -i s/.*\?toolset/\?toolset/g " + dest + \
@@ -309,7 +312,8 @@ print 'Removing files for tidiness...'
 print
 
 os.system("rm -f " + dest + "/top_tmp.vhd")
-os.system("rm -f " + dest + "/inferredFifo.vhd")
+os.system("rm -f " + dest + "/inferredfifo.vhd")
+os.system("rm -f " + dest + "/inferred_fifo.vhd")
 os.system("rm -f " + dest + "/ram_chip_simulator.vhd")
 os.system("rm -f " + dest + "/ram_memory_test.vhd")
 os.system("rm -f " + dest + "/ram_tester*")
