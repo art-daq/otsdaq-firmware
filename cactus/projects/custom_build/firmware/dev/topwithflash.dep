@@ -1,10 +1,16 @@
+#this is topwithflash.dep
+#this gets copied to top.dep after setup_and_install
+
 src TOP_LEVEL.vhd
+
+#the order matters! flash_timing_constraints must be first, which makes it last in vivado
+?toolset=="Vivado"? src ../ucf/flash_timing_constraints.tcl
 ?toolset=="ISE"? src ../ucf/timing_constraints.ucf
 ?toolset=="Vivado"? src ../ucf/timing_constraints.tcl
-?toolset=="Vivado"? src ../ucf/flash_timing_constraints.tcl
 
 include algo.dep
 include -c boards/captan_plus
+
 
 
 src ../../../../boards/captan_plus/firmware/ucf/ethernet_pins33.tcl

@@ -73,19 +73,3 @@ set_property IOSTANDARD LVCMOS33 [get_ports PHY_RESET]
 
 #set_property  PACKAGE_PIN AA34 [get_ports WATCHDOG_IN]
 #set_property IOSTANDARD LVCMOS33 [get_ports WATCHDOG_IN]
-
-
-#Created by Constraints Editor (xc4vlx25-ff668-10) - 2011/09/17
-
-# All timing constraint translations are rough conversions, intended to act as a template for further manual refinement. The translations should not be expected to produce semantically identical results to the original ucf. Each xdc timing constraint must be manually inspected and verified to ensure it captures the desired intent
-
-# In xdc, all clocks are related by default. This differs from ucf, where clocks are unrelated unless specified otherwise. As a result, you may now see cross-clock paths that were previously unconstrained in ucf. Commented out xdc false path constraints have been generated and can be uncommented, should you wish to remove these new paths. These commands are located after the last clock definition
-
-# D:/Projects/OtsUDPplusX/fw_00/GEL_OtsUDP/TOP_LEVEL.ucf:66
-create_clock -name PHY_RXCLK -period 8.000 [get_ports PHY_RXCLK]
-create_clock -name CLK15NS -period 16.000 [get_pins CLK15NS_bufg/O]
-create_clock -name CLK5MHZ -period 256.000 [get_pins CLK5MHz_bufg/O]
-
-set_false_path -from [get_clocks CLK5MHZ] -to [get_clocks [list PHY_RXCLK   CLK15NS]]
-set_false_path -from [get_clocks CLK15NS] -to [get_clocks [list PHY_RXCLK   CLK5MHZ]]
-set_false_path -from [get_clocks PHY_RXCLK] -to [get_clocks [list CLK5MHZ   CLK15NS]]
