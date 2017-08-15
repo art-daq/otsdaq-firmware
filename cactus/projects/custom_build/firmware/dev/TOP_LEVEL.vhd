@@ -40,7 +40,7 @@ entity top is
 
    
         
-        FLASH_CLK       : in std_logic;     --FLASH
+        FLASH_CLK       : in std_logic;    
                                             --FLASH
         --SCLK            : out std_logic;    --FLASH
         spi_reset       : out std_logic;    --FLASH

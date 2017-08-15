@@ -71,5 +71,6 @@ set_property IOSTANDARD LVCMOS25 [get_ports PHY_TXD7]
 set_property PACKAGE_PIN Y33 [get_ports PHY_RESET]
 set_property IOSTANDARD LVCMOS25 [get_ports PHY_RESET]
 
-
+set_property PACKAGE_PIN Y26 [get_ports FLASH_CLK]
+set_property IOSTANDARD LVCMOS25 [get_ports FLASH_CLK]
 

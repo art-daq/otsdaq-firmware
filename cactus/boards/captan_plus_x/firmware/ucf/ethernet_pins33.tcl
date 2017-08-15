@@ -73,5 +73,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports PHY_RESET]
 
 								  
 
+set_property PACKAGE_PIN R24 [get_ports FLASH_CLK]
+set_property IOSTANDARD LVCMOS33 [get_ports FLASH_CLK]
 
 

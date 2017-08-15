@@ -73,3 +73,10 @@ set_property IOSTANDARD LVCMOS33 [get_ports PHY_RESET]
 
 #set_property  PACKAGE_PIN AA34 [get_ports WATCHDOG_IN]
 #set_property IOSTANDARD LVCMOS33 [get_ports WATCHDOG_IN]
+
+set_property PACKAGE_PIN Y26 [get_ports FLASH_CLK]
+set_property IOSTANDARD LVCMOS33 [get_ports FLASH_CLK]
+								  
+								  
+								  
+								  

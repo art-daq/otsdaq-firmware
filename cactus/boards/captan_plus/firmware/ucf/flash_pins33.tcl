@@ -1,6 +1,4 @@
 
-set_property PACKAGE_PIN Y26 [get_ports FLASH_CLK]
-set_property IOSTANDARD LVCMOS33 [get_ports FLASH_CLK]
 
 set_property PACKAGE_PIN V28 [get_ports ram_io_0]
 set_property IOSTANDARD LVCMOS33 [get_ports ram_io_0]

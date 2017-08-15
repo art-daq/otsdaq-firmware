@@ -10,3 +10,10 @@ create_clock -name CLK5MHZ -period 256.000 [get_pins CLK5MHz_bufg/O]
 set_false_path -from [get_clocks CLK5MHZ] -to [get_clocks [list PHY_RXCLK   CLK15NS]]
 set_false_path -from [get_clocks CLK15NS] -to [get_clocks [list PHY_RXCLK   CLK5MHZ]]
 set_false_path -from [get_clocks PHY_RXCLK] -to [get_clocks [list CLK5MHZ   CLK15NS]]
+												 
+#flash clock is now always present in this project, so took it out of flash_timing_constraints
+create_clock -period 25.000 -name FLASH_CLK [get_ports FLASH_CLK]
+
+set_false_path -from [get_clocks PHY_RXCLK] -to [get_clocks FLASH_CLK]
+set_false_path -from [get_clocks FLASH_CLK] -to [get_clocks PHY_RXCLK]
+

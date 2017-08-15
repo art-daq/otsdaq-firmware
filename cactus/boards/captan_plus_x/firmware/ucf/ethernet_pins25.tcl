@@ -72,5 +72,6 @@ set_property PACKAGE_PIN U20 [get_ports PHY_RESET]
 set_property IOSTANDARD LVCMOS25 [get_ports PHY_RESET]
 
 
-
+set_property PACKAGE_PIN R24 [get_ports FLASH_CLK]
+set_property IOSTANDARD LVCMOS25 [get_ports FLASH_CLK]
 
