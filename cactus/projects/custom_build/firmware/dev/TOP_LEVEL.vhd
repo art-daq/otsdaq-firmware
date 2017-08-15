@@ -310,7 +310,7 @@ begin
 				PHY_RX_DV=>GMII_RX_DV_0_sig,
 				PHY_RX_ER=>GMII_RX_ER_0_sig,
 				MASTER_CLK=>MASTER_CLK,  
-				continuous_clk=>FLASH_CLK,
+				continuous_clk=>FLASH_CLK_sig,
 				reset_in=>reset_btn,
 				reset_out => reset,
 				tx_data(63 downto 0)=>tx_data(63 downto 0),
