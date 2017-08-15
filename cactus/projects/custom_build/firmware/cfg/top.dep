@@ -1,7 +1,7 @@
 src TOP_LEVEL.vhd
-?toolset=="ISE"? src ../ucf/timing_constraints.ucf
-?toolset=="Vivado"? src ../ucf/timing_constraints.tcl
 ?toolset=="Vivado"? src ../ucf/flash_timing_constraints.tcl
+?toolset=="Vivado"? src ../ucf/timing_constraints.tcl
+?toolset=="ISE"? src ../ucf/timing_constraints.ucf
 
 include algo.dep
 include -c boards/captan_plus
@@ -10,7 +10,7 @@ include -c boards/captan_plus
 src ../../../../boards/captan_plus/firmware/ucf/ethernet_pins33.tcl
 src ../../../../boards/captan_plus/firmware/ucf/flash_pins33.tcl
 
-src ../ucf/golden.tcl
+#setupputinmultiboot
 
 
 

@@ -71,8 +71,8 @@ set_property IOSTANDARD LVCMOS33 [get_ports PHY_TXD7]
 set_property PACKAGE_PIN Y33 [get_ports PHY_RESET]
 set_property IOSTANDARD LVCMOS33 [get_ports PHY_RESET]
 
-set_property  PACKAGE_PIN AA34 [get_ports WATCHDOG_IN]
-set_property IOSTANDARD LVCMOS33 [get_ports WATCHDOG_IN]
+#set_property  PACKAGE_PIN AA34 [get_ports WATCHDOG_IN]
+#set_property IOSTANDARD LVCMOS33 [get_ports WATCHDOG_IN]
 
 
 #Created by Constraints Editor (xc4vlx25-ff668-10) - 2011/09/17

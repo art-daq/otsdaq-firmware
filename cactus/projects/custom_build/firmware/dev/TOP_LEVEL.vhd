@@ -86,7 +86,7 @@ architecture BEHAVIORAL of top is
     
     signal reset_btn : std_logic;
     signal gnd : std_logic;
-    signal restart_fpga : std_logic; 
+    signal restart_fpga, restart_fpga_sig : std_logic; 
     
     signal PHY_TXD_sig              : std_logic_vector (7 downto 0);
     signal PHY_TXEN_sig             : std_logic;
@@ -235,11 +235,20 @@ begin
         );                                                                                                       
         -- End of ICAPE2_inst instantiation                                                                      
                                                                                                                  
-        process(MASTER_CLK) begin                                                                                
-            if rising_edge(MASTER_CLK) then                                                                      
+                                                                                                                   
+        process(MASTER_CLK) begin   
+            if rising_edge(MASTER_CLK) then
+                if restart_fpga = '1' then
+                    restart_fpga_sig <= '1';
+                end if;
+            end if;    
+        end process;
+                                                                                              
+        process(CLK15NS) begin                                                       
+            if rising_edge(CLK15NS) then                                                                      
                 if ICAP_FSM = 0 then                                                                             
                     ICAP_CSIB <= '1';                                                                            
-                    if restart_fpga='1' then                                                          
+                    if restart_fpga_sig='1' then                                                          
                         ICAP_FSM <= 1;                                                                           
                     end if;                                                                                      
                 -------------------------REMEMBER!----------------------                                         
@@ -279,7 +288,7 @@ begin
                     ICAP_CSIB <= '1';                                                                            
                 end if;                                                                                          
             end if;                                                                                              
-        end process;                                                                                             
+        end process;                                                                                                 
 
 
         

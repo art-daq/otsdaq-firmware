@@ -22,7 +22,8 @@ entity top is
 		  
 		--PHY_RXER     : in    std_logic; 
 		--USER_CLOCK   : in    std_logic; 
-          
+
+	PHY_RESET	: out    std_logic;
 	
 		
 		PHY_TXCTL_TXEN : out   std_logic; 
@@ -37,7 +38,6 @@ entity top is
 	PHY_TXER	: out   std_logic;
 
 
- 		PHY_TXC_GTXCLK : out   std_logic;
    
         
         FLASH_CLK       : in std_logic;     --FLASH
@@ -50,8 +50,9 @@ entity top is
         ram_io_2        : inout std_logic;  --FLASH
         ram_io_3        : inout std_logic;   --FLASH 
 						  
-	PHY_RESET	: out    std_logic 
-          
+
+        
+ 		PHY_TXC_GTXCLK : out   std_logic
               
           ); 
 end top;
