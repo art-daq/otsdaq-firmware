@@ -228,27 +228,20 @@ begin
         )                                                                                                        
         port map (                                                                                               
             O => open, -- 32-bit output: Configuration data output bus                                               
-            CLK => CLK15NS, -- 1-bit input: Clock Input                                                           
+            CLK => FLASH_CLK_sig, -- 1-bit input: Clock Input                                                           
             CSIB => ICAP_CSIB, -- 1-bit input: Active-Low ICAP Enable                                                
             I => ICAP_IN, -- 32-bit input: Configuration data input bus                                              
             RDWRB => '0' -- 1-bit input: Read/Write Select input      [input is low]                                 
         );                                                                                                       
         -- End of ICAPE2_inst instantiation                                                                      
                                                                                                                  
-                                                                                                                   
-        process(MASTER_CLK) begin   
-            if rising_edge(MASTER_CLK) then
-                if restart_fpga = '1' then
-                    restart_fpga_sig <= '1';
-                end if;
-            end if;    
-        end process;
+                    
                                                                                               
-        process(CLK15NS) begin                                                       
-            if rising_edge(CLK15NS) then                                                                      
+        process(FLASH_CLK_sig) begin                                                       
+            if rising_edge(FLASH_CLK_sig) then                                                                      
                 if ICAP_FSM = 0 then                                                                             
                     ICAP_CSIB <= '1';                                                                            
-                    if restart_fpga_sig='1' then                                                          
+                    if restart_fpga='1' then                                                          
                         ICAP_FSM <= 1;                                                                           
                     end if;                                                                                      
                 -------------------------REMEMBER!----------------------                                         
