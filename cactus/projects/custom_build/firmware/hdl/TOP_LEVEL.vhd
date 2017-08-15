@@ -309,7 +309,8 @@ begin
 				PHY_RXD(7 downto 0)=>GMII_RXD_0_sig(7 downto 0),
 				PHY_RX_DV=>GMII_RX_DV_0_sig,
 				PHY_RX_ER=>GMII_RX_ER_0_sig,
-				MASTER_CLK=>MASTER_CLK,                
+				MASTER_CLK=>MASTER_CLK,  
+				continuous_clk=>FLASH_CLK,
 				reset_in=>reset_btn,
 				reset_out => reset,
 				tx_data(63 downto 0)=>tx_data(63 downto 0),
@@ -457,7 +458,7 @@ begin
     -----------------------
     ----------------------- OBUF 's 
     	 
-	OBUF_PHY_RESET : OBUF	   port map (I=>'1',  O=>PHY_RESET); --hold not reset
+	OBUF_PHY_RESET : OBUF	   port map (I=>reset_n,  O=>PHY_RESET); --hold not reset
 		 
 	OBUF_PHY_TXER : OBUF       port map (I=>PHY_TXER_sig,  O=>PHY_TXER);
 	 
