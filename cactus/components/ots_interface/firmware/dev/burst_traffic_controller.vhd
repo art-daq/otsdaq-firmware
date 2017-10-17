@@ -58,6 +58,10 @@ begin
 						clocks_since_send <= (others => '0'); 
 					else							
 						writes_in_curr_burst <= writes_in_curr_burst + 1;
+
+						if writes_in_curr_burst = 0 then  --reset clock count for first write to avoid small first packets
+							clocks_since_send <= (others => '0'); 
+						end if;
 					end if;	 
 					
 				else						
