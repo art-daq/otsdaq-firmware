@@ -1,4 +1,4 @@
-# constraints for PicoZed
+# timing constraints 
 # Created Feb 2016 by rrivera at fnal dot gov
 
 
