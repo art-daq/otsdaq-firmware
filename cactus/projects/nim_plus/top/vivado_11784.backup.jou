@@ -1,0 +1,873 @@
+#-----------------------------------------------------------
+# Vivado v2015.2 (64-bit)
+# SW Build 1266856 on Fri Jun 26 16:35:25 MDT 2015
+# IP Build 1264090 on Wed Jun 24 14:22:01 MDT 2015
+# Start of session at: Mon Aug 28 13:45:35 2017
+# Process ID: 7268
+# Log file: C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/vivado.log
+# Journal file: C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.xpr
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+create_debug_core u_ila_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0]
+set_property port_width 1 [get_debug_ports u_ila_0/clk]
+connect_debug_port u_ila_0/clk [get_nets [list bmx_320 ]]
+set_property port_width 4 [get_debug_ports u_ila_0/probe0]
+connect_debug_port u_ila_0/probe0 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+save_constraints -force
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*ld*" } ]
+delete_debug_core [get_debug_cores {u_ila_0 }]
+create_debug_core u_ila_0_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0_0]
+set_property port_width 1 [get_debug_ports u_ila_0_0/clk]
+connect_debug_port u_ila_0_0/clk [get_nets [list bmx_320 ]]
+set_property port_width 4 [get_debug_ports u_ila_0_0/probe0]
+connect_debug_port u_ila_0_0/probe0 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe1]
+connect_debug_port u_ila_0_0/probe1 [get_nets [list NIM_BLOCK/U3/U1/ld ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe2]
+connect_debug_port u_ila_0_0/probe2 [get_nets [list NIM_BLOCK/U24/U1/ld ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe3]
+connect_debug_port u_ila_0_0/probe3 [get_nets [list NIM_BLOCK/U27/U1/ld ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe4]
+connect_debug_port u_ila_0_0/probe4 [get_nets [list NIM_BLOCK/U30/U1/ld ]]
+save_constraints -force
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_hw
+connect_hw_server
+open_hw_target [lindex [get_hw_targets -of_objects [get_hw_servers localhost]] 0]
+set_property PROGRAM.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/top.bit} [lindex [get_hw_devices] 0]
+set_property PROBES.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/debug_nets.ltx} [lindex [get_hw_devices] 0]
+current_hw_device [lindex [get_hw_devices] 0]
+refresh_hw_device [lindex [get_hw_devices] 0]
+set_property PROBES.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/debug_nets.ltx} [lindex [get_hw_devices] 0]
+set_property PROGRAM.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/top.bit} [lindex [get_hw_devices] 0]
+program_hw_devices [lindex [get_hw_devices] 0]
+refresh_hw_device [lindex [get_hw_devices] 0]
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_1]
+add_wave -into {hw_ila_data_1.wcfg} -radix bin [get_hw_probes {NIM_BLOCK/U24/U1/ld}] [get_hw_probes {NIM_BLOCK/U27/U1/ld}] [get_hw_probes {NIM_BLOCK/U3/U1/ld}] [get_hw_probes {NIM_BLOCK/U30/U1/ld}]
+set_property TRIGGER_COMPARE_VALUE eq4'h4 [get_hw_probes nim_input -of_objects [get_hw_ilas hw_ila_1]]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+set_property TRIGGER_COMPARE_VALUE eq4'b0000 [get_hw_probes nim_input -of_objects [get_hw_ilas hw_ila_1]]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+set_property TRIGGER_COMPARE_VALUE eq1'b0 [get_hw_probes NIM_BLOCK/U3/U1/ld -of_objects [get_hw_ilas hw_ila_1]]
+set_property TRIGGER_COMPARE_VALUE eq1'b0 [get_hw_probes NIM_BLOCK/U30/U1/ld -of_objects [get_hw_ilas hw_ila_1]]
+set_property TRIGGER_COMPARE_VALUE eq1'b1 [get_hw_probes NIM_BLOCK/U27/U1/ld -of_objects [get_hw_ilas hw_ila_1]]
+set_property TRIGGER_COMPARE_VALUE eq1'b0 [get_hw_probes NIM_BLOCK/U24/U1/ld -of_objects [get_hw_ilas hw_ila_1]]
+run_hw_ila hw_ila_1
+wait_on_hw_ila -timeout 0 hw_ila_1
+upload_hw_ila_data hw_ila_1
+set_property TRIGGER_COMPARE_VALUE eq4'bXXXX [get_hw_probes nim_input -of_objects [get_hw_ilas hw_ila_1]]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+set_property CONTROL.TRIGGER_POSITION 100 [get_hw_ilas hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+set_property TRIGGER_COMPARE_VALUE eq1'bX [get_hw_probes NIM_BLOCK/U27/U1/ld -of_objects [get_hw_ilas hw_ila_1]]
+set_property TRIGGER_COMPARE_VALUE eq1'bX [get_hw_probes NIM_BLOCK/U24/U1/ld -of_objects [get_hw_ilas hw_ila_1]]
+set_property TRIGGER_COMPARE_VALUE eq1'bX [get_hw_probes NIM_BLOCK/U3/U1/ld -of_objects [get_hw_ilas hw_ila_1]]
+set_property TRIGGER_COMPARE_VALUE eq1'bX [get_hw_probes NIM_BLOCK/U30/U1/ld -of_objects [get_hw_ilas hw_ila_1]]
+set_property TRIGGER_COMPARE_VALUE eq4'b11XX [get_hw_probes nim_input -of_objects [get_hw_ilas hw_ila_1]]
+run_hw_ila hw_ila_1
+wait_on_hw_ila -timeout 0 hw_ila_1
+upload_hw_ila_data hw_ila_1
+set_property TRIGGER_COMPARE_VALUE eq4'b0XXX [get_hw_probes nim_input -of_objects [get_hw_ilas hw_ila_1]]
+set_property TRIGGER_COMPARE_VALUE eq1'bF [get_hw_probes NIM_BLOCK/U27/U1/ld -of_objects [get_hw_ilas hw_ila_1]]
+set_property TRIGGER_COMPARE_VALUE neq1'bR [get_hw_probes NIM_BLOCK/U30/U1/ld -of_objects [get_hw_ilas hw_ila_1]]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+set_property TRIGGER_COMPARE_VALUE eq1'bN [get_hw_probes NIM_BLOCK/U30/U1/ld -of_objects [get_hw_ilas hw_ila_1]]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*ld*" } ]
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*ld*" } ]
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*fs_sync*" } ]
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*fs_sync_in*" } ]
+delete_debug_core [get_debug_cores {u_ila_0_0 }]
+create_debug_core u_ila_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0]
+set_property port_width 1 [get_debug_ports u_ila_0/clk]
+connect_debug_port u_ila_0/clk [get_nets [list bmx_320 ]]
+set_property port_width 4 [get_debug_ports u_ila_0/probe0]
+connect_debug_port u_ila_0/probe0 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe1]
+connect_debug_port u_ila_0/probe1 [get_nets [list NIM_BLOCK/U3/U1/ld ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe2]
+connect_debug_port u_ila_0/probe2 [get_nets [list NIM_BLOCK/U30/U1/ld ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe3]
+connect_debug_port u_ila_0/probe3 [get_nets [list NIM_BLOCK/U24/U1/ld ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe4]
+connect_debug_port u_ila_0/probe4 [get_nets [list NIM_BLOCK/U27/U1/ld ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe5]
+connect_debug_port u_ila_0/probe5 [get_nets [list NIM_BLOCK/U3/fs_sync_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe6]
+connect_debug_port u_ila_0/probe6 [get_nets [list NIM_BLOCK/U24/fs_sync_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe7]
+connect_debug_port u_ila_0/probe7 [get_nets [list NIM_BLOCK/U27/fs_sync_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe8]
+connect_debug_port u_ila_0/probe8 [get_nets [list NIM_BLOCK/U30/fs_sync_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe9]
+connect_debug_port u_ila_0/probe9 [get_nets [list NIM_BLOCK/U30/U9/fs_sync_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe10]
+connect_debug_port u_ila_0/probe10 [get_nets [list NIM_BLOCK/U30/U9/Sreg0 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe11]
+connect_debug_port u_ila_0/probe11 [get_nets [list NIM_BLOCK/U30/U9/sig_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe12]
+connect_debug_port u_ila_0/probe12 [get_nets [list NIM_BLOCK/U30/U9/load_out ]]
+save_constraints -force
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/debug_nets.ltx} [lindex [get_hw_devices] 0]
+set_property PROGRAM.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/top.bit} [lindex [get_hw_devices] 0]
+program_hw_devices [lindex [get_hw_devices] 0]
+refresh_hw_device [lindex [get_hw_devices] 0]
+add_wave -into {hw_ila_data_1.wcfg} -radix bin [get_hw_probes {NIM_BLOCK/U24/fs_sync_in}] [get_hw_probes {NIM_BLOCK/U27/fs_sync_in}] [get_hw_probes {NIM_BLOCK/U3/fs_sync_in}] [get_hw_probes {NIM_BLOCK/U30/fs_sync_in}]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+set_property CONTROL.TRIGGER_POSITION 100 [get_hw_ilas hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+add_wave -into {hw_ila_data_1.wcfg} -radix bin [get_hw_probes {NIM_BLOCK/U30/U9/fs_sync_in}] [get_hw_probes {NIM_BLOCK/U30/U9/load_out}] [get_hw_probes {NIM_BLOCK/U30/U9/sig_in}] [get_hw_probes {NIM_BLOCK/U30/U9/Sreg0}]
+delete_debug_core [get_debug_cores {u_ila_0 }]
+create_debug_core u_ila_0_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0_0]
+set_property port_width 1 [get_debug_ports u_ila_0_0/clk]
+connect_debug_port u_ila_0_0/clk [get_nets [list bmx_320 ]]
+set_property port_width 4 [get_debug_ports u_ila_0_0/probe0]
+connect_debug_port u_ila_0_0/probe0 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe1]
+connect_debug_port u_ila_0_0/probe1 [get_nets [list NIM_BLOCK/U30/U9/fs_sync_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe2]
+connect_debug_port u_ila_0_0/probe2 [get_nets [list NIM_BLOCK/U30/fs_sync_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe3]
+connect_debug_port u_ila_0_0/probe3 [get_nets [list NIM_BLOCK/U24/fs_sync_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe4]
+connect_debug_port u_ila_0_0/probe4 [get_nets [list NIM_BLOCK/U27/fs_sync_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe5]
+connect_debug_port u_ila_0_0/probe5 [get_nets [list NIM_BLOCK/U3/fs_sync_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe6]
+connect_debug_port u_ila_0_0/probe6 [get_nets [list NIM_BLOCK/U27/U1/ld ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe7]
+connect_debug_port u_ila_0_0/probe7 [get_nets [list NIM_BLOCK/U30/U1/ld ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe8]
+connect_debug_port u_ila_0_0/probe8 [get_nets [list NIM_BLOCK/U24/U1/ld ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe9]
+connect_debug_port u_ila_0_0/probe9 [get_nets [list NIM_BLOCK/U3/U1/ld ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe10]
+connect_debug_port u_ila_0_0/probe10 [get_nets [list NIM_BLOCK/U30/U9/load_out ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe11]
+connect_debug_port u_ila_0_0/probe11 [get_nets [list NIM_BLOCK/U30/U9/sig_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe12]
+connect_debug_port u_ila_0_0/probe12 [get_nets [list NIM_BLOCK/U30/U9/Sreg0 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe13]
+connect_debug_port u_ila_0_0/probe13 [get_nets [list NIM_BLOCK/U30/U9/v_ps_hold_in ]]
+save_constraints -force
+reset_run impl_1
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+close_design
+open_run impl_1
+set_property PROBES.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/debug_nets.ltx} [lindex [get_hw_devices] 0]
+set_property PROGRAM.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/top.bit} [lindex [get_hw_devices] 0]
+program_hw_devices [lindex [get_hw_devices] 0]
+refresh_hw_device [lindex [get_hw_devices] 0]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+add_wave -into {hw_ila_data_1.wcfg} -radix bin [get_hw_probes {NIM_BLOCK/U30/U9/v_ps_hold_in}]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila -timeout 0 hw_ila_1
+upload_hw_ila_data hw_ila_1
+run_hw_ila hw_ila_1
+wait_on_hw_ila -timeout 0 hw_ila_1
+upload_hw_ila_data hw_ila_1
+set_property TRIGGER_COMPARE_VALUE eq1'bX [get_hw_probes NIM_BLOCK/U27/U1/ld -of_objects [get_hw_ilas hw_ila_1]]
+set_property TRIGGER_COMPARE_VALUE eq1'bX [get_hw_probes NIM_BLOCK/U30/U1/ld -of_objects [get_hw_ilas hw_ila_1]]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+open_run synth_1 -name synth_1
+delete_debug_core [get_debug_cores {u_ila_0_0 }]
+create_debug_core u_ila_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0]
+create_debug_core u_ila_1 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_1]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_1]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_1]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_1]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_1]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_1]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_1]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_1]
+set_property port_width 1 [get_debug_ports u_ila_0/clk]
+connect_debug_port u_ila_0/clk [get_nets [list MASTER_CLK ]]
+set_property port_width 1 [get_debug_ports u_ila_1/clk]
+connect_debug_port u_ila_1/clk [get_nets [list bmx_320 ]]
+set_property port_width 1 [get_debug_ports u_ila_0/probe0]
+connect_debug_port u_ila_0/probe0 [get_nets [list NIM_BLOCK/U27/U9/sig_in ]]
+set_property port_width 4 [get_debug_ports u_ila_1/probe0]
+connect_debug_port u_ila_1/probe0 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_1 probe
+set_property port_width 1 [get_debug_ports u_ila_1/probe1]
+connect_debug_port u_ila_1/probe1 [get_nets [list NIM_BLOCK/U27/fs_sync_in ]]
+create_debug_port u_ila_1 probe
+set_property port_width 1 [get_debug_ports u_ila_1/probe2]
+connect_debug_port u_ila_1/probe2 [get_nets [list NIM_BLOCK/U27/U1/ld ]]
+create_debug_port u_ila_1 probe
+set_property port_width 1 [get_debug_ports u_ila_1/probe3]
+connect_debug_port u_ila_1/probe3 [get_nets [list NIM_BLOCK/U27/U9/v_ps_hold_in ]]
+create_debug_port u_ila_1 probe
+set_property port_width 1 [get_debug_ports u_ila_1/probe4]
+connect_debug_port u_ila_1/probe4 [get_nets [list NIM_BLOCK/U27/U9/Sreg0 ]]
+create_debug_port u_ila_1 probe
+set_property port_width 1 [get_debug_ports u_ila_1/probe5]
+connect_debug_port u_ila_1/probe5 [get_nets [list NIM_BLOCK/U27/U9/load_out ]]
+save_constraints
+reset_run impl_1
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run impl_1 -prev_step 
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+save_wave_config {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.hw/hw_1/wave/hw_ila_data_1/hw_ila_data_1.wcfg}
+close_hw
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+close_design
+open_run synth_1 -name synth_1
+delete_debug_core [get_debug_cores {u_ila_0 u_ila_1 }]
+create_debug_core u_ila_0_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0_0]
+create_debug_core u_ila_1_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_1_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_1_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_1_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_1_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_1_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_1_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_1_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_1_0]
+create_debug_core u_ila_2 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_2]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_2]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_2]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_2]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_2]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_2]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_2]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_2]
+set_property port_width 1 [get_debug_ports u_ila_0_0/clk]
+connect_debug_port u_ila_0_0/clk [get_nets [list IBUF_USER_CLK_n_323 ]]
+set_property port_width 1 [get_debug_ports u_ila_1_0/clk]
+connect_debug_port u_ila_1_0/clk [get_nets [list MASTER_CLK ]]
+set_property port_width 1 [get_debug_ports u_ila_2/clk]
+connect_debug_port u_ila_2/clk [get_nets [list bmx_320 ]]
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe0]
+connect_debug_port u_ila_0_0/probe0 [get_nets [list NIM_BLOCK/U27/U9/reset_p ]]
+set_property port_width 1 [get_debug_ports u_ila_1_0/probe0]
+connect_debug_port u_ila_1_0/probe0 [get_nets [list NIM_BLOCK/U27/U9/sig_in ]]
+set_property port_width 4 [get_debug_ports u_ila_2/probe0]
+connect_debug_port u_ila_2/probe0 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_2 probe
+set_property port_width 1 [get_debug_ports u_ila_2/probe1]
+connect_debug_port u_ila_2/probe1 [get_nets [list NIM_BLOCK/U27/fs_sync_in ]]
+create_debug_port u_ila_2 probe
+set_property port_width 1 [get_debug_ports u_ila_2/probe2]
+connect_debug_port u_ila_2/probe2 [get_nets [list NIM_BLOCK/U27/U9/load_out ]]
+create_debug_port u_ila_2 probe
+set_property port_width 1 [get_debug_ports u_ila_2/probe3]
+connect_debug_port u_ila_2/probe3 [get_nets [list NIM_BLOCK/U27/U9/Sreg0 ]]
+create_debug_port u_ila_2 probe
+set_property port_width 1 [get_debug_ports u_ila_2/probe4]
+connect_debug_port u_ila_2/probe4 [get_nets [list NIM_BLOCK/U27/U9/v_ps_hold_in ]]
+save_constraints
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_hw
+connect_hw_server
+open_hw_target [lindex [get_hw_targets -of_objects [get_hw_servers localhost]] 0]
+set_property PROGRAM.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/top.bit} [lindex [get_hw_devices] 0]
+set_property PROBES.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/debug_nets.ltx} [lindex [get_hw_devices] 0]
+current_hw_device [lindex [get_hw_devices] 0]
+refresh_hw_device [lindex [get_hw_devices] 0]
+set_property PROBES.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/debug_nets.ltx} [lindex [get_hw_devices] 0]
+set_property PROGRAM.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/top.bit} [lindex [get_hw_devices] 0]
+program_hw_devices [lindex [get_hw_devices] 0]
+refresh_hw_device [lindex [get_hw_devices] 0]
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_1]
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_2]
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_3]
+add_wave -into {hw_ila_data_3.wcfg} -radix bin [get_hw_probes {NIM_BLOCK/U27/U9/Sreg0}] [get_hw_probes {NIM_BLOCK/U27/U9/load_out}] [get_hw_probes {NIM_BLOCK/U27/U9/v_ps_hold_in}] [get_hw_probes {NIM_BLOCK/U27/fs_sync_in}] [get_hw_probes {nim_input}]
+set_property CONTROL.TRIGGER_POSITION 100 [get_hw_ilas hw_ila_3]
+run_hw_ila hw_ila_3
+wait_on_hw_ila hw_ila_3
+display_hw_ila_data [upload_hw_ila_data hw_ila_3]
+run_hw_ila hw_ila_3
+wait_on_hw_ila hw_ila_3
+display_hw_ila_data [upload_hw_ila_data hw_ila_3]
+run_hw_ila hw_ila_3
+wait_on_hw_ila hw_ila_3
+display_hw_ila_data [upload_hw_ila_data hw_ila_3]
+set_property TRIGGER_COMPARE_VALUE eq4'b0100 [get_hw_probes nim_input -of_objects [get_hw_ilas hw_ila_3]]
+set_property TRIGGER_COMPARE_VALUE eq1'b0 [get_hw_probes NIM_BLOCK/U27/U9/Sreg0 -of_objects [get_hw_ilas hw_ila_3]]
+set_property TRIGGER_COMPARE_VALUE eq1'b0 [get_hw_probes NIM_BLOCK/U27/U9/load_out -of_objects [get_hw_ilas hw_ila_3]]
+run_hw_ila hw_ila_3
+wait_on_hw_ila hw_ila_3
+display_hw_ila_data [upload_hw_ila_data hw_ila_3]
+run_hw_ila hw_ila_3
+wait_on_hw_ila hw_ila_3
+display_hw_ila_data [upload_hw_ila_data hw_ila_3]
+run_hw_ila hw_ila_3
+wait_on_hw_ila hw_ila_3
+display_hw_ila_data [upload_hw_ila_data hw_ila_3]
+run_hw_ila hw_ila_3
+wait_on_hw_ila hw_ila_3
+display_hw_ila_data [upload_hw_ila_data hw_ila_3]
+run_hw_ila hw_ila_3
+wait_on_hw_ila hw_ila_3
+display_hw_ila_data [upload_hw_ila_data hw_ila_3]
+run_hw_ila hw_ila_3
+wait_on_hw_ila hw_ila_3
+display_hw_ila_data [upload_hw_ila_data hw_ila_3]
+run_hw_ila hw_ila_3
+wait_on_hw_ila hw_ila_3
+display_hw_ila_data [upload_hw_ila_data hw_ila_3]
+run_hw_ila hw_ila_3
+wait_on_hw_ila hw_ila_3
+display_hw_ila_data [upload_hw_ila_data hw_ila_3]
+current_design impl_1
+check_timing -verbose -name timing_1
+close_design
+delete_debug_core [get_debug_cores {u_ila_0_0 u_ila_1_0 u_ila_2 }]
+create_debug_core u_ila_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0]
+set_property port_width 1 [get_debug_ports u_ila_0/clk]
+connect_debug_port u_ila_0/clk [get_nets [list bmx_320 ]]
+set_property port_width 4 [get_debug_ports u_ila_0/probe0]
+connect_debug_port u_ila_0/probe0 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe1]
+connect_debug_port u_ila_0/probe1 [get_nets [list NIM_BLOCK/U27/fs_sync_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe2]
+connect_debug_port u_ila_0/probe2 [get_nets [list NIM_BLOCK/U27/U9/load_out ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe3]
+connect_debug_port u_ila_0/probe3 [get_nets [list NIM_BLOCK/U27/U9/sig_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe4]
+connect_debug_port u_ila_0/probe4 [get_nets [list NIM_BLOCK/U27/U9/Sreg0 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe5]
+connect_debug_port u_ila_0/probe5 [get_nets [list NIM_BLOCK/U27/U9/v_ps_hold_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe6]
+connect_debug_port u_ila_0/probe6 [get_nets [list NIM_BLOCK/U24/U9/fs_sync_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe7]
+connect_debug_port u_ila_0/probe7 [get_nets [list NIM_BLOCK/U24/U9/load_out ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe8]
+connect_debug_port u_ila_0/probe8 [get_nets [list NIM_BLOCK/U24/U9/sig_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe9]
+connect_debug_port u_ila_0/probe9 [get_nets [list NIM_BLOCK/U24/U9/Sreg0 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe10]
+connect_debug_port u_ila_0/probe10 [get_nets [list NIM_BLOCK/U24/U9/v_ps_hold_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe11]
+connect_debug_port u_ila_0/probe11 [get_nets [list NIM_BLOCK/U3/U9/fs_sync_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe12]
+connect_debug_port u_ila_0/probe12 [get_nets [list NIM_BLOCK/U3/U9/load_out ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe13]
+connect_debug_port u_ila_0/probe13 [get_nets [list NIM_BLOCK/U3/U9/sig_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe14]
+connect_debug_port u_ila_0/probe14 [get_nets [list NIM_BLOCK/U3/U9/Sreg0 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe15]
+connect_debug_port u_ila_0/probe15 [get_nets [list NIM_BLOCK/U3/U9/v_ps_hold_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe16]
+connect_debug_port u_ila_0/probe16 [get_nets [list NIM_BLOCK/U30/U9/fs_sync_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe17]
+connect_debug_port u_ila_0/probe17 [get_nets [list NIM_BLOCK/U30/U9/load_out ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe18]
+connect_debug_port u_ila_0/probe18 [get_nets [list NIM_BLOCK/U30/U9/sig_in ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe19]
+connect_debug_port u_ila_0/probe19 [get_nets [list NIM_BLOCK/U30/U9/Sreg0 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe20]
+connect_debug_port u_ila_0/probe20 [get_nets [list NIM_BLOCK/U30/U9/v_ps_hold_in ]]
+save_constraints
+reset_run impl_1
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/debug_nets.ltx} [lindex [get_hw_devices] 0]
+set_property PROGRAM.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/top.bit} [lindex [get_hw_devices] 0]
+program_hw_devices [lindex [get_hw_devices] 0]
+refresh_hw_device [lindex [get_hw_devices] 0]
+save_wave_config {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.hw/hw_1/wave/hw_ila_data_3/hw_ila_data_3.wcfg}
+add_wave -into {hw_ila_data_1.wcfg} -radix bin [get_hw_probes {NIM_BLOCK/U27/U9/Sreg0}] [get_hw_probes {NIM_BLOCK/U27/U9/load_out}] [get_hw_probes {NIM_BLOCK/U27/U9/sig_in}] [get_hw_probes {NIM_BLOCK/U27/U9/v_ps_hold_in}] [get_hw_probes {NIM_BLOCK/U27/fs_sync_in}] [get_hw_probes {nim_input}] [get_hw_probes {NIM_BLOCK/U24/U9/Sreg0}] [get_hw_probes {NIM_BLOCK/U24/U9/fs_sync_in}] [get_hw_probes {NIM_BLOCK/U24/U9/load_out}] [get_hw_probes {NIM_BLOCK/U24/U9/sig_in}] [get_hw_probes {NIM_BLOCK/U24/U9/v_ps_hold_in}] [get_hw_probes {NIM_BLOCK/U3/U9/Sreg0}] [get_hw_probes {NIM_BLOCK/U3/U9/fs_sync_in}] [get_hw_probes {NIM_BLOCK/U3/U9/load_out}] [get_hw_probes {NIM_BLOCK/U3/U9/sig_in}] [get_hw_probes {NIM_BLOCK/U3/U9/v_ps_hold_in}] [get_hw_probes {NIM_BLOCK/U30/U9/Sreg0}] [get_hw_probes {NIM_BLOCK/U30/U9/fs_sync_in}] [get_hw_probes {NIM_BLOCK/U30/U9/load_out}] [get_hw_probes {NIM_BLOCK/U30/U9/sig_in}] [get_hw_probes {NIM_BLOCK/U30/U9/v_ps_hold_in}]
+run_hw_ila hw_ila_1
+set_property TRIGGER_COMPARE_VALUE eq1'bX [get_hw_probes NIM_BLOCK/U27/U9/Sreg0 -of_objects [get_hw_ilas hw_ila_1]]
+set_property TRIGGER_COMPARE_VALUE eq1'bX [get_hw_probes NIM_BLOCK/U27/U9/load_out -of_objects [get_hw_ilas hw_ila_1]]
+wait_on_hw_ila -timeout 0 hw_ila_1
+upload_hw_ila_data hw_ila_1
+set_property TRIGGER_COMPARE_VALUE eq4'b0001 [get_hw_probes nim_input -of_objects [get_hw_ilas hw_ila_1]]
+run_hw_ila hw_ila_1
+wait_on_hw_ila hw_ila_1
+display_hw_ila_data [upload_hw_ila_data hw_ila_1]
+remove_files C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/OT_2017_05_10/nim_plus_blk_1_phase_4ps.vhd
+add_files -norecurse U:/PREP/PREP_Modernization/Firmware_Backups/Aldec_Backups/One_Phase_Designs/CAPTAN_Plus_Designs_160MHz/AGP_2017_08_29_NIMPlus_jw121_160MHz_1Phase/NIMPlus/NIMPlus/compile/nim_plus_blk_1_phase_4ps.vhd
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+delete_debug_core [get_debug_cores {u_ila_0 }]
+create_debug_core u_ila_0_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0_0]
+set_property port_width 1 [get_debug_ports u_ila_0_0/clk]
+connect_debug_port u_ila_0_0/clk [get_nets [list bmx_320 ]]
+set_property port_width 4 [get_debug_ports u_ila_0_0/probe0]
+connect_debug_port u_ila_0_0/probe0 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe1]
+connect_debug_port u_ila_0_0/probe1 [get_nets [list NIM_BLOCK/U30/U9/fs_sync_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe2]
+connect_debug_port u_ila_0_0/probe2 [get_nets [list NIM_BLOCK/U3/U9/fs_sync_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe3]
+connect_debug_port u_ila_0_0/probe3 [get_nets [list NIM_BLOCK/U27/fs_sync_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe4]
+connect_debug_port u_ila_0_0/probe4 [get_nets [list NIM_BLOCK/U24/U9/fs_sync_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe5]
+connect_debug_port u_ila_0_0/probe5 [get_nets [list NIM_BLOCK/U27/U9/load_out ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe6]
+connect_debug_port u_ila_0_0/probe6 [get_nets [list NIM_BLOCK/U30/U9/load_out ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe7]
+connect_debug_port u_ila_0_0/probe7 [get_nets [list NIM_BLOCK/U3/U9/load_out ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe8]
+connect_debug_port u_ila_0_0/probe8 [get_nets [list NIM_BLOCK/U24/U9/load_out ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe9]
+connect_debug_port u_ila_0_0/probe9 [get_nets [list NIM_BLOCK/U3/U9/sig_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe10]
+connect_debug_port u_ila_0_0/probe10 [get_nets [list NIM_BLOCK/U27/U9/sig_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe11]
+connect_debug_port u_ila_0_0/probe11 [get_nets [list NIM_BLOCK/U30/U9/sig_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe12]
+connect_debug_port u_ila_0_0/probe12 [get_nets [list NIM_BLOCK/U24/U9/sig_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe13]
+connect_debug_port u_ila_0_0/probe13 [get_nets [list NIM_BLOCK/U3/U9/Sreg0 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe14]
+connect_debug_port u_ila_0_0/probe14 [get_nets [list NIM_BLOCK/U27/U9/Sreg0 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe15]
+connect_debug_port u_ila_0_0/probe15 [get_nets [list NIM_BLOCK/U30/U9/Sreg0 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe16]
+connect_debug_port u_ila_0_0/probe16 [get_nets [list NIM_BLOCK/U24/U9/Sreg0 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe17]
+connect_debug_port u_ila_0_0/probe17 [get_nets [list NIM_BLOCK/U27/U9/v_ps_hold_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe18]
+connect_debug_port u_ila_0_0/probe18 [get_nets [list NIM_BLOCK/U30/U9/v_ps_hold_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe19]
+connect_debug_port u_ila_0_0/probe19 [get_nets [list NIM_BLOCK/U24/U9/v_ps_hold_in ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe20]
+connect_debug_port u_ila_0_0/probe20 [get_nets [list NIM_BLOCK/U3/U9/v_ps_hold_in ]]
+save_constraints -force
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+close_design
+set_property PROBES.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/debug_nets.ltx} [lindex [get_hw_devices] 0]
+set_property PROGRAM.FILE {C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top/top.runs/impl_1/top.bit} [lindex [get_hw_devices] 0]
+program_hw_devices [lindex [get_hw_devices] 0]
+refresh_hw_device [lindex [get_hw_devices] 0]
+close_hw_target
+write_cfgmem -force -format MCS -size 32 -interface SPIx4 -loadbit "up 0x0 
+C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top.bit -file "top.mcs"
+write_cfgmem -force -format MCS -size 32 -interface SPIx4 -loadbit "up 0x0 C:/nimPlus_CAPTAN_+_Artix_160_New_Port_Assign/top.bit" -file "top.mcs"
+close_hw
