@@ -1,0 +1,49 @@
+#-----------------------------------------------------------
+# Vivado v2015.2 (64-bit)
+# SW Build 1266856 on Fri Jun 26 16:35:25 MDT 2015
+# IP Build 1264090 on Wed Jun 24 14:22:01 MDT 2015
+# Start of session at: Tue Nov 28 17:40:10 2017
+# Process ID: 12104
+# Log file: C:/nimPlus_nov16_2017_t0923/nimPlus_/top/vivado.log
+# Journal file: C:/nimPlus_nov16_2017_t0923/nimPlus_/top\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/nimPlus_nov16_2017_t0923/nimPlus_/top/top.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2015.2/data/ip'.
+open_project: Time (s): cpu = 00:00:13 ; elapsed = 00:00:06 . Memory (MB): peak = 862.672 ; gain = 274.926
+remove_files U:/PREP/PREP_Modernization/Firmware_Backups/Aldec_Backups/One_Phase_Designs/AGP_2017_11_16_NIMPlus_jw121_320MHz_1Phase_Accel_Sync/NIMPlus/NIMPlus/compile/nim_plus_blk_1_phase_4ps.vhd
+add_files -norecurse {U:/PREP/PREP_Modernization/Firmware_Backups/Aldec_Backups/One_Phase_Designs/AGP_2017_11_16_NIMPlus_jw121_320MHz_1Phase_Accel_Sync/NIMPlus/NIMPlus/compile/trig_sync.vhd U:/PREP/PREP_Modernization/Firmware_Backups/Aldec_Backups/One_Phase_Designs/AGP_2017_11_16_NIMPlus_jw121_320MHz_1Phase_Accel_Sync/NIMPlus/NIMPlus/compile/nim_plus_blk_1_phase_4ps.vhd}
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+[Tue Nov 28 17:41:17 2017] Launched synth_1...
+Run output will be captured here: C:/nimPlus_nov16_2017_t0923/nimPlus_/top/top.runs/synth_1/runme.log
+launch_runs impl_1 -jobs 4
+[Tue Nov 28 17:42:45 2017] Launched impl_1...
+Run output will be captured here: C:/nimPlus_nov16_2017_t0923/nimPlus_/top/top.runs/impl_1/runme.log
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Nov 28 17:45:14 2017] Launched impl_1...
+Run output will be captured here: C:/nimPlus_nov16_2017_t0923/nimPlus_/top/top.runs/impl_1/runme.log
+write_cfgmem -force -format MCS -size 32 -interface SPIx4 -loadbit "up 0x0 
+C:/nimPlus_nov16_2017_t0923/top.bit" -file "top.mcs"
+Creating config memory files...
+Creating bitstream load up from address 0x00000000
+Loading bitfile C:/nimPlus_nov16_2017_t0923/top.bit
+Writing file ./top.mcs
+Writing log file ./top.prm
+===================================
+Configuration Memory information
+===================================
+File Format        MCS
+Interface          SPIX4
+Size               32M
+Start Address      0x00000000
+End Address        0x01FFFFFF
+
+Addr1         Addr2         Date                    File(s)
+0x00000000    0x001F9D37    Nov 28 17:46:12 2017    C:/nimPlus_nov16_2017_t0923/top.bit
+exit
+INFO: [Common 17-206] Exiting Vivado at Tue Nov 28 17:48:43 2017...

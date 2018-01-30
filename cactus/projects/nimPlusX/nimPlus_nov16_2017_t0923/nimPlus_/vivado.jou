@@ -1,0 +1,839 @@
+#-----------------------------------------------------------
+# Vivado v2015.2 (64-bit)
+# SW Build 1266856 on Fri Jun 26 16:35:25 MDT 2015
+# IP Build 1264090 on Wed Jun 24 14:22:01 MDT 2015
+# Start of session at: Wed Jan 24 21:16:01 2018
+# Process ID: 30820
+# Log file: /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/vivado.log
+# Journal file: /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project top/top.xpr
+remove_files /home/cmstestbeam/NIMPlus/nimPlus_/acc_sync.vhd
+remove_files /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/NIMPlus/src/b_fifo_mux.vhd
+remove_files /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/OT_2017_05_18_Burst_Support/cntrs_2_b_fifo.vhd
+remove_files /home/cmstestbeam/NIMPlus/nimPlus_/divide_by_8.vhd
+remove_files /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_fileDrop_dec08_2017/nim_plus_blk_1_phase_4ps.vhd
+remove_files /home/cmstestbeam/NIMPlus/nimPlus_/trig_sync.vhd
+add_files -norecurse {/home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/agrgate_8_by_8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/acc_sync.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/divide_by_8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/trig_sync.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/cntrs_2_b_fifo.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/agrgate16_1.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/cnt_64_simp.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/buf8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/mux64_2.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/nim_plus_blk_1_phase_4ps.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/read_decode_p.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/b_fifo_mux.vhd}
+reset_run synth_1
+reset_run NIM_CLKS_synth_1
+reset_run clk_wiz_0_synth_1
+reset_run clk_wiz_1_synth_1
+reset_run clk_wiz_2_synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+open_run synth_1 -name synth_1
+delete_debug_core [get_debug_cores {u_ila_0_0 }]
+create_debug_core u_ila_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0]
+set_property port_width 1 [get_debug_ports u_ila_0/clk]
+connect_debug_port u_ila_0/clk [get_nets [list MASTER_CLK ]]
+set_property port_width 4 [get_debug_ports u_ila_0/probe0]
+connect_debug_port u_ila_0/probe0 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe1]
+connect_debug_port u_ila_0/probe1 [get_nets [list bmx_40 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe2]
+connect_debug_port u_ila_0/probe2 [get_nets [list NIM_BLOCK/clk_13_25 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe3]
+connect_debug_port u_ila_0/probe3 [get_nets [list NIM_BLOCK/clk_39_out ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe4]
+connect_debug_port u_ila_0/probe4 [get_nets [list ei40_gen_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe5]
+connect_debug_port u_ila_0/probe5 [get_nets [list fs_gen_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe6]
+connect_debug_port u_ila_0/probe6 [get_nets [list NIM_BLOCK/muxout_1 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe7]
+connect_debug_port u_ila_0/probe7 [get_nets [list NIM_BLOCK/muxout_3 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe8]
+connect_debug_port u_ila_0/probe8 [get_nets [list NIM_BLOCK/muxout_4 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe9]
+connect_debug_port u_ila_0/probe9 [get_nets [list s_ck_mx_out ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe10]
+connect_debug_port u_ila_0/probe10 [get_nets [list s_clk25_6e ]]
+save_constraints
+close_design
+reset_run impl_1
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run impl_1 -prev_step 
+remove_files /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/NIMPlus/src/read_decode.vhd
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run impl_1 -noclean_dir 
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_run impl_1
+close_design
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_run impl_1
+close_design
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*read*" } ]
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*udp*" } ]
+delete_debug_core [get_debug_cores {u_ila_0 }]
+create_debug_core u_ila_0_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0_0]
+set_property port_width 1 [get_debug_ports u_ila_0_0/clk]
+connect_debug_port u_ila_0_0/clk [get_nets [list MASTER_CLK ]]
+set_property port_width 64 [get_debug_ports u_ila_0_0/probe0]
+connect_debug_port u_ila_0_0/probe0 [get_nets [list {read_out_data[0]} {read_out_data[1]} {read_out_data[2]} {read_out_data[3]} {read_out_data[4]} {read_out_data[5]} {read_out_data[6]} {read_out_data[7]} {read_out_data[8]} {read_out_data[9]} {read_out_data[10]} {read_out_data[11]} {read_out_data[12]} {read_out_data[13]} {read_out_data[14]} {read_out_data[15]} {read_out_data[16]} {read_out_data[17]} {read_out_data[18]} {read_out_data[19]} {read_out_data[20]} {read_out_data[21]} {read_out_data[22]} {read_out_data[23]} {read_out_data[24]} {read_out_data[25]} {read_out_data[26]} {read_out_data[27]} {read_out_data[28]} {read_out_data[29]} {read_out_data[30]} {read_out_data[31]} {read_out_data[32]} {read_out_data[33]} {read_out_data[34]} {read_out_data[35]} {read_out_data[36]} {read_out_data[37]} {read_out_data[38]} {read_out_data[39]} {read_out_data[40]} {read_out_data[41]} {read_out_data[42]} {read_out_data[43]} {read_out_data[44]} {read_out_data[45]} {read_out_data[46]} {read_out_data[47]} {read_out_data[48]} {read_out_data[49]} {read_out_data[50]} {read_out_data[51]} {read_out_data[52]} {read_out_data[53]} {read_out_data[54]} {read_out_data[55]} {read_out_data[56]} {read_out_data[57]} {read_out_data[58]} {read_out_data[59]} {read_out_data[60]} {read_out_data[61]} {read_out_data[62]} {read_out_data[63]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 4 [get_debug_ports u_ila_0_0/probe1]
+connect_debug_port u_ila_0_0/probe1 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe2]
+connect_debug_port u_ila_0_0/probe2 [get_nets [list bmx_40 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe3]
+connect_debug_port u_ila_0_0/probe3 [get_nets [list NIM_BLOCK/clk_13_25 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe4]
+connect_debug_port u_ila_0_0/probe4 [get_nets [list NIM_BLOCK/clk_39_out ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe5]
+connect_debug_port u_ila_0_0/probe5 [get_nets [list ei40_gen_lock ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe6]
+connect_debug_port u_ila_0_0/probe6 [get_nets [list fs_gen_lock ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe7]
+connect_debug_port u_ila_0_0/probe7 [get_nets [list NIM_BLOCK/muxout_1 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe8]
+connect_debug_port u_ila_0_0/probe8 [get_nets [list NIM_BLOCK/muxout_3 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe9]
+connect_debug_port u_ila_0_0/probe9 [get_nets [list NIM_BLOCK/muxout_4 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe10]
+connect_debug_port u_ila_0_0/probe10 [get_nets [list s_ck_mx_out ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe11]
+connect_debug_port u_ila_0_0/probe11 [get_nets [list s_clk25_6e ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe12]
+connect_debug_port u_ila_0_0/probe12 [get_nets [list eth_interface/ec_wrapper/ethernet_controller/DecipherBlock/udp_data_valid ]]
+save_constraints
+close_design
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_run impl_1
+close_design
+remove_files {/home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/nim_plus_blk_1_phase_4ps.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/OT_2017_05_18/reg_64.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/compile/reg_8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/compile/reg_16.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/compile/DAC_Control.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/OT_2017_05_18/load_array_64_v_ps.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/b_fifo_mux.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/cntrs_2_b_fifo.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/compile/ps_hold_count.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/src/decode_addr_NIM_Plus.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/compile/burst_mux_8_to_1.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/compile/cnt64.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/compile/v_sec_60_4_in_64_out.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/OT_2017_05_18_Burst_Support/scope_probe_4ch.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/compile/cnt32.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/JW121_2017_05_24/v_sec_32_4_in_64_out.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/OT_2017_05_18_Burst_Support/cntrs_2_b_fifo_jw121.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/JW121_2017_05_24/mux_2_1_16ch.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/acc_sync.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/divide_by_8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/trig_sync.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/read_decode_p.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/agrgate_8_by_8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/mux64_2.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/buf8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/cnt_64_simp.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/agrgate16_1.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/JW121_2017_05_24/sel_block.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_fileDrop_dec08_2017/section_counter.vhd}
+remove_files {/home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/NIMPlus/src/start_sig_mux.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/NIMPlus/compile/reg_32.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/compile/veto_count.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/NIMPlus/src/mux_8_to_1.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/compile/stsp_counter.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/NIMPlus/compile/ver_code.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/compile/pol_sel.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/NIMPlus/src/decode_addr_NIM_Plus_1.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/compile/cnt32_v2.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/NIMPlus/src/decode_addr_NIM_Plus_2.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/NIMPlus/src/decode_addr_NIM_Plus_3.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/NIMPlus/src/decode_addr_NIM_Plus_4.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/NIMPlus/src/test_mux.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/NIMPlus/compile/sig_gen_prog.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/NIMPlus/src/decode_addr_NIM_Plus_ctrs.vhd}
+remove_files {/home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/OT_2017_05_18/Load_array_section_16.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/compile/load_ctl_1_phase_4ps_fs_sync.vhd}
+remove_files /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/compile/ff_la.vhd
+add_files -norecurse {/home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/reg_16.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/HGCAL_Veto_w_Rearm.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/reg_32.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/mux_8_to_1.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/Load_array_section_16.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/pol_sel.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/nim_plus_block_v4.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/load_controller_2_1_phase.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/pipetest.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/count32.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/trig_sync.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/CMS_NIMPlus_top.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/cnt_64_simp.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/rd_test_decode.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/HGCAL_veto_block.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/sig_gen_prog.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_1.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/DAC_Control.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/accel_sync_test.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/nim_plus_block_v2.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_3.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/stsp_counter.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/divide_by_8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/cnt32.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/read_decode_3.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/nim_plus_block.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/presecaler_count.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ld_array_4_v2_1_phase.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ethernet_interface.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/trig_blk.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/load_ctl_1_phase_4ps.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_ctrs.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/agrgate16_1.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/mux_2_1_16ch.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/cnt64.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/reg_8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/acc_sync.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/burst_mux_8_to_1.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/pipe_line_8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/sig_gen_block.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/load_controller_v_ps.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/reg_64.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ver_code.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/nim_plus_package_1.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/load_controller_2.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ps_hold_count.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/test_trig_1blk.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/count8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/start_sig_mux.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ld_array_4_v3.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/TopShell.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ld_array_4_v_ps.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/test_mux.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_4.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/wr_rd_test.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/nim_plus_blk_1_phase_4ps.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ld_array_1_phase_4ps.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/agrgate_8_by_8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/veto_count.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/scope_probe_4ch.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/str_out_8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/buf8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/nim_plus_block_v3.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/read_decode.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/clk_mux_2_to_1_x_2.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/cntrs_2_b_fifo.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/sel_block.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/cnt32_v2.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/d_ff.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/mux_4_to_1.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_2.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/v_sec_32_4_in_64_out.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/fake_top.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/load_ctl_1_phase_4ps_fs_sync.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/pulse_combine.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/decode_addr_8_regs.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/wr_test.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/cntrs_2_b_fifo_jw121.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/v_sec_60_4_in_64_out.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ff_la.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/addr_decode_NIM.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/load_array_64_v_ps.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/wr_rd_test_v2.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/mux64_2.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/read_decode_p.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/section_counter.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/no_del_mux.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/load_controller_3.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ld_array_4.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ssm.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/trig_test.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/decode_addr_NIM_Plus.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/b_fifo_mux.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ld_array_4_v2.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/count8bit.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/fs_sync_module.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/load_controller_1.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/flip_flop.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/nim_plus_block_test_1.vhd}
+remove_files {/home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/nim_plus_block_v4.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ld_array_4_v_ps.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/str_out_8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ld_array_4_v3.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ld_array_1_phase_4ps.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/nim_plus_block_test_1.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/nim_plus_block_v2.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/nim_plus_block.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/accel_sync_test.vhd /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/ethImports/hdl/ethernet_interface.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/wr_rd_test_v2.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/HGCAL_veto_block.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/wr_rd_test.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/fake_top.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/pipetest.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/test_trig_1blk.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/CMS_NIMPlus_top.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/TopShell.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/addr_decode_NIM.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/count32.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/count8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/count8bit.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/load_ctl_1_phase_4ps.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/mux_8_to_1.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/no_del_mux.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/pulse_combine.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/read_decode_3.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/sig_gen_block.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ssm.vhd}
+remove_files /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/NIMPlus/src/clk_mux_2_to_1_x_2.vhd
+file delete -force /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/NIMPlus/src/clk_mux_2_to_1_x_2.vhd
+remove_files {/home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ld_array_4.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ld_array_4_v2_1_phase.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/nim_plus_block_v3.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/wr_test.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/pipe_line_8.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/trig_test.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/fs_sync_module.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/HGCAL_Veto_w_Rearm.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/load_controller_3.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/load_controller_v_ps.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/presecaler_count.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/rd_test_decode.vhd}
+remove_files {/home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ld_array_4_v2.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/decode_addr_8_regs.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/flip_flop.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/load_controller_1.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/load_controller_2_1_phase.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/read_decode.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/trig_blk.vhd}
+remove_files {/home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/d_ff.vhd /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/load_controller_2.vhd}
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+remove_files /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ethernet_interface.vhd
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+add_files -norecurse /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/ethImports/hdl/ethernet_interface.vhd
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*addr*" } ]
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*debug*" } ]
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*U311*" } ]
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*U322*" } ]
+delete_debug_core [get_debug_cores {u_ila_0_0 }]
+create_debug_core u_ila_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0]
+set_property port_width 1 [get_debug_ports u_ila_0/clk]
+connect_debug_port u_ila_0/clk [get_nets [list MASTER_CLK ]]
+set_property port_width 8 [get_debug_ports u_ila_0/probe0]
+connect_debug_port u_ila_0/probe0 [get_nets [list {NIM_BLOCK/U322/addrDebug[0]} {NIM_BLOCK/U322/addrDebug[1]} {NIM_BLOCK/U322/addrDebug[2]} {NIM_BLOCK/U322/addrDebug[3]} {NIM_BLOCK/U322/addrDebug[4]} {NIM_BLOCK/U322/addrDebug[5]} {NIM_BLOCK/U322/addrDebug[6]} {NIM_BLOCK/U322/addrDebug[7]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0/probe1]
+connect_debug_port u_ila_0/probe1 [get_nets [list {NIM_BLOCK/U322/dataDebug[0]} {NIM_BLOCK/U322/dataDebug[1]} {NIM_BLOCK/U322/dataDebug[2]} {NIM_BLOCK/U322/dataDebug[3]} {NIM_BLOCK/U322/dataDebug[4]} {NIM_BLOCK/U322/dataDebug[5]} {NIM_BLOCK/U322/dataDebug[6]} {NIM_BLOCK/U322/dataDebug[7]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0/probe2]
+connect_debug_port u_ila_0/probe2 [get_nets [list {NIM_BLOCK/U311/addrDebug[0]} {NIM_BLOCK/U311/addrDebug[1]} {NIM_BLOCK/U311/addrDebug[2]} {NIM_BLOCK/U311/addrDebug[3]} {NIM_BLOCK/U311/addrDebug[4]} {NIM_BLOCK/U311/addrDebug[5]} {NIM_BLOCK/U311/addrDebug[6]} {NIM_BLOCK/U311/addrDebug[7]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0/probe3]
+connect_debug_port u_ila_0/probe3 [get_nets [list {NIM_BLOCK/U311/dataDebug[0]} {NIM_BLOCK/U311/dataDebug[1]} {NIM_BLOCK/U311/dataDebug[2]} {NIM_BLOCK/U311/dataDebug[3]} {NIM_BLOCK/U311/dataDebug[4]} {NIM_BLOCK/U311/dataDebug[5]} {NIM_BLOCK/U311/dataDebug[6]} {NIM_BLOCK/U311/dataDebug[7]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 4 [get_debug_ports u_ila_0/probe4]
+connect_debug_port u_ila_0/probe4 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 64 [get_debug_ports u_ila_0/probe5]
+connect_debug_port u_ila_0/probe5 [get_nets [list {read_out_data[0]} {read_out_data[1]} {read_out_data[2]} {read_out_data[3]} {read_out_data[4]} {read_out_data[5]} {read_out_data[6]} {read_out_data[7]} {read_out_data[8]} {read_out_data[9]} {read_out_data[10]} {read_out_data[11]} {read_out_data[12]} {read_out_data[13]} {read_out_data[14]} {read_out_data[15]} {read_out_data[16]} {read_out_data[17]} {read_out_data[18]} {read_out_data[19]} {read_out_data[20]} {read_out_data[21]} {read_out_data[22]} {read_out_data[23]} {read_out_data[24]} {read_out_data[25]} {read_out_data[26]} {read_out_data[27]} {read_out_data[28]} {read_out_data[29]} {read_out_data[30]} {read_out_data[31]} {read_out_data[32]} {read_out_data[33]} {read_out_data[34]} {read_out_data[35]} {read_out_data[36]} {read_out_data[37]} {read_out_data[38]} {read_out_data[39]} {read_out_data[40]} {read_out_data[41]} {read_out_data[42]} {read_out_data[43]} {read_out_data[44]} {read_out_data[45]} {read_out_data[46]} {read_out_data[47]} {read_out_data[48]} {read_out_data[49]} {read_out_data[50]} {read_out_data[51]} {read_out_data[52]} {read_out_data[53]} {read_out_data[54]} {read_out_data[55]} {read_out_data[56]} {read_out_data[57]} {read_out_data[58]} {read_out_data[59]} {read_out_data[60]} {read_out_data[61]} {read_out_data[62]} {read_out_data[63]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe6]
+connect_debug_port u_ila_0/probe6 [get_nets [list bmx_40 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe7]
+connect_debug_port u_ila_0/probe7 [get_nets [list NIM_BLOCK/clk_13_25 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe8]
+connect_debug_port u_ila_0/probe8 [get_nets [list NIM_BLOCK/clk_39_out ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe9]
+connect_debug_port u_ila_0/probe9 [get_nets [list ei40_gen_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe10]
+connect_debug_port u_ila_0/probe10 [get_nets [list fs_gen_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe11]
+connect_debug_port u_ila_0/probe11 [get_nets [list NIM_BLOCK/muxout_1 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe12]
+connect_debug_port u_ila_0/probe12 [get_nets [list NIM_BLOCK/muxout_3 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe13]
+connect_debug_port u_ila_0/probe13 [get_nets [list NIM_BLOCK/muxout_4 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe14]
+connect_debug_port u_ila_0/probe14 [get_nets [list s_ck_mx_out ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe15]
+connect_debug_port u_ila_0/probe15 [get_nets [list s_clk25_6e ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe16]
+connect_debug_port u_ila_0/probe16 [get_nets [list eth_interface/ec_wrapper/ethernet_controller/DecipherBlock/udp_data_valid ]]
+save_constraints
+close_design
+remove_files /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/imports/src/nim_plus_package_1.vhd
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_run impl_1
+close_design
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*lock*" } ]
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*lock*" } ]
+delete_debug_core [get_debug_cores {u_ila_0 }]
+create_debug_core u_ila_0_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0_0]
+set_property port_width 1 [get_debug_ports u_ila_0_0/clk]
+connect_debug_port u_ila_0_0/clk [get_nets [list MASTER_CLK ]]
+set_property port_width 8 [get_debug_ports u_ila_0_0/probe0]
+connect_debug_port u_ila_0_0/probe0 [get_nets [list {NIM_BLOCK/U311/addrDebug[0]} {NIM_BLOCK/U311/addrDebug[1]} {NIM_BLOCK/U311/addrDebug[2]} {NIM_BLOCK/U311/addrDebug[3]} {NIM_BLOCK/U311/addrDebug[4]} {NIM_BLOCK/U311/addrDebug[5]} {NIM_BLOCK/U311/addrDebug[6]} {NIM_BLOCK/U311/addrDebug[7]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0_0/probe1]
+connect_debug_port u_ila_0_0/probe1 [get_nets [list {NIM_BLOCK/U322/dataDebug[0]} {NIM_BLOCK/U322/dataDebug[1]} {NIM_BLOCK/U322/dataDebug[2]} {NIM_BLOCK/U322/dataDebug[3]} {NIM_BLOCK/U322/dataDebug[4]} {NIM_BLOCK/U322/dataDebug[5]} {NIM_BLOCK/U322/dataDebug[6]} {NIM_BLOCK/U322/dataDebug[7]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0_0/probe2]
+connect_debug_port u_ila_0_0/probe2 [get_nets [list {NIM_BLOCK/U311/dataDebug[0]} {NIM_BLOCK/U311/dataDebug[1]} {NIM_BLOCK/U311/dataDebug[2]} {NIM_BLOCK/U311/dataDebug[3]} {NIM_BLOCK/U311/dataDebug[4]} {NIM_BLOCK/U311/dataDebug[5]} {NIM_BLOCK/U311/dataDebug[6]} {NIM_BLOCK/U311/dataDebug[7]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0_0/probe3]
+connect_debug_port u_ila_0_0/probe3 [get_nets [list {NIM_BLOCK/U322/addrDebug[0]} {NIM_BLOCK/U322/addrDebug[1]} {NIM_BLOCK/U322/addrDebug[2]} {NIM_BLOCK/U322/addrDebug[3]} {NIM_BLOCK/U322/addrDebug[4]} {NIM_BLOCK/U322/addrDebug[5]} {NIM_BLOCK/U322/addrDebug[6]} {NIM_BLOCK/U322/addrDebug[7]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 64 [get_debug_ports u_ila_0_0/probe4]
+connect_debug_port u_ila_0_0/probe4 [get_nets [list {read_out_data[0]} {read_out_data[1]} {read_out_data[2]} {read_out_data[3]} {read_out_data[4]} {read_out_data[5]} {read_out_data[6]} {read_out_data[7]} {read_out_data[8]} {read_out_data[9]} {read_out_data[10]} {read_out_data[11]} {read_out_data[12]} {read_out_data[13]} {read_out_data[14]} {read_out_data[15]} {read_out_data[16]} {read_out_data[17]} {read_out_data[18]} {read_out_data[19]} {read_out_data[20]} {read_out_data[21]} {read_out_data[22]} {read_out_data[23]} {read_out_data[24]} {read_out_data[25]} {read_out_data[26]} {read_out_data[27]} {read_out_data[28]} {read_out_data[29]} {read_out_data[30]} {read_out_data[31]} {read_out_data[32]} {read_out_data[33]} {read_out_data[34]} {read_out_data[35]} {read_out_data[36]} {read_out_data[37]} {read_out_data[38]} {read_out_data[39]} {read_out_data[40]} {read_out_data[41]} {read_out_data[42]} {read_out_data[43]} {read_out_data[44]} {read_out_data[45]} {read_out_data[46]} {read_out_data[47]} {read_out_data[48]} {read_out_data[49]} {read_out_data[50]} {read_out_data[51]} {read_out_data[52]} {read_out_data[53]} {read_out_data[54]} {read_out_data[55]} {read_out_data[56]} {read_out_data[57]} {read_out_data[58]} {read_out_data[59]} {read_out_data[60]} {read_out_data[61]} {read_out_data[62]} {read_out_data[63]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 4 [get_debug_ports u_ila_0_0/probe5]
+connect_debug_port u_ila_0_0/probe5 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe6]
+connect_debug_port u_ila_0_0/probe6 [get_nets [list bmx_40 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe7]
+connect_debug_port u_ila_0_0/probe7 [get_nets [list NIM_BLOCK/clk_13_25 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe8]
+connect_debug_port u_ila_0_0/probe8 [get_nets [list NIM_BLOCK/clk_39_out ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe9]
+connect_debug_port u_ila_0_0/probe9 [get_nets [list ei40_gen_lock ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe10]
+connect_debug_port u_ila_0_0/probe10 [get_nets [list fs_gen_lock ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe11]
+connect_debug_port u_ila_0_0/probe11 [get_nets [list NIM_BLOCK/muxout_1 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe12]
+connect_debug_port u_ila_0_0/probe12 [get_nets [list NIM_BLOCK/muxout_3 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe13]
+connect_debug_port u_ila_0_0/probe13 [get_nets [list NIM_BLOCK/muxout_4 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe14]
+connect_debug_port u_ila_0_0/probe14 [get_nets [list s_ck_mx_out ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe15]
+connect_debug_port u_ila_0_0/probe15 [get_nets [list s_clk25_6e ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe16]
+connect_debug_port u_ila_0_0/probe16 [get_nets [list eth_interface/ec_wrapper/ethernet_controller/DecipherBlock/udp_data_valid ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe17]
+connect_debug_port u_ila_0_0/probe17 [get_nets [list ot_ps_lock ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe18]
+connect_debug_port u_ila_0_0/probe18 [get_nets [list nim_clk_lock ]]
+save_constraints
+close_design
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_run impl_1
+close_design
+open_run synth_1 -name synth_1
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*sig_log*" } ]
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*sig_log*" } ]
+close_design
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*sig_log*" } ]
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*nim*" } ]
+delete_debug_core [get_debug_cores {u_ila_0_0 }]
+create_debug_core u_ila_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0]
+set_property port_width 1 [get_debug_ports u_ila_0/clk]
+connect_debug_port u_ila_0/clk [get_nets [list MASTER_CLK ]]
+set_property port_width 4 [get_debug_ports u_ila_0/probe0]
+connect_debug_port u_ila_0/probe0 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 64 [get_debug_ports u_ila_0/probe1]
+connect_debug_port u_ila_0/probe1 [get_nets [list {read_out_data[0]} {read_out_data[1]} {read_out_data[2]} {read_out_data[3]} {read_out_data[4]} {read_out_data[5]} {read_out_data[6]} {read_out_data[7]} {read_out_data[8]} {read_out_data[9]} {read_out_data[10]} {read_out_data[11]} {read_out_data[12]} {read_out_data[13]} {read_out_data[14]} {read_out_data[15]} {read_out_data[16]} {read_out_data[17]} {read_out_data[18]} {read_out_data[19]} {read_out_data[20]} {read_out_data[21]} {read_out_data[22]} {read_out_data[23]} {read_out_data[24]} {read_out_data[25]} {read_out_data[26]} {read_out_data[27]} {read_out_data[28]} {read_out_data[29]} {read_out_data[30]} {read_out_data[31]} {read_out_data[32]} {read_out_data[33]} {read_out_data[34]} {read_out_data[35]} {read_out_data[36]} {read_out_data[37]} {read_out_data[38]} {read_out_data[39]} {read_out_data[40]} {read_out_data[41]} {read_out_data[42]} {read_out_data[43]} {read_out_data[44]} {read_out_data[45]} {read_out_data[46]} {read_out_data[47]} {read_out_data[48]} {read_out_data[49]} {read_out_data[50]} {read_out_data[51]} {read_out_data[52]} {read_out_data[53]} {read_out_data[54]} {read_out_data[55]} {read_out_data[56]} {read_out_data[57]} {read_out_data[58]} {read_out_data[59]} {read_out_data[60]} {read_out_data[61]} {read_out_data[62]} {read_out_data[63]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0/probe2]
+connect_debug_port u_ila_0/probe2 [get_nets [list {NIM_BLOCK/U322/addrDebug[0]} {NIM_BLOCK/U322/addrDebug[1]} {NIM_BLOCK/U322/addrDebug[2]} {NIM_BLOCK/U322/addrDebug[3]} {NIM_BLOCK/U322/addrDebug[4]} {NIM_BLOCK/U322/addrDebug[5]} {NIM_BLOCK/U322/addrDebug[6]} {NIM_BLOCK/U322/addrDebug[7]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0/probe3]
+connect_debug_port u_ila_0/probe3 [get_nets [list {NIM_BLOCK/U322/dataDebug[0]} {NIM_BLOCK/U322/dataDebug[1]} {NIM_BLOCK/U322/dataDebug[2]} {NIM_BLOCK/U322/dataDebug[3]} {NIM_BLOCK/U322/dataDebug[4]} {NIM_BLOCK/U322/dataDebug[5]} {NIM_BLOCK/U322/dataDebug[6]} {NIM_BLOCK/U322/dataDebug[7]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0/probe4]
+connect_debug_port u_ila_0/probe4 [get_nets [list {NIM_BLOCK/U311/addrDebug[0]} {NIM_BLOCK/U311/addrDebug[1]} {NIM_BLOCK/U311/addrDebug[2]} {NIM_BLOCK/U311/addrDebug[3]} {NIM_BLOCK/U311/addrDebug[4]} {NIM_BLOCK/U311/addrDebug[5]} {NIM_BLOCK/U311/addrDebug[6]} {NIM_BLOCK/U311/addrDebug[7]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0/probe5]
+connect_debug_port u_ila_0/probe5 [get_nets [list {NIM_BLOCK/U311/dataDebug[0]} {NIM_BLOCK/U311/dataDebug[1]} {NIM_BLOCK/U311/dataDebug[2]} {NIM_BLOCK/U311/dataDebug[3]} {NIM_BLOCK/U311/dataDebug[4]} {NIM_BLOCK/U311/dataDebug[5]} {NIM_BLOCK/U311/dataDebug[6]} {NIM_BLOCK/U311/dataDebug[7]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe6]
+connect_debug_port u_ila_0/probe6 [get_nets [list bmx_40 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe7]
+connect_debug_port u_ila_0/probe7 [get_nets [list NIM_BLOCK/clk_13_25 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe8]
+connect_debug_port u_ila_0/probe8 [get_nets [list NIM_BLOCK/clk_39_out ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe9]
+connect_debug_port u_ila_0/probe9 [get_nets [list ei40_gen_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe10]
+connect_debug_port u_ila_0/probe10 [get_nets [list fs_gen_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe11]
+connect_debug_port u_ila_0/probe11 [get_nets [list nim_clk_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe12]
+connect_debug_port u_ila_0/probe12 [get_nets [list ot_ps_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe13]
+connect_debug_port u_ila_0/probe13 [get_nets [list eth_interface/ec_wrapper/ethernet_controller/DecipherBlock/udp_data_valid ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe14]
+connect_debug_port u_ila_0/probe14 [get_nets [list NIM_BLOCK/sig_log ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe15]
+connect_debug_port u_ila_0/probe15 [get_nets [list s_nim_out0 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe16]
+connect_debug_port u_ila_0/probe16 [get_nets [list s_nim_out1 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe17]
+connect_debug_port u_ila_0/probe17 [get_nets [list s_nim_out2 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe18]
+connect_debug_port u_ila_0/probe18 [get_nets [list s_nim_out3 ]]
+save_constraints
+close_design
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run impl_1 -noclean_dir 
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_run impl_1
+close_design
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*debug*" } ]
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*out_cnt_*" } ]
+delete_debug_core [get_debug_cores {u_ila_0 }]
+create_debug_core u_ila_0_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0_0]
+set_property port_width 1 [get_debug_ports u_ila_0_0/clk]
+connect_debug_port u_ila_0_0/clk [get_nets [list MASTER_CLK ]]
+set_property port_width 4 [get_debug_ports u_ila_0_0/probe0]
+connect_debug_port u_ila_0_0/probe0 [get_nets [list {NIM_BLOCK/log_sig_debug[0]} {NIM_BLOCK/log_sig_debug[1]} {NIM_BLOCK/log_sig_debug[2]} {NIM_BLOCK/log_sig_debug[3]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0_0/probe1]
+connect_debug_port u_ila_0_0/probe1 [get_nets [list {NIM_BLOCK/U311/addrDebug[0]} {NIM_BLOCK/U311/addrDebug[1]} {NIM_BLOCK/U311/addrDebug[2]} {NIM_BLOCK/U311/addrDebug[3]} {NIM_BLOCK/U311/addrDebug[4]} {NIM_BLOCK/U311/addrDebug[5]} {NIM_BLOCK/U311/addrDebug[6]} {NIM_BLOCK/U311/addrDebug[7]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0_0/probe2]
+connect_debug_port u_ila_0_0/probe2 [get_nets [list {NIM_BLOCK/U322/dataDebug[0]} {NIM_BLOCK/U322/dataDebug[1]} {NIM_BLOCK/U322/dataDebug[2]} {NIM_BLOCK/U322/dataDebug[3]} {NIM_BLOCK/U322/dataDebug[4]} {NIM_BLOCK/U322/dataDebug[5]} {NIM_BLOCK/U322/dataDebug[6]} {NIM_BLOCK/U322/dataDebug[7]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0_0/probe3]
+connect_debug_port u_ila_0_0/probe3 [get_nets [list {NIM_BLOCK/U311/dataDebug[0]} {NIM_BLOCK/U311/dataDebug[1]} {NIM_BLOCK/U311/dataDebug[2]} {NIM_BLOCK/U311/dataDebug[3]} {NIM_BLOCK/U311/dataDebug[4]} {NIM_BLOCK/U311/dataDebug[5]} {NIM_BLOCK/U311/dataDebug[6]} {NIM_BLOCK/U311/dataDebug[7]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0_0/probe4]
+connect_debug_port u_ila_0_0/probe4 [get_nets [list {NIM_BLOCK/U322/addrDebug[0]} {NIM_BLOCK/U322/addrDebug[1]} {NIM_BLOCK/U322/addrDebug[2]} {NIM_BLOCK/U322/addrDebug[3]} {NIM_BLOCK/U322/addrDebug[4]} {NIM_BLOCK/U322/addrDebug[5]} {NIM_BLOCK/U322/addrDebug[6]} {NIM_BLOCK/U322/addrDebug[7]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 64 [get_debug_ports u_ila_0_0/probe5]
+connect_debug_port u_ila_0_0/probe5 [get_nets [list {read_out_data[0]} {read_out_data[1]} {read_out_data[2]} {read_out_data[3]} {read_out_data[4]} {read_out_data[5]} {read_out_data[6]} {read_out_data[7]} {read_out_data[8]} {read_out_data[9]} {read_out_data[10]} {read_out_data[11]} {read_out_data[12]} {read_out_data[13]} {read_out_data[14]} {read_out_data[15]} {read_out_data[16]} {read_out_data[17]} {read_out_data[18]} {read_out_data[19]} {read_out_data[20]} {read_out_data[21]} {read_out_data[22]} {read_out_data[23]} {read_out_data[24]} {read_out_data[25]} {read_out_data[26]} {read_out_data[27]} {read_out_data[28]} {read_out_data[29]} {read_out_data[30]} {read_out_data[31]} {read_out_data[32]} {read_out_data[33]} {read_out_data[34]} {read_out_data[35]} {read_out_data[36]} {read_out_data[37]} {read_out_data[38]} {read_out_data[39]} {read_out_data[40]} {read_out_data[41]} {read_out_data[42]} {read_out_data[43]} {read_out_data[44]} {read_out_data[45]} {read_out_data[46]} {read_out_data[47]} {read_out_data[48]} {read_out_data[49]} {read_out_data[50]} {read_out_data[51]} {read_out_data[52]} {read_out_data[53]} {read_out_data[54]} {read_out_data[55]} {read_out_data[56]} {read_out_data[57]} {read_out_data[58]} {read_out_data[59]} {read_out_data[60]} {read_out_data[61]} {read_out_data[62]} {read_out_data[63]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 4 [get_debug_ports u_ila_0_0/probe6]
+connect_debug_port u_ila_0_0/probe6 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe7]
+connect_debug_port u_ila_0_0/probe7 [get_nets [list bmx_40 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe8]
+connect_debug_port u_ila_0_0/probe8 [get_nets [list NIM_BLOCK/clk_13_25 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe9]
+connect_debug_port u_ila_0_0/probe9 [get_nets [list NIM_BLOCK/clk_39_out ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe10]
+connect_debug_port u_ila_0_0/probe10 [get_nets [list ei40_gen_lock ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe11]
+connect_debug_port u_ila_0_0/probe11 [get_nets [list fs_gen_lock ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe12]
+connect_debug_port u_ila_0_0/probe12 [get_nets [list nim_clk_lock ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe13]
+connect_debug_port u_ila_0_0/probe13 [get_nets [list ot_ps_lock ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe14]
+connect_debug_port u_ila_0_0/probe14 [get_nets [list s_nim_out0 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe15]
+connect_debug_port u_ila_0_0/probe15 [get_nets [list s_nim_out1 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe16]
+connect_debug_port u_ila_0_0/probe16 [get_nets [list s_nim_out2 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe17]
+connect_debug_port u_ila_0_0/probe17 [get_nets [list s_nim_out3 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe18]
+connect_debug_port u_ila_0_0/probe18 [get_nets [list NIM_BLOCK/sig_log ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe19]
+connect_debug_port u_ila_0_0/probe19 [get_nets [list eth_interface/ec_wrapper/ethernet_controller/DecipherBlock/udp_data_valid ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe20]
+connect_debug_port u_ila_0_0/probe20 [get_nets [list NIM_BLOCK/ctr_resets_debug ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe21]
+connect_debug_port u_ila_0_0/probe21 [get_nets [list NIM_BLOCK/pulse_ctl_debug ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe22]
+connect_debug_port u_ila_0_0/probe22 [get_nets [list NIM_BLOCK/out_cnt_rst ]]
+save_constraints
+close_design
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_run impl_1
+open_run synth_1 -name synth_1
+reset_run synth_1
+close_design
+close_design
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*sig_mod*" } ]
+show_objects -name NET_ONLY [get_nets -hierarchical -top_net_of_hierarchical_group -filter { NAME =~  "*s_clk*" } ]
+delete_debug_core [get_debug_cores {u_ila_0_0 }]
+create_debug_core u_ila_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0]
+set_property port_width 1 [get_debug_ports u_ila_0/clk]
+connect_debug_port u_ila_0/clk [get_nets [list MASTER_CLK ]]
+set_property port_width 8 [get_debug_ports u_ila_0/probe0]
+connect_debug_port u_ila_0/probe0 [get_nets [list {NIM_BLOCK/U322/dataDebug[0]} {NIM_BLOCK/U322/dataDebug[1]} {NIM_BLOCK/U322/dataDebug[2]} {NIM_BLOCK/U322/dataDebug[3]} {NIM_BLOCK/U322/dataDebug[4]} {NIM_BLOCK/U322/dataDebug[5]} {NIM_BLOCK/U322/dataDebug[6]} {NIM_BLOCK/U322/dataDebug[7]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 64 [get_debug_ports u_ila_0/probe1]
+connect_debug_port u_ila_0/probe1 [get_nets [list {read_out_data[0]} {read_out_data[1]} {read_out_data[2]} {read_out_data[3]} {read_out_data[4]} {read_out_data[5]} {read_out_data[6]} {read_out_data[7]} {read_out_data[8]} {read_out_data[9]} {read_out_data[10]} {read_out_data[11]} {read_out_data[12]} {read_out_data[13]} {read_out_data[14]} {read_out_data[15]} {read_out_data[16]} {read_out_data[17]} {read_out_data[18]} {read_out_data[19]} {read_out_data[20]} {read_out_data[21]} {read_out_data[22]} {read_out_data[23]} {read_out_data[24]} {read_out_data[25]} {read_out_data[26]} {read_out_data[27]} {read_out_data[28]} {read_out_data[29]} {read_out_data[30]} {read_out_data[31]} {read_out_data[32]} {read_out_data[33]} {read_out_data[34]} {read_out_data[35]} {read_out_data[36]} {read_out_data[37]} {read_out_data[38]} {read_out_data[39]} {read_out_data[40]} {read_out_data[41]} {read_out_data[42]} {read_out_data[43]} {read_out_data[44]} {read_out_data[45]} {read_out_data[46]} {read_out_data[47]} {read_out_data[48]} {read_out_data[49]} {read_out_data[50]} {read_out_data[51]} {read_out_data[52]} {read_out_data[53]} {read_out_data[54]} {read_out_data[55]} {read_out_data[56]} {read_out_data[57]} {read_out_data[58]} {read_out_data[59]} {read_out_data[60]} {read_out_data[61]} {read_out_data[62]} {read_out_data[63]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 4 [get_debug_ports u_ila_0/probe2]
+connect_debug_port u_ila_0/probe2 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0/probe3]
+connect_debug_port u_ila_0/probe3 [get_nets [list {NIM_BLOCK/U311/addrDebug[0]} {NIM_BLOCK/U311/addrDebug[1]} {NIM_BLOCK/U311/addrDebug[2]} {NIM_BLOCK/U311/addrDebug[3]} {NIM_BLOCK/U311/addrDebug[4]} {NIM_BLOCK/U311/addrDebug[5]} {NIM_BLOCK/U311/addrDebug[6]} {NIM_BLOCK/U311/addrDebug[7]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0/probe4]
+connect_debug_port u_ila_0/probe4 [get_nets [list {NIM_BLOCK/U322/addrDebug[0]} {NIM_BLOCK/U322/addrDebug[1]} {NIM_BLOCK/U322/addrDebug[2]} {NIM_BLOCK/U322/addrDebug[3]} {NIM_BLOCK/U322/addrDebug[4]} {NIM_BLOCK/U322/addrDebug[5]} {NIM_BLOCK/U322/addrDebug[6]} {NIM_BLOCK/U322/addrDebug[7]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 4 [get_debug_ports u_ila_0/probe5]
+connect_debug_port u_ila_0/probe5 [get_nets [list {NIM_BLOCK/log_sig_debug[0]} {NIM_BLOCK/log_sig_debug[1]} {NIM_BLOCK/log_sig_debug[2]} {NIM_BLOCK/log_sig_debug[3]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 4 [get_debug_ports u_ila_0/probe6]
+connect_debug_port u_ila_0/probe6 [get_nets [list {NIM_BLOCK/sig_mod[0]} {NIM_BLOCK/sig_mod[1]} {NIM_BLOCK/sig_mod[2]} {NIM_BLOCK/sig_mod[3]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0/probe7]
+connect_debug_port u_ila_0/probe7 [get_nets [list {NIM_BLOCK/U311/dataDebug[0]} {NIM_BLOCK/U311/dataDebug[1]} {NIM_BLOCK/U311/dataDebug[2]} {NIM_BLOCK/U311/dataDebug[3]} {NIM_BLOCK/U311/dataDebug[4]} {NIM_BLOCK/U311/dataDebug[5]} {NIM_BLOCK/U311/dataDebug[6]} {NIM_BLOCK/U311/dataDebug[7]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe8]
+connect_debug_port u_ila_0/probe8 [get_nets [list bmx_40 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe9]
+connect_debug_port u_ila_0/probe9 [get_nets [list NIM_BLOCK/clk_13_25 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe10]
+connect_debug_port u_ila_0/probe10 [get_nets [list NIM_BLOCK/clk_39_out ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe11]
+connect_debug_port u_ila_0/probe11 [get_nets [list NIM_BLOCK/ctr_resets_debug ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe12]
+connect_debug_port u_ila_0/probe12 [get_nets [list ei40_gen_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe13]
+connect_debug_port u_ila_0/probe13 [get_nets [list fs_gen_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe14]
+connect_debug_port u_ila_0/probe14 [get_nets [list nim_clk_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe15]
+connect_debug_port u_ila_0/probe15 [get_nets [list ot_ps_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe16]
+connect_debug_port u_ila_0/probe16 [get_nets [list NIM_BLOCK/out_cnt_rst ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe17]
+connect_debug_port u_ila_0/probe17 [get_nets [list NIM_BLOCK/pulse_ctl_debug ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe18]
+connect_debug_port u_ila_0/probe18 [get_nets [list s_nim_out0 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe19]
+connect_debug_port u_ila_0/probe19 [get_nets [list s_nim_out1 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe20]
+connect_debug_port u_ila_0/probe20 [get_nets [list s_nim_out2 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe21]
+connect_debug_port u_ila_0/probe21 [get_nets [list s_nim_out3 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe22]
+connect_debug_port u_ila_0/probe22 [get_nets [list NIM_BLOCK/sig_log ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe23]
+connect_debug_port u_ila_0/probe23 [get_nets [list eth_interface/ec_wrapper/ethernet_controller/DecipherBlock/udp_data_valid ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe24]
+connect_debug_port u_ila_0/probe24 [get_nets [list s_clk25_6e ]]
+save_constraints
+close_design
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+add_files -norecurse /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/ag_28_4.vhd
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_run impl_1
+get_cells * -hierarchical -fil
+get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U311/*)}
+[get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U311/*)}]
+report_timing -from [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U311/*)}]
+report_timing -through [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U311/*)}]
+set_max_delay 24ns -through [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U311/*)}]
+set_max_delay 24.0 -through [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U311/*)}]
+report_timing -through [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U311/*)}]
+close_design
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run impl_1 -prev_step 
+set_property -dict [list CONFIG.CLKOUT2_DRIVES {No_buffer} CONFIG.CLKOUT3_DRIVES {No_buffer}] [get_ips clk_wiz_1]
+generate_target all [get_files  /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci]
+reset_run clk_wiz_1_synth_1
+launch_run -jobs 4 clk_wiz_1_synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+delete_debug_core [get_debug_cores {u_ila_0 }]
+create_debug_core u_ila_0_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0_0]
+set_property port_width 1 [get_debug_ports u_ila_0_0/clk]
+connect_debug_port u_ila_0_0/clk [get_nets [list MASTER_CLK ]]
+set_property port_width 8 [get_debug_ports u_ila_0_0/probe0]
+connect_debug_port u_ila_0_0/probe0 [get_nets [list {NIM_BLOCK/U311/dataDebug[0]} {NIM_BLOCK/U311/dataDebug[1]} {NIM_BLOCK/U311/dataDebug[2]} {NIM_BLOCK/U311/dataDebug[3]} {NIM_BLOCK/U311/dataDebug[4]} {NIM_BLOCK/U311/dataDebug[5]} {NIM_BLOCK/U311/dataDebug[6]} {NIM_BLOCK/U311/dataDebug[7]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 4 [get_debug_ports u_ila_0_0/probe1]
+connect_debug_port u_ila_0_0/probe1 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0_0/probe2]
+connect_debug_port u_ila_0_0/probe2 [get_nets [list {NIM_BLOCK/U322/dataDebug[0]} {NIM_BLOCK/U322/dataDebug[1]} {NIM_BLOCK/U322/dataDebug[2]} {NIM_BLOCK/U322/dataDebug[3]} {NIM_BLOCK/U322/dataDebug[4]} {NIM_BLOCK/U322/dataDebug[5]} {NIM_BLOCK/U322/dataDebug[6]} {NIM_BLOCK/U322/dataDebug[7]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0_0/probe3]
+connect_debug_port u_ila_0_0/probe3 [get_nets [list {NIM_BLOCK/U311/addrDebug[0]} {NIM_BLOCK/U311/addrDebug[1]} {NIM_BLOCK/U311/addrDebug[2]} {NIM_BLOCK/U311/addrDebug[3]} {NIM_BLOCK/U311/addrDebug[4]} {NIM_BLOCK/U311/addrDebug[5]} {NIM_BLOCK/U311/addrDebug[6]} {NIM_BLOCK/U311/addrDebug[7]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 8 [get_debug_ports u_ila_0_0/probe4]
+connect_debug_port u_ila_0_0/probe4 [get_nets [list {NIM_BLOCK/U322/addrDebug[0]} {NIM_BLOCK/U322/addrDebug[1]} {NIM_BLOCK/U322/addrDebug[2]} {NIM_BLOCK/U322/addrDebug[3]} {NIM_BLOCK/U322/addrDebug[4]} {NIM_BLOCK/U322/addrDebug[5]} {NIM_BLOCK/U322/addrDebug[6]} {NIM_BLOCK/U322/addrDebug[7]} ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe5]
+connect_debug_port u_ila_0_0/probe5 [get_nets [list bmx_40 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe6]
+connect_debug_port u_ila_0_0/probe6 [get_nets [list NIM_BLOCK/clk_39_out ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe7]
+connect_debug_port u_ila_0_0/probe7 [get_nets [list ei40_gen_lock ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe8]
+connect_debug_port u_ila_0_0/probe8 [get_nets [list fs_gen_lock ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe9]
+connect_debug_port u_ila_0_0/probe9 [get_nets [list nim_clk_lock ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe10]
+connect_debug_port u_ila_0_0/probe10 [get_nets [list ot_ps_lock ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe11]
+connect_debug_port u_ila_0_0/probe11 [get_nets [list s_clk25_6e ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe12]
+connect_debug_port u_ila_0_0/probe12 [get_nets [list s_nim_out0 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe13]
+connect_debug_port u_ila_0_0/probe13 [get_nets [list s_nim_out1 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe14]
+connect_debug_port u_ila_0_0/probe14 [get_nets [list s_nim_out2 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe15]
+connect_debug_port u_ila_0_0/probe15 [get_nets [list s_nim_out3 ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe16]
+connect_debug_port u_ila_0_0/probe16 [get_nets [list NIM_BLOCK/sig_log ]]
+create_debug_port u_ila_0_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0_0/probe17]
+connect_debug_port u_ila_0_0/probe17 [get_nets [list eth_interface/ec_wrapper/ethernet_controller/DecipherBlock/udp_data_valid ]]
+save_constraints
+close_design
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_run impl_1
+history
+set_max_delay 24.00 -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U351/*)}]v
+report_timing -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U351/*)}]
+report_timing -through [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U43/*)}] -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U351/*)}]
+reset_run synth_1
+close_design
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+close_design
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+add_files -norecurse /home/cmstestbeam/NIMPlus/nimPlus_/FW_Transfer_2018_01_24/reg_read_decode_p.vhd
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_run synth_1 -name synth_1
+delete_debug_core [get_debug_cores {u_ila_0_0 }]
+create_debug_core u_ila_0 ila
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0]
+set_property port_width 1 [get_debug_ports u_ila_0/clk]
+connect_debug_port u_ila_0/clk [get_nets [list MASTER_CLK ]]
+set_property port_width 4 [get_debug_ports u_ila_0/probe0]
+connect_debug_port u_ila_0/probe0 [get_nets [list {nim_input[0]} {nim_input[1]} {nim_input[2]} {nim_input[3]} ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe1]
+connect_debug_port u_ila_0/probe1 [get_nets [list bmx_40 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe2]
+connect_debug_port u_ila_0/probe2 [get_nets [list NIM_BLOCK/clk_39_out ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe3]
+connect_debug_port u_ila_0/probe3 [get_nets [list ei40_gen_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe4]
+connect_debug_port u_ila_0/probe4 [get_nets [list fs_gen_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe5]
+connect_debug_port u_ila_0/probe5 [get_nets [list nim_clk_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe6]
+connect_debug_port u_ila_0/probe6 [get_nets [list ot_ps_lock ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe7]
+connect_debug_port u_ila_0/probe7 [get_nets [list s_clk25_6e ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe8]
+connect_debug_port u_ila_0/probe8 [get_nets [list s_nim_out0 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe9]
+connect_debug_port u_ila_0/probe9 [get_nets [list s_nim_out1 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe10]
+connect_debug_port u_ila_0/probe10 [get_nets [list s_nim_out2 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe11]
+connect_debug_port u_ila_0/probe11 [get_nets [list s_nim_out3 ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe12]
+connect_debug_port u_ila_0/probe12 [get_nets [list NIM_BLOCK/sig_log ]]
+create_debug_port u_ila_0 probe
+set_property port_width 1 [get_debug_ports u_ila_0/probe13]
+connect_debug_port u_ila_0/probe13 [get_nets [list eth_interface/ec_wrapper/ethernet_controller/DecipherBlock/udp_data_valid ]]
+save_constraints
+close_design
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
