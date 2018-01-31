@@ -27,6 +27,7 @@ use IEEE.STD_LOGIC_1164.all;
 
 entity ag_28_4 is
 	 port(
+	 clk : in std_logic;
 		 in28 : in STD_LOGIC_VECTOR(27 downto 0);
 		 in4 : in STD_LOGIC_VECTOR(3 downto 0);
 		 out32 : out STD_LOGIC_VECTOR(31 downto 0)
@@ -37,12 +38,13 @@ end ag_28_4;
 
 architecture ag_28_4 of ag_28_4 is	
 begin
-	p1:	process(in28, in4)
+	p1:	process(clk)
 	begin
+	if rising_edge(clk) then
 	-- enter your statements here --  
 	out32(31 downto 28) <= in4(3 downto 0);
 	out32(27 downto 0) <= in28(27 downto 0);
-	
+	end if;
 	
 	end process p1;
 

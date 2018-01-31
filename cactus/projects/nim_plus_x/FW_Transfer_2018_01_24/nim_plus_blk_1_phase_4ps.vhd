@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Wed Jan 31 09:44:54 2018
+-- Generated   : Wed Jan 31 10:37:11 2018
 -- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -161,14 +161,6 @@ component cnt32
        ct_clr : in STD_LOGIC;
        ct_en : in STD_LOGIC;
        rst_p : in STD_LOGIC;
-       cnt_out : out STD_LOGIC_VECTOR(31 downto 0)
-  );
-end component;
-component cnt32_v2
-  port (
-       clk : in STD_LOGIC;
-       rst_p : in STD_LOGIC;
-       sig_in : in STD_LOGIC;
        cnt_out : out STD_LOGIC_VECTOR(31 downto 0)
   );
 end component;
@@ -466,6 +458,14 @@ component stsp_counter
        strt : in STD_LOGIC;
        count_out : out STD_LOGIC_VECTOR(31 downto 0);
        ovr : out STD_LOGIC
+  );
+end component;
+component s_cnt32_v2
+  port (
+       clk0 : in STD_LOGIC;
+       rst_p : in STD_LOGIC;
+       sigin : in STD_LOGIC;
+       out32 : out STD_LOGIC_VECTOR(31 downto 0)
   );
 end component;
 component test_mux
@@ -777,6 +777,8 @@ signal z_sel : STD_LOGIC_VECTOR (15 downto 0);
 
 ---- Declaration for Dangling input ----
 signal Dangling_Input_Signal : STD_LOGIC;
+
+
  signal debug_fast_cnt : STD_LOGIC_VECTOR (15 downto 0) := (others=>'0');
     attribute mark_debug : string;
     attribute mark_debug of sig_log : signal is "true";
@@ -796,6 +798,7 @@ signal Dangling_Input_Signal : STD_LOGIC;
 begin
 
     debug_fast_cnt <= cnt64_simp_out(15 downto 0);
+----  Component instantiations  ----
 
 U1 : reg_64
   port map(
@@ -1637,12 +1640,12 @@ NET26456 <= NET24170 or bkprout_v1 or veto_out_p1 or veto1_ctl(1);
 
 NET19190 <= reset_out or ctr_resets(1) or pulse_ctl(4);
 
-U162 : cnt32_v2
+U162 : s_cnt32_v2
   port map(
-       clk => clk0,
-       cnt_out => in_ev_ctr_2b,
-       rst_p => NET19293,
-       sig_in => sig_cms2
+       clk0 => clk0,
+       out32 => in_ev_ctr_1b,
+       rst_p => NET19190,
+       sigin => sig_cms1
   );
 
 NET19293 <= reset_out or ctr_resets(2) or pulse_ctl(5);
@@ -1703,12 +1706,11 @@ sigmux(21) <= b_wr_out_b;
 
 NET29923 <= reset_out or jw121_ctl(0);
 
-U177 : cnt32_v2
+U177 : s_cnt32_v2
   port map(
-       clk => clk0,
-       cnt_out => in_ev_ctr_1b,
-       rst_p => NET19190,
-       sig_in => sig_cms1
+       clk0 => clk0,
+       rst_p => NET19293,
+       sigin => sig_cms2
   );
 
 U178 : pol_sel
@@ -6265,12 +6267,12 @@ U334 : cnt_64_simp
        reset_p => out_cnt_rst
   );
 
-U335 : cnt32_v2
+U335 : s_cnt32_v2
   port map(
-       clk => clk0,
-       cnt_out => log_ev_ctrb,
+       clk0 => clk0,
+       out32 => log_ev_ctrb,
        rst_p => NET59517,
-       sig_in => NET62518
+       sigin => NET62518
   );
 
 U336 : agrgate16_1
@@ -6455,22 +6457,22 @@ U34 : agrgate16_1
 
 NET59053 <= ctr_resets(0) or reset_out;
 
-U341 : cnt32_v2
+U341 : s_cnt32_v2
   port map(
-       clk => clk0,
-       cnt_out => in_ch1_ctr_1,
+       clk0 => clk0,
+       out32 => in_ch1_ctr_1,
        rst_p => NET59053,
-       sig_in => sig_mod(0)
+       sigin => sig_mod(0)
   );
 
 NET59133 <= ctr_resets(0) or reset_out;
 
-U343 : cnt32_v2
+U343 : s_cnt32_v2
   port map(
-       clk => clk0,
-       cnt_out => in_ch1_ctr_2,
+       clk0 => clk0,
+       out32 => in_ch1_ctr_2,
        rst_p => NET59133,
-       sig_in => sig_mod(1)
+       sigin => sig_mod(1)
   );
 
 U344 : agrgate_8_by_8
@@ -6651,42 +6653,42 @@ U35 : reg_8
 
 NET59721 <= sig_cms2 or sig_cms1 or sig_norm;
 
-U351 : cnt32_v2
+U351 : s_cnt32_v2
   port map(
-       clk => clk0,
-       cnt_out => out_ctr_1b,
+       clk0 => clk0,
+       out32 => out_ctr_1b,
        rst_p => NET59792,
-       sig_in => muxout_1a
+       sigin => muxout_1a
   );
 
 NET59792 <= reset_out or ctr_resets(0);
 
-U353 : cnt32_v2
+U353 : s_cnt32_v2
   port map(
-       clk => clk0,
-       cnt_out => out_ctr_2b,
+       clk0 => clk0,
+       out32 => out_ctr_2b,
        rst_p => NET59859,
-       sig_in => muxout_2a
+       sigin => muxout_2a
   );
 
 NET59859 <= reset_out or ctr_resets(0);
 
-U355 : cnt32_v2
+U355 : s_cnt32_v2
   port map(
-       clk => clk0,
-       cnt_out => out_ctr_3b,
+       clk0 => clk0,
+       out32 => out_ctr_3b,
        rst_p => NET59949,
-       sig_in => muxout_3a
+       sigin => muxout_3a
   );
 
 NET60016 <= reset_out or ctr_resets(0);
 
-U357 : cnt32_v2
+U357 : s_cnt32_v2
   port map(
-       clk => clk0,
-       cnt_out => out_ctr_4b,
+       clk0 => clk0,
+       out32 => out_ctr_4b,
        rst_p => NET60016,
-       sig_in => muxout_4a
+       sigin => muxout_4a
   );
 
 NET59949 <= reset_out or ctr_resets(0);
@@ -7380,12 +7382,12 @@ U57 : reg_16
        wr_en => blk_wr_en_cts(1)
   );
 
-U58 : cnt32_v2
+U58 : s_cnt32_v2
   port map(
-       clk => clk0,
-       cnt_out => out_ev_ctrb,
+       clk0 => clk0,
+       out32 => out_ev_ctrb,
        rst_p => out_cnt_rst,
-       sig_in => sig_norm
+       sigin => sig_norm
   );
 
 sigmux(25) <= muxout_2a;
@@ -7418,22 +7420,22 @@ sigmux(13) <= veto_out_n1;
 
 NET9478 <= ctr_resets(0) or reset_out;
 
-U66 : cnt32_v2
+U66 : s_cnt32_v2
   port map(
-       clk => clk0,
-       cnt_out => in_ev_ctr_3,
+       clk0 => clk0,
+       out32 => in_ev_ctr_3,
        rst_p => NET9478,
-       sig_in => sig_mod(2)
+       sigin => sig_mod(2)
   );
 
 NET9526 <= ctr_resets(0) or reset_out;
 
-U68 : cnt32_v2
+U68 : s_cnt32_v2
   port map(
-       clk => clk0,
-       cnt_out => in_ev_ctr_4,
+       clk0 => clk0,
+       out32 => in_ev_ctr_4,
        rst_p => NET9526,
-       sig_in => sig_mod(3)
+       sigin => sig_mod(3)
   );
 
 U69 : reg_32

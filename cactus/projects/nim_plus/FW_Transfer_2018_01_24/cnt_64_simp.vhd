@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_19_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\cnt_64_simp.vhd
--- Generated   : 01/24/18 14:27:39
--- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_19_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\cnt_64_simp.asf
+-- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\cnt_64_simp.vhd
+-- Generated   : 01/30/18 16:21:28
+-- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\cnt_64_simp.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -100,9 +100,9 @@ Sreg0_RegOutput: process (clk)
 begin
 	if clk'event and clk = '1' then
 		if reset_p = '1' then
-			-- reg_64 <= 		-- Initialization in the reset state or default value required!
-			-- inc64 <= 		-- Initialization in the reset state or default value required!
-			-- int_out64 <= 		-- Initialization in the reset state or default value required!
+			reg_64 <= z_16 & z_16 & z_16 & z_16;
+			inc64 <= z_16 & z_16 & z_16 & u_16;
+			int_out64 <= z_16 & z_16 & z_16 & z_16;
 		else
 			reg_64 <= next_reg_64;
 			inc64 <= next_inc64;
