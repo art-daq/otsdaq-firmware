@@ -1,1 +1,0 @@
--w -s "c:\NIM_Plus\AGP_2016\NIMPlus\library.cfg"  -j "c:\NIM_Plus\AGP_2016\NIMPlus\NIMPlus\projlib.cfg"  -d "c:\NIM_Plus\AGP_2016\NIMPlus\NIMPlus\compile"   -work NIMPlus  -O3 -e 100 -2002 "c:\NIM_Plus\AGP_2016\NIMPlus\NIMPlus\compile\nim_plus_block_v4.vhd"

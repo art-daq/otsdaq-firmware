@@ -48,7 +48,6 @@ read_vhdl -library xil_defaultlib {
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/b_fifo_mux.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/clk_mux_2_to_1_x_2.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/test_mux.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/ag_28_4.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/reg_8.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/divide_by_8.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/cnt64.vhd
@@ -102,6 +101,8 @@ read_vhdl -library xil_defaultlib {
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/ethImports/ethernet_controller/fifo.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/ethImports/ethernet_controller/address_container.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/ethImports/ethernet_controller/ethernet_controller.vhd
+  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/s_cnt32_v2.vhd
+  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/ag284.vhd
 }
 read_xdc /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_10.xdc
 set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_10.xdc]

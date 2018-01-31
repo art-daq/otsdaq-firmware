@@ -106,6 +106,7 @@ read_vhdl -library xil_defaultlib {
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/d_ff.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/ag284.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/s_cnt32_v2.vhd
+  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/bfifomux_w_ctlr.vhd
 }
 read_xdc /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/constrs_1/new/top_11.xdc
 set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/constrs_1/new/top_11.xdc]

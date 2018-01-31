@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Wed Jan 31 10:37:11 2018
+-- Generated   : Wed Jan 31 11:53:59 2018
 -- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -119,6 +119,23 @@ component agrgate_8_by_8
        out_0 : out STD_LOGIC_VECTOR(63 downto 0)
   );
 end component;
+component bfifomux_w_ctlr
+  port (
+       burst_full_ext : in STD_LOGIC;
+       clk0 : in STD_LOGIC;
+       ext_rst : in STD_LOGIC;
+       trig_sig_in : in STD_LOGIC;
+       wd0 : in STD_LOGIC_VECTOR(31 downto 0);
+       wd1 : in STD_LOGIC_VECTOR(31 downto 0);
+       wd2 : in STD_LOGIC_VECTOR(31 downto 0);
+       wd3 : in STD_LOGIC_VECTOR(31 downto 0);
+       wd4 : in STD_LOGIC_VECTOR(31 downto 0);
+       wd5 : in STD_LOGIC_VECTOR(31 downto 0);
+       burst_wr_out : out STD_LOGIC;
+       fin_wr : out STD_LOGIC;
+       out64 : out STD_LOGIC_VECTOR(63 downto 0)
+  );
+end component;
 component buf8
   port (
        b_in : in STD_LOGIC_VECTOR(7 downto 0);
@@ -142,19 +159,6 @@ component burst_mux_8_to_1
        w_out : out STD_LOGIC
   );
 end component;
-component b_fifo_mux
-  port (
-       rst_p : in STD_LOGIC;
-       s_addr : in STD_LOGIC_VECTOR(1 downto 0);
-       wd_in0 : in STD_LOGIC_VECTOR(31 downto 0);
-       wd_in1 : in STD_LOGIC_VECTOR(31 downto 0);
-       wd_in2 : in STD_LOGIC_VECTOR(31 downto 0);
-       wd_in3 : in STD_LOGIC_VECTOR(31 downto 0);
-       wd_in4 : in STD_LOGIC_VECTOR(31 downto 0);
-       wd_in5 : in STD_LOGIC_VECTOR(31 downto 0);
-       b_fifo_out : out STD_LOGIC_VECTOR(63 downto 0)
-  );
-end component;
 component cnt32
   port (
        clk : in STD_LOGIC;
@@ -171,17 +175,6 @@ component cnt64
        ct_en : in STD_LOGIC;
        rst_p : in STD_LOGIC;
        cnt_out : out STD_LOGIC_VECTOR(63 downto 0)
-  );
-end component;
-component cntrs_2_b_fifo
-  port (
-       b_fifo_full_p : in STD_LOGIC;
-       clk : in STD_LOGIC;
-       reset_p : in STD_LOGIC;
-       sig_in : in STD_LOGIC;
-       b_wr : out STD_LOGIC;
-       fin_wr : out STD_LOGIC;
-       mux_dir : out STD_LOGIC_VECTOR(1 downto 0)
   );
 end component;
 component cntrs_2_b_fifo_jw121
@@ -591,8 +584,6 @@ signal NET44704 : STD_LOGIC;
 signal NET59053 : STD_LOGIC;
 signal NET59133 : STD_LOGIC;
 signal NET59517 : STD_LOGIC;
-signal NET59613 : STD_LOGIC;
-signal NET59721 : STD_LOGIC;
 signal NET59792 : STD_LOGIC;
 signal NET59859 : STD_LOGIC;
 signal NET59949 : STD_LOGIC;
@@ -622,6 +613,8 @@ signal sumsig1 : STD_LOGIC;
 signal sumsig2 : STD_LOGIC;
 signal sync_w_40MHz : STD_LOGIC;
 signal sync_w_accel : STD_LOGIC;
+signal trig_sig1 : STD_LOGIC;
+signal trig_sig2 : STD_LOGIC;
 signal veto_out_n0 : STD_LOGIC;
 signal veto_out_n1 : STD_LOGIC;
 signal veto_out_n2 : STD_LOGIC;
@@ -695,8 +688,6 @@ signal muxsel_2 : STD_LOGIC_VECTOR (7 downto 0);
 signal muxsel_3 : STD_LOGIC_VECTOR (7 downto 0);
 signal muxsel_4 : STD_LOGIC_VECTOR (7 downto 0);
 signal mux_ctl : STD_LOGIC_VECTOR (7 downto 0);
-signal mux_dir : STD_LOGIC_VECTOR (1 downto 0);
-signal mux_dir_out : STD_LOGIC_VECTOR (1 downto 0);
 signal out_ctr_1 : STD_LOGIC_VECTOR (31 downto 0);
 signal out_ctr_1b : STD_LOGIC_VECTOR (31 downto 0);
 signal out_ctr_2 : STD_LOGIC_VECTOR (31 downto 0);
@@ -1002,79 +993,82 @@ dac_ctl_reset <= reset_out or dac_ctl(0);
 
 fs_ctl_2 <= veto2_ctl(3) or sync_w_40MHz;
 
-U121 : b_fifo_mux
+U121 : bfifomux_w_ctlr
   port map(
-       wd_in4(0) => cnt64_simp_out(0),
-       wd_in4(1) => cnt64_simp_out(1),
-       wd_in4(2) => cnt64_simp_out(2),
-       wd_in4(3) => cnt64_simp_out(3),
-       wd_in4(4) => cnt64_simp_out(4),
-       wd_in4(5) => cnt64_simp_out(5),
-       wd_in4(6) => cnt64_simp_out(6),
-       wd_in4(7) => cnt64_simp_out(7),
-       wd_in4(8) => cnt64_simp_out(8),
-       wd_in4(9) => cnt64_simp_out(9),
-       wd_in4(10) => cnt64_simp_out(10),
-       wd_in4(11) => cnt64_simp_out(11),
-       wd_in4(12) => cnt64_simp_out(12),
-       wd_in4(13) => cnt64_simp_out(13),
-       wd_in4(14) => cnt64_simp_out(14),
-       wd_in4(15) => cnt64_simp_out(15),
-       wd_in4(16) => cnt64_simp_out(16),
-       wd_in4(17) => cnt64_simp_out(17),
-       wd_in4(18) => cnt64_simp_out(18),
-       wd_in4(19) => cnt64_simp_out(19),
-       wd_in4(20) => cnt64_simp_out(20),
-       wd_in4(21) => cnt64_simp_out(21),
-       wd_in4(22) => cnt64_simp_out(22),
-       wd_in4(23) => cnt64_simp_out(23),
-       wd_in4(24) => cnt64_simp_out(24),
-       wd_in4(25) => cnt64_simp_out(25),
-       wd_in4(26) => cnt64_simp_out(26),
-       wd_in4(27) => cnt64_simp_out(27),
-       wd_in4(28) => cnt64_simp_out(28),
-       wd_in4(29) => cnt64_simp_out(29),
-       wd_in4(30) => cnt64_simp_out(30),
-       wd_in4(31) => cnt64_simp_out(31),
-       wd_in5(0) => cnt64_simp_out(32),
-       wd_in5(1) => cnt64_simp_out(33),
-       wd_in5(2) => cnt64_simp_out(34),
-       wd_in5(3) => cnt64_simp_out(35),
-       wd_in5(4) => cnt64_simp_out(36),
-       wd_in5(5) => cnt64_simp_out(37),
-       wd_in5(6) => cnt64_simp_out(38),
-       wd_in5(7) => cnt64_simp_out(39),
-       wd_in5(8) => cnt64_simp_out(40),
-       wd_in5(9) => cnt64_simp_out(41),
-       wd_in5(10) => cnt64_simp_out(42),
-       wd_in5(11) => cnt64_simp_out(43),
-       wd_in5(12) => cnt64_simp_out(44),
-       wd_in5(13) => cnt64_simp_out(45),
-       wd_in5(14) => cnt64_simp_out(46),
-       wd_in5(15) => cnt64_simp_out(47),
-       wd_in5(16) => cnt64_simp_out(48),
-       wd_in5(17) => cnt64_simp_out(49),
-       wd_in5(18) => cnt64_simp_out(50),
-       wd_in5(19) => cnt64_simp_out(51),
-       wd_in5(20) => cnt64_simp_out(52),
-       wd_in5(21) => cnt64_simp_out(53),
-       wd_in5(22) => cnt64_simp_out(54),
-       wd_in5(23) => cnt64_simp_out(55),
-       wd_in5(24) => cnt64_simp_out(56),
-       wd_in5(25) => cnt64_simp_out(57),
-       wd_in5(26) => cnt64_simp_out(58),
-       wd_in5(27) => cnt64_simp_out(59),
-       wd_in5(28) => cnt64_simp_out(60),
-       wd_in5(29) => cnt64_simp_out(61),
-       wd_in5(30) => cnt64_simp_out(62),
-       wd_in5(31) => cnt64_simp_out(63),
-       b_fifo_out => sig_event_counts,
-       rst_p => out_cnt_rst,
-       s_addr => mux_dir,
-       wd_in0 => out_ev_ctr,
-       wd_in1 => log_ev_ctr,
-       wd_in2 => in_ev_ctr_1,
-       wd_in3 => in_ev_ctr_2
+       wd4(0) => cnt64_simp_out(0),
+       wd4(1) => cnt64_simp_out(1),
+       wd4(2) => cnt64_simp_out(2),
+       wd4(3) => cnt64_simp_out(3),
+       wd4(4) => cnt64_simp_out(4),
+       wd4(5) => cnt64_simp_out(5),
+       wd4(6) => cnt64_simp_out(6),
+       wd4(7) => cnt64_simp_out(7),
+       wd4(8) => cnt64_simp_out(8),
+       wd4(9) => cnt64_simp_out(9),
+       wd4(10) => cnt64_simp_out(10),
+       wd4(11) => cnt64_simp_out(11),
+       wd4(12) => cnt64_simp_out(12),
+       wd4(13) => cnt64_simp_out(13),
+       wd4(14) => cnt64_simp_out(14),
+       wd4(15) => cnt64_simp_out(15),
+       wd4(16) => cnt64_simp_out(16),
+       wd4(17) => cnt64_simp_out(17),
+       wd4(18) => cnt64_simp_out(18),
+       wd4(19) => cnt64_simp_out(19),
+       wd4(20) => cnt64_simp_out(20),
+       wd4(21) => cnt64_simp_out(21),
+       wd4(22) => cnt64_simp_out(22),
+       wd4(23) => cnt64_simp_out(23),
+       wd4(24) => cnt64_simp_out(24),
+       wd4(25) => cnt64_simp_out(25),
+       wd4(26) => cnt64_simp_out(26),
+       wd4(27) => cnt64_simp_out(27),
+       wd4(28) => cnt64_simp_out(28),
+       wd4(29) => cnt64_simp_out(29),
+       wd4(30) => cnt64_simp_out(30),
+       wd4(31) => cnt64_simp_out(31),
+       wd5(0) => cnt64_simp_out(32),
+       wd5(1) => cnt64_simp_out(33),
+       wd5(2) => cnt64_simp_out(34),
+       wd5(3) => cnt64_simp_out(35),
+       wd5(4) => cnt64_simp_out(36),
+       wd5(5) => cnt64_simp_out(37),
+       wd5(6) => cnt64_simp_out(38),
+       wd5(7) => cnt64_simp_out(39),
+       wd5(8) => cnt64_simp_out(40),
+       wd5(9) => cnt64_simp_out(41),
+       wd5(10) => cnt64_simp_out(42),
+       wd5(11) => cnt64_simp_out(43),
+       wd5(12) => cnt64_simp_out(44),
+       wd5(13) => cnt64_simp_out(45),
+       wd5(14) => cnt64_simp_out(46),
+       wd5(15) => cnt64_simp_out(47),
+       wd5(16) => cnt64_simp_out(48),
+       wd5(17) => cnt64_simp_out(49),
+       wd5(18) => cnt64_simp_out(50),
+       wd5(19) => cnt64_simp_out(51),
+       wd5(20) => cnt64_simp_out(52),
+       wd5(21) => cnt64_simp_out(53),
+       wd5(22) => cnt64_simp_out(54),
+       wd5(23) => cnt64_simp_out(55),
+       wd5(24) => cnt64_simp_out(56),
+       wd5(25) => cnt64_simp_out(57),
+       wd5(26) => cnt64_simp_out(58),
+       wd5(27) => cnt64_simp_out(59),
+       wd5(28) => cnt64_simp_out(60),
+       wd5(29) => cnt64_simp_out(61),
+       wd5(30) => cnt64_simp_out(62),
+       wd5(31) => cnt64_simp_out(63),
+       burst_full_ext => burst_full_int,
+       burst_wr_out => b_wr_out_b1,
+       clk0 => clk0,
+       ext_rst => out_cnt_rst,
+       out64 => sig_output_counts,
+       trig_sig_in => trig_sig2,
+       wd0 => out_ctr_1,
+       wd1 => out_ctr_2,
+       wd2 => out_ctr_3,
+       wd3 => out_ctr_4
   );
 
 U122 : reg_32
@@ -1115,16 +1109,6 @@ U122 : reg_32
        q => ps_ct0,
        reset_p => reset_out,
        wr_en => blk_wr_en_cts(28)
-  );
-
-U123 : cntrs_2_b_fifo
-  port map(
-       b_fifo_full_p => burst_full_int,
-       b_wr => b_wr_out_b,
-       clk => clk0,
-       mux_dir => mux_dir,
-       reset_p => out_cnt_rst,
-       sig_in => NET59613
   );
 
 U124 : reg_32
@@ -6546,94 +6530,9 @@ U344 : agrgate_8_by_8
 
 NET59517 <= reset_out or ctr_resets(3);
 
-NET59613 <= sig_cms2 or sig_cms1 or sig_norm;
+trig_sig1 <= sig_cms2 or sig_cms1 or sig_norm;
 
 burst_wr_in(3) <= b_wr_out_b1;
-
-U348 : cntrs_2_b_fifo
-  port map(
-       b_fifo_full_p => burst_full_int,
-       b_wr => b_wr_out_b1,
-       clk => clk0,
-       mux_dir => mux_dir_out,
-       reset_p => out_cnt_rst,
-       sig_in => NET59721
-  );
-
-U349 : b_fifo_mux
-  port map(
-       wd_in4(0) => cnt64_simp_out(0),
-       wd_in4(1) => cnt64_simp_out(1),
-       wd_in4(2) => cnt64_simp_out(2),
-       wd_in4(3) => cnt64_simp_out(3),
-       wd_in4(4) => cnt64_simp_out(4),
-       wd_in4(5) => cnt64_simp_out(5),
-       wd_in4(6) => cnt64_simp_out(6),
-       wd_in4(7) => cnt64_simp_out(7),
-       wd_in4(8) => cnt64_simp_out(8),
-       wd_in4(9) => cnt64_simp_out(9),
-       wd_in4(10) => cnt64_simp_out(10),
-       wd_in4(11) => cnt64_simp_out(11),
-       wd_in4(12) => cnt64_simp_out(12),
-       wd_in4(13) => cnt64_simp_out(13),
-       wd_in4(14) => cnt64_simp_out(14),
-       wd_in4(15) => cnt64_simp_out(15),
-       wd_in4(16) => cnt64_simp_out(16),
-       wd_in4(17) => cnt64_simp_out(17),
-       wd_in4(18) => cnt64_simp_out(18),
-       wd_in4(19) => cnt64_simp_out(19),
-       wd_in4(20) => cnt64_simp_out(20),
-       wd_in4(21) => cnt64_simp_out(21),
-       wd_in4(22) => cnt64_simp_out(22),
-       wd_in4(23) => cnt64_simp_out(23),
-       wd_in4(24) => cnt64_simp_out(24),
-       wd_in4(25) => cnt64_simp_out(25),
-       wd_in4(26) => cnt64_simp_out(26),
-       wd_in4(27) => cnt64_simp_out(27),
-       wd_in4(28) => cnt64_simp_out(28),
-       wd_in4(29) => cnt64_simp_out(29),
-       wd_in4(30) => cnt64_simp_out(30),
-       wd_in4(31) => cnt64_simp_out(31),
-       wd_in5(0) => cnt64_simp_out(32),
-       wd_in5(1) => cnt64_simp_out(33),
-       wd_in5(2) => cnt64_simp_out(34),
-       wd_in5(3) => cnt64_simp_out(35),
-       wd_in5(4) => cnt64_simp_out(36),
-       wd_in5(5) => cnt64_simp_out(37),
-       wd_in5(6) => cnt64_simp_out(38),
-       wd_in5(7) => cnt64_simp_out(39),
-       wd_in5(8) => cnt64_simp_out(40),
-       wd_in5(9) => cnt64_simp_out(41),
-       wd_in5(10) => cnt64_simp_out(42),
-       wd_in5(11) => cnt64_simp_out(43),
-       wd_in5(12) => cnt64_simp_out(44),
-       wd_in5(13) => cnt64_simp_out(45),
-       wd_in5(14) => cnt64_simp_out(46),
-       wd_in5(15) => cnt64_simp_out(47),
-       wd_in5(16) => cnt64_simp_out(48),
-       wd_in5(17) => cnt64_simp_out(49),
-       wd_in5(18) => cnt64_simp_out(50),
-       wd_in5(19) => cnt64_simp_out(51),
-       wd_in5(20) => cnt64_simp_out(52),
-       wd_in5(21) => cnt64_simp_out(53),
-       wd_in5(22) => cnt64_simp_out(54),
-       wd_in5(23) => cnt64_simp_out(55),
-       wd_in5(24) => cnt64_simp_out(56),
-       wd_in5(25) => cnt64_simp_out(57),
-       wd_in5(26) => cnt64_simp_out(58),
-       wd_in5(27) => cnt64_simp_out(59),
-       wd_in5(28) => cnt64_simp_out(60),
-       wd_in5(29) => cnt64_simp_out(61),
-       wd_in5(30) => cnt64_simp_out(62),
-       wd_in5(31) => cnt64_simp_out(63),
-       b_fifo_out => sig_output_counts,
-       rst_p => out_cnt_rst,
-       s_addr => mux_dir_out,
-       wd_in0 => out_ctr_1,
-       wd_in1 => out_ctr_2,
-       wd_in2 => out_ctr_3,
-       wd_in3 => out_ctr_4
-  );
 
 U35 : reg_8
   port map(
@@ -6651,7 +6550,7 @@ U35 : reg_8
        wr_en => blk_wr_en_4(4)
   );
 
-NET59721 <= sig_cms2 or sig_cms1 or sig_norm;
+trig_sig2 <= sig_cms2 or sig_cms1 or sig_norm;
 
 U351 : s_cnt32_v2
   port map(
@@ -7190,6 +7089,84 @@ U403 : d_ff
        dl => sig_log,
        q => NET62481,
        rst_p => c0sig
+  );
+
+U404 : bfifomux_w_ctlr
+  port map(
+       wd4(0) => cnt64_simp_out(0),
+       wd4(1) => cnt64_simp_out(1),
+       wd4(2) => cnt64_simp_out(2),
+       wd4(3) => cnt64_simp_out(3),
+       wd4(4) => cnt64_simp_out(4),
+       wd4(5) => cnt64_simp_out(5),
+       wd4(6) => cnt64_simp_out(6),
+       wd4(7) => cnt64_simp_out(7),
+       wd4(8) => cnt64_simp_out(8),
+       wd4(9) => cnt64_simp_out(9),
+       wd4(10) => cnt64_simp_out(10),
+       wd4(11) => cnt64_simp_out(11),
+       wd4(12) => cnt64_simp_out(12),
+       wd4(13) => cnt64_simp_out(13),
+       wd4(14) => cnt64_simp_out(14),
+       wd4(15) => cnt64_simp_out(15),
+       wd4(16) => cnt64_simp_out(16),
+       wd4(17) => cnt64_simp_out(17),
+       wd4(18) => cnt64_simp_out(18),
+       wd4(19) => cnt64_simp_out(19),
+       wd4(20) => cnt64_simp_out(20),
+       wd4(21) => cnt64_simp_out(21),
+       wd4(22) => cnt64_simp_out(22),
+       wd4(23) => cnt64_simp_out(23),
+       wd4(24) => cnt64_simp_out(24),
+       wd4(25) => cnt64_simp_out(25),
+       wd4(26) => cnt64_simp_out(26),
+       wd4(27) => cnt64_simp_out(27),
+       wd4(28) => cnt64_simp_out(28),
+       wd4(29) => cnt64_simp_out(29),
+       wd4(30) => cnt64_simp_out(30),
+       wd4(31) => cnt64_simp_out(31),
+       wd5(0) => cnt64_simp_out(32),
+       wd5(1) => cnt64_simp_out(33),
+       wd5(2) => cnt64_simp_out(34),
+       wd5(3) => cnt64_simp_out(35),
+       wd5(4) => cnt64_simp_out(36),
+       wd5(5) => cnt64_simp_out(37),
+       wd5(6) => cnt64_simp_out(38),
+       wd5(7) => cnt64_simp_out(39),
+       wd5(8) => cnt64_simp_out(40),
+       wd5(9) => cnt64_simp_out(41),
+       wd5(10) => cnt64_simp_out(42),
+       wd5(11) => cnt64_simp_out(43),
+       wd5(12) => cnt64_simp_out(44),
+       wd5(13) => cnt64_simp_out(45),
+       wd5(14) => cnt64_simp_out(46),
+       wd5(15) => cnt64_simp_out(47),
+       wd5(16) => cnt64_simp_out(48),
+       wd5(17) => cnt64_simp_out(49),
+       wd5(18) => cnt64_simp_out(50),
+       wd5(19) => cnt64_simp_out(51),
+       wd5(20) => cnt64_simp_out(52),
+       wd5(21) => cnt64_simp_out(53),
+       wd5(22) => cnt64_simp_out(54),
+       wd5(23) => cnt64_simp_out(55),
+       wd5(24) => cnt64_simp_out(56),
+       wd5(25) => cnt64_simp_out(57),
+       wd5(26) => cnt64_simp_out(58),
+       wd5(27) => cnt64_simp_out(59),
+       wd5(28) => cnt64_simp_out(60),
+       wd5(29) => cnt64_simp_out(61),
+       wd5(30) => cnt64_simp_out(62),
+       wd5(31) => cnt64_simp_out(63),
+       burst_full_ext => burst_full_int,
+       burst_wr_out => b_wr_out_b,
+       clk0 => clk0,
+       ext_rst => out_cnt_rst,
+       out64 => sig_event_counts,
+       trig_sig_in => trig_sig1,
+       wd0 => out_ev_ctr,
+       wd1 => log_ev_ctr,
+       wd2 => in_ev_ctr_1,
+       wd3 => in_ev_ctr_2
   );
 
 U41 : agrgate16_1

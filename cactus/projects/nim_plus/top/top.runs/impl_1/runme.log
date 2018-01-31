@@ -14,7 +14,7 @@ Design is defaulting to constrset: constrs_1
 INFO: [Project 1-454] Reading design checkpoint '/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp' for cell 'NIM_CLKS_BLOCK'
 INFO: [Project 1-454] Reading design checkpoint '/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.runs/clk_wiz_0_synth_1/clk_wiz_0.dcp' for cell 'clk_wiz_0_BLOCK'
 INFO: [Project 1-454] Reading design checkpoint '/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp' for cell 'clk_wiz_1_BLOCK'
-INFO: [Netlist 29-17] Analyzing 296 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 376 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-479] Netlist was created with Vivado 2015.2
 INFO: [Device 21-403] Loading part xc7a200tffg1156-2
@@ -34,37 +34,223 @@ Finished Parsing XDC File [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects
 Sourcing Tcl File [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/pins.tcl]
 Finished Sourcing Tcl File [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/pins.tcl]
 Sourcing Tcl File [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl]
-WARNING: [Vivado 12-180] No cells matched 'get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U351/*)}'. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
-ERROR: [Vivado 12-1387] No valid object(s) found for set_max_delay constraint with option '-to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U351/*)}]'. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
-Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
-WARNING: [Vivado 12-180] No cells matched 'get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U353/*)}'. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
-ERROR: [Vivado 12-1387] No valid object(s) found for set_max_delay constraint with option '-to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U353/*)}]'. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
-Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
-WARNING: [Vivado 12-180] No cells matched 'get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U355/*)}'. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
-ERROR: [Vivado 12-1387] No valid object(s) found for set_max_delay constraint with option '-to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U355/*)}]'. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
-Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
-WARNING: [Vivado 12-180] No cells matched 'get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U357/*)}'. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
-ERROR: [Vivado 12-1387] No valid object(s) found for set_max_delay constraint with option '-to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U357/*)}]'. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
-Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/int_cnt_out[31]_i_1' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[9]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[9]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[5]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[5]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[29]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[29]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[25]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[25]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[21]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[21]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[1]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[1]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[17]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[17]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[13]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[13]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_8' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_7' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_9' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_6' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_5' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_2' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_10' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_1' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/VCC' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/int_cnt_out[31]_i_1' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[9]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[9]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[5]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[5]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[29]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[29]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[25]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[25]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[21]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[21]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[1]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[1]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[17]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[17]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[13]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[13]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_8' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_7' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_9' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_6' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_5' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_2' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_10' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_1' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/VCC' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_2' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_10' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_1' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/VCC' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/int_cnt_out[31]_i_1' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[9]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[9]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[5]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[5]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[29]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[29]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[25]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[25]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[21]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[21]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[1]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[1]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[17]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[17]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[13]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[13]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_8' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_7' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_9' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_6' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_5' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/int_cnt_out[31]_i_1' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[9]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[9]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[5]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[5]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[29]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[29]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[25]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[25]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[21]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[21]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[1]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[1]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+INFO: [Common 17-14] Message 'Constraints 18-401' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
 INFO: [Timing 38-35] Done setting XDC timing constraints. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:48]
 INFO: [Timing 38-2] Deriving generated clocks [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:48]
-get_clocks: Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1889.488 ; gain = 533.672 ; free physical = 235 ; free virtual = 39523
+get_clocks: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1892.496 ; gain = 534.672 ; free physical = 2596 ; free virtual = 40641
 Finished Sourcing Tcl File [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl]
 Parsing XDC File [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_10.xdc]
 Finished Parsing XDC File [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_10.xdc]
 INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp'
 INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.runs/clk_wiz_0_synth_1/clk_wiz_0.dcp'
 INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp'
-INFO: [Designutils 20-663] Invalid constraints found, use command 'write_xdc -constraints invalid <file>' to save all the invalid constraints to a file
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-CRITICAL WARNING: [Project 1-560] Could not resolve non-primitive black box cell 'ag284' instantiated as 'NIM_BLOCK/U360'. 8 instances of this cell are unresolved black boxes. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/nim_plus_blk_1_phase_4ps.vhd:6700]
-CRITICAL WARNING: [Project 1-560] Could not resolve non-primitive black box cell 'd_ff' instantiated as 'NIM_BLOCK/U402'. 2 instances of this cell are unresolved black boxes. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/nim_plus_blk_1_phase_4ps.vhd:7179]
-CRITICAL WARNING: [Project 1-560] Could not resolve non-primitive black box cell 's_cnt32_v2' instantiated as 'NIM_BLOCK/U162'. 12 instances of this cell are unresolved black boxes. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/nim_plus_blk_1_phase_4ps.vhd:1643]
+CRITICAL WARNING: [Project 1-560] Could not resolve non-primitive black box cell 'd_ff' instantiated as 'NIM_BLOCK/U162/U2'. 14 instances of this cell are unresolved black boxes. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/s_cnt32_v2.vhd:80]
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 8 instances were transformed.
   OBUFDS => OBUFDS: 8 instances
 
-link_design: Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1890.488 ; gain = 884.820 ; free physical = 253 ; free virtual = 39522
+link_design: Time (s): cpu = 00:00:12 ; elapsed = 00:00:11 . Memory (MB): peak = 1892.496 ; gain = 886.820 ; free physical = 2614 ; free virtual = 40639
 Command: opt_design
 Attempting to get a license for feature 'Implementation' and/or device 'xc7a200t'
 INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a200t'
@@ -75,7 +261,208 @@ INFO: [DRC 23-27] Running DRC with 8 threads
 INFO: [Project 1-461] DRC finished with 0 Errors
 INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
 
-Time (s): cpu = 00:00:00.15 ; elapsed = 00:00:00.15 . Memory (MB): peak = 1905.520 ; gain = 7.027 ; free physical = 250 ; free virtual = 39519
+Time (s): cpu = 00:00:00.13 ; elapsed = 00:00:00.14 . Memory (MB): peak = 1907.527 ; gain = 7.027 ; free physical = 2610 ; free virtual = 40635
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/int_cnt_out[31]_i_1' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[9]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[9]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[5]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[5]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[29]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[29]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[25]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[25]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[21]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[21]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[1]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[1]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[17]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[17]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[13]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r_reg[13]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_8' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_7' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_9' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_6' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_5' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_2' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_10' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/cnt_out_r[0]_i_1' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/VCC' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/U1/GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U351/GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:9]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/int_cnt_out[31]_i_1' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[9]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[9]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[5]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[5]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[29]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[29]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[25]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[25]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[21]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[21]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[1]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[1]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[17]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[17]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[13]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r_reg[13]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_8' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_7' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_9' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_6' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_5' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_2' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_10' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/cnt_out_r[0]_i_1' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/VCC' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/U1/GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U353/GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:10]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_2' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_10' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_1' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/VCC' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/int_cnt_out[31]_i_1' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[9]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[9]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[5]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[5]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[29]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[29]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[25]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[25]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[21]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[21]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[1]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[1]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[17]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[17]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[13]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r_reg[13]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_8' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_7' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_9' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_6' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_5' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/U1/cnt_out_r[0]_i_4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U355/GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:11]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/int_cnt_out[31]_i_1' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[9]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[9]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[5]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[5]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[29]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[29]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[25]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[25]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[21]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[21]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[1]_i_2_CARRY4_GND' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'NIM_BLOCK/U357/U1/cnt_out_r_reg[1]_i_2_CARRY4' is not a valid endpoint. [/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:12]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+INFO: [Common 17-14] Message 'Constraints 18-401' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 INFO: [Timing 38-35] Done setting XDC timing constraints.
 
 Starting Logic Optimization Task
@@ -88,347 +475,90 @@ INFO: [IP_Flow 19-3806] Processing IP xilinx.com:ip:xsdbm:1.1 for cell dbg_hub_C
 INFO: [Chipscope 16-220] Re-using generated and synthesized IP, "xilinx.com:ip:xsdbm:1.1", from Vivado IP cache entry "090b4f87311a0380".
 INFO: [IP_Flow 19-3806] Processing IP xilinx.com:ip:ila:5.1 for cell u_ila_0_0_CV.
 INFO: [Chipscope 16-220] Re-using generated and synthesized IP, "xilinx.com:ip:ila:5.1", from Vivado IP cache entry "24fef04c18185525".
-Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2030.574 ; gain = 0.000 ; free physical = 1156 ; free virtual = 39187
-Phase 1 Generate And Synthesize Debug Cores | Checksum: 1bcfe7ee2
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2032.574 ; gain = 0.000 ; free physical = 2465 ; free virtual = 40496
+Phase 1 Generate And Synthesize Debug Cores | Checksum: 18c0cb299
 
-Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 2030.574 ; gain = 122.055 ; free physical = 1156 ; free virtual = 39187
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 2032.574 ; gain = 121.047 ; free physical = 2465 ; free virtual = 40496
 INFO: [Timing 38-35] Done setting XDC timing constraints.
 
 Phase 2 Retarget
 
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U43/sigtestin[19] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U43/tsig_out_INST_0_i_7
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[0] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[0]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[0] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[0]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[10] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[10]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[10] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[10]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[11] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[11]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[11] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[11]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[12] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[12]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[12] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[12]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[13] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[13]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[13] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[13]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[14] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[14]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[14] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[14]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[15] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[15]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[15] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[15]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[16] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[16]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[16] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[16]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[17] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[17]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[17] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[17]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[18] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[18]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[18] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[18]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[19] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[19]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[19] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[19]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[1] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[1]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[1] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[1]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[20] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[20]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[20] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[20]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[21] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[21]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[21] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[21]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[22] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[22]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[22] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[22]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[23] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[23]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[23] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[23]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[24] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[24]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[24] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[24]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[25] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[25]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[25] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[25]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[26] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[26]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[26] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[26]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[27] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[27]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[27] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[27]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[28] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[28]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[28] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[28]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[29] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[29]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[29] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[29]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[2] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[2]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[2] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[2]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[30] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[30]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[30] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[30]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[31] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[31]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[31] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[31]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[0] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[32]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[0] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[32]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[1] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[33]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[1] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[33]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[2] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[34]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[2] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[34]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[3] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[35]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[3] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[35]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[4] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[36]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[4] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[36]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[5] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[37]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[5] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[37]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[6] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[38]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[6] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[38]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[7] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[39]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[7] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[39]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[3] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[3]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[3] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[3]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[8] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[40]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[8] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[40]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[9] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[41]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[9] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[41]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[10] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[42]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[10] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[42]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[11] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[43]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[11] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[43]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[12] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[44]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[12] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[44]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[13] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[45]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[13] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[45]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[14] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[46]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[14] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[46]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[15] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[47]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[15] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[47]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[16] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[48]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[16] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[48]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[17] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[49]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[17] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[49]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in0[4] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[4]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in2[4] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[4]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[18] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[50]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[18] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[50]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[19] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[51]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[19] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[51]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[20] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[52]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[20] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[52]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[21] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[53]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in3[21] is driving LUT input pin I4 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[53]_INST_0
-WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U121/wd_in1[22] is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U121/b_fifo_out[54]_INST_0
-INFO: [Common 17-14] Message 'Opt 31-155' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Opt 31-138] Pushed 24 inverter(s) to 25 load pin(s).
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U162/U1/sig_in is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U162/U1/Sreg0_i_1
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U335/U1/sig_in is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U335/U1/Sreg0_i_1
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U341/U1/sig_in is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U341/U1/Sreg0_i_1
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U66/U1/sig_in is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U66/U1/Sreg0_i_1
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U68/U1/sig_in is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U68/U1/Sreg0_i_1
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U162/U1/sig_in is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U162/U1/cnt_out_r[0]_i_2
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U335/U1/sig_in is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U335/U1/cnt_out_r[0]_i_2
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U341/U1/sig_in is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U341/U1/cnt_out_r[0]_i_2
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U351/U1/sig_in is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U351/U1/cnt_out_r[0]_i_2
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U353/U1/sig_in is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U353/U1/cnt_out_r[0]_i_2
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U355/U1/sig_in is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U355/U1/cnt_out_r[0]_i_2
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U357/U1/sig_in is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U357/U1/cnt_out_r[0]_i_2
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U58/U1/sig_in is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U58/U1/cnt_out_r[0]_i_2
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U66/U1/sig_in is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U66/U1/cnt_out_r[0]_i_2
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U68/U1/sig_in is driving LUT input pin I0 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U68/U1/cnt_out_r[0]_i_2
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U162/U1/sig_in is driving LUT input pin I2 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U162/U1/cnt_out_r[0]_i_6
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U335/U1/sig_in is driving LUT input pin I2 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U335/U1/cnt_out_r[0]_i_6
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U341/U1/sig_in is driving LUT input pin I2 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U341/U1/cnt_out_r[0]_i_6
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U351/U1/sig_in is driving LUT input pin I2 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U351/U1/cnt_out_r[0]_i_6
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U353/U1/sig_in is driving LUT input pin I2 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U353/U1/cnt_out_r[0]_i_6
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U355/U1/sig_in is driving LUT input pin I2 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U355/U1/cnt_out_r[0]_i_6
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U357/U1/sig_in is driving LUT input pin I2 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U357/U1/cnt_out_r[0]_i_6
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U58/U1/sig_in is driving LUT input pin I2 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U58/U1/cnt_out_r[0]_i_6
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U66/U1/sig_in is driving LUT input pin I2 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U66/U1/cnt_out_r[0]_i_6
+WARNING: [Opt 31-155] Driverless net NIM_BLOCK/U68/U1/sig_in is driving LUT input pin I2 which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: NIM_BLOCK/U68/U1/cnt_out_r[0]_i_6
+INFO: [Opt 31-138] Pushed 21 inverter(s) to 22 load pin(s).
 INFO: [Opt 31-274] Optimized connectivity to 3 cascaded BUFGCE cells
 INFO: [Opt 31-49] Retargeted 0 cell(s).
-Phase 2 Retarget | Checksum: 1ab52cd06
+Phase 2 Retarget | Checksum: 1c7894004
 
-Time (s): cpu = 00:00:39 ; elapsed = 00:00:38 . Memory (MB): peak = 2042.574 ; gain = 134.055 ; free physical = 1146 ; free virtual = 39178
+Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 2044.574 ; gain = 133.047 ; free physical = 2453 ; free virtual = 40485
 
 Phase 3 Constant Propagation
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-INFO: [Opt 31-10] Eliminated 5456 cells.
-Phase 3 Constant Propagation | Checksum: 27aa4dcd9
+INFO: [Opt 31-10] Eliminated 5461 cells.
+Phase 3 Constant Propagation | Checksum: 1c29dbbbd
 
-Time (s): cpu = 00:00:40 ; elapsed = 00:00:40 . Memory (MB): peak = 2042.574 ; gain = 134.055 ; free physical = 1066 ; free virtual = 39097
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:38 . Memory (MB): peak = 2044.574 ; gain = 133.047 ; free physical = 2447 ; free virtual = 40479
 
 Phase 4 Sweep
-INFO: [Opt 31-12] Eliminated 4935 unconnected nets.
-INFO: [Opt 31-11] Eliminated 2916 unconnected cells.
-Phase 4 Sweep | Checksum: 1a383d6bc
+INFO: [Opt 31-12] Eliminated 5162 unconnected nets.
+INFO: [Opt 31-11] Eliminated 2932 unconnected cells.
+Phase 4 Sweep | Checksum: 212b2a361
 
-Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 2042.574 ; gain = 134.055 ; free physical = 1040 ; free virtual = 39072
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:39 . Memory (MB): peak = 2044.574 ; gain = 133.047 ; free physical = 2447 ; free virtual = 40479
 
 Starting Connectivity Check Task
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[0]. This blackbox cannot be found in the existing library.
+ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U162/U2 (d_ff) is driving pin I0 of primitive cell NIM_BLOCK/U162/U1/Sreg0_i_1. This blackbox cannot be found in the existing library.
 Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[10]. This blackbox cannot be found in the existing library.
+ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U335/U2 (d_ff) is driving pin I0 of primitive cell NIM_BLOCK/U335/U1/Sreg0_i_1. This blackbox cannot be found in the existing library.
 Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[11]. This blackbox cannot be found in the existing library.
+ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341/U2 (d_ff) is driving pin I0 of primitive cell NIM_BLOCK/U341/U1/Sreg0_i_1. This blackbox cannot be found in the existing library.
 Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[12]. This blackbox cannot be found in the existing library.
+ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U351/U2 (d_ff) is driving pin D of primitive cell NIM_BLOCK/U351/U1/Sreg0_reg. This blackbox cannot be found in the existing library.
 Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[13]. This blackbox cannot be found in the existing library.
+ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U353/U2 (d_ff) is driving pin D of primitive cell NIM_BLOCK/U353/U1/Sreg0_reg. This blackbox cannot be found in the existing library.
 Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[14]. This blackbox cannot be found in the existing library.
+ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U355/U2 (d_ff) is driving pin D of primitive cell NIM_BLOCK/U355/U1/Sreg0_reg. This blackbox cannot be found in the existing library.
 Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[15]. This blackbox cannot be found in the existing library.
+ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U357/U2 (d_ff) is driving pin D of primitive cell NIM_BLOCK/U357/U1/Sreg0_reg. This blackbox cannot be found in the existing library.
 Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[16]. This blackbox cannot be found in the existing library.
+ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U58/U2 (d_ff) is driving pin D of primitive cell NIM_BLOCK/U58/U1/Sreg0_reg. This blackbox cannot be found in the existing library.
 Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[17]. This blackbox cannot be found in the existing library.
+ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U66/U2 (d_ff) is driving pin I0 of primitive cell NIM_BLOCK/U66/U1/Sreg0_i_1. This blackbox cannot be found in the existing library.
 Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[18]. This blackbox cannot be found in the existing library.
+ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U68/U2 (d_ff) is driving pin I0 of primitive cell NIM_BLOCK/U68/U1/Sreg0_i_1. This blackbox cannot be found in the existing library.
 Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[19]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[1]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[20]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[21]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[22]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[23]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[24]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[25]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[26]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[27]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[28]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[29]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[2]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[30]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[31]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[3]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[4]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[5]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[6]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[7]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[8]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U341 (s_cnt32_v2) is driving pin D of primitive cell NIM_BLOCK/U322/U7/d_reg_reg[9]. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[0]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[10]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[11]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[12]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[13]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[14]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[15]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[16]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[17]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[18]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[19]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[1]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[20]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[21]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[22]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[23]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[24]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[25]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[26]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[27]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[28]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[29]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[2]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[30]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[31]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[3]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[4]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[5]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[6]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[7]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[8]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U360 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[9]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[32]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[42]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[43]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[44]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[45]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[46]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[47]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[48]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[49]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[50]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[51]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[33]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[52]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[53]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[54]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[55]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[56]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[57]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[58]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[59]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[60]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[61]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[34]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[62]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[63]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[35]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[36]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[37]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[38]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[39]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[40]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U361 (ag284) is driving pin I0 of primitive cell NIM_BLOCK/U349/b_fifo_out[41]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U362 (ag284) is driving pin I4 of primitive cell NIM_BLOCK/U349/b_fifo_out[0]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U362 (ag284) is driving pin I4 of primitive cell NIM_BLOCK/U349/b_fifo_out[10]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U362 (ag284) is driving pin I4 of primitive cell NIM_BLOCK/U349/b_fifo_out[11]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-ERROR: [Opt 31-30] Blackbox NIM_BLOCK/U362 (ag284) is driving pin I4 of primitive cell NIM_BLOCK/U349/b_fifo_out[12]_INST_0. This blackbox cannot be found in the existing library.
-Resolution: Please check the input design and ensure that the specific blackbox module is defined. Once the design is modified, then re-run the Vivado flow.
-INFO: [Common 17-14] Message 'Opt 31-30' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 
-Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2042.574 ; gain = 0.000 ; free physical = 1040 ; free virtual = 39072
-Implement Debug Cores | Checksum: 2569caa03
-Logic Optimization | Checksum: 1471ca9c8
-Ending Logic Optimization Task | Checksum: 1a383d6bc
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2044.574 ; gain = 0.000 ; free physical = 2447 ; free virtual = 40479
+Implement Debug Cores | Checksum: 1b2156bdd
+Logic Optimization | Checksum: 1477dfefa
+Ending Logic Optimization Task | Checksum: 212b2a361
 
-Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 2042.574 ; gain = 134.055 ; free physical = 1040 ; free virtual = 39072
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:39 . Memory (MB): peak = 2044.574 ; gain = 133.047 ; free physical = 2447 ; free virtual = 40479
 INFO: [Common 17-83] Releasing license: Implementation
-44 Infos, 104 Warnings, 3 Critical Warnings and 105 Errors encountered.
+43 Infos, 225 Warnings, 1 Critical Warnings and 11 Errors encountered.
 opt_design failed
 ERROR: [Opt 31-236] Found primitives driven by Empty Hierarchy Cells/Black boxes.
-INFO: [Common 17-206] Exiting Vivado at Wed Jan 31 10:48:54 2018...
+INFO: [Common 17-206] Exiting Vivado at Wed Jan 31 11:51:53 2018...
