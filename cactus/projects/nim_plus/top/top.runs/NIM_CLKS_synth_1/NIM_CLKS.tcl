@@ -10,12 +10,13 @@ create_project -in_memory -part xc7a200tffg1156-2
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir C:/nimPlus_CAPTAN_+_Artix_160/top/top.cache/wt [current_project]
-set_property parent.project_path C:/nimPlus_CAPTAN_+_Artix_160/top/top.xpr [current_project]
+set_property webtalk.parent_dir /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.cache/wt [current_project]
+set_property parent.project_path /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-read_ip C:/nimPlus_CAPTAN_+_Artix_160/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.xci
-set_property is_locked true [get_files C:/nimPlus_CAPTAN_+_Artix_160/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.xci]
+read_ip /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.xci
+set_property used_in_implementation false [get_files -all /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.dcp]
+set_property is_locked true [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.xci]
 
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]
@@ -24,27 +25,27 @@ rename_ref -prefix_all NIM_CLKS_
 write_checkpoint -noxdef NIM_CLKS.dcp
 catch { report_utilization -file NIM_CLKS_utilization_synth.rpt -pb NIM_CLKS_utilization_synth.pb }
 if { [catch {
-  file copy -force C:/nimPlus_CAPTAN_+_Artix_160/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp C:/nimPlus_CAPTAN_+_Artix_160/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.dcp
+  file copy -force /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.dcp
 } _RESULT ] } { 
   error "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
 }
 if { [catch {
-  write_verilog -force -mode synth_stub C:/nimPlus_CAPTAN_+_Artix_160/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_stub.v
+  write_verilog -force -mode synth_stub /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_stub.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a Verilog synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 if { [catch {
-  write_vhdl -force -mode synth_stub C:/nimPlus_CAPTAN_+_Artix_160/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_stub.vhdl
+  write_vhdl -force -mode synth_stub /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_stub.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a VHDL synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 if { [catch {
-  write_verilog -force -mode funcsim C:/nimPlus_CAPTAN_+_Artix_160/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_funcsim.v
+  write_verilog -force -mode funcsim /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_funcsim.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the Verilog functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
 if { [catch {
-  write_vhdl -force -mode funcsim C:/nimPlus_CAPTAN_+_Artix_160/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_funcsim.vhdl
+  write_vhdl -force -mode funcsim /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_funcsim.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the VHDL functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }

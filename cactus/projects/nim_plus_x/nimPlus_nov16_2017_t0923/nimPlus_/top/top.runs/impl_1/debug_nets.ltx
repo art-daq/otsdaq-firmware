@@ -3,10 +3,38 @@
   <probeset name="EDA_PROBESET" active="true">
     <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
+        <Option Id="COMPARE_VALUE.0" value="eq16&apos;hXXXX"/>
+        <Option Id="CORE_LOCATION" value="1:0"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="0"/>
+        <Option Id="PROBE_PORT_BITS" value="0"/>
+        <Option Id="PROBE_PORT_BIT_COUNT" value="16"/>
+      </probeOptions>
+      <nets>
+        <net name="NIM_BLOCK/debug_fast_cnt[15]"/>
+        <net name="NIM_BLOCK/debug_fast_cnt[14]"/>
+        <net name="NIM_BLOCK/debug_fast_cnt[13]"/>
+        <net name="NIM_BLOCK/debug_fast_cnt[12]"/>
+        <net name="NIM_BLOCK/debug_fast_cnt[11]"/>
+        <net name="NIM_BLOCK/debug_fast_cnt[10]"/>
+        <net name="NIM_BLOCK/debug_fast_cnt[9]"/>
+        <net name="NIM_BLOCK/debug_fast_cnt[8]"/>
+        <net name="NIM_BLOCK/debug_fast_cnt[7]"/>
+        <net name="NIM_BLOCK/debug_fast_cnt[6]"/>
+        <net name="NIM_BLOCK/debug_fast_cnt[5]"/>
+        <net name="NIM_BLOCK/debug_fast_cnt[4]"/>
+        <net name="NIM_BLOCK/debug_fast_cnt[3]"/>
+        <net name="NIM_BLOCK/debug_fast_cnt[2]"/>
+        <net name="NIM_BLOCK/debug_fast_cnt[1]"/>
+        <net name="NIM_BLOCK/debug_fast_cnt[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
         <Option Id="COMPARE_VALUE.0" value="eq4&apos;hX"/>
         <Option Id="CORE_LOCATION" value="1:0"/>
-        <Option Id="HW_ILA" value="u_ila_0"/>
-        <Option Id="PROBE_PORT" value="0"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="1"/>
         <Option Id="PROBE_PORT_BITS" value="0"/>
         <Option Id="PROBE_PORT_BIT_COUNT" value="4"/>
       </probeOptions>
@@ -17,12 +45,88 @@
         <net name="nim_input[0]"/>
       </nets>
     </probe>
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="COMPARE_VALUE.0" value="eq64&apos;hXXXX_XXXX_XXXX_XXXX"/>
+        <Option Id="CORE_LOCATION" value="1:0"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="2"/>
+        <Option Id="PROBE_PORT_BITS" value="0"/>
+        <Option Id="PROBE_PORT_BIT_COUNT" value="64"/>
+      </probeOptions>
+      <nets>
+        <net name="b_data[63]"/>
+        <net name="b_data[62]"/>
+        <net name="b_data[61]"/>
+        <net name="b_data[60]"/>
+        <net name="b_data[59]"/>
+        <net name="b_data[58]"/>
+        <net name="b_data[57]"/>
+        <net name="b_data[56]"/>
+        <net name="b_data[55]"/>
+        <net name="b_data[54]"/>
+        <net name="b_data[53]"/>
+        <net name="b_data[52]"/>
+        <net name="b_data[51]"/>
+        <net name="b_data[50]"/>
+        <net name="b_data[49]"/>
+        <net name="b_data[48]"/>
+        <net name="b_data[47]"/>
+        <net name="b_data[46]"/>
+        <net name="b_data[45]"/>
+        <net name="b_data[44]"/>
+        <net name="b_data[43]"/>
+        <net name="b_data[42]"/>
+        <net name="b_data[41]"/>
+        <net name="b_data[40]"/>
+        <net name="b_data[39]"/>
+        <net name="b_data[38]"/>
+        <net name="b_data[37]"/>
+        <net name="b_data[36]"/>
+        <net name="b_data[35]"/>
+        <net name="b_data[34]"/>
+        <net name="b_data[33]"/>
+        <net name="b_data[32]"/>
+        <net name="b_data[31]"/>
+        <net name="b_data[30]"/>
+        <net name="b_data[29]"/>
+        <net name="b_data[28]"/>
+        <net name="b_data[27]"/>
+        <net name="b_data[26]"/>
+        <net name="b_data[25]"/>
+        <net name="b_data[24]"/>
+        <net name="b_data[23]"/>
+        <net name="b_data[22]"/>
+        <net name="b_data[21]"/>
+        <net name="b_data[20]"/>
+        <net name="b_data[19]"/>
+        <net name="b_data[18]"/>
+        <net name="b_data[17]"/>
+        <net name="b_data[16]"/>
+        <net name="b_data[15]"/>
+        <net name="b_data[14]"/>
+        <net name="b_data[13]"/>
+        <net name="b_data[12]"/>
+        <net name="b_data[11]"/>
+        <net name="b_data[10]"/>
+        <net name="b_data[9]"/>
+        <net name="b_data[8]"/>
+        <net name="b_data[7]"/>
+        <net name="b_data[6]"/>
+        <net name="b_data[5]"/>
+        <net name="b_data[4]"/>
+        <net name="b_data[3]"/>
+        <net name="b_data[2]"/>
+        <net name="b_data[1]"/>
+        <net name="b_data[0]"/>
+      </nets>
+    </probe>
     <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
         <Option Id="CORE_LOCATION" value="1:0"/>
-        <Option Id="HW_ILA" value="u_ila_0"/>
-        <Option Id="PROBE_PORT" value="1"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="3"/>
         <Option Id="PROBE_PORT_BITS" value="0"/>
         <Option Id="PROBE_PORT_BIT_COUNT" value="1"/>
       </probeOptions>
@@ -34,8 +138,8 @@
       <probeOptions Id="DebugProbeParams">
         <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
         <Option Id="CORE_LOCATION" value="1:0"/>
-        <Option Id="HW_ILA" value="u_ila_0"/>
-        <Option Id="PROBE_PORT" value="2"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="4"/>
         <Option Id="PROBE_PORT_BITS" value="0"/>
         <Option Id="PROBE_PORT_BIT_COUNT" value="1"/>
       </probeOptions>
@@ -47,8 +151,8 @@
       <probeOptions Id="DebugProbeParams">
         <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
         <Option Id="CORE_LOCATION" value="1:0"/>
-        <Option Id="HW_ILA" value="u_ila_0"/>
-        <Option Id="PROBE_PORT" value="3"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="5"/>
         <Option Id="PROBE_PORT_BITS" value="0"/>
         <Option Id="PROBE_PORT_BIT_COUNT" value="1"/>
       </probeOptions>
@@ -60,8 +164,8 @@
       <probeOptions Id="DebugProbeParams">
         <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
         <Option Id="CORE_LOCATION" value="1:0"/>
-        <Option Id="HW_ILA" value="u_ila_0"/>
-        <Option Id="PROBE_PORT" value="4"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="6"/>
         <Option Id="PROBE_PORT_BITS" value="0"/>
         <Option Id="PROBE_PORT_BIT_COUNT" value="1"/>
       </probeOptions>
@@ -73,8 +177,8 @@
       <probeOptions Id="DebugProbeParams">
         <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
         <Option Id="CORE_LOCATION" value="1:0"/>
-        <Option Id="HW_ILA" value="u_ila_0"/>
-        <Option Id="PROBE_PORT" value="5"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="7"/>
         <Option Id="PROBE_PORT_BITS" value="0"/>
         <Option Id="PROBE_PORT_BIT_COUNT" value="1"/>
       </probeOptions>
@@ -86,8 +190,8 @@
       <probeOptions Id="DebugProbeParams">
         <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
         <Option Id="CORE_LOCATION" value="1:0"/>
-        <Option Id="HW_ILA" value="u_ila_0"/>
-        <Option Id="PROBE_PORT" value="6"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="8"/>
         <Option Id="PROBE_PORT_BITS" value="0"/>
         <Option Id="PROBE_PORT_BIT_COUNT" value="1"/>
       </probeOptions>
@@ -99,8 +203,21 @@
       <probeOptions Id="DebugProbeParams">
         <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
         <Option Id="CORE_LOCATION" value="1:0"/>
-        <Option Id="HW_ILA" value="u_ila_0"/>
-        <Option Id="PROBE_PORT" value="7"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="9"/>
+        <Option Id="PROBE_PORT_BITS" value="0"/>
+        <Option Id="PROBE_PORT_BIT_COUNT" value="1"/>
+      </probeOptions>
+      <nets>
+        <net name="NIM_BLOCK/out_cnt_rst"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="CORE_LOCATION" value="1:0"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="10"/>
         <Option Id="PROBE_PORT_BITS" value="0"/>
         <Option Id="PROBE_PORT_BIT_COUNT" value="1"/>
       </probeOptions>
@@ -112,8 +229,8 @@
       <probeOptions Id="DebugProbeParams">
         <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
         <Option Id="CORE_LOCATION" value="1:0"/>
-        <Option Id="HW_ILA" value="u_ila_0"/>
-        <Option Id="PROBE_PORT" value="8"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="11"/>
         <Option Id="PROBE_PORT_BITS" value="0"/>
         <Option Id="PROBE_PORT_BIT_COUNT" value="1"/>
       </probeOptions>
@@ -125,8 +242,8 @@
       <probeOptions Id="DebugProbeParams">
         <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
         <Option Id="CORE_LOCATION" value="1:0"/>
-        <Option Id="HW_ILA" value="u_ila_0"/>
-        <Option Id="PROBE_PORT" value="9"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="12"/>
         <Option Id="PROBE_PORT_BITS" value="0"/>
         <Option Id="PROBE_PORT_BIT_COUNT" value="1"/>
       </probeOptions>
@@ -138,8 +255,8 @@
       <probeOptions Id="DebugProbeParams">
         <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
         <Option Id="CORE_LOCATION" value="1:0"/>
-        <Option Id="HW_ILA" value="u_ila_0"/>
-        <Option Id="PROBE_PORT" value="10"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="13"/>
         <Option Id="PROBE_PORT_BITS" value="0"/>
         <Option Id="PROBE_PORT_BIT_COUNT" value="1"/>
       </probeOptions>
@@ -151,8 +268,8 @@
       <probeOptions Id="DebugProbeParams">
         <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
         <Option Id="CORE_LOCATION" value="1:0"/>
-        <Option Id="HW_ILA" value="u_ila_0"/>
-        <Option Id="PROBE_PORT" value="11"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="14"/>
         <Option Id="PROBE_PORT_BITS" value="0"/>
         <Option Id="PROBE_PORT_BIT_COUNT" value="1"/>
       </probeOptions>
@@ -164,8 +281,8 @@
       <probeOptions Id="DebugProbeParams">
         <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
         <Option Id="CORE_LOCATION" value="1:0"/>
-        <Option Id="HW_ILA" value="u_ila_0"/>
-        <Option Id="PROBE_PORT" value="12"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="15"/>
         <Option Id="PROBE_PORT_BITS" value="0"/>
         <Option Id="PROBE_PORT_BIT_COUNT" value="1"/>
       </probeOptions>
@@ -177,13 +294,26 @@
       <probeOptions Id="DebugProbeParams">
         <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
         <Option Id="CORE_LOCATION" value="1:0"/>
-        <Option Id="HW_ILA" value="u_ila_0"/>
-        <Option Id="PROBE_PORT" value="13"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="16"/>
         <Option Id="PROBE_PORT_BITS" value="0"/>
         <Option Id="PROBE_PORT_BIT_COUNT" value="1"/>
       </probeOptions>
       <nets>
         <net name="eth_interface/ec_wrapper/ethernet_controller/DecipherBlock/udp_data_valid"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="CORE_LOCATION" value="1:0"/>
+        <Option Id="HW_ILA" value="u_ila_0_0"/>
+        <Option Id="PROBE_PORT" value="17"/>
+        <Option Id="PROBE_PORT_BITS" value="0"/>
+        <Option Id="PROBE_PORT_BIT_COUNT" value="1"/>
+      </probeOptions>
+      <nets>
+        <net name="b_data_we"/>
       </nets>
     </probe>
   </probeset>

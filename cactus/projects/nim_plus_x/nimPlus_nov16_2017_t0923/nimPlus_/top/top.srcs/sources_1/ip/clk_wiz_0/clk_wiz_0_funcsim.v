@@ -1,10 +1,10 @@
 // Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
-// Date        : Wed Jan 24 22:04:04 2018
+// Date        : Tue Jan 30 15:28:53 2018
 // Host        : rulinux04.dhcp.fnal.gov running 64-bit Scientific Linux release 7.2 (Nitrogen)
 // Command     : write_verilog -force -mode funcsim
-//               /home/cmstestbeam/NIMPlus/nimPlus_/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_funcsim.v
+//               /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_funcsim.v
 // Design      : clk_wiz_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.

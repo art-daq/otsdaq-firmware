@@ -198,7 +198,7 @@ architecture BEHAVIORAL of top is
     signal s_ck_mx_out : std_logic;
  
 
-    signal read_out_data            : std_logic_vector (31 downto 0);     
+    signal read_out_data            : std_logic_vector (63 downto 0);     
      
    
     attribute mark_debug : string;
@@ -208,17 +208,19 @@ architecture BEHAVIORAL of top is
 --    --attribute mark_debug of mx_40 : signal is "true";
     attribute mark_debug of bs_clk40i : signal is "true";
     attribute mark_debug of bs_clk40e : signal is "true";
---    attribute mark_debug of fs_gen_lock : signal is "true";
---    attribute mark_debug of ei40_gen_lock : signal is "true";
---    attribute mark_debug of nim_clk_lock : signal is "true";
+    attribute mark_debug of fs_gen_lock : signal is "true";
+    attribute mark_debug of ei40_gen_lock : signal is "true";
+    attribute mark_debug of nim_clk_lock : signal is "true";
 --    attribute mark_debug of reset : signal is "true";
---    --attribute mark_debug of s_clk40e : signal is "true";
+    attribute mark_debug of s_clk40e : signal is "true";
 --    attribute mark_debug of s_ck_mx_out : signal is "true";
     attribute mark_debug of nim_input : signal is "true";    
---    attribute mark_debug of s_nim_out0 : signal is "true";
---    attribute mark_debug of s_nim_out1 : signal is "true";
---    attribute mark_debug of s_nim_out2 : signal is "true";
---    attribute mark_debug of s_nim_out3 : signal is "true";
+
+    attribute mark_debug of s_nim_out0 : signal is "true";
+    attribute mark_debug of s_nim_out1 : signal is "true";
+    attribute mark_debug of s_nim_out2 : signal is "true";
+    attribute mark_debug of s_nim_out3 : signal is "true";
+    
 --    attribute mark_debug of s_bkpressa : signal is "true";
     
     
@@ -347,6 +349,8 @@ end component;
    end component;
    
    
+       signal extra_clk_reset : std_logic_vector(3 downto 0) := (others => '0');
+       signal extra_clk_reset_OR : std_logic_vector(3 downto 0) := (others => '0');
    
 begin
    
@@ -369,6 +373,12 @@ begin
 				PHY_RXD(7 downto 0)=>GMII_RXD_0_sig(7 downto 0),
 				PHY_RX_DV=>GMII_RX_DV_0_sig,
 				PHY_RX_ER=>GMII_RX_ER_0_sig,
+				
+				
+				user_ready=> '1', --nim_ready,--strip_ready,                            
+                tx_rden=>open,--tx_rden,
+                                
+				
 				MASTER_CLK=>MASTER_CLK,      
 				CONTINUOUS_CLK=>USER_CLK,          
 				reset_in=>reset_btn,
@@ -388,74 +398,6 @@ begin
      
 
 
-  
-	-- start data gen block
---	dataGenGen : for i in 0 to 0 generate
---		signal reg_cnt : unsigned(63 downto 0) := (others => '0'); -- 1s is infinite
---		signal reg_rate : unsigned(63 downto 0) := (others => '0');  -- delay between 8 clock periods
-		
---		signal cnt : unsigned(2 downto 0) := (others => '0');
---		signal delay_cnt : unsigned(63 downto 0) := (others => '0');
---		signal data_cnt : unsigned(31 downto 0) := (others => '0');
---	begin
---		process(MASTER_CLK)
---		begin
---			if (rising_edge(MASTER_CLK)) then
-				
---				b_data_we <= '0';
-				
---				-- register map
---				if (rx_wren = '1') then 	
---					if (unsigned(rx_addr) = x"1001") then --reg_cnt
---						reg_cnt <= unsigned(rx_data); 
---					elsif (unsigned(rx_addr) = x"1002") then --reg_rate
---						reg_rate <= unsigned(rx_data); 						
---					end if;
---					delay_cnt <= (others => '0'); --reset delay and execute burst write
---				end if;
-				
---				cnt <= cnt + 1; 
---				if (cnt = 0) then	--count groups of 8 with wrap around
---					delay_cnt <= delay_cnt + 1;
-					
---					if (delay_cnt = reg_rate and reg_cnt /= 0) then
---						delay_cnt <= (others => '0'); --reset delay and execute burst write
---						b_data(63 downto 32) <= std_logic_vector(data_cnt);
---						b_data(31 downto 0) <= tx_data(31 downto 0); -- last saved write
---						b_data_we <= '1';
---						data_cnt <= data_cnt + 1;
-						
---						if ( and_reduce(std_logic_vector(reg_cnt)) /= '1' ) then --count down pulses, if not infinite
---							reg_cnt <= reg_cnt - 1;
---						end if;
---					end if;
---				end if;				
---			end if;			
-		
---		end process;	
---	end generate;	
-	
-	-- end data gen block
-   
-   
---   makeSlowClock : for i in 0 to 0 generate
---        signal cnt : unsigned(4 downto 0) := (others => '0');
---   begin
---        secondary_clk_sig <= cnt(4); -- 32 times slower clock than MASTER_CLK 
---        CLK15NS_sig <= cnt(0); -- 2 times slower clock than MASTER_CLK
---        process(MASTER_CLK)
---        begin
---            if (rising_edge(MASTER_CLK)) then
---                cnt <= cnt + 1;        
---            end if;
---        end process;   
---   end generate;
-   
---   CLK5MHz_bufg : BUFG
---      port map (I=>secondary_clk_sig,  O=>secondary_clk);
-      
---   CLK15NS_bufg : BUFG
---    port map (I=>CLK15NS_sig,  O=>CLK15NS);
 
 --    CLKMHZ_40_bufg : BUFG  -- Try IBUFG to get rid of DRC error
 --        port map (I=>nim_input(2),  O=>bs_clk_in_40MHz);
@@ -487,39 +429,30 @@ begin
     -------------------------------------                      
     -- tx_data for reads.. rx_address(31:0) | rx_data(31:0) 
       
+    tx_data(63 downto 0) <= read_out_data(63 downto 0);
     
-         tx_data(31 downto 0) <= read_out_data(31 downto 0); 
-   process(MASTER_CLK) -- this process commented out by Alan on aug 9, 2016 for 64 bit data read
-   begin
-       if (rising_edge(MASTER_CLK)) then
-           
-   tx_data(63 downto 32) <= rx_addr(31 downto 0); 
-       end if; 
-   end process;
-    ------------------------------------------------------
---    process(CLK15NS)
---    begin
---		if (rising_edge(CLK15NS)) then
---			-- tx_data(31 downto 24) <= std_logic_vector(unsigned(tx_data(31 downto 24)) + 1); 
---		end if;    
---    end process;  
-    
-    
-    
+      --separate clock reset
+      process(MASTER_CLK)
+      begin
+          if (rising_edge(MASTER_CLK)) then
+              
+              
+              -- register map
+              if (rx_wren = '1') then     
+                  if (unsigned(rx_addr) = x"999") then 
+                      extra_clk_reset <= rx_data(3 downto 0);            
+                 -- elsif (unsigned(rx_addr) = x"990") then 
+                 --     ot_ps_ctrl <= rx_data(1 downto 0);            
+                  end if;
+              end if;
+        end if;
+     end process;
+     extra_clk_reset_OR(0) <= extra_clk_reset(0) or reset;
+     extra_clk_reset_OR(1) <= extra_clk_reset(1) or reset;
+     extra_clk_reset_OR(2) <= extra_clk_reset(2) or reset;
+     extra_clk_reset_OR(3) <= extra_clk_reset(3) or reset;
 
-    
-       -- End of IBUFDS_inst instantiation
-    
-                        
-                        
---    process(secondary_clk)
---    begin
---		if (rising_edge(secondary_clk)) then
---			--tx_data(23 downto 16) <= std_logic_vector(unsigned(tx_data(23 downto 16)) + 1); 
---		end if;    
---    end process;
-
-CLK_MUX : clk_mux_2_to_1_x_2
+    CLK_MUX : clk_mux_2_to_1_x_2
 	 port map(
 	 	 sel => s_ck_mx_out,
 		 i_320 => bs_clk320e,
@@ -545,6 +478,10 @@ CLK_MUX : clk_mux_2_to_1_x_2
 --                  O => mx_320
 --                  ); 
    
+   
+
+     
+     
       
          NIM_BLOCK : entity work.nim_plus_blk_1_phase_4ps --nim_plus_block_v4
           --NIM_BLOCK : nim_plus_block_test_1
@@ -553,13 +490,22 @@ CLK_MUX : clk_mux_2_to_1_x_2
                       bkpa => s_bkpressa,
                       bkpb => s_bkpressb,
                       clk0 => bmx_320,
+                      
+                      clk_13_25 => '0',
+                      clk_26_5 => '0',
+                      clk_ext => s_clk40e,
+                      
                       clk_40DCM => bmx_40,
                       reset_out => reset,
                       rx_wren => rx_wren,
                       tx_clk => MASTER_CLK,
-                     --  rx_addr(32) => '1', -- Fixed
+                      
+                      clklock(0) => nim_clk_lock,
+                      clklock(1) => fs_gen_lock,
+                      clklock(2) => ei40_gen_lock, 
+                      clklock(7 downto 3) => (others => '0'),
+                                           
                       rx_addr(31 downto 0)=>rx_addr(31 downto 0),
-        --              rx_data(15 downto 0)=>rx_data(15 downto 0),
                       rx_data=>rx_data,
                       x(0) => nim_input(0),
                       x(1) => nim_input(1),
@@ -568,6 +514,9 @@ CLK_MUX : clk_mux_2_to_1_x_2
                       b_wr_out => s_b_wr_out,
                       burst_full_ext => nim_b_fifo_full,
                       ck_mx_out => s_ck_mx_out,
+                      
+                      clk_39_out => open,
+                      
                       dac_out => dac_din_sig,
                       muxout_1 => s_nim_out0,
                       muxout_2 => s_nim_out1,
@@ -577,7 +526,7 @@ CLK_MUX : clk_mux_2_to_1_x_2
                       sclk => dac_sclk_sig,
                       sync => dac_sync_sig,
                       b_read => s_b_read(63 downto 0),
-                      read_data_out => read_out_data(31 downto 0)
+                      read_data_out => read_out_data(63 downto 0)
               );
       --generate NIM+ and dual clock fifo for burst data out from nim+ block
     genNimPlusAndBurstFifo : for i in 0 to 0 generate
@@ -656,7 +605,7 @@ CLK_MUX : clk_mux_2_to_1_x_2
          port map( 
            MASTER_CLK => MASTER_CLK,
            clk_out0 => nim_dac_clk,
-           reset => reset,
+           reset => extra_clk_reset_OR(2),
            locked => nim_clk_lock
          );
    
@@ -666,23 +615,25 @@ CLK_MUX : clk_mux_2_to_1_x_2
            MASTER_CLK => MASTER_CLK,
            clkout320 => bs_clk320i,
            clkout40 => bs_clk40i,           
-           reset => reset,
+           reset => extra_clk_reset_OR(0),
            locked => fs_gen_lock
           );    
 
    clk_wiz_1_BLOCK : clk_wiz_1
          port map(
 --           clk_in_40MHz => bs_clk_in_40MHz,   
-clk_in40e => s_clk40e,
- -- clk_in40e_p => CLK40_IN_EXT_P,
-  --clk_in40e_n => CLK40_IN_EXT_N,
-  -- Clock out ports
-  clk_out320e => bs_clk320e,
-  clk_out40e => bs_clk40e,
-  -- Status and control signals
-  reset => reset,
-  locked  => ei40_gen_lock
+        clk_in40e => s_clk40e,
+         -- clk_in40e_p => CLK40_IN_EXT_P,
+          --clk_in40e_n => CLK40_IN_EXT_N,
+          -- Clock out ports
+          clk_out320e => bs_clk320e,
+          clk_out40e => bs_clk40e,
+          -- Status and control signals
+          reset => extra_clk_reset_OR(1),
+          locked  => ei40_gen_lock
           );
+          
+          
           
          IBUFDS_COM0 : IBUFDS
          generic map (

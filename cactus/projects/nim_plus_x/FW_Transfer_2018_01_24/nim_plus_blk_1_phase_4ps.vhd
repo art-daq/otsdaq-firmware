@@ -8,8 +8,8 @@
 -------------------------------------------------------------------------------
 --
 -- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Tue Jan 30 11:31:03 2018
--- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
+-- Generated   : Tue Jan 30 16:25:12 2018
+-- From        : U:/PREP/PREP_Modernization/Firmware_Backups/Aldec_Backups/One_Phase_Designs/AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync/NIMPlus/NIMPlus/src/nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -112,6 +112,7 @@ component agrgate_8_by_8
 end component;
 component ag_28_4
   port (
+  clk : in std_logic;
        in28 : in STD_LOGIC_VECTOR(27 downto 0);
        in4 : in STD_LOGIC_VECTOR(3 downto 0);
        out32 : out STD_LOGIC_VECTOR(31 downto 0)
@@ -268,6 +269,14 @@ component divide_by_8
        clock : in STD_LOGIC;
        reset_p : in STD_LOGIC;
        sigout : out STD_LOGIC
+  );
+end component;
+component d_ff
+  port (
+       clk : in STD_LOGIC;
+       dl : in STD_LOGIC;
+       rst_p : in STD_LOGIC;
+       q : out STD_LOGIC
   );
 end component;
 component load_array_64_v_ps
@@ -588,6 +597,8 @@ signal NET59859 : STD_LOGIC;
 signal NET59949 : STD_LOGIC;
 signal NET60016 : STD_LOGIC;
 signal NET61855 : STD_LOGIC;
+signal NET62481 : STD_LOGIC;
+signal NET62518 : STD_LOGIC;
 signal NET9478 : STD_LOGIC;
 signal NET9526 : STD_LOGIC;
 signal out_cnt_rst : STD_LOGIC;
@@ -724,6 +735,7 @@ signal rdd0 : STD_LOGIC_VECTOR (63 downto 0);
 signal rdd1 : STD_LOGIC_VECTOR (63 downto 0);
 signal rdd2 : STD_LOGIC_VECTOR (63 downto 0);
 signal rdd3 : STD_LOGIC_VECTOR (63 downto 0);
+signal rdd4 : STD_LOGIC_VECTOR (63 downto 0);
 signal rd_data_out_dyn : STD_LOGIC_VECTOR (63 downto 0);
 signal rd_data_out_stat : STD_LOGIC_VECTOR (63 downto 0);
 signal scope_count : STD_LOGIC_VECTOR (63 downto 0);
@@ -765,11 +777,21 @@ signal z_sel : STD_LOGIC_VECTOR (15 downto 0);
 ---- Declaration for Dangling input ----
 signal Dangling_Input_Signal : STD_LOGIC;
 
-    attribute mark_debug : string;
-    attribute mark_debug of sig_log : signal is "true";
-    attribute mark_debug of sig_mod: signal is "true";
+        signal debug_fast_cnt : STD_LOGIC_VECTOR (15 downto 0) := (others=>'0');
+       attribute mark_debug : string;
+       attribute mark_debug of sig_log : signal is "true";
+       attribute mark_debug of debug_fast_cnt : signal is "true";
+       attribute mark_debug of out_cnt_rst : signal is "true";
+      attribute mark_debug of out_ctr_4 : signal is "true";
+      attribute mark_debug of out_ctr_3 : signal is "true";
+             attribute mark_debug of out_ctr_2 : signal is "true";
+             attribute mark_debug of out_ctr_1 : signal is "true";
+       
+       
 begin
 
+    debug_fast_cnt <= cnt64_simp_out(15 downto 0);
+    
 ----  Component instantiations  ----
 
 U1 : reg_64
@@ -5647,70 +5669,6 @@ U322 : reg_read_decode_p
        sig31(61) => Dangling_Input_Signal,
        sig31(62) => Dangling_Input_Signal,
        sig31(63) => Dangling_Input_Signal,
-       sig4(0) => Dangling_Input_Signal,
-       sig4(1) => Dangling_Input_Signal,
-       sig4(2) => Dangling_Input_Signal,
-       sig4(3) => Dangling_Input_Signal,
-       sig4(4) => Dangling_Input_Signal,
-       sig4(5) => Dangling_Input_Signal,
-       sig4(6) => Dangling_Input_Signal,
-       sig4(7) => Dangling_Input_Signal,
-       sig4(8) => Dangling_Input_Signal,
-       sig4(9) => Dangling_Input_Signal,
-       sig4(10) => Dangling_Input_Signal,
-       sig4(11) => Dangling_Input_Signal,
-       sig4(12) => Dangling_Input_Signal,
-       sig4(13) => Dangling_Input_Signal,
-       sig4(14) => Dangling_Input_Signal,
-       sig4(15) => Dangling_Input_Signal,
-       sig4(16) => Dangling_Input_Signal,
-       sig4(17) => Dangling_Input_Signal,
-       sig4(18) => Dangling_Input_Signal,
-       sig4(19) => Dangling_Input_Signal,
-       sig4(20) => Dangling_Input_Signal,
-       sig4(21) => Dangling_Input_Signal,
-       sig4(22) => Dangling_Input_Signal,
-       sig4(23) => Dangling_Input_Signal,
-       sig4(24) => Dangling_Input_Signal,
-       sig4(25) => Dangling_Input_Signal,
-       sig4(26) => Dangling_Input_Signal,
-       sig4(27) => Dangling_Input_Signal,
-       sig4(28) => Dangling_Input_Signal,
-       sig4(29) => Dangling_Input_Signal,
-       sig4(30) => Dangling_Input_Signal,
-       sig4(31) => Dangling_Input_Signal,
-       sig4(32) => Dangling_Input_Signal,
-       sig4(33) => Dangling_Input_Signal,
-       sig4(34) => Dangling_Input_Signal,
-       sig4(35) => Dangling_Input_Signal,
-       sig4(36) => Dangling_Input_Signal,
-       sig4(37) => Dangling_Input_Signal,
-       sig4(38) => Dangling_Input_Signal,
-       sig4(39) => Dangling_Input_Signal,
-       sig4(40) => Dangling_Input_Signal,
-       sig4(41) => Dangling_Input_Signal,
-       sig4(42) => Dangling_Input_Signal,
-       sig4(43) => Dangling_Input_Signal,
-       sig4(44) => Dangling_Input_Signal,
-       sig4(45) => Dangling_Input_Signal,
-       sig4(46) => Dangling_Input_Signal,
-       sig4(47) => Dangling_Input_Signal,
-       sig4(48) => Dangling_Input_Signal,
-       sig4(49) => Dangling_Input_Signal,
-       sig4(50) => Dangling_Input_Signal,
-       sig4(51) => Dangling_Input_Signal,
-       sig4(52) => Dangling_Input_Signal,
-       sig4(53) => Dangling_Input_Signal,
-       sig4(54) => Dangling_Input_Signal,
-       sig4(55) => Dangling_Input_Signal,
-       sig4(56) => Dangling_Input_Signal,
-       sig4(57) => Dangling_Input_Signal,
-       sig4(58) => Dangling_Input_Signal,
-       sig4(59) => Dangling_Input_Signal,
-       sig4(60) => Dangling_Input_Signal,
-       sig4(61) => Dangling_Input_Signal,
-       sig4(62) => Dangling_Input_Signal,
-       sig4(63) => Dangling_Input_Signal,
        sig5(0) => Dangling_Input_Signal,
        sig5(1) => Dangling_Input_Signal,
        sig5(2) => Dangling_Input_Signal,
@@ -6039,7 +5997,8 @@ U322 : reg_read_decode_p
        sig1 => rdd1,
        sig18 => rdb17,
        sig2 => rdd2,
-       sig3 => rdd3
+       sig3 => rdd3,
+       sig4 => rdd4
   );
 
 NET61855 <= not(rx_wren);
@@ -6308,7 +6267,7 @@ U335 : cnt32_v2
        clk => clk0,
        cnt_out => log_ev_ctrb,
        rst_p => NET59517,
-       sig_in => sig_log
+       sig_in => NET62518
   );
 
 U336 : agrgate16_1
@@ -6735,6 +6694,7 @@ sigmux(22) <= clk_40DCM;
 
 U360 : ag_28_4
   port map(
+  clk => clk0,
        in28(0) => out_ctr_3b(0),
        in28(1) => out_ctr_3b(1),
        in28(2) => out_ctr_3b(2),
@@ -6769,6 +6729,7 @@ U360 : ag_28_4
 
 U361 : ag_28_4
   port map(
+  clk => clk0,
        in28(0) => out_ctr_4b(0),
        in28(1) => out_ctr_4b(1),
        in28(2) => out_ctr_4b(2),
@@ -6803,6 +6764,7 @@ U361 : ag_28_4
 
 U362 : ag_28_4
   port map(
+  clk => clk0,
        in28(0) => out_ctr_1b(0),
        in28(1) => out_ctr_1b(1),
        in28(2) => out_ctr_1b(2),
@@ -6837,6 +6799,7 @@ U362 : ag_28_4
 
 U363 : ag_28_4
   port map(
+  clk => clk0,
        in28(0) => out_ctr_2b(0),
        in28(1) => out_ctr_2b(1),
        in28(2) => out_ctr_2b(2),
@@ -6869,10 +6832,11 @@ U363 : ag_28_4
        out32 => out_ctr_2
   );
 
-c0sig <= not(GND);
+c0sig <= GND;
 
 U365 : ag_28_4
   port map(
+  clk => clk0,
        in28(0) => out_ev_ctrb(0),
        in28(1) => out_ev_ctrb(1),
        in28(2) => out_ev_ctrb(2),
@@ -6907,6 +6871,7 @@ U365 : ag_28_4
 
 U366 : ag_28_4
   port map(
+  clk => clk0,
        in28(0) => log_ev_ctrb(0),
        in28(1) => log_ev_ctrb(1),
        in28(2) => log_ev_ctrb(2),
@@ -6941,6 +6906,7 @@ U366 : ag_28_4
 
 U367 : ag_28_4
   port map(
+  clk => clk0,
        in28(0) => in_ev_ctr_1b(0),
        in28(1) => in_ev_ctr_1b(1),
        in28(2) => in_ev_ctr_1b(2),
@@ -6975,6 +6941,7 @@ U367 : ag_28_4
 
 U368 : ag_28_4
   port map(
+  clk => clk0,
        in28(0) => in_ev_ctr_2b(0),
        in28(1) => in_ev_ctr_2b(1),
        in28(2) => in_ev_ctr_2b(2),
@@ -7125,7 +7092,92 @@ U40 : agrgate16_1
        in9 => clklock(1)
   );
 
-c1sig <= GND;
+c1sig <= not(GND);
+
+U401 : agrgate_8_by_8
+  port map(
+       in0(0) => cnt64_simp_out(0),
+       in0(1) => cnt64_simp_out(1),
+       in0(2) => cnt64_simp_out(2),
+       in0(3) => cnt64_simp_out(3),
+       in0(4) => cnt64_simp_out(4),
+       in0(5) => cnt64_simp_out(5),
+       in0(6) => cnt64_simp_out(6),
+       in0(7) => cnt64_simp_out(7),
+       in1(0) => cnt64_simp_out(8),
+       in1(1) => cnt64_simp_out(9),
+       in1(2) => cnt64_simp_out(10),
+       in1(3) => cnt64_simp_out(11),
+       in1(4) => cnt64_simp_out(12),
+       in1(5) => cnt64_simp_out(13),
+       in1(6) => cnt64_simp_out(14),
+       in1(7) => cnt64_simp_out(15),
+       in2(0) => cnt64_simp_out(16),
+       in2(1) => cnt64_simp_out(17),
+       in2(2) => cnt64_simp_out(18),
+       in2(3) => cnt64_simp_out(19),
+       in2(4) => cnt64_simp_out(20),
+       in2(5) => cnt64_simp_out(21),
+       in2(6) => cnt64_simp_out(22),
+       in2(7) => cnt64_simp_out(23),
+       in3(0) => cnt64_simp_out(24),
+       in3(1) => cnt64_simp_out(25),
+       in3(2) => cnt64_simp_out(26),
+       in3(3) => cnt64_simp_out(27),
+       in3(4) => cnt64_simp_out(28),
+       in3(5) => cnt64_simp_out(29),
+       in3(6) => cnt64_simp_out(30),
+       in3(7) => cnt64_simp_out(31),
+       in4(0) => cnt64_simp_out(32),
+       in4(1) => cnt64_simp_out(33),
+       in4(2) => cnt64_simp_out(34),
+       in4(3) => cnt64_simp_out(35),
+       in4(4) => cnt64_simp_out(36),
+       in4(5) => cnt64_simp_out(37),
+       in4(6) => cnt64_simp_out(38),
+       in4(7) => cnt64_simp_out(39),
+       in5(0) => cnt64_simp_out(40),
+       in5(1) => cnt64_simp_out(41),
+       in5(2) => cnt64_simp_out(42),
+       in5(3) => cnt64_simp_out(43),
+       in5(4) => cnt64_simp_out(44),
+       in5(5) => cnt64_simp_out(45),
+       in5(6) => cnt64_simp_out(46),
+       in5(7) => cnt64_simp_out(47),
+       in6(0) => cnt64_simp_out(48),
+       in6(1) => cnt64_simp_out(49),
+       in6(2) => cnt64_simp_out(50),
+       in6(3) => cnt64_simp_out(51),
+       in6(4) => cnt64_simp_out(52),
+       in6(5) => cnt64_simp_out(53),
+       in6(6) => cnt64_simp_out(54),
+       in6(7) => cnt64_simp_out(55),
+       in7(0) => cnt64_simp_out(56),
+       in7(1) => cnt64_simp_out(57),
+       in7(2) => cnt64_simp_out(58),
+       in7(3) => cnt64_simp_out(59),
+       in7(4) => cnt64_simp_out(60),
+       in7(5) => cnt64_simp_out(61),
+       in7(6) => cnt64_simp_out(62),
+       in7(7) => cnt64_simp_out(63),
+       out_0 => rdd4
+  );
+
+U402 : d_ff
+  port map(
+       clk => clk0,
+       dl => NET62481,
+       q => NET62518,
+       rst_p => c0sig
+  );
+
+U403 : d_ff
+  port map(
+       clk => clk0,
+       dl => sig_log,
+       q => NET62481,
+       rst_p => c0sig
+  );
 
 U41 : agrgate16_1
   port map(

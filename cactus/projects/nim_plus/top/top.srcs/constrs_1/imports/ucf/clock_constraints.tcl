@@ -1,5 +1,15 @@
-# constraints for PicoZed
+# constraints for NIM+
 # Created Feb 2016 by rrivera at fnal dot gov
+# Edited Jan 2018 by rrivera at fnal dot gov
+
+#give lots of time for static read (should have address setup for 64)
+#set_max_delay 32.00 -through [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U311/*)}]
+
+#give time through output muxes to counters
+set_max_delay 32.00 -through [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U43/*)}] -to  [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U351/*)}]
+set_max_delay 32.00 -through [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U127/*)}] -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U353/*)}]
+set_max_delay 32.00 -through [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U187/*)}] -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U355/*)}]
+set_max_delay 32.00 -through [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U197/*)}] -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U357/*)}]
 
 
 # In xdc, all clocks are related by default. This differs from ucf, where clocks are unrelated unless specified otherwise. As a result, you may now see cross-clock paths that were previously unconstrained in ucf. Commented out xdc false path constraints have been generated and can be uncommented, should you wish to remove these new paths. These commands are located after the last clock definition

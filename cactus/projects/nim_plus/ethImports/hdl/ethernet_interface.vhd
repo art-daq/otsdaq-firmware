@@ -30,7 +30,10 @@ entity ethernet_interface is
 		  -- rx/tx signals
           rx_addr              	: out   std_logic_vector (31 downto 0); 
           rx_data              	: out   std_logic_vector (63 downto 0);   	
-          rx_wren              	: out   std_logic;												   
+          rx_wren              	: out   std_logic;							
+          tx_rden               : out   std_logic;    --added RAR 
+          user_ready              : in    std_logic; --added RAR
+          					   
           tx_data              	: in    std_logic_vector (63 downto 0); 	 					 
 --erased for simple interface 
 --erased for simple interface 
@@ -54,7 +57,7 @@ entity ethernet_interface is
 		  
 		  -- PHY interface signals
 		  MASTER_CLK           	: in    std_logic; 	    
-                CONTINUOUS_CLK        : in    std_logic;     
+           CONTINUOUS_CLK        : in    std_logic;     
 		
 		  
           PHY_RXD             	: in    std_logic_vector (7 downto 0); 
@@ -100,7 +103,7 @@ architecture BEHAVIORAL of ethernet_interface is
 	signal user_tx_dest_port    	: std_logic_vector (15 downto 0); 		 
 	
 	signal user_tx_rden			   	: std_logic;						
-	signal user_ready		   		: std_logic; 						
+	--signal user_ready		   		: std_logic; 		RAR				
 	signal user_b_force_packet	   	: std_logic;  						
 	signal crc_chk_out	   			: std_logic;		
 	
@@ -156,6 +159,7 @@ architecture BEHAVIORAL of ethernet_interface is
 	-------- end simple declaration section -----------	
   	 											  								     
 begin										 
+	tx_rden <= user_tx_rden; 
 	
    ec_wrapper : entity work.ethernet_controller_wrapper
       port map (
@@ -504,7 +508,7 @@ begin
 	-- comments denoted as  will be removed in this case by install script
 --erased for simple interface  will be commented out	
 									   
-	 user_ready <= '1';
+	 --user_ready <= '1'; RAR
 	 user_b_force_packet <= '0';	  
 		
 	-------- end simple section -----------

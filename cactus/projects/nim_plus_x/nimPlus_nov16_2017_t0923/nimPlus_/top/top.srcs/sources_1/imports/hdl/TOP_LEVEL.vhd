@@ -260,8 +260,8 @@ architecture BEHAVIORAL of top is
     attribute mark_debug of nim_b_fifo_full : signal is "true";
                                 
 -- --   attribute mark_debug of bs_clk_in_40MHz : signal is "true";
---    attribute mark_debug of PHY_TXD_sig : signal is "true";
---    attribute mark_debug of PHY_TXEN_sig : signal is "true";
+    attribute mark_debug of PHY_TXD_sig : signal is "true";
+    attribute mark_debug of PHY_TXEN_sig : signal is "true";
 -- --attribute mark_debug of rx_wren : signal is "true";
 ----    attribute mark_debug of nim_input : signal is "true";
 -- --   attribute mark_debug of nim_out : signal is "true";
