@@ -102,9 +102,9 @@ read_vhdl -library xil_defaultlib {
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/decode_addr_NIM_Plus.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/b_fifo_mux.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_nov16_2017_t0923/nimPlus_/ethImports/hdl/ethernet_interface.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/ag_28_4.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/reg_read_decode_p.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/d_ff.vhd
+  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/ag284.vhd
 }
 read_xdc /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/constrs_1/new/top_11.xdc
 set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/constrs_1/new/top_11.xdc]

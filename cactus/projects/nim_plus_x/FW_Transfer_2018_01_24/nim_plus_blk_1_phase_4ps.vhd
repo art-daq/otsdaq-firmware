@@ -8,8 +8,8 @@
 -------------------------------------------------------------------------------
 --
 -- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Tue Jan 30 16:25:12 2018
--- From        : U:/PREP/PREP_Modernization/Firmware_Backups/Aldec_Backups/One_Phase_Designs/AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync/NIMPlus/NIMPlus/src/nim_plus_blk_1_phase_4ps.bde
+-- Generated   : Wed Jan 31 09:44:54 2018
+-- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -76,6 +76,15 @@ component acc_sync
        release_p : out STD_LOGIC
   );
 end component;
+component ag284
+  port (
+       c4 : in STD_LOGIC_VECTOR(3 downto 0);
+       clk : in STD_LOGIC;
+       d28 : in STD_LOGIC_VECTOR(27 downto 0);
+       resetp : in STD_LOGIC;
+       out32 : out STD_LOGIC_VECTOR(31 downto 0)
+  );
+end component;
 component agrgate16_1
   port (
        in0 : in STD_LOGIC;
@@ -108,14 +117,6 @@ component agrgate_8_by_8
        in6 : in STD_LOGIC_VECTOR(7 downto 0);
        in7 : in STD_LOGIC_VECTOR(7 downto 0);
        out_0 : out STD_LOGIC_VECTOR(63 downto 0)
-  );
-end component;
-component ag_28_4
-  port (
-  clk : in std_logic;
-       in28 : in STD_LOGIC_VECTOR(27 downto 0);
-       in4 : in STD_LOGIC_VECTOR(3 downto 0);
-       out32 : out STD_LOGIC_VECTOR(31 downto 0)
   );
 end component;
 component buf8
@@ -776,23 +777,25 @@ signal z_sel : STD_LOGIC_VECTOR (15 downto 0);
 
 ---- Declaration for Dangling input ----
 signal Dangling_Input_Signal : STD_LOGIC;
-
-        signal debug_fast_cnt : STD_LOGIC_VECTOR (15 downto 0) := (others=>'0');
-       attribute mark_debug : string;
-       attribute mark_debug of sig_log : signal is "true";
-       attribute mark_debug of debug_fast_cnt : signal is "true";
-       attribute mark_debug of out_cnt_rst : signal is "true";
-      attribute mark_debug of out_ctr_4 : signal is "true";
-      attribute mark_debug of out_ctr_3 : signal is "true";
-             attribute mark_debug of out_ctr_2 : signal is "true";
-             attribute mark_debug of out_ctr_1 : signal is "true";
+ signal debug_fast_cnt : STD_LOGIC_VECTOR (15 downto 0) := (others=>'0');
+    attribute mark_debug : string;
+    attribute mark_debug of sig_log : signal is "true";
+    attribute mark_debug of debug_fast_cnt : signal is "true";
+    attribute mark_debug of out_cnt_rst : signal is "true";
+    attribute mark_debug of out_ctr_4 : signal is "true";
+    attribute mark_debug of out_ctr_3 : signal is "true";
+    attribute mark_debug of out_ctr_2 : signal is "true";
+    attribute mark_debug of out_ctr_1 : signal is "true";
+    attribute mark_debug of out_ctr_4b : signal is "true";
+    attribute mark_debug of out_ctr_3b : signal is "true";
+    attribute mark_debug of out_ctr_2b : signal is "true";
+    attribute mark_debug of out_ctr_1b : signal is "true";
+    attribute mark_debug of cnt64_simp_out : signal is "true";
        
        
 begin
 
     debug_fast_cnt <= cnt64_simp_out(15 downto 0);
-    
-----  Component instantiations  ----
 
 U1 : reg_64
   port map(
@@ -6692,286 +6695,294 @@ bid7(3) <= c0sig;
 
 sigmux(22) <= clk_40DCM;
 
-U360 : ag_28_4
+U360 : ag284
   port map(
-  clk => clk0,
-       in28(0) => out_ctr_3b(0),
-       in28(1) => out_ctr_3b(1),
-       in28(2) => out_ctr_3b(2),
-       in28(3) => out_ctr_3b(3),
-       in28(4) => out_ctr_3b(4),
-       in28(5) => out_ctr_3b(5),
-       in28(6) => out_ctr_3b(6),
-       in28(7) => out_ctr_3b(7),
-       in28(8) => out_ctr_3b(8),
-       in28(9) => out_ctr_3b(9),
-       in28(10) => out_ctr_3b(10),
-       in28(11) => out_ctr_3b(11),
-       in28(12) => out_ctr_3b(12),
-       in28(13) => out_ctr_3b(13),
-       in28(14) => out_ctr_3b(14),
-       in28(15) => out_ctr_3b(15),
-       in28(16) => out_ctr_3b(16),
-       in28(17) => out_ctr_3b(17),
-       in28(18) => out_ctr_3b(18),
-       in28(19) => out_ctr_3b(19),
-       in28(20) => out_ctr_3b(20),
-       in28(21) => out_ctr_3b(21),
-       in28(22) => out_ctr_3b(22),
-       in28(23) => out_ctr_3b(23),
-       in28(24) => out_ctr_3b(24),
-       in28(25) => out_ctr_3b(25),
-       in28(26) => out_ctr_3b(26),
-       in28(27) => out_ctr_3b(27),
-       in4 => bid7,
-       out32 => out_ctr_3
+       d28(0) => out_ctr_1b(0),
+       d28(1) => out_ctr_1b(1),
+       d28(2) => out_ctr_1b(2),
+       d28(3) => out_ctr_1b(3),
+       d28(4) => out_ctr_1b(4),
+       d28(5) => out_ctr_1b(5),
+       d28(6) => out_ctr_1b(6),
+       d28(7) => out_ctr_1b(7),
+       d28(8) => out_ctr_1b(8),
+       d28(9) => out_ctr_1b(9),
+       d28(10) => out_ctr_1b(10),
+       d28(11) => out_ctr_1b(11),
+       d28(12) => out_ctr_1b(12),
+       d28(13) => out_ctr_1b(13),
+       d28(14) => out_ctr_1b(14),
+       d28(15) => out_ctr_1b(15),
+       d28(16) => out_ctr_1b(16),
+       d28(17) => out_ctr_1b(17),
+       d28(18) => out_ctr_1b(18),
+       d28(19) => out_ctr_1b(19),
+       d28(20) => out_ctr_1b(20),
+       d28(21) => out_ctr_1b(21),
+       d28(22) => out_ctr_1b(22),
+       d28(23) => out_ctr_1b(23),
+       d28(24) => out_ctr_1b(24),
+       d28(25) => out_ctr_1b(25),
+       d28(26) => out_ctr_1b(26),
+       d28(27) => out_ctr_1b(27),
+       c4 => bid5,
+       clk => clk0,
+       out32 => out_ctr_1,
+       resetp => reset_out
   );
 
-U361 : ag_28_4
+U361 : ag284
   port map(
-  clk => clk0,
-       in28(0) => out_ctr_4b(0),
-       in28(1) => out_ctr_4b(1),
-       in28(2) => out_ctr_4b(2),
-       in28(3) => out_ctr_4b(3),
-       in28(4) => out_ctr_4b(4),
-       in28(5) => out_ctr_4b(5),
-       in28(6) => out_ctr_4b(6),
-       in28(7) => out_ctr_4b(7),
-       in28(8) => out_ctr_4b(8),
-       in28(9) => out_ctr_4b(9),
-       in28(10) => out_ctr_4b(10),
-       in28(11) => out_ctr_4b(11),
-       in28(12) => out_ctr_4b(12),
-       in28(13) => out_ctr_4b(13),
-       in28(14) => out_ctr_4b(14),
-       in28(15) => out_ctr_4b(15),
-       in28(16) => out_ctr_4b(16),
-       in28(17) => out_ctr_4b(17),
-       in28(18) => out_ctr_4b(18),
-       in28(19) => out_ctr_4b(19),
-       in28(20) => out_ctr_4b(20),
-       in28(21) => out_ctr_4b(21),
-       in28(22) => out_ctr_4b(22),
-       in28(23) => out_ctr_4b(23),
-       in28(24) => out_ctr_4b(24),
-       in28(25) => out_ctr_4b(25),
-       in28(26) => out_ctr_4b(26),
-       in28(27) => out_ctr_4b(27),
-       in4 => bid8,
-       out32 => out_ctr_4
+       d28(0) => out_ctr_2b(0),
+       d28(1) => out_ctr_2b(1),
+       d28(2) => out_ctr_2b(2),
+       d28(3) => out_ctr_2b(3),
+       d28(4) => out_ctr_2b(4),
+       d28(5) => out_ctr_2b(5),
+       d28(6) => out_ctr_2b(6),
+       d28(7) => out_ctr_2b(7),
+       d28(8) => out_ctr_2b(8),
+       d28(9) => out_ctr_2b(9),
+       d28(10) => out_ctr_2b(10),
+       d28(11) => out_ctr_2b(11),
+       d28(12) => out_ctr_2b(12),
+       d28(13) => out_ctr_2b(13),
+       d28(14) => out_ctr_2b(14),
+       d28(15) => out_ctr_2b(15),
+       d28(16) => out_ctr_2b(16),
+       d28(17) => out_ctr_2b(17),
+       d28(18) => out_ctr_2b(18),
+       d28(19) => out_ctr_2b(19),
+       d28(20) => out_ctr_2b(20),
+       d28(21) => out_ctr_2b(21),
+       d28(22) => out_ctr_2b(22),
+       d28(23) => out_ctr_2b(23),
+       d28(24) => out_ctr_2b(24),
+       d28(25) => out_ctr_2b(25),
+       d28(26) => out_ctr_2b(26),
+       d28(27) => out_ctr_2b(27),
+       c4 => bid6,
+       clk => clk0,
+       out32 => out_ctr_2,
+       resetp => reset_out
   );
 
-U362 : ag_28_4
+U362 : ag284
   port map(
-  clk => clk0,
-       in28(0) => out_ctr_1b(0),
-       in28(1) => out_ctr_1b(1),
-       in28(2) => out_ctr_1b(2),
-       in28(3) => out_ctr_1b(3),
-       in28(4) => out_ctr_1b(4),
-       in28(5) => out_ctr_1b(5),
-       in28(6) => out_ctr_1b(6),
-       in28(7) => out_ctr_1b(7),
-       in28(8) => out_ctr_1b(8),
-       in28(9) => out_ctr_1b(9),
-       in28(10) => out_ctr_1b(10),
-       in28(11) => out_ctr_1b(11),
-       in28(12) => out_ctr_1b(12),
-       in28(13) => out_ctr_1b(13),
-       in28(14) => out_ctr_1b(14),
-       in28(15) => out_ctr_1b(15),
-       in28(16) => out_ctr_1b(16),
-       in28(17) => out_ctr_1b(17),
-       in28(18) => out_ctr_1b(18),
-       in28(19) => out_ctr_1b(19),
-       in28(20) => out_ctr_1b(20),
-       in28(21) => out_ctr_1b(21),
-       in28(22) => out_ctr_1b(22),
-       in28(23) => out_ctr_1b(23),
-       in28(24) => out_ctr_1b(24),
-       in28(25) => out_ctr_1b(25),
-       in28(26) => out_ctr_1b(26),
-       in28(27) => out_ctr_1b(27),
-       in4 => bid5,
-       out32 => out_ctr_1
+       d28(0) => out_ctr_3b(0),
+       d28(1) => out_ctr_3b(1),
+       d28(2) => out_ctr_3b(2),
+       d28(3) => out_ctr_3b(3),
+       d28(4) => out_ctr_3b(4),
+       d28(5) => out_ctr_3b(5),
+       d28(6) => out_ctr_3b(6),
+       d28(7) => out_ctr_3b(7),
+       d28(8) => out_ctr_3b(8),
+       d28(9) => out_ctr_3b(9),
+       d28(10) => out_ctr_3b(10),
+       d28(11) => out_ctr_3b(11),
+       d28(12) => out_ctr_3b(12),
+       d28(13) => out_ctr_3b(13),
+       d28(14) => out_ctr_3b(14),
+       d28(15) => out_ctr_3b(15),
+       d28(16) => out_ctr_3b(16),
+       d28(17) => out_ctr_3b(17),
+       d28(18) => out_ctr_3b(18),
+       d28(19) => out_ctr_3b(19),
+       d28(20) => out_ctr_3b(20),
+       d28(21) => out_ctr_3b(21),
+       d28(22) => out_ctr_3b(22),
+       d28(23) => out_ctr_3b(23),
+       d28(24) => out_ctr_3b(24),
+       d28(25) => out_ctr_3b(25),
+       d28(26) => out_ctr_3b(26),
+       d28(27) => out_ctr_3b(27),
+       c4 => bid7,
+       clk => clk0,
+       out32 => out_ctr_3,
+       resetp => reset_out
   );
 
-U363 : ag_28_4
+U363 : ag284
   port map(
-  clk => clk0,
-       in28(0) => out_ctr_2b(0),
-       in28(1) => out_ctr_2b(1),
-       in28(2) => out_ctr_2b(2),
-       in28(3) => out_ctr_2b(3),
-       in28(4) => out_ctr_2b(4),
-       in28(5) => out_ctr_2b(5),
-       in28(6) => out_ctr_2b(6),
-       in28(7) => out_ctr_2b(7),
-       in28(8) => out_ctr_2b(8),
-       in28(9) => out_ctr_2b(9),
-       in28(10) => out_ctr_2b(10),
-       in28(11) => out_ctr_2b(11),
-       in28(12) => out_ctr_2b(12),
-       in28(13) => out_ctr_2b(13),
-       in28(14) => out_ctr_2b(14),
-       in28(15) => out_ctr_2b(15),
-       in28(16) => out_ctr_2b(16),
-       in28(17) => out_ctr_2b(17),
-       in28(18) => out_ctr_2b(18),
-       in28(19) => out_ctr_2b(19),
-       in28(20) => out_ctr_2b(20),
-       in28(21) => out_ctr_2b(21),
-       in28(22) => out_ctr_2b(22),
-       in28(23) => out_ctr_2b(23),
-       in28(24) => out_ctr_2b(24),
-       in28(25) => out_ctr_2b(25),
-       in28(26) => out_ctr_2b(26),
-       in28(27) => out_ctr_2b(27),
-       in4 => bid6,
-       out32 => out_ctr_2
+       d28(0) => out_ctr_4b(0),
+       d28(1) => out_ctr_4b(1),
+       d28(2) => out_ctr_4b(2),
+       d28(3) => out_ctr_4b(3),
+       d28(4) => out_ctr_4b(4),
+       d28(5) => out_ctr_4b(5),
+       d28(6) => out_ctr_4b(6),
+       d28(7) => out_ctr_4b(7),
+       d28(8) => out_ctr_4b(8),
+       d28(9) => out_ctr_4b(9),
+       d28(10) => out_ctr_4b(10),
+       d28(11) => out_ctr_4b(11),
+       d28(12) => out_ctr_4b(12),
+       d28(13) => out_ctr_4b(13),
+       d28(14) => out_ctr_4b(14),
+       d28(15) => out_ctr_4b(15),
+       d28(16) => out_ctr_4b(16),
+       d28(17) => out_ctr_4b(17),
+       d28(18) => out_ctr_4b(18),
+       d28(19) => out_ctr_4b(19),
+       d28(20) => out_ctr_4b(20),
+       d28(21) => out_ctr_4b(21),
+       d28(22) => out_ctr_4b(22),
+       d28(23) => out_ctr_4b(23),
+       d28(24) => out_ctr_4b(24),
+       d28(25) => out_ctr_4b(25),
+       d28(26) => out_ctr_4b(26),
+       d28(27) => out_ctr_4b(27),
+       c4 => bid8,
+       clk => clk0,
+       out32 => out_ctr_4,
+       resetp => reset_out
   );
 
 c0sig <= GND;
 
-U365 : ag_28_4
+U365 : ag284
   port map(
-  clk => clk0,
-       in28(0) => out_ev_ctrb(0),
-       in28(1) => out_ev_ctrb(1),
-       in28(2) => out_ev_ctrb(2),
-       in28(3) => out_ev_ctrb(3),
-       in28(4) => out_ev_ctrb(4),
-       in28(5) => out_ev_ctrb(5),
-       in28(6) => out_ev_ctrb(6),
-       in28(7) => out_ev_ctrb(7),
-       in28(8) => out_ev_ctrb(8),
-       in28(9) => out_ev_ctrb(9),
-       in28(10) => out_ev_ctrb(10),
-       in28(11) => out_ev_ctrb(11),
-       in28(12) => out_ev_ctrb(12),
-       in28(13) => out_ev_ctrb(13),
-       in28(14) => out_ev_ctrb(14),
-       in28(15) => out_ev_ctrb(15),
-       in28(16) => out_ev_ctrb(16),
-       in28(17) => out_ev_ctrb(17),
-       in28(18) => out_ev_ctrb(18),
-       in28(19) => out_ev_ctrb(19),
-       in28(20) => out_ev_ctrb(20),
-       in28(21) => out_ev_ctrb(21),
-       in28(22) => out_ev_ctrb(22),
-       in28(23) => out_ev_ctrb(23),
-       in28(24) => out_ev_ctrb(24),
-       in28(25) => out_ev_ctrb(25),
-       in28(26) => out_ev_ctrb(26),
-       in28(27) => out_ev_ctrb(27),
-       in4 => bid1,
-       out32 => out_ev_ctr
+       d28(0) => out_ev_ctrb(0),
+       d28(1) => out_ev_ctrb(1),
+       d28(2) => out_ev_ctrb(2),
+       d28(3) => out_ev_ctrb(3),
+       d28(4) => out_ev_ctrb(4),
+       d28(5) => out_ev_ctrb(5),
+       d28(6) => out_ev_ctrb(6),
+       d28(7) => out_ev_ctrb(7),
+       d28(8) => out_ev_ctrb(8),
+       d28(9) => out_ev_ctrb(9),
+       d28(10) => out_ev_ctrb(10),
+       d28(11) => out_ev_ctrb(11),
+       d28(12) => out_ev_ctrb(12),
+       d28(13) => out_ev_ctrb(13),
+       d28(14) => out_ev_ctrb(14),
+       d28(15) => out_ev_ctrb(15),
+       d28(16) => out_ev_ctrb(16),
+       d28(17) => out_ev_ctrb(17),
+       d28(18) => out_ev_ctrb(18),
+       d28(19) => out_ev_ctrb(19),
+       d28(20) => out_ev_ctrb(20),
+       d28(21) => out_ev_ctrb(21),
+       d28(22) => out_ev_ctrb(22),
+       d28(23) => out_ev_ctrb(23),
+       d28(24) => out_ev_ctrb(24),
+       d28(25) => out_ev_ctrb(25),
+       d28(26) => out_ev_ctrb(26),
+       d28(27) => out_ev_ctrb(27),
+       c4 => bid1,
+       clk => clk0,
+       out32 => out_ev_ctr,
+       resetp => reset_out
   );
 
-U366 : ag_28_4
+U366 : ag284
   port map(
-  clk => clk0,
-       in28(0) => log_ev_ctrb(0),
-       in28(1) => log_ev_ctrb(1),
-       in28(2) => log_ev_ctrb(2),
-       in28(3) => log_ev_ctrb(3),
-       in28(4) => log_ev_ctrb(4),
-       in28(5) => log_ev_ctrb(5),
-       in28(6) => log_ev_ctrb(6),
-       in28(7) => log_ev_ctrb(7),
-       in28(8) => log_ev_ctrb(8),
-       in28(9) => log_ev_ctrb(9),
-       in28(10) => log_ev_ctrb(10),
-       in28(11) => log_ev_ctrb(11),
-       in28(12) => log_ev_ctrb(12),
-       in28(13) => log_ev_ctrb(13),
-       in28(14) => log_ev_ctrb(14),
-       in28(15) => log_ev_ctrb(15),
-       in28(16) => log_ev_ctrb(16),
-       in28(17) => log_ev_ctrb(17),
-       in28(18) => log_ev_ctrb(18),
-       in28(19) => log_ev_ctrb(19),
-       in28(20) => log_ev_ctrb(20),
-       in28(21) => log_ev_ctrb(21),
-       in28(22) => log_ev_ctrb(22),
-       in28(23) => log_ev_ctrb(23),
-       in28(24) => log_ev_ctrb(24),
-       in28(25) => log_ev_ctrb(25),
-       in28(26) => log_ev_ctrb(26),
-       in28(27) => log_ev_ctrb(27),
-       in4 => bid2,
-       out32 => log_ev_ctr
+       d28(0) => log_ev_ctrb(0),
+       d28(1) => log_ev_ctrb(1),
+       d28(2) => log_ev_ctrb(2),
+       d28(3) => log_ev_ctrb(3),
+       d28(4) => log_ev_ctrb(4),
+       d28(5) => log_ev_ctrb(5),
+       d28(6) => log_ev_ctrb(6),
+       d28(7) => log_ev_ctrb(7),
+       d28(8) => log_ev_ctrb(8),
+       d28(9) => log_ev_ctrb(9),
+       d28(10) => log_ev_ctrb(10),
+       d28(11) => log_ev_ctrb(11),
+       d28(12) => log_ev_ctrb(12),
+       d28(13) => log_ev_ctrb(13),
+       d28(14) => log_ev_ctrb(14),
+       d28(15) => log_ev_ctrb(15),
+       d28(16) => log_ev_ctrb(16),
+       d28(17) => log_ev_ctrb(17),
+       d28(18) => log_ev_ctrb(18),
+       d28(19) => log_ev_ctrb(19),
+       d28(20) => log_ev_ctrb(20),
+       d28(21) => log_ev_ctrb(21),
+       d28(22) => log_ev_ctrb(22),
+       d28(23) => log_ev_ctrb(23),
+       d28(24) => log_ev_ctrb(24),
+       d28(25) => log_ev_ctrb(25),
+       d28(26) => log_ev_ctrb(26),
+       d28(27) => log_ev_ctrb(27),
+       c4 => bid2,
+       clk => clk0,
+       out32 => log_ev_ctr,
+       resetp => reset_out
   );
 
-U367 : ag_28_4
+U367 : ag284
   port map(
-  clk => clk0,
-       in28(0) => in_ev_ctr_1b(0),
-       in28(1) => in_ev_ctr_1b(1),
-       in28(2) => in_ev_ctr_1b(2),
-       in28(3) => in_ev_ctr_1b(3),
-       in28(4) => in_ev_ctr_1b(4),
-       in28(5) => in_ev_ctr_1b(5),
-       in28(6) => in_ev_ctr_1b(6),
-       in28(7) => in_ev_ctr_1b(7),
-       in28(8) => in_ev_ctr_1b(8),
-       in28(9) => in_ev_ctr_1b(9),
-       in28(10) => in_ev_ctr_1b(10),
-       in28(11) => in_ev_ctr_1b(11),
-       in28(12) => in_ev_ctr_1b(12),
-       in28(13) => in_ev_ctr_1b(13),
-       in28(14) => in_ev_ctr_1b(14),
-       in28(15) => in_ev_ctr_1b(15),
-       in28(16) => in_ev_ctr_1b(16),
-       in28(17) => in_ev_ctr_1b(17),
-       in28(18) => in_ev_ctr_1b(18),
-       in28(19) => in_ev_ctr_1b(19),
-       in28(20) => in_ev_ctr_1b(20),
-       in28(21) => in_ev_ctr_1b(21),
-       in28(22) => in_ev_ctr_1b(22),
-       in28(23) => in_ev_ctr_1b(23),
-       in28(24) => in_ev_ctr_1b(24),
-       in28(25) => in_ev_ctr_1b(25),
-       in28(26) => in_ev_ctr_1b(26),
-       in28(27) => in_ev_ctr_1b(27),
-       in4 => bid3,
-       out32 => in_ev_ctr_1
+       d28(0) => in_ev_ctr_1b(0),
+       d28(1) => in_ev_ctr_1b(1),
+       d28(2) => in_ev_ctr_1b(2),
+       d28(3) => in_ev_ctr_1b(3),
+       d28(4) => in_ev_ctr_1b(4),
+       d28(5) => in_ev_ctr_1b(5),
+       d28(6) => in_ev_ctr_1b(6),
+       d28(7) => in_ev_ctr_1b(7),
+       d28(8) => in_ev_ctr_1b(8),
+       d28(9) => in_ev_ctr_1b(9),
+       d28(10) => in_ev_ctr_1b(10),
+       d28(11) => in_ev_ctr_1b(11),
+       d28(12) => in_ev_ctr_1b(12),
+       d28(13) => in_ev_ctr_1b(13),
+       d28(14) => in_ev_ctr_1b(14),
+       d28(15) => in_ev_ctr_1b(15),
+       d28(16) => in_ev_ctr_1b(16),
+       d28(17) => in_ev_ctr_1b(17),
+       d28(18) => in_ev_ctr_1b(18),
+       d28(19) => in_ev_ctr_1b(19),
+       d28(20) => in_ev_ctr_1b(20),
+       d28(21) => in_ev_ctr_1b(21),
+       d28(22) => in_ev_ctr_1b(22),
+       d28(23) => in_ev_ctr_1b(23),
+       d28(24) => in_ev_ctr_1b(24),
+       d28(25) => in_ev_ctr_1b(25),
+       d28(26) => in_ev_ctr_1b(26),
+       d28(27) => in_ev_ctr_1b(27),
+       c4 => bid3,
+       clk => clk0,
+       out32 => in_ev_ctr_1,
+       resetp => reset_out
   );
 
-U368 : ag_28_4
+U368 : ag284
   port map(
-  clk => clk0,
-       in28(0) => in_ev_ctr_2b(0),
-       in28(1) => in_ev_ctr_2b(1),
-       in28(2) => in_ev_ctr_2b(2),
-       in28(3) => in_ev_ctr_2b(3),
-       in28(4) => in_ev_ctr_2b(4),
-       in28(5) => in_ev_ctr_2b(5),
-       in28(6) => in_ev_ctr_2b(6),
-       in28(7) => in_ev_ctr_2b(7),
-       in28(8) => in_ev_ctr_2b(8),
-       in28(9) => in_ev_ctr_2b(9),
-       in28(10) => in_ev_ctr_2b(10),
-       in28(11) => in_ev_ctr_2b(11),
-       in28(12) => in_ev_ctr_2b(12),
-       in28(13) => in_ev_ctr_2b(13),
-       in28(14) => in_ev_ctr_2b(14),
-       in28(15) => in_ev_ctr_2b(15),
-       in28(16) => in_ev_ctr_2b(16),
-       in28(17) => in_ev_ctr_2b(17),
-       in28(18) => in_ev_ctr_2b(18),
-       in28(19) => in_ev_ctr_2b(19),
-       in28(20) => in_ev_ctr_2b(20),
-       in28(21) => in_ev_ctr_2b(21),
-       in28(22) => in_ev_ctr_2b(22),
-       in28(23) => in_ev_ctr_2b(23),
-       in28(24) => in_ev_ctr_2b(24),
-       in28(25) => in_ev_ctr_2b(25),
-       in28(26) => in_ev_ctr_2b(26),
-       in28(27) => in_ev_ctr_2b(27),
-       in4 => bid4,
-       out32 => in_ev_ctr_2
+       d28(0) => in_ev_ctr_2b(0),
+       d28(1) => in_ev_ctr_2b(1),
+       d28(2) => in_ev_ctr_2b(2),
+       d28(3) => in_ev_ctr_2b(3),
+       d28(4) => in_ev_ctr_2b(4),
+       d28(5) => in_ev_ctr_2b(5),
+       d28(6) => in_ev_ctr_2b(6),
+       d28(7) => in_ev_ctr_2b(7),
+       d28(8) => in_ev_ctr_2b(8),
+       d28(9) => in_ev_ctr_2b(9),
+       d28(10) => in_ev_ctr_2b(10),
+       d28(11) => in_ev_ctr_2b(11),
+       d28(12) => in_ev_ctr_2b(12),
+       d28(13) => in_ev_ctr_2b(13),
+       d28(14) => in_ev_ctr_2b(14),
+       d28(15) => in_ev_ctr_2b(15),
+       d28(16) => in_ev_ctr_2b(16),
+       d28(17) => in_ev_ctr_2b(17),
+       d28(18) => in_ev_ctr_2b(18),
+       d28(19) => in_ev_ctr_2b(19),
+       d28(20) => in_ev_ctr_2b(20),
+       d28(21) => in_ev_ctr_2b(21),
+       d28(22) => in_ev_ctr_2b(22),
+       d28(23) => in_ev_ctr_2b(23),
+       d28(24) => in_ev_ctr_2b(24),
+       d28(25) => in_ev_ctr_2b(25),
+       d28(26) => in_ev_ctr_2b(26),
+       d28(27) => in_ev_ctr_2b(27),
+       c4 => bid4,
+       clk => clk0,
+       out32 => in_ev_ctr_2,
+       resetp => reset_out
   );
 
 bid4(3) <= c0sig;
