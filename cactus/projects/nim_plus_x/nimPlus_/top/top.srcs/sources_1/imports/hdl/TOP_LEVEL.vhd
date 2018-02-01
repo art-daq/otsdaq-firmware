@@ -408,8 +408,26 @@ end component;
     
   --=================================
   -- for debug in nim top 
---       attribute mark_debug : string;
---       attribute mark_debug of sig_log : signal is "true";
+
+--   signal debug_fast_cnt : STD_LOGIC_VECTOR (15 downto 0) := (others=>'0');
+--      attribute mark_debug : string;
+--      attribute mark_debug of sig_log : signal is "true";
+--      attribute mark_debug of debug_fast_cnt : signal is "true";
+--      attribute mark_debug of out_cnt_rst : signal is "true";
+--      attribute mark_debug of out_ctr_4 : signal is "true";
+--      attribute mark_debug of out_ctr_3 : signal is "true";
+--      attribute mark_debug of out_ctr_2 : signal is "true";
+--      attribute mark_debug of out_ctr_1 : signal is "true";
+--      attribute mark_debug of out_ctr_4b : signal is "true";
+--      attribute mark_debug of out_ctr_3b : signal is "true";
+--      attribute mark_debug of out_ctr_2b : signal is "true";
+--      attribute mark_debug of out_ctr_1b : signal is "true";
+--      attribute mark_debug of cnt64_simp_out : signal is "true";
+         
+         
+--  begin
+  
+--      debug_fast_cnt <= cnt64_simp_out(15 downto 0);
        
 --		signal nim_ready : std_logic := '0';
 --		signal tx_rden : std_logic;

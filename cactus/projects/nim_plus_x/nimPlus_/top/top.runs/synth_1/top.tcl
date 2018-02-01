@@ -71,7 +71,6 @@ read_vhdl -library xil_defaultlib {
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/cnt64.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/reg_8.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/acc_sync.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/burst_mux_8_to_1.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/reg_64.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/ver_code.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/nim_plus_package_1.vhd
@@ -100,13 +99,14 @@ read_vhdl -library xil_defaultlib {
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/read_decode_p.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/section_counter.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/decode_addr_NIM_Plus.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/b_fifo_mux.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/ethImports/hdl/ethernet_interface.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/reg_read_decode_p.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/d_ff.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/ag284.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/s_cnt32_v2.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/bfifomux_w_ctlr.vhd
+  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/clkd_b_fifo_mux.vhd
+  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/clkd_burst_mux_8_to_1.vhd
 }
 read_xdc /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/constrs_1/new/top_11.xdc
 set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/constrs_1/new/top_11.xdc]
