@@ -45,7 +45,6 @@ read_vhdl -library xil_defaultlib {
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/veto_count.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/decode_addr_NIM_Plus.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/trig_sync.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/b_fifo_mux.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/clk_mux_2_to_1_x_2.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/test_mux.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/reg_8.vhd
@@ -61,10 +60,8 @@ read_vhdl -library xil_defaultlib {
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/DAC_Control.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/read_decode_p.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/reg_read_decode_p.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/cntrs_2_b_fifo.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_2.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/cnt_64_simp.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/burst_mux_8_to_1.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/mux_2_1_16ch.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/agrgate16_1.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/cnt32_v2.vhd
@@ -104,6 +101,10 @@ read_vhdl -library xil_defaultlib {
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/s_cnt32_v2.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/ag284.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/d_ff.vhd
+  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/clkd_burst_mux_8_to_1.vhd
+  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/bfifomux_w_ctlr.vhd
+  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/clkd_b_fifo_mux.vhd
+  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/cntrs_2_b_fifo.vhd
 }
 read_xdc /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_10.xdc
 set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_10.xdc]

@@ -1,7 +1,7 @@
 Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
-| Date         : Thu Feb  1 09:47:05 2018
+| Date         : Thu Feb  1 11:59:06 2018
 | Host         : rulinux04.dhcp.fnal.gov running 64-bit Scientific Linux release 7.2 (Nitrogen)
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -30,14 +30,14 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Fixed | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                | 9150 |     0 |    134600 |  6.80 |
-|   LUT as Logic             | 9134 |     0 |    134600 |  6.79 |
+| Slice LUTs*                | 9055 |     0 |    134600 |  6.73 |
+|   LUT as Logic             | 9039 |     0 |    134600 |  6.72 |
 |   LUT as Memory            |   16 |     0 |     46200 |  0.03 |
 |     LUT as Distributed RAM |    0 |     0 |           |       |
 |     LUT as Shift Register  |   16 |     0 |           |       |
-| Slice Registers            | 8684 |     0 |    269200 |  3.23 |
-|   Register as Flip Flop    | 8620 |     0 |    269200 |  3.20 |
-|   Register as Latch        |   64 |     0 |    269200 |  0.02 |
+| Slice Registers            | 9597 |     0 |    269200 |  3.57 |
+|   Register as Flip Flop    | 9597 |     0 |    269200 |  3.57 |
+|   Register as Latch        |    0 |     0 |    269200 |  0.00 |
 | F7 Muxes                   |  644 |     0 |     67300 |  0.96 |
 | F8 Muxes                   |  129 |     0 |     33650 |  0.38 |
 +----------------------------+------+-------+-----------+-------+
@@ -57,9 +57,9 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 64    |          Yes |           - |          Set |
-| 64    |          Yes |           - |        Reset |
-| 29    |          Yes |         Set |            - |
-| 8527  |          Yes |       Reset |            - |
+| 0     |          Yes |           - |        Reset |
+| 31    |          Yes |         Set |            - |
+| 9502  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -118,7 +118,7 @@ Table of Contents
 +------------+------+-------+-----------+-------+
 |  Site Type | Used | Fixed | Available | Util% |
 +------------+------+-------+-----------+-------+
-| BUFGCTRL   |    6 |     0 |        32 | 18.75 |
+| BUFGCTRL   |    5 |     0 |        32 | 15.63 |
 | BUFIO      |    0 |     0 |        40 |  0.00 |
 | MMCME2_ADV |    0 |     0 |        10 |  0.00 |
 | PLLE2_ADV  |    0 |     0 |        10 |  0.00 |
@@ -152,19 +152,18 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     | 8527 |        Flop & Latch |
-| LUT6     | 5964 |                 LUT |
-| LUT4     | 1030 |                 LUT |
-| LUT5     |  941 |                 LUT |
-| LUT3     |  725 |                 LUT |
+| FDRE     | 9502 |        Flop & Latch |
+| LUT6     | 5725 |                 LUT |
+| LUT5     | 1063 |                 LUT |
+| LUT4     | 1033 |                 LUT |
+| LUT3     |  732 |                 LUT |
 | MUXF7    |  644 |               MuxFx |
-| LUT1     |  605 |                 LUT |
-| LUT2     |  361 |                 LUT |
+| LUT1     |  609 |                 LUT |
+| LUT2     |  359 |                 LUT |
 | CARRY4   |  336 |          CarryLogic |
 | MUXF8    |  129 |               MuxFx |
-| LDCE     |   64 |        Flop & Latch |
 | FDPE     |   64 |        Flop & Latch |
-| FDSE     |   29 |        Flop & Latch |
+| FDSE     |   31 |        Flop & Latch |
 | OBUFDS   |   16 |                  IO |
 | OBUF     |   15 |                  IO |
 | IBUF     |   11 |                  IO |
@@ -173,7 +172,7 @@ Table of Contents
 | INV      |    8 |                 LUT |
 | FIFO36E1 |    8 |        Block Memory |
 | IBUFDS   |    7 |                  IO |
-| BUFG     |    6 |               Clock |
+| BUFG     |    5 |               Clock |
 | FIFO18E1 |    3 |        Block Memory |
 +----------+------+---------------------+
 

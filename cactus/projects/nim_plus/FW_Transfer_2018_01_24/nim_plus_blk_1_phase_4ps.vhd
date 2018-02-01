@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Wed Jan 31 10:37:11 2018
+-- Generated   : Thu Feb  1 11:08:26 2018
 -- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -119,40 +119,45 @@ component agrgate_8_by_8
        out_0 : out STD_LOGIC_VECTOR(63 downto 0)
   );
 end component;
+component bfifomux_w_ctlr
+  port (
+       burst_full_ext : in STD_LOGIC;
+       clk0 : in STD_LOGIC;
+       ext_rst : in STD_LOGIC;
+       trig_sig_in : in STD_LOGIC;
+       wd0 : in STD_LOGIC_VECTOR(31 downto 0);
+       wd1 : in STD_LOGIC_VECTOR(31 downto 0);
+       wd2 : in STD_LOGIC_VECTOR(31 downto 0);
+       wd3 : in STD_LOGIC_VECTOR(31 downto 0);
+       wd4 : in STD_LOGIC_VECTOR(31 downto 0);
+       wd5 : in STD_LOGIC_VECTOR(31 downto 0);
+       burst_wr_out : out STD_LOGIC;
+       fin_wr : out STD_LOGIC;
+       out64 : out STD_LOGIC_VECTOR(63 downto 0)
+  );
+end component;
 component buf8
   port (
        b_in : in STD_LOGIC_VECTOR(7 downto 0);
        b_out : out STD_LOGIC_VECTOR(7 downto 0)
   );
 end component;
-component burst_mux_8_to_1
+component clkd_burst_mux_8_to_1
   port (
-       rst_p : in STD_LOGIC;
-       sel_in : in STD_LOGIC_VECTOR(2 downto 0);
-       v_sig_in_0 : in STD_LOGIC_VECTOR(63 downto 0);
-       v_sig_in_1 : in STD_LOGIC_VECTOR(63 downto 0);
-       v_sig_in_2 : in STD_LOGIC_VECTOR(63 downto 0);
-       v_sig_in_3 : in STD_LOGIC_VECTOR(63 downto 0);
-       v_sig_in_4 : in STD_LOGIC_VECTOR(63 downto 0);
-       v_sig_in_5 : in STD_LOGIC_VECTOR(63 downto 0);
-       v_sig_in_6 : in STD_LOGIC_VECTOR(63 downto 0);
-       v_sig_in_7 : in STD_LOGIC_VECTOR(63 downto 0);
-       w_in : in STD_LOGIC_VECTOR(7 downto 0);
-       v_sig_out : out STD_LOGIC_VECTOR(63 downto 0);
-       w_out : out STD_LOGIC
-  );
-end component;
-component b_fifo_mux
-  port (
-       rst_p : in STD_LOGIC;
-       s_addr : in STD_LOGIC_VECTOR(1 downto 0);
-       wd_in0 : in STD_LOGIC_VECTOR(31 downto 0);
-       wd_in1 : in STD_LOGIC_VECTOR(31 downto 0);
-       wd_in2 : in STD_LOGIC_VECTOR(31 downto 0);
-       wd_in3 : in STD_LOGIC_VECTOR(31 downto 0);
-       wd_in4 : in STD_LOGIC_VECTOR(31 downto 0);
-       wd_in5 : in STD_LOGIC_VECTOR(31 downto 0);
-       b_fifo_out : out STD_LOGIC_VECTOR(63 downto 0)
+       burst_in : in STD_LOGIC_VECTOR(7 downto 0);
+       burst_mux_sel : in STD_LOGIC_VECTOR(2 downto 0);
+       clk0 : in STD_LOGIC;
+       rstp : in STD_LOGIC;
+       sig0 : in STD_LOGIC_VECTOR(63 downto 0);
+       sig1 : in STD_LOGIC_VECTOR(63 downto 0);
+       sig2 : in STD_LOGIC_VECTOR(63 downto 0);
+       sig3 : in STD_LOGIC_VECTOR(63 downto 0);
+       sig4 : in STD_LOGIC_VECTOR(63 downto 0);
+       sig5 : in STD_LOGIC_VECTOR(63 downto 0);
+       sig6 : in STD_LOGIC_VECTOR(63 downto 0);
+       sig7 : in STD_LOGIC_VECTOR(63 downto 0);
+       b_read_out : out STD_LOGIC_VECTOR(63 downto 0);
+       b_wr_out : out STD_LOGIC
   );
 end component;
 component cnt32
@@ -171,17 +176,6 @@ component cnt64
        ct_en : in STD_LOGIC;
        rst_p : in STD_LOGIC;
        cnt_out : out STD_LOGIC_VECTOR(63 downto 0)
-  );
-end component;
-component cntrs_2_b_fifo
-  port (
-       b_fifo_full_p : in STD_LOGIC;
-       clk : in STD_LOGIC;
-       reset_p : in STD_LOGIC;
-       sig_in : in STD_LOGIC;
-       b_wr : out STD_LOGIC;
-       fin_wr : out STD_LOGIC;
-       mux_dir : out STD_LOGIC_VECTOR(1 downto 0)
   );
 end component;
 component cntrs_2_b_fifo_jw121
@@ -591,8 +585,6 @@ signal NET44704 : STD_LOGIC;
 signal NET59053 : STD_LOGIC;
 signal NET59133 : STD_LOGIC;
 signal NET59517 : STD_LOGIC;
-signal NET59613 : STD_LOGIC;
-signal NET59721 : STD_LOGIC;
 signal NET59792 : STD_LOGIC;
 signal NET59859 : STD_LOGIC;
 signal NET59949 : STD_LOGIC;
@@ -600,6 +592,12 @@ signal NET60016 : STD_LOGIC;
 signal NET61855 : STD_LOGIC;
 signal NET62481 : STD_LOGIC;
 signal NET62518 : STD_LOGIC;
+signal NET64138 : STD_LOGIC;
+signal NET64172 : STD_LOGIC;
+signal NET64181 : STD_LOGIC;
+signal NET64588 : STD_LOGIC;
+signal NET64594 : STD_LOGIC;
+signal NET64598 : STD_LOGIC;
 signal NET9478 : STD_LOGIC;
 signal NET9526 : STD_LOGIC;
 signal out_cnt_rst : STD_LOGIC;
@@ -622,6 +620,8 @@ signal sumsig1 : STD_LOGIC;
 signal sumsig2 : STD_LOGIC;
 signal sync_w_40MHz : STD_LOGIC;
 signal sync_w_accel : STD_LOGIC;
+signal trig_sig1 : STD_LOGIC;
+signal trig_sig2 : STD_LOGIC;
 signal veto_out_n0 : STD_LOGIC;
 signal veto_out_n1 : STD_LOGIC;
 signal veto_out_n2 : STD_LOGIC;
@@ -654,6 +654,10 @@ signal BUS30353 : STD_LOGIC_VECTOR (31 downto 0);
 signal BUS34595 : STD_LOGIC_VECTOR (15 downto 0);
 signal BUS34604 : STD_LOGIC_VECTOR (15 downto 0);
 signal BUS44834 : STD_LOGIC_VECTOR (63 downto 0);
+signal BUS64341 : STD_LOGIC_VECTOR (63 downto 0);
+signal BUS64350 : STD_LOGIC_VECTOR (63 downto 0);
+signal BUS64461 : STD_LOGIC_VECTOR (63 downto 0);
+signal BUS64467 : STD_LOGIC_VECTOR (63 downto 0);
 signal cnt64_simp_out : STD_LOGIC_VECTOR (63 downto 0);
 signal ctr_enables : STD_LOGIC_VECTOR (15 downto 0);
 signal ctr_resets : STD_LOGIC_VECTOR (15 downto 0);
@@ -695,8 +699,6 @@ signal muxsel_2 : STD_LOGIC_VECTOR (7 downto 0);
 signal muxsel_3 : STD_LOGIC_VECTOR (7 downto 0);
 signal muxsel_4 : STD_LOGIC_VECTOR (7 downto 0);
 signal mux_ctl : STD_LOGIC_VECTOR (7 downto 0);
-signal mux_dir : STD_LOGIC_VECTOR (1 downto 0);
-signal mux_dir_out : STD_LOGIC_VECTOR (1 downto 0);
 signal out_ctr_1 : STD_LOGIC_VECTOR (31 downto 0);
 signal out_ctr_1b : STD_LOGIC_VECTOR (31 downto 0);
 signal out_ctr_2 : STD_LOGIC_VECTOR (31 downto 0);
@@ -737,6 +739,8 @@ signal rdd1 : STD_LOGIC_VECTOR (63 downto 0);
 signal rdd2 : STD_LOGIC_VECTOR (63 downto 0);
 signal rdd3 : STD_LOGIC_VECTOR (63 downto 0);
 signal rdd4 : STD_LOGIC_VECTOR (63 downto 0);
+signal rdd5 : STD_LOGIC_VECTOR (63 downto 0);
+signal rdd6 : STD_LOGIC_VECTOR (63 downto 0);
 signal rd_data_out_dyn : STD_LOGIC_VECTOR (63 downto 0);
 signal rd_data_out_stat : STD_LOGIC_VECTOR (63 downto 0);
 signal scope_count : STD_LOGIC_VECTOR (63 downto 0);
@@ -745,9 +749,11 @@ signal scope_out : STD_LOGIC_VECTOR (63 downto 0);
 signal sel_blk_en_term : STD_LOGIC_VECTOR (15 downto 0);
 signal sel_ctl : STD_LOGIC_VECTOR (7 downto 0);
 signal sigmux : STD_LOGIC_VECTOR (31 downto 0);
+signal sig_event_cnts : STD_LOGIC_VECTOR (63 downto 0);
 signal sig_event_counts : STD_LOGIC_VECTOR (63 downto 0);
 signal sig_mod : STD_LOGIC_VECTOR (3 downto 0);
 signal sig_output_counts : STD_LOGIC_VECTOR (63 downto 0);
+signal sig_out_cnts : STD_LOGIC_VECTOR (63 downto 0);
 signal sig_v1_sel : STD_LOGIC_VECTOR (7 downto 0);
 signal sig_v2_sel : STD_LOGIC_VECTOR (7 downto 0);
 signal sp_signl_sel : STD_LOGIC_VECTOR (7 downto 0);
@@ -779,11 +785,10 @@ signal z_sel : STD_LOGIC_VECTOR (15 downto 0);
 signal Dangling_Input_Signal : STD_LOGIC;
 
 
- signal debug_fast_cnt : STD_LOGIC_VECTOR (15 downto 0) := (others=>'0');
+    signal debug_fast_cnt: STD_LOGIC_VECTOR (15 downto 0);
     attribute mark_debug : string;
     attribute mark_debug of sig_log : signal is "true";
     attribute mark_debug of debug_fast_cnt : signal is "true";
-    attribute mark_debug of out_cnt_rst : signal is "true";
     attribute mark_debug of out_ctr_4 : signal is "true";
     attribute mark_debug of out_ctr_3 : signal is "true";
     attribute mark_debug of out_ctr_2 : signal is "true";
@@ -793,12 +798,21 @@ signal Dangling_Input_Signal : STD_LOGIC;
     attribute mark_debug of out_ctr_2b : signal is "true";
     attribute mark_debug of out_ctr_1b : signal is "true";
     attribute mark_debug of cnt64_simp_out : signal is "true";
+
+    attribute mark_debug of out_cnt_rst : signal is "true";    
+    
+    --fast burst stream stuff    
+
+    attribute mark_debug of trig_sig2 : signal is "true";
+    attribute mark_debug of burst_wr_in : signal is "true";
+    attribute mark_debug of b_read : signal is "true";
+    attribute mark_debug of b_wr_out : signal is "true";
+    attribute mark_debug of sig_output_counts : signal is "true";
        
        
 begin
 
     debug_fast_cnt <= cnt64_simp_out(15 downto 0);
-----  Component instantiations  ----
 
 U1 : reg_64
   port map(
@@ -1002,79 +1016,82 @@ dac_ctl_reset <= reset_out or dac_ctl(0);
 
 fs_ctl_2 <= veto2_ctl(3) or sync_w_40MHz;
 
-U121 : b_fifo_mux
+U121 : bfifomux_w_ctlr
   port map(
-       wd_in4(0) => cnt64_simp_out(0),
-       wd_in4(1) => cnt64_simp_out(1),
-       wd_in4(2) => cnt64_simp_out(2),
-       wd_in4(3) => cnt64_simp_out(3),
-       wd_in4(4) => cnt64_simp_out(4),
-       wd_in4(5) => cnt64_simp_out(5),
-       wd_in4(6) => cnt64_simp_out(6),
-       wd_in4(7) => cnt64_simp_out(7),
-       wd_in4(8) => cnt64_simp_out(8),
-       wd_in4(9) => cnt64_simp_out(9),
-       wd_in4(10) => cnt64_simp_out(10),
-       wd_in4(11) => cnt64_simp_out(11),
-       wd_in4(12) => cnt64_simp_out(12),
-       wd_in4(13) => cnt64_simp_out(13),
-       wd_in4(14) => cnt64_simp_out(14),
-       wd_in4(15) => cnt64_simp_out(15),
-       wd_in4(16) => cnt64_simp_out(16),
-       wd_in4(17) => cnt64_simp_out(17),
-       wd_in4(18) => cnt64_simp_out(18),
-       wd_in4(19) => cnt64_simp_out(19),
-       wd_in4(20) => cnt64_simp_out(20),
-       wd_in4(21) => cnt64_simp_out(21),
-       wd_in4(22) => cnt64_simp_out(22),
-       wd_in4(23) => cnt64_simp_out(23),
-       wd_in4(24) => cnt64_simp_out(24),
-       wd_in4(25) => cnt64_simp_out(25),
-       wd_in4(26) => cnt64_simp_out(26),
-       wd_in4(27) => cnt64_simp_out(27),
-       wd_in4(28) => cnt64_simp_out(28),
-       wd_in4(29) => cnt64_simp_out(29),
-       wd_in4(30) => cnt64_simp_out(30),
-       wd_in4(31) => cnt64_simp_out(31),
-       wd_in5(0) => cnt64_simp_out(32),
-       wd_in5(1) => cnt64_simp_out(33),
-       wd_in5(2) => cnt64_simp_out(34),
-       wd_in5(3) => cnt64_simp_out(35),
-       wd_in5(4) => cnt64_simp_out(36),
-       wd_in5(5) => cnt64_simp_out(37),
-       wd_in5(6) => cnt64_simp_out(38),
-       wd_in5(7) => cnt64_simp_out(39),
-       wd_in5(8) => cnt64_simp_out(40),
-       wd_in5(9) => cnt64_simp_out(41),
-       wd_in5(10) => cnt64_simp_out(42),
-       wd_in5(11) => cnt64_simp_out(43),
-       wd_in5(12) => cnt64_simp_out(44),
-       wd_in5(13) => cnt64_simp_out(45),
-       wd_in5(14) => cnt64_simp_out(46),
-       wd_in5(15) => cnt64_simp_out(47),
-       wd_in5(16) => cnt64_simp_out(48),
-       wd_in5(17) => cnt64_simp_out(49),
-       wd_in5(18) => cnt64_simp_out(50),
-       wd_in5(19) => cnt64_simp_out(51),
-       wd_in5(20) => cnt64_simp_out(52),
-       wd_in5(21) => cnt64_simp_out(53),
-       wd_in5(22) => cnt64_simp_out(54),
-       wd_in5(23) => cnt64_simp_out(55),
-       wd_in5(24) => cnt64_simp_out(56),
-       wd_in5(25) => cnt64_simp_out(57),
-       wd_in5(26) => cnt64_simp_out(58),
-       wd_in5(27) => cnt64_simp_out(59),
-       wd_in5(28) => cnt64_simp_out(60),
-       wd_in5(29) => cnt64_simp_out(61),
-       wd_in5(30) => cnt64_simp_out(62),
-       wd_in5(31) => cnt64_simp_out(63),
-       b_fifo_out => sig_event_counts,
-       rst_p => out_cnt_rst,
-       s_addr => mux_dir,
-       wd_in0 => out_ev_ctr,
-       wd_in1 => log_ev_ctr,
-       wd_in2 => in_ev_ctr_1,
-       wd_in3 => in_ev_ctr_2
+       wd4(0) => cnt64_simp_out(0),
+       wd4(1) => cnt64_simp_out(1),
+       wd4(2) => cnt64_simp_out(2),
+       wd4(3) => cnt64_simp_out(3),
+       wd4(4) => cnt64_simp_out(4),
+       wd4(5) => cnt64_simp_out(5),
+       wd4(6) => cnt64_simp_out(6),
+       wd4(7) => cnt64_simp_out(7),
+       wd4(8) => cnt64_simp_out(8),
+       wd4(9) => cnt64_simp_out(9),
+       wd4(10) => cnt64_simp_out(10),
+       wd4(11) => cnt64_simp_out(11),
+       wd4(12) => cnt64_simp_out(12),
+       wd4(13) => cnt64_simp_out(13),
+       wd4(14) => cnt64_simp_out(14),
+       wd4(15) => cnt64_simp_out(15),
+       wd4(16) => cnt64_simp_out(16),
+       wd4(17) => cnt64_simp_out(17),
+       wd4(18) => cnt64_simp_out(18),
+       wd4(19) => cnt64_simp_out(19),
+       wd4(20) => cnt64_simp_out(20),
+       wd4(21) => cnt64_simp_out(21),
+       wd4(22) => cnt64_simp_out(22),
+       wd4(23) => cnt64_simp_out(23),
+       wd4(24) => cnt64_simp_out(24),
+       wd4(25) => cnt64_simp_out(25),
+       wd4(26) => cnt64_simp_out(26),
+       wd4(27) => cnt64_simp_out(27),
+       wd4(28) => cnt64_simp_out(28),
+       wd4(29) => cnt64_simp_out(29),
+       wd4(30) => cnt64_simp_out(30),
+       wd4(31) => cnt64_simp_out(31),
+       wd5(0) => cnt64_simp_out(32),
+       wd5(1) => cnt64_simp_out(33),
+       wd5(2) => cnt64_simp_out(34),
+       wd5(3) => cnt64_simp_out(35),
+       wd5(4) => cnt64_simp_out(36),
+       wd5(5) => cnt64_simp_out(37),
+       wd5(6) => cnt64_simp_out(38),
+       wd5(7) => cnt64_simp_out(39),
+       wd5(8) => cnt64_simp_out(40),
+       wd5(9) => cnt64_simp_out(41),
+       wd5(10) => cnt64_simp_out(42),
+       wd5(11) => cnt64_simp_out(43),
+       wd5(12) => cnt64_simp_out(44),
+       wd5(13) => cnt64_simp_out(45),
+       wd5(14) => cnt64_simp_out(46),
+       wd5(15) => cnt64_simp_out(47),
+       wd5(16) => cnt64_simp_out(48),
+       wd5(17) => cnt64_simp_out(49),
+       wd5(18) => cnt64_simp_out(50),
+       wd5(19) => cnt64_simp_out(51),
+       wd5(20) => cnt64_simp_out(52),
+       wd5(21) => cnt64_simp_out(53),
+       wd5(22) => cnt64_simp_out(54),
+       wd5(23) => cnt64_simp_out(55),
+       wd5(24) => cnt64_simp_out(56),
+       wd5(25) => cnt64_simp_out(57),
+       wd5(26) => cnt64_simp_out(58),
+       wd5(27) => cnt64_simp_out(59),
+       wd5(28) => cnt64_simp_out(60),
+       wd5(29) => cnt64_simp_out(61),
+       wd5(30) => cnt64_simp_out(62),
+       wd5(31) => cnt64_simp_out(63),
+       burst_full_ext => burst_full_int,
+       burst_wr_out => b_wr_out_b,
+       clk0 => clk0,
+       ext_rst => out_cnt_rst,
+       out64 => sig_event_cnts,
+       trig_sig_in => trig_sig1,
+       wd0 => out_ev_ctr,
+       wd1 => log_ev_ctr,
+       wd2 => in_ev_ctr_1,
+       wd3 => in_ev_ctr_2
   );
 
 U122 : reg_32
@@ -1117,14 +1134,82 @@ U122 : reg_32
        wr_en => blk_wr_en_cts(28)
   );
 
-U123 : cntrs_2_b_fifo
+U123 : bfifomux_w_ctlr
   port map(
-       b_fifo_full_p => burst_full_int,
-       b_wr => b_wr_out_b,
-       clk => clk0,
-       mux_dir => mux_dir,
-       reset_p => out_cnt_rst,
-       sig_in => NET59613
+       wd4(0) => cnt64_simp_out(0),
+       wd4(1) => cnt64_simp_out(1),
+       wd4(2) => cnt64_simp_out(2),
+       wd4(3) => cnt64_simp_out(3),
+       wd4(4) => cnt64_simp_out(4),
+       wd4(5) => cnt64_simp_out(5),
+       wd4(6) => cnt64_simp_out(6),
+       wd4(7) => cnt64_simp_out(7),
+       wd4(8) => cnt64_simp_out(8),
+       wd4(9) => cnt64_simp_out(9),
+       wd4(10) => cnt64_simp_out(10),
+       wd4(11) => cnt64_simp_out(11),
+       wd4(12) => cnt64_simp_out(12),
+       wd4(13) => cnt64_simp_out(13),
+       wd4(14) => cnt64_simp_out(14),
+       wd4(15) => cnt64_simp_out(15),
+       wd4(16) => cnt64_simp_out(16),
+       wd4(17) => cnt64_simp_out(17),
+       wd4(18) => cnt64_simp_out(18),
+       wd4(19) => cnt64_simp_out(19),
+       wd4(20) => cnt64_simp_out(20),
+       wd4(21) => cnt64_simp_out(21),
+       wd4(22) => cnt64_simp_out(22),
+       wd4(23) => cnt64_simp_out(23),
+       wd4(24) => cnt64_simp_out(24),
+       wd4(25) => cnt64_simp_out(25),
+       wd4(26) => cnt64_simp_out(26),
+       wd4(27) => cnt64_simp_out(27),
+       wd4(28) => cnt64_simp_out(28),
+       wd4(29) => cnt64_simp_out(29),
+       wd4(30) => cnt64_simp_out(30),
+       wd4(31) => cnt64_simp_out(31),
+       wd5(0) => cnt64_simp_out(32),
+       wd5(1) => cnt64_simp_out(33),
+       wd5(2) => cnt64_simp_out(34),
+       wd5(3) => cnt64_simp_out(35),
+       wd5(4) => cnt64_simp_out(36),
+       wd5(5) => cnt64_simp_out(37),
+       wd5(6) => cnt64_simp_out(38),
+       wd5(7) => cnt64_simp_out(39),
+       wd5(8) => cnt64_simp_out(40),
+       wd5(9) => cnt64_simp_out(41),
+       wd5(10) => cnt64_simp_out(42),
+       wd5(11) => cnt64_simp_out(43),
+       wd5(12) => cnt64_simp_out(44),
+       wd5(13) => cnt64_simp_out(45),
+       wd5(14) => cnt64_simp_out(46),
+       wd5(15) => cnt64_simp_out(47),
+       wd5(16) => cnt64_simp_out(48),
+       wd5(17) => cnt64_simp_out(49),
+       wd5(18) => cnt64_simp_out(50),
+       wd5(19) => cnt64_simp_out(51),
+       wd5(20) => cnt64_simp_out(52),
+       wd5(21) => cnt64_simp_out(53),
+       wd5(22) => cnt64_simp_out(54),
+       wd5(23) => cnt64_simp_out(55),
+       wd5(24) => cnt64_simp_out(56),
+       wd5(25) => cnt64_simp_out(57),
+       wd5(26) => cnt64_simp_out(58),
+       wd5(27) => cnt64_simp_out(59),
+       wd5(28) => cnt64_simp_out(60),
+       wd5(29) => cnt64_simp_out(61),
+       wd5(30) => cnt64_simp_out(62),
+       wd5(31) => cnt64_simp_out(63),
+       burst_full_ext => burst_full_int,
+       burst_wr_out => b_wr_out_b1,
+       clk0 => clk0,
+       ext_rst => out_cnt_rst,
+       out64 => sig_out_cnts,
+       trig_sig_in => trig_sig2,
+       wd0 => out_ctr_1,
+       wd1 => out_ctr_2,
+       wd2 => out_ctr_3,
+       wd3 => out_ctr_4
   );
 
 U124 : reg_32
@@ -2204,275 +2289,276 @@ U244 : ps_hold_count
        sig_in => vps_ld_ct_2
   );
 
-U245 : burst_mux_8_to_1
+U245 : clkd_burst_mux_8_to_1
   port map(
-       sel_in(0) => burst_mux_sel(0),
-       sel_in(1) => burst_mux_sel(1),
-       sel_in(2) => burst_mux_sel(2),
-       v_sig_in_4(0) => Dangling_Input_Signal,
-       v_sig_in_4(1) => Dangling_Input_Signal,
-       v_sig_in_4(2) => Dangling_Input_Signal,
-       v_sig_in_4(3) => Dangling_Input_Signal,
-       v_sig_in_4(4) => Dangling_Input_Signal,
-       v_sig_in_4(5) => Dangling_Input_Signal,
-       v_sig_in_4(6) => Dangling_Input_Signal,
-       v_sig_in_4(7) => Dangling_Input_Signal,
-       v_sig_in_4(8) => Dangling_Input_Signal,
-       v_sig_in_4(9) => Dangling_Input_Signal,
-       v_sig_in_4(10) => Dangling_Input_Signal,
-       v_sig_in_4(11) => Dangling_Input_Signal,
-       v_sig_in_4(12) => Dangling_Input_Signal,
-       v_sig_in_4(13) => Dangling_Input_Signal,
-       v_sig_in_4(14) => Dangling_Input_Signal,
-       v_sig_in_4(15) => Dangling_Input_Signal,
-       v_sig_in_4(16) => Dangling_Input_Signal,
-       v_sig_in_4(17) => Dangling_Input_Signal,
-       v_sig_in_4(18) => Dangling_Input_Signal,
-       v_sig_in_4(19) => Dangling_Input_Signal,
-       v_sig_in_4(20) => Dangling_Input_Signal,
-       v_sig_in_4(21) => Dangling_Input_Signal,
-       v_sig_in_4(22) => Dangling_Input_Signal,
-       v_sig_in_4(23) => Dangling_Input_Signal,
-       v_sig_in_4(24) => Dangling_Input_Signal,
-       v_sig_in_4(25) => Dangling_Input_Signal,
-       v_sig_in_4(26) => Dangling_Input_Signal,
-       v_sig_in_4(27) => Dangling_Input_Signal,
-       v_sig_in_4(28) => Dangling_Input_Signal,
-       v_sig_in_4(29) => Dangling_Input_Signal,
-       v_sig_in_4(30) => Dangling_Input_Signal,
-       v_sig_in_4(31) => Dangling_Input_Signal,
-       v_sig_in_4(32) => Dangling_Input_Signal,
-       v_sig_in_4(33) => Dangling_Input_Signal,
-       v_sig_in_4(34) => Dangling_Input_Signal,
-       v_sig_in_4(35) => Dangling_Input_Signal,
-       v_sig_in_4(36) => Dangling_Input_Signal,
-       v_sig_in_4(37) => Dangling_Input_Signal,
-       v_sig_in_4(38) => Dangling_Input_Signal,
-       v_sig_in_4(39) => Dangling_Input_Signal,
-       v_sig_in_4(40) => Dangling_Input_Signal,
-       v_sig_in_4(41) => Dangling_Input_Signal,
-       v_sig_in_4(42) => Dangling_Input_Signal,
-       v_sig_in_4(43) => Dangling_Input_Signal,
-       v_sig_in_4(44) => Dangling_Input_Signal,
-       v_sig_in_4(45) => Dangling_Input_Signal,
-       v_sig_in_4(46) => Dangling_Input_Signal,
-       v_sig_in_4(47) => Dangling_Input_Signal,
-       v_sig_in_4(48) => Dangling_Input_Signal,
-       v_sig_in_4(49) => Dangling_Input_Signal,
-       v_sig_in_4(50) => Dangling_Input_Signal,
-       v_sig_in_4(51) => Dangling_Input_Signal,
-       v_sig_in_4(52) => Dangling_Input_Signal,
-       v_sig_in_4(53) => Dangling_Input_Signal,
-       v_sig_in_4(54) => Dangling_Input_Signal,
-       v_sig_in_4(55) => Dangling_Input_Signal,
-       v_sig_in_4(56) => Dangling_Input_Signal,
-       v_sig_in_4(57) => Dangling_Input_Signal,
-       v_sig_in_4(58) => Dangling_Input_Signal,
-       v_sig_in_4(59) => Dangling_Input_Signal,
-       v_sig_in_4(60) => Dangling_Input_Signal,
-       v_sig_in_4(61) => Dangling_Input_Signal,
-       v_sig_in_4(62) => Dangling_Input_Signal,
-       v_sig_in_4(63) => Dangling_Input_Signal,
-       v_sig_in_5(0) => Dangling_Input_Signal,
-       v_sig_in_5(1) => Dangling_Input_Signal,
-       v_sig_in_5(2) => Dangling_Input_Signal,
-       v_sig_in_5(3) => Dangling_Input_Signal,
-       v_sig_in_5(4) => Dangling_Input_Signal,
-       v_sig_in_5(5) => Dangling_Input_Signal,
-       v_sig_in_5(6) => Dangling_Input_Signal,
-       v_sig_in_5(7) => Dangling_Input_Signal,
-       v_sig_in_5(8) => Dangling_Input_Signal,
-       v_sig_in_5(9) => Dangling_Input_Signal,
-       v_sig_in_5(10) => Dangling_Input_Signal,
-       v_sig_in_5(11) => Dangling_Input_Signal,
-       v_sig_in_5(12) => Dangling_Input_Signal,
-       v_sig_in_5(13) => Dangling_Input_Signal,
-       v_sig_in_5(14) => Dangling_Input_Signal,
-       v_sig_in_5(15) => Dangling_Input_Signal,
-       v_sig_in_5(16) => Dangling_Input_Signal,
-       v_sig_in_5(17) => Dangling_Input_Signal,
-       v_sig_in_5(18) => Dangling_Input_Signal,
-       v_sig_in_5(19) => Dangling_Input_Signal,
-       v_sig_in_5(20) => Dangling_Input_Signal,
-       v_sig_in_5(21) => Dangling_Input_Signal,
-       v_sig_in_5(22) => Dangling_Input_Signal,
-       v_sig_in_5(23) => Dangling_Input_Signal,
-       v_sig_in_5(24) => Dangling_Input_Signal,
-       v_sig_in_5(25) => Dangling_Input_Signal,
-       v_sig_in_5(26) => Dangling_Input_Signal,
-       v_sig_in_5(27) => Dangling_Input_Signal,
-       v_sig_in_5(28) => Dangling_Input_Signal,
-       v_sig_in_5(29) => Dangling_Input_Signal,
-       v_sig_in_5(30) => Dangling_Input_Signal,
-       v_sig_in_5(31) => Dangling_Input_Signal,
-       v_sig_in_5(32) => Dangling_Input_Signal,
-       v_sig_in_5(33) => Dangling_Input_Signal,
-       v_sig_in_5(34) => Dangling_Input_Signal,
-       v_sig_in_5(35) => Dangling_Input_Signal,
-       v_sig_in_5(36) => Dangling_Input_Signal,
-       v_sig_in_5(37) => Dangling_Input_Signal,
-       v_sig_in_5(38) => Dangling_Input_Signal,
-       v_sig_in_5(39) => Dangling_Input_Signal,
-       v_sig_in_5(40) => Dangling_Input_Signal,
-       v_sig_in_5(41) => Dangling_Input_Signal,
-       v_sig_in_5(42) => Dangling_Input_Signal,
-       v_sig_in_5(43) => Dangling_Input_Signal,
-       v_sig_in_5(44) => Dangling_Input_Signal,
-       v_sig_in_5(45) => Dangling_Input_Signal,
-       v_sig_in_5(46) => Dangling_Input_Signal,
-       v_sig_in_5(47) => Dangling_Input_Signal,
-       v_sig_in_5(48) => Dangling_Input_Signal,
-       v_sig_in_5(49) => Dangling_Input_Signal,
-       v_sig_in_5(50) => Dangling_Input_Signal,
-       v_sig_in_5(51) => Dangling_Input_Signal,
-       v_sig_in_5(52) => Dangling_Input_Signal,
-       v_sig_in_5(53) => Dangling_Input_Signal,
-       v_sig_in_5(54) => Dangling_Input_Signal,
-       v_sig_in_5(55) => Dangling_Input_Signal,
-       v_sig_in_5(56) => Dangling_Input_Signal,
-       v_sig_in_5(57) => Dangling_Input_Signal,
-       v_sig_in_5(58) => Dangling_Input_Signal,
-       v_sig_in_5(59) => Dangling_Input_Signal,
-       v_sig_in_5(60) => Dangling_Input_Signal,
-       v_sig_in_5(61) => Dangling_Input_Signal,
-       v_sig_in_5(62) => Dangling_Input_Signal,
-       v_sig_in_5(63) => Dangling_Input_Signal,
-       v_sig_in_6(0) => Dangling_Input_Signal,
-       v_sig_in_6(1) => Dangling_Input_Signal,
-       v_sig_in_6(2) => Dangling_Input_Signal,
-       v_sig_in_6(3) => Dangling_Input_Signal,
-       v_sig_in_6(4) => Dangling_Input_Signal,
-       v_sig_in_6(5) => Dangling_Input_Signal,
-       v_sig_in_6(6) => Dangling_Input_Signal,
-       v_sig_in_6(7) => Dangling_Input_Signal,
-       v_sig_in_6(8) => Dangling_Input_Signal,
-       v_sig_in_6(9) => Dangling_Input_Signal,
-       v_sig_in_6(10) => Dangling_Input_Signal,
-       v_sig_in_6(11) => Dangling_Input_Signal,
-       v_sig_in_6(12) => Dangling_Input_Signal,
-       v_sig_in_6(13) => Dangling_Input_Signal,
-       v_sig_in_6(14) => Dangling_Input_Signal,
-       v_sig_in_6(15) => Dangling_Input_Signal,
-       v_sig_in_6(16) => Dangling_Input_Signal,
-       v_sig_in_6(17) => Dangling_Input_Signal,
-       v_sig_in_6(18) => Dangling_Input_Signal,
-       v_sig_in_6(19) => Dangling_Input_Signal,
-       v_sig_in_6(20) => Dangling_Input_Signal,
-       v_sig_in_6(21) => Dangling_Input_Signal,
-       v_sig_in_6(22) => Dangling_Input_Signal,
-       v_sig_in_6(23) => Dangling_Input_Signal,
-       v_sig_in_6(24) => Dangling_Input_Signal,
-       v_sig_in_6(25) => Dangling_Input_Signal,
-       v_sig_in_6(26) => Dangling_Input_Signal,
-       v_sig_in_6(27) => Dangling_Input_Signal,
-       v_sig_in_6(28) => Dangling_Input_Signal,
-       v_sig_in_6(29) => Dangling_Input_Signal,
-       v_sig_in_6(30) => Dangling_Input_Signal,
-       v_sig_in_6(31) => Dangling_Input_Signal,
-       v_sig_in_6(32) => Dangling_Input_Signal,
-       v_sig_in_6(33) => Dangling_Input_Signal,
-       v_sig_in_6(34) => Dangling_Input_Signal,
-       v_sig_in_6(35) => Dangling_Input_Signal,
-       v_sig_in_6(36) => Dangling_Input_Signal,
-       v_sig_in_6(37) => Dangling_Input_Signal,
-       v_sig_in_6(38) => Dangling_Input_Signal,
-       v_sig_in_6(39) => Dangling_Input_Signal,
-       v_sig_in_6(40) => Dangling_Input_Signal,
-       v_sig_in_6(41) => Dangling_Input_Signal,
-       v_sig_in_6(42) => Dangling_Input_Signal,
-       v_sig_in_6(43) => Dangling_Input_Signal,
-       v_sig_in_6(44) => Dangling_Input_Signal,
-       v_sig_in_6(45) => Dangling_Input_Signal,
-       v_sig_in_6(46) => Dangling_Input_Signal,
-       v_sig_in_6(47) => Dangling_Input_Signal,
-       v_sig_in_6(48) => Dangling_Input_Signal,
-       v_sig_in_6(49) => Dangling_Input_Signal,
-       v_sig_in_6(50) => Dangling_Input_Signal,
-       v_sig_in_6(51) => Dangling_Input_Signal,
-       v_sig_in_6(52) => Dangling_Input_Signal,
-       v_sig_in_6(53) => Dangling_Input_Signal,
-       v_sig_in_6(54) => Dangling_Input_Signal,
-       v_sig_in_6(55) => Dangling_Input_Signal,
-       v_sig_in_6(56) => Dangling_Input_Signal,
-       v_sig_in_6(57) => Dangling_Input_Signal,
-       v_sig_in_6(58) => Dangling_Input_Signal,
-       v_sig_in_6(59) => Dangling_Input_Signal,
-       v_sig_in_6(60) => Dangling_Input_Signal,
-       v_sig_in_6(61) => Dangling_Input_Signal,
-       v_sig_in_6(62) => Dangling_Input_Signal,
-       v_sig_in_6(63) => Dangling_Input_Signal,
-       v_sig_in_7(0) => Dangling_Input_Signal,
-       v_sig_in_7(1) => Dangling_Input_Signal,
-       v_sig_in_7(2) => Dangling_Input_Signal,
-       v_sig_in_7(3) => Dangling_Input_Signal,
-       v_sig_in_7(4) => Dangling_Input_Signal,
-       v_sig_in_7(5) => Dangling_Input_Signal,
-       v_sig_in_7(6) => Dangling_Input_Signal,
-       v_sig_in_7(7) => Dangling_Input_Signal,
-       v_sig_in_7(8) => Dangling_Input_Signal,
-       v_sig_in_7(9) => Dangling_Input_Signal,
-       v_sig_in_7(10) => Dangling_Input_Signal,
-       v_sig_in_7(11) => Dangling_Input_Signal,
-       v_sig_in_7(12) => Dangling_Input_Signal,
-       v_sig_in_7(13) => Dangling_Input_Signal,
-       v_sig_in_7(14) => Dangling_Input_Signal,
-       v_sig_in_7(15) => Dangling_Input_Signal,
-       v_sig_in_7(16) => Dangling_Input_Signal,
-       v_sig_in_7(17) => Dangling_Input_Signal,
-       v_sig_in_7(18) => Dangling_Input_Signal,
-       v_sig_in_7(19) => Dangling_Input_Signal,
-       v_sig_in_7(20) => Dangling_Input_Signal,
-       v_sig_in_7(21) => Dangling_Input_Signal,
-       v_sig_in_7(22) => Dangling_Input_Signal,
-       v_sig_in_7(23) => Dangling_Input_Signal,
-       v_sig_in_7(24) => Dangling_Input_Signal,
-       v_sig_in_7(25) => Dangling_Input_Signal,
-       v_sig_in_7(26) => Dangling_Input_Signal,
-       v_sig_in_7(27) => Dangling_Input_Signal,
-       v_sig_in_7(28) => Dangling_Input_Signal,
-       v_sig_in_7(29) => Dangling_Input_Signal,
-       v_sig_in_7(30) => Dangling_Input_Signal,
-       v_sig_in_7(31) => Dangling_Input_Signal,
-       v_sig_in_7(32) => Dangling_Input_Signal,
-       v_sig_in_7(33) => Dangling_Input_Signal,
-       v_sig_in_7(34) => Dangling_Input_Signal,
-       v_sig_in_7(35) => Dangling_Input_Signal,
-       v_sig_in_7(36) => Dangling_Input_Signal,
-       v_sig_in_7(37) => Dangling_Input_Signal,
-       v_sig_in_7(38) => Dangling_Input_Signal,
-       v_sig_in_7(39) => Dangling_Input_Signal,
-       v_sig_in_7(40) => Dangling_Input_Signal,
-       v_sig_in_7(41) => Dangling_Input_Signal,
-       v_sig_in_7(42) => Dangling_Input_Signal,
-       v_sig_in_7(43) => Dangling_Input_Signal,
-       v_sig_in_7(44) => Dangling_Input_Signal,
-       v_sig_in_7(45) => Dangling_Input_Signal,
-       v_sig_in_7(46) => Dangling_Input_Signal,
-       v_sig_in_7(47) => Dangling_Input_Signal,
-       v_sig_in_7(48) => Dangling_Input_Signal,
-       v_sig_in_7(49) => Dangling_Input_Signal,
-       v_sig_in_7(50) => Dangling_Input_Signal,
-       v_sig_in_7(51) => Dangling_Input_Signal,
-       v_sig_in_7(52) => Dangling_Input_Signal,
-       v_sig_in_7(53) => Dangling_Input_Signal,
-       v_sig_in_7(54) => Dangling_Input_Signal,
-       v_sig_in_7(55) => Dangling_Input_Signal,
-       v_sig_in_7(56) => Dangling_Input_Signal,
-       v_sig_in_7(57) => Dangling_Input_Signal,
-       v_sig_in_7(58) => Dangling_Input_Signal,
-       v_sig_in_7(59) => Dangling_Input_Signal,
-       v_sig_in_7(60) => Dangling_Input_Signal,
-       v_sig_in_7(61) => Dangling_Input_Signal,
-       v_sig_in_7(62) => Dangling_Input_Signal,
-       v_sig_in_7(63) => Dangling_Input_Signal,
-       rst_p => reset_out,
-       v_sig_in_0 => sig_event_counts,
-       v_sig_in_1 => scope_out,
-       v_sig_in_2 => jw121_data,
-       v_sig_in_3 => sig_output_counts,
-       v_sig_out => b_read,
-       w_in => burst_wr_in,
-       w_out => b_wr_out
+       burst_mux_sel(0) => burst_mux_sel(0),
+       burst_mux_sel(1) => burst_mux_sel(1),
+       burst_mux_sel(2) => burst_mux_sel(2),
+       sig4(0) => Dangling_Input_Signal,
+       sig4(1) => Dangling_Input_Signal,
+       sig4(2) => Dangling_Input_Signal,
+       sig4(3) => Dangling_Input_Signal,
+       sig4(4) => Dangling_Input_Signal,
+       sig4(5) => Dangling_Input_Signal,
+       sig4(6) => Dangling_Input_Signal,
+       sig4(7) => Dangling_Input_Signal,
+       sig4(8) => Dangling_Input_Signal,
+       sig4(9) => Dangling_Input_Signal,
+       sig4(10) => Dangling_Input_Signal,
+       sig4(11) => Dangling_Input_Signal,
+       sig4(12) => Dangling_Input_Signal,
+       sig4(13) => Dangling_Input_Signal,
+       sig4(14) => Dangling_Input_Signal,
+       sig4(15) => Dangling_Input_Signal,
+       sig4(16) => Dangling_Input_Signal,
+       sig4(17) => Dangling_Input_Signal,
+       sig4(18) => Dangling_Input_Signal,
+       sig4(19) => Dangling_Input_Signal,
+       sig4(20) => Dangling_Input_Signal,
+       sig4(21) => Dangling_Input_Signal,
+       sig4(22) => Dangling_Input_Signal,
+       sig4(23) => Dangling_Input_Signal,
+       sig4(24) => Dangling_Input_Signal,
+       sig4(25) => Dangling_Input_Signal,
+       sig4(26) => Dangling_Input_Signal,
+       sig4(27) => Dangling_Input_Signal,
+       sig4(28) => Dangling_Input_Signal,
+       sig4(29) => Dangling_Input_Signal,
+       sig4(30) => Dangling_Input_Signal,
+       sig4(31) => Dangling_Input_Signal,
+       sig4(32) => Dangling_Input_Signal,
+       sig4(33) => Dangling_Input_Signal,
+       sig4(34) => Dangling_Input_Signal,
+       sig4(35) => Dangling_Input_Signal,
+       sig4(36) => Dangling_Input_Signal,
+       sig4(37) => Dangling_Input_Signal,
+       sig4(38) => Dangling_Input_Signal,
+       sig4(39) => Dangling_Input_Signal,
+       sig4(40) => Dangling_Input_Signal,
+       sig4(41) => Dangling_Input_Signal,
+       sig4(42) => Dangling_Input_Signal,
+       sig4(43) => Dangling_Input_Signal,
+       sig4(44) => Dangling_Input_Signal,
+       sig4(45) => Dangling_Input_Signal,
+       sig4(46) => Dangling_Input_Signal,
+       sig4(47) => Dangling_Input_Signal,
+       sig4(48) => Dangling_Input_Signal,
+       sig4(49) => Dangling_Input_Signal,
+       sig4(50) => Dangling_Input_Signal,
+       sig4(51) => Dangling_Input_Signal,
+       sig4(52) => Dangling_Input_Signal,
+       sig4(53) => Dangling_Input_Signal,
+       sig4(54) => Dangling_Input_Signal,
+       sig4(55) => Dangling_Input_Signal,
+       sig4(56) => Dangling_Input_Signal,
+       sig4(57) => Dangling_Input_Signal,
+       sig4(58) => Dangling_Input_Signal,
+       sig4(59) => Dangling_Input_Signal,
+       sig4(60) => Dangling_Input_Signal,
+       sig4(61) => Dangling_Input_Signal,
+       sig4(62) => Dangling_Input_Signal,
+       sig4(63) => Dangling_Input_Signal,
+       sig5(0) => Dangling_Input_Signal,
+       sig5(1) => Dangling_Input_Signal,
+       sig5(2) => Dangling_Input_Signal,
+       sig5(3) => Dangling_Input_Signal,
+       sig5(4) => Dangling_Input_Signal,
+       sig5(5) => Dangling_Input_Signal,
+       sig5(6) => Dangling_Input_Signal,
+       sig5(7) => Dangling_Input_Signal,
+       sig5(8) => Dangling_Input_Signal,
+       sig5(9) => Dangling_Input_Signal,
+       sig5(10) => Dangling_Input_Signal,
+       sig5(11) => Dangling_Input_Signal,
+       sig5(12) => Dangling_Input_Signal,
+       sig5(13) => Dangling_Input_Signal,
+       sig5(14) => Dangling_Input_Signal,
+       sig5(15) => Dangling_Input_Signal,
+       sig5(16) => Dangling_Input_Signal,
+       sig5(17) => Dangling_Input_Signal,
+       sig5(18) => Dangling_Input_Signal,
+       sig5(19) => Dangling_Input_Signal,
+       sig5(20) => Dangling_Input_Signal,
+       sig5(21) => Dangling_Input_Signal,
+       sig5(22) => Dangling_Input_Signal,
+       sig5(23) => Dangling_Input_Signal,
+       sig5(24) => Dangling_Input_Signal,
+       sig5(25) => Dangling_Input_Signal,
+       sig5(26) => Dangling_Input_Signal,
+       sig5(27) => Dangling_Input_Signal,
+       sig5(28) => Dangling_Input_Signal,
+       sig5(29) => Dangling_Input_Signal,
+       sig5(30) => Dangling_Input_Signal,
+       sig5(31) => Dangling_Input_Signal,
+       sig5(32) => Dangling_Input_Signal,
+       sig5(33) => Dangling_Input_Signal,
+       sig5(34) => Dangling_Input_Signal,
+       sig5(35) => Dangling_Input_Signal,
+       sig5(36) => Dangling_Input_Signal,
+       sig5(37) => Dangling_Input_Signal,
+       sig5(38) => Dangling_Input_Signal,
+       sig5(39) => Dangling_Input_Signal,
+       sig5(40) => Dangling_Input_Signal,
+       sig5(41) => Dangling_Input_Signal,
+       sig5(42) => Dangling_Input_Signal,
+       sig5(43) => Dangling_Input_Signal,
+       sig5(44) => Dangling_Input_Signal,
+       sig5(45) => Dangling_Input_Signal,
+       sig5(46) => Dangling_Input_Signal,
+       sig5(47) => Dangling_Input_Signal,
+       sig5(48) => Dangling_Input_Signal,
+       sig5(49) => Dangling_Input_Signal,
+       sig5(50) => Dangling_Input_Signal,
+       sig5(51) => Dangling_Input_Signal,
+       sig5(52) => Dangling_Input_Signal,
+       sig5(53) => Dangling_Input_Signal,
+       sig5(54) => Dangling_Input_Signal,
+       sig5(55) => Dangling_Input_Signal,
+       sig5(56) => Dangling_Input_Signal,
+       sig5(57) => Dangling_Input_Signal,
+       sig5(58) => Dangling_Input_Signal,
+       sig5(59) => Dangling_Input_Signal,
+       sig5(60) => Dangling_Input_Signal,
+       sig5(61) => Dangling_Input_Signal,
+       sig5(62) => Dangling_Input_Signal,
+       sig5(63) => Dangling_Input_Signal,
+       sig6(0) => Dangling_Input_Signal,
+       sig6(1) => Dangling_Input_Signal,
+       sig6(2) => Dangling_Input_Signal,
+       sig6(3) => Dangling_Input_Signal,
+       sig6(4) => Dangling_Input_Signal,
+       sig6(5) => Dangling_Input_Signal,
+       sig6(6) => Dangling_Input_Signal,
+       sig6(7) => Dangling_Input_Signal,
+       sig6(8) => Dangling_Input_Signal,
+       sig6(9) => Dangling_Input_Signal,
+       sig6(10) => Dangling_Input_Signal,
+       sig6(11) => Dangling_Input_Signal,
+       sig6(12) => Dangling_Input_Signal,
+       sig6(13) => Dangling_Input_Signal,
+       sig6(14) => Dangling_Input_Signal,
+       sig6(15) => Dangling_Input_Signal,
+       sig6(16) => Dangling_Input_Signal,
+       sig6(17) => Dangling_Input_Signal,
+       sig6(18) => Dangling_Input_Signal,
+       sig6(19) => Dangling_Input_Signal,
+       sig6(20) => Dangling_Input_Signal,
+       sig6(21) => Dangling_Input_Signal,
+       sig6(22) => Dangling_Input_Signal,
+       sig6(23) => Dangling_Input_Signal,
+       sig6(24) => Dangling_Input_Signal,
+       sig6(25) => Dangling_Input_Signal,
+       sig6(26) => Dangling_Input_Signal,
+       sig6(27) => Dangling_Input_Signal,
+       sig6(28) => Dangling_Input_Signal,
+       sig6(29) => Dangling_Input_Signal,
+       sig6(30) => Dangling_Input_Signal,
+       sig6(31) => Dangling_Input_Signal,
+       sig6(32) => Dangling_Input_Signal,
+       sig6(33) => Dangling_Input_Signal,
+       sig6(34) => Dangling_Input_Signal,
+       sig6(35) => Dangling_Input_Signal,
+       sig6(36) => Dangling_Input_Signal,
+       sig6(37) => Dangling_Input_Signal,
+       sig6(38) => Dangling_Input_Signal,
+       sig6(39) => Dangling_Input_Signal,
+       sig6(40) => Dangling_Input_Signal,
+       sig6(41) => Dangling_Input_Signal,
+       sig6(42) => Dangling_Input_Signal,
+       sig6(43) => Dangling_Input_Signal,
+       sig6(44) => Dangling_Input_Signal,
+       sig6(45) => Dangling_Input_Signal,
+       sig6(46) => Dangling_Input_Signal,
+       sig6(47) => Dangling_Input_Signal,
+       sig6(48) => Dangling_Input_Signal,
+       sig6(49) => Dangling_Input_Signal,
+       sig6(50) => Dangling_Input_Signal,
+       sig6(51) => Dangling_Input_Signal,
+       sig6(52) => Dangling_Input_Signal,
+       sig6(53) => Dangling_Input_Signal,
+       sig6(54) => Dangling_Input_Signal,
+       sig6(55) => Dangling_Input_Signal,
+       sig6(56) => Dangling_Input_Signal,
+       sig6(57) => Dangling_Input_Signal,
+       sig6(58) => Dangling_Input_Signal,
+       sig6(59) => Dangling_Input_Signal,
+       sig6(60) => Dangling_Input_Signal,
+       sig6(61) => Dangling_Input_Signal,
+       sig6(62) => Dangling_Input_Signal,
+       sig6(63) => Dangling_Input_Signal,
+       sig7(0) => Dangling_Input_Signal,
+       sig7(1) => Dangling_Input_Signal,
+       sig7(2) => Dangling_Input_Signal,
+       sig7(3) => Dangling_Input_Signal,
+       sig7(4) => Dangling_Input_Signal,
+       sig7(5) => Dangling_Input_Signal,
+       sig7(6) => Dangling_Input_Signal,
+       sig7(7) => Dangling_Input_Signal,
+       sig7(8) => Dangling_Input_Signal,
+       sig7(9) => Dangling_Input_Signal,
+       sig7(10) => Dangling_Input_Signal,
+       sig7(11) => Dangling_Input_Signal,
+       sig7(12) => Dangling_Input_Signal,
+       sig7(13) => Dangling_Input_Signal,
+       sig7(14) => Dangling_Input_Signal,
+       sig7(15) => Dangling_Input_Signal,
+       sig7(16) => Dangling_Input_Signal,
+       sig7(17) => Dangling_Input_Signal,
+       sig7(18) => Dangling_Input_Signal,
+       sig7(19) => Dangling_Input_Signal,
+       sig7(20) => Dangling_Input_Signal,
+       sig7(21) => Dangling_Input_Signal,
+       sig7(22) => Dangling_Input_Signal,
+       sig7(23) => Dangling_Input_Signal,
+       sig7(24) => Dangling_Input_Signal,
+       sig7(25) => Dangling_Input_Signal,
+       sig7(26) => Dangling_Input_Signal,
+       sig7(27) => Dangling_Input_Signal,
+       sig7(28) => Dangling_Input_Signal,
+       sig7(29) => Dangling_Input_Signal,
+       sig7(30) => Dangling_Input_Signal,
+       sig7(31) => Dangling_Input_Signal,
+       sig7(32) => Dangling_Input_Signal,
+       sig7(33) => Dangling_Input_Signal,
+       sig7(34) => Dangling_Input_Signal,
+       sig7(35) => Dangling_Input_Signal,
+       sig7(36) => Dangling_Input_Signal,
+       sig7(37) => Dangling_Input_Signal,
+       sig7(38) => Dangling_Input_Signal,
+       sig7(39) => Dangling_Input_Signal,
+       sig7(40) => Dangling_Input_Signal,
+       sig7(41) => Dangling_Input_Signal,
+       sig7(42) => Dangling_Input_Signal,
+       sig7(43) => Dangling_Input_Signal,
+       sig7(44) => Dangling_Input_Signal,
+       sig7(45) => Dangling_Input_Signal,
+       sig7(46) => Dangling_Input_Signal,
+       sig7(47) => Dangling_Input_Signal,
+       sig7(48) => Dangling_Input_Signal,
+       sig7(49) => Dangling_Input_Signal,
+       sig7(50) => Dangling_Input_Signal,
+       sig7(51) => Dangling_Input_Signal,
+       sig7(52) => Dangling_Input_Signal,
+       sig7(53) => Dangling_Input_Signal,
+       sig7(54) => Dangling_Input_Signal,
+       sig7(55) => Dangling_Input_Signal,
+       sig7(56) => Dangling_Input_Signal,
+       sig7(57) => Dangling_Input_Signal,
+       sig7(58) => Dangling_Input_Signal,
+       sig7(59) => Dangling_Input_Signal,
+       sig7(60) => Dangling_Input_Signal,
+       sig7(61) => Dangling_Input_Signal,
+       sig7(62) => Dangling_Input_Signal,
+       sig7(63) => Dangling_Input_Signal,
+       b_read_out => b_read,
+       b_wr_out => b_wr_out,
+       burst_in => burst_wr_in,
+       clk0 => clk0,
+       rstp => reset_out,
+       sig0 => sig_event_counts,
+       sig1 => scope_out,
+       sig2 => jw121_data,
+       sig3 => sig_output_counts
   );
 
 U246 : reg_8
@@ -2580,7 +2666,7 @@ U250 : scope_probe_4ch
        sig_in => y
   );
 
-burst_wr_in(0) <= b_wr_out_b;
+NET64588 <= b_wr_out_b;
 
 U252 : cnt32
   port map(
@@ -5674,134 +5760,6 @@ U322 : reg_read_decode_p
        sig31(61) => Dangling_Input_Signal,
        sig31(62) => Dangling_Input_Signal,
        sig31(63) => Dangling_Input_Signal,
-       sig5(0) => Dangling_Input_Signal,
-       sig5(1) => Dangling_Input_Signal,
-       sig5(2) => Dangling_Input_Signal,
-       sig5(3) => Dangling_Input_Signal,
-       sig5(4) => Dangling_Input_Signal,
-       sig5(5) => Dangling_Input_Signal,
-       sig5(6) => Dangling_Input_Signal,
-       sig5(7) => Dangling_Input_Signal,
-       sig5(8) => Dangling_Input_Signal,
-       sig5(9) => Dangling_Input_Signal,
-       sig5(10) => Dangling_Input_Signal,
-       sig5(11) => Dangling_Input_Signal,
-       sig5(12) => Dangling_Input_Signal,
-       sig5(13) => Dangling_Input_Signal,
-       sig5(14) => Dangling_Input_Signal,
-       sig5(15) => Dangling_Input_Signal,
-       sig5(16) => Dangling_Input_Signal,
-       sig5(17) => Dangling_Input_Signal,
-       sig5(18) => Dangling_Input_Signal,
-       sig5(19) => Dangling_Input_Signal,
-       sig5(20) => Dangling_Input_Signal,
-       sig5(21) => Dangling_Input_Signal,
-       sig5(22) => Dangling_Input_Signal,
-       sig5(23) => Dangling_Input_Signal,
-       sig5(24) => Dangling_Input_Signal,
-       sig5(25) => Dangling_Input_Signal,
-       sig5(26) => Dangling_Input_Signal,
-       sig5(27) => Dangling_Input_Signal,
-       sig5(28) => Dangling_Input_Signal,
-       sig5(29) => Dangling_Input_Signal,
-       sig5(30) => Dangling_Input_Signal,
-       sig5(31) => Dangling_Input_Signal,
-       sig5(32) => Dangling_Input_Signal,
-       sig5(33) => Dangling_Input_Signal,
-       sig5(34) => Dangling_Input_Signal,
-       sig5(35) => Dangling_Input_Signal,
-       sig5(36) => Dangling_Input_Signal,
-       sig5(37) => Dangling_Input_Signal,
-       sig5(38) => Dangling_Input_Signal,
-       sig5(39) => Dangling_Input_Signal,
-       sig5(40) => Dangling_Input_Signal,
-       sig5(41) => Dangling_Input_Signal,
-       sig5(42) => Dangling_Input_Signal,
-       sig5(43) => Dangling_Input_Signal,
-       sig5(44) => Dangling_Input_Signal,
-       sig5(45) => Dangling_Input_Signal,
-       sig5(46) => Dangling_Input_Signal,
-       sig5(47) => Dangling_Input_Signal,
-       sig5(48) => Dangling_Input_Signal,
-       sig5(49) => Dangling_Input_Signal,
-       sig5(50) => Dangling_Input_Signal,
-       sig5(51) => Dangling_Input_Signal,
-       sig5(52) => Dangling_Input_Signal,
-       sig5(53) => Dangling_Input_Signal,
-       sig5(54) => Dangling_Input_Signal,
-       sig5(55) => Dangling_Input_Signal,
-       sig5(56) => Dangling_Input_Signal,
-       sig5(57) => Dangling_Input_Signal,
-       sig5(58) => Dangling_Input_Signal,
-       sig5(59) => Dangling_Input_Signal,
-       sig5(60) => Dangling_Input_Signal,
-       sig5(61) => Dangling_Input_Signal,
-       sig5(62) => Dangling_Input_Signal,
-       sig5(63) => Dangling_Input_Signal,
-       sig6(0) => Dangling_Input_Signal,
-       sig6(1) => Dangling_Input_Signal,
-       sig6(2) => Dangling_Input_Signal,
-       sig6(3) => Dangling_Input_Signal,
-       sig6(4) => Dangling_Input_Signal,
-       sig6(5) => Dangling_Input_Signal,
-       sig6(6) => Dangling_Input_Signal,
-       sig6(7) => Dangling_Input_Signal,
-       sig6(8) => Dangling_Input_Signal,
-       sig6(9) => Dangling_Input_Signal,
-       sig6(10) => Dangling_Input_Signal,
-       sig6(11) => Dangling_Input_Signal,
-       sig6(12) => Dangling_Input_Signal,
-       sig6(13) => Dangling_Input_Signal,
-       sig6(14) => Dangling_Input_Signal,
-       sig6(15) => Dangling_Input_Signal,
-       sig6(16) => Dangling_Input_Signal,
-       sig6(17) => Dangling_Input_Signal,
-       sig6(18) => Dangling_Input_Signal,
-       sig6(19) => Dangling_Input_Signal,
-       sig6(20) => Dangling_Input_Signal,
-       sig6(21) => Dangling_Input_Signal,
-       sig6(22) => Dangling_Input_Signal,
-       sig6(23) => Dangling_Input_Signal,
-       sig6(24) => Dangling_Input_Signal,
-       sig6(25) => Dangling_Input_Signal,
-       sig6(26) => Dangling_Input_Signal,
-       sig6(27) => Dangling_Input_Signal,
-       sig6(28) => Dangling_Input_Signal,
-       sig6(29) => Dangling_Input_Signal,
-       sig6(30) => Dangling_Input_Signal,
-       sig6(31) => Dangling_Input_Signal,
-       sig6(32) => Dangling_Input_Signal,
-       sig6(33) => Dangling_Input_Signal,
-       sig6(34) => Dangling_Input_Signal,
-       sig6(35) => Dangling_Input_Signal,
-       sig6(36) => Dangling_Input_Signal,
-       sig6(37) => Dangling_Input_Signal,
-       sig6(38) => Dangling_Input_Signal,
-       sig6(39) => Dangling_Input_Signal,
-       sig6(40) => Dangling_Input_Signal,
-       sig6(41) => Dangling_Input_Signal,
-       sig6(42) => Dangling_Input_Signal,
-       sig6(43) => Dangling_Input_Signal,
-       sig6(44) => Dangling_Input_Signal,
-       sig6(45) => Dangling_Input_Signal,
-       sig6(46) => Dangling_Input_Signal,
-       sig6(47) => Dangling_Input_Signal,
-       sig6(48) => Dangling_Input_Signal,
-       sig6(49) => Dangling_Input_Signal,
-       sig6(50) => Dangling_Input_Signal,
-       sig6(51) => Dangling_Input_Signal,
-       sig6(52) => Dangling_Input_Signal,
-       sig6(53) => Dangling_Input_Signal,
-       sig6(54) => Dangling_Input_Signal,
-       sig6(55) => Dangling_Input_Signal,
-       sig6(56) => Dangling_Input_Signal,
-       sig6(57) => Dangling_Input_Signal,
-       sig6(58) => Dangling_Input_Signal,
-       sig6(59) => Dangling_Input_Signal,
-       sig6(60) => Dangling_Input_Signal,
-       sig6(61) => Dangling_Input_Signal,
-       sig6(62) => Dangling_Input_Signal,
-       sig6(63) => Dangling_Input_Signal,
        sig7(0) => Dangling_Input_Signal,
        sig7(1) => Dangling_Input_Signal,
        sig7(2) => Dangling_Input_Signal,
@@ -6003,7 +5961,9 @@ U322 : reg_read_decode_p
        sig18 => rdb17,
        sig2 => rdd2,
        sig3 => rdd3,
-       sig4 => rdd4
+       sig4 => rdd4,
+       sig5 => rdd5,
+       sig6 => rdd6
   );
 
 NET61855 <= not(rx_wren);
@@ -6546,93 +6506,85 @@ U344 : agrgate_8_by_8
 
 NET59517 <= reset_out or ctr_resets(3);
 
-NET59613 <= sig_cms2 or sig_cms1 or sig_norm;
+trig_sig1 <= sig_cms2 or sig_cms1 or sig_norm;
 
-burst_wr_in(3) <= b_wr_out_b1;
+NET64138 <= b_wr_out_b1;
 
-U348 : cntrs_2_b_fifo
+U348 : agrgate_8_by_8
   port map(
-       b_fifo_full_p => burst_full_int,
-       b_wr => b_wr_out_b1,
-       clk => clk0,
-       mux_dir => mux_dir_out,
-       reset_p => out_cnt_rst,
-       sig_in => NET59721
+       in0(0) => out_ctr_1(0),
+       in0(1) => out_ctr_1(1),
+       in0(2) => out_ctr_1(2),
+       in0(3) => out_ctr_1(3),
+       in0(4) => out_ctr_1(4),
+       in0(5) => out_ctr_1(5),
+       in0(6) => out_ctr_1(6),
+       in0(7) => out_ctr_1(7),
+       in1(0) => out_ctr_1(8),
+       in1(1) => out_ctr_1(9),
+       in1(2) => out_ctr_1(10),
+       in1(3) => out_ctr_1(11),
+       in1(4) => out_ctr_1(12),
+       in1(5) => out_ctr_1(13),
+       in1(6) => out_ctr_1(14),
+       in1(7) => out_ctr_1(15),
+       in2(0) => out_ctr_1(16),
+       in2(1) => out_ctr_1(17),
+       in2(2) => out_ctr_1(18),
+       in2(3) => out_ctr_1(19),
+       in2(4) => out_ctr_1(20),
+       in2(5) => out_ctr_1(21),
+       in2(6) => out_ctr_1(22),
+       in2(7) => out_ctr_1(23),
+       in3(0) => out_ctr_1(24),
+       in3(1) => out_ctr_1(25),
+       in3(2) => out_ctr_1(26),
+       in3(3) => out_ctr_1(27),
+       in3(4) => out_ctr_1(28),
+       in3(5) => out_ctr_1(29),
+       in3(6) => out_ctr_1(30),
+       in3(7) => out_ctr_1(31),
+       in4(0) => out_ctr_2(0),
+       in4(1) => out_ctr_2(1),
+       in4(2) => out_ctr_2(2),
+       in4(3) => out_ctr_2(3),
+       in4(4) => out_ctr_2(4),
+       in4(5) => out_ctr_2(5),
+       in4(6) => out_ctr_2(6),
+       in4(7) => out_ctr_2(7),
+       in5(0) => out_ctr_2(8),
+       in5(1) => out_ctr_2(9),
+       in5(2) => out_ctr_2(10),
+       in5(3) => out_ctr_2(11),
+       in5(4) => out_ctr_2(12),
+       in5(5) => out_ctr_2(13),
+       in5(6) => out_ctr_2(14),
+       in5(7) => out_ctr_2(15),
+       in6(0) => out_ctr_2(16),
+       in6(1) => out_ctr_2(17),
+       in6(2) => out_ctr_2(18),
+       in6(3) => out_ctr_2(19),
+       in6(4) => out_ctr_2(20),
+       in6(5) => out_ctr_2(21),
+       in6(6) => out_ctr_2(22),
+       in6(7) => out_ctr_2(23),
+       in7(0) => out_ctr_2(24),
+       in7(1) => out_ctr_2(25),
+       in7(2) => out_ctr_2(26),
+       in7(3) => out_ctr_2(27),
+       in7(4) => out_ctr_2(28),
+       in7(5) => out_ctr_2(29),
+       in7(6) => out_ctr_2(30),
+       in7(7) => out_ctr_2(31),
+       out_0 => rdd5
   );
 
-U349 : b_fifo_mux
+U349 : d_ff
   port map(
-       wd_in4(0) => cnt64_simp_out(0),
-       wd_in4(1) => cnt64_simp_out(1),
-       wd_in4(2) => cnt64_simp_out(2),
-       wd_in4(3) => cnt64_simp_out(3),
-       wd_in4(4) => cnt64_simp_out(4),
-       wd_in4(5) => cnt64_simp_out(5),
-       wd_in4(6) => cnt64_simp_out(6),
-       wd_in4(7) => cnt64_simp_out(7),
-       wd_in4(8) => cnt64_simp_out(8),
-       wd_in4(9) => cnt64_simp_out(9),
-       wd_in4(10) => cnt64_simp_out(10),
-       wd_in4(11) => cnt64_simp_out(11),
-       wd_in4(12) => cnt64_simp_out(12),
-       wd_in4(13) => cnt64_simp_out(13),
-       wd_in4(14) => cnt64_simp_out(14),
-       wd_in4(15) => cnt64_simp_out(15),
-       wd_in4(16) => cnt64_simp_out(16),
-       wd_in4(17) => cnt64_simp_out(17),
-       wd_in4(18) => cnt64_simp_out(18),
-       wd_in4(19) => cnt64_simp_out(19),
-       wd_in4(20) => cnt64_simp_out(20),
-       wd_in4(21) => cnt64_simp_out(21),
-       wd_in4(22) => cnt64_simp_out(22),
-       wd_in4(23) => cnt64_simp_out(23),
-       wd_in4(24) => cnt64_simp_out(24),
-       wd_in4(25) => cnt64_simp_out(25),
-       wd_in4(26) => cnt64_simp_out(26),
-       wd_in4(27) => cnt64_simp_out(27),
-       wd_in4(28) => cnt64_simp_out(28),
-       wd_in4(29) => cnt64_simp_out(29),
-       wd_in4(30) => cnt64_simp_out(30),
-       wd_in4(31) => cnt64_simp_out(31),
-       wd_in5(0) => cnt64_simp_out(32),
-       wd_in5(1) => cnt64_simp_out(33),
-       wd_in5(2) => cnt64_simp_out(34),
-       wd_in5(3) => cnt64_simp_out(35),
-       wd_in5(4) => cnt64_simp_out(36),
-       wd_in5(5) => cnt64_simp_out(37),
-       wd_in5(6) => cnt64_simp_out(38),
-       wd_in5(7) => cnt64_simp_out(39),
-       wd_in5(8) => cnt64_simp_out(40),
-       wd_in5(9) => cnt64_simp_out(41),
-       wd_in5(10) => cnt64_simp_out(42),
-       wd_in5(11) => cnt64_simp_out(43),
-       wd_in5(12) => cnt64_simp_out(44),
-       wd_in5(13) => cnt64_simp_out(45),
-       wd_in5(14) => cnt64_simp_out(46),
-       wd_in5(15) => cnt64_simp_out(47),
-       wd_in5(16) => cnt64_simp_out(48),
-       wd_in5(17) => cnt64_simp_out(49),
-       wd_in5(18) => cnt64_simp_out(50),
-       wd_in5(19) => cnt64_simp_out(51),
-       wd_in5(20) => cnt64_simp_out(52),
-       wd_in5(21) => cnt64_simp_out(53),
-       wd_in5(22) => cnt64_simp_out(54),
-       wd_in5(23) => cnt64_simp_out(55),
-       wd_in5(24) => cnt64_simp_out(56),
-       wd_in5(25) => cnt64_simp_out(57),
-       wd_in5(26) => cnt64_simp_out(58),
-       wd_in5(27) => cnt64_simp_out(59),
-       wd_in5(28) => cnt64_simp_out(60),
-       wd_in5(29) => cnt64_simp_out(61),
-       wd_in5(30) => cnt64_simp_out(62),
-       wd_in5(31) => cnt64_simp_out(63),
-       b_fifo_out => sig_output_counts,
-       rst_p => out_cnt_rst,
-       s_addr => mux_dir_out,
-       wd_in0 => out_ctr_1,
-       wd_in1 => out_ctr_2,
-       wd_in2 => out_ctr_3,
-       wd_in3 => out_ctr_4
+       clk => clk0,
+       dl => NET64138,
+       q => NET64172,
+       rst_p => c0sig
   );
 
 U35 : reg_8
@@ -6651,7 +6603,7 @@ U35 : reg_8
        wr_en => blk_wr_en_4(4)
   );
 
-NET59721 <= sig_cms2 or sig_cms1 or sig_norm;
+trig_sig2 <= sig_cms2 or sig_cms1 or sig_norm;
 
 U351 : s_cnt32_v2
   port map(
@@ -7192,6 +7144,58 @@ U403 : d_ff
        rst_p => c0sig
   );
 
+U404 : d_ff
+  port map(
+       clk => clk0,
+       dl => NET64172,
+       q => NET64181,
+       rst_p => c0sig
+  );
+
+U405 : d_ff
+  port map(
+       clk => clk0,
+       dl => NET64181,
+       q => burst_wr_in(3),
+       rst_p => c0sig
+  );
+
+U406 : reg_64
+  port map(
+       clk => clk0,
+       d => sig_out_cnts,
+       q => BUS64341,
+       reset_p => c0sig,
+       wr_en => c1sig
+  );
+
+U407 : reg_64
+  port map(
+       clk => clk0,
+       d => BUS64341,
+       q => BUS64350,
+       reset_p => c0sig,
+       wr_en => c1sig
+  );
+
+U408 : reg_64
+  port map(
+       clk => clk0,
+       d => BUS64350,
+       q => sig_output_counts,
+       reset_p => c0sig,
+       wr_en => c1sig
+  );
+
+U409 : reg_64
+  port map(
+       clk => clk0,
+       d => sig_event_cnts,
+       q => BUS64461,
+       reset_p => c0sig,
+       wr_en => c1sig
+  );
+
 U41 : agrgate16_1
   port map(
        out16(0) => rdb16(32),
@@ -7226,6 +7230,117 @@ U41 : agrgate16_1
        in7 => bp_ctl(1),
        in8 => fs_ctl_1,
        in9 => ld_arr_rst_v1
+  );
+
+U410 : reg_64
+  port map(
+       clk => clk0,
+       d => BUS64461,
+       q => BUS64467,
+       reset_p => c0sig,
+       wr_en => c1sig
+  );
+
+U411 : reg_64
+  port map(
+       clk => clk0,
+       d => BUS64467,
+       q => sig_event_counts,
+       reset_p => c0sig,
+       wr_en => c1sig
+  );
+
+U412 : agrgate_8_by_8
+  port map(
+       in0(0) => out_ctr_3(0),
+       in0(1) => out_ctr_3(1),
+       in0(2) => out_ctr_3(2),
+       in0(3) => out_ctr_3(3),
+       in0(4) => out_ctr_3(4),
+       in0(5) => out_ctr_3(5),
+       in0(6) => out_ctr_3(6),
+       in0(7) => out_ctr_3(7),
+       in1(0) => out_ctr_3(8),
+       in1(1) => out_ctr_3(9),
+       in1(2) => out_ctr_3(10),
+       in1(3) => out_ctr_3(11),
+       in1(4) => out_ctr_3(12),
+       in1(5) => out_ctr_3(13),
+       in1(6) => out_ctr_3(14),
+       in1(7) => out_ctr_3(15),
+       in2(0) => out_ctr_3(16),
+       in2(1) => out_ctr_3(17),
+       in2(2) => out_ctr_3(18),
+       in2(3) => out_ctr_3(19),
+       in2(4) => out_ctr_3(20),
+       in2(5) => out_ctr_3(21),
+       in2(6) => out_ctr_3(22),
+       in2(7) => out_ctr_3(23),
+       in3(0) => out_ctr_3(24),
+       in3(1) => out_ctr_3(25),
+       in3(2) => out_ctr_3(26),
+       in3(3) => out_ctr_3(27),
+       in3(4) => out_ctr_3(28),
+       in3(5) => out_ctr_3(29),
+       in3(6) => out_ctr_3(30),
+       in3(7) => out_ctr_3(31),
+       in4(0) => out_ctr_4(0),
+       in4(1) => out_ctr_4(1),
+       in4(2) => out_ctr_4(2),
+       in4(3) => out_ctr_4(3),
+       in4(4) => out_ctr_4(4),
+       in4(5) => out_ctr_4(5),
+       in4(6) => out_ctr_4(6),
+       in4(7) => out_ctr_4(7),
+       in5(0) => out_ctr_4(8),
+       in5(1) => out_ctr_4(9),
+       in5(2) => out_ctr_4(10),
+       in5(3) => out_ctr_4(11),
+       in5(4) => out_ctr_4(12),
+       in5(5) => out_ctr_4(13),
+       in5(6) => out_ctr_4(14),
+       in5(7) => out_ctr_4(15),
+       in6(0) => out_ctr_4(16),
+       in6(1) => out_ctr_4(17),
+       in6(2) => out_ctr_4(18),
+       in6(3) => out_ctr_4(19),
+       in6(4) => out_ctr_4(20),
+       in6(5) => out_ctr_4(21),
+       in6(6) => out_ctr_4(22),
+       in6(7) => out_ctr_4(23),
+       in7(0) => out_ctr_4(24),
+       in7(1) => out_ctr_4(25),
+       in7(2) => out_ctr_4(26),
+       in7(3) => out_ctr_4(27),
+       in7(4) => out_ctr_4(28),
+       in7(5) => out_ctr_4(29),
+       in7(6) => out_ctr_4(30),
+       in7(7) => out_ctr_4(31),
+       out_0 => rdd6
+  );
+
+U413 : d_ff
+  port map(
+       clk => clk0,
+       dl => NET64588,
+       q => NET64594,
+       rst_p => c0sig
+  );
+
+U414 : d_ff
+  port map(
+       clk => clk0,
+       dl => NET64594,
+       q => NET64598,
+       rst_p => c0sig
+  );
+
+U415 : d_ff
+  port map(
+       clk => clk0,
+       dl => NET64598,
+       q => burst_wr_in(0),
+       rst_p => c0sig
   );
 
 U42 : agrgate16_1
