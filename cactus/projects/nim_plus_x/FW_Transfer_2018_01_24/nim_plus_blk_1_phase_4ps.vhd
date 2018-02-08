@@ -822,7 +822,16 @@ signal Dangling_Input_Signal : STD_LOGIC;
     attribute mark_debug of b_read : signal is "true";
     attribute mark_debug of b_wr_out : signal is "true";
     attribute mark_debug of sig_output_counts : signal is "true";
-       
+    
+    --for cms masking
+    
+    
+     attribute mark_debug of sync_w_40MHz : signal is "true";
+     attribute mark_debug of sync_w_accel : signal is "true";
+     attribute mark_debug of acc_release : signal is "true";
+     attribute mark_debug of pulse_ctl : signal is "true";
+
+     attribute mark_debug of sig_norm : signal is "true";       
        
 begin
 

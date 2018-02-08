@@ -1,0 +1,1392 @@
+--------------------------------------------------------------------------------
+Release 14.7 Trace  (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -e 100 -s 2
+-n 100 -fastpaths -xml TOP_LEVEL.twx TOP_LEVEL.ncd -o TOP_LEVEL.twr
+TOP_LEVEL.pcf -ucf TOP_LEVEL.ucf -ucf par.ucf
+
+Design file:              TOP_LEVEL.ncd
+Physical constraint file: TOP_LEVEL.pcf
+Device,package,speed:     xc7a200t,ffg1156,C,-2 (PRODUCTION 1.10 2013-10-13)
+Report level:             error report, limited to 100 items per endpoint, 100 endpoints per constraint
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+================================================================================
+Timing constraint: PATH "TS_D2_TO_T2_ila_pro_0_path" TIG;
+
+ 3 paths analyzed, 3 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PATH "TS_J2_TO_D2_ila_pro_0_path" TIG;
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PATH "TS_J3_TO_D2_ila_pro_0_path" TIG;
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PATH "TS_J4_TO_D2_ila_pro_0_path" TIG;
+
+ 12 paths analyzed, 2 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_J_CLK = PERIOD TIMEGRP "J_CLK" 30 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 2761 paths analyzed, 442 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   7.316ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_U_TO_J = MAXDELAY FROM TIMEGRP "U_CLK" TO TIMEGRP "J_CLK" 
+15 ns;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 18 paths analyzed, 18 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   2.573ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_U_TO_U = MAXDELAY FROM TIMEGRP "U_CLK" TO TIMEGRP "U_CLK" 
+15 ns;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 1 path analyzed, 1 endpoint analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   0.930ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PATH "TS_J_TO_D_path" TIG;
+
+ 1469 paths analyzed, 195 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PATH "TS_D_TO_J_path" TIG;
+
+ 413 paths analyzed, 398 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_SECONDARY_CLK = PERIOD TIMEGRP "SECONDARY_CLK" 40 MHz 
+HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 111 paths analyzed, 35 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   2.982ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_GEL_RXCLK = PERIOD TIMEGRP "GEL_RXCLK" 8 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 130311 paths analyzed, 12228 endpoints analyzed, 5 failing endpoints
+ 5 timing errors detected. (0 setup errors, 5 hold errors, 0 component switching limit errors)
+ Minimum period is   7.989ns.
+--------------------------------------------------------------------------------
+
+Hold Paths: TS_GEL_RXCLK = PERIOD TIMEGRP "GEL_RXCLK" 8 ns HIGH 50%;
+--------------------------------------------------------------------------------
+
+Paths for end point U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (SLICE_X69Y62.C4), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      -2.286ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_2 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.026ns (Levels of Logic = 1)
+  Clock Path Skew:      3.277ns (8.511 - 5.234)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Slow Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_2 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X72Y75.CQ      Tcko                  0.347   rx_addr<3>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_2
+    SLICE_X69Y62.C4      net (fanout=60)       0.817   rx_addr<2>
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.138   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.026ns (0.209ns logic, 0.817ns route)
+                                                       (20.4% logic, 79.6% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (SLICE_X69Y62.C3), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      -2.204ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_1 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.108ns (Levels of Logic = 1)
+  Clock Path Skew:      3.277ns (8.511 - 5.234)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Slow Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_1 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X72Y75.BQ      Tcko                  0.347   rx_addr<3>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_1
+    SLICE_X69Y62.C3      net (fanout=108)      0.899   rx_addr<1>
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.138   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.108ns (0.209ns logic, 0.899ns route)
+                                                       (18.9% logic, 81.1% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (SLICE_X69Y62.C1), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      -2.044ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_3 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.268ns (Levels of Logic = 1)
+  Clock Path Skew:      3.277ns (8.511 - 5.234)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Slow Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_3 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X72Y75.DQ      Tcko                  0.347   rx_addr<3>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_3
+    SLICE_X69Y62.C1      net (fanout=19)       1.059   rx_addr<3>
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.138   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.268ns (0.209ns logic, 1.059ns route)
+                                                       (16.5% logic, 83.5% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (SLICE_X69Y62.C5), 38 paths
+--------------------------------------------------------------------------------
+Slack (hold path):      -2.017ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_9 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.294ns (Levels of Logic = 2)
+  Clock Path Skew:      3.276ns (8.511 - 5.235)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Slow Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_9 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X72Y73.BQ      Tcko                  0.347   rx_addr<11>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_9
+    SLICE_X69Y62.B4      net (fanout=29)       0.715   rx_addr<9>
+    SLICE_X69Y62.B       Tilo                  0.084   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.286   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.138   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.294ns (0.293ns logic, 1.001ns route)
+                                                       (22.6% logic, 77.4% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      -1.949ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_11 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.362ns (Levels of Logic = 2)
+  Clock Path Skew:      3.276ns (8.511 - 5.235)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Slow Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_11 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X72Y73.DQ      Tcko                  0.347   rx_addr<11>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_11
+    SLICE_X69Y62.B3      net (fanout=12)       0.783   rx_addr<11>
+    SLICE_X69Y62.B       Tilo                  0.084   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.286   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.138   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.362ns (0.293ns logic, 1.069ns route)
+                                                       (21.5% logic, 78.5% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      -1.762ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_10 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.549ns (Levels of Logic = 2)
+  Clock Path Skew:      3.276ns (8.511 - 5.235)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Slow Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_10 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X72Y73.CQ      Tcko                  0.347   rx_addr<11>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_10
+    SLICE_X69Y62.B2      net (fanout=28)       0.970   rx_addr<10>
+    SLICE_X69Y62.B       Tilo                  0.084   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.286   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.138   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.549ns (0.293ns logic, 1.256ns route)
+                                                       (18.9% logic, 81.1% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      -1.745ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_8 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.566ns (Levels of Logic = 2)
+  Clock Path Skew:      3.276ns (8.511 - 5.235)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Slow Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_8 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X72Y73.AQ      Tcko                  0.347   rx_addr<11>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_8
+    SLICE_X69Y62.B1      net (fanout=31)       0.987   rx_addr<8>
+    SLICE_X69Y62.B       Tilo                  0.084   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.286   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.138   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.566ns (0.293ns logic, 1.273ns route)
+                                                       (18.7% logic, 81.3% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      -0.729ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_58 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.412ns (Levels of Logic = 5)
+  Clock Path Skew:      2.106ns (5.061 - 2.955)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Fast Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_58 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X72Y81.CQ      Tcko                  0.164   XLXI_6334/ots_addr<60>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_58
+    SLICE_X71Y81.C2      net (fanout=2)        0.274   XLXI_6334/ots_addr<58>
+    SLICE_X71Y81.C       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>15
+                                                       XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>15
+    SLICE_X71Y77.A6      net (fanout=2)        0.179   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>15
+    SLICE_X71Y77.A       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/rx_wren1
+    SLICE_X71Y69.A5      net (fanout=2)        0.263   rx_wren
+    SLICE_X71Y69.A       Tilo                  0.045   RESET_MAP
+                                                       XLXI_4697
+    SLICE_X69Y62.B5      net (fanout=5)        0.260   XLXN_12617
+    SLICE_X69Y62.B       Tilo                  0.045   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.139   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.047   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.412ns (0.297ns logic, 1.115ns route)
+                                                       (21.0% logic, 79.0% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      -0.698ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_48 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.446ns (Levels of Logic = 5)
+  Clock Path Skew:      2.109ns (5.061 - 2.952)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Fast Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_48 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X71Y78.AQ      Tcko                  0.141   XLXI_6334/ots_addr<51>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_48
+    SLICE_X71Y77.C1      net (fanout=2)        0.286   XLXI_6334/ots_addr<48>
+    SLICE_X71Y77.C       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+    SLICE_X71Y77.A3      net (fanout=2)        0.224   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+    SLICE_X71Y77.A       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/rx_wren1
+    SLICE_X71Y69.A5      net (fanout=2)        0.263   rx_wren
+    SLICE_X71Y69.A       Tilo                  0.045   RESET_MAP
+                                                       XLXI_4697
+    SLICE_X69Y62.B5      net (fanout=5)        0.260   XLXN_12617
+    SLICE_X69Y62.B       Tilo                  0.045   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.139   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.047   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.446ns (0.274ns logic, 1.172ns route)
+                                                       (18.9% logic, 81.1% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      -0.688ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_46 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.456ns (Levels of Logic = 5)
+  Clock Path Skew:      2.109ns (5.061 - 2.952)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Fast Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_46 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X72Y77.CQ      Tcko                  0.164   XLXI_6334/ots_addr<43>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_46
+    SLICE_X71Y77.C2      net (fanout=2)        0.273   XLXI_6334/ots_addr<46>
+    SLICE_X71Y77.C       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+    SLICE_X71Y77.A3      net (fanout=2)        0.224   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+    SLICE_X71Y77.A       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/rx_wren1
+    SLICE_X71Y69.A5      net (fanout=2)        0.263   rx_wren
+    SLICE_X71Y69.A       Tilo                  0.045   RESET_MAP
+                                                       XLXI_4697
+    SLICE_X69Y62.B5      net (fanout=5)        0.260   XLXN_12617
+    SLICE_X69Y62.B       Tilo                  0.045   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.139   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.047   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.456ns (0.297ns logic, 1.159ns route)
+                                                       (20.4% logic, 79.6% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      -0.645ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_51 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.499ns (Levels of Logic = 5)
+  Clock Path Skew:      2.109ns (5.061 - 2.952)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Fast Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_51 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X71Y78.DQ      Tcko                  0.141   XLXI_6334/ots_addr<51>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_51
+    SLICE_X70Y80.A1      net (fanout=2)        0.299   XLXI_6334/ots_addr<51>
+    SLICE_X70Y80.A       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>12
+                                                       XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>12
+    SLICE_X71Y77.A5      net (fanout=2)        0.264   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>12
+    SLICE_X71Y77.A       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/rx_wren1
+    SLICE_X71Y69.A5      net (fanout=2)        0.263   rx_wren
+    SLICE_X71Y69.A       Tilo                  0.045   RESET_MAP
+                                                       XLXI_4697
+    SLICE_X69Y62.B5      net (fanout=5)        0.260   XLXN_12617
+    SLICE_X69Y62.B       Tilo                  0.045   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.139   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.047   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.499ns (0.274ns logic, 1.225ns route)
+                                                       (18.3% logic, 81.7% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      -0.642ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_53 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.500ns (Levels of Logic = 5)
+  Clock Path Skew:      2.107ns (5.061 - 2.954)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Fast Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_53 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X72Y80.BQ      Tcko                  0.164   XLXI_6334/ots_addr<55>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_53
+    SLICE_X70Y80.A2      net (fanout=2)        0.277   XLXI_6334/ots_addr<53>
+    SLICE_X70Y80.A       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>12
+                                                       XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>12
+    SLICE_X71Y77.A5      net (fanout=2)        0.264   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>12
+    SLICE_X71Y77.A       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/rx_wren1
+    SLICE_X71Y69.A5      net (fanout=2)        0.263   rx_wren
+    SLICE_X71Y69.A       Tilo                  0.045   RESET_MAP
+                                                       XLXI_4697
+    SLICE_X69Y62.B5      net (fanout=5)        0.260   XLXN_12617
+    SLICE_X69Y62.B       Tilo                  0.045   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.139   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.047   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.500ns (0.297ns logic, 1.203ns route)
+                                                       (19.8% logic, 80.2% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      -0.638ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_37 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.509ns (Levels of Logic = 5)
+  Clock Path Skew:      2.112ns (5.061 - 2.949)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Fast Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_37 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X71Y75.BQ      Tcko                  0.141   XLXI_6334/ots_addr<39>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_37
+    SLICE_X70Y76.B2      net (fanout=2)        0.287   XLXI_6334/ots_addr<37>
+    SLICE_X70Y76.B       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>13
+                                                       XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>13
+    SLICE_X71Y77.A2      net (fanout=2)        0.286   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>13
+    SLICE_X71Y77.A       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/rx_wren1
+    SLICE_X71Y69.A5      net (fanout=2)        0.263   rx_wren
+    SLICE_X71Y69.A       Tilo                  0.045   RESET_MAP
+                                                       XLXI_4697
+    SLICE_X69Y62.B5      net (fanout=5)        0.260   XLXN_12617
+    SLICE_X69Y62.B       Tilo                  0.045   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.139   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.047   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.509ns (0.274ns logic, 1.235ns route)
+                                                       (18.2% logic, 81.8% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      -0.635ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_39 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.512ns (Levels of Logic = 5)
+  Clock Path Skew:      2.112ns (5.061 - 2.949)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Fast Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_39 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X71Y75.DQ      Tcko                  0.141   XLXI_6334/ots_addr<39>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_39
+    SLICE_X70Y76.B1      net (fanout=2)        0.290   XLXI_6334/ots_addr<39>
+    SLICE_X70Y76.B       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>13
+                                                       XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>13
+    SLICE_X71Y77.A2      net (fanout=2)        0.286   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>13
+    SLICE_X71Y77.A       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/rx_wren1
+    SLICE_X71Y69.A5      net (fanout=2)        0.263   rx_wren
+    SLICE_X71Y69.A       Tilo                  0.045   RESET_MAP
+                                                       XLXI_4697
+    SLICE_X69Y62.B5      net (fanout=5)        0.260   XLXN_12617
+    SLICE_X69Y62.B       Tilo                  0.045   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.139   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.047   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.512ns (0.274ns logic, 1.238ns route)
+                                                       (18.1% logic, 81.9% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      -0.628ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_41 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.518ns (Levels of Logic = 5)
+  Clock Path Skew:      2.111ns (5.061 - 2.950)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Fast Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_41 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X72Y76.DQ      Tcko                  0.164   XLXI_6334/ots_addr<41>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_41
+    SLICE_X71Y76.D2      net (fanout=2)        0.273   XLXI_6334/ots_addr<41>
+    SLICE_X71Y76.D       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>14
+                                                       XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>14
+    SLICE_X71Y77.A1      net (fanout=2)        0.286   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>14
+    SLICE_X71Y77.A       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/rx_wren1
+    SLICE_X71Y69.A5      net (fanout=2)        0.263   rx_wren
+    SLICE_X71Y69.A       Tilo                  0.045   RESET_MAP
+                                                       XLXI_4697
+    SLICE_X69Y62.B5      net (fanout=5)        0.260   XLXN_12617
+    SLICE_X69Y62.B       Tilo                  0.045   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.139   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.047   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.518ns (0.297ns logic, 1.221ns route)
+                                                       (19.6% logic, 80.4% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      -0.024ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_33 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      2.123ns (Levels of Logic = 5)
+  Clock Path Skew:      2.112ns (5.061 - 2.949)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Fast Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_33 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X70Y75.BQ      Tcko                  0.164   XLXI_6334/ots_addr<33>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_33
+    SLICE_X70Y76.B4      net (fanout=2)        0.878   XLXI_6334/ots_addr<33>
+    SLICE_X70Y76.B       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>13
+                                                       XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>13
+    SLICE_X71Y77.A2      net (fanout=2)        0.286   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>13
+    SLICE_X71Y77.A       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/rx_wren1
+    SLICE_X71Y69.A5      net (fanout=2)        0.263   rx_wren
+    SLICE_X71Y69.A       Tilo                  0.045   RESET_MAP
+                                                       XLXI_4697
+    SLICE_X69Y62.B5      net (fanout=5)        0.260   XLXN_12617
+    SLICE_X69Y62.B       Tilo                  0.045   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.139   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.047   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      2.123ns (0.297ns logic, 1.826ns route)
+                                                       (14.0% logic, 86.0% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      -0.010ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_50 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      2.134ns (Levels of Logic = 5)
+  Clock Path Skew:      2.109ns (5.061 - 2.952)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Fast Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_50 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X72Y78.CQ      Tcko                  0.164   XLXI_6334/ots_addr<47>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_50
+    SLICE_X71Y77.C4      net (fanout=2)        0.951   XLXI_6334/ots_addr<50>
+    SLICE_X71Y77.C       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+    SLICE_X71Y77.A3      net (fanout=2)        0.224   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+    SLICE_X71Y77.A       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/rx_wren1
+    SLICE_X71Y69.A5      net (fanout=2)        0.263   rx_wren
+    SLICE_X71Y69.A       Tilo                  0.045   RESET_MAP
+                                                       XLXI_4697
+    SLICE_X69Y62.B5      net (fanout=5)        0.260   XLXN_12617
+    SLICE_X69Y62.B       Tilo                  0.045   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.139   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.047   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      2.134ns (0.297ns logic, 1.837ns route)
+                                                       (13.9% logic, 86.1% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      -0.008ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_36 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      2.139ns (Levels of Logic = 5)
+  Clock Path Skew:      2.112ns (5.061 - 2.949)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Fast Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_36 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X71Y75.AQ      Tcko                  0.141   XLXI_6334/ots_addr<39>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_36
+    SLICE_X70Y76.B3      net (fanout=2)        0.917   XLXI_6334/ots_addr<36>
+    SLICE_X70Y76.B       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>13
+                                                       XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>13
+    SLICE_X71Y77.A2      net (fanout=2)        0.286   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>13
+    SLICE_X71Y77.A       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/rx_wren1
+    SLICE_X71Y69.A5      net (fanout=2)        0.263   rx_wren
+    SLICE_X71Y69.A       Tilo                  0.045   RESET_MAP
+                                                       XLXI_4697
+    SLICE_X69Y62.B5      net (fanout=5)        0.260   XLXN_12617
+    SLICE_X69Y62.B       Tilo                  0.045   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.139   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.047   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      2.139ns (0.274ns logic, 1.865ns route)
+                                                       (12.8% logic, 87.2% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      -0.005ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_47 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      2.139ns (Levels of Logic = 5)
+  Clock Path Skew:      2.109ns (5.061 - 2.952)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Fast Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_47 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X72Y78.DQ      Tcko                  0.164   XLXI_6334/ots_addr<47>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_47
+    SLICE_X71Y77.C3      net (fanout=2)        0.956   XLXI_6334/ots_addr<47>
+    SLICE_X71Y77.C       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+    SLICE_X71Y77.A3      net (fanout=2)        0.224   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+    SLICE_X71Y77.A       Tilo                  0.045   XLXI_6334/ots_block_sel[31]_GND_197_o_equal_84_o<31>11
+                                                       XLXI_6334/rx_wren1
+    SLICE_X71Y69.A5      net (fanout=2)        0.263   rx_wren
+    SLICE_X71Y69.A       Tilo                  0.045   RESET_MAP
+                                                       XLXI_4697
+    SLICE_X69Y62.B5      net (fanout=5)        0.260   XLXN_12617
+    SLICE_X69Y62.B       Tilo                  0.045   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_3432/Mmux_d_tmp131
+    SLICE_X69Y62.C5      net (fanout=1)        0.139   ADC_DELAY_MAP
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.047   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      2.139ns (0.297ns logic, 1.842ns route)
+                                                       (13.9% logic, 86.1% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (SLICE_X69Y62.C2), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      -1.946ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_0 (FF)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.366ns (Levels of Logic = 1)
+  Clock Path Skew:      3.277ns (8.511 - 5.234)
+  Source Clock:         GTX_CLK_0_sig rising at 8.000ns
+  Destination Clock:    MASTER_CLK rising at 8.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Minimum Data Path at Slow Process Corner: XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_0 to U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X72Y75.AQ      Tcko                  0.347   rx_addr<3>
+                                                       XLXI_6334/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_0
+    SLICE_X69Y62.C2      net (fanout=69)       1.157   rx_addr<0>
+    SLICE_X69Y62.CLK     Tah         (-Th)     0.138   U_ila_pro_0/U0/iTRIG_IN<29>
+                                                       XLXI_5561/Mmux_d_tmp51
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[29].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.366ns (0.209ns logic, 1.157ns route)
+                                                       (15.3% logic, 84.7% route)
+
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_15849 = PERIOD TIMEGRP "XLXN_15849" 40 MHz HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is  10.000ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18355 = PERIOD TIMEGRP "XLXN_18355" 160 MHz HIGH 
+50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is   1.592ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18372 = PERIOD TIMEGRP "XLXN_18372" 160 MHz HIGH 
+50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is   1.592ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_digsclk1_to_gtxclk = MAXDELAY FROM TIMEGRP 
+"psi_dig_sdata_clk1" TO TIMEGRP         "GEL_RXCLK" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 444 paths analyzed, 208 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   4.100ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_gtxclk_to_digsclk1 = MAXDELAY FROM TIMEGRP "GEL_RXCLK" TO 
+TIMEGRP         "psi_dig_sdata_clk1" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 242 paths analyzed, 230 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   5.855ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_digsclk2_to_gtxclk = MAXDELAY FROM TIMEGRP 
+"psi_dig_sdata_clk2" TO TIMEGRP         "GEL_RXCLK" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 444 paths analyzed, 216 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   4.268ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_gtxclk_to_digsclk2 = MAXDELAY FROM TIMEGRP "GEL_RXCLK" TO 
+TIMEGRP         "psi_dig_sdata_clk2" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 242 paths analyzed, 230 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   5.687ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXI_6330_clkout3 = PERIOD TIMEGRP "XLXI_6330_clkout3" 
+TS_XLXN_15849 * 4         HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is   1.592ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXI_6330_clkout1 = PERIOD TIMEGRP "XLXI_6330_clkout1" 
+TS_XLXN_15849 PHASE         6.25 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 4160 paths analyzed, 594 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   7.857ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXI_6330_clkout0 = PERIOD TIMEGRP "XLXI_6330_clkout0" 
+TS_XLXN_15849 HIGH         50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 758 paths analyzed, 339 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   4.545ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXI_6330_clkout4 = PERIOD TIMEGRP "XLXI_6330_clkout4" 
+TS_XLXN_15849 * 4         PHASE 0.78125 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 4047 paths analyzed, 882 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   5.269ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXI_6330_clkout2 = PERIOD TIMEGRP "XLXI_6330_clkout2" 
+TS_XLXN_15849 PHASE         18.75 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 1023 paths analyzed, 408 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is  13.380ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TIMEGRP "TG_RX" OFFSET = IN 0 ns VALID 4 ns BEFORE COMP 
+"GEL_RXCLK" "RISING";
+For more information, see Offset In Analysis in the Timing Closure User Guide (UG612).
+
+ 18 paths analyzed, 18 endpoints analyzed, 5 failing endpoints
+ 5 timing errors detected. (5 setup errors, 0 hold errors)
+ Minimum allowable offset is   0.580ns.
+--------------------------------------------------------------------------------
+
+Paths for end point U_ila_pro_0/U0/I_TQ0.G_TW[50].U_TQ (SLICE_X4Y123.CX), 1 path
+--------------------------------------------------------------------------------
+Slack (setup path):     -0.580ns (requirement - (data path - clock path - clock arrival + uncertainty))
+  Source:               PHY_RXCTL_RXDV (PAD)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[50].U_TQ (FF)
+  Destination Clock:    MASTER_CLK rising at 0.000ns
+  Requirement:          0.000ns
+  Data Path Delay:      1.471ns (Levels of Logic = 1)
+  Clock Path Delay:     0.916ns (Levels of Logic = 1)
+  Clock Uncertainty:    0.025ns
+
+  Clock Uncertainty:          0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.050ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Fast Process Corner: PHY_RXCTL_RXDV to U_ila_pro_0/U0/I_TQ0.G_TW[50].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    V31.I                Tiopi                 0.775   PHY_RXCTL_RXDV
+                                                       PHY_RXCTL_RXDV
+                                                       XLXI_4178
+    SLICE_X4Y123.CX      net (fanout=2)        0.682   GMII_RX_DV_0_sig
+    SLICE_X4Y123.CLK     Tdick                 0.014   U_ila_pro_0/U0/iTRIG_IN<50>
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[50].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.471ns (0.789ns logic, 0.682ns route)
+                                                       (53.6% logic, 46.4% route)
+
+  Minimum Clock Path at Fast Process Corner: GEL_RXCLK to U_ila_pro_0/U0/I_TQ0.G_TW[50].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    Y30.I                Tiopi                 0.446   GEL_RXCLK
+                                                       GEL_RXCLK
+                                                       XLXI_4253
+    SLICE_X4Y123.CLK     net (fanout=124)      0.470   MASTER_CLK
+    -------------------------------------------------  ---------------------------
+    Total                                      0.916ns (0.446ns logic, 0.470ns route)
+                                                       (48.7% logic, 51.3% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point U_ila_pro_0/U0/I_TQ0.G_TW[43].U_TQ (SLICE_X10Y125.DX), 1 path
+--------------------------------------------------------------------------------
+Slack (setup path):     -0.446ns (requirement - (data path - clock path - clock arrival + uncertainty))
+  Source:               PHY_RXD1 (PAD)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[43].U_TQ (FF)
+  Destination Clock:    MASTER_CLK rising at 0.000ns
+  Requirement:          0.000ns
+  Data Path Delay:      1.568ns (Levels of Logic = 1)
+  Clock Path Delay:     1.147ns (Levels of Logic = 1)
+  Clock Uncertainty:    0.025ns
+
+  Clock Uncertainty:          0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.050ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Fast Process Corner: PHY_RXD1 to U_ila_pro_0/U0/I_TQ0.G_TW[43].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    W25.I                Tiopi                 0.734   PHY_RXD1
+                                                       PHY_RXD1
+                                                       XLXI_4220
+    SLICE_X10Y125.DX     net (fanout=2)        0.796   GMII_RXD_0_sig<1>
+    SLICE_X10Y125.CLK    Tdick                 0.038   U_ila_pro_0/U0/iTRIG_IN<43>
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[43].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.568ns (0.772ns logic, 0.796ns route)
+                                                       (49.2% logic, 50.8% route)
+
+  Minimum Clock Path at Fast Process Corner: GEL_RXCLK to U_ila_pro_0/U0/I_TQ0.G_TW[43].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    Y30.I                Tiopi                 0.446   GEL_RXCLK
+                                                       GEL_RXCLK
+                                                       XLXI_4253
+    SLICE_X10Y125.CLK    net (fanout=124)      0.701   MASTER_CLK
+    -------------------------------------------------  ---------------------------
+    Total                                      1.147ns (0.446ns logic, 0.701ns route)
+                                                       (38.9% logic, 61.1% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point U_ila_pro_0/U0/I_TQ0.G_TW[46].U_TQ (SLICE_X11Y122.CX), 1 path
+--------------------------------------------------------------------------------
+Slack (setup path):     -0.404ns (requirement - (data path - clock path - clock arrival + uncertainty))
+  Source:               PHY_RXD4 (PAD)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[46].U_TQ (FF)
+  Destination Clock:    MASTER_CLK rising at 0.000ns
+  Requirement:          0.000ns
+  Data Path Delay:      1.630ns (Levels of Logic = 1)
+  Clock Path Delay:     1.251ns (Levels of Logic = 1)
+  Clock Uncertainty:    0.025ns
+
+  Clock Uncertainty:          0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.050ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Fast Process Corner: PHY_RXD4 to U_ila_pro_0/U0/I_TQ0.G_TW[46].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    Y25.I                Tiopi                 0.751   PHY_RXD4
+                                                       PHY_RXD4
+                                                       XLXI_4217
+    SLICE_X11Y122.CX     net (fanout=2)        0.865   GMII_RXD_0_sig<4>
+    SLICE_X11Y122.CLK    Tdick                 0.014   U_ila_pro_0/U0/iTRIG_IN<46>
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[46].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.630ns (0.765ns logic, 0.865ns route)
+                                                       (46.9% logic, 53.1% route)
+
+  Minimum Clock Path at Fast Process Corner: GEL_RXCLK to U_ila_pro_0/U0/I_TQ0.G_TW[46].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    Y30.I                Tiopi                 0.446   GEL_RXCLK
+                                                       GEL_RXCLK
+                                                       XLXI_4253
+    SLICE_X11Y122.CLK    net (fanout=124)      0.805   MASTER_CLK
+    -------------------------------------------------  ---------------------------
+    Total                                      1.251ns (0.446ns logic, 0.805ns route)
+                                                       (35.7% logic, 64.3% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point U_ila_pro_0/U0/I_TQ0.G_TW[45].U_TQ (SLICE_X14Y125.BX), 1 path
+--------------------------------------------------------------------------------
+Slack (setup path):     -0.381ns (requirement - (data path - clock path - clock arrival + uncertainty))
+  Source:               PHY_RXD3 (PAD)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[45].U_TQ (FF)
+  Destination Clock:    MASTER_CLK rising at 0.000ns
+  Requirement:          0.000ns
+  Data Path Delay:      1.596ns (Levels of Logic = 1)
+  Clock Path Delay:     1.240ns (Levels of Logic = 1)
+  Clock Uncertainty:    0.025ns
+
+  Clock Uncertainty:          0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.050ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Fast Process Corner: PHY_RXD3 to U_ila_pro_0/U0/I_TQ0.G_TW[45].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    Y28.I                Tiopi                 0.755   PHY_RXD3
+                                                       PHY_RXD3
+                                                       XLXI_4218
+    SLICE_X14Y125.BX     net (fanout=2)        0.790   GMII_RXD_0_sig<3>
+    SLICE_X14Y125.CLK    Tdick                 0.051   U_ila_pro_0/U0/iTRIG_IN<45>
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[45].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.596ns (0.806ns logic, 0.790ns route)
+                                                       (50.5% logic, 49.5% route)
+
+  Minimum Clock Path at Fast Process Corner: GEL_RXCLK to U_ila_pro_0/U0/I_TQ0.G_TW[45].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    Y30.I                Tiopi                 0.446   GEL_RXCLK
+                                                       GEL_RXCLK
+                                                       XLXI_4253
+    SLICE_X14Y125.CLK    net (fanout=124)      0.794   MASTER_CLK
+    -------------------------------------------------  ---------------------------
+    Total                                      1.240ns (0.446ns logic, 0.794ns route)
+                                                       (36.0% logic, 64.0% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point U_ila_pro_0/U0/I_TQ0.G_TW[42].U_TQ (SLICE_X14Y132.CX), 1 path
+--------------------------------------------------------------------------------
+Slack (setup path):     -0.207ns (requirement - (data path - clock path - clock arrival + uncertainty))
+  Source:               PHY_RXD0 (PAD)
+  Destination:          U_ila_pro_0/U0/I_TQ0.G_TW[42].U_TQ (FF)
+  Destination Clock:    MASTER_CLK rising at 0.000ns
+  Requirement:          0.000ns
+  Data Path Delay:      1.637ns (Levels of Logic = 1)
+  Clock Path Delay:     1.455ns (Levels of Logic = 1)
+  Clock Uncertainty:    0.025ns
+
+  Clock Uncertainty:          0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.050ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Fast Process Corner: PHY_RXD0 to U_ila_pro_0/U0/I_TQ0.G_TW[42].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    V24.I                Tiopi                 0.731   PHY_RXD0
+                                                       PHY_RXD0
+                                                       XLXI_4221
+    SLICE_X14Y132.CX     net (fanout=2)        0.868   GMII_RXD_0_sig<0>
+    SLICE_X14Y132.CLK    Tdick                 0.038   U_ila_pro_0/U0/iTRIG_IN<42>
+                                                       U_ila_pro_0/U0/I_TQ0.G_TW[42].U_TQ
+    -------------------------------------------------  ---------------------------
+    Total                                      1.637ns (0.769ns logic, 0.868ns route)
+                                                       (47.0% logic, 53.0% route)
+
+  Minimum Clock Path at Fast Process Corner: GEL_RXCLK to U_ila_pro_0/U0/I_TQ0.G_TW[42].U_TQ
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    Y30.I                Tiopi                 0.446   GEL_RXCLK
+                                                       GEL_RXCLK
+                                                       XLXI_4253
+    SLICE_X14Y132.CLK    net (fanout=124)      1.009   MASTER_CLK
+    -------------------------------------------------  ---------------------------
+    Total                                      1.455ns (0.446ns logic, 1.009ns route)
+                                                       (30.7% logic, 69.3% route)
+
+--------------------------------------------------------------------------------
+
+
+Derived Constraint Report
+Derived Constraints for TS_XLXN_15849
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|                               |   Period    |       Actual Period       |      Timing Errors        |      Paths Analyzed       |
+|           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
+|                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|TS_XLXN_15849                  |     25.000ns|     10.000ns|     21.076ns|            0|            0|            0|         9988|
+| TS_XLXI_6330_clkout3          |      6.250ns|      1.592ns|          N/A|            0|            0|            0|            0|
+| TS_XLXI_6330_clkout1          |     25.000ns|      7.857ns|          N/A|            0|            0|         4160|            0|
+| TS_XLXI_6330_clkout0          |     25.000ns|      4.545ns|          N/A|            0|            0|          758|            0|
+| TS_XLXI_6330_clkout4          |      6.250ns|      5.269ns|          N/A|            0|            0|         4047|            0|
+| TS_XLXI_6330_clkout2          |     25.000ns|     13.380ns|          N/A|            0|            0|         1023|            0|
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+2 constraints not met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Setup/Hold to clock GEL_RXCLK
+--------------+------------+------------+------------+------------+------------------+--------+
+              |Max Setup to|  Process   |Max Hold to |  Process   |                  | Clock  |
+Source        | clk (edge) |   Corner   | clk (edge) |   Corner   |Internal Clock(s) | Phase  |
+--------------+------------+------------+------------+------------+------------------+--------+
+PHY_RXCTL_RXDV|   -0.805(R)|      FAST  |    3.819(R)|      SLOW  |GTX_CLK_0_sig     |   0.000|
+              |    0.580(R)|      FAST  |    0.383(R)|      FAST  |MASTER_CLK        |   0.000|
+PHY_RXD0      |   -0.629(R)|      FAST  |    3.384(R)|      SLOW  |GTX_CLK_0_sig     |   0.000|
+              |    0.207(R)|      FAST  |    0.937(R)|      SLOW  |MASTER_CLK        |   0.000|
+PHY_RXD1      |   -0.614(R)|      FAST  |    3.500(R)|      SLOW  |GTX_CLK_0_sig     |   0.000|
+              |    0.446(R)|      FAST  |    0.562(R)|      FAST  |MASTER_CLK        |   0.000|
+PHY_RXD2      |   -0.551(R)|      FAST  |    3.406(R)|      SLOW  |GTX_CLK_0_sig     |   0.000|
+              |   -0.494(R)|      FAST  |    2.311(R)|      SLOW  |MASTER_CLK        |   0.000|
+PHY_RXD3      |   -0.566(R)|      FAST  |    3.479(R)|      SLOW  |GTX_CLK_0_sig     |   0.000|
+              |    0.381(R)|      FAST  |    0.643(R)|      FAST  |MASTER_CLK        |   0.000|
+PHY_RXD4      |   -0.489(R)|      FAST  |    3.255(R)|      SLOW  |GTX_CLK_0_sig     |   0.000|
+              |    0.404(R)|      FAST  |    0.619(R)|      FAST  |MASTER_CLK        |   0.000|
+PHY_RXD5      |   -0.550(R)|      FAST  |    3.463(R)|      SLOW  |GTX_CLK_0_sig     |   0.000|
+              |   -0.342(R)|      FAST  |    1.961(R)|      SLOW  |MASTER_CLK        |   0.000|
+PHY_RXD6      |   -0.540(R)|      FAST  |    3.440(R)|      SLOW  |GTX_CLK_0_sig     |   0.000|
+              |   -0.373(R)|      FAST  |    2.033(R)|      SLOW  |MASTER_CLK        |   0.000|
+PHY_RXD7      |   -0.537(R)|      FAST  |    3.382(R)|      SLOW  |GTX_CLK_0_sig     |   0.000|
+              |   -0.472(R)|      FAST  |    2.292(R)|      SLOW  |MASTER_CLK        |   0.000|
+--------------+------------+------------+------------+------------+------------------+--------+
+
+Clock to Setup on destination clock BUSDHS_02DP_04S
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+BUSDHS_02DP_04S|    7.857|         |    1.771|    1.064|
+GEL_RXCLK      |    7.857|         |    1.771|    1.064|
+---------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock GEL_RXCLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+BUSDHS_02DP_04S|    7.857|         |    1.771|    1.064|
+GEL_RXCLK      |    7.989|         |    1.771|    1.064|
+---------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock SECONDARY_CLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+SECONDARY_CLK  |    2.982|         |         |         |
+---------------+---------+---------+---------+---------+
+
+TIMEGRP "TG_RX" OFFSET = IN 0 ns VALID 4 ns BEFORE COMP "GEL_RXCLK" "RISING";
+Worst Case Data Window 4.399; Ideal Clock Offset To Actual Clock 0.380; 
+------------------+------------+------------+------------+------------+---------+---------+-------------+
+                  |            |  Process   |            |  Process   |  Setup  |  Hold   |Source Offset|
+Source            |   Setup    |   Corner   |    Hold    |   Corner   |  Slack  |  Slack  |  To Center  |
+------------------+------------+------------+------------+------------+---------+---------+-------------+
+PHY_RXCTL_RXDV    |   -0.805(R)|      FAST  |    3.819(R)|      SLOW  |    0.805|    0.181|        0.312|
+                  |    0.580(R)|      FAST  |    0.383(R)|      FAST  |   -0.580|    3.617|       -2.099|
+PHY_RXD0          |   -0.629(R)|      FAST  |    3.384(R)|      SLOW  |    0.629|    0.616|        0.007|
+                  |    0.207(R)|      FAST  |    0.937(R)|      SLOW  |   -0.207|    3.063|       -1.635|
+PHY_RXD1          |   -0.614(R)|      FAST  |    3.500(R)|      SLOW  |    0.614|    0.500|        0.057|
+                  |    0.446(R)|      FAST  |    0.562(R)|      FAST  |   -0.446|    3.438|       -1.942|
+PHY_RXD2          |   -0.551(R)|      FAST  |    3.406(R)|      SLOW  |    0.551|    0.594|       -0.021|
+                  |   -0.494(R)|      FAST  |    2.311(R)|      SLOW  |    0.494|    1.689|       -0.598|
+PHY_RXD3          |   -0.566(R)|      FAST  |    3.479(R)|      SLOW  |    0.566|    0.521|        0.022|
+                  |    0.381(R)|      FAST  |    0.643(R)|      FAST  |   -0.381|    3.357|       -1.869|
+PHY_RXD4          |   -0.489(R)|      FAST  |    3.255(R)|      SLOW  |    0.489|    0.745|       -0.128|
+                  |    0.404(R)|      FAST  |    0.619(R)|      FAST  |   -0.404|    3.381|       -1.893|
+PHY_RXD5          |   -0.550(R)|      FAST  |    3.463(R)|      SLOW  |    0.550|    0.537|        0.007|
+                  |   -0.342(R)|      FAST  |    1.961(R)|      SLOW  |    0.342|    2.039|       -0.849|
+PHY_RXD6          |   -0.540(R)|      FAST  |    3.440(R)|      SLOW  |    0.540|    0.560|       -0.010|
+                  |   -0.373(R)|      FAST  |    2.033(R)|      SLOW  |    0.373|    1.967|       -0.797|
+PHY_RXD7          |   -0.537(R)|      FAST  |    3.382(R)|      SLOW  |    0.537|    0.618|       -0.040|
+                  |   -0.472(R)|      FAST  |    2.292(R)|      SLOW  |    0.472|    1.708|       -0.618|
+------------------+------------+------------+------------+------------+---------+---------+-------------+
+Worst Case Summary|       0.580|         -  |       3.819|         -  |   -0.580|    0.181|             |
+------------------+------------+------------+------------+------------+---------+---------+-------------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 10  Score: 12515  (Setup/Max: 2018, Hold: 10497)
+
+Constraints cover 146477 paths, 0 nets, and 23877 connections
+
+Design statistics:
+   Minimum period:  13.380ns   (Maximum frequency:  74.738MHz)
+   Maximum path delay from/to any node:   5.855ns
+   Minimum input required time before clock:   0.580ns
+
+
+Analysis completed Wed Jan 17 16:07:46 2018 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 850 MB
+
+
+

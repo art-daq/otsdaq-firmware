@@ -1,0 +1,7 @@
+xst -intstyle ise -ifn "D:/Projects/Colorado/digPSI/DIG_Colorado_captan_plus_Copy4/CMS_TB_MASTER_/GEL_CAPTAN/TOP_LEVEL.xst" -ofn "D:/Projects/Colorado/digPSI/DIG_Colorado_captan_plus_Copy4/CMS_TB_MASTER_/GEL_CAPTAN/TOP_LEVEL.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc TOP_LEVEL.ucf -uc par.ucf -p xc7a200t-ffg1156-2 TOP_LEVEL_cs.ngc TOP_LEVEL.ngd  
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc TOP_LEVEL.ucf -uc par.ucf -p xc7a200t-ffg1156-2 TOP_LEVEL_cs.ngc TOP_LEVEL.ngd  
+map -intstyle ise -p xc7a200t-ffg1156-2 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -detail -ir off -pr off -lc off -power off -o TOP_LEVEL_map.ncd TOP_LEVEL.ngd TOP_LEVEL.pcf 
+par -w -intstyle ise -ol high -xe n -mt off TOP_LEVEL_map.ncd TOP_LEVEL.ncd TOP_LEVEL.pcf 
+trce -intstyle ise -e 100 -s 2 -n 100 -fastpaths -xml TOP_LEVEL.twx TOP_LEVEL.ncd -o TOP_LEVEL.twr TOP_LEVEL.pcf -ucf TOP_LEVEL.ucf -ucf par.ucf 
+bitgen -intstyle ise -f TOP_LEVEL.ut TOP_LEVEL.ncd 
