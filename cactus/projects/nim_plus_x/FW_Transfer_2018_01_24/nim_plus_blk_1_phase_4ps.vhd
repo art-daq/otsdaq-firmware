@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Tue Feb 13 11:39:07 2018
+-- Generated   : Wed Feb 14 14:33:16 2018
 -- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -45,7 +45,6 @@ entity nim_plus_blk_1_phase_4ps is
        rx_data : in STD_LOGIC_VECTOR(63 downto 0);
        x : in STD_LOGIC_VECTOR(3 downto 0);
        b_wr_out : out STD_LOGIC;
-       ck_mx_out : out STD_LOGIC;
        clk_39_out : out STD_LOGIC;
        dac_out : out STD_LOGIC;
        muxout_1 : out STD_LOGIC;
@@ -55,6 +54,7 @@ entity nim_plus_blk_1_phase_4ps is
        sclk : out STD_LOGIC;
        sync : out STD_LOGIC;
        b_read : out STD_LOGIC_VECTOR(63 downto 0);
+       ck_mx_out : out STD_LOGIC_VECTOR(7 downto 0);
        dac_clk_mgr_ctl : out STD_LOGIC_VECTOR(7 downto 0);
        read_data_out : out STD_LOGIC_VECTOR(63 downto 0);
        wiz_0_clk_mgr_ctl : out STD_LOGIC_VECTOR(7 downto 0);
@@ -869,6 +869,8 @@ begin
   --  debug_rx_data <= rx_data(7 downto 0);
     
     debug_fast_cnt <= cnt64_simp_out(15 downto 0);
+
+----  Component instantiations  ----
 
 U1 : reg_64
   port map(
@@ -2074,8 +2076,6 @@ U211 : reg_8
        reset_p => reset_out,
        wr_en => blk_wr_en(3)
   );
-
-ck_mx_out <= ext_clk_ctl(0);
 
 U213 : pol_sel
   port map(
@@ -7606,6 +7606,22 @@ msig3(1) <= sg_pout;
 msig3(2) <= clk_ext;
 
 sigmux(2) <= bmy(1);
+
+ck_mx_out(0) <= ext_clk_ctl(0);
+
+ck_mx_out(1) <= ext_clk_ctl(1);
+
+ck_mx_out(2) <= ext_clk_ctl(2);
+
+ck_mx_out(3) <= ext_clk_ctl(3);
+
+ck_mx_out(4) <= ext_clk_ctl(4);
+
+ck_mx_out(5) <= ext_clk_ctl(5);
+
+ck_mx_out(6) <= ext_clk_ctl(6);
+
+ck_mx_out(7) <= ext_clk_ctl(7);
 
 sigmux(3) <= bmy(2);
 

@@ -3,6 +3,7 @@
 # 
 
 debug::add_scope template.lib 1
+set_msg_config -id {Common-41} -limit 4294967295
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
 create_project -in_memory -part xc7a200tffg1156-2
@@ -19,6 +20,8 @@ add_files -quiet /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/
 set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.runs/clk_wiz_0_synth_1/clk_wiz_0.dcp]
 add_files -quiet /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp
 set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp]
+add_files -quiet /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp
+set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp]
 read_verilog -library xil_defaultlib {
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/ethImports/ethernet_controller/crc_gen.v
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/ethImports/ethernet_controller/crc_chk.v
@@ -105,6 +108,8 @@ read_vhdl -library xil_defaultlib {
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/bfifomux_w_ctlr.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/clkd_b_fifo_mux.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/cntrs_2_b_fifo.vhd
+  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/load_long_64_v_ps.vhd
+  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/long_pulse.vhd
 }
 read_xdc /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_10.xdc
 set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_10.xdc]

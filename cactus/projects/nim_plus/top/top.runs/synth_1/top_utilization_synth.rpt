@@ -1,7 +1,7 @@
 Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
-| Date         : Thu Feb  1 16:00:41 2018
+| Date         : Wed Feb 14 14:59:07 2018
 | Host         : rulinux04.dhcp.fnal.gov running 64-bit Scientific Linux release 7.2 (Nitrogen)
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -30,15 +30,15 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Fixed | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                | 9048 |     0 |    134600 |  6.72 |
-|   LUT as Logic             | 9032 |     0 |    134600 |  6.71 |
+| Slice LUTs*                | 9325 |     0 |    134600 |  6.93 |
+|   LUT as Logic             | 9309 |     0 |    134600 |  6.92 |
 |   LUT as Memory            |   16 |     0 |     46200 |  0.03 |
 |     LUT as Distributed RAM |    0 |     0 |           |       |
 |     LUT as Shift Register  |   16 |     0 |           |       |
-| Slice Registers            | 9724 |     0 |    269200 |  3.61 |
-|   Register as Flip Flop    | 9724 |     0 |    269200 |  3.61 |
+| Slice Registers            | 9940 |     0 |    269200 |  3.69 |
+|   Register as Flip Flop    | 9940 |     0 |    269200 |  3.69 |
 |   Register as Latch        |    0 |     0 |    269200 |  0.00 |
-| F7 Muxes                   |  644 |     0 |     67300 |  0.96 |
+| F7 Muxes                   |  630 |     0 |     67300 |  0.94 |
 | F8 Muxes                   |  129 |     0 |     33650 |  0.38 |
 +----------------------------+------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
@@ -58,8 +58,8 @@ Table of Contents
 | 0     |          Yes |           - |            - |
 | 64    |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
-| 31    |          Yes |         Set |            - |
-| 9629  |          Yes |       Reset |            - |
+| 40    |          Yes |         Set |            - |
+| 9836  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -118,7 +118,7 @@ Table of Contents
 +------------+------+-------+-----------+-------+
 |  Site Type | Used | Fixed | Available | Util% |
 +------------+------+-------+-----------+-------+
-| BUFGCTRL   |    5 |     0 |        32 | 15.63 |
+| BUFGCTRL   |    6 |     0 |        32 | 18.75 |
 | BUFIO      |    0 |     0 |        40 |  0.00 |
 | MMCME2_ADV |    0 |     0 |        10 |  0.00 |
 | PLLE2_ADV  |    0 |     0 |        10 |  0.00 |
@@ -152,18 +152,18 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     | 9629 |        Flop & Latch |
-| LUT6     | 5713 |                 LUT |
-| LUT5     | 1093 |                 LUT |
-| LUT4     | 1004 |                 LUT |
-| LUT3     |  732 |                 LUT |
-| MUXF7    |  644 |               MuxFx |
-| LUT1     |  608 |                 LUT |
-| LUT2     |  362 |                 LUT |
-| CARRY4   |  343 |          CarryLogic |
+| FDRE     | 9836 |        Flop & Latch |
+| LUT6     | 5812 |                 LUT |
+| LUT4     | 1394 |                 LUT |
+| LUT5     | 1137 |                 LUT |
+| LUT3     |  765 |                 LUT |
+| MUXF7    |  630 |               MuxFx |
+| LUT1     |  574 |                 LUT |
+| CARRY4   |  391 |          CarryLogic |
+| LUT2     |  375 |                 LUT |
 | MUXF8    |  129 |               MuxFx |
 | FDPE     |   64 |        Flop & Latch |
-| FDSE     |   31 |        Flop & Latch |
+| FDSE     |   40 |        Flop & Latch |
 | OBUFDS   |   16 |                  IO |
 | OBUF     |   15 |                  IO |
 | IBUF     |   11 |                  IO |
@@ -172,7 +172,7 @@ Table of Contents
 | INV      |    8 |                 LUT |
 | FIFO36E1 |    8 |        Block Memory |
 | IBUFDS   |    7 |                  IO |
-| BUFG     |    5 |               Clock |
+| BUFG     |    6 |               Clock |
 | FIFO18E1 |    3 |        Block Memory |
 +----------+------+---------------------+
 
@@ -180,13 +180,14 @@ Table of Contents
 8. Black Boxes
 --------------
 
-+-----------+------+
-|  Ref Name | Used |
-+-----------+------+
-| clk_wiz_1 |    1 |
-| clk_wiz_0 |    1 |
-| NIM_CLKS  |    1 |
-+-----------+------+
++--------------------+------+
+|      Ref Name      | Used |
++--------------------+------+
+| xilinx_64b_counter |    3 |
+| clk_wiz_1          |    1 |
+| clk_wiz_0          |    1 |
+| NIM_CLKS           |    1 |
++--------------------+------+
 
 
 9. Instantiated Netlists

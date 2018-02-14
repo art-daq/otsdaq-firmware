@@ -2,6 +2,13 @@
 # Created Feb 2016 by rrivera at fnal dot gov
 # Edited Jan 2018 by rrivera at fnal dot gov
 
+#ignore timing from clk 40 things to chipscope
+#set_max_delay 32.00 -from [get_clocks CLK_bmx_40] -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ u_ila*/*)}]
+#set_max_delay 32.00 -from [get_clocks CLK_bmx_40] -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ u_ila*/*/*)}]
+
+#give lots of time for static register max values 
+#set_max_delay 32.00 -from [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/*/*/phi_max_reg*)}]
+
 #give lots of time for static read (should have address setup for 64)
 #set_max_delay 32.00 -through [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U311/*)}]
 
@@ -16,6 +23,7 @@ set_max_delay 32.00 -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true
 # In xdc, all clocks are related by default. This differs from ucf, where clocks are unrelated unless specified otherwise. As a result, you may now see cross-clock paths that were previously unconstrained in ucf. Commented out xdc false path constraints have been generated and can be uncommented, should you wish to remove these new paths. These commands are located after the last clock definition
 
 create_clock -name PHY_RXCLK -period 8.000 [get_ports PHY_RXCLK]
+
 
 #create_clock -name CLK_40e -period 25.000 [get_pins CLK_40e_bufg/O]
 #create_clock -name CLK_40i -period 25.000 [get_pins CLK_40i_bufg/O]

@@ -164,6 +164,12 @@ architecture BEHAVIORAL of top is
     signal fs_gen_lock              : std_logic;
     signal ei40_gen_lock : std_logic;
     
+    
+        signal fs_gen_lock_latch, ei40_gen_lock_latch, ot_ps_lock_latch, nim_clk_lock_latch : std_logic_vector(1 downto 0) := (others => '0');
+        signal fs_gen_lock_loss, ei40_gen_lock_loss, ot_ps_lock_loss, nim_clk_lock_loss : std_logic := '0';
+        
+            signal selected_ext_clkg : std_logic;
+    
     signal s_bkpressa : std_logic;
     signal s_bkpressb : std_logic;
     
@@ -195,7 +201,7 @@ architecture BEHAVIORAL of top is
     signal bmx_320 : std_logic;
     signal bmx_40 : std_logic;
     
-    signal s_ck_mx_out : std_logic;
+    signal s_ck_mx_out : std_logic_vector(7 downto 0);
  
 
     signal read_out_data            : std_logic_vector (63 downto 0);     
@@ -204,6 +210,7 @@ architecture BEHAVIORAL of top is
     attribute mark_debug : string;
     attribute mark_debug of bmx_320 : signal is "true";
     attribute mark_debug of MASTER_CLK : signal is "true";
+    attribute mark_debug of selected_ext_clkg : signal is "true";
     attribute mark_debug of bmx_40 : signal is "true";
 --    --attribute mark_debug of mx_40 : signal is "true";
     attribute mark_debug of bs_clk40i : signal is "true";
@@ -211,6 +218,13 @@ architecture BEHAVIORAL of top is
     attribute mark_debug of fs_gen_lock : signal is "true";
     attribute mark_debug of ei40_gen_lock : signal is "true";
     attribute mark_debug of nim_clk_lock : signal is "true";
+    
+    
+            attribute mark_debug of fs_gen_lock_loss : signal is "true";
+            attribute mark_debug of nim_clk_lock_loss : signal is "true";
+           -- attribute mark_debug of ot_ps_lock_loss : signal is "true";
+            attribute mark_debug of ei40_gen_lock_loss : signal is "true";
+            
 --    attribute mark_debug of reset : signal is "true";
     attribute mark_debug of s_clk40e : signal is "true";
 --    attribute mark_debug of s_ck_mx_out : signal is "true";
@@ -445,6 +459,49 @@ begin
                  --     ot_ps_ctrl <= rx_data(1 downto 0);            
                   end if;
               end if;
+              
+            fs_gen_lock_latch(0) <= fs_gen_lock;
+            fs_gen_lock_latch(1) <= fs_gen_lock_latch(0);
+            
+            -- latch losing lock
+            if(extra_clk_reset_OR(0) = '1') then
+              fs_gen_lock_loss <= '0';
+            elsif(fs_gen_lock_latch(1) = '1' and fs_gen_lock_latch(0) = '0') then --lost lock since reset
+              fs_gen_lock_loss <= '1';                
+            end if;    
+            
+            
+            ei40_gen_lock_latch(0) <= ei40_gen_lock;
+            ei40_gen_lock_latch(1) <= ei40_gen_lock_latch(0);
+            
+            -- latch losing lock
+            if(extra_clk_reset_OR(1) = '1') then
+              ei40_gen_lock_loss <= '0';
+            elsif(ei40_gen_lock_latch(1) = '1' and ei40_gen_lock_latch(0) = '0') then --lost lock since reset
+              ei40_gen_lock_loss <= '1';                
+            end if;    
+            
+            
+            nim_clk_lock_latch(0) <= nim_clk_lock;
+            nim_clk_lock_latch(1) <= nim_clk_lock_latch(0);
+            
+            -- latch losing lock
+            if(extra_clk_reset_OR(2) = '1') then
+              nim_clk_lock_loss <= '0';
+            elsif(nim_clk_lock_latch(1) = '1' and nim_clk_lock_latch(0) = '0') then --lost lock since reset
+              nim_clk_lock_loss <= '1';                
+            end if; 
+            
+            
+--            ot_ps_lock_latch(0) <= ot_ps_lock;
+--            ot_ps_lock_latch(1) <= ot_ps_lock_latch(0);
+            
+--            -- latch losing lock
+--            if(extra_clk_reset_OR(3) = '1') then
+--              ot_ps_lock_loss <= '0';
+--            elsif(ot_ps_lock_latch(1) = '1' and ot_ps_lock_latch(0) = '0') then --lost lock since reset
+--              ot_ps_lock_loss <= '1';                
+--            end if; 
         end if;
      end process;
      extra_clk_reset_OR(0) <= extra_clk_reset(0) or reset;
@@ -454,7 +511,7 @@ begin
 
     CLK_MUX : clk_mux_2_to_1_x_2
 	 port map(
-	 	 sel => s_ck_mx_out,
+	 	 sel => s_ck_mx_out(0),
 		 i_320 => bs_clk320e,
 		 e_320 => bs_clk320i,
 		 i_40 => bs_clk40e,
@@ -493,16 +550,17 @@ begin
                       
                       clk_13_25 => '0',
                       clk_26_5 => '0',
-                      clk_ext => s_clk40e,
+                      clk_ext => selected_ext_clkg, --s_clk40e,
                       
                       clk_40DCM => bmx_40,
                       reset_out => reset,
                       rx_wren => rx_wren,
                       tx_clk => MASTER_CLK,
                       
-                      clklock(0) => nim_clk_lock,
-                      clklock(1) => fs_gen_lock,
-                      clklock(2) => ei40_gen_lock, 
+                      clklock(0) => nim_clk_lock_loss,
+                      clklock(1) => fs_gen_lock_loss,
+                      clklock(2) => ei40_gen_lock_loss, 
+                      --clklock(3) => ot_ps_lock_loss,
                       clklock(7 downto 3) => (others => '0'),
                                            
                       rx_addr(31 downto 0)=>rx_addr(31 downto 0),
@@ -513,7 +571,7 @@ begin
                       x(3) => nim_input(3),
                       b_wr_out => s_b_wr_out,
                       burst_full_ext => nim_b_fifo_full,
-                      ck_mx_out => s_ck_mx_out,
+                      ck_mx_out => s_ck_mx_out, --8b external clock selector (0 - is int/ext lo/hi. 6:4 - is ext source select)
                       
                       clk_39_out => open,
                       
@@ -619,12 +677,40 @@ begin
            locked => fs_gen_lock
           );    
 
-   clk_wiz_1_BLOCK : clk_wiz_1
-         port map(
---           clk_in_40MHz => bs_clk_in_40MHz,   
-        clk_in40e => s_clk40e,
-         -- clk_in40e_p => CLK40_IN_EXT_P,
-          --clk_in40e_n => CLK40_IN_EXT_N,
+        --generate external clock PLL and source control
+        genExtClkMux : for i in 0 to 0 generate
+            signal selected_ext_clk : std_logic;
+            -- s_ck_mx_out := 8b external clock selector (0 - is int/ext lo/hi. 6:4 - is ext source select)
+        begin 
+        
+            extClkMux:process(s_ck_mx_out, s_clk40e, nim_input)
+            begin
+                        
+                case s_ck_mx_out(6 downto 4) is
+                    when "001" =>
+                        selected_ext_clk <= nim_input(0);
+                    when "010" =>
+                        selected_ext_clk <= nim_input(1);
+                    when "011" =>
+                        selected_ext_clk <= nim_input(2);
+                    when "100" =>
+                        selected_ext_clk <= nim_input(3);
+                    when others =>
+                        selected_ext_clk <= s_clk40e;
+                end case;    
+                           
+            end process;                           
+                             
+                             
+           extClkMuxBUFG: BUFG
+              port map( I => selected_ext_clk, 
+                     O => selected_ext_clkg);       
+        
+          end generate;
+          
+     clk_wiz_1_BLOCK : clk_wiz_1
+         port map(  
+            clk_in40e => selected_ext_clkg, --s_clk40e,
           -- Clock out ports
           clk_out320e => bs_clk320e,
           clk_out40e => bs_clk40e,
@@ -701,7 +787,7 @@ begin
             IB => BKPRSB_N -- Diff_n buffer input (connect directly to top-level port)
          );
          
-         IBUFGDS_CLK40_IN_EXT : IBUFGDS
+         IBUFGDS_CLK40_IN_EXT : IBUFDS
 --         IBUFDS_CLK40_IN_EXT : IBUFDS
          generic map (
             DIFF_TERM => TRUE, -- Differential Termination 
