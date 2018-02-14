@@ -23,7 +23,7 @@ package params_package is
 	
 	
 	constant ETH_CONTROLLER_VERSION: std_logic_vector(15 downto 0) := x"0030"; -- use all numbers, e.g. "0010" 	
-	constant ETH_INTERFACE_VERSION: std_logic_vector(15 downto 0) := x"AACA"; -- use all letters, e.g. "AABF"  
+	constant ETH_INTERFACE_VERSION: std_logic_vector(15 downto 0) := x"FFCA"; -- use all letters, e.g. "AABF"  
 	constant delay_term: natural := 0; --x"000A" --x"07D0";
 
 	-- DO NOT TOUCH IP ADDRESS LINE BELOW.. Managed by setup and install script!

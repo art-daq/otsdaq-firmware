@@ -123,6 +123,12 @@ architecture BEHAVIORAL of data_manager is
    signal tx_ctrl_info_fifo_full				: std_logic;
    
    
+       attribute mark_debug : string;
+       attribute mark_debug of rx_data_fifo_empty : signal is "true";
+              attribute mark_debug of rx_info_fifo_empty : signal is "true";
+              
+              attribute mark_debug of tx_ctrl_fifo_empty : signal is "true";
+                     attribute mark_debug of tx_ctrl_info_fifo_empty : signal is "true";
    										
 begin
 

@@ -1,15 +1,15 @@
 -------------------------------------------------------------------------------
 --
--- Title       : load_array_64_v_ps
+-- Title       : load_long_64_v_ps
 -- Design      : NIMPlus
 -- Author      : Unknown
 -- Company     : Unknown
 --
 -------------------------------------------------------------------------------
 --
--- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\load_array_64_v_ps.vhd
--- Generated   : Thu Feb  8 11:22:29 2018
--- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\load_array_64_v_ps.bde
+-- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\load_long_64_v_ps.vhd
+-- Generated   : Mon Feb 12 11:43:27 2018
+-- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\load_long_64_v_ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ use IEEE.std_logic_unsigned.all;
 --use nim_plus_package_1.all;
 
 
-entity load_array_64_v_ps is
+entity load_long_64_v_ps is
   port(
        clk : in STD_LOGIC;
        fs_sync_in : in STD_LOGIC;
@@ -35,15 +35,24 @@ entity load_array_64_v_ps is
        v_ps_hold_in : in STD_LOGIC;
        w_ext_in : in STD_LOGIC;
        dl : in STD_LOGIC_VECTOR(63 downto 0);
+       phi : in STD_LOGIC_VECTOR(63 downto 0);
        s_out : out STD_LOGIC;
        v_ps_ld_ct_out : out STD_LOGIC
   );
-end load_array_64_v_ps;
+end load_long_64_v_ps;
 
-architecture load_array_64_v_ps of load_array_64_v_ps is
+architecture load_long_64_v_ps of load_long_64_v_ps is
 
 ---- Component declarations -----
 
+component xilinx_64b_counter
+  port (
+       ce : in STD_LOGIC;
+       clk : in STD_LOGIC;
+       sclr : in STD_LOGIC;
+       q : out STD_LOGIC_VECTOR(63 downto 0)
+  );
+end component;
 component Load_array_section_16
   port (
        clk : in STD_LOGIC;
@@ -65,15 +74,39 @@ component load_ctl_1_phase_4ps_fs_sync
        ps_ld_ct : out STD_LOGIC
   );
 end component;
+component long_pulse
+  port (
+       clk : in STD_LOGIC;
+       ct_in : in STD_LOGIC_VECTOR(63 downto 0);
+       phi : in STD_LOGIC_VECTOR(63 downto 0);
+       rst_p : in STD_LOGIC;
+       srout_in : in STD_LOGIC;
+       ctr_rst : out STD_LOGIC;
+       p_out : out STD_LOGIC
+  );
+end component;
 
 ---- Signal declarations used on the diagram ----
 
 signal clk0 : STD_LOGIC;
+signal ctr_rst : STD_LOGIC;
+signal c_rst : STD_LOGIC;
 signal ld : STD_LOGIC;
+signal p_out : STD_LOGIC;
+signal srout_in : STD_LOGIC;
 signal s_out_31_16 : STD_LOGIC;
 signal s_out_47_32 : STD_LOGIC;
 signal s_out_63_48 : STD_LOGIC;
+signal BUS716 : STD_LOGIC_VECTOR (63 downto 0);
 
+
+--    attribute mark_debug : string;
+--    attribute mark_debug of p_out : signal is "true";
+--    attribute mark_debug of srout_in : signal is "true";
+--        attribute mark_debug of rst_p : signal is "true";
+--        attribute mark_debug of c_rst : signal is "true";
+--        attribute mark_debug of BUS716 : signal is "true";
+    
 begin
 
 ----  Component instantiations  ----
@@ -174,9 +207,32 @@ U4 : Load_array_section_16
        clk => clk0,
        ld => ld,
        rst_p => rst_p,
-       s_out => s_out,
+       s_out => srout_in,
        w_in => s_out_31_16
   );
+
+s_out <= p_out or srout_in;
+
+U6 : long_pulse
+  port map(
+       clk => clk0,
+       ct_in => BUS716,
+       ctr_rst => c_rst,
+       p_out => p_out,
+       phi => phi,
+       rst_p => rst_p,
+       srout_in => srout_in
+  );
+
+U7 : xilinx_64b_counter
+  port map(
+       ce => p_out,
+       clk => clk0,
+       q => BUS716,
+       sclr => ctr_rst
+  );
+
+ctr_rst <= c_rst or rst_p;
 
 U9 : load_ctl_1_phase_4ps_fs_sync
   port map(
@@ -196,4 +252,4 @@ U9 : load_ctl_1_phase_4ps_fs_sync
 	clk0 <= clk;
 
 
-end load_array_64_v_ps;
+end load_long_64_v_ps;

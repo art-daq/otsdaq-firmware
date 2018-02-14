@@ -98,6 +98,15 @@ signal Sreg0: Sreg0_type;
 attribute STATE_VECTOR: string;
 attribute STATE_VECTOR of arch: architecture is "Sreg0";
 
+
+    attribute mark_debug : string;
+    attribute mark_debug of rx_info_fifo_full_flag : signal is "true";
+    attribute mark_debug of rx_data_fifo_full_flag : signal is "true";
+    attribute mark_debug of crc_err_flag : signal is "true";
+    attribute mark_debug of rx_protocol_err_flag : signal is "true";
+    attribute mark_debug of crc_err : signal is "true";
+    
+    
 begin
 
 -- concurrent signals assignments
