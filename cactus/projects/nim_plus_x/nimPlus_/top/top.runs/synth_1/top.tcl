@@ -3,6 +3,7 @@
 # 
 
 debug::add_scope template.lib 1
+set_msg_config -id {Common-41} -limit 4294967295
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
 create_project -in_memory -part xc7k325tffg900-2
@@ -21,6 +22,8 @@ add_files -quiet /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_
 set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp]
 add_files -quiet /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.runs/clk_wiz_2_synth_1/clk_wiz_2.dcp
 set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.runs/clk_wiz_2_synth_1/clk_wiz_2.dcp]
+add_files -quiet /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp
+set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp]
 read_verilog -library xil_defaultlib {
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/ethImports/ethernet_controller/crc_gen.v
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/ethImports/ethernet_controller/crc_chk.v
@@ -107,6 +110,8 @@ read_vhdl -library xil_defaultlib {
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/bfifomux_w_ctlr.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/clkd_b_fifo_mux.vhd
   /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/clkd_burst_mux_8_to_1.vhd
+  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/load_long_64_v_ps.vhd
+  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/long_pulse.vhd
 }
 read_xdc /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/constrs_1/new/top_11.xdc
 set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/constrs_1/new/top_11.xdc]

@@ -42,6 +42,7 @@ proc step_failed { step } {
   close $ch
 }
 
+set_msg_config -id {Common-41} -limit 4294967295
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
 
@@ -63,6 +64,8 @@ set rc [catch {
   set_property netlist_only true [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp]
   add_files -quiet /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.runs/clk_wiz_2_synth_1/clk_wiz_2.dcp
   set_property netlist_only true [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.runs/clk_wiz_2_synth_1/clk_wiz_2.dcp]
+  add_files -quiet /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp
+  set_property netlist_only true [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp]
   read_xdc -mode out_of_context -ref NIM_CLKS -cells U0 /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_ooc.xdc
   set_property processing_order EARLY [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_ooc.xdc]
   read_xdc -prop_thru_buffers -ref NIM_CLKS -cells U0 /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_board.xdc
@@ -87,6 +90,8 @@ set rc [catch {
   set_property processing_order EARLY [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/sources_1/ip/clk_wiz_2/clk_wiz_2_board.xdc]
   read_xdc -ref clk_wiz_2 -cells U0 /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/sources_1/ip/clk_wiz_2/clk_wiz_2.xdc
   set_property processing_order EARLY [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/sources_1/ip/clk_wiz_2/clk_wiz_2.xdc]
+  read_xdc -mode out_of_context -ref xilinx_64b_counter -cells U0 /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/sources_1/ip/xilinx_64b_counter/xilinx_64b_counter_ooc.xdc
+  set_property processing_order EARLY [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/sources_1/ip/xilinx_64b_counter/xilinx_64b_counter_ooc.xdc]
   read_xdc -unmanaged /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/constrs_1/imports/ucf/pins.tcl
   read_xdc -unmanaged /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl
   read_xdc /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/constrs_1/new/top_11.xdc

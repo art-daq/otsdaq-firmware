@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Thu Feb  1 15:35:55 2018
--- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
+-- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
+-- Generated   : Tue Feb 13 11:39:07 2018
+-- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -220,7 +220,7 @@ component decode_addr_NIM_Plus_1
   port (
        addr : in STD_LOGIC_VECTOR(31 downto 0);
        wr_en : in STD_LOGIC;
-       blk_wr_en : out STD_LOGIC_VECTOR(7 downto 0)
+       blk_wr_en : out STD_LOGIC_VECTOR(15 downto 0)
   );
 end component;
 component decode_addr_NIM_Plus_2
@@ -271,6 +271,20 @@ component load_array_64_v_ps
        clk : in STD_LOGIC;
        dl : in STD_LOGIC_VECTOR(63 downto 0);
        fs_sync_in : in STD_LOGIC;
+       rst_p : in STD_LOGIC;
+       sig_in : in STD_LOGIC;
+       v_ps_hold_in : in STD_LOGIC;
+       w_ext_in : in STD_LOGIC;
+       s_out : out STD_LOGIC;
+       v_ps_ld_ct_out : out STD_LOGIC
+  );
+end component;
+component load_long_64_v_ps
+  port (
+       clk : in STD_LOGIC;
+       dl : in STD_LOGIC_VECTOR(63 downto 0);
+       fs_sync_in : in STD_LOGIC;
+       phi : in STD_LOGIC_VECTOR(63 downto 0);
        rst_p : in STD_LOGIC;
        sig_in : in STD_LOGIC;
        v_ps_hold_in : in STD_LOGIC;
@@ -652,7 +666,7 @@ signal bid7 : STD_LOGIC_VECTOR (3 downto 0);
 signal bid8 : STD_LOGIC_VECTOR (3 downto 0);
 signal blk_data_in_s : STD_LOGIC_VECTOR (15 downto 0);
 signal blk_wr_en : STD_LOGIC_VECTOR (7 downto 0);
-signal blk_wr_en_1 : STD_LOGIC_VECTOR (7 downto 0);
+signal blk_wr_en_1 : STD_LOGIC_VECTOR (15 downto 0);
 signal blk_wr_en_2 : STD_LOGIC_VECTOR (7 downto 0);
 signal blk_wr_en_3 : STD_LOGIC_VECTOR (7 downto 0);
 signal blk_wr_en_4 : STD_LOGIC_VECTOR (7 downto 0);
@@ -703,6 +717,14 @@ signal logterm : STD_LOGIC_VECTOR (15 downto 0);
 signal log_ev_ctr : STD_LOGIC_VECTOR (31 downto 0);
 signal log_ev_ctrb : STD_LOGIC_VECTOR (31 downto 0);
 signal log_lat_sel : STD_LOGIC_VECTOR (7 downto 0);
+signal long_r_1 : STD_LOGIC_VECTOR (63 downto 0);
+signal long_r_2 : STD_LOGIC_VECTOR (63 downto 0);
+signal long_r_norm : STD_LOGIC_VECTOR (63 downto 0);
+signal msig0 : STD_LOGIC_VECTOR (7 downto 0);
+signal msig1 : STD_LOGIC_VECTOR (7 downto 0);
+signal msig2 : STD_LOGIC_VECTOR (7 downto 0);
+signal msig3 : STD_LOGIC_VECTOR (7 downto 0);
+signal mssel : STD_LOGIC_VECTOR (15 downto 0);
 signal muxin_2 : STD_LOGIC_VECTOR (7 downto 0);
 signal muxin_3 : STD_LOGIC_VECTOR (7 downto 0);
 signal muxin_4 : STD_LOGIC_VECTOR (7 downto 0);
@@ -797,44 +819,55 @@ signal z_sel : STD_LOGIC_VECTOR (15 downto 0);
 ---- Declaration for Dangling input ----
 signal Dangling_Input_Signal : STD_LOGIC;
 
-
-
     signal debug_fast_cnt: STD_LOGIC_VECTOR (15 downto 0);
     attribute mark_debug : string;
     attribute mark_debug of sig_log : signal is "true";
-    attribute mark_debug of debug_fast_cnt : signal is "true";
-    attribute mark_debug of out_ctr_4 : signal is "true";
-    attribute mark_debug of out_ctr_3 : signal is "true";
-    attribute mark_debug of out_ctr_2 : signal is "true";
-    attribute mark_debug of out_ctr_1 : signal is "true";
-    attribute mark_debug of out_ctr_4b : signal is "true";
-    attribute mark_debug of out_ctr_3b : signal is "true";
-    attribute mark_debug of out_ctr_2b : signal is "true";
-    attribute mark_debug of out_ctr_1b : signal is "true";
-    attribute mark_debug of cnt64_simp_out : signal is "true";
+--    attribute mark_debug of debug_fast_cnt : signal is "true";
+--    attribute mark_debug of out_ctr_4 : signal is "true";
+--    attribute mark_debug of out_ctr_3 : signal is "true";
+--    attribute mark_debug of out_ctr_2 : signal is "true";
+--    attribute mark_debug of out_ctr_1 : signal is "true";
+--    attribute mark_debug of out_ctr_4b : signal is "true";
+--    attribute mark_debug of out_ctr_3b : signal is "true";
+--    attribute mark_debug of out_ctr_2b : signal is "true";
+--    attribute mark_debug of out_ctr_1b : signal is "true";
+--    attribute mark_debug of cnt64_simp_out : signal is "true";
 
-    attribute mark_debug of out_cnt_rst : signal is "true";    
+--    attribute mark_debug of out_cnt_rst : signal is "true";    
     
     --fast burst stream stuff    
+--    attribute mark_debug of trig_sig2 : signal is "true";
+--    attribute mark_debug of burst_wr_in : signal is "true";
+--    attribute mark_debug of b_read : signal is "true";
+--    attribute mark_debug of b_wr_out : signal is "true";
+--    attribute mark_debug of sig_output_counts : signal is "true";
+    
+    --for cms masking   
+--     attribute mark_debug of sync_w_40MHz : signal is "true";
+--     attribute mark_debug of sync_w_accel : signal is "true";
+--     attribute mark_debug of acc_release : signal is "true";
+     
+     --for sig mod
+--     attribute mark_debug of pulse_ctl : signal is "true";
+--     attribute mark_debug of pulse_ctl_1 : signal is "true";
+--     attribute mark_debug of pulse_ctl_2 : signal is "true";
+--     attribute mark_debug of pulse_ctl_3 : signal is "true";
+--     attribute mark_debug of pulse_ctl_4 : signal is "true";
+--     attribute mark_debug of blk_wr_en_1 : signal is "true";
+--     attribute mark_debug of blk_wr_en_2 : signal is "true";
 
-    attribute mark_debug of trig_sig2 : signal is "true";
-    attribute mark_debug of burst_wr_in : signal is "true";
-    attribute mark_debug of b_read : signal is "true";
-    attribute mark_debug of b_wr_out : signal is "true";
-    attribute mark_debug of sig_output_counts : signal is "true";
-    
-    --for cms masking
-    
-    
-     attribute mark_debug of sync_w_40MHz : signal is "true";
-     attribute mark_debug of sync_w_accel : signal is "true";
-     attribute mark_debug of acc_release : signal is "true";
-     attribute mark_debug of pulse_ctl : signal is "true";
-
-     attribute mark_debug of sig_norm : signal is "true";       
+     attribute mark_debug of sig_norm : signal is "true";
+     attribute mark_debug of ys : signal is "true";        
+     attribute mark_debug of sig_mod : signal is "true";          
        
+       
+--      signal debug_rx_data: STD_LOGIC_VECTOR (7 downto 0); 
+--      attribute mark_debug of debug_rx_data : signal is "true";  
+            
 begin
 
+  --  debug_rx_data <= rx_data(7 downto 0);
+    
     debug_fast_cnt <= cnt64_simp_out(15 downto 0);
 
 U1 : reg_64
@@ -1003,11 +1036,12 @@ U113 : veto_count
 
 veto_out_p0 <= not(veto_out_n0);
 
-U115 : load_array_64_v_ps
+U115 : load_long_64_v_ps
   port map(
        clk => clk0,
        dl => ld_regv1,
        fs_sync_in => fs_ctl_1,
+       phi => long_r_1,
        rst_p => ld_arr_rst_v1,
        s_out => sig_cms1,
        sig_in => sig_ch1,
@@ -1018,11 +1052,12 @@ U115 : load_array_64_v_ps
 
 sumsig0 <= ps_hold_0 or NET28167;
 
-U117 : load_array_64_v_ps
+U117 : load_long_64_v_ps
   port map(
        clk => clk0,
        dl => ld_regv2,
        fs_sync_in => fs_ctl_2,
+       phi => long_r_2,
        rst_p => ld_arr_rst_v2,
        s_out => sig_cms2,
        sig_in => sig_ch2,
@@ -1554,7 +1589,7 @@ U145 : ver_code
        v_num => v_num
   );
 
-ys(1) <= (y(1) and not pcnt(29)) or (sg_pout and pcnt(29));
+msig1(0) <= y(1);
 
 muxin_2(1) <= sig_cms1;
 
@@ -1871,7 +1906,7 @@ U182 : reg_32
 
 muxin_2(4) <= sg_pout;
 
-muxin_2(5) <= GND;
+muxin_2(5) <= clk_ext;
 
 muxin_2(6) <= GND;
 
@@ -1922,7 +1957,7 @@ muxin_3(3) <= clk_40DCM;
 
 muxin_3(4) <= sg_pout;
 
-muxin_3(5) <= GND;
+muxin_3(5) <= clk_ext;
 
 muxin_3(6) <= GND;
 
@@ -1973,7 +2008,7 @@ muxin_4(3) <= clk_40DCM;
 
 muxin_4(4) <= sg_pout;
 
-muxin_4(5) <= GND;
+muxin_4(5) <= clk_ext;
 
 muxin_4(6) <= GND;
 
@@ -2711,11 +2746,12 @@ NET32032 <= reset_out or pulse_ctl(4);
 
 NET32023 <= reset_out or pulse_ctl(5);
 
-U266 : load_array_64_v_ps
+U266 : load_long_64_v_ps
   port map(
        clk => clk0,
        dl => ld_reg,
        fs_sync_in => fs_ctl_0,
+       phi => long_r_norm,
        rst_p => ld_arr_rst_p,
        s_out => sig_norm,
        sig_in => sig_log,
@@ -6749,7 +6785,7 @@ U365 : ag284
        d28(25) => out_ev_ctrb(25),
        d28(26) => out_ev_ctrb(26),
        d28(27) => out_ev_ctrb(27),
-       c4 => bid1,
+       c4 => bid2,
        clk => clk0,
        out32 => out_ev_ctr,
        resetp => reset_out
@@ -6785,7 +6821,7 @@ U366 : ag284
        d28(25) => log_ev_ctrb(25),
        d28(26) => log_ev_ctrb(26),
        d28(27) => log_ev_ctrb(27),
-       c4 => bid2,
+       c4 => bid1,
        clk => clk0,
        out32 => log_ev_ctr,
        resetp => reset_out
@@ -7383,11 +7419,11 @@ U425 : d_ff
        rst_p => c0sig
   );
 
-ys(0) <= (y(0) and not pcnt(28)) or (sg_pout and pcnt(28));
+msig1(1) <= sg_pout;
 
-ys(2) <= (y(2) and not pcnt(30)) or (sg_pout and pcnt(30));
+msig1(2) <= clk_ext;
 
-ys(3) <= (y(3) and not pcnt(31)) or (sg_pout and pcnt(31));
+msig2(0) <= y(2);
 
 muxout_1 <= mxout1a;
 
@@ -7460,7 +7496,114 @@ muxout_3 <= mxout3a;
 
 muxout_4 <= mxout4a;
 
+U434 : reg_64
+  port map(
+       clk => tx_clk,
+       d => rx_data,
+       q => long_r_norm,
+       reset_p => reset_out,
+       wr_en => blk_wr_en_1(6)
+  );
+
+U435 : reg_64
+  port map(
+       clk => tx_clk,
+       d => rx_data,
+       q => long_r_1,
+       reset_p => reset_out,
+       wr_en => blk_wr_en_2(6)
+  );
+
+U436 : reg_64
+  port map(
+       clk => tx_clk,
+       d => rx_data,
+       q => long_r_2,
+       reset_p => reset_out,
+       wr_en => blk_wr_en_3(6)
+  );
+
+U437 : mux_8_to_1
+  port map(
+       sel_in(0) => mssel(0),
+       sel_in(1) => mssel(1),
+       sel_in(2) => mssel(2),
+       out_1 => ys(0),
+       rst_p => c0sig,
+       sig_in => msig0
+  );
+
+U438 : mux_8_to_1
+  port map(
+       sel_in(0) => mssel(4),
+       sel_in(1) => mssel(5),
+       sel_in(2) => mssel(6),
+       out_1 => ys(1),
+       rst_p => c0sig,
+       sig_in => msig1
+  );
+
+U439 : reg_16
+  port map(
+       d(0) => rx_data(0),
+       d(1) => rx_data(1),
+       d(2) => rx_data(2),
+       d(3) => rx_data(3),
+       d(4) => rx_data(4),
+       d(5) => rx_data(5),
+       d(6) => rx_data(6),
+       d(7) => rx_data(7),
+       d(8) => rx_data(8),
+       d(9) => rx_data(9),
+       d(10) => rx_data(10),
+       d(11) => rx_data(11),
+       d(12) => rx_data(12),
+       d(13) => rx_data(13),
+       d(14) => rx_data(14),
+       d(15) => rx_data(15),
+       clk => tx_clk,
+       q => mssel,
+       reset_p => reset_out,
+       wr_en => blk_wr_en_1(8)
+  );
+
 sigmux(1) <= bmy(0);
+
+U440 : mux_8_to_1
+  port map(
+       sel_in(0) => mssel(8),
+       sel_in(1) => mssel(9),
+       sel_in(2) => mssel(10),
+       out_1 => ys(2),
+       rst_p => c0sig,
+       sig_in => msig2
+  );
+
+U441 : mux_8_to_1
+  port map(
+       sel_in(0) => mssel(12),
+       sel_in(1) => mssel(13),
+       sel_in(2) => mssel(14),
+       out_1 => ys(3),
+       rst_p => c0sig,
+       sig_in => msig3
+  );
+
+msig0(0) <= y(0);
+
+msig0(1) <= sg_pout;
+
+msig0(2) <= clk_ext;
+
+msig2(1) <= sg_pout;
+
+msig2(2) <= clk_ext;
+
+msig3(0) <= y(3);
+
+msig3(1) <= sg_pout;
+
+msig3(2) <= clk_ext;
 
 sigmux(2) <= bmy(1);
 

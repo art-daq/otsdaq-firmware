@@ -1,7 +1,7 @@
 Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
-| Date         : Fri Feb  2 13:06:35 2018
+| Date         : Tue Feb 13 16:31:43 2018
 | Host         : rulinux04.dhcp.fnal.gov running 64-bit Scientific Linux release 7.2 (Nitrogen)
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -30,15 +30,15 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Fixed | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                | 9116 |     0 |    203800 |  4.47 |
-|   LUT as Logic             | 9100 |     0 |    203800 |  4.47 |
+| Slice LUTs*                | 9440 |     0 |    203800 |  4.63 |
+|   LUT as Logic             | 9424 |     0 |    203800 |  4.62 |
 |   LUT as Memory            |   16 |     0 |     64000 |  0.03 |
 |     LUT as Distributed RAM |    0 |     0 |           |       |
 |     LUT as Shift Register  |   16 |     0 |           |       |
-| Slice Registers            | 9765 |     0 |    407600 |  2.40 |
-|   Register as Flip Flop    | 9765 |     0 |    407600 |  2.40 |
+| Slice Registers            | 9967 |     0 |    407600 |  2.45 |
+|   Register as Flip Flop    | 9967 |     0 |    407600 |  2.45 |
 |   Register as Latch        |    0 |     0 |    407600 |  0.00 |
-| F7 Muxes                   |  641 |     0 |    101900 |  0.63 |
+| F7 Muxes                   |  637 |     0 |    101900 |  0.63 |
 | F8 Muxes                   |  129 |     0 |     50950 |  0.25 |
 +----------------------------+------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
@@ -58,8 +58,8 @@ Table of Contents
 | 0     |          Yes |           - |            - |
 | 64    |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
-| 33    |          Yes |         Set |            - |
-| 9668  |          Yes |       Reset |            - |
+| 42    |          Yes |         Set |            - |
+| 9861  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -155,18 +155,18 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     | 9668 |        Flop & Latch |
-| LUT6     | 5726 |                 LUT |
-| LUT5     | 1108 |                 LUT |
-| LUT4     | 1022 |                 LUT |
-| LUT3     |  737 |                 LUT |
-| MUXF7    |  641 |               MuxFx |
-| LUT1     |  608 |                 LUT |
-| LUT2     |  367 |                 LUT |
-| CARRY4   |  343 |          CarryLogic |
+| FDRE     | 9861 |        Flop & Latch |
+| LUT6     | 5727 |                 LUT |
+| LUT4     | 1398 |                 LUT |
+| LUT5     | 1119 |                 LUT |
+| LUT3     |  822 |                 LUT |
+| MUXF7    |  637 |               MuxFx |
+| LUT1     |  637 |                 LUT |
+| CARRY4   |  391 |          CarryLogic |
+| LUT2     |  384 |                 LUT |
 | MUXF8    |  129 |               MuxFx |
 | FDPE     |   64 |        Flop & Latch |
-| FDSE     |   33 |        Flop & Latch |
+| FDSE     |   42 |        Flop & Latch |
 | OBUFDS   |   16 |                  IO |
 | OBUF     |   15 |                  IO |
 | IBUF     |   11 |                  IO |
@@ -183,14 +183,15 @@ Table of Contents
 8. Black Boxes
 --------------
 
-+-----------+------+
-|  Ref Name | Used |
-+-----------+------+
-| clk_wiz_2 |    1 |
-| clk_wiz_1 |    1 |
-| clk_wiz_0 |    1 |
-| NIM_CLKS  |    1 |
-+-----------+------+
++--------------------+------+
+|      Ref Name      | Used |
++--------------------+------+
+| xilinx_64b_counter |    3 |
+| clk_wiz_2          |    1 |
+| clk_wiz_1          |    1 |
+| clk_wiz_0          |    1 |
+| NIM_CLKS           |    1 |
++--------------------+------+
 
 
 9. Instantiated Netlists

@@ -2,6 +2,13 @@
 # Created Feb 2016 by rrivera at fnal dot gov
 # Edited Jan 2018 by rrivera at fnal dot gov
 
+#ignore timing from clk 40 things to chipscope
+#set_max_delay 32.00 -from [get_clocks CLK_bmx_40] -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ u_ila*/*)}]
+#set_max_delay 32.00 -from [get_clocks CLK_bmx_40] -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ u_ila*/*/*)}]
+
+#give lots of time for static register max values 
+#set_max_delay 32.00 -from [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/*/*/phi_max_reg*)}]
+
 #give lots of time for static read (should have address setup for 64)
 #set_max_delay 32.00 -through [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U311/*)}]
 
