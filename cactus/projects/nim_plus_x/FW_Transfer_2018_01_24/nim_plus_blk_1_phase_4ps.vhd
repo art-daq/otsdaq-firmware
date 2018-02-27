@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Wed Feb 14 14:33:16 2018
+-- Generated   : Mon Feb 26 16:19:30 2018
 -- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -869,7 +869,6 @@ begin
   --  debug_rx_data <= rx_data(7 downto 0);
     
     debug_fast_cnt <= cnt64_simp_out(15 downto 0);
-
 ----  Component instantiations  ----
 
 U1 : reg_64
@@ -4239,7 +4238,7 @@ U318 : agrgate_8_by_8
        in7(7) => ctr_enables(15),
        in0 => mux_ctl,
        in1 => muxsel_2,
-       in2 => muxsel_4,
+       in2 => muxsel_3,
        in3 => muxsel_4,
        out_0 => rdb12
   );

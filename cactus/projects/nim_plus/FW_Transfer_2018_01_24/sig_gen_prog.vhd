@@ -42,7 +42,7 @@ constant u_32: STD_LOGIC_VECTOR (31 downto 0) := "000000000000000000000000000000
 constant z_28: STD_LOGIC_VECTOR (27 downto 0) := "0000000000000000000000000000";
 constant z_32: STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
 -- diagram signals declarations
-signal p_count_r,p_count_r2: STD_LOGIC_VECTOR (27 downto 0);
+signal p_count_r: STD_LOGIC_VECTOR (27 downto 0);
 signal p_hi_r: STD_LOGIC_VECTOR (31 downto 0);
 signal p_lo_r: STD_LOGIC_VECTOR (31 downto 0);
 
@@ -133,12 +133,12 @@ begin
 				next_p_lo_r <= p_lo_r + u_32;
 			end if;
 		when S7 =>
-			if (p_count_r2 < p_count and p_count /= z_28)
+			if (p_count_r < p_count and p_count /= z_28)
 				or p_count = z_28 then
 				NextState_Sreg0 <= S2;
 				next_p_hi_r <= z_32;
 				next_p_lo_r <= z_32;
-			elsif p_count_r2 = p_count and 
+			elsif p_count_r = p_count and 
 				p_count /= z_28 then
 				NextState_Sreg0 <= S8;
 				next_p_out <= '0';
@@ -178,14 +178,13 @@ Sreg0_RegOutput: process (clk)
 begin
 	if clk'event and clk = '1' then
 		if reset_p = '1' then
-			p_count_r <= (others => '0');		-- Initialization in the reset state or default value required!
-			p_hi_r <= (others => '0');		-- Initialization in the reset state or default value required!
-			p_lo_r <= (others => '0');		-- Initialization in the reset state or default value required!
+			-- p_count_r <= 		-- Initialization in the reset state or default value required!
+			-- p_hi_r <= 		-- Initialization in the reset state or default value required!
+			-- p_lo_r <= 		-- Initialization in the reset state or default value required!
 			int_err_out <= '0';
 			int_p_out <= '0';
 		else
 			p_count_r <= next_p_count_r;
-			p_count_r2 <= p_count_r;
 			p_hi_r <= next_p_hi_r;
 			p_lo_r <= next_p_lo_r;
 			int_err_out <= next_err_out;

@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\load_long_64_v_ps.vhd
--- Generated   : Mon Feb 12 11:43:27 2018
+-- Generated   : Mon Feb 12 13:50:31 2018
 -- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\load_long_64_v_ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -99,14 +99,6 @@ signal s_out_47_32 : STD_LOGIC;
 signal s_out_63_48 : STD_LOGIC;
 signal BUS716 : STD_LOGIC_VECTOR (63 downto 0);
 
-
---    attribute mark_debug : string;
---    attribute mark_debug of p_out : signal is "true";
---    attribute mark_debug of srout_in : signal is "true";
---        attribute mark_debug of rst_p : signal is "true";
---        attribute mark_debug of c_rst : signal is "true";
---        attribute mark_debug of BUS716 : signal is "true";
-    
 begin
 
 ----  Component instantiations  ----

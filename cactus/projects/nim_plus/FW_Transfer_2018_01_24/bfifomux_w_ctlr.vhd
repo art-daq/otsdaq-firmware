@@ -100,9 +100,6 @@ signal cwd3 : STD_LOGIC_VECTOR (31 downto 0);
 signal cwd4 : STD_LOGIC_VECTOR (31 downto 0);
 signal cwd5 : STD_LOGIC_VECTOR (31 downto 0);
 
-    attribute mark_debug : string;
-    attribute mark_debug of latch_en : signal is "true";
-
 begin
 
 ----  Component instantiations  ----
