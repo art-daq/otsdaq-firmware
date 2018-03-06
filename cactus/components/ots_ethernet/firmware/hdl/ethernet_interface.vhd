@@ -32,24 +32,24 @@ entity ethernet_interface is
           rx_data              	: out   std_logic_vector (63 downto 0);   	
           rx_wren              	: out   std_logic;												   
           tx_data              	: in    std_logic_vector (63 downto 0); 	 					 
---erased for simple interface 
---erased for simple interface 
+		  tx_rden			   	: out   std_logic;						  	--SCRIPT COMMENT OUT 
+		  ready		   			: in    std_logic; 						  	--SCRIPT COMMENT OUT 
 		  
 		  -- burst signals
    		  b_data               	: in    std_logic_vector (63 downto 0); 
           b_data_we            	: in    std_logic; 												                            
           b_enable             	: out   std_logic; 				  		  															 				   
---erased for simple interface  	
+		  b_force_packet	   	: in    std_logic;						  	--SCRIPT COMMENT OUT  	
 		  
 		  
 		  -- internal address space signals							   
---erased for simple interface   
---erased for simple interface   
---erased for simple interface					   
---erased for simple interface					   
---erased for simple interface  
+          internal_block_sel  	: in    std_logic_vector (31 downto 0); 	--SCRIPT COMMENT OUT   
+          internal_addr  		: in    std_logic_vector (31 downto 0); 	--SCRIPT COMMENT OUT   
+		  internal_we			: in 	std_logic;							--SCRIPT COMMENT OUT					   
+          internal_din			: in    std_logic_vector (63 downto 0);		--SCRIPT COMMENT OUT					   
+          internal_dout			: out   std_logic_vector (63 downto 0); 	--SCRIPT COMMENT OUT  
 		   
---erased for simple interface  
+          user_addr  			: in    std_logic_vector (7 downto 0); 		--SCRIPT COMMENT OUT  
 		  
 		  
 		  -- PHY interface signals
@@ -142,15 +142,15 @@ architecture BEHAVIORAL of ethernet_interface is
 	
 									 
 	-------- start simple declaration section -----------  	  
-	-- comments denoted as  will be removed in this case by install script
---erased for simple interface  will be commented out	
-     signal internal_block_sel  		: std_logic_vector (31 downto 0) := (others => '0'); 	  
-     signal internal_addr  				: std_logic_vector (31 downto 0):= (others => '0');  	  
-	 signal internal_we					: std_logic := '0';							
-     signal internal_din				: std_logic_vector (63 downto 0):= (others => '0'); 	  
-     signal internal_dout				: std_logic_vector (63 downto 0):= (others => '0'); 	
+	-- comments denoted as -- simple -- will be removed in this case by install script
+	-- and lines with --SCRIPT COMMENT OUT  will be commented out	
+    -- simple -- signal internal_block_sel  		: std_logic_vector (31 downto 0) := (others => '0'); 	  
+    -- simple -- signal internal_addr  				: std_logic_vector (31 downto 0):= (others => '0');  	  
+	-- simple -- signal internal_we					: std_logic := '0';							
+    -- simple -- signal internal_din				: std_logic_vector (63 downto 0):= (others => '0'); 	  
+    -- simple -- signal internal_dout				: std_logic_vector (63 downto 0):= (others => '0'); 	
 		  
-     signal user_addr					: std_logic_vector (7 downto 0):= (others => '0'); 
+    -- simple -- signal user_addr					: std_logic_vector (7 downto 0):= (others => '0'); 
 	-------- end simple declaration section -----------	
   	 											  								     
 begin										 
@@ -494,17 +494,17 @@ begin
 	-------- end internal address space section -----------
 	   
 	   																  
---erased for simple interface 	
---erased for simple interface
---erased for simple interface
+	user_ready <= ready;		  			--SCRIPT COMMENT OUT 	
+	tx_rden <= user_tx_rden;	  			--SCRIPT COMMENT OUT
+	user_b_force_packet <= b_force_packet;	--SCRIPT COMMENT OUT
 	
 	-------- start simple section -----------  
-	-- comments denoted as  will be removed in this case by install script
---erased for simple interface  will be commented out	
-									   
-	 user_ready <= '1';
-	 user_b_force_packet <= '0';	  
-		
+	-- comments denoted as -- simple -- will be removed in this case by install script
+	-- and lines with --SCRIPT COMMENT OUT  will be commented out	
+	-- simple --								   
+	-- simple -- user_ready <= '1';
+	-- simple -- user_b_force_packet <= '0';	  
+	-- simple --	
 	-------- end simple section -----------
 	   
 end BEHAVIORAL;
