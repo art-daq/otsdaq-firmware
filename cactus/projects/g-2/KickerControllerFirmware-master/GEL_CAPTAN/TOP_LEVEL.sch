@@ -74,21 +74,13 @@
         <signal name="GENERAL_12DP_24S" />
         <signal name="DCM_RESET_MAP" />
         <signal name="dcm_reset_0" />
-        <signal name="XLXN_12660" />
-        <signal name="XLXN_12661" />
-        <signal name="XLXN_12669" />
         <signal name="CLK_187_5" />
-        <signal name="XLXN_12671" />
-        <signal name="XLXN_12672" />
         <signal name="dcm_reset_1" />
         <signal name="rx_data(4)" />
-        <signal name="debug_signals(0)" />
-        <signal name="debug_signals(1)" />
         <signal name="dcm_reset_2" />
         <signal name="rx_data(8)" />
         <signal name="BUSBHS_03DP_06S" />
         <signal name="BUSBHS_03DN_07S" />
-        <signal name="XLXN_12781" />
         <signal name="CLK_375" />
         <signal name="FADC_sampling_clk_xor0" />
         <signal name="debug_signals(2)" />
@@ -206,13 +198,11 @@
         <signal name="BUSDD_00DP_00S" />
         <signal name="XLXN_15077" />
         <signal name="XLXN_15087" />
-        <signal name="debug_signals(3)" />
         <signal name="XLXN_15092" />
         <signal name="fadc_data_del_ce" />
         <signal name="fadc_data_del_rst" />
         <signal name="rx_data(24)" />
         <signal name="XLXN_15075" />
-        <signal name="XLXN_15130" />
         <signal name="fadc_clk_in_reset" />
         <signal name="GMII_RXD_0_sig(7:0)" />
         <signal name="XLXN_15140" />
@@ -315,6 +305,32 @@
         <signal name="fadc_latched_in_rise(15:0)" />
         <signal name="MEDIAN_FILTER_MAP" />
         <signal name="apply_median_filter" />
+        <signal name="XLXN_16011" />
+        <signal name="ADC_CLOCK_MAP" />
+        <signal name="XLXN_16024" />
+        <signal name="adc_data_clk_mux_sel" />
+        <signal name="ADC_DATA_CLK_MUX_MAP" />
+        <signal name="adc_data_mux_clk" />
+        <signal name="XLXN_16048" />
+        <signal name="XLXN_16059" />
+        <signal name="XLXN_16072" />
+        <signal name="XLXN_16010" />
+        <signal name="rx_data(6:0)" />
+        <signal name="rx_data(22:7)" />
+        <signal name="XLXN_16020" />
+        <signal name="XLXN_16022" />
+        <signal name="debug_signals(0)" />
+        <signal name="XLXN_16021" />
+        <signal name="XLXN_12671" />
+        <signal name="XLXN_12672" />
+        <signal name="debug_signals(1)" />
+        <signal name="XLXN_12781" />
+        <signal name="debug_signals(3)" />
+        <signal name="rx_data0_latch" />
+        <signal name="fadc_data_del_ce_latch" />
+        <signal name="XLXN_16108" />
+        <signal name="XLXN_16109" />
+        <signal name="XLXN_16110" />
         <port polarity="Input" name="BUSC_16DP_32S" />
         <port polarity="Input" name="SECONDARY_CLK" />
         <port polarity="Output" name="BUSC_25DN_51S" />
@@ -889,6 +905,60 @@
             <line x2="64" y1="-128" y2="-144" x1="80" />
             <line x2="80" y1="-112" y2="-128" x1="64" />
         </blockdef>
+        <blockdef name="dcm_adv">
+            <timestamp>2000-1-1T10:10:10</timestamp>
+            <rect width="256" x="64" y="-448" height="448" />
+            <line x2="0" y1="-416" y2="-416" x1="64" />
+            <line x2="0" y1="-384" y2="-384" x1="64" />
+            <line x2="0" y1="-352" y2="-352" x1="64" />
+            <line x2="0" y1="-320" y2="-320" x1="64" />
+            <line x2="0" y1="-288" y2="-288" x1="64" />
+            <line x2="0" y1="-256" y2="-256" x1="64" />
+            <line x2="0" y1="-224" y2="-224" x1="64" />
+            <rect width="64" x="0" y="-236" height="24" />
+            <line x2="0" y1="-192" y2="-192" x1="64" />
+            <rect width="64" x="0" y="-204" height="24" />
+            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <line x2="0" y1="-128" y2="-128" x1="64" />
+            <line x2="0" y1="-96" y2="-96" x1="64" />
+            <line x2="384" y1="-416" y2="-416" x1="320" />
+            <line x2="384" y1="-384" y2="-384" x1="320" />
+            <line x2="384" y1="-352" y2="-352" x1="320" />
+            <line x2="384" y1="-320" y2="-320" x1="320" />
+            <line x2="384" y1="-288" y2="-288" x1="320" />
+            <line x2="384" y1="-256" y2="-256" x1="320" />
+            <line x2="384" y1="-224" y2="-224" x1="320" />
+            <line x2="384" y1="-192" y2="-192" x1="320" />
+            <line x2="384" y1="-160" y2="-160" x1="320" />
+            <line x2="384" y1="-128" y2="-128" x1="320" />
+            <line x2="384" y1="-96" y2="-96" x1="320" />
+            <line x2="384" y1="-64" y2="-64" x1="320" />
+            <rect width="64" x="320" y="-76" height="24" />
+            <line x2="384" y1="-32" y2="-32" x1="320" />
+        </blockdef>
+        <blockdef name="dcm_ps">
+            <timestamp>2000-1-1T10:10:10</timestamp>
+            <rect width="256" x="64" y="-416" height="416" />
+            <line x2="0" y1="-384" y2="-384" x1="64" />
+            <line x2="0" y1="-320" y2="-320" x1="64" />
+            <line x2="0" y1="-256" y2="-256" x1="64" />
+            <line x2="0" y1="-192" y2="-192" x1="64" />
+            <line x2="0" y1="-128" y2="-128" x1="64" />
+            <line x2="0" y1="-64" y2="-64" x1="64" />
+            <line x2="384" y1="-384" y2="-384" x1="320" />
+            <line x2="384" y1="-352" y2="-352" x1="320" />
+            <line x2="384" y1="-320" y2="-320" x1="320" />
+            <line x2="384" y1="-288" y2="-288" x1="320" />
+            <line x2="384" y1="-256" y2="-256" x1="320" />
+            <line x2="384" y1="-224" y2="-224" x1="320" />
+            <line x2="384" y1="-192" y2="-192" x1="320" />
+            <line x2="384" y1="-160" y2="-160" x1="320" />
+            <line x2="384" y1="-128" y2="-128" x1="320" />
+            <line x2="384" y1="-96" y2="-96" x1="320" />
+            <line x2="384" y1="-64" y2="-64" x1="320" />
+            <line x2="384" y1="-32" y2="-32" x1="320" />
+            <rect width="64" x="320" y="-44" height="24" />
+        </blockdef>
         <block symbolname="ibuf" name="XLXI_4248">
             <blockpin signalname="BUSC_16DP_32S" name="I" />
             <blockpin signalname="GMII_RX_ER_0_sig" name="O" />
@@ -996,8 +1066,8 @@
             <blockpin signalname="MEDIAN_FILTER_MAP" name="D11" />
             <blockpin name="D12" />
             <blockpin name="D13" />
-            <blockpin name="D14" />
-            <blockpin name="D15" />
+            <blockpin signalname="ADC_DATA_CLK_MUX_MAP" name="D14" />
+            <blockpin signalname="ADC_CLOCK_MAP" name="D15" />
             <blockpin signalname="FADC_CTRL_MAP" name="D2" />
             <blockpin signalname="FADC_DELAY_MAP" name="D3" />
             <blockpin signalname="TRIG_MAP" name="D4" />
@@ -1031,90 +1101,6 @@
             <blockpin signalname="reset" name="R" />
             <blockpin signalname="dcm_reset_0" name="Q" />
         </block>
-        <block symbolname="dcm_base" name="XLXI_5949">
-            <attr value="8" name="CLKIN_PERIOD">
-                <trait editname="all:1 sch:0" />
-                <trait edittrait="all:1 sch:0" />
-                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
-                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
-                <trait valuetype="Float" />
-            </attr>
-            <attr value="3" name="CLKFX_MULTIPLY">
-                <trait editname="all:1 sch:0" />
-                <trait edittrait="all:1 sch:0" />
-                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
-                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
-                <trait valuetype="Integer 2 32" />
-            </attr>
-            <attr value="2" name="CLKFX_DIVIDE">
-                <trait editname="all:1 sch:0" />
-                <trait edittrait="all:1 sch:0" />
-                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
-                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
-                <trait valuetype="Integer 1 32" />
-            </attr>
-            <blockpin signalname="MASTER_CLK" name="CLKIN" />
-            <blockpin signalname="XLXN_12661" name="CLKFB" />
-            <blockpin signalname="dcm_reset_0" name="RST" />
-            <blockpin signalname="XLXN_12660" name="CLK0" />
-            <blockpin name="CLK90" />
-            <blockpin name="CLK180" />
-            <blockpin name="CLK270" />
-            <blockpin name="CLK2X" />
-            <blockpin name="CLK2X180" />
-            <blockpin name="CLKDV" />
-            <blockpin signalname="XLXN_12669" name="CLKFX" />
-            <blockpin name="CLKFX180" />
-            <blockpin signalname="debug_signals(0)" name="LOCKED" />
-        </block>
-        <block symbolname="bufg" name="XLXI_5950">
-            <blockpin signalname="XLXN_12660" name="I" />
-            <blockpin signalname="XLXN_12661" name="O" />
-        </block>
-        <block symbolname="bufg" name="XLXI_5952">
-            <blockpin signalname="XLXN_12669" name="I" />
-            <blockpin signalname="CLK_187_5" name="O" />
-        </block>
-        <block symbolname="dcm_base" name="XLXI_5953">
-            <attr value="HIGH" name="DLL_FREQUENCY_MODE">
-                <trait editname="all:1 sch:0" />
-                <trait edittrait="all:1 sch:0" />
-                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
-                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
-                <trait valuetype="StringValList LOW HIGH" />
-            </attr>
-            <attr value="HIGH" name="DFS_FREQUENCY_MODE">
-                <trait editname="all:1 sch:0" />
-                <trait edittrait="all:1 sch:0" />
-                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
-                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
-                <trait valuetype="StringValList LOW HIGH" />
-            </attr>
-            <attr value="5.33333333" name="CLKIN_PERIOD">
-                <trait editname="all:1 sch:0" />
-                <trait edittrait="all:1 sch:0" />
-                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
-                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
-                <trait valuetype="Float" />
-            </attr>
-            <blockpin signalname="CLK_187_5" name="CLKIN" />
-            <blockpin signalname="XLXN_12672" name="CLKFB" />
-            <blockpin signalname="dcm_reset_1" name="RST" />
-            <blockpin signalname="XLXN_12671" name="CLK0" />
-            <blockpin name="CLK90" />
-            <blockpin name="CLK180" />
-            <blockpin name="CLK270" />
-            <blockpin signalname="XLXN_12781" name="CLK2X" />
-            <blockpin name="CLK2X180" />
-            <blockpin name="CLKDV" />
-            <blockpin name="CLKFX" />
-            <blockpin name="CLKFX180" />
-            <blockpin signalname="debug_signals(1)" name="LOCKED" />
-        </block>
-        <block symbolname="bufg" name="XLXI_5954">
-            <blockpin signalname="XLXN_12671" name="I" />
-            <blockpin signalname="XLXN_12672" name="O" />
-        </block>
         <block symbolname="fdre" name="XLXI_5955">
             <blockpin signalname="MASTER_CLK" name="C" />
             <blockpin signalname="DCM_RESET_MAP" name="CE" />
@@ -1128,10 +1114,6 @@
             <blockpin signalname="rx_data(8)" name="D" />
             <blockpin signalname="reset" name="R" />
             <blockpin signalname="dcm_reset_2" name="Q" />
-        </block>
-        <block symbolname="bufg" name="XLXI_5993">
-            <blockpin signalname="XLXN_12781" name="I" />
-            <blockpin signalname="CLK_375" name="O" />
         </block>
         <block symbolname="obuf" name="XLXI_5996">
             <attr value="FAST" name="SLEW">
@@ -1715,42 +1697,6 @@
         <block symbolname="gnd" name="XLXI_6189">
             <blockpin signalname="XLXN_15077" name="G" />
         </block>
-        <block symbolname="dcm_base" name="XLXI_6199">
-            <attr value="HIGH" name="DLL_FREQUENCY_MODE">
-                <trait editname="all:1 sch:0" />
-                <trait edittrait="all:1 sch:0" />
-                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
-                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
-                <trait valuetype="StringValList LOW HIGH" />
-            </attr>
-            <attr value="HIGH" name="DFS_FREQUENCY_MODE">
-                <trait editname="all:1 sch:0" />
-                <trait edittrait="all:1 sch:0" />
-                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
-                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
-                <trait valuetype="StringValList LOW HIGH" />
-            </attr>
-            <attr value="5.33333333" name="CLKIN_PERIOD">
-                <trait editname="all:1 sch:0" />
-                <trait edittrait="all:1 sch:0" />
-                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
-                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
-                <trait valuetype="Float" />
-            </attr>
-            <blockpin signalname="XLXN_15130" name="CLKIN" />
-            <blockpin signalname="FADC_DCLK" name="CLKFB" />
-            <blockpin signalname="fadc_clk_in_reset" name="RST" />
-            <blockpin signalname="XLXN_15087" name="CLK0" />
-            <blockpin name="CLK90" />
-            <blockpin signalname="XLXN_15092" name="CLK180" />
-            <blockpin name="CLK270" />
-            <blockpin name="CLK2X" />
-            <blockpin name="CLK2X180" />
-            <blockpin name="CLKDV" />
-            <blockpin name="CLKFX" />
-            <blockpin name="CLKFX180" />
-            <blockpin signalname="debug_signals(3)" name="LOCKED" />
-        </block>
         <block symbolname="bufg" name="XLXI_6200">
             <blockpin signalname="XLXN_15087" name="I" />
             <blockpin signalname="FADC_DCLK" name="O" />
@@ -1758,28 +1704,6 @@
         <block symbolname="bufg" name="XLXI_6202">
             <blockpin signalname="XLXN_15092" name="I" />
             <blockpin signalname="FADC_DCLK_INV" name="O" />
-        </block>
-        <block symbolname="idelay" name="XLXI_3405">
-            <attr value="VARIABLE" name="IOBDELAY_TYPE">
-                <trait editname="all:1 sch:0" />
-                <trait edittrait="all:1 sch:0" />
-                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
-                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
-                <trait valuetype="StringValList DEFAULT FIXED VARIABLE" />
-            </attr>
-            <attr value="0" name="IOBDELAY_VALUE">
-                <trait editname="all:1 sch:0" />
-                <trait edittrait="all:1 sch:0" />
-                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
-                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
-                <trait valuetype="Integer 0 63" />
-            </attr>
-            <blockpin signalname="fadc_dclk_in" name="I" />
-            <blockpin signalname="fadc_data_del_ce" name="CE" />
-            <blockpin signalname="MASTER_CLK" name="C" />
-            <blockpin signalname="rx_data(0)" name="INC" />
-            <blockpin signalname="fadc_data_del_rst" name="RST" />
-            <blockpin signalname="XLXN_15075" name="O" />
         </block>
         <block symbolname="and2" name="XLXI_4466">
             <blockpin signalname="rx_data(24)" name="I0" />
@@ -1790,10 +1714,6 @@
             <blockpin signalname="rx_data(4)" name="I0" />
             <blockpin signalname="fadc_data_del_ce" name="I1" />
             <blockpin signalname="fadc_data_del_rst" name="O" />
-        </block>
-        <block symbolname="bufg" name="XLXI_6040">
-            <blockpin signalname="XLXN_15075" name="I" />
-            <blockpin signalname="XLXN_15130" name="O" />
         </block>
         <block symbolname="fdre" name="XLXI_6226">
             <blockpin signalname="MASTER_CLK" name="C" />
@@ -2136,6 +2056,203 @@
             <blockpin signalname="reset" name="R" />
             <blockpin signalname="apply_median_filter" name="Q" />
         </block>
+        <block symbolname="fdre" name="XLXI_6481">
+            <blockpin signalname="MASTER_CLK" name="C" />
+            <blockpin signalname="ADC_DATA_CLK_MUX_MAP" name="CE" />
+            <blockpin signalname="rx_data(0)" name="D" />
+            <blockpin signalname="reset" name="R" />
+            <blockpin signalname="adc_data_clk_mux_sel" name="Q" />
+        </block>
+        <block symbolname="m2_1" name="XLXI_6479">
+            <blockpin signalname="fadc_dclk_in" name="D0" />
+            <blockpin signalname="CLK_187_5" name="D1" />
+            <blockpin signalname="adc_data_clk_mux_sel" name="S0" />
+            <blockpin signalname="XLXN_16048" name="O" />
+        </block>
+        <block symbolname="bufg" name="XLXI_6480">
+            <blockpin signalname="XLXN_16048" name="I" />
+            <blockpin signalname="adc_data_mux_clk" name="O" />
+        </block>
+        <block symbolname="gnd" name="XLXI_6469">
+            <blockpin signalname="XLXN_16010" name="G" />
+        </block>
+        <block symbolname="bufg" name="XLXI_5950">
+            <blockpin signalname="XLXN_16020" name="I" />
+            <blockpin signalname="XLXN_16021" name="O" />
+        </block>
+        <block symbolname="bufg" name="XLXI_6471">
+            <blockpin signalname="XLXN_16022" name="I" />
+            <blockpin signalname="CLK_187_5" name="O" />
+        </block>
+        <block symbolname="dcm_adv" name="XLXI_6468">
+            <attr value="8" name="CLKIN_PERIOD">
+                <trait editname="all:1 sch:0" />
+                <trait edittrait="all:1 sch:0" />
+                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
+                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
+                <trait valuetype="Float" />
+            </attr>
+            <attr value="3" name="CLKFX_MULTIPLY">
+                <trait editname="all:1 sch:0" />
+                <trait edittrait="all:1 sch:0" />
+                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
+                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
+                <trait valuetype="Integer 2 32" />
+            </attr>
+            <attr value="2" name="CLKFX_DIVIDE">
+                <trait editname="all:1 sch:0" />
+                <trait edittrait="all:1 sch:0" />
+                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
+                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
+                <trait valuetype="Integer 1 32" />
+            </attr>
+            <blockpin signalname="MASTER_CLK" name="CLKIN" />
+            <blockpin signalname="XLXN_16021" name="CLKFB" />
+            <blockpin signalname="dcm_reset_0" name="RST" />
+            <blockpin signalname="XLXN_16010" name="PSINCDEC" />
+            <blockpin signalname="XLXN_16010" name="PSEN" />
+            <blockpin signalname="XLXN_16010" name="PSCLK" />
+            <blockpin signalname="rx_data(6:0)" name="DADDR(6:0)" />
+            <blockpin signalname="rx_data(22:7)" name="DI(15:0)" />
+            <blockpin signalname="ADC_CLOCK_MAP" name="DWE" />
+            <blockpin signalname="ADC_CLOCK_MAP" name="DEN" />
+            <blockpin signalname="MASTER_CLK" name="DCLK" />
+            <blockpin signalname="XLXN_16020" name="CLK0" />
+            <blockpin name="CLK90" />
+            <blockpin name="CLK180" />
+            <blockpin name="CLK270" />
+            <blockpin name="CLK2X" />
+            <blockpin name="CLK2X180" />
+            <blockpin name="CLKDV" />
+            <blockpin signalname="XLXN_16022" name="CLKFX" />
+            <blockpin name="CLKFX180" />
+            <blockpin signalname="debug_signals(0)" name="LOCKED" />
+            <blockpin name="PSDONE" />
+            <blockpin name="DO(15:0)" />
+            <blockpin name="DRDY" />
+        </block>
+        <block symbolname="dcm_base" name="XLXI_5953">
+            <attr value="HIGH" name="DLL_FREQUENCY_MODE">
+                <trait editname="all:1 sch:0" />
+                <trait edittrait="all:1 sch:0" />
+                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
+                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
+                <trait valuetype="StringValList LOW HIGH" />
+            </attr>
+            <attr value="HIGH" name="DFS_FREQUENCY_MODE">
+                <trait editname="all:1 sch:0" />
+                <trait edittrait="all:1 sch:0" />
+                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
+                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
+                <trait valuetype="StringValList LOW HIGH" />
+            </attr>
+            <attr value="5.33333333" name="CLKIN_PERIOD">
+                <trait editname="all:1 sch:0" />
+                <trait edittrait="all:1 sch:0" />
+                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
+                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
+                <trait valuetype="Float" />
+            </attr>
+            <blockpin signalname="CLK_187_5" name="CLKIN" />
+            <blockpin signalname="XLXN_12672" name="CLKFB" />
+            <blockpin signalname="dcm_reset_1" name="RST" />
+            <blockpin signalname="XLXN_12671" name="CLK0" />
+            <blockpin name="CLK90" />
+            <blockpin name="CLK180" />
+            <blockpin name="CLK270" />
+            <blockpin signalname="XLXN_12781" name="CLK2X" />
+            <blockpin name="CLK2X180" />
+            <blockpin name="CLKDV" />
+            <blockpin name="CLKFX" />
+            <blockpin name="CLKFX180" />
+            <blockpin signalname="debug_signals(1)" name="LOCKED" />
+        </block>
+        <block symbolname="bufg" name="XLXI_5954">
+            <blockpin signalname="XLXN_12671" name="I" />
+            <blockpin signalname="XLXN_12672" name="O" />
+        </block>
+        <block symbolname="bufg" name="XLXI_5993">
+            <blockpin signalname="XLXN_12781" name="I" />
+            <blockpin signalname="CLK_375" name="O" />
+        </block>
+        <block symbolname="dcm_ps" name="XLXI_6495">
+            <attr value="HIGH" name="DLL_FREQUENCY_MODE">
+                <trait editname="all:1 sch:0" />
+                <trait edittrait="all:1 sch:0" />
+                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
+                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
+                <trait valuetype="StringValList LOW HIGH" />
+            </attr>
+            <attr value="HIGH" name="DFS_FREQUENCY_MODE">
+                <trait editname="all:1 sch:0" />
+                <trait edittrait="all:1 sch:0" />
+                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
+                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
+                <trait valuetype="StringValList LOW HIGH" />
+            </attr>
+            <attr value="5.4" name="CLKIN_PERIOD">
+                <trait editname="all:1 sch:0" />
+                <trait edittrait="all:1 sch:0" />
+                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
+                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
+                <trait valuetype="Float" />
+            </attr>
+            <blockpin signalname="adc_data_mux_clk" name="CLKIN" />
+            <blockpin signalname="FADC_DCLK" name="CLKFB" />
+            <blockpin signalname="fadc_clk_in_reset" name="RST" />
+            <blockpin signalname="rx_data0_latch" name="PSINCDEC" />
+            <blockpin signalname="fadc_data_del_ce_latch" name="PSEN" />
+            <blockpin signalname="MASTER_CLK" name="PSCLK" />
+            <blockpin signalname="XLXN_15087" name="CLK0" />
+            <blockpin name="CLK90" />
+            <blockpin signalname="XLXN_15092" name="CLK180" />
+            <blockpin name="CLK270" />
+            <blockpin name="CLK2X" />
+            <blockpin name="CLK2X180" />
+            <blockpin name="CLKDV" />
+            <blockpin name="CLKFX" />
+            <blockpin name="CLKFX180" />
+            <blockpin signalname="debug_signals(3)" name="LOCKED" />
+            <blockpin name="PSDONE" />
+            <blockpin name="DO(15:0)" />
+        </block>
+        <block symbolname="idelay" name="XLXI_3405">
+            <attr value="VARIABLE" name="IOBDELAY_TYPE">
+                <trait editname="all:1 sch:0" />
+                <trait edittrait="all:1 sch:0" />
+                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
+                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
+                <trait valuetype="StringValList DEFAULT FIXED VARIABLE" />
+            </attr>
+            <attr value="0" name="IOBDELAY_VALUE">
+                <trait editname="all:1 sch:0" />
+                <trait edittrait="all:1 sch:0" />
+                <trait verilog="all:0 dp:1nosynth wsynop:1 wsynth:1" />
+                <trait vhdl="all:0 gm:1nosynth wa:1 wd:1" />
+                <trait valuetype="Integer 0 63" />
+            </attr>
+            <blockpin name="I" />
+            <blockpin name="CE" />
+            <blockpin name="C" />
+            <blockpin name="INC" />
+            <blockpin name="RST" />
+            <blockpin name="O" />
+        </block>
+        <block symbolname="fd" name="XLXI_6498">
+            <blockpin signalname="MASTER_CLK" name="C" />
+            <blockpin signalname="rx_data(0)" name="D" />
+            <blockpin signalname="rx_data0_latch" name="Q" />
+        </block>
+        <block symbolname="fd" name="XLXI_6501">
+            <blockpin signalname="MASTER_CLK" name="C" />
+            <blockpin signalname="fadc_data_del_ce" name="D" />
+            <blockpin signalname="fadc_data_del_ce_latch" name="Q" />
+        </block>
+        <block symbolname="fd" name="XLXI_6502">
+            <blockpin signalname="XLXN_16109" name="C" />
+            <blockpin signalname="XLXN_16108" name="D" />
+            <blockpin signalname="XLXN_16110" name="Q" />
+        </block>
     </netlist>
     <sheet sheetnum="1" width="7040" height="5440">
         <rect width="2260" x="424" y="276" height="1256" />
@@ -2427,6 +2544,14 @@
         <branch name="MEDIAN_FILTER_MAP">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="4592" y="3488" type="branch" />
             <wire x2="4592" y1="3488" y2="3488" x1="4512" />
+        </branch>
+        <branch name="ADC_CLOCK_MAP">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="4624" y="3744" type="branch" />
+            <wire x2="4624" y1="3744" y2="3744" x1="4512" />
+        </branch>
+        <branch name="ADC_DATA_CLK_MUX_MAP">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="4528" y="3680" type="branch" />
+            <wire x2="4528" y1="3680" y2="3680" x1="4512" />
         </branch>
     </sheet>
     <sheet sheetnum="2" width="7040" height="5440">
@@ -3205,40 +3330,6 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1184" y="512" type="branch" />
             <wire x2="1328" y1="512" y2="512" x1="1184" />
         </branch>
-        <branch name="MASTER_CLK">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2656" y="464" type="branch" />
-            <wire x2="2752" y1="464" y2="464" x1="2656" />
-        </branch>
-        <branch name="XLXN_12660">
-            <wire x2="3152" y1="464" y2="464" x1="3136" />
-        </branch>
-        <instance x="3152" y="496" name="XLXI_5950" orien="R0" />
-        <branch name="XLXN_12669">
-            <wire x2="3152" y1="688" y2="688" x1="3136" />
-        </branch>
-        <instance x="3152" y="720" name="XLXI_5952" orien="R0" />
-        <branch name="CLK_187_5">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="3440" y="688" type="branch" />
-            <wire x2="3440" y1="688" y2="688" x1="3376" />
-            <wire x2="3584" y1="688" y2="688" x1="3440" />
-        </branch>
-        <instance x="3584" y="1008" name="XLXI_5953" orien="R0">
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DLL_FREQUENCY_MODE" x="0" y="0" type="instance" />
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DFS_FREQUENCY_MODE" x="0" y="32" type="instance" />
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DCM_PERFORMANCE_MODE" x="0" y="64" type="instance" />
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="CLKIN_PERIOD" x="0" y="96" type="instance" />
-        </instance>
-        <branch name="XLXN_12671">
-            <wire x2="4000" y1="688" y2="688" x1="3968" />
-        </branch>
-        <instance x="4000" y="720" name="XLXI_5954" orien="R0" />
-        <branch name="XLXN_12672">
-            <wire x2="4304" y1="576" y2="576" x1="3520" />
-            <wire x2="4304" y1="576" y2="688" x1="4304" />
-            <wire x2="3520" y1="576" y2="832" x1="3520" />
-            <wire x2="3584" y1="832" y2="832" x1="3520" />
-            <wire x2="4304" y1="688" y2="688" x1="4224" />
-        </branch>
         <instance x="1328" y="1104" name="XLXI_5955" orien="R0" />
         <branch name="MASTER_CLK">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1168" y="976" type="branch" />
@@ -3259,14 +3350,6 @@
         <branch name="DCM_RESET_MAP">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1184" y="912" type="branch" />
             <wire x2="1328" y1="912" y2="912" x1="1184" />
-        </branch>
-        <branch name="debug_signals(0)">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3216" y="752" type="branch" />
-            <wire x2="3216" y1="752" y2="752" x1="3136" />
-        </branch>
-        <branch name="debug_signals(1)">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="4064" y="976" type="branch" />
-            <wire x2="4064" y1="976" y2="976" x1="3968" />
         </branch>
         <instance x="1328" y="1488" name="XLXI_5967" orien="R0" />
         <branch name="MASTER_CLK">
@@ -3289,10 +3372,6 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1184" y="1296" type="branch" />
             <wire x2="1328" y1="1296" y2="1296" x1="1184" />
         </branch>
-        <branch name="XLXN_12781">
-            <wire x2="4000" y1="816" y2="816" x1="3968" />
-        </branch>
-        <instance x="4000" y="848" name="XLXI_5993" orien="R0" />
         <instance x="3968" y="2304" name="XLXI_5963" orien="R0">
             <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DLL_FREQUENCY_MODE" x="0" y="0" type="instance" />
             <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DFS_FREQUENCY_MODE" x="0" y="32" type="instance" />
@@ -3417,12 +3496,6 @@
             <wire x2="1968" y1="4912" y2="4912" x1="1760" />
         </branch>
         <instance x="1536" y="4944" name="XLXI_4529" orien="R0" />
-        <instance x="4688" y="3056" name="XLXI_6199" orien="R0">
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DLL_FREQUENCY_MODE" x="0" y="0" type="instance" />
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DFS_FREQUENCY_MODE" x="0" y="32" type="instance" />
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DCM_PERFORMANCE_MODE" x="0" y="64" type="instance" />
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="CLKIN_PERIOD" x="0" y="96" type="instance" />
-        </instance>
         <branch name="XLXN_15087">
             <wire x2="5104" y1="2736" y2="2736" x1="5072" />
         </branch>
@@ -3431,14 +3504,10 @@
             <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="5360" y="2736" type="branch" />
             <wire x2="5408" y1="2624" y2="2624" x1="4624" />
             <wire x2="5408" y1="2624" y2="2736" x1="5408" />
-            <wire x2="4624" y1="2624" y2="2880" x1="4624" />
-            <wire x2="4688" y1="2880" y2="2880" x1="4624" />
+            <wire x2="4624" y1="2624" y2="2800" x1="4624" />
+            <wire x2="4688" y1="2800" y2="2800" x1="4624" />
             <wire x2="5360" y1="2736" y2="2736" x1="5328" />
             <wire x2="5408" y1="2736" y2="2736" x1="5360" />
-        </branch>
-        <branch name="debug_signals(3)">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5168" y="3024" type="branch" />
-            <wire x2="5168" y1="3024" y2="3024" x1="5072" />
         </branch>
         <branch name="XLXN_15092">
             <wire x2="5104" y1="2800" y2="2800" x1="5072" />
@@ -3448,10 +3517,6 @@
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5392" y="2800" type="branch" />
             <wire x2="5392" y1="2800" y2="2800" x1="5328" />
         </branch>
-        <instance x="3840" y="2896" name="XLXI_3405" orien="R0">
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="IOBDELAY_TYPE" x="0" y="-248" type="instance" />
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="IOBDELAY_VALUE" x="0" y="0" type="instance" />
-        </instance>
         <branch name="fadc_dclk_in">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3648" y="2736" type="branch" />
             <wire x2="3840" y1="2736" y2="2736" x1="3648" />
@@ -3492,12 +3557,12 @@
         </branch>
         <instance x="2992" y="2864" name="XLXI_4466" orien="R0" />
         <instance x="3472" y="3056" name="XLXI_3409" orien="R0" />
-        <instance x="4288" y="2768" name="XLXI_6040" orien="R0" />
         <branch name="XLXN_15075">
             <wire x2="4288" y1="2736" y2="2736" x1="4224" />
         </branch>
-        <branch name="XLXN_15130">
-            <wire x2="4688" y1="2736" y2="2736" x1="4512" />
+        <branch name="adc_data_mux_clk">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4576" y="2736" type="branch" />
+            <wire x2="4688" y1="2736" y2="2736" x1="4576" />
         </branch>
         <instance x="3488" y="3488" name="XLXI_6226" orien="R0" />
         <branch name="MASTER_CLK">
@@ -3516,21 +3581,6 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3344" y="3296" type="branch" />
             <wire x2="3488" y1="3296" y2="3296" x1="3344" />
         </branch>
-        <instance x="2752" y="784" name="XLXI_5949" orien="R0">
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DLL_FREQUENCY_MODE" x="0" y="0" type="instance" />
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DFS_FREQUENCY_MODE" x="0" y="32" type="instance" />
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DCM_PERFORMANCE_MODE" x="0" y="64" type="instance" />
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="CLKIN_PERIOD" x="0" y="96" type="instance" />
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="CLKFX_MULTIPLY" x="0" y="124" type="instance" />
-            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="CLKFX_DIVIDE" x="0" y="156" type="instance" />
-        </instance>
-        <branch name="XLXN_12661">
-            <wire x2="2688" y1="352" y2="608" x1="2688" />
-            <wire x2="2752" y1="608" y2="608" x1="2688" />
-            <wire x2="3392" y1="352" y2="352" x1="2688" />
-            <wire x2="3392" y1="352" y2="464" x1="3392" />
-            <wire x2="3392" y1="464" y2="464" x1="3376" />
-        </branch>
         <instance x="1360" y="2448" name="XLXI_6331" orien="R0">
         </instance>
         <branch name="clock_5mhz">
@@ -3544,40 +3594,12 @@
         <rect width="3396" x="2464" y="284" height="2204" />
         <text style="fontsize:45;fontname:Arial" x="2556" y="3464">Input Clock from ADC</text>
         <rect width="3396" x="2464" y="2528" height="1316" />
-        <branch name="dcm_reset_0">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2592" y="1136" type="branch" />
-            <wire x2="2944" y1="1136" y2="1136" x1="2592" />
-            <wire x2="2752" y1="752" y2="752" x1="2688" />
-            <wire x2="2688" y1="752" y2="864" x1="2688" />
-            <wire x2="3008" y1="864" y2="864" x1="2688" />
-            <wire x2="3008" y1="864" y2="1104" x1="3008" />
-            <wire x2="3008" y1="1104" y2="1104" x1="2944" />
-            <wire x2="2944" y1="1104" y2="1136" x1="2944" />
-        </branch>
-        <branch name="dcm_reset_1">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3264" y="944" type="branch" />
-            <wire x2="3296" y1="944" y2="944" x1="3264" />
-            <wire x2="3552" y1="944" y2="944" x1="3296" />
-            <wire x2="3552" y1="944" y2="976" x1="3552" />
-            <wire x2="3584" y1="976" y2="976" x1="3552" />
-        </branch>
         <branch name="dcm_reset_2">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3616" y="2304" type="branch" />
             <wire x2="3696" y1="2304" y2="2304" x1="3616" />
             <wire x2="3952" y1="2304" y2="2304" x1="3696" />
             <wire x2="3968" y1="2272" y2="2272" x1="3952" />
             <wire x2="3952" y1="2272" y2="2304" x1="3952" />
-        </branch>
-        <branch name="fadc_clk_in_reset">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4384" y="3360" type="branch" />
-            <wire x2="4464" y1="3360" y2="3360" x1="4384" />
-            <wire x2="4720" y1="3360" y2="3360" x1="4464" />
-            <wire x2="4688" y1="3024" y2="3024" x1="4624" />
-            <wire x2="4624" y1="3024" y2="3136" x1="4624" />
-            <wire x2="4784" y1="3136" y2="3136" x1="4624" />
-            <wire x2="4784" y1="3136" y2="3328" x1="4784" />
-            <wire x2="4784" y1="3328" y2="3328" x1="4720" />
-            <wire x2="4720" y1="3328" y2="3360" x1="4720" />
         </branch>
         <branch name="XLXN_15518">
             <wire x2="1360" y1="2416" y2="2416" x1="1312" />
@@ -3588,15 +3610,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3328" y="3232" type="branch" />
             <wire x2="3488" y1="3232" y2="3232" x1="3328" />
         </branch>
-        <text style="fontsize:45;fontname:Arial" x="2576" y="1792">Output Clock to the ADC</text>
         <instance x="3712" y="1616" name="XLXI_6004" orien="R0" />
-        <branch name="CLK_375">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="4320" y="816" type="branch" />
-            <wire x2="4320" y1="816" y2="816" x1="4224" />
-            <wire x2="4432" y1="816" y2="816" x1="4320" />
-            <wire x2="4592" y1="816" y2="816" x1="4432" />
-        </branch>
-        <text x="3440" y="1604">This logic used to allow the user to select a different clock to work with, but I disabled this feature becasue I don't see how one can dynamically double the clock speed and keep everythign working at the same time. </text>
         <branch name="debug_signals(4)">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="2368" y="4912" type="branch" />
             <wire x2="2368" y1="4912" y2="4912" x1="2352" />
@@ -3618,6 +3632,231 @@
         <branch name="XLXN_16009">
             <wire x2="4224" y1="1488" y2="1488" x1="4032" />
         </branch>
+        <text style="fontsize:45;fontname:Arial" x="2652" y="1452">Output Clock to the ADC</text>
+        <branch name="MASTER_CLK">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="608" y="3424" type="branch" />
+            <wire x2="768" y1="3424" y2="3424" x1="608" />
+        </branch>
+        <branch name="reset">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="464" y="3520" type="branch" />
+            <wire x2="768" y1="3520" y2="3520" x1="464" />
+        </branch>
+        <branch name="adc_data_clk_mux_sel">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1392" y="3296" type="branch" />
+            <wire x2="1392" y1="3296" y2="3296" x1="1152" />
+        </branch>
+        <branch name="rx_data(0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="608" y="3296" type="branch" />
+            <wire x2="768" y1="3296" y2="3296" x1="608" />
+        </branch>
+        <branch name="ADC_DATA_CLK_MUX_MAP">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="624" y="3360" type="branch" />
+            <wire x2="768" y1="3360" y2="3360" x1="624" />
+        </branch>
+        <instance x="768" y="3552" name="XLXI_6481" orien="R0" />
+        <branch name="CLK_187_5">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3888" y="3696" type="branch" />
+            <wire x2="3968" y1="3696" y2="3696" x1="3888" />
+        </branch>
+        <branch name="fadc_dclk_in">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3888" y="3632" type="branch" />
+            <wire x2="3968" y1="3632" y2="3632" x1="3888" />
+        </branch>
+        <branch name="adc_data_clk_mux_sel">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3888" y="3760" type="branch" />
+            <wire x2="3968" y1="3760" y2="3760" x1="3888" />
+        </branch>
+        <instance x="3968" y="3792" name="XLXI_6479" orien="R0" />
+        <instance x="4480" y="3696" name="XLXI_6480" orien="R0" />
+        <branch name="adc_data_mux_clk">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="4784" y="3664" type="branch" />
+            <wire x2="4784" y1="3664" y2="3664" x1="4704" />
+        </branch>
+        <branch name="XLXN_16048">
+            <wire x2="4480" y1="3664" y2="3664" x1="4288" />
+        </branch>
+        <instance x="2656" y="560" name="XLXI_6469" orien="R90" />
+        <branch name="XLXN_16010">
+            <wire x2="2816" y1="624" y2="624" x1="2784" />
+            <wire x2="2880" y1="624" y2="624" x1="2816" />
+            <wire x2="2816" y1="624" y2="656" x1="2816" />
+            <wire x2="2880" y1="656" y2="656" x1="2816" />
+            <wire x2="2880" y1="592" y2="592" x1="2816" />
+            <wire x2="2816" y1="592" y2="624" x1="2816" />
+        </branch>
+        <branch name="rx_data(6:0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2784" y="688" type="branch" />
+            <wire x2="2880" y1="688" y2="688" x1="2784" />
+        </branch>
+        <branch name="rx_data(22:7)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2784" y="720" type="branch" />
+            <wire x2="2880" y1="720" y2="720" x1="2784" />
+        </branch>
+        <branch name="ADC_CLOCK_MAP">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2784" y="752" type="branch" />
+            <wire x2="2832" y1="752" y2="752" x1="2784" />
+            <wire x2="2880" y1="752" y2="752" x1="2832" />
+            <wire x2="2832" y1="752" y2="784" x1="2832" />
+            <wire x2="2880" y1="784" y2="784" x1="2832" />
+        </branch>
+        <branch name="MASTER_CLK">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2832" y="816" type="branch" />
+            <wire x2="2880" y1="816" y2="816" x1="2832" />
+        </branch>
+        <branch name="MASTER_CLK">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2832" y="496" type="branch" />
+            <wire x2="2880" y1="496" y2="496" x1="2832" />
+        </branch>
+        <branch name="dcm_reset_0">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2832" y="560" type="branch" />
+            <wire x2="2880" y1="560" y2="560" x1="2832" />
+        </branch>
+        <instance x="3328" y="528" name="XLXI_5950" orien="R0" />
+        <branch name="XLXN_16020">
+            <wire x2="3328" y1="496" y2="496" x1="3264" />
+        </branch>
+        <instance x="3328" y="752" name="XLXI_6471" orien="R0" />
+        <branch name="XLXN_16022">
+            <wire x2="3328" y1="720" y2="720" x1="3264" />
+        </branch>
+        <branch name="debug_signals(0)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3344" y="784" type="branch" />
+            <wire x2="3344" y1="784" y2="784" x1="3264" />
+        </branch>
+        <instance x="2880" y="912" name="XLXI_6468" orien="R0">
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DLL_FREQUENCY_MODE" x="0" y="0" type="instance" />
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DFS_FREQUENCY_MODE" x="0" y="32" type="instance" />
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DCM_PERFORMANCE_MODE" x="0" y="64" type="instance" />
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="CLKIN_PERIOD" x="0" y="96" type="instance" />
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="CLKFX_MULTIPLY" x="0" y="128" type="instance" />
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="CLKFX_DIVIDE" x="0" y="160" type="instance" />
+        </instance>
+        <branch name="XLXN_16021">
+            <wire x2="2800" y1="400" y2="528" x1="2800" />
+            <wire x2="2880" y1="528" y2="528" x1="2800" />
+            <wire x2="3616" y1="400" y2="400" x1="2800" />
+            <wire x2="3616" y1="400" y2="496" x1="3616" />
+            <wire x2="3616" y1="496" y2="496" x1="3552" />
+        </branch>
+        <branch name="CLK_187_5">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="3584" y="720" type="branch" />
+            <wire x2="3584" y1="720" y2="720" x1="3552" />
+        </branch>
+        <branch name="CLK_187_5">
+            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="4352" y="672" type="branch" />
+            <wire x2="4352" y1="672" y2="672" x1="4288" />
+            <wire x2="4496" y1="672" y2="672" x1="4352" />
+        </branch>
+        <instance x="4496" y="992" name="XLXI_5953" orien="R0">
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DLL_FREQUENCY_MODE" x="0" y="0" type="instance" />
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DFS_FREQUENCY_MODE" x="0" y="32" type="instance" />
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DCM_PERFORMANCE_MODE" x="0" y="64" type="instance" />
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="CLKIN_PERIOD" x="0" y="96" type="instance" />
+        </instance>
+        <branch name="XLXN_12671">
+            <wire x2="4912" y1="672" y2="672" x1="4880" />
+        </branch>
+        <instance x="4912" y="704" name="XLXI_5954" orien="R0" />
+        <branch name="XLXN_12672">
+            <wire x2="5216" y1="560" y2="560" x1="4432" />
+            <wire x2="5216" y1="560" y2="672" x1="5216" />
+            <wire x2="4432" y1="560" y2="816" x1="4432" />
+            <wire x2="4496" y1="816" y2="816" x1="4432" />
+            <wire x2="5216" y1="672" y2="672" x1="5136" />
+        </branch>
+        <branch name="debug_signals(1)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="4976" y="960" type="branch" />
+            <wire x2="4976" y1="960" y2="960" x1="4880" />
+        </branch>
+        <branch name="XLXN_12781">
+            <wire x2="4912" y1="800" y2="800" x1="4880" />
+        </branch>
+        <instance x="4912" y="832" name="XLXI_5993" orien="R0" />
+        <branch name="dcm_reset_1">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4176" y="928" type="branch" />
+            <wire x2="4208" y1="928" y2="928" x1="4176" />
+            <wire x2="4464" y1="928" y2="928" x1="4208" />
+            <wire x2="4464" y1="928" y2="960" x1="4464" />
+            <wire x2="4496" y1="960" y2="960" x1="4464" />
+        </branch>
+        <branch name="CLK_375">
+            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="5232" y="800" type="branch" />
+            <wire x2="5232" y1="800" y2="800" x1="5136" />
+            <wire x2="5344" y1="800" y2="800" x1="5232" />
+            <wire x2="5504" y1="800" y2="800" x1="5344" />
+        </branch>
+        <branch name="fadc_clk_in_reset">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4592" y="2864" type="branch" />
+            <wire x2="4672" y1="2864" y2="2864" x1="4592" />
+            <wire x2="4688" y1="2864" y2="2864" x1="4672" />
+        </branch>
+        <branch name="debug_signals(3)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5168" y="3024" type="branch" />
+            <wire x2="5168" y1="3024" y2="3024" x1="5072" />
+        </branch>
+        <instance x="4688" y="3120" name="XLXI_6495" orien="R0">
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DLL_FREQUENCY_MODE" x="0" y="0" type="instance" />
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DFS_FREQUENCY_MODE" x="0" y="32" type="instance" />
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DCM_PERFORMANCE_MODE" x="0" y="64" type="instance" />
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="CLKIN_PERIOD" x="0" y="96" type="instance" />
+        </instance>
+        <instance x="3888" y="4368" name="XLXI_3405" orien="R0">
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="IOBDELAY_TYPE" x="0" y="-248" type="instance" />
+            <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="IOBDELAY_VALUE" x="0" y="0" type="instance" />
+        </instance>
+        <branch name="rx_data0_latch">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4592" y="2928" type="branch" />
+            <wire x2="4672" y1="2928" y2="2928" x1="4592" />
+            <wire x2="4688" y1="2928" y2="2928" x1="4672" />
+        </branch>
+        <branch name="fadc_data_del_ce_latch">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4592" y="2992" type="branch" />
+            <wire x2="4672" y1="2992" y2="2992" x1="4592" />
+            <wire x2="4688" y1="2992" y2="2992" x1="4672" />
+        </branch>
+        <branch name="MASTER_CLK">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4592" y="3056" type="branch" />
+            <wire x2="4672" y1="3056" y2="3056" x1="4592" />
+            <wire x2="4688" y1="3056" y2="3056" x1="4672" />
+        </branch>
+        <instance x="4880" y="4368" name="XLXI_6498" orien="R0" />
+        <branch name="rx_data(0)">
+            <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="4864" y="4112" type="branch" />
+            <wire x2="4864" y1="4112" y2="4112" x1="4848" />
+            <wire x2="4880" y1="4112" y2="4112" x1="4864" />
+        </branch>
+        <branch name="MASTER_CLK">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4848" y="4240" type="branch" />
+            <wire x2="4880" y1="4240" y2="4240" x1="4848" />
+        </branch>
+        <branch name="rx_data0_latch">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="5344" y="4112" type="branch" />
+            <wire x2="5344" y1="4112" y2="4112" x1="5264" />
+        </branch>
+        <branch name="fadc_data_del_ce">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4848" y="4512" type="branch" />
+            <wire x2="4880" y1="4512" y2="4512" x1="4848" />
+        </branch>
+        <branch name="MASTER_CLK">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4848" y="4640" type="branch" />
+            <wire x2="4880" y1="4640" y2="4640" x1="4848" />
+        </branch>
+        <branch name="fadc_data_del_ce_latch">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="5344" y="4512" type="branch" />
+            <wire x2="5344" y1="4512" y2="4512" x1="5264" />
+        </branch>
+        <instance x="4880" y="4768" name="XLXI_6501" orien="R0" />
+        <branch name="XLXN_16108">
+            <wire x2="4880" y1="4976" y2="4976" x1="4848" />
+        </branch>
+        <branch name="XLXN_16109">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4848" y="5104" type="branch" />
+            <wire x2="4880" y1="5104" y2="5104" x1="4848" />
+        </branch>
+        <branch name="XLXN_16110">
+            <wire x2="5344" y1="4976" y2="4976" x1="5264" />
+        </branch>
+        <instance x="4880" y="5232" name="XLXI_6502" orien="R0" />
     </sheet>
     <sheet sheetnum="5" width="7040" height="5440">
         <branch name="GMII_RX_ER_0_sig">

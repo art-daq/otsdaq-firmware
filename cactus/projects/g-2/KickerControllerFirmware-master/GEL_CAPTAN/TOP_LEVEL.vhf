@@ -7,7 +7,7 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : TOP_LEVEL.vhf
--- /___/   /\     Timestamp : 11/16/2017 10:10:57
+-- /___/   /\     Timestamp : 03/08/2018 16:26:12
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
@@ -714,6 +714,10 @@ architecture BEHAVIORAL of TOP_LEVEL is
    attribute SLEW                  : string ;
    attribute DRIVE                 : string ;
    attribute DIFF_TERM             : string ;
+   signal ADC_CLOCK_MAP                  : std_logic;
+   signal ADC_DATA_CLK_MUX_MAP           : std_logic;
+   signal adc_data_clk_mux_sel           : std_logic;
+   signal adc_data_mux_clk               : std_logic;
    signal adc_fifo_empty                 : std_logic;
    signal adc_fifo_overflow              : std_logic;
    signal apply_median_filter            : std_logic;
@@ -749,6 +753,7 @@ architecture BEHAVIORAL of TOP_LEVEL is
    signal fadc_ctrl_data                 : std_logic_vector (15 downto 0);
    signal FADC_CTRL_MAP                  : std_logic;
    signal fadc_data_del_ce               : std_logic;
+   signal fadc_data_del_ce_latch         : std_logic;
    signal fadc_data_del_rst              : std_logic;
    signal FADC_DATA_EDGE_MAP             : std_logic;
    signal fadc_data_edge_sel             : std_logic_vector (15 downto 0);
@@ -796,6 +801,7 @@ architecture BEHAVIORAL of TOP_LEVEL is
    signal reset_force_veto               : std_logic;
    signal rx_addr                        : std_logic_vector (31 downto 0);
    signal rx_data                        : std_logic_vector (63 downto 0);
+   signal rx_data0_latch                 : std_logic;
    signal rx_wren                        : std_logic;
    signal scin_0                         : std_logic;
    signal scin_1                         : std_logic;
@@ -823,9 +829,6 @@ architecture BEHAVIORAL of TOP_LEVEL is
    signal XLXN_12229                     : std_logic;
    signal XLXN_12257                     : std_logic;
    signal XLXN_12617                     : std_logic;
-   signal XLXN_12660                     : std_logic;
-   signal XLXN_12661                     : std_logic;
-   signal XLXN_12669                     : std_logic;
    signal XLXN_12671                     : std_logic;
    signal XLXN_12672                     : std_logic;
    signal XLXN_12781                     : std_logic;
@@ -837,7 +840,6 @@ architecture BEHAVIORAL of TOP_LEVEL is
    signal XLXN_15077                     : std_logic;
    signal XLXN_15087                     : std_logic;
    signal XLXN_15092                     : std_logic;
-   signal XLXN_15130                     : std_logic;
    signal XLXN_15140                     : std_logic;
    signal XLXN_15150                     : std_logic;
    signal XLXN_15518                     : std_logic;
@@ -850,10 +852,23 @@ architecture BEHAVIORAL of TOP_LEVEL is
    signal XLXN_16003                     : std_logic;
    signal XLXN_16004                     : std_logic;
    signal XLXN_16009                     : std_logic;
+   signal XLXN_16010                     : std_logic;
+   signal XLXN_16020                     : std_logic;
+   signal XLXN_16021                     : std_logic;
+   signal XLXN_16022                     : std_logic;
+   signal XLXN_16048                     : std_logic;
+   signal XLXN_16108                     : std_logic;
+   signal XLXN_16109                     : std_logic;
+   signal XLXN_16110                     : std_logic;
    signal zero_cross_count               : std_logic_vector (7 downto 0);
    signal zero_cross_thresh_high         : std_logic_vector (7 downto 0);
    signal zero_cross_thresh_low          : std_logic_vector (7 downto 0);
    signal zero_cross_veto_thresh         : std_logic_vector (7 downto 0);
+   signal XLXI_3405_C_openSignal         : std_logic;
+   signal XLXI_3405_CE_openSignal        : std_logic;
+   signal XLXI_3405_I_openSignal         : std_logic;
+   signal XLXI_3405_INC_openSignal       : std_logic;
+   signal XLXI_3405_RST_openSignal       : std_logic;
    signal XLXI_5338_in4_openSignal       : std_logic_vector (63 downto 0);
    signal XLXI_5338_in5_openSignal       : std_logic_vector (63 downto 0);
    signal XLXI_5338_in6_openSignal       : std_logic_vector (63 downto 0);
@@ -1285,6 +1300,124 @@ architecture BEHAVIORAL of TOP_LEVEL is
    end component;
    attribute BOX_TYPE of FD : component is "BLACK_BOX";
    
+   component DCM_ADV
+      -- synopsys translate_off
+      generic( CLK_FEEDBACK : string :=  "1X";
+               CLKDV_DIVIDE : real :=  2.0;
+               CLKFX_DIVIDE : integer :=  1;
+               CLKFX_MULTIPLY : integer :=  4;
+               CLKIN_DIVIDE_BY_2 : boolean :=  FALSE;
+               CLKIN_PERIOD : real :=  10.0;
+               CLKOUT_PHASE_SHIFT : string :=  "NONE";
+               DCM_PERFORMANCE_MODE : string :=  "MAX_SPEED";
+               DESKEW_ADJUST : string :=  "SYSTEM_SYNCHRONOUS";
+               DFS_FREQUENCY_MODE : string :=  "LOW";
+               DLL_FREQUENCY_MODE : string :=  "LOW";
+               DUTY_CYCLE_CORRECTION : boolean :=  TRUE;
+               FACTORY_JF : bit_vector :=  x"F0F0";
+               PHASE_SHIFT : integer :=  0;
+               STARTUP_WAIT : boolean :=  FALSE;
+               DCM_AUTOCALIBRATION : boolean :=  TRUE);
+      -- synopsys translate_on
+      port ( CLKIN    : in    std_logic; 
+             CLKFB    : in    std_logic; 
+             RST      : in    std_logic; 
+             PSINCDEC : in    std_logic; 
+             PSEN     : in    std_logic; 
+             PSCLK    : in    std_logic; 
+             DADDR    : in    std_logic_vector (6 downto 0); 
+             DI       : in    std_logic_vector (15 downto 0); 
+             DWE      : in    std_logic; 
+             DEN      : in    std_logic; 
+             DCLK     : in    std_logic; 
+             CLK0     : out   std_logic; 
+             CLK90    : out   std_logic; 
+             CLK180   : out   std_logic; 
+             CLK270   : out   std_logic; 
+             CLK2X    : out   std_logic; 
+             CLK2X180 : out   std_logic; 
+             CLKDV    : out   std_logic; 
+             CLKFX    : out   std_logic; 
+             CLKFX180 : out   std_logic; 
+             LOCKED   : out   std_logic; 
+             PSDONE   : out   std_logic; 
+             DO       : out   std_logic_vector (15 downto 0); 
+             DRDY     : out   std_logic);
+   end component;
+   attribute CLK_FEEDBACK of DCM_ADV : component is "1X";
+   attribute CLKDV_DIVIDE of DCM_ADV : component is "2.0";
+   attribute CLKFX_DIVIDE of DCM_ADV : component is "1";
+   attribute CLKFX_MULTIPLY of DCM_ADV : component is "4";
+   attribute CLKIN_DIVIDE_BY_2 of DCM_ADV : component is "FALSE";
+   attribute CLKIN_PERIOD of DCM_ADV : component is "10.0";
+   attribute CLKOUT_PHASE_SHIFT of DCM_ADV : component is "NONE";
+   attribute DCM_PERFORMANCE_MODE of DCM_ADV : component is "MAX_SPEED";
+   attribute DESKEW_ADJUST of DCM_ADV : component is "SYSTEM_SYNCHRONOUS";
+   attribute DFS_FREQUENCY_MODE of DCM_ADV : component is "LOW";
+   attribute DLL_FREQUENCY_MODE of DCM_ADV : component is "LOW";
+   attribute DUTY_CYCLE_CORRECTION of DCM_ADV : component is "TRUE";
+   attribute FACTORY_JF of DCM_ADV : component is "F0F0";
+   attribute PHASE_SHIFT of DCM_ADV : component is "0";
+   attribute STARTUP_WAIT of DCM_ADV : component is "FALSE";
+   attribute DCM_AUTOCALIBRATION of DCM_ADV : component is "TRUE";
+   attribute BOX_TYPE of DCM_ADV : component is "BLACK_BOX";
+   
+   component DCM_PS
+      -- synopsys translate_off
+      generic( CLK_FEEDBACK : string :=  "1X";
+               CLKDV_DIVIDE : real :=  2.0;
+               CLKFX_DIVIDE : integer :=  1;
+               CLKFX_MULTIPLY : integer :=  4;
+               CLKIN_DIVIDE_BY_2 : boolean :=  FALSE;
+               CLKIN_PERIOD : real :=  10.0;
+               CLKOUT_PHASE_SHIFT : string :=  "NONE";
+               DCM_PERFORMANCE_MODE : string :=  "MAX_SPEED";
+               DESKEW_ADJUST : string :=  "SYSTEM_SYNCHRONOUS";
+               DFS_FREQUENCY_MODE : string :=  "LOW";
+               DLL_FREQUENCY_MODE : string :=  "LOW";
+               DUTY_CYCLE_CORRECTION : boolean :=  TRUE;
+               FACTORY_JF : bit_vector :=  x"F0F0";
+               PHASE_SHIFT : integer :=  0;
+               STARTUP_WAIT : boolean :=  FALSE;
+               DCM_AUTOCALIBRATION : boolean :=  TRUE);
+      -- synopsys translate_on
+      port ( CLKIN    : in    std_logic; 
+             CLKFB    : in    std_logic; 
+             RST      : in    std_logic; 
+             PSINCDEC : in    std_logic; 
+             PSEN     : in    std_logic; 
+             PSCLK    : in    std_logic; 
+             CLK0     : out   std_logic; 
+             CLK90    : out   std_logic; 
+             CLK180   : out   std_logic; 
+             CLK270   : out   std_logic; 
+             CLK2X    : out   std_logic; 
+             CLK2X180 : out   std_logic; 
+             CLKDV    : out   std_logic; 
+             CLKFX    : out   std_logic; 
+             CLKFX180 : out   std_logic; 
+             LOCKED   : out   std_logic; 
+             PSDONE   : out   std_logic; 
+             DO       : out   std_logic_vector (15 downto 0));
+   end component;
+   attribute CLK_FEEDBACK of DCM_PS : component is "1X";
+   attribute CLKDV_DIVIDE of DCM_PS : component is "2.0";
+   attribute CLKFX_DIVIDE of DCM_PS : component is "1";
+   attribute CLKFX_MULTIPLY of DCM_PS : component is "4";
+   attribute CLKIN_DIVIDE_BY_2 of DCM_PS : component is "FALSE";
+   attribute CLKIN_PERIOD of DCM_PS : component is "10.0";
+   attribute CLKOUT_PHASE_SHIFT of DCM_PS : component is "NONE";
+   attribute DCM_PERFORMANCE_MODE of DCM_PS : component is "MAX_SPEED";
+   attribute DESKEW_ADJUST of DCM_PS : component is "SYSTEM_SYNCHRONOUS";
+   attribute DFS_FREQUENCY_MODE of DCM_PS : component is "LOW";
+   attribute DLL_FREQUENCY_MODE of DCM_PS : component is "LOW";
+   attribute DUTY_CYCLE_CORRECTION of DCM_PS : component is "TRUE";
+   attribute FACTORY_JF of DCM_PS : component is "F0F0";
+   attribute PHASE_SHIFT of DCM_PS : component is "0";
+   attribute STARTUP_WAIT of DCM_PS : component is "FALSE";
+   attribute DCM_AUTOCALIBRATION of DCM_PS : component is "TRUE";
+   attribute BOX_TYPE of DCM_PS : component is "BLACK_BOX";
+   
    attribute DDR_CLK_EDGE of ADC_IDDR_0 : label is "SAME_EDGE_PIPELINED";
    attribute DDR_CLK_EDGE of ADC_IDDR_1 : label is "SAME_EDGE_PIPELINED";
    attribute DDR_CLK_EDGE of ADC_IDDR_2 : label is "SAME_EDGE_PIPELINED";
@@ -1324,9 +1457,6 @@ architecture BEHAVIORAL of TOP_LEVEL is
    attribute HU_SET of XLXI_3432 : label is "XLXI_3432_0";
    attribute DIFF_TERM of XLXI_5943 : label is "TRUE";
    attribute CAPACITANCE of XLXI_5943 : label is "LOW";
-   attribute CLKIN_PERIOD of XLXI_5949 : label is "8.0";
-   attribute CLKFX_MULTIPLY of XLXI_5949 : label is "3";
-   attribute CLKFX_DIVIDE of XLXI_5949 : label is "2";
    attribute DLL_FREQUENCY_MODE of XLXI_5953 : label is "HIGH";
    attribute DFS_FREQUENCY_MODE of XLXI_5953 : label is "HIGH";
    attribute CLKIN_PERIOD of XLXI_5953 : label is "5.33333333";
@@ -1365,9 +1495,6 @@ architecture BEHAVIORAL of TOP_LEVEL is
    attribute DIFF_TERM of XLXI_6181 : label is "TRUE";
    attribute DIFF_TERM of XLXI_6182 : label is "TRUE";
    attribute DIFF_TERM of XLXI_6183 : label is "TRUE";
-   attribute DLL_FREQUENCY_MODE of XLXI_6199 : label is "HIGH";
-   attribute DFS_FREQUENCY_MODE of XLXI_6199 : label is "HIGH";
-   attribute CLKIN_PERIOD of XLXI_6199 : label is "5.33333333";
    attribute HU_SET of XLXI_6247 : label is "XLXI_6247_6";
    attribute HU_SET of XLXI_6251 : label is "XLXI_6251_5";
    attribute HU_SET of XLXI_6394 : label is "XLXI_6394_7";
@@ -1378,6 +1505,13 @@ architecture BEHAVIORAL of TOP_LEVEL is
    attribute HU_SET of XLXI_6420 : label is "XLXI_6420_13";
    attribute HU_SET of XLXI_6435 : label is "XLXI_6435_12";
    attribute HU_SET of XLXI_6465 : label is "XLXI_6465_14";
+   attribute CLKIN_PERIOD of XLXI_6468 : label is "8.0";
+   attribute CLKFX_MULTIPLY of XLXI_6468 : label is "3";
+   attribute CLKFX_DIVIDE of XLXI_6468 : label is "2";
+   attribute HU_SET of XLXI_6479 : label is "XLXI_6479_31";
+   attribute DLL_FREQUENCY_MODE of XLXI_6495 : label is "HIGH";
+   attribute DFS_FREQUENCY_MODE of XLXI_6495 : label is "HIGH";
+   attribute CLKIN_PERIOD of XLXI_6495 : label is "5.4";
 begin
    ADC_IDDR_0 : IDDR
    -- synopsys translate_off
@@ -1672,12 +1806,12 @@ begin
    generic map( IOBDELAY_TYPE => "VARIABLE",
             IOBDELAY_VALUE => 0)
    -- synopsys translate_on
-      port map (C=>MASTER_CLK,
-                CE=>fadc_data_del_ce,
-                I=>fadc_dclk_in,
-                INC=>rx_data(0),
-                RST=>fadc_data_del_rst,
-                O=>XLXN_15075);
+      port map (C=>XLXI_3405_C_openSignal,
+                CE=>XLXI_3405_CE_openSignal,
+                I=>XLXI_3405_I_openSignal,
+                INC=>XLXI_3405_INC_openSignal,
+                RST=>XLXI_3405_RST_openSignal,
+                O=>open);
    
    XLXI_3406 : IDELAYCTRL
       port map (REFCLK=>XLXN_15064,
@@ -1733,8 +1867,8 @@ begin
                 D11=>MEDIAN_FILTER_MAP,
                 D12=>open,
                 D13=>open,
-                D14=>open,
-                D15=>open);
+                D14=>ADC_DATA_CLK_MUX_MAP,
+                D15=>ADC_CLOCK_MAP);
    
    XLXI_4136 : IBUFG
       port map (I=>SECONDARY_CLK,
@@ -1873,29 +2007,9 @@ begin
                 IB=>BUSBHS_02DN_05S,
                 O=>fadc_dclk_in);
    
-   XLXI_5949 : DCM_BASE
-   -- synopsys translate_off
-   generic map( CLKIN_PERIOD => 8.0,
-            CLKFX_MULTIPLY => 3,
-            CLKFX_DIVIDE => 2)
-   -- synopsys translate_on
-      port map (CLKFB=>XLXN_12661,
-                CLKIN=>MASTER_CLK,
-                RST=>dcm_reset_0,
-                CLKDV=>open,
-                CLKFX=>XLXN_12669,
-                CLKFX180=>open,
-                CLK0=>XLXN_12660,
-                CLK2X=>open,
-                CLK2X180=>open,
-                CLK90=>open,
-                CLK180=>open,
-                CLK270=>open,
-                LOCKED=>debug_signals(0));
-   
    XLXI_5950 : BUFG
-      port map (I=>XLXN_12660,
-                O=>XLXN_12661);
+      port map (I=>XLXN_16020,
+                O=>XLXN_16021);
    
    XLXI_5951 : FDRE
       port map (C=>MASTER_CLK,
@@ -1903,10 +2017,6 @@ begin
                 D=>rx_data(0),
                 R=>reset,
                 Q=>dcm_reset_0);
-   
-   XLXI_5952 : BUFG
-      port map (I=>XLXN_12669,
-                O=>CLK_187_5);
    
    XLXI_5953 : DCM_BASE
    -- synopsys translate_off
@@ -2017,10 +2127,6 @@ begin
                 D=>rx_data(4),
                 R=>reset,
                 Q=>FADC_CAL);
-   
-   XLXI_6040 : BUFG
-      port map (I=>XLXN_15075,
-                O=>XLXN_15130);
    
    XLXI_6041 : OBUF
       port map (I=>XLXN_15077,
@@ -2284,26 +2390,6 @@ begin
    
    XLXI_6189 : GND
       port map (G=>XLXN_15077);
-   
-   XLXI_6199 : DCM_BASE
-   -- synopsys translate_off
-   generic map( DLL_FREQUENCY_MODE => "HIGH",
-            DFS_FREQUENCY_MODE => "HIGH",
-            CLKIN_PERIOD => 5.33333333)
-   -- synopsys translate_on
-      port map (CLKFB=>FADC_DCLK,
-                CLKIN=>XLXN_15130,
-                RST=>fadc_clk_in_reset,
-                CLKDV=>open,
-                CLKFX=>open,
-                CLKFX180=>open,
-                CLK0=>XLXN_15087,
-                CLK2X=>open,
-                CLK2X180=>open,
-                CLK90=>open,
-                CLK180=>XLXN_15092,
-                CLK270=>open,
-                LOCKED=>debug_signals(3));
    
    XLXI_6200 : BUFG
       port map (I=>XLXN_15087,
@@ -2633,6 +2719,101 @@ begin
                 D=>rx_data(0),
                 R=>reset,
                 Q=>apply_median_filter);
+   
+   XLXI_6468 : DCM_ADV
+   -- synopsys translate_off
+   generic map( CLKIN_PERIOD => 8.0,
+            CLKFX_MULTIPLY => 3,
+            CLKFX_DIVIDE => 2)
+   -- synopsys translate_on
+      port map (CLKFB=>XLXN_16021,
+                CLKIN=>MASTER_CLK,
+                DADDR(6 downto 0)=>rx_data(6 downto 0),
+                DCLK=>MASTER_CLK,
+                DEN=>ADC_CLOCK_MAP,
+                DI(15 downto 0)=>rx_data(22 downto 7),
+                DWE=>ADC_CLOCK_MAP,
+                PSCLK=>XLXN_16010,
+                PSEN=>XLXN_16010,
+                PSINCDEC=>XLXN_16010,
+                RST=>dcm_reset_0,
+                CLKDV=>open,
+                CLKFX=>XLXN_16022,
+                CLKFX180=>open,
+                CLK0=>XLXN_16020,
+                CLK2X=>open,
+                CLK2X180=>open,
+                CLK90=>open,
+                CLK180=>open,
+                CLK270=>open,
+                DO=>open,
+                DRDY=>open,
+                LOCKED=>debug_signals(0),
+                PSDONE=>open);
+   
+   XLXI_6469 : GND
+      port map (G=>XLXN_16010);
+   
+   XLXI_6471 : BUFG
+      port map (I=>XLXN_16022,
+                O=>CLK_187_5);
+   
+   XLXI_6479 : M2_1_MXILINX_TOP_LEVEL
+      port map (D0=>fadc_dclk_in,
+                D1=>CLK_187_5,
+                S0=>adc_data_clk_mux_sel,
+                O=>XLXN_16048);
+   
+   XLXI_6480 : BUFG
+      port map (I=>XLXN_16048,
+                O=>adc_data_mux_clk);
+   
+   XLXI_6481 : FDRE
+      port map (C=>MASTER_CLK,
+                CE=>ADC_DATA_CLK_MUX_MAP,
+                D=>rx_data(0),
+                R=>reset,
+                Q=>adc_data_clk_mux_sel);
+   
+   XLXI_6495 : DCM_PS
+   -- synopsys translate_off
+   generic map( DLL_FREQUENCY_MODE => "HIGH",
+            DFS_FREQUENCY_MODE => "HIGH",
+            CLKIN_PERIOD => 5.4)
+   -- synopsys translate_on
+      port map (CLKFB=>FADC_DCLK,
+                CLKIN=>adc_data_mux_clk,
+                PSCLK=>MASTER_CLK,
+                PSEN=>fadc_data_del_ce_latch,
+                PSINCDEC=>rx_data0_latch,
+                RST=>fadc_clk_in_reset,
+                CLKDV=>open,
+                CLKFX=>open,
+                CLKFX180=>open,
+                CLK0=>XLXN_15087,
+                CLK2X=>open,
+                CLK2X180=>open,
+                CLK90=>open,
+                CLK180=>XLXN_15092,
+                CLK270=>open,
+                DO=>open,
+                LOCKED=>debug_signals(3),
+                PSDONE=>open);
+   
+   XLXI_6498 : FD
+      port map (C=>MASTER_CLK,
+                D=>rx_data(0),
+                Q=>rx_data0_latch);
+   
+   XLXI_6501 : FD
+      port map (C=>MASTER_CLK,
+                D=>fadc_data_del_ce,
+                Q=>fadc_data_del_ce_latch);
+   
+   XLXI_6502 : FD
+      port map (C=>XLXN_16109,
+                D=>XLXN_16108,
+                Q=>XLXN_16110);
    
 end BEHAVIORAL;
 
