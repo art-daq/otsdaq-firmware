@@ -30,6 +30,7 @@ entity sel_block is
   port(
        blk_en : in STD_LOGIC;
        rst_p : in STD_LOGIC;
+       clk : in STD_LOGIC;
        en_term : in STD_LOGIC_VECTOR(15 downto 0);
        x : in STD_LOGIC_VECTOR(3 downto 0);
        sig_out : out STD_LOGIC;
@@ -39,6 +40,7 @@ end sel_block;
 
 architecture sel_block of sel_block is
 
+signal sig_out_reg : STD_LOGIC;
 ---- Signal declarations used on the diagram ----
 
 signal rst_n : STD_LOGIC;
@@ -124,7 +126,14 @@ mterm(3) <= term(15) or term(14) or term(13) or term(12);
 
 sig_term <= mterm(3) or mterm(2) or mterm(1) or mterm(0);
 
-sig_out <= blk_en and sig_term;
+sig_out <= sig_out_reg; --blk_en and sig_term;
+
+process(clk)
+begin
+    if( rising_edge(clk) )then
+        sig_out_reg <= blk_en and sig_term;
+    end if;
+end process;
 
 xn(3) <= not(rst_n and x(3));
 

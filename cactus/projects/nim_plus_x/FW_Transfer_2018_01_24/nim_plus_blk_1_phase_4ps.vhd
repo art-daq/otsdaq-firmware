@@ -433,6 +433,7 @@ component sel_block
        blk_en : in STD_LOGIC;
        en_term : in STD_LOGIC_VECTOR(15 downto 0);
        rst_p : in STD_LOGIC;
+       clk : in STD_LOGIC;
        x : in STD_LOGIC_VECTOR(3 downto 0);
        logterm : out STD_LOGIC_VECTOR(15 downto 0);
        sig_out : out STD_LOGIC
@@ -7839,6 +7840,7 @@ U7 : sel_block
        en_term => sel_blk_en_term,
        logterm => logterm,
        rst_p => reset_out,
+       clk => clk0,
        sig_out => NET20962,
        x => sig_sel
   );

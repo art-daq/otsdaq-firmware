@@ -18,7 +18,10 @@ set_max_delay 32.00 -through [get_cells * -hierarchical -filter {IS_PRIMITIVE ==
 set_max_delay 32.00 -through [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U187/*)}] -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U355/*)}]
 set_max_delay 32.00 -through [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U197/*)}] -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U357/*)}]
 #and from output muxes to to burst trigger gate
-set_max_delay 32.00 -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U421/*)}]
+set_max_delay 64.00 -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U421/*)}]
+
+#give time from static clock mux control register routing
+set_max_delay 32.00 -from [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ NIM_BLOCK/U211/*)}]
 
 # In xdc, all clocks are related by default. This differs from ucf, where clocks are unrelated unless specified otherwise. As a result, you may now see cross-clock paths that were previously unconstrained in ucf. Commented out xdc false path constraints have been generated and can be uncommented, should you wish to remove these new paths. These commands are located after the last clock definition
 
