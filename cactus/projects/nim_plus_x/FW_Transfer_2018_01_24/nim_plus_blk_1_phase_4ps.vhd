@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Mon Feb 26 16:19:30 2018
+-- Generated   : Thu Mar  8 20:14:17 2018
 -- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -788,6 +788,7 @@ signal sig_event_counts : STD_LOGIC_VECTOR (63 downto 0);
 signal sig_mod : STD_LOGIC_VECTOR (3 downto 0);
 signal sig_output_counts : STD_LOGIC_VECTOR (63 downto 0);
 signal sig_out_cnts : STD_LOGIC_VECTOR (63 downto 0);
+signal sig_sel : STD_LOGIC_VECTOR (3 downto 0);
 signal sig_v1_sel : STD_LOGIC_VECTOR (7 downto 0);
 signal sig_v2_sel : STD_LOGIC_VECTOR (7 downto 0);
 signal sp_signl_sel : STD_LOGIC_VECTOR (7 downto 0);
@@ -1311,7 +1312,7 @@ U124 : reg_32
        wr_en => blk_wr_en_cts(29)
   );
 
-sigmux(30) <= GND;
+sigmux(30) <= veto_out_n0;
 
 sigmux(31) <= GND;
 
@@ -2075,6 +2076,8 @@ U211 : reg_8
        reset_p => reset_out,
        wr_en => blk_wr_en(3)
   );
+
+sig_sel(0) <= (ys(0) and not sel_ctl(4)) or (sig_mod(0) and sel_ctl(4));
 
 U213 : pol_sel
   port map(
@@ -7622,7 +7625,13 @@ ck_mx_out(6) <= ext_clk_ctl(6);
 
 ck_mx_out(7) <= ext_clk_ctl(7);
 
+sig_sel(1) <= (ys(1) and not sel_ctl(5)) or (sig_mod(2) and sel_ctl(5));
+
+sig_sel(2) <= (ys(2) and not sel_ctl(6)) or (sig_mod(1) and sel_ctl(6));
+
 sigmux(3) <= bmy(2);
+
+sig_sel(3) <= (ys(3) and not sel_ctl(7)) or (sig_mod(3) and sel_ctl(7));
 
 sigmux(4) <= bmy(3);
 
@@ -7831,7 +7840,7 @@ U7 : sel_block
        logterm => logterm,
        rst_p => reset_out,
        sig_out => NET20962,
-       x => sig_mod
+       x => sig_sel
   );
 
 NET25266 <= NET24020 or bkprout_v2 or veto_out_p2 or veto2_ctl(1);
