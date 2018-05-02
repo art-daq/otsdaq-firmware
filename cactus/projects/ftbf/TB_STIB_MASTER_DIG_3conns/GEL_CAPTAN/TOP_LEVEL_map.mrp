@@ -1,0 +1,1252 @@
+Release 14.7 Map P.20131013 (nt64)
+Xilinx Mapping Report File for Design 'TOP_LEVEL'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc4vlx25-ff668-10 -timing -logic_opt off -ol high -xe n -t 1 -register_duplication
+off -global_opt speed -equivalent_register_removal on -cm speed -ir off -pr off -power off -o TOP_LEVEL_map.ncd
+TOP_LEVEL.ngd TOP_LEVEL.pcf 
+Target Device  : xc4vlx25
+Target Package : ff668
+Target Speed   : -10
+Mapper Version : virtex4 -- $Revision: 1.55 $
+Mapped Date    : Fri Feb 24 12:20:09 2017
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:   25
+Logic Utilization:
+  Total Number Slice Registers:       3,281 out of  21,504   15%
+    Number used as Flip Flops:        3,280
+    Number used as Latches:               1
+  Number of 4 input LUTs:             4,763 out of  21,504   22%
+Logic Distribution:
+  Number of occupied Slices:          4,082 out of  10,752   37%
+    Number of Slices containing only related logic:   4,082 out of   4,082 100%
+    Number of Slices containing unrelated logic:          0 out of   4,082   0%
+      *See NOTES below for an explanation of the effects of unrelated logic.
+  Total Number of 4 input LUTs:       5,122 out of  21,504   23%
+    Number used as logic:             4,542
+    Number used as a route-thru:        359
+    Number used as Shift registers:     221
+
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+  Number of bonded IOBs:                 91 out of     448   20%
+    IOB Master Pads:                     19
+    IOB Slave Pads:                      19
+  Number of BUFG/BUFGCTRLs:              25 out of      32   78%
+    Number used as BUFGs:                25
+  Number of FIFO16/RAMB16s:              14 out of      72   19%
+    Number used as RAMB16s:              14
+  Number of DCM_ADVs:                     7 out of       8   87%
+  Number of BSCAN_VIRTEX4s:               1 out of       4   25%
+  Number of IDELAYCTRLs:                  3 out of      16   18%
+
+  Number of RPM macros:           13
+Average Fanout of Non-Clock Nets:                3.19
+
+Peak Memory Usage:  608 MB
+Total REAL time to MAP completion:  2 mins 31 secs 
+Total CPU time to MAP completion:   2 mins 28 secs 
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Timing Report
+Section 11 - Configuration String Information
+Section 12 - Control Set Information
+Section 13 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:LIT:176 - Clock buffer is designated to drive clock loads. BUFG symbol
+   "XLXI_3399" (output signal=PSI_CLK0) has a mix of clock and non-clock loads.
+   The non-clock loads are:
+   Pin D of U_ila_pro_0/U0/I_TQ0.G_TW[63].U_TQ
+WARNING:LIT:178 - Clock buffer BUFG symbol "XLXI_6083" (output
+   signal=internal_4x_clk) does not drive clock loads. Driving only non-clock
+   loads with a clock buffer will cause ALL of the dedicated clock routing
+   resources for this buffer to be wasted. The non-clock loads are:
+   Pin I1 of XLXI_6193/I_36_8
+   Pin I1 of XLXI_6086/I_36_7
+   Pin I1 of XLXI_6067/I_36_7
+WARNING:LIT:178 - Clock buffer BUFG symbol "XLXI_6183" (output
+   signal=internal_4x180_clk) does not drive clock loads. Driving only non-clock
+   loads with a clock buffer will cause ALL of the dedicated clock routing
+   resources for this buffer to be wasted. The non-clock loads are:
+   Pin I2 of XLXI_6193/I_36_8
+   Pin I0 of XLXI_6086/I_36_9
+   Pin I0 of XLXI_6067/I_36_9
+WARNING:LIT:176 - Clock buffer is designated to drive clock loads. BUFG symbol
+   "XLXI_6319_0" (output signal=dut_dcm_clk0<0>) has a mix of clock and
+   non-clock loads. The non-clock loads are:
+   Pin I3 of psi_cmd_clk_mux_0/I_M23/I_36_38
+   Pin I3 of psi_cmd_clk_mux_0/I_M01/I_36_38
+WARNING:LIT:176 - Clock buffer is designated to drive clock loads. BUFG symbol
+   "XLXI_6319_1" (output signal=dut_dcm_clk0<1>) has a mix of clock and
+   non-clock loads. The non-clock loads are:
+   Pin I3 of psi_cmd_clk_mux_1/I_M23/I_36_38
+   Pin I3 of psi_cmd_clk_mux_1/I_M01/I_36_38
+WARNING:LIT:176 - Clock buffer is designated to drive clock loads. BUFG symbol
+   "XLXI_6319_2" (output signal=dut_dcm_clk0<2>) has a mix of clock and
+   non-clock loads. The non-clock loads are:
+   Pin I3 of psi_cmd_clk_mux_2/I_M23/I_36_38
+   Pin I3 of psi_cmd_clk_mux_2/I_M01/I_36_38
+WARNING:LIT:176 - Clock buffer is designated to drive clock loads. BUFG symbol
+   "XLXI_6320_0" (output signal=dut_dcm_clk90<0>) has a mix of clock and
+   non-clock loads. The non-clock loads are:
+   Pin I2 of psi_cmd_clk_mux_0/I_M23/I_36_38
+   Pin I2 of psi_cmd_clk_mux_0/I_M01/I_36_38
+WARNING:LIT:176 - Clock buffer is designated to drive clock loads. BUFG symbol
+   "XLXI_6320_1" (output signal=dut_dcm_clk90<1>) has a mix of clock and
+   non-clock loads. The non-clock loads are:
+   Pin I2 of psi_cmd_clk_mux_1/I_M23/I_36_38
+   Pin I2 of psi_cmd_clk_mux_1/I_M01/I_36_38
+WARNING:LIT:176 - Clock buffer is designated to drive clock loads. BUFG symbol
+   "XLXI_6320_2" (output signal=dut_dcm_clk90<2>) has a mix of clock and
+   non-clock loads. The non-clock loads are:
+   Pin I2 of psi_cmd_clk_mux_2/I_M23/I_36_38
+   Pin I2 of psi_cmd_clk_mux_2/I_M01/I_36_38
+WARNING:Timing:3223 - Timing constraint TS_digsclk_to_rstmclk = MAXDELAY FROM
+   TIMEGRP "psi_dig_sdata_clk0" TO TIMEGRP "XLXN_12498" 8 ns DATAPATHONLY
+   ignored during timing analysis.
+WARNING:Timing:3223 - Timing constraint TS_digsclk1_to_rstmclk = MAXDELAY FROM
+   TIMEGRP "psi_dig_sdata_clk1" TO TIMEGRP "XLXN_12498" 8 ns DATAPATHONLY
+   ignored during timing analysis.
+WARNING:Timing:3223 - Timing constraint TS_digsclk2_to_rstmclk = MAXDELAY FROM
+   TIMEGRP "psi_dig_sdata_clk2" TO TIMEGRP "XLXN_12498" 8 ns DATAPATHONLY
+   ignored during timing analysis.
+WARNING:Place:913 - Local congestion has been detected at location SLICE_X26Y103. There is a limitation that at most 4
+   global signals can drive non-clock pins per CLB. The placer has detected SLICE_X26Y103 is present in a CLB that has5
+   global signals driving non-clock pins. This may result in an unroutable situation.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is sourced by a combinatorial pin. This is not
+   good design practice. Use the CE pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net XLXN_12498 is sourced by a combinatorial pin. This is not good
+   design practice. Use the CE pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:367 - The signal <XLXI_5338/GLOBAL_LOGIC1> is incomplete. The signal does not drive any load
+   pins in the design.
+WARNING:PhysDesignRules:367 - The signal <XLXI_4004/Mshreg_RESET_INIT> is incomplete. The signal does not drive any load
+   pins in the design.
+WARNING:PhysDesignRules:367 - The signal <XLXI_4006/Mshreg_RESET_INIT> is incomplete. The signal does not drive any load
+   pins in the design.
+WARNING:PhysDesignRules:367 - The signal <XLXI_6013/XLXI_3535/info_fifo_rd_data<7>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <XLXI_6013/XLXI_3535/info_fifo_rd_data<6>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <XLXI_6013/XLXI_3535/info_fifo_rd_data<5>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <XLXI_6013/XLXI_3535/info_fifo_rd_data<4>> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:968 - Issue with pin connections and/or configuration on
+   block:<dut_clk_dcm_0>:<DCM_ADV_DCM_ADV>.  For VARIABLE or DIRECT phase shifting the phase shift pins PSEN PSCLK and
+   PSDONE should be connected to active signals.
+WARNING:PhysDesignRules:968 - Issue with pin connections and/or configuration on
+   block:<dut_clk_dcm_1>:<DCM_ADV_DCM_ADV>.  For VARIABLE or DIRECT phase shifting the phase shift pins PSEN PSCLK and
+   PSDONE should be connected to active signals.
+WARNING:PhysDesignRules:968 - Issue with pin connections and/or configuration on
+   block:<dut_clk_dcm_2>:<DCM_ADV_DCM_ADV>.  For VARIABLE or DIRECT phase shifting the phase shift pins PSEN PSCLK and
+   PSDONE should be connected to active signals.
+
+Section 3 - Informational
+-------------------------
+INFO:Xst:2261 - The FF/Latch
+   <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts
+   /ram_empty_fb_i> in Unit <psi_cmd_fifo_vector_0> is equivalent to the
+   following FF/Latch, which will be removed :
+   <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts
+   /ram_empty_i> 
+INFO:Xst:2261 - The FF/Latch
+   <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg_2> in Unit
+   <psi_cmd_fifo_vector_0> is equivalent to the following 2 FFs/Latches, which
+   will be removed :
+   <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg_1>
+   <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg_0> 
+INFO:Xst:2261 - The FF/Latch
+   <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts
+   /ram_empty_fb_i> in Unit <psi_cmd_fifo_vector_1> is equivalent to the
+   following FF/Latch, which will be removed :
+   <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts
+   /ram_empty_i> 
+INFO:Xst:2261 - The FF/Latch
+   <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg_2> in Unit
+   <psi_cmd_fifo_vector_1> is equivalent to the following 2 FFs/Latches, which
+   will be removed :
+   <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg_1>
+   <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg_0> 
+INFO:Xst:2261 - The FF/Latch
+   <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts
+   /ram_empty_fb_i> in Unit <psi_cmd_fifo_vector_2> is equivalent to the
+   following FF/Latch, which will be removed :
+   <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts
+   /ram_empty_i> 
+INFO:Xst:2261 - The FF/Latch
+   <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg_2> in Unit
+   <psi_cmd_fifo_vector_2> is equivalent to the following 2 FFs/Latches, which
+   will be removed :
+   <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg_1>
+   <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg_0> 
+INFO:LIT:243 - Logical network XLXI_4171/N2 has no load.
+INFO:LIT:395 - The above info message is repeated 322 more times for the
+   following (max. 5 shown):
+   XLXI_4171/N3,
+   XLXI_4359/N1,
+   XLXI_5676/N2,
+   XLXI_5676/N3,
+   ext_trig_handler/N11
+   To see the details of these info messages, please use the -detail switch.
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:LIT:244 - All of the single ended outputs in this design are using slew
+   rate limited output drivers. The delay on speed critical single ended outputs
+   can be dramatically reduced by designating them as fast outputs.
+INFO:Pack:1716 - Initializing temperature to 85.000 Celsius. (default - Range:
+   0.000 to 85.000 Celsius)
+INFO:Pack:1720 - Initializing voltage to 1.140 Volts. (default - Range: 1.140 to
+   1.260 Volts)
+INFO:Timing:3386 - Intersecting Constraints found and resolved.  For more
+   information, see the TSI report.  Please consult the Xilinx Command Line
+   Tools User Guide for information on generating a TSI report.
+INFO:Pack:1650 - Map created a placed design.
+INFO:PhysDesignRules:1437 - To achieve optimal frequency synthesis performance with the CLKFX and CLKFX180 outputs of
+   the DCM_ADV comp XLXI_3410, consult the device Data Sheet.
+INFO:PhysDesignRules:1437 - To achieve optimal frequency synthesis performance with the CLKFX and CLKFX180 outputs of
+   the DCM_ADV comp XLXI_3254, consult the device Data Sheet.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+ 145 block(s) removed
+  60 block(s) optimized away
+ 307 signal(s) removed
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+The signal "XLXI_4171/N2" is loadless and has been removed.
+ Loadless block "XLXI_4171/XST_GND" (ZERO) removed.
+The signal "XLXI_4171/N3" is loadless and has been removed.
+ Loadless block "XLXI_4171/XST_VCC" (ONE) removed.
+The signal "XLXI_5561/N2" is loadless and has been removed.
+ Loadless block "XLXI_5561/XST_GND" (ZERO) removed.
+The signal "XLXI_5561/N3" is loadless and has been removed.
+ Loadless block "XLXI_5561/XST_VCC" (ONE) removed.
+The signal "XLXI_4677/N2" is loadless and has been removed.
+ Loadless block "XLXI_4677/XST_GND" (ZERO) removed.
+The signal "XLXI_4677/N3" is loadless and has been removed.
+ Loadless block "XLXI_4677/XST_VCC" (ONE) removed.
+The signal "XLXI_3432/N2" is loadless and has been removed.
+ Loadless block "XLXI_3432/XST_GND" (ZERO) removed.
+The signal "XLXI_3432/N3" is loadless and has been removed.
+ Loadless block "XLXI_3432/XST_VCC" (ONE) removed.
+The signal "XLXI_4595/N2" is loadless and has been removed.
+ Loadless block "XLXI_4595/XST_GND" (ZERO) removed.
+The signal "XLXI_4595/N3" is loadless and has been removed.
+ Loadless block "XLXI_4595/XST_VCC" (ONE) removed.
+The signal "XLXI_6361/N2" is loadless and has been removed.
+ Loadless block "XLXI_6361/XST_GND" (ZERO) removed.
+The signal "XLXI_6361/N3" is loadless and has been removed.
+ Loadless block "XLXI_6361/XST_VCC" (ONE) removed.
+The signal "XLXI_6360/N2" is loadless and has been removed.
+ Loadless block "XLXI_6360/XST_GND" (ZERO) removed.
+The signal "XLXI_6360/N3" is loadless and has been removed.
+ Loadless block "XLXI_6360/XST_VCC" (ONE) removed.
+The signal "XLXI_6357/N2" is loadless and has been removed.
+ Loadless block "XLXI_6357/XST_GND" (ZERO) removed.
+The signal "XLXI_6357/N3" is loadless and has been removed.
+ Loadless block "XLXI_6357/XST_VCC" (ONE) removed.
+The signal "XLXI_6356/N2" is loadless and has been removed.
+ Loadless block "XLXI_6356/XST_GND" (ZERO) removed.
+The signal "XLXI_6356/N3" is loadless and has been removed.
+ Loadless block "XLXI_6356/XST_VCC" (ONE) removed.
+The signal "XLXI_6341/N2" is loadless and has been removed.
+ Loadless block "XLXI_6341/XST_GND" (ZERO) removed.
+The signal "XLXI_6341/N3" is loadless and has been removed.
+ Loadless block "XLXI_6341/XST_VCC" (ONE) removed.
+The signal "XLXI_6340/N2" is loadless and has been removed.
+ Loadless block "XLXI_6340/XST_GND" (ZERO) removed.
+The signal "XLXI_6340/N3" is loadless and has been removed.
+ Loadless block "XLXI_6340/XST_VCC" (ONE) removed.
+The signal "XLXI_6193/N2" is loadless and has been removed.
+ Loadless block "XLXI_6193/XST_GND" (ZERO) removed.
+The signal "XLXI_6193/N3" is loadless and has been removed.
+ Loadless block "XLXI_6193/XST_VCC" (ONE) removed.
+The signal "XLXI_6086/N2" is loadless and has been removed.
+ Loadless block "XLXI_6086/XST_GND" (ZERO) removed.
+The signal "XLXI_6086/N3" is loadless and has been removed.
+ Loadless block "XLXI_6086/XST_VCC" (ONE) removed.
+The signal "XLXI_6067/N2" is loadless and has been removed.
+ Loadless block "XLXI_6067/XST_GND" (ZERO) removed.
+The signal "XLXI_6067/N3" is loadless and has been removed.
+ Loadless block "XLXI_6067/XST_VCC" (ONE) removed.
+The signal "XLXI_5677/N2" is loadless and has been removed.
+ Loadless block "XLXI_5677/XST_GND" (ZERO) removed.
+The signal "XLXI_5677/N3" is loadless and has been removed.
+ Loadless block "XLXI_5677/XST_VCC" (ONE) removed.
+The signal "XLXI_4773/N2" is loadless and has been removed.
+ Loadless block "XLXI_4773/XST_GND" (ZERO) removed.
+The signal "XLXI_4773/N3" is loadless and has been removed.
+ Loadless block "XLXI_4773/XST_VCC" (ONE) removed.
+The signal "XLXI_4846/N2" is loadless and has been removed.
+ Loadless block "XLXI_4846/XST_GND" (ZERO) removed.
+The signal "XLXI_4846/N3" is loadless and has been removed.
+ Loadless block "XLXI_4846/XST_VCC" (ONE) removed.
+The signal "XLXI_6323/N2" is loadless and has been removed.
+ Loadless block "XLXI_6323/XST_GND" (ZERO) removed.
+The signal "XLXI_6323/N3" is loadless and has been removed.
+ Loadless block "XLXI_6323/XST_VCC" (ONE) removed.
+The signal "XLXI_6260/N2" is loadless and has been removed.
+ Loadless block "XLXI_6260/XST_GND" (ZERO) removed.
+The signal "XLXI_6260/N3" is loadless and has been removed.
+ Loadless block "XLXI_6260/XST_VCC" (ONE) removed.
+The signal "XLXI_5284/N2" is loadless and has been removed.
+ Loadless block "XLXI_5284/XST_GND" (ZERO) removed.
+The signal "XLXI_5284/N3" is loadless and has been removed.
+ Loadless block "XLXI_5284/XST_VCC" (ONE) removed.
+The signal "XLXI_6345/Q<7>" is loadless and has been removed.
+ Loadless block "XLXI_6345/I_Q7" (FF) removed.
+The signal "XLXI_6345/Q<6>" is loadless and has been removed.
+ Loadless block "XLXI_6345/I_Q6" (FF) removed.
+The signal "XLXI_6345/N2" is loadless and has been removed.
+ Loadless block "XLXI_6345/XST_GND" (ZERO) removed.
+The signal "XLXI_6345/N3" is loadless and has been removed.
+ Loadless block "XLXI_6345/XST_VCC" (ONE) removed.
+The signal "XLXI_6315/Q<7>" is loadless and has been removed.
+ Loadless block "XLXI_6315/I_Q7" (FF) removed.
+The signal "XLXI_6315/Q<3>" is loadless and has been removed.
+ Loadless block "XLXI_6315/I_Q3" (FF) removed.
+The signal "XLXI_6315/Q<2>" is loadless and has been removed.
+ Loadless block "XLXI_6315/I_Q2" (FF) removed.
+The signal "XLXI_6315/Q<1>" is loadless and has been removed.
+ Loadless block "XLXI_6315/I_Q1" (FF) removed.
+The signal "XLXI_6315/N2" is loadless and has been removed.
+ Loadless block "XLXI_6315/XST_GND" (ZERO) removed.
+The signal "XLXI_6315/N3" is loadless and has been removed.
+ Loadless block "XLXI_6315/XST_VCC" (ONE) removed.
+The signal "XLXI_6207/Q<7>" is loadless and has been removed.
+ Loadless block "XLXI_6207/I_Q7" (FF) removed.
+The signal "XLXI_6207/Q<6>" is loadless and has been removed.
+ Loadless block "XLXI_6207/I_Q6" (FF) removed.
+The signal "XLXI_6207/Q<5>" is loadless and has been removed.
+ Loadless block "XLXI_6207/I_Q5" (FF) removed.
+The signal "XLXI_6207/Q<3>" is loadless and has been removed.
+ Loadless block "XLXI_6207/I_Q3" (FF) removed.
+The signal "XLXI_6207/N2" is loadless and has been removed.
+ Loadless block "XLXI_6207/XST_GND" (ZERO) removed.
+The signal "XLXI_6207/N3" is loadless and has been removed.
+ Loadless block "XLXI_6207/XST_VCC" (ONE) removed.
+The signal "XLXI_6084/N2" is loadless and has been removed.
+ Loadless block "XLXI_6084/XST_GND" (ZERO) removed.
+The signal "XLXI_6084/N3" is loadless and has been removed.
+ Loadless block "XLXI_6084/XST_VCC" (ONE) removed.
+The signal "XLXI_5678/Q<7>" is loadless and has been removed.
+ Loadless block "XLXI_5678/I_Q7" (FF) removed.
+  The signal "MAN_SAMPLE_SEL_MAP" is loadless and has been removed.
+   Loadless block "XLXI_4677/I_36_65" (AND) removed.
+The signal "XLXI_5678/Q<6>" is loadless and has been removed.
+ Loadless block "XLXI_5678/I_Q6" (FF) removed.
+The signal "XLXI_5678/Q<5>" is loadless and has been removed.
+ Loadless block "XLXI_5678/I_Q5" (FF) removed.
+The signal "XLXI_5678/Q<4>" is loadless and has been removed.
+ Loadless block "XLXI_5678/I_Q4" (FF) removed.
+The signal "XLXI_5678/Q<3>" is loadless and has been removed.
+ Loadless block "XLXI_5678/I_Q3" (FF) removed.
+The signal "XLXI_5678/Q<2>" is loadless and has been removed.
+ Loadless block "XLXI_5678/I_Q2" (FF) removed.
+The signal "XLXI_5678/Q<1>" is loadless and has been removed.
+ Loadless block "XLXI_5678/I_Q1" (FF) removed.
+The signal "XLXI_5678/Q<0>" is loadless and has been removed.
+ Loadless block "XLXI_5678/I_Q0" (FF) removed.
+The signal "XLXI_5678/N2" is loadless and has been removed.
+ Loadless block "XLXI_5678/XST_GND" (ZERO) removed.
+The signal "XLXI_5678/N3" is loadless and has been removed.
+ Loadless block "XLXI_5678/XST_VCC" (ONE) removed.
+The signal "XLXI_6104/Q<7>" is loadless and has been removed.
+ Loadless block "XLXI_6104/I_Q7" (SFF) removed.
+The signal "XLXI_6104/Q<6>" is loadless and has been removed.
+ Loadless block "XLXI_6104/I_Q6" (SFF) removed.
+The signal "XLXI_6104/N2" is loadless and has been removed.
+ Loadless block "XLXI_6104/XST_GND" (ZERO) removed.
+The signal "XLXI_6104/N3" is loadless and has been removed.
+ Loadless block "XLXI_6104/XST_VCC" (ONE) removed.
+The signal "XLXI_6015/N2" is loadless and has been removed.
+ Loadless block "XLXI_6015/XST_GND" (ZERO) removed.
+The signal "XLXI_6015/N3" is loadless and has been removed.
+ Loadless block "XLXI_6015/XST_VCC" (ONE) removed.
+The signal "psi_cmd_clk_mux_2/I_M23/N2" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_2/I_M23/XST_GND" (ZERO) removed.
+The signal "psi_cmd_clk_mux_2/I_M23/N3" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_2/I_M23/XST_VCC" (ONE) removed.
+The signal "psi_cmd_clk_mux_2/I_M01/N2" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_2/I_M01/XST_GND" (ZERO) removed.
+The signal "psi_cmd_clk_mux_2/I_M01/N3" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_2/I_M01/XST_VCC" (ONE) removed.
+The signal "psi_cmd_clk_mux_2/N2" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_2/XST_GND" (ZERO) removed.
+The signal "psi_cmd_clk_mux_2/N3" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_2/XST_VCC" (ONE) removed.
+The signal "psi_cmd_clk_mux_1/I_M23/N2" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_1/I_M23/XST_GND" (ZERO) removed.
+The signal "psi_cmd_clk_mux_1/I_M23/N3" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_1/I_M23/XST_VCC" (ONE) removed.
+The signal "psi_cmd_clk_mux_1/I_M01/N2" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_1/I_M01/XST_GND" (ZERO) removed.
+The signal "psi_cmd_clk_mux_1/I_M01/N3" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_1/I_M01/XST_VCC" (ONE) removed.
+The signal "psi_cmd_clk_mux_1/N2" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_1/XST_GND" (ZERO) removed.
+The signal "psi_cmd_clk_mux_1/N3" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_1/XST_VCC" (ONE) removed.
+The signal "psi_cmd_clk_mux_0/I_M23/N2" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_0/I_M23/XST_GND" (ZERO) removed.
+The signal "psi_cmd_clk_mux_0/I_M23/N3" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_0/I_M23/XST_VCC" (ONE) removed.
+The signal "psi_cmd_clk_mux_0/I_M01/N2" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_0/I_M01/XST_GND" (ZERO) removed.
+The signal "psi_cmd_clk_mux_0/I_M01/N3" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_0/I_M01/XST_VCC" (ONE) removed.
+The signal "psi_cmd_clk_mux_0/N2" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_0/XST_GND" (ZERO) removed.
+The signal "psi_cmd_clk_mux_0/N3" is loadless and has been removed.
+ Loadless block "psi_cmd_clk_mux_0/XST_VCC" (ONE) removed.
+Loadless block "XLXI_5137" (FF) removed.
+ The signal "PSI_STATUS_EN_MAP" is loadless and has been removed.
+  Loadless block "XLXI_3432/I_36_55" (AND) removed.
+Loadless block "XLXI_5655" (FF) removed.
+The signal "XLXI_4359/N1" is sourceless and has been removed.
+The signal "XLXI_5676/N2" is sourceless and has been removed.
+The signal "XLXI_5676/N3" is sourceless and has been removed.
+The signal "ext_trig_handler/N11" is sourceless and has been removed.
+The signal "psi_cmd_sender_vector_2/N22" is sourceless and has been removed.
+The signal "psi_cmd_sender_vector_1/N22" is sourceless and has been removed.
+The signal "psi_cmd_sender_vector_0/N22" is sourceless and has been removed.
+The signal "XLXI_5338/N1" is sourceless and has been removed.
+The signal "XLXI_6014/N2" is sourceless and has been removed.
+The signal "XLXI_6014/N3" is sourceless and has been removed.
+The signal "XLXI_4004/N2" is sourceless and has been removed.
+The signal "XLXI_6013/b_enable" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_addrs<7>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_addrs<6>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_addrs<5>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_addrs<4>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_addrs<3>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_addrs<2>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_addrs<1>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_addrs<0>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<47>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<46>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<45>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<44>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<43>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<42>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<41>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<40>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<39>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<38>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<37>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<36>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<35>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<34>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<33>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<32>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<31>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<30>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<29>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<28>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<27>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<26>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<25>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<24>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<23>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<22>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<21>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<20>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<19>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<18>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<17>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<16>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<15>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<14>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<13>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<12>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<11>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<10>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<9>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<8>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<7>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<6>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<5>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<4>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<3>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<2>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<1>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_mac<0>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<63>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<62>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<61>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<60>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<59>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<58>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<57>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<56>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<55>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<54>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<53>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<52>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<51>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<50>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<49>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<48>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<47>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<46>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<45>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<44>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<43>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<42>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<41>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<40>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<39>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<38>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<37>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<36>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<35>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<34>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<33>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<32>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<31>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<30>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<29>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<28>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<27>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<26>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<25>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<24>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<23>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<22>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<21>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<20>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<19>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<18>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<17>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<16>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<15>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<14>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<13>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<7>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<6>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<5>" is sourceless and has been removed.
+The signal "XLXI_6013/rx_addr<4>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<15>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<14>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<13>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<12>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<11>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<10>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<9>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<8>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<7>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<6>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<5>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<4>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<3>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<2>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<1>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_src_port<0>" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_busy" is sourceless and has been removed.
+The signal "XLXI_6013/gec_user_tx_size_in<0>" is sourceless and has been
+removed.
+The signal "XLXI_6013/XLXI_3535/XLXI_3531/N2" is sourceless and has been
+removed.
+The signal "XLXI_6013/XLXI_3535/XLXI_3531/N3" is sourceless and has been
+removed.
+The signal "XLXI_6013/XLXI_3535/tx_info_fifo_data_comm<0>" is sourceless and has
+been removed.
+The signal "XLXI_6013/XLXI_3535/tx_info_fifo_data_burst<7>" is sourceless and
+has been removed.
+The signal "XLXI_6013/XLXI_3535/tx_info_fifo_data_burst<6>" is sourceless and
+has been removed.
+The signal "XLXI_6013/XLXI_3535/tx_info_fifo_data_burst<5>" is sourceless and
+has been removed.
+The signal "XLXI_6013/XLXI_3535/tx_info_fifo_data_burst<4>" is sourceless and
+has been removed.
+The signal "XLXI_6013/XLXI_3535/tx_info_fifo_data_burst<3>" is sourceless and
+has been removed.
+The signal "XLXI_6013/XLXI_3535/tx_info_fifo_data_burst<2>" is sourceless and
+has been removed.
+The signal "XLXI_6013/XLXI_3535/XLXI_3526/N1" is sourceless and has been
+removed.
+The signal "XLXI_6013/XLXI_3535/XLXI_2539/N4" is sourceless and has been
+removed.
+The signal "XLXI_6013/XLXI_3535/XLXI_2539/N52" is sourceless and has been
+removed.
+The signal "XLXI_6013/XLXI_3535/XLXI_3365/N9" is sourceless and has been
+removed.
+The signal "XLXI_6013/XLXI_3535/XLXI_3532/N2" is sourceless and has been
+removed.
+The signal "XLXI_6013/XLXI_3535/XLXI_3532/N3" is sourceless and has been
+removed.
+The signal "XLXI_6013/XLXI_3535/XLXI_3527/N2" is sourceless and has been
+removed.
+The signal "XLXI_6013/XLXI_3535/XLXI_3527/N3" is sourceless and has been
+removed.
+The signal "XLXI_6013/XLXI_3535/TX_DATA_FIFO/empty" is sourceless and has been
+removed.
+The signal "XLXI_6013/XLXI_3535/RX_INFO_FIFO/full" is sourceless and has been
+removed.
+The signal "XLXI_6013/XLXI_3535/RX_DATA_FIFO/empty" is sourceless and has been
+removed.
+The signal "XLXI_6013/XLXI_3535/RX_DATA_FIFO/full" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_248/N2" is sourceless and has been removed.
+The signal "XLXI_6013/GEC/XLXI_248/N3" is sourceless and has been removed.
+The signal "XLXI_6013/GEC/XLXI_226/N2" is sourceless and has been removed.
+The signal "XLXI_6013/GEC/XLXI_226/N3" is sourceless and has been removed.
+The signal "XLXI_6013/GEC/XLXI_238/N21" is sourceless and has been removed.
+The signal "XLXI_6013/GEC/XLXI_238/N3" is sourceless and has been removed.
+The signal "XLXI_6013/GEC/XLXI_251/N2" is sourceless and has been removed.
+The signal "XLXI_6013/GEC/XLXI_251/N3" is sourceless and has been removed.
+The signal "XLXI_6013/GEC/XLXI_249/CRC_OR/N2" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/CRC_OR/N3" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/arp_tx_er" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/udp_tx_er" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/DataoutMux/N1" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<31>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<30>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<29>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<28>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<27>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<26>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<25>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<24>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<23>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<22>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<21>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<20>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<19>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<18>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<17>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<16>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<15>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<14>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<13>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<12>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<11>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<10>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<9>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/dest_ip<8>" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/DestInfoContainer/N2" is sourceless and has
+been removed.
+The signal "XLXI_6013/GEC/XLXI_249/DestInfoContainer/N3" is sourceless and has
+been removed.
+The signal "XLXI_6013/GEC/XLXI_249/FilterDataOutBlock/N2" is sourceless and has
+been removed.
+The signal "XLXI_6013/GEC/XLXI_249/FilterDataOutBlock/N3" is sourceless and has
+been removed.
+The signal "XLXI_6013/GEC/XLXI_249/UdpLengthMux/N1" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/UDPDataSplicer/N2" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/UDPDataSplicer/N3" is sourceless and has been
+removed.
+The signal "XLXI_6013/GEC/XLXI_249/N2" is sourceless and has been removed.
+The signal "XLXI_6013/GEC/XLXI_249/N3" is sourceless and has been removed.
+The signal "XLXI_6013/GEC/N2" is sourceless and has been removed.
+The signal "XLXI_6013/GEC/N3" is sourceless and has been removed.
+The signal "XLXI_6013/N2" is sourceless and has been removed.
+The signal "XLXI_6013/N3" is sourceless and has been removed.
+
+The trimmed logic reported below is either:
+   1. part of a cycle
+   2. part of disabled logic
+   3. a side-effect of other trimmed logic
+
+The signal "tx_data<62>" is unused and has been removed.
+Unused block "XLXI_4004/XST_GND" (ZERO) removed.
+Unused block "XLXI_4359/XST_GND" (ZERO) removed.
+Unused block "XLXI_5338/XST_VCC" (ONE) removed.
+Unused block "XLXI_5676/XST_GND" (ZERO) removed.
+Unused block "XLXI_5676/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/GEC/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/GEC/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/GEC/XLXI_226/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/GEC/XLXI_226/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/GEC/XLXI_238/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/GEC/XLXI_238/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/GEC/XLXI_248/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/GEC/XLXI_248/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/GEC/XLXI_249/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/GEC/XLXI_249/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/GEC/XLXI_249/CRC_OR/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/GEC/XLXI_249/CRC_OR/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/GEC/XLXI_249/DataoutMux/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/GEC/XLXI_249/DestInfoContainer/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/GEC/XLXI_249/DestInfoContainer/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/GEC/XLXI_249/FilterDataOutBlock/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/GEC/XLXI_249/FilterDataOutBlock/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/GEC/XLXI_249/UDPDataSplicer/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/GEC/XLXI_249/UDPDataSplicer/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/GEC/XLXI_249/UdpLengthMux/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/GEC/XLXI_251/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/GEC/XLXI_251/XST_VCC" (ONE) removed.
+Unused block
+"XLXI_6013/XLXI_3535/RX_DATA_FIFO/BU2/U0/grf.rf/gl0.rd/grss.rsts/ram_empty_i"
+(FF) removed.
+Unused block
+"XLXI_6013/XLXI_3535/RX_DATA_FIFO/BU2/U0/grf.rf/gl0.wr/gwss.wsts/ram_full_i"
+(FF) removed.
+Unused block
+"XLXI_6013/XLXI_3535/RX_INFO_FIFO/BU2/U0/grf.rf/gl0.wr/gwss.wsts/ram_full_i"
+(FF) removed.
+Unused block
+"XLXI_6013/XLXI_3535/TX_DATA_FIFO/BU2/U0/grf.rf/gl0.rd/grss.rsts/ram_empty_i"
+(FF) removed.
+Unused block "XLXI_6013/XLXI_3535/XLXI_3527/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/XLXI_3535/XLXI_3527/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/XLXI_3535/XLXI_3532/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/XLXI_3535/XLXI_3532/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/XLXI_3535/XLXI_2539/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/XLXI_3535/XLXI_2539/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/XLXI_3535/XLXI_3365/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/XLXI_3535/XLXI_3526/XST_VCC" (ONE) removed.
+Unused block "XLXI_6013/XLXI_3535/XLXI_3531/XST_GND" (ZERO) removed.
+Unused block "XLXI_6013/XLXI_3535/XLXI_3531/XST_VCC" (ONE) removed.
+Unused block "XLXI_6014/XST_GND" (ZERO) removed.
+Unused block "XLXI_6014/XST_VCC" (ONE) removed.
+Unused block "ext_trig_handler/XST_GND" (ZERO) removed.
+Unused block "psi_cmd_sender_vector_0/XST_GND" (ZERO) removed.
+Unused block "psi_cmd_sender_vector_1/XST_GND" (ZERO) removed.
+Unused block "psi_cmd_sender_vector_2/XST_GND" (ZERO) removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+LUT4 		U_ila_pro_0/U0/I_NO_D.U_ILA/U_STAT/F_SSTAT[6].I_STAT.U_STAT
+   optimized to 0
+GND 		U_ila_pro_0/XST_GND
+VCC 		U_ila_pro_0/XST_VCC
+GND 		XLXI_6344
+VCC 		XLXI_6375
+GND 		PSI_Dig_Blk_0/XLXI_6064/XST_GND
+VCC 		PSI_Dig_Blk_0/XLXI_6064/XST_VCC
+GND 		PSI_Dig_Blk_1/XLXI_6064/XST_GND
+VCC 		PSI_Dig_Blk_1/XLXI_6064/XST_VCC
+GND 		PSI_Dig_Blk_2/XLXI_6064/XST_GND
+VCC 		PSI_Dig_Blk_2/XLXI_6064/XST_VCC
+GND 		TokenStack_vector_0/XST_GND
+VCC 		TokenStack_vector_0/XST_VCC
+GND 		TokenStack_vector_1/XST_GND
+VCC 		TokenStack_vector_1/XST_VCC
+GND 		TokenStack_vector_2/XST_GND
+VCC 		TokenStack_vector_2/XST_VCC
+VCC 		XLXI_4004/XST_VCC
+GND 		XLXI_4006/XLXI_48
+VCC 		XLXI_4006/XST_VCC
+VCC 		XLXI_4359/XST_VCC
+GND 		XLXI_5338/XST_GND
+GND 		XLXI_5598/XST_GND
+VCC 		XLXI_5598/XST_VCC
+GND 		XLXI_6013/GEC/XLXI_249/ArpReplyBlock/XST_GND
+VCC 		XLXI_6013/GEC/XLXI_249/ArpReplyBlock/XST_VCC
+GND 		XLXI_6013/GEC/XLXI_249/ChecksumCalcBlock/XST_GND
+VCC 		XLXI_6013/GEC/XLXI_249/ChecksumCalcBlock/XST_VCC
+GND 		XLXI_6013/GEC/XLXI_249/CreatePacketBlock/XST_GND
+VCC 		XLXI_6013/GEC/XLXI_249/CreatePacketBlock/XST_VCC
+GND 		XLXI_6013/GEC/XLXI_249/DataoutMux/XST_GND
+GND 		XLXI_6013/GEC/XLXI_249/DecipherBlock/XST_GND
+VCC 		XLXI_6013/GEC/XLXI_249/DecipherBlock/XST_VCC
+GND 		XLXI_6013/GEC/XLXI_249/UdpLengthMux/XST_GND
+GND 		XLXI_6013/XLXI_3535/XST_GND
+VCC 		XLXI_6013/XLXI_3535/XST_VCC
+VCC 		XLXI_6013/XLXI_3535/XLXI_3365/XST_VCC
+GND 		XLXI_6013/XLXI_3535/XLXI_3506/XST_GND
+VCC 		XLXI_6013/XLXI_3535/XLXI_3506/XST_VCC
+GND 		XLXI_6013/XLXI_3535/XLXI_3513/XST_GND
+VCC 		XLXI_6013/XLXI_3535/XLXI_3513/XST_VCC
+GND 		XLXI_6013/XLXI_3535/XLXI_3514/XST_GND
+VCC 		XLXI_6013/XLXI_3535/XLXI_3514/XST_VCC
+GND 		XLXI_6013/XLXI_3535/XLXI_3526/XST_GND
+GND 		XLXI_6013/XLXI_4124/XST_GND
+VCC 		XLXI_6013/XLXI_4124/XST_VCC
+GND 		XLXI_6042/XST_GND
+VCC 		XLXI_6042/XST_VCC
+VCC 		ext_trig_handler/XST_VCC
+VCC 		psi_cmd_sender_vector_0/XST_VCC
+VCC 		psi_cmd_sender_vector_1/XST_VCC
+VCC 		psi_cmd_sender_vector_2/XST_VCC
+GND 		token_delay_vector_0/XST_GND
+VCC 		token_delay_vector_0/XST_VCC
+GND 		token_delay_vector_1/XST_GND
+VCC 		token_delay_vector_1/XST_VCC
+GND 		token_delay_vector_2/XST_GND
+VCC 		token_delay_vector_2/XST_VCC
+GND 		token_trigger_blk/XST_GND
+VCC 		token_trigger_blk/XST_VCC
+
+To enable printing of redundant blocks removed and signals merged, set the
+detailed map report option and rerun map.
+
+Section 6 - IOB Properties
+--------------------------
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
+|                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| BUSAA_02DN_05S                     | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| BUSAA_02DP_04S                     | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| BUSAA_03DN_07S                     | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSAA_03DP_06S                     | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSAA_06DN_13S                     | IOB              | INPUT     | LVDS_25              | FALSE |          |      |              |          |          |
+| BUSAA_06DP_12S                     | IOB              | INPUT     | LVDS_25              | FALSE |          |      |              |          | 0        |
+| BUSAA_07DN_15S                     | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSAA_07DP_14S                     | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSA_21DN_43S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSA_21DP_42S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSA_22DN_45S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSA_22DP_44S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSA_23DP_46S                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| BUSB_13DN_27S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSB_13DP_26S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSB_14DN_29S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSB_14DP_28S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSB_15DN_31S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSB_15DP_30S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSB_18DN_37S                      | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| BUSB_18DP_36S                      | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          | 0        |
+| BUSB_22DN_45S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSB_22DP_44S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSB_24DN_49S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSB_24DP_48S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSB_27DN_55S                      | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| BUSB_27DP_54S                      | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| BUSB_28DP_56S                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| BUSB_29DN_59S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSB_29DP_58S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSB_30DN_61S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSB_30DP_60S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSB_31DN_63S                      | IOBS             | OUTPUT    | LVDSEXT_25           |       |          |      |              |          |          |
+| BUSB_31DP_62S                      | IOBM             | OUTPUT    | LVDSEXT_25           |       |          |      |              |          |          |
+| BUSC_02DP_04S                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| BUSC_03DN_07S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSC_03DP_06S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSC_04DN_09S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSC_04DP_08S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSC_06DN_13S                      | IOB              | INPUT     | LVDS_25              | FALSE |          |      |              |          |          |
+| BUSC_06DP_12S                      | IOB              | INPUT     | LVDS_25              | FALSE |          |      |              |          | 0        |
+| BUSC_11DN_23S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSC_11DP_22S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSC_14DN_29S                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| BUSC_14DP_28S                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| BUSC_15DN_31S                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| BUSC_15DP_30S                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| BUSC_16DN_33S                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| BUSC_16DP_32S                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| BUSC_17DN_35S                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| BUSC_17DP_34S                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| BUSC_18DN_37S                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| BUSC_18DP_36S                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| BUSC_19DN_39S                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| BUSC_19DP_38S                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| BUSC_20DN_41S                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| BUSC_20DP_40S                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| BUSC_21DN_43S                      | IOB              | BIDIR     | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| BUSC_24DN_49S                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| BUSC_24DP_48S                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| BUSC_25DN_51S                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| BUSC_25DP_50S                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| BUSC_26DN_53S                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| BUSC_27DN_55S                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| BUSC_27DP_54S                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| BUSD_15DN_31S                      | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| BUSD_15DP_30S                      | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| BUSD_18DN_37S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSD_18DP_36S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSD_21DN_43S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSD_21DP_42S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSD_24DN_49S                      | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| BUSD_24DP_48S                      | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| BUSD_25DN_51S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSD_25DP_50S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSD_26DN_53S                      | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BUSD_26DP_52S                      | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| GEL_RXCLK                          | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GENERAL_19DN_39S                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| GENERAL_19DP_38S                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| GENERAL_20DN_41S                   | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| GENERAL_20DP_40S                   | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| IP_MAC_0                           | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| IP_MAC_1                           | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| IP_MAC_2                           | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| IP_MAC_3                           | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| IP_MAC_4                           | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| IP_MAC_5                           | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| IP_MAC_6                           | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| IP_MAC_7                           | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| SECONDARY_CLK                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+TOP_LEVEL/XLXI_4846_15                  
+U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_CDONE_MS
+ET
+U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_CMPRESET
+_MSET
+U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_NS0_MSET
+U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_NS1_MSET
+U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_SCMPCE_M
+SET
+U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_SCRST_MS
+ET
+U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_WHCMPCE_
+MSET
+U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_WLCMPCE_
+MSET
+U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_U_CAP_ADDRGEN_U_SCNT_C
+MP_I_SRL16.U_GAND_SRL16_MSET
+U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_U_CAP_ADDRGEN_U_WCNT_H
+CMP_I_SRL16.U_GAND_SRL16_MSET
+U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_U_CAP_ADDRGEN_U_WCNT_L
+CMP_I_SRL16.U_GAND_SRL16_MSET
+U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_VARX
+.U_match/I_SRL16.U_VAR_SRL16_MSET
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+  No area groups were found in this design.
+
+----------------------
+
+Section 10 - Timing Report
+--------------------------
+A logic-level (pre-route) timing report can be generated by using Xilinx static
+timing analysis tools, Timing Analyzer (GUI) or TRCE (command line), with the
+mapped NCD and PCF files. Please note that this timing report will be generated
+using estimated delay information. For accurate numbers, please generate a
+timing report with the post Place and Route NCD file.
+
+For more information about the Timing Analyzer, consult the Xilinx Timing
+Analyzer Reference Manual; for more information about TRCE, consult the Xilinx
+Command Line Tools User Guide "TRACE" chapter.
+
+Section 11 - Configuration String Details
+-----------------------------------------
+Use the "-detail" map option to print out Configuration Strings
+
+Section 12 - Control Set Information
+------------------------------------
+No control set information for this architecture.
+
+Section 13 - Utilization by Hierarchy
+-------------------------------------
+Use the "-detail" map option to print out the Utilization by Hierarchy section.
