@@ -1,0 +1,541 @@
+--------------------------------------------------------------------------------
+Release 14.7 Trace  (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+/opt/local/xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/trce -intstyle ise -e 3
+-s 10 -n 3 -fastpaths -xml TOP_LEVEL.twx TOP_LEVEL.ncd -o TOP_LEVEL.twr
+TOP_LEVEL.pcf -ucf TOP_LEVEL.ucf
+
+Design file:              TOP_LEVEL.ncd
+Physical constraint file: TOP_LEVEL.pcf
+Device,package,speed:     xc4vlx25,ff668,-10 (PRODUCTION 1.71 2013-10-13, STEPPING level 1)
+Report level:             error report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+WARNING:Timing:3223 - Timing constraint TS_digsclk_to_rstmclk = MAXDELAY FROM 
+   TIMEGRP "psi_dig_sdata_clk0" TO TIMEGRP        "XLXN_12498" 8 ns 
+   DATAPATHONLY; ignored during timing analysis.
+WARNING:Timing:3223 - Timing constraint TS_digsclk1_to_rstmclk = MAXDELAY FROM 
+   TIMEGRP "psi_dig_sdata_clk1" TO TIMEGRP        "XLXN_12498" 8 ns 
+   DATAPATHONLY; ignored during timing analysis.
+WARNING:Timing:3223 - Timing constraint TS_digsclk2_to_rstmclk = MAXDELAY FROM 
+   TIMEGRP "psi_dig_sdata_clk2" TO TIMEGRP        "XLXN_12498" 8 ns 
+   DATAPATHONLY; ignored during timing analysis.
+INFO:Timing:3386 - Intersecting Constraints found and resolved.  For more 
+   information, see the TSI report.  Please consult the Xilinx Command Line 
+   Tools User Guide for information on generating a TSI report.
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+================================================================================
+Timing constraint: PATH "TS_D2_TO_T2_ila_pro_0_path" TIG;
+
+ 3 paths analyzed, 3 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PATH "TS_J2_TO_D2_ila_pro_0_path" TIG;
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PATH "TS_J3_TO_D2_ila_pro_0_path" TIG;
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PATH "TS_J4_TO_D2_ila_pro_0_path" TIG;
+
+ 11 paths analyzed, 1 endpoint analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_J_CLK = PERIOD TIMEGRP "J_CLK" 30 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 2857 paths analyzed, 447 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   7.205ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_U_TO_J = MAXDELAY FROM TIMEGRP "U_CLK" TO TIMEGRP "J_CLK" 
+15 ns;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 18 paths analyzed, 18 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   3.506ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_U_TO_U = MAXDELAY FROM TIMEGRP "U_CLK" TO TIMEGRP "U_CLK" 
+15 ns;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 1 path analyzed, 1 endpoint analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   1.006ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PATH "TS_J_TO_D_path" TIG;
+
+ 359 paths analyzed, 78 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PATH "TS_D_TO_J_path" TIG;
+
+ 386 paths analyzed, 370 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_SECONDARY_CLK = PERIOD TIMEGRP "SECONDARY_CLK" 5 MHz HIGH 
+50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 2 paths analyzed, 2 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   3.006ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_GEL_RXCLK = PERIOD TIMEGRP "GEL_RXCLK" 8 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 50094 paths analyzed, 6848 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   7.817ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_dut_src_clk = PERIOD TIMEGRP "dut_src_clk" 34 ns HIGH 
+50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is  15.624ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18355 = PERIOD TIMEGRP "XLXN_18355" 8 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is   1.058ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18372 = PERIOD TIMEGRP "XLXN_18372" 8 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is   1.058ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18597 = PERIOD TIMEGRP "XLXN_18597" 8 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is   1.058ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_rstclk_to_all = MAXDELAY FROM TIMEGRP "XLXN_12498" 16 ns 
+DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 349 paths analyzed, 332 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is  10.562ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_digsclk_to_rstmclk = MAXDELAY FROM TIMEGRP 
+"psi_dig_sdata_clk0" TO TIMEGRP         "XLXN_12498" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_rstmclk_to_digsclk = MAXDELAY FROM TIMEGRP "XLXN_12498" 
+TO TIMEGRP         "psi_dig_sdata_clk0" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 140 paths analyzed, 118 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   5.869ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_digsclk1_to_rstmclk = MAXDELAY FROM TIMEGRP 
+"psi_dig_sdata_clk1" TO TIMEGRP         "XLXN_12498" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_rstmclk_to_digsclk1 = MAXDELAY FROM TIMEGRP "XLXN_12498" 
+TO TIMEGRP         "psi_dig_sdata_clk1" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_mclk_to_rstmclk = MAXDELAY FROM TIMEGRP "MASTER_CLK" TO 
+TIMEGRP         "XLXN_12498" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 7 paths analyzed, 2 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   4.355ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_rstmclk_to_mclk = MAXDELAY FROM TIMEGRP "XLXN_12498" TO 
+TIMEGRP         "MASTER_CLK" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 1918 paths analyzed, 1633 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   7.982ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_digsclk2_to_rstmclk = MAXDELAY FROM TIMEGRP 
+"psi_dig_sdata_clk2" TO TIMEGRP         "XLXN_12498" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_rstmclk_to_digsclk2 = MAXDELAY FROM TIMEGRP "XLXN_12498" 
+TO TIMEGRP         "psi_dig_sdata_clk2" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_digsclk1_to_mclk = MAXDELAY FROM TIMEGRP 
+"psi_dig_sdata_clk1" TO TIMEGRP         "MASTER_CLK" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_mclk_to_digsclk1 = MAXDELAY FROM TIMEGRP "MASTER_CLK" TO 
+TIMEGRP         "psi_dig_sdata_clk1" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_digsclk2_to_mclk = MAXDELAY FROM TIMEGRP 
+"psi_dig_sdata_clk2" TO TIMEGRP         "MASTER_CLK" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_mclk_to_digsclk2 = MAXDELAY FROM TIMEGRP "MASTER_CLK" TO 
+TIMEGRP         "psi_dig_sdata_clk2" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_digsclk1_to_gtxclk = MAXDELAY FROM TIMEGRP 
+"psi_dig_sdata_clk1" TO TIMEGRP         "GEL_RXCLK" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 445 paths analyzed, 193 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   5.941ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_gtxclk_to_digsclk1 = MAXDELAY FROM TIMEGRP "GEL_RXCLK" TO 
+TIMEGRP         "psi_dig_sdata_clk1" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 505 paths analyzed, 225 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   6.760ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_digsclk2_to_gtxclk = MAXDELAY FROM TIMEGRP 
+"psi_dig_sdata_clk2" TO TIMEGRP         "GEL_RXCLK" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 445 paths analyzed, 193 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   4.643ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_gtxclk_to_digsclk2 = MAXDELAY FROM TIMEGRP "GEL_RXCLK" TO 
+TIMEGRP         "psi_dig_sdata_clk2" 8 ns DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 400 paths analyzed, 225 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   6.717ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18856_0_ = PERIOD TIMEGRP "XLXN_18856_0_" 
+TS_dut_src_clk HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is   2.500ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18857_0_ = PERIOD TIMEGRP "XLXN_18857_0_" 
+TS_dut_src_clk PHASE 8.5 ns         HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 838 paths analyzed, 280 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   6.636ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18856_1_ = PERIOD TIMEGRP "XLXN_18856_1_" 
+TS_dut_src_clk HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is   2.500ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18857_1_ = PERIOD TIMEGRP "XLXN_18857_1_" 
+TS_dut_src_clk PHASE 8.5 ns         HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 838 paths analyzed, 280 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   8.484ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18856_2_ = PERIOD TIMEGRP "XLXN_18856_2_" 
+TS_dut_src_clk HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is   2.500ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18857_2_ = PERIOD TIMEGRP "XLXN_18857_2_" 
+TS_dut_src_clk PHASE 8.5 ns         HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 838 paths analyzed, 280 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   6.489ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_12172 = PERIOD TIMEGRP "XLXN_12172" TS_dut_src_clk 
+HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is   1.058ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18993 = PERIOD TIMEGRP "XLXN_18993" TS_dut_src_clk 
+PHASE 8.5 ns HIGH         50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 4052 paths analyzed, 516 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   7.345ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18992 = PERIOD TIMEGRP "XLXN_18992" TS_dut_src_clk 
+PHASE 25.5 ns HIGH         50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 5 paths analyzed, 4 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   6.756ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18537 = PERIOD TIMEGRP "XLXN_18537" TS_dut_src_clk / 
+2 HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is   6.000ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18354 = PERIOD TIMEGRP "XLXN_18354" TS_XLXN_18537 / 
+2 HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is   1.058ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_XLXN_18569 = PERIOD TIMEGRP "XLXN_18569" TS_XLXN_18537 / 
+2 PHASE 4.25 ns         HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 4068 paths analyzed, 735 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   8.472ns.
+--------------------------------------------------------------------------------
+
+
+Derived Constraint Report
+Derived Constraints for TS_dut_src_clk
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|                               |   Period    |       Actual Period       |      Timing Errors        |      Paths Analyzed       |
+|           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
+|                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|TS_dut_src_clk                 |     34.000ns|     15.624ns|     33.888ns|            0|            0|            0|        10639|
+| TS_XLXN_18856_0_              |     34.000ns|      2.500ns|          N/A|            0|            0|            0|            0|
+| TS_XLXN_18857_0_              |     34.000ns|      6.636ns|          N/A|            0|            0|          838|            0|
+| TS_XLXN_18856_1_              |     34.000ns|      2.500ns|          N/A|            0|            0|            0|            0|
+| TS_XLXN_18857_1_              |     34.000ns|      8.484ns|          N/A|            0|            0|          838|            0|
+| TS_XLXN_18856_2_              |     34.000ns|      2.500ns|          N/A|            0|            0|            0|            0|
+| TS_XLXN_18857_2_              |     34.000ns|      6.489ns|          N/A|            0|            0|          838|            0|
+| TS_XLXN_12172                 |     34.000ns|      1.058ns|          N/A|            0|            0|            0|            0|
+| TS_XLXN_18993                 |     34.000ns|      7.345ns|          N/A|            0|            0|         4052|            0|
+| TS_XLXN_18992                 |     34.000ns|      6.756ns|          N/A|            0|            0|            5|            0|
+| TS_XLXN_18537                 |     17.000ns|      6.000ns|     16.944ns|            0|            0|            0|         4068|
+|  TS_XLXN_18354                |      8.500ns|      1.058ns|          N/A|            0|            0|            0|            0|
+|  TS_XLXN_18569                |      8.500ns|      8.472ns|          N/A|            0|            0|         4068|            0|
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+All constraints were met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock GEL_RXCLK to Pad
+-------------+------------+------------------+--------+
+             | clk (edge) |                  | Clock  |
+Destination  |   to PAD   |Internal Clock(s) | Phase  |
+-------------+------------+------------------+--------+
+BUSA_23DP_46S|   13.148(R)|XLXN_12498        |   0.000|
+BUSB_28DP_56S|   10.849(R)|XLXN_12498        |   0.000|
+BUSC_02DP_04S|   12.460(R)|XLXN_12498        |   0.000|
+BUSC_21DN_43S|    9.607(R)|XLXN_12498        |   0.000|
+-------------+------------+------------------+--------+
+
+Clock SECONDARY_CLK to Pad
+-------------+------------+------------------+--------+
+             | clk (edge) |                  | Clock  |
+Destination  |   to PAD   |Internal Clock(s) | Phase  |
+-------------+------------+------------------+--------+
+BUSA_23DP_46S|   14.797(R)|XLXN_12498        |   0.000|
+BUSB_28DP_56S|   12.498(R)|XLXN_12498        |   0.000|
+BUSC_02DP_04S|   14.109(R)|XLXN_12498        |   0.000|
+BUSC_21DN_43S|   11.256(R)|XLXN_12498        |   0.000|
+-------------+------------+------------------+--------+
+
+Clock to Setup on destination clock GEL_RXCLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+GEL_RXCLK      |    7.982|    3.903|         |         |
+SECONDARY_CLK  |    7.982|         |         |         |
+---------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock SECONDARY_CLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+GEL_RXCLK      |    4.355|         |         |         |
+SECONDARY_CLK  |    3.006|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
+
+Constraints cover 68579 paths, 0 nets, and 22962 connections
+
+Design statistics:
+   Minimum period:  15.624ns   (Maximum frequency:  64.004MHz)
+   Maximum path delay from/to any node:  10.562ns
+
+
+Analysis completed Wed May  2 11:06:25 2018 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 559 MB
+
+
+
