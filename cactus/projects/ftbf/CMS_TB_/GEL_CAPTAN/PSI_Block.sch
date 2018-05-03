@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<drawing version="7">
+    <attr value="virtex4" name="DeviceFamilyName">
+        <trait delete="all:0" />
+        <trait editname="all:0" />
+        <trait edittrait="all:0" />
+    </attr>
+    <netlist>
+        <signal name="reset" />
+        <signal name="MASTER_CLK" />
+        <signal name="psi_dec_data(28:0)" />
+        <signal name="psi_dec_data_we" />
+        <signal name="rd_token_in" />
+        <signal name="plaq_id(2:0)" />
+        <signal name="ovf_err" />
+        <signal name="rd_token_out" />
+        <signal name="we_out" />
+        <signal name="cal_tag(15:0)" />
+        <signal name="first_in_chain" />
+        <signal name="bus_dout(63:0)" />
+        <signal name="cal_tag_trig_num_sel" />
+        <signal name="psi_mode(4:0)" />
+        <signal name="trig_cnt(19:0)" />
+        <signal name="psi_sample(9:0)" />
+        <signal name="psi_sample_we" />
+        <signal name="psi_mode(4:3)" />
+        <signal name="level_rd_cid(4:0)" />
+        <signal name="level_map_data(19:10)" />
+        <signal name="level_map_data(29:20)" />
+        <signal name="level_map_data(39:30)" />
+        <signal name="level_map_data(49:40)" />
+        <signal name="level_map_data(59:50)" />
+        <signal name="level_map_data(9:0)" />
+        <signal name="psi_status_en" />
+        <signal name="psi_token_out" />
+        <signal name="en_man_sample_sel" />
+        <signal name="man_sample_sel" />
+        <signal name="psi_level_we" />
+        <signal name="psi_level_addr(2:0)" />
+        <signal name="psi_level_data(59:0)" />
+        <signal name="level_map_data(59:0)" />
+        <signal name="level_rd_cid(2:0)" />
+        <signal name="XLXN_17060(0:0)" />
+        <signal name="levels_read(59:0)" />
+        <signal name="psi_token_in" />
+        <signal name="error_reset_req" />
+        <signal name="sm_ready" />
+        <signal name="tokin_cnt(19:0)" />
+        <signal name="tokin_cnt_latch(19:0)" />
+        <signal name="time_stamp(12:0)" />
+        <signal name="token_stack_count(3:0)" />
+        <signal name="trig_tok_diff(3:0)" />
+        <port polarity="Input" name="reset" />
+        <port polarity="Input" name="MASTER_CLK" />
+        <port polarity="Input" name="rd_token_in" />
+        <port polarity="Input" name="plaq_id(2:0)" />
+        <port polarity="Output" name="ovf_err" />
+        <port polarity="Output" name="rd_token_out" />
+        <port polarity="Output" name="we_out" />
+        <port polarity="Input" name="cal_tag(15:0)" />
+        <port polarity="Input" name="first_in_chain" />
+        <port polarity="BiDirectional" name="bus_dout(63:0)" />
+        <port polarity="Input" name="cal_tag_trig_num_sel" />
+        <port polarity="Input" name="psi_mode(4:0)" />
+        <port polarity="Input" name="trig_cnt(19:0)" />
+        <port polarity="Input" name="psi_sample(9:0)" />
+        <port polarity="Input" name="psi_sample_we" />
+        <port polarity="Input" name="psi_status_en" />
+        <port polarity="Input" name="psi_token_out" />
+        <port polarity="Input" name="en_man_sample_sel" />
+        <port polarity="Input" name="man_sample_sel" />
+        <port polarity="Input" name="psi_level_we" />
+        <port polarity="Input" name="psi_level_addr(2:0)" />
+        <port polarity="Input" name="psi_level_data(59:0)" />
+        <port polarity="Output" name="levels_read(59:0)" />
+        <port polarity="Input" name="psi_token_in" />
+        <port polarity="Output" name="error_reset_req" />
+        <port polarity="Output" name="sm_ready" />
+        <port polarity="Input" name="tokin_cnt(19:0)" />
+        <port polarity="Input" name="time_stamp(12:0)" />
+        <port polarity="Input" name="token_stack_count(3:0)" />
+        <port polarity="Output" name="trig_tok_diff(3:0)" />
+        <blockdef name="PsiDecoderBlock">
+            <timestamp>2011-9-30T16:5:35</timestamp>
+            <rect width="64" x="0" y="212" height="24" />
+            <line x2="0" y1="224" y2="224" x1="64" />
+            <rect width="64" x="512" y="212" height="24" />
+            <line x2="576" y1="224" y2="224" x1="512" />
+            <line x2="0" y1="96" y2="96" x1="64" />
+            <line x2="0" y1="160" y2="160" x1="64" />
+            <line x2="0" y1="-864" y2="-864" x1="64" />
+            <line x2="0" y1="-736" y2="-736" x1="64" />
+            <line x2="0" y1="-608" y2="-608" x1="64" />
+            <rect width="64" x="0" y="-492" height="24" />
+            <line x2="0" y1="-480" y2="-480" x1="64" />
+            <line x2="0" y1="-800" y2="-800" x1="64" />
+            <rect width="64" x="0" y="-396" height="24" />
+            <line x2="0" y1="-384" y2="-384" x1="64" />
+            <rect width="64" x="0" y="-300" height="24" />
+            <line x2="0" y1="-288" y2="-288" x1="64" />
+            <rect width="64" x="0" y="-236" height="24" />
+            <line x2="0" y1="-224" y2="-224" x1="64" />
+            <rect width="64" x="0" y="-172" height="24" />
+            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <rect width="64" x="0" y="-108" height="24" />
+            <line x2="0" y1="-96" y2="-96" x1="64" />
+            <rect width="64" x="0" y="-44" height="24" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <rect width="64" x="0" y="20" height="24" />
+            <line x2="0" y1="32" y2="32" x1="64" />
+            <rect width="64" x="512" y="-268" height="24" />
+            <line x2="576" y1="-256" y2="-256" x1="512" />
+            <line x2="576" y1="-864" y2="-864" x1="512" />
+            <rect width="64" x="512" y="-812" height="24" />
+            <line x2="576" y1="-800" y2="-800" x1="512" />
+            <line x2="0" y1="-672" y2="-672" x1="64" />
+            <line x2="0" y1="-544" y2="-544" x1="64" />
+            <line x2="576" y1="-80" y2="-80" x1="512" />
+            <line x2="576" y1="-16" y2="-16" x1="512" />
+            <rect width="448" x="64" y="-896" height="1216" />
+        </blockdef>
+        <blockdef name="chip_token_manager">
+            <timestamp>2011-9-30T16:5:45</timestamp>
+            <rect width="64" x="464" y="532" height="24" />
+            <line x2="528" y1="544" y2="544" x1="464" />
+            <rect width="64" x="0" y="20" height="24" />
+            <line x2="0" y1="32" y2="32" x1="64" />
+            <line x2="0" y1="-480" y2="-480" x1="64" />
+            <line x2="0" y1="-416" y2="-416" x1="64" />
+            <line x2="0" y1="-352" y2="-352" x1="64" />
+            <line x2="0" y1="-288" y2="-288" x1="64" />
+            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <rect width="64" x="0" y="-108" height="24" />
+            <line x2="0" y1="-96" y2="-96" x1="64" />
+            <rect width="64" x="0" y="-44" height="24" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <line x2="528" y1="-480" y2="-480" x1="464" />
+            <line x2="528" y1="-336" y2="-336" x1="464" />
+            <line x2="528" y1="-192" y2="-192" x1="464" />
+            <rect width="64" x="464" y="-60" height="24" />
+            <line x2="528" y1="-48" y2="-48" x1="464" />
+            <rect width="64" x="0" y="148" height="24" />
+            <line x2="0" y1="160" y2="160" x1="64" />
+            <line x2="0" y1="96" y2="96" x1="64" />
+            <rect width="64" x="0" y="212" height="24" />
+            <line x2="0" y1="224" y2="224" x1="64" />
+            <rect width="64" x="0" y="340" height="24" />
+            <line x2="0" y1="352" y2="352" x1="64" />
+            <rect width="64" x="0" y="404" height="24" />
+            <line x2="0" y1="416" y2="416" x1="64" />
+            <rect width="64" x="0" y="468" height="24" />
+            <line x2="0" y1="480" y2="480" x1="64" />
+            <rect width="400" x="64" y="-512" height="1080" />
+        </blockdef>
+        <blockdef name="psi_level_mem">
+            <timestamp>2009-10-12T21:15:26</timestamp>
+            <rect width="64" x="0" y="84" height="24" />
+            <line x2="0" y1="96" y2="96" x1="64" />
+            <line x2="0" y1="-352" y2="-352" x1="64" />
+            <line x2="0" y1="-288" y2="-288" x1="64" />
+            <rect width="64" x="0" y="-236" height="24" />
+            <line x2="0" y1="-224" y2="-224" x1="64" />
+            <rect width="64" x="0" y="-172" height="24" />
+            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <rect width="64" x="0" y="-108" height="24" />
+            <line x2="0" y1="-96" y2="-96" x1="64" />
+            <rect width="256" x="64" y="-384" height="512" />
+            <rect width="64" x="0" y="20" height="24" />
+            <line x2="0" y1="32" y2="32" x1="64" />
+            <rect width="64" x="0" y="-44" height="24" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <rect width="64" x="320" y="-44" height="24" />
+            <line x2="384" y1="-32" y2="-32" x1="320" />
+            <rect width="64" x="320" y="-236" height="24" />
+            <line x2="384" y1="-224" y2="-224" x1="320" />
+        </blockdef>
+        <blockdef name="gnd">
+            <timestamp>2000-1-1T10:10:10</timestamp>
+            <line x2="64" y1="-64" y2="-96" x1="64" />
+            <line x2="52" y1="-48" y2="-48" x1="76" />
+            <line x2="60" y1="-32" y2="-32" x1="68" />
+            <line x2="40" y1="-64" y2="-64" x1="88" />
+            <line x2="64" y1="-64" y2="-80" x1="64" />
+            <line x2="64" y1="-128" y2="-96" x1="64" />
+        </blockdef>
+        <block symbolname="chip_token_manager" name="CHIP_TMGR">
+            <blockpin signalname="reset" name="reset" />
+            <blockpin signalname="MASTER_CLK" name="clk" />
+            <blockpin signalname="rd_token_in" name="token_in" />
+            <blockpin signalname="first_in_chain" name="first_in_token_chain" />
+            <blockpin signalname="cal_tag_trig_num_sel" name="cal_trig_sel" />
+            <blockpin signalname="psi_dec_data_we" name="pdin_we" />
+            <blockpin signalname="plaq_id(2:0)" name="plaq_id(2:0)" />
+            <blockpin signalname="cal_tag(15:0)" name="cal_tag(15:0)" />
+            <blockpin signalname="tokin_cnt_latch(19:0)" name="tokin_cnt(19:0)" />
+            <blockpin signalname="trig_cnt(19:0)" name="trig_cnt(19:0)" />
+            <blockpin signalname="time_stamp(12:0)" name="time_stamp(12:0)" />
+            <blockpin signalname="token_stack_count(3:0)" name="tkstack_cnt(3:0)" />
+            <blockpin signalname="psi_dec_data(28:0)" name="pdin(28:0)" />
+            <blockpin signalname="psi_mode(4:0)" name="b_mode_sel(4:0)" />
+            <blockpin signalname="bus_dout(63:0)" name="bus_dout(63:0)" />
+            <blockpin signalname="ovf_err" name="ovf_err" />
+            <blockpin signalname="rd_token_out" name="token_out" />
+            <blockpin signalname="we_out" name="we_out" />
+            <blockpin signalname="trig_tok_diff(3:0)" name="trig_tok_diff(3:0)" />
+        </block>
+        <block symbolname="PsiDecoderBlock" name="PSI_Decoder">
+            <blockpin signalname="psi_sample_we" name="ADC_WR_EN" />
+            <blockpin signalname="en_man_sample_sel" name="EN_MAN_SAMPLE_SEL" />
+            <blockpin signalname="man_sample_sel" name="MAN_SAMPLE_SEL" />
+            <blockpin signalname="MASTER_CLK" name="MASTER_CLK" />
+            <blockpin signalname="reset" name="RESET" />
+            <blockpin signalname="psi_status_en" name="STATUS_EN" />
+            <blockpin signalname="psi_token_in" name="TOKEN_IN" />
+            <blockpin signalname="psi_token_out" name="TOKEN_OUT" />
+            <blockpin signalname="psi_sample(9:0)" name="ADC_DATA_IN(9:0)" />
+            <blockpin signalname="psi_mode(4:3)" name="DEBUG_SEL(1:0)" />
+            <blockpin signalname="tokin_cnt(19:0)" name="evt_num(19:0)" />
+            <blockpin signalname="level_map_data(19:10)" name="level0_mem(9:0)" />
+            <blockpin signalname="level_map_data(29:20)" name="level1_mem(9:0)" />
+            <blockpin signalname="level_map_data(39:30)" name="level2_mem(9:0)" />
+            <blockpin signalname="level_map_data(49:40)" name="level3_mem(9:0)" />
+            <blockpin signalname="level_map_data(59:50)" name="level4_mem(9:0)" />
+            <blockpin signalname="level_map_data(9:0)" name="ublack_mem(9:0)" />
+            <blockpin signalname="psi_dec_data_we" name="DATA_OUT_WR" />
+            <blockpin signalname="error_reset_req" name="error_reset_req" />
+            <blockpin signalname="sm_ready" name="sm_ready" />
+            <blockpin signalname="psi_dec_data(28:0)" name="DATA_OUT(28:0)" />
+            <blockpin signalname="level_rd_cid(4:0)" name="chip_id_rd(4:0)" />
+            <blockpin signalname="tokin_cnt_latch(19:0)" name="evt_num_latch(19:0)" />
+        </block>
+        <block symbolname="gnd" name="XLXI_5135">
+            <blockpin signalname="XLXN_17060(0:0)" name="G" />
+        </block>
+        <block symbolname="psi_level_mem" name="PSI_level_mem_0">
+            <blockpin signalname="MASTER_CLK" name="clka" />
+            <blockpin signalname="MASTER_CLK" name="clkb" />
+            <blockpin signalname="psi_level_we" name="wea(0:0)" />
+            <blockpin signalname="psi_level_addr(2:0)" name="addra(2:0)" />
+            <blockpin signalname="psi_level_data(59:0)" name="dina(59:0)" />
+            <blockpin name="dinb(59:0)" />
+            <blockpin signalname="level_rd_cid(2:0)" name="addrb(2:0)" />
+            <blockpin signalname="XLXN_17060(0:0)" name="web(0:0)" />
+            <blockpin signalname="level_map_data(59:0)" name="doutb(59:0)" />
+            <blockpin signalname="levels_read(59:0)" name="douta(59:0)" />
+        </block>
+    </netlist>
+    <sheet sheetnum="1" width="7040" height="5440">
+        <instance x="3184" y="1408" name="CHIP_TMGR" orien="R0">
+            <attrtext style="fontsize:28;fontname:Arial" attrname="InstName" x="144" y="-600" type="instance" />
+        </instance>
+        <branch name="MASTER_CLK">
+            <wire x2="3184" y1="992" y2="992" x1="3104" />
+        </branch>
+        <branch name="rd_token_in">
+            <wire x2="3184" y1="1056" y2="1056" x1="3104" />
+        </branch>
+        <branch name="psi_dec_data_we">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3104" y="1248" type="branch" />
+            <wire x2="3184" y1="1248" y2="1248" x1="3104" />
+        </branch>
+        <branch name="plaq_id(2:0)">
+            <wire x2="3184" y1="1312" y2="1312" x1="3104" />
+        </branch>
+        <branch name="psi_dec_data(28:0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3104" y="1376" type="branch" />
+            <wire x2="3184" y1="1376" y2="1376" x1="3104" />
+        </branch>
+        <branch name="ovf_err">
+            <wire x2="3792" y1="928" y2="928" x1="3712" />
+        </branch>
+        <branch name="rd_token_out">
+            <wire x2="3792" y1="1072" y2="1072" x1="3712" />
+        </branch>
+        <branch name="we_out">
+            <wire x2="3792" y1="1216" y2="1216" x1="3712" />
+        </branch>
+        <branch name="cal_tag(15:0)">
+            <wire x2="3120" y1="1440" y2="1440" x1="3104" />
+            <wire x2="3184" y1="1440" y2="1440" x1="3120" />
+        </branch>
+        <branch name="first_in_chain">
+            <wire x2="3184" y1="1120" y2="1120" x1="3120" />
+        </branch>
+        <branch name="bus_dout(63:0)">
+            <wire x2="3792" y1="1360" y2="1360" x1="3712" />
+        </branch>
+        <iomarker fontsize="28" x="3104" y="992" name="MASTER_CLK" orien="R180" />
+        <iomarker fontsize="28" x="3104" y="1056" name="rd_token_in" orien="R180" />
+        <iomarker fontsize="28" x="3792" y="1072" name="rd_token_out" orien="R0" />
+        <iomarker fontsize="28" x="3120" y="1120" name="first_in_chain" orien="R180" />
+        <iomarker fontsize="28" x="3104" y="1312" name="plaq_id(2:0)" orien="R180" />
+        <iomarker fontsize="28" x="3104" y="1440" name="cal_tag(15:0)" orien="R180" />
+        <iomarker fontsize="28" x="3792" y="1216" name="we_out" orien="R0" />
+        <iomarker fontsize="28" x="3792" y="1360" name="bus_dout(63:0)" orien="R0" />
+        <iomarker fontsize="28" x="3792" y="928" name="ovf_err" orien="R0" />
+        <branch name="cal_tag_trig_num_sel">
+            <wire x2="3184" y1="1504" y2="1504" x1="3104" />
+        </branch>
+        <branch name="psi_mode(4:0)">
+            <wire x2="3184" y1="1568" y2="1568" x1="3024" />
+        </branch>
+        <iomarker fontsize="28" x="3104" y="1504" name="cal_tag_trig_num_sel" orien="R180" />
+        <iomarker fontsize="28" x="3024" y="1568" name="psi_mode(4:0)" orien="R180" />
+        <branch name="reset">
+            <wire x2="3184" y1="928" y2="928" x1="3072" />
+        </branch>
+        <iomarker fontsize="28" x="3072" y="928" name="reset" orien="R180" />
+        <branch name="trig_cnt(19:0)">
+            <wire x2="3184" y1="1760" y2="1760" x1="3024" />
+        </branch>
+        <iomarker fontsize="28" x="3024" y="1760" name="trig_cnt(19:0)" orien="R180" />
+        <branch name="reset">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3008" y="2432" type="branch" />
+            <wire x2="3024" y1="2432" y2="2432" x1="3008" />
+            <wire x2="3168" y1="2432" y2="2432" x1="3024" />
+        </branch>
+        <instance x="3168" y="3168" name="PSI_Decoder" orien="R0">
+            <attrtext style="fontsize:28;fontname:Arial" attrname="InstName" x="96" y="-984" type="instance" />
+        </instance>
+        <branch name="MASTER_CLK">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3008" y="2368" type="branch" />
+            <wire x2="3024" y1="2368" y2="2368" x1="3008" />
+            <wire x2="3168" y1="2368" y2="2368" x1="3024" />
+        </branch>
+        <branch name="psi_sample(9:0)">
+            <wire x2="3024" y1="2688" y2="2688" x1="3008" />
+            <wire x2="3168" y1="2688" y2="2688" x1="3024" />
+        </branch>
+        <branch name="psi_sample_we">
+            <wire x2="3024" y1="2304" y2="2304" x1="3008" />
+            <wire x2="3168" y1="2304" y2="2304" x1="3024" />
+        </branch>
+        <branch name="psi_dec_data_we">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3856" y="2304" type="branch" />
+            <wire x2="3840" y1="2304" y2="2304" x1="3744" />
+            <wire x2="3856" y1="2304" y2="2304" x1="3840" />
+        </branch>
+        <branch name="psi_dec_data(28:0)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3872" y="2368" type="branch" />
+            <wire x2="3856" y1="2368" y2="2368" x1="3744" />
+            <wire x2="3872" y1="2368" y2="2368" x1="3856" />
+        </branch>
+        <branch name="psi_mode(4:3)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3008" y="2784" type="branch" />
+            <wire x2="3024" y1="2784" y2="2784" x1="3008" />
+            <wire x2="3168" y1="2784" y2="2784" x1="3024" />
+        </branch>
+        <branch name="level_rd_cid(4:0)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3872" y="2912" type="branch" />
+            <wire x2="3856" y1="2912" y2="2912" x1="3744" />
+            <wire x2="3872" y1="2912" y2="2912" x1="3856" />
+        </branch>
+        <branch name="level_map_data(19:10)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3008" y="2880" type="branch" />
+            <wire x2="3024" y1="2880" y2="2880" x1="3008" />
+            <wire x2="3168" y1="2880" y2="2880" x1="3024" />
+        </branch>
+        <branch name="level_map_data(29:20)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3008" y="2944" type="branch" />
+            <wire x2="3024" y1="2944" y2="2944" x1="3008" />
+            <wire x2="3168" y1="2944" y2="2944" x1="3024" />
+        </branch>
+        <branch name="level_map_data(39:30)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3008" y="3008" type="branch" />
+            <wire x2="3024" y1="3008" y2="3008" x1="3008" />
+            <wire x2="3168" y1="3008" y2="3008" x1="3024" />
+        </branch>
+        <branch name="level_map_data(49:40)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3008" y="3072" type="branch" />
+            <wire x2="3024" y1="3072" y2="3072" x1="3008" />
+            <wire x2="3168" y1="3072" y2="3072" x1="3024" />
+        </branch>
+        <branch name="level_map_data(59:50)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3008" y="3136" type="branch" />
+            <wire x2="3024" y1="3136" y2="3136" x1="3008" />
+            <wire x2="3168" y1="3136" y2="3136" x1="3024" />
+        </branch>
+        <branch name="level_map_data(9:0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3008" y="3200" type="branch" />
+            <wire x2="3024" y1="3200" y2="3200" x1="3008" />
+            <wire x2="3168" y1="3200" y2="3200" x1="3024" />
+        </branch>
+        <branch name="psi_status_en">
+            <wire x2="3024" y1="2496" y2="2496" x1="3008" />
+            <wire x2="3168" y1="2496" y2="2496" x1="3024" />
+        </branch>
+        <branch name="psi_token_out">
+            <wire x2="3024" y1="2560" y2="2560" x1="3008" />
+            <wire x2="3168" y1="2560" y2="2560" x1="3024" />
+        </branch>
+        <iomarker fontsize="28" x="3008" y="2496" name="psi_status_en" orien="R180" />
+        <iomarker fontsize="28" x="3008" y="2560" name="psi_token_out" orien="R180" />
+        <iomarker fontsize="28" x="3008" y="2688" name="psi_sample(9:0)" orien="R180" />
+        <iomarker fontsize="28" x="3008" y="2304" name="psi_sample_we" orien="R180" />
+        <branch name="en_man_sample_sel">
+            <wire x2="3024" y1="3264" y2="3264" x1="3008" />
+            <wire x2="3168" y1="3264" y2="3264" x1="3024" />
+        </branch>
+        <iomarker fontsize="28" x="3008" y="3264" name="en_man_sample_sel" orien="R180" />
+        <branch name="man_sample_sel">
+            <wire x2="3024" y1="3328" y2="3328" x1="3008" />
+            <wire x2="3168" y1="3328" y2="3328" x1="3024" />
+        </branch>
+        <iomarker fontsize="28" x="3008" y="3328" name="man_sample_sel" orien="R180" />
+        <branch name="psi_level_we">
+            <wire x2="3152" y1="3824" y2="3824" x1="3136" />
+            <wire x2="3296" y1="3824" y2="3824" x1="3152" />
+        </branch>
+        <branch name="psi_level_addr(2:0)">
+            <wire x2="3152" y1="3888" y2="3888" x1="3136" />
+            <wire x2="3296" y1="3888" y2="3888" x1="3152" />
+        </branch>
+        <branch name="psi_level_data(59:0)">
+            <wire x2="3152" y1="3952" y2="3952" x1="3136" />
+            <wire x2="3296" y1="3952" y2="3952" x1="3152" />
+        </branch>
+        <branch name="MASTER_CLK">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3136" y="3696" type="branch" />
+            <wire x2="3200" y1="3696" y2="3696" x1="3136" />
+            <wire x2="3200" y1="3696" y2="3760" x1="3200" />
+            <wire x2="3296" y1="3760" y2="3760" x1="3200" />
+            <wire x2="3296" y1="3696" y2="3696" x1="3200" />
+        </branch>
+        <branch name="level_map_data(59:0)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3808" y="4016" type="branch" />
+            <wire x2="3792" y1="4016" y2="4016" x1="3680" />
+            <wire x2="3808" y1="4016" y2="4016" x1="3792" />
+        </branch>
+        <branch name="level_rd_cid(2:0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3136" y="4080" type="branch" />
+            <wire x2="3152" y1="4080" y2="4080" x1="3136" />
+            <wire x2="3296" y1="4080" y2="4080" x1="3152" />
+        </branch>
+        <instance x="3152" y="3952" name="XLXI_5135" orien="R90" />
+        <branch name="XLXN_17060(0:0)">
+            <wire x2="3296" y1="4016" y2="4016" x1="3280" />
+        </branch>
+        <branch name="levels_read(59:0)">
+            <wire x2="3792" y1="3824" y2="3824" x1="3680" />
+            <wire x2="3808" y1="3824" y2="3824" x1="3792" />
+        </branch>
+        <instance x="3296" y="4048" name="PSI_level_mem_0" orien="R0">
+            <attrtext style="fontsize:28;fontname:Arial" attrname="InstName" x="16" y="-456" type="instance" />
+        </instance>
+        <iomarker fontsize="28" x="3808" y="3824" name="levels_read(59:0)" orien="R0" />
+        <iomarker fontsize="28" x="3136" y="3824" name="psi_level_we" orien="R180" />
+        <iomarker fontsize="28" x="3136" y="3888" name="psi_level_addr(2:0)" orien="R180" />
+        <iomarker fontsize="28" x="3136" y="3952" name="psi_level_data(59:0)" orien="R180" />
+        <branch name="psi_token_in">
+            <wire x2="3168" y1="2624" y2="2624" x1="3008" />
+        </branch>
+        <iomarker fontsize="28" x="3008" y="2624" name="psi_token_in" orien="R180" />
+        <branch name="error_reset_req">
+            <wire x2="3776" y1="3088" y2="3088" x1="3744" />
+        </branch>
+        <iomarker fontsize="28" x="3776" y="3088" name="error_reset_req" orien="R0" />
+        <branch name="sm_ready">
+            <wire x2="3776" y1="3152" y2="3152" x1="3744" />
+        </branch>
+        <iomarker fontsize="28" x="3776" y="3152" name="sm_ready" orien="R0" />
+        <branch name="tokin_cnt(19:0)">
+            <wire x2="3168" y1="3392" y2="3392" x1="3008" />
+        </branch>
+        <iomarker fontsize="28" x="3008" y="3392" name="tokin_cnt(19:0)" orien="R180" />
+        <branch name="tokin_cnt_latch(19:0)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3856" y="3392" type="branch" />
+            <wire x2="3856" y1="3392" y2="3392" x1="3744" />
+        </branch>
+        <branch name="tokin_cnt_latch(19:0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3040" y="1632" type="branch" />
+            <wire x2="3184" y1="1632" y2="1632" x1="3040" />
+        </branch>
+        <branch name="time_stamp(12:0)">
+            <wire x2="3184" y1="1824" y2="1824" x1="3104" />
+        </branch>
+        <branch name="token_stack_count(3:0)">
+            <wire x2="3184" y1="1888" y2="1888" x1="3104" />
+        </branch>
+        <iomarker fontsize="28" x="3104" y="1824" name="time_stamp(12:0)" orien="R180" />
+        <iomarker fontsize="28" x="3104" y="1888" name="token_stack_count(3:0)" orien="R180" />
+        <branch name="trig_tok_diff(3:0)">
+            <wire x2="3728" y1="1952" y2="1952" x1="3712" />
+            <wire x2="3808" y1="1952" y2="1952" x1="3728" />
+        </branch>
+        <iomarker fontsize="28" x="3808" y="1952" name="trig_tok_diff(3:0)" orien="R0" />
+    </sheet>
+</drawing>

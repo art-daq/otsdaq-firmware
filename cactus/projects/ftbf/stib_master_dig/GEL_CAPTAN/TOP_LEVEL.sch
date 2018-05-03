@@ -466,6 +466,7 @@
         <signal name="XLXN_19147" />
         <signal name="XLXN_19144" />
         <signal name="XLXN_19145" />
+        <signal name="EXT_TRIGG_FWD" />
         <port polarity="Input" name="BUSC_16DP_32S" />
         <port polarity="Input" name="SECONDARY_CLK" />
         <port polarity="Output" name="BUSC_25DN_51S" />
@@ -959,11 +960,13 @@
             <line x2="384" y1="-544" y2="-544" x1="320" />
         </blockdef>
         <blockdef name="External_Trigger_Handler">
-            <timestamp>2011-9-15T20:36:48</timestamp>
-            <rect width="320" x="64" y="-256" height="116" />
-            <line x2="0" y1="-224" y2="-224" x1="64" />
+            <timestamp>2018-5-3T19:41:33</timestamp>
+            <line x2="0" y1="-96" y2="-96" x1="64" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
             <line x2="0" y1="-160" y2="-160" x1="64" />
-            <line x2="384" y1="-224" y2="-224" x1="448" />
+            <rect width="592" x="64" y="-256" height="244" />
+            <line x2="720" y1="-96" y2="-96" x1="656" />
+            <line x2="720" y1="-32" y2="-32" x1="656" />
         </blockdef>
         <blockdef name="Trigger_Counter_Block">
             <timestamp>2011-9-16T12:45:11</timestamp>
@@ -1931,9 +1934,11 @@
             <blockpin signalname="psi_status(0)" name="LOCKED" />
         </block>
         <block symbolname="External_Trigger_Handler" name="ext_trig_handler">
-            <blockpin signalname="PSI_CLK90" name="xclk" />
             <blockpin signalname="EXT_TRIGG" name="ext_trig_line_in" />
-            <blockpin signalname="psi_extdom_trig" name="ext_trigger" />
+            <blockpin signalname="PSI_CLK0" name="xclkToForward_0phase" />
+            <blockpin signalname="PSI_CLK90" name="xclkToForward_90phase" />
+            <blockpin signalname="EXT_TRIGG_FWD" name="extTrigToForward_0phase" />
+            <blockpin signalname="psi_extdom_trig" name="ext_trigger_90phase" />
         </block>
         <block symbolname="TokenStack" name="TokenStack_vector(2:0)">
             <blockpin signalname="PSI_CLK90" name="psi_clk" />
@@ -2187,7 +2192,7 @@
             <blockpin signalname="EXT_CLK" name="O" />
         </block>
         <block symbolname="obufds" name="XLXI_4831">
-            <blockpin signalname="EXT_TRIGG" name="I" />
+            <blockpin signalname="PSI_CLK0" name="I" />
             <blockpin signalname="BUSD_24DP_48S" name="O" />
             <blockpin signalname="BUSD_24DN_49S" name="OB" />
         </block>
@@ -2197,12 +2202,12 @@
             <blockpin signalname="BUSB_15DN_31S" name="OB" />
         </block>
         <block symbolname="obufds" name="XLXI_4830">
-            <blockpin signalname="PSI_CLK0" name="I" />
+            <blockpin signalname="EXT_TRIGG_FWD" name="I" />
             <blockpin signalname="BUSD_15DP_30S" name="O" />
             <blockpin signalname="BUSD_15DN_31S" name="OB" />
         </block>
         <block symbolname="obufds" name="XLXI_4833">
-            <blockpin signalname="EXT_TRIGG" name="I" />
+            <blockpin signalname="EXT_TRIGG_FWD" name="I" />
             <blockpin signalname="BUSB_24DP_48S" name="O" />
             <blockpin signalname="BUSB_24DN_49S" name="OB" />
         </block>
@@ -2212,7 +2217,7 @@
             <blockpin signalname="BUSB_13DN_27S" name="OB" />
         </block>
         <block symbolname="obufds" name="XLXI_6047">
-            <blockpin signalname="EXT_TRIGG" name="I" />
+            <blockpin signalname="EXT_TRIGG_FWD" name="I" />
             <blockpin signalname="BUSB_14DP_28S" name="O" />
             <blockpin signalname="BUSB_14DN_29S" name="OB" />
         </block>
@@ -3814,17 +3819,9 @@
         <instance x="2656" y="5104" name="ext_trig_handler" orien="R0">
             <attrtext style="fontsize:28;fontname:Arial" attrname="InstName" x="91" y="-344" type="instance" />
         </instance>
-        <branch name="PSI_CLK90">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2576" y="4880" type="branch" />
-            <wire x2="2656" y1="4880" y2="4880" x1="2576" />
-        </branch>
         <branch name="EXT_TRIGG">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2576" y="4944" type="branch" />
             <wire x2="2656" y1="4944" y2="4944" x1="2576" />
-        </branch>
-        <branch name="psi_extdom_trig">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3264" y="4880" type="branch" />
-            <wire x2="3264" y1="4880" y2="4880" x1="3104" />
         </branch>
         <instance x="4720" y="3920" name="TokenStack_vector(2:0)" orien="R0">
             <attrtext style="fontsize:28;fontname:Arial" attrname="InstName" x="0" y="-504" type="instance" />
@@ -4202,6 +4199,22 @@
         <branch name="dut_dcm_clk90_inv(2:0)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="528" y="1312" type="branch" />
             <wire x2="592" y1="1312" y2="1312" x1="528" />
+        </branch>
+        <branch name="PSI_CLK90">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2576" y="5072" type="branch" />
+            <wire x2="2656" y1="5072" y2="5072" x1="2576" />
+        </branch>
+        <branch name="psi_extdom_trig">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3536" y="5072" type="branch" />
+            <wire x2="3536" y1="5072" y2="5072" x1="3376" />
+        </branch>
+        <branch name="EXT_TRIGG_FWD">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3536" y="5008" type="branch" />
+            <wire x2="3536" y1="5008" y2="5008" x1="3376" />
+        </branch>
+        <branch name="PSI_CLK0">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2576" y="5008" type="branch" />
+            <wire x2="2656" y1="5008" y2="5008" x1="2576" />
         </branch>
     </sheet>
     <sheet sheetnum="4" width="7040" height="5440">
@@ -5732,15 +5745,15 @@
             <wire x2="1104" y1="4096" y2="4096" x1="1008" />
         </branch>
         <text style="fontsize:36;fontname:Arial" x="724" y="4040">STIB J27 - Top Right (Trig P1, Clk P2)</text>
-        <branch name="EXT_TRIGG">
+        <branch name="PSI_CLK0">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="704" y="3824" type="branch" />
             <wire x2="784" y1="3824" y2="3824" x1="704" />
         </branch>
-        <branch name="PSI_CLK0">
+        <branch name="EXT_TRIGG_FWD">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="704" y="3904" type="branch" />
             <wire x2="784" y1="3904" y2="3904" x1="704" />
         </branch>
-        <branch name="EXT_TRIGG">
+        <branch name="EXT_TRIGG_FWD">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="704" y="4112" type="branch" />
             <wire x2="784" y1="4112" y2="4112" x1="704" />
         </branch>
@@ -5763,7 +5776,7 @@
             <wire x2="1104" y1="4384" y2="4384" x1="1008" />
         </branch>
         <text style="fontsize:36;fontname:Arial" x="724" y="4328">STIB J28 - Bottom Right (Trig P1, Clk P2)</text>
-        <branch name="EXT_TRIGG">
+        <branch name="EXT_TRIGG_FWD">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="704" y="4400" type="branch" />
             <wire x2="784" y1="4400" y2="4400" x1="704" />
         </branch>
@@ -6354,7 +6367,7 @@
             <wire x2="4240" y1="4800" y2="4800" x1="4176" />
         </branch>
         <instance x="3792" y="5056" name="XLXI_6390" orien="R0" />
-        <text style="fontsize:36;fontname:Arial" x="792" y="3736">STIB J1 - Top Left (Trig P1, Clk P2)</text>
         <text style="fontsize:36;fontname:Arial" x="548" y="3316">STIB J2 - Bottom Left (Trig P1, Clk P2)</text>
+        <text style="fontsize:36;fontname:Arial" x="520" y="3736">Flipped pins for downstream pixels - STIB J1 - Top Left (Trig P1, Clk P2)</text>
     </sheet>
 </drawing>

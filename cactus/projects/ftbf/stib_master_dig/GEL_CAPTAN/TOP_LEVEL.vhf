@@ -7,7 +7,7 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : TOP_LEVEL.vhf
--- /___/   /\     Timestamp : 05/02/2018 10:59:53
+-- /___/   /\     Timestamp : 05/03/2018 14:48:14
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
@@ -174,8 +174,8 @@ architecture BEHAVIORAL of M4_1E_MXILINX_TOP_LEVEL is
    end component;
    attribute BOX_TYPE of MUXF5 : component is "BLACK_BOX";
    
-   attribute HU_SET of I_M01 : label is "I_M01_5";
-   attribute HU_SET of I_M23 : label is "I_M23_4";
+   attribute HU_SET of I_M01 : label is "I_M01_1";
+   attribute HU_SET of I_M23 : label is "I_M23_0";
 begin
    I_M01 : M2_1E_MXILINX_TOP_LEVEL
       port map (D0=>D0,
@@ -1052,8 +1052,8 @@ architecture BEHAVIORAL of DATA_MANAGER_MUSER_TOP_LEVEL is
    end component;
    attribute BOX_TYPE of GND : component is "BLACK_BOX";
    
-   attribute HU_SET of XLXI_3527 : label is "XLXI_3527_6";
-   attribute HU_SET of XLXI_3532 : label is "XLXI_3532_7";
+   attribute HU_SET of XLXI_3527 : label is "XLXI_3527_2";
+   attribute HU_SET of XLXI_3532 : label is "XLXI_3532_3";
 begin
    rx_data(63 downto 0) <= rx_data_DUMMY(63 downto 0);
    RX_DATA_FIFO : DATA_FIFO_0
@@ -2325,6 +2325,7 @@ architecture BEHAVIORAL of TOP_LEVEL is
    signal event_number                : std_logic_vector (63 downto 0);
    signal EXT_CLK                     : std_logic;
    signal EXT_TRIGG                   : std_logic;
+   signal EXT_TRIGG_FWD               : std_logic;
    signal first_in_chain              : std_logic_vector (3 downto 0);
    signal gec_addrs                   : std_logic_vector (7 downto 0);
    signal GEC_DEST_ADDRS_MAP          : std_logic;
@@ -2564,9 +2565,11 @@ architecture BEHAVIORAL of TOP_LEVEL is
    attribute BOX_TYPE of DCM_PS : component is "BLACK_BOX";
    
    component External_Trigger_Handler
-      port ( xclk             : in    std_logic; 
-             ext_trig_line_in : in    std_logic; 
-             ext_trigger      : out   std_logic);
+      port ( ext_trig_line_in        : in    std_logic; 
+             xclkToForward_0phase    : in    std_logic; 
+             xclkToForward_90phase   : in    std_logic; 
+             extTrigToForward_0phase : out   std_logic; 
+             ext_trigger_90phase     : out   std_logic);
    end component;
    
    component IDELAY
@@ -3154,58 +3157,58 @@ architecture BEHAVIORAL of TOP_LEVEL is
    attribute IOBDELAY_TYPE of idelay_psi_dig_0 : label is "VARIABLE";
    attribute IOBDELAY_TYPE of idelay_psi_dig_1 : label is "VARIABLE";
    attribute IOBDELAY_TYPE of idelay_psi_dig_2 : label is "VARIABLE";
-   attribute HU_SET of psi_cmd_clk_mux_0 : label is "psi_cmd_clk_mux_0_35";
-   attribute HU_SET of psi_cmd_clk_mux_1 : label is "psi_cmd_clk_mux_1_34";
-   attribute HU_SET of psi_cmd_clk_mux_2 : label is "psi_cmd_clk_mux_2_33";
+   attribute HU_SET of psi_cmd_clk_mux_0 : label is "psi_cmd_clk_mux_0_31";
+   attribute HU_SET of psi_cmd_clk_mux_1 : label is "psi_cmd_clk_mux_1_30";
+   attribute HU_SET of psi_cmd_clk_mux_2 : label is "psi_cmd_clk_mux_2_29";
    attribute CLKFX_MULTIPLY of XLXI_3254 : label is "16";
    attribute CLKFX_DIVIDE of XLXI_3254 : label is "27";
    attribute CLKIN_PERIOD of XLXI_3254 : label is "8.0";
    attribute CLKIN_PERIOD of XLXI_3410 : label is "8.0";
    attribute CLKFX_MULTIPLY of XLXI_3410 : label is "8";
    attribute CLKFX_DIVIDE of XLXI_3410 : label is "5";
-   attribute HU_SET of XLXI_3432 : label is "XLXI_3432_8";
-   attribute HU_SET of XLXI_4595 : label is "XLXI_4595_10";
+   attribute HU_SET of XLXI_3432 : label is "XLXI_3432_4";
+   attribute HU_SET of XLXI_4595 : label is "XLXI_4595_6";
    attribute CLKIN_PERIOD of XLXI_4615 : label is "26.0";
    attribute CLKFX_MULTIPLY of XLXI_4615 : label is "2";
    attribute CLKFX_DIVIDE of XLXI_4615 : label is "2";
    attribute DCM_PERFORMANCE_MODE of XLXI_4615 : label is "MAX_RANGE";
-   attribute HU_SET of XLXI_4677 : label is "XLXI_4677_9";
-   attribute HU_SET of XLXI_4773 : label is "XLXI_4773_16";
+   attribute HU_SET of XLXI_4677 : label is "XLXI_4677_5";
+   attribute HU_SET of XLXI_4773 : label is "XLXI_4773_12";
    attribute DIFF_TERM of XLXI_4794 : label is "TRUE";
-   attribute HU_SET of XLXI_4846 : label is "XLXI_4846_15";
-   attribute HU_SET of XLXI_5284 : label is "XLXI_5284_25";
+   attribute HU_SET of XLXI_4846 : label is "XLXI_4846_11";
+   attribute HU_SET of XLXI_5284 : label is "XLXI_5284_21";
    attribute DIFF_TERM of XLXI_5542 : label is "TRUE";
    attribute DIFF_TERM of XLXI_5548 : label is "TRUE";
-   attribute HU_SET of XLXI_5561 : label is "XLXI_5561_11";
+   attribute HU_SET of XLXI_5561 : label is "XLXI_5561_7";
    attribute DIFF_TERM of XLXI_5567 : label is "TRUE";
-   attribute HU_SET of XLXI_5677 : label is "XLXI_5677_12";
-   attribute HU_SET of XLXI_5678 : label is "XLXI_5678_13";
-   attribute HU_SET of XLXI_6015 : label is "XLXI_6015_14";
+   attribute HU_SET of XLXI_5677 : label is "XLXI_5677_8";
+   attribute HU_SET of XLXI_5678 : label is "XLXI_5678_9";
+   attribute HU_SET of XLXI_6015 : label is "XLXI_6015_10";
    attribute DIFF_TERM of XLXI_6040 : label is "TRUE";
-   attribute HU_SET of XLXI_6067 : label is "XLXI_6067_17";
-   attribute HU_SET of XLXI_6084 : label is "XLXI_6084_20";
-   attribute HU_SET of XLXI_6086 : label is "XLXI_6086_18";
+   attribute HU_SET of XLXI_6067 : label is "XLXI_6067_13";
+   attribute HU_SET of XLXI_6084 : label is "XLXI_6084_16";
+   attribute HU_SET of XLXI_6086 : label is "XLXI_6086_14";
    attribute CLKIN_PERIOD of XLXI_6096 : label is "16.0";
    attribute CLKFX_DIVIDE of XLXI_6096 : label is "4";
-   attribute HU_SET of XLXI_6104 : label is "XLXI_6104_36";
+   attribute HU_SET of XLXI_6104 : label is "XLXI_6104_32";
    attribute DIFF_TERM of XLXI_6184 : label is "TRUE";
-   attribute HU_SET of XLXI_6193 : label is "XLXI_6193_19";
-   attribute HU_SET of XLXI_6207 : label is "XLXI_6207_21";
-   attribute HU_SET of XLXI_6260 : label is "XLXI_6260_24";
-   attribute HU_SET of XLXI_6315 : label is "XLXI_6315_22";
-   attribute HU_SET of XLXI_6323 : label is "XLXI_6323_23";
-   attribute HU_SET of XLXI_6340 : label is "XLXI_6340_27";
-   attribute HU_SET of XLXI_6341 : label is "XLXI_6341_28";
-   attribute HU_SET of XLXI_6345 : label is "XLXI_6345_26";
-   attribute HU_SET of XLXI_6356 : label is "XLXI_6356_29";
-   attribute HU_SET of XLXI_6357 : label is "XLXI_6357_30";
-   attribute HU_SET of XLXI_6360 : label is "XLXI_6360_31";
-   attribute HU_SET of XLXI_6361 : label is "XLXI_6361_32";
+   attribute HU_SET of XLXI_6193 : label is "XLXI_6193_15";
+   attribute HU_SET of XLXI_6207 : label is "XLXI_6207_17";
+   attribute HU_SET of XLXI_6260 : label is "XLXI_6260_20";
+   attribute HU_SET of XLXI_6315 : label is "XLXI_6315_18";
+   attribute HU_SET of XLXI_6323 : label is "XLXI_6323_19";
+   attribute HU_SET of XLXI_6340 : label is "XLXI_6340_23";
+   attribute HU_SET of XLXI_6341 : label is "XLXI_6341_24";
+   attribute HU_SET of XLXI_6345 : label is "XLXI_6345_22";
+   attribute HU_SET of XLXI_6356 : label is "XLXI_6356_25";
+   attribute HU_SET of XLXI_6357 : label is "XLXI_6357_26";
+   attribute HU_SET of XLXI_6360 : label is "XLXI_6360_27";
+   attribute HU_SET of XLXI_6361 : label is "XLXI_6361_28";
    attribute CLKIN_PERIOD of XLXI_6376 : label is "25.0";
    attribute CLKFX_MULTIPLY of XLXI_6376 : label is "2";
    attribute CLKFX_DIVIDE of XLXI_6376 : label is "2";
-   attribute HU_SET of XLXI_6377 : label is "XLXI_6377_37";
-   attribute HU_SET of XLXI_6393 : label is "XLXI_6393_38";
+   attribute HU_SET of XLXI_6377 : label is "XLXI_6377_33";
+   attribute HU_SET of XLXI_6393 : label is "XLXI_6393_34";
 begin
    chipscope_dig_latch_0 : FDE
       port map (C=>MASTER_CLK,
@@ -3320,8 +3323,10 @@ begin
    
    ext_trig_handler : External_Trigger_Handler
       port map (ext_trig_line_in=>EXT_TRIGG,
-                xclk=>PSI_CLK90,
-                ext_trigger=>psi_extdom_trig);
+                xclkToForward_0phase=>PSI_CLK0,
+                xclkToForward_90phase=>PSI_CLK90,
+                extTrigToForward_0phase=>EXT_TRIGG_FWD,
+                ext_trigger_90phase=>psi_extdom_trig);
    
    idelay_psi_dig_0 : IDELAY
    -- synopsys translate_off
@@ -4075,12 +4080,12 @@ begin
                 O=>EXT_TRIGG);
    
    XLXI_4830 : OBUFDS
-      port map (I=>PSI_CLK0,
+      port map (I=>EXT_TRIGG_FWD,
                 O=>BUSD_15DP_30S,
                 OB=>BUSD_15DN_31S);
    
    XLXI_4831 : OBUFDS
-      port map (I=>EXT_TRIGG,
+      port map (I=>PSI_CLK0,
                 O=>BUSD_24DP_48S,
                 OB=>BUSD_24DN_49S);
    
@@ -4090,7 +4095,7 @@ begin
                 OB=>BUSB_15DN_31S);
    
    XLXI_4833 : OBUFDS
-      port map (I=>EXT_TRIGG,
+      port map (I=>EXT_TRIGG_FWD,
                 O=>BUSB_24DP_48S,
                 OB=>BUSB_24DN_49S);
    
@@ -4430,7 +4435,7 @@ begin
                 OB=>BUSB_13DN_27S);
    
    XLXI_6047 : OBUFDS
-      port map (I=>EXT_TRIGG,
+      port map (I=>EXT_TRIGG_FWD,
                 O=>BUSB_14DP_28S,
                 OB=>BUSB_14DN_29S);
    

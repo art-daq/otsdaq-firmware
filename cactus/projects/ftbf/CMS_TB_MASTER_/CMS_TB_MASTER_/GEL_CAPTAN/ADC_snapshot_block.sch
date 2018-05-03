@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<drawing version="7">
+    <attr value="virtex4" name="DeviceFamilyName">
+        <trait delete="all:0" />
+        <trait editname="all:0" />
+        <trait edittrait="all:0" />
+    </attr>
+    <netlist>
+        <signal name="adc_raw_data0(71:0)" />
+        <signal name="adc_raw_data0(11:0)" />
+        <signal name="XLXN_14591" />
+        <signal name="XLXN_14590" />
+        <signal name="adc_delayed_data" />
+        <signal name="adc_raw_data0(23:12)" />
+        <signal name="adc_raw_data0(35:24)" />
+        <signal name="adc_raw_data0(47:36)" />
+        <signal name="adc_raw_data0(59:48)" />
+        <signal name="adc_raw_data0(71:60)" />
+        <signal name="XLXN_12541" />
+        <signal name="XLXN_12540" />
+        <signal name="XLXN_12539" />
+        <signal name="XLXN_12538" />
+        <signal name="XLXN_12537" />
+        <signal name="XLXN_12536" />
+        <signal name="XLXN_12535" />
+        <signal name="XLXN_12534" />
+        <signal name="adc_delayed_clk" />
+        <signal name="adc_burst_data(63:0)" />
+        <signal name="adc_data_label(3:0)" />
+        <signal name="adc_raw_data0(69:10)" />
+        <port polarity="Input" name="adc_delayed_data" />
+        <port polarity="Input" name="adc_delayed_clk" />
+        <port polarity="Output" name="adc_burst_data(63:0)" />
+        <port polarity="Input" name="adc_data_label(3:0)" />
+        <blockdef name="ADC_block_2">
+            <timestamp>2008-11-6T23:11:12</timestamp>
+            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <rect width="256" x="64" y="-192" height="320" />
+            <line x2="0" y1="32" y2="32" x1="64" />
+            <line x2="0" y1="96" y2="96" x1="64" />
+            <line x2="384" y1="32" y2="32" x1="320" />
+            <line x2="384" y1="96" y2="96" x1="320" />
+            <rect width="64" x="320" y="-76" height="24" />
+            <line x2="384" y1="-64" y2="-64" x1="320" />
+        </blockdef>
+        <blockdef name="adc_burst_data_splicer">
+            <timestamp>2009-3-11T19:57:24</timestamp>
+            <rect width="256" x="64" y="-128" height="128" />
+            <rect width="64" x="0" y="-108" height="24" />
+            <line x2="0" y1="-96" y2="-96" x1="64" />
+            <rect width="64" x="0" y="-44" height="24" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <rect width="64" x="320" y="-108" height="24" />
+            <line x2="384" y1="-96" y2="-96" x1="320" />
+        </blockdef>
+        <block symbolname="ADC_block_2" name="XLXI_4979">
+            <blockpin signalname="adc_delayed_clk" name="DCK" />
+            <blockpin signalname="XLXN_14590" name="D0_IN" />
+            <blockpin signalname="XLXN_14591" name="D1_IN" />
+            <blockpin name="D0" />
+            <blockpin name="D1" />
+            <blockpin signalname="adc_raw_data0(11:0)" name="DOUT(11:0)" />
+        </block>
+        <block symbolname="ADC_block_2" name="XLXI_4980">
+            <blockpin signalname="adc_delayed_clk" name="DCK" />
+            <blockpin signalname="adc_delayed_data" name="D0_IN" />
+            <blockpin signalname="adc_delayed_data" name="D1_IN" />
+            <blockpin signalname="XLXN_12534" name="D0" />
+            <blockpin signalname="XLXN_12535" name="D1" />
+            <blockpin signalname="adc_raw_data0(71:60)" name="DOUT(11:0)" />
+        </block>
+        <block symbolname="ADC_block_2" name="XLXI_4981">
+            <blockpin signalname="adc_delayed_clk" name="DCK" />
+            <blockpin signalname="XLXN_12540" name="D0_IN" />
+            <blockpin signalname="XLXN_12541" name="D1_IN" />
+            <blockpin signalname="XLXN_14590" name="D0" />
+            <blockpin signalname="XLXN_14591" name="D1" />
+            <blockpin signalname="adc_raw_data0(23:12)" name="DOUT(11:0)" />
+        </block>
+        <block symbolname="ADC_block_2" name="XLXI_4982">
+            <blockpin signalname="adc_delayed_clk" name="DCK" />
+            <blockpin signalname="XLXN_12538" name="D0_IN" />
+            <blockpin signalname="XLXN_12539" name="D1_IN" />
+            <blockpin signalname="XLXN_12540" name="D0" />
+            <blockpin signalname="XLXN_12541" name="D1" />
+            <blockpin signalname="adc_raw_data0(35:24)" name="DOUT(11:0)" />
+        </block>
+        <block symbolname="ADC_block_2" name="XLXI_4983">
+            <blockpin signalname="adc_delayed_clk" name="DCK" />
+            <blockpin signalname="XLXN_12536" name="D0_IN" />
+            <blockpin signalname="XLXN_12537" name="D1_IN" />
+            <blockpin signalname="XLXN_12538" name="D0" />
+            <blockpin signalname="XLXN_12539" name="D1" />
+            <blockpin signalname="adc_raw_data0(47:36)" name="DOUT(11:0)" />
+        </block>
+        <block symbolname="ADC_block_2" name="XLXI_4984">
+            <blockpin signalname="adc_delayed_clk" name="DCK" />
+            <blockpin signalname="XLXN_12534" name="D0_IN" />
+            <blockpin signalname="XLXN_12535" name="D1_IN" />
+            <blockpin signalname="XLXN_12536" name="D0" />
+            <blockpin signalname="XLXN_12537" name="D1" />
+            <blockpin signalname="adc_raw_data0(59:48)" name="DOUT(11:0)" />
+        </block>
+        <block symbolname="adc_burst_data_splicer" name="XLXI_4985">
+            <blockpin signalname="adc_raw_data0(69:10)" name="adc_data(59:0)" />
+            <blockpin signalname="adc_data_label(3:0)" name="data_label(3:0)" />
+            <blockpin signalname="adc_burst_data(63:0)" name="dout(63:0)" />
+        </block>
+    </netlist>
+    <sheet sheetnum="1" width="7040" height="5440">
+        <instance x="3856" y="2496" name="XLXI_4979" orien="R0">
+        </instance>
+        <instance x="1312" y="2496" name="XLXI_4980" orien="R0">
+        </instance>
+        <instance x="3360" y="2496" name="XLXI_4981" orien="R0">
+        </instance>
+        <instance x="2864" y="2496" name="XLXI_4982" orien="R0">
+        </instance>
+        <instance x="2368" y="2496" name="XLXI_4983" orien="R0">
+        </instance>
+        <instance x="1856" y="2496" name="XLXI_4984" orien="R0">
+        </instance>
+        <branch name="adc_raw_data0(71:0)">
+            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="4048" y="2112" type="branch" />
+            <wire x2="4048" y1="2112" y2="2112" x1="3936" />
+            <wire x2="4160" y1="2112" y2="2112" x1="4048" />
+        </branch>
+        <branch name="adc_raw_data0(11:0)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="4336" y="2432" type="branch" />
+            <wire x2="4336" y1="2432" y2="2432" x1="4240" />
+        </branch>
+        <branch name="XLXN_14591">
+            <wire x2="3760" y1="2592" y2="2592" x1="3744" />
+            <wire x2="3856" y1="2592" y2="2592" x1="3760" />
+        </branch>
+        <branch name="XLXN_14590">
+            <wire x2="3760" y1="2528" y2="2528" x1="3744" />
+            <wire x2="3856" y1="2528" y2="2528" x1="3760" />
+        </branch>
+        <branch name="adc_delayed_data">
+            <wire x2="1264" y1="2528" y2="2528" x1="1120" />
+            <wire x2="1312" y1="2528" y2="2528" x1="1264" />
+            <wire x2="1264" y1="2528" y2="2592" x1="1264" />
+            <wire x2="1312" y1="2592" y2="2592" x1="1264" />
+        </branch>
+        <branch name="adc_raw_data0(23:12)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3840" y="2432" type="branch" />
+            <wire x2="3840" y1="2432" y2="2432" x1="3744" />
+        </branch>
+        <branch name="adc_raw_data0(35:24)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3344" y="2432" type="branch" />
+            <wire x2="3344" y1="2432" y2="2432" x1="3248" />
+        </branch>
+        <branch name="adc_raw_data0(47:36)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2848" y="2432" type="branch" />
+            <wire x2="2848" y1="2432" y2="2432" x1="2752" />
+        </branch>
+        <branch name="adc_raw_data0(59:48)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2336" y="2432" type="branch" />
+            <wire x2="2336" y1="2432" y2="2432" x1="2240" />
+        </branch>
+        <branch name="adc_raw_data0(71:60)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1808" y="2432" type="branch" />
+            <wire x2="1792" y1="2432" y2="2432" x1="1696" />
+            <wire x2="1808" y1="2432" y2="2432" x1="1792" />
+        </branch>
+        <branch name="XLXN_12541">
+            <wire x2="3360" y1="2592" y2="2592" x1="3248" />
+        </branch>
+        <branch name="XLXN_12540">
+            <wire x2="3360" y1="2528" y2="2528" x1="3248" />
+        </branch>
+        <branch name="XLXN_12539">
+            <wire x2="2864" y1="2592" y2="2592" x1="2752" />
+        </branch>
+        <branch name="XLXN_12538">
+            <wire x2="2864" y1="2528" y2="2528" x1="2752" />
+        </branch>
+        <branch name="XLXN_12537">
+            <wire x2="2368" y1="2592" y2="2592" x1="2240" />
+        </branch>
+        <branch name="XLXN_12536">
+            <wire x2="2368" y1="2528" y2="2528" x1="2240" />
+        </branch>
+        <branch name="XLXN_12535">
+            <wire x2="1840" y1="2592" y2="2592" x1="1696" />
+            <wire x2="1856" y1="2592" y2="2592" x1="1840" />
+        </branch>
+        <branch name="XLXN_12534">
+            <wire x2="1840" y1="2528" y2="2528" x1="1696" />
+            <wire x2="1856" y1="2528" y2="2528" x1="1840" />
+        </branch>
+        <branch name="adc_delayed_clk">
+            <wire x2="1200" y1="2336" y2="2336" x1="1024" />
+            <wire x2="1312" y1="2336" y2="2336" x1="1200" />
+            <wire x2="1200" y1="2224" y2="2336" x1="1200" />
+            <wire x2="1760" y1="2224" y2="2224" x1="1200" />
+            <wire x2="1760" y1="2224" y2="2336" x1="1760" />
+            <wire x2="1856" y1="2336" y2="2336" x1="1760" />
+            <wire x2="2304" y1="2224" y2="2224" x1="1760" />
+            <wire x2="2304" y1="2224" y2="2336" x1="2304" />
+            <wire x2="2368" y1="2336" y2="2336" x1="2304" />
+            <wire x2="2816" y1="2224" y2="2224" x1="2304" />
+            <wire x2="2816" y1="2224" y2="2336" x1="2816" />
+            <wire x2="2864" y1="2336" y2="2336" x1="2816" />
+            <wire x2="3312" y1="2224" y2="2224" x1="2816" />
+            <wire x2="3312" y1="2224" y2="2336" x1="3312" />
+            <wire x2="3360" y1="2336" y2="2336" x1="3312" />
+            <wire x2="3808" y1="2224" y2="2224" x1="3312" />
+            <wire x2="3808" y1="2224" y2="2336" x1="3808" />
+            <wire x2="3856" y1="2336" y2="2336" x1="3808" />
+        </branch>
+        <instance x="2080" y="3088" name="XLXI_4985" orien="R0">
+        </instance>
+        <branch name="adc_burst_data(63:0)">
+            <wire x2="2608" y1="2992" y2="2992" x1="2464" />
+        </branch>
+        <branch name="adc_raw_data0(69:10)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1952" y="2992" type="branch" />
+            <wire x2="2080" y1="2992" y2="2992" x1="1952" />
+        </branch>
+        <branch name="adc_data_label(3:0)">
+            <wire x2="2080" y1="3056" y2="3056" x1="1952" />
+        </branch>
+        <iomarker fontsize="28" x="1024" y="2336" name="adc_delayed_clk" orien="R180" />
+        <iomarker fontsize="28" x="1120" y="2528" name="adc_delayed_data" orien="R180" />
+        <iomarker fontsize="28" x="2608" y="2992" name="adc_burst_data(63:0)" orien="R0" />
+        <iomarker fontsize="28" x="1952" y="3056" name="adc_data_label(3:0)" orien="R180" />
+    </sheet>
+</drawing>

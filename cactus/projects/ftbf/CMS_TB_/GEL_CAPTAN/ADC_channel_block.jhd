@@ -1,0 +1,15 @@
+MODULE ADC_channel_block
+	SUBMODULE ADC_Calibrator
+		INSTANCE XLXI_1
+	SUBMODULE ADC_frame_counter
+		INSTANCE XLXI_3484
+	SUBMODULE adc_delay_data_logic
+		INSTANCE XLXI_5047
+	SUBMODULE ADC_block
+		INSTANCE ADC_block_vector(3:0)
+	SUBMODULE ADC_to_MCLK_domain
+		INSTANCE ADC_to_MCLK_vector(3:0)
+	SUBMODULE buffer_4x12_to_10
+		INSTANCE XLXI_5058
+	SUBMODULE stack_adc_samples
+		INSTANCE XLXI_5066
