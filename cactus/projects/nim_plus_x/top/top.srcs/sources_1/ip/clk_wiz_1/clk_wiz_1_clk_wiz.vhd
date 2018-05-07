@@ -211,6 +211,9 @@ begin
 
   clk_out1325 <= clk_out1325_clk_wiz_1;
 
-  clk_out53 <= clk_out53_clk_wiz_1;
+  clkout4_buf : BUFG
+  port map
+   (O   => clk_out53,
+    I   => clk_out53_clk_wiz_1);
 
 end xilinx;

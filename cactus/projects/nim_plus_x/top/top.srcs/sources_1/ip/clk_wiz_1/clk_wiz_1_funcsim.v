@@ -1,10 +1,10 @@
 // Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
-// Date        : Thu May  3 11:21:55 2018
+// Date        : Mon May  7 13:12:46 2018
 // Host        : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 // Command     : write_verilog -force -mode funcsim
-//               /home/aprosser/ftbf_april2018/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_funcsim.v
+//               /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_funcsim.v
 // Design      : clk_wiz_1
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -72,6 +72,7 @@ module clk_wiz_1_clk_wiz_1_clk_wiz
   wire clk_out320e;
   wire clk_out320e_clk_wiz_1;
   wire clk_out53;
+  wire clk_out53_clk_wiz_1;
   wire clkfbout_buf_clk_wiz_1;
   wire clkfbout_clk_wiz_1;
   wire locked;
@@ -93,6 +94,10 @@ module clk_wiz_1_clk_wiz_1_clk_wiz
   BUFG clkout1_buf
        (.I(clk_out320e_clk_wiz_1),
         .O(clk_out320e));
+  (* box_type = "PRIMITIVE" *) 
+  BUFG clkout4_buf
+       (.I(clk_out53_clk_wiz_1),
+        .O(clk_out53));
   (* box_type = "PRIMITIVE" *) 
   PLLE2_ADV #(
     .BANDWIDTH("OPTIMIZED"),
@@ -135,7 +140,7 @@ module clk_wiz_1_clk_wiz_1_clk_wiz
         .CLKOUT0(clk_out320e_clk_wiz_1),
         .CLKOUT1(clk_out265),
         .CLKOUT2(clk_out1325),
-        .CLKOUT3(clk_out53),
+        .CLKOUT3(clk_out53_clk_wiz_1),
         .CLKOUT4(NLW_plle2_adv_inst_CLKOUT4_UNCONNECTED),
         .CLKOUT5(NLW_plle2_adv_inst_CLKOUT5_UNCONNECTED),
         .DADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),

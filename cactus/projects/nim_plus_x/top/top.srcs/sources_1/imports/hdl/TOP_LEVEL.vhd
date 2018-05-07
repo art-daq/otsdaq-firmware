@@ -912,6 +912,7 @@ begin
               clk_out320e => bs_clk320e,
               clk_out265 => sigclk_265,
               clk_out1325 => sigclk_1325,
+              clk_out53 => sigclk_53,
               -- Status and control signals
               reset => extra_clk_reset_OR(1),
               locked  => ei40_gen_lock

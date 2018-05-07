@@ -1,7 +1,7 @@
 Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
-| Date             : Mon May  7 10:46:11 2018
+| Date             : Mon May  7 13:22:09 2018
 | Host             : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb
 | Design           : top
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 1.649 |
-| Dynamic (W)              | 1.479 |
+| Total On-Chip Power (W)  | 1.646 |
+| Dynamic (W)              | 1.476 |
 | Device Static (W)        | 0.170 |
 | Total Off-Chip Power (W) | 0.054 |
 | Effective TJA (C/W)      | 1.8   |
@@ -50,14 +50,14 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.111 |       17 |       --- |             --- |
-| Slice Logic              |     0.030 |    23585 |       --- |             --- |
-|   LUT as Logic           |     0.025 |     7736 |    203800 |            3.80 |
+| Clocks                   |     0.107 |       17 |       --- |             --- |
+| Slice Logic              |     0.030 |    23586 |       --- |             --- |
+|   LUT as Logic           |     0.025 |     7745 |    203800 |            3.80 |
 |   Register               |     0.003 |    10965 |    407600 |            2.69 |
 |   CARRY4                 |     0.002 |      541 |     50950 |            1.06 |
 |   F7/F8 Muxes            |    <0.001 |      565 |    203800 |            0.28 |
 |   LUT as Shift Register  |    <0.001 |      325 |     64000 |            0.51 |
-|   BUFG                   |    <0.001 |        4 |        32 |           12.50 |
+|   BUFG                   |    <0.001 |        5 |        32 |           15.63 |
 |   LUT as Distributed RAM |    <0.001 |       24 |     64000 |            0.04 |
 |   Others                 |     0.000 |     2077 |       --- |             --- |
 | Signals                  |     0.044 |    16498 |       --- |             --- |
@@ -66,7 +66,7 @@ Table of Contents
 | PLL                      |     0.166 |        2 |        10 |           20.00 |
 | I/O                      |     0.877 |      128 |       500 |           25.60 |
 | Static Power             |     0.170 |          |           |                 |
-| Total                    |     1.649 |          |           |                 |
+| Total                    |     1.646 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,7 +76,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.297 |       0.220 |      0.077 |
+| Vccint    |       1.000 |     0.294 |       0.218 |      0.077 |
 | Vccaux    |       1.800 |     0.252 |       0.224 |      0.029 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.123 |       0.122 |      0.001 |
@@ -158,9 +158,9 @@ Table of Contents
 +-----------------------------------------------------------------------+-----------+
 | Name                                                                  | Power (W) |
 +-----------------------------------------------------------------------+-----------+
-| top                                                                   |     1.479 |
+| top                                                                   |     1.476 |
 |   CLK_MUX                                                             |     0.002 |
-|   NIM_BLOCK                                                           |     0.106 |
+|   NIM_BLOCK                                                           |     0.104 |
 |     U1                                                                |    <0.001 |
 |     U10                                                               |    <0.001 |
 |     U11                                                               |    <0.001 |
@@ -326,7 +326,7 @@ Table of Contents
 |       U9                                                              |    <0.001 |
 |     U121                                                              |     0.005 |
 |       U1                                                              |    <0.001 |
-|       U10                                                             |     0.003 |
+|       U10                                                             |     0.002 |
 |       U2                                                              |    <0.001 |
 |       U3                                                              |    <0.001 |
 |       U4                                                              |    <0.001 |
@@ -357,7 +357,7 @@ Table of Contents
 |     U155                                                              |    <0.001 |
 |     U157                                                              |    <0.001 |
 |     U16                                                               |    <0.001 |
-|     U162                                                              |     0.001 |
+|     U162                                                              |    <0.001 |
 |       U1                                                              |    <0.001 |
 |       U2                                                              |    <0.001 |
 |     U166                                                              |    <0.001 |
@@ -396,7 +396,7 @@ Table of Contents
 |     U229                                                              |    <0.001 |
 |     U23                                                               |    <0.001 |
 |     U230                                                              |    <0.001 |
-|     U24                                                               |     0.001 |
+|     U24                                                               |    <0.001 |
 |       U1                                                              |    <0.001 |
 |         U1                                                            |    <0.001 |
 |         U10                                                           |    <0.001 |
@@ -555,7 +555,7 @@ Table of Contents
 |                     i_q.i_simple.qreg                                 |    <0.001 |
 |       U9                                                              |    <0.001 |
 |     U269                                                              |    <0.001 |
-|     U27                                                               |     0.001 |
+|     U27                                                               |    <0.001 |
 |       U1                                                              |    <0.001 |
 |         U1                                                            |    <0.001 |
 |         U10                                                           |    <0.001 |
@@ -635,7 +635,7 @@ Table of Contents
 |     U288                                                              |    <0.001 |
 |     U289                                                              |    <0.001 |
 |     U29                                                               |    <0.001 |
-|     U3                                                                |     0.001 |
+|     U3                                                                |    <0.001 |
 |       U1                                                              |    <0.001 |
 |         U1                                                            |    <0.001 |
 |         U10                                                           |    <0.001 |
@@ -705,7 +705,7 @@ Table of Contents
 |         U8                                                            |    <0.001 |
 |         U9                                                            |    <0.001 |
 |       U9                                                              |    <0.001 |
-|     U30                                                               |     0.001 |
+|     U30                                                               |    <0.001 |
 |       U1                                                              |    <0.001 |
 |         U1                                                            |    <0.001 |
 |         U10                                                           |    <0.001 |
@@ -900,7 +900,7 @@ Table of Contents
 |     U54                                                               |    <0.001 |
 |     U56                                                               |    <0.001 |
 |     U57                                                               |    <0.001 |
-|     U58                                                               |    <0.001 |
+|     U58                                                               |     0.001 |
 |       U1                                                              |    <0.001 |
 |       U2                                                              |    <0.001 |
 |     U6                                                                |    <0.001 |
@@ -998,7 +998,7 @@ Table of Contents
 |       N_EXT_BSCAN.bscan_inst                                          |    <0.001 |
 |   eth_interface                                                       |     0.050 |
 |     burst_traffic_controller_blk                                      |    <0.001 |
-|     data_manager_blk                                                  |     0.022 |
+|     data_manager_blk                                                  |     0.021 |
 |       GEC_RX_CTRL                                                     |     0.001 |
 |       GEC_TX_SEQ_CTL                                                  |     0.001 |
 |       RAM_COMM_DEC                                                    |     0.006 |
@@ -1027,12 +1027,12 @@ Table of Contents
 |       crcChk                                                          |    <0.001 |
 |       crcGen                                                          |     0.001 |
 |       crcSplice                                                       |    <0.001 |
-|       ethernet_controller                                             |     0.023 |
+|       ethernet_controller                                             |     0.022 |
 |         AddressContainer                                              |    <0.001 |
 |         ArpReplyBlock                                                 |     0.004 |
 |         CRC_OR                                                        |    <0.001 |
 |         ChecksumCalcBlock                                             |     0.002 |
-|         CreatePacketBlock                                             |     0.005 |
+|         CreatePacketBlock                                             |     0.004 |
 |         DataoutMux                                                    |    <0.001 |
 |         DecipherBlock                                                 |     0.011 |
 |         FilterDataOutBlock                                            |    <0.001 |
@@ -1045,9 +1045,9 @@ Table of Contents
 |   genExtClkMux[0].clk_wiz_1_BLOCK                                     |     0.066 |
 |     U0                                                                |     0.066 |
 |   genNimPlusAndBurstFifo[0].FIFO_DUALCLOCK_MACRO_inst                 |     0.008 |
-|   u_ila_0                                                             |     0.031 |
-|     inst                                                              |     0.031 |
-|       ila_core_inst                                                   |     0.031 |
+|   u_ila_0                                                             |     0.030 |
+|     inst                                                              |     0.030 |
+|       ila_core_inst                                                   |     0.030 |
 |         ila_trace_memory_inst                                         |     0.002 |
 |           SUBCORE_RAM_BLK_MEM_1.trace_block_memory                    |     0.002 |
 |             inst_blk_mem_gen                                          |     0.002 |
@@ -1112,7 +1112,7 @@ Table of Contents
 |                       u_srlB                                          |    <0.001 |
 |                       u_srlC                                          |    <0.001 |
 |                       u_srlD                                          |    <0.001 |
-|         u_ila_regs                                                    |     0.021 |
+|         u_ila_regs                                                    |     0.020 |
 |           MU_SRL[0].mu_srl_reg                                        |    <0.001 |
 |           MU_SRL[10].mu_srl_reg                                       |    <0.001 |
 |           MU_SRL[11].mu_srl_reg                                       |    <0.001 |
