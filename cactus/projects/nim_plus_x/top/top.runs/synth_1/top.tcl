@@ -9,111 +9,113 @@ create_project -in_memory -part xc7k325tffg900-2
 
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.cache/wt [current_project]
-set_property parent.project_path /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.xpr [current_project]
+set_property webtalk.parent_dir /home/rrivera/Desktop/nim_plus_x/top/top.cache/wt [current_project]
+set_property parent.project_path /home/rrivera/Desktop/nim_plus_x/top/top.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-add_files -quiet /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp
-set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp]
-add_files -quiet /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/clk_wiz_0_synth_1/clk_wiz_0.dcp
-set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/clk_wiz_0_synth_1/clk_wiz_0.dcp]
-add_files -quiet /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp
-set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp]
-add_files -quiet /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/clk_wiz_2_synth_1/clk_wiz_2.dcp
-set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/clk_wiz_2_synth_1/clk_wiz_2.dcp]
-add_files -quiet /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp
-set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp]
+add_files -quiet /home/rrivera/Desktop/nim_plus_x/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp
+set_property used_in_implementation false [get_files /home/rrivera/Desktop/nim_plus_x/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp]
+add_files -quiet /home/rrivera/Desktop/nim_plus_x/top/top.runs/clk_wiz_0_synth_1/clk_wiz_0.dcp
+set_property used_in_implementation false [get_files /home/rrivera/Desktop/nim_plus_x/top/top.runs/clk_wiz_0_synth_1/clk_wiz_0.dcp]
+add_files -quiet /home/rrivera/Desktop/nim_plus_x/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp
+set_property used_in_implementation false [get_files /home/rrivera/Desktop/nim_plus_x/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp]
+add_files -quiet /home/rrivera/Desktop/nim_plus_x/top/top.runs/clk_wiz_2_synth_1/clk_wiz_2.dcp
+set_property used_in_implementation false [get_files /home/rrivera/Desktop/nim_plus_x/top/top.runs/clk_wiz_2_synth_1/clk_wiz_2.dcp]
+add_files -quiet /home/rrivera/Desktop/nim_plus_x/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp
+set_property used_in_implementation false [get_files /home/rrivera/Desktop/nim_plus_x/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp]
 read_verilog -library xil_defaultlib {
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/crc_gen.v
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/crc_chk.v
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/crc_gen.v
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/crc_chk.v
 }
 read_vhdl -library xil_defaultlib {
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/imports/hdl/TOP_LEVEL.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/hdl/reset_mgr.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/hdl/params_package.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/hdl/burst_traffic_controller.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/data_manager/burst_controller_sm.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/data_manager/rx_ctl.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/data_manager/ram_comm_dec.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/data_manager/tx_seq_ctl.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/data_manager/data_manager.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/ethernet_controller.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/xmii_handler.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/decipherer.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/filter_data_out.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/address_container.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/icmp_ping_shift_reg.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/create_packet.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/dataout_mux.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/arp_reply.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/udp_data_splicer.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/crc_splice.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/icmp_ping_checksum_calc.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/or33.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/user_addrs_mux.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/ethernet_controller_wrapper.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/fifo.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/ethernet_controller/ip_checksum_calc.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/reg_16.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/reg_32.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/Load_array_section_16.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/pol_sel.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/trig_sync.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/cnt_64_simp.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/sig_gen_prog.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_1.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/DAC_Control.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_3.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/stsp_counter.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/divide_by_8.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/cnt32.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_ctrs.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/agrgate16_1.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/mux_2_1_16ch.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/cnt64.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/reg_8.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/acc_sync.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/reg_64.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/ver_code.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/nim_plus_package_1.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/ps_hold_count.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/start_sig_mux.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/test_mux.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_4.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/nim_plus_blk_1_phase_4ps.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/agrgate_8_by_8.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/veto_count.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/scope_probe_4ch.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/buf8.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/clk_mux_2_to_1_x_2.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/cntrs_2_b_fifo.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/sel_block.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/cnt32_v2.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/mux_4_to_1.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_2.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/v_sec_32_4_in_64_out.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/load_ctl_1_phase_4ps_fs_sync.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/cntrs_2_b_fifo_jw121.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/v_sec_60_4_in_64_out.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/ff_la.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/load_array_64_v_ps.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/mux64_2.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/read_decode_p.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/section_counter.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/decode_addr_NIM_Plus.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/ethImports/hdl/ethernet_interface.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/reg_read_decode_p.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/d_ff.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/ag284.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/s_cnt32_v2.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/bfifomux_w_ctlr.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/clkd_b_fifo_mux.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/clkd_burst_mux_8_to_1.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/load_long_64_v_ps.vhd
-  /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/long_pulse.vhd
+  /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/imports/hdl/TOP_LEVEL.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/hdl/reset_mgr.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/hdl/params_package.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/hdl/burst_traffic_controller.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/data_manager/burst_controller_sm.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/data_manager/rx_ctl.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/data_manager/ram_comm_dec.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/data_manager/tx_seq_ctl.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/data_manager/data_manager.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/ethernet_controller.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/xmii_handler.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/decipherer.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/filter_data_out.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/address_container.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/icmp_ping_shift_reg.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/create_packet.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/dataout_mux.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/arp_reply.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/udp_data_splicer.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/crc_splice.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/icmp_ping_checksum_calc.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/or33.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/user_addrs_mux.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/ethernet_controller_wrapper.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/fifo.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/ethernet_controller/ip_checksum_calc.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/reg_16.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/reg_32.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/Load_array_section_16.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/pol_sel.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/trig_sync.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/cnt_64_simp.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/sig_gen_prog.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_1.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/DAC_Control.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_3.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/stsp_counter.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/divide_by_8.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/cnt32.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_ctrs.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/agrgate16_1.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/mux_2_1_16ch.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/cnt64.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/reg_8.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/acc_sync.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/reg_64.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/ver_code.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/nim_plus_package_1.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/ps_hold_count.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/start_sig_mux.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/test_mux.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_4.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/nim_plus_blk_1_phase_4ps.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/agrgate_8_by_8.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/veto_count.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/scope_probe_4ch.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/buf8.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/clk_mux_2_to_1_x_2.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/cntrs_2_b_fifo.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/sel_block.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/cnt32_v2.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/mux_4_to_1.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_2.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/v_sec_32_4_in_64_out.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/load_ctl_1_phase_4ps_fs_sync.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/cntrs_2_b_fifo_jw121.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/v_sec_60_4_in_64_out.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/ff_la.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/load_array_64_v_ps.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/mux64_2.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/read_decode_p.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/section_counter.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/decode_addr_NIM_Plus.vhd
+  /home/rrivera/Desktop/nim_plus_x/ethImports/hdl/ethernet_interface.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/reg_read_decode_p.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/d_ff.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/ag284.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/s_cnt32_v2.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/bfifomux_w_ctlr.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/clkd_b_fifo_mux.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/clkd_burst_mux_8_to_1.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/load_long_64_v_ps.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/long_pulse.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/mch_trig_out.vhd
+  /home/rrivera/Desktop/nim_plus_x/FW_Transfer_2018_01_24/trig_out_mux.vhd
 }
-read_xdc /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/constrs_1/new/top_11.xdc
-set_property used_in_implementation false [get_files /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/constrs_1/new/top_11.xdc]
+read_xdc /home/rrivera/Desktop/nim_plus_x/top/top.srcs/constrs_1/new/top_11.xdc
+set_property used_in_implementation false [get_files /home/rrivera/Desktop/nim_plus_x/top/top.srcs/constrs_1/new/top_11.xdc]
 
 synth_design -top top -part xc7k325tffg900-2 -flatten_hierarchy none
 write_checkpoint -noxdef top.dcp

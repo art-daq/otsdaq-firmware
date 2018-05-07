@@ -1,10 +1,10 @@
 -- Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
--- Date        : Tue Jan 30 15:28:53 2018
--- Host        : rulinux04.dhcp.fnal.gov running 64-bit Scientific Linux release 7.2 (Nitrogen)
+-- Date        : Thu May  3 11:21:55 2018
+-- Host        : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 -- Command     : write_vhdl -force -mode funcsim
---               /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_funcsim.vhdl
+--               /home/aprosser/ftbf_april2018/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_funcsim.vhdl
 -- Design      : clk_wiz_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -20,6 +20,7 @@ entity clk_wiz_1_clk_wiz_1_clk_wiz is
     clk_out320e : out STD_LOGIC;
     clk_out265 : out STD_LOGIC;
     clk_out1325 : out STD_LOGIC;
+    clk_out53 : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC
   );
@@ -32,7 +33,6 @@ architecture STRUCTURE of clk_wiz_1_clk_wiz_1_clk_wiz is
   signal clk_out320e_clk_wiz_1 : STD_LOGIC;
   signal clkfbout_buf_clk_wiz_1 : STD_LOGIC;
   signal clkfbout_clk_wiz_1 : STD_LOGIC;
-  signal NLW_plle2_adv_inst_CLKOUT3_UNCONNECTED : STD_LOGIC;
   signal NLW_plle2_adv_inst_CLKOUT4_UNCONNECTED : STD_LOGIC;
   signal NLW_plle2_adv_inst_CLKOUT5_UNCONNECTED : STD_LOGIC;
   signal NLW_plle2_adv_inst_DRDY_UNCONNECTED : STD_LOGIC;
@@ -74,7 +74,7 @@ plle2_adv_inst: unisim.vcomponents.PLLE2_ADV
       CLKOUT2_DIVIDE => 72,
       CLKOUT2_DUTY_CYCLE => 0.500000,
       CLKOUT2_PHASE => 0.000000,
-      CLKOUT3_DIVIDE => 1,
+      CLKOUT3_DIVIDE => 18,
       CLKOUT3_DUTY_CYCLE => 0.500000,
       CLKOUT3_PHASE => 0.000000,
       CLKOUT4_DIVIDE => 1,
@@ -101,7 +101,7 @@ plle2_adv_inst: unisim.vcomponents.PLLE2_ADV
       CLKOUT0 => clk_out320e_clk_wiz_1,
       CLKOUT1 => clk_out265,
       CLKOUT2 => clk_out1325,
-      CLKOUT3 => NLW_plle2_adv_inst_CLKOUT3_UNCONNECTED,
+      CLKOUT3 => clk_out53,
       CLKOUT4 => NLW_plle2_adv_inst_CLKOUT4_UNCONNECTED,
       CLKOUT5 => NLW_plle2_adv_inst_CLKOUT5_UNCONNECTED,
       DADDR(6) => '0',
@@ -147,13 +147,14 @@ entity clk_wiz_1 is
     clk_out320e : out STD_LOGIC;
     clk_out265 : out STD_LOGIC;
     clk_out1325 : out STD_LOGIC;
+    clk_out53 : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of clk_wiz_1 : entity is true;
   attribute core_generation_info : string;
-  attribute core_generation_info of clk_wiz_1 : entity is "clk_wiz_1,clk_wiz_v5_1,{component_name=clk_wiz_1,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=PLL,num_out_clk=3,clkin1_period=18.867,clkin2_period=10.0,use_power_down=false,use_reset=true,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}";
+  attribute core_generation_info of clk_wiz_1 : entity is "clk_wiz_1,clk_wiz_v5_1,{component_name=clk_wiz_1,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=PLL,num_out_clk=4,clkin1_period=18.867,clkin2_period=10.0,use_power_down=false,use_reset=true,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}";
 end clk_wiz_1;
 
 architecture STRUCTURE of clk_wiz_1 is
@@ -164,6 +165,7 @@ U0: entity work.clk_wiz_1_clk_wiz_1_clk_wiz
       clk_out1325 => clk_out1325,
       clk_out265 => clk_out265,
       clk_out320e => clk_out320e,
+      clk_out53 => clk_out53,
       locked => locked,
       reset => reset
     );

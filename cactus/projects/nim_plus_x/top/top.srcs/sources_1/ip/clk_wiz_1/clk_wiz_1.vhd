@@ -58,6 +58,7 @@
 -- CLK_OUT1___318.000______0.000______50.0______131.426____152.443
 -- CLK_OUT2____26.500______0.000______50.0______230.034____152.443
 -- CLK_OUT3____13.250______0.000______50.0______264.294____152.443
+-- CLK_OUT4____53.000______0.000______50.0______192.308____152.443
 --
 ------------------------------------------------------------------------------
 -- Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -81,6 +82,7 @@ port
   clk_out320e          : out    std_logic;
   clk_out265          : out    std_logic;
   clk_out1325          : out    std_logic;
+  clk_out53          : out    std_logic;
   -- Status and control signals
   reset             : in     std_logic;
   locked            : out    std_logic
@@ -89,7 +91,7 @@ end clk_wiz_1;
 
 architecture xilinx of clk_wiz_1 is
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of xilinx : architecture is "clk_wiz_1,clk_wiz_v5_1,{component_name=clk_wiz_1,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=PLL,num_out_clk=3,clkin1_period=18.867,clkin2_period=10.0,use_power_down=false,use_reset=true,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}";
+  attribute CORE_GENERATION_INFO of xilinx : architecture is "clk_wiz_1,clk_wiz_v5_1,{component_name=clk_wiz_1,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=PLL,num_out_clk=4,clkin1_period=18.867,clkin2_period=10.0,use_power_down=false,use_reset=true,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}";
 
 component clk_wiz_1_clk_wiz
 port
@@ -99,6 +101,7 @@ port
   clk_out320e          : out    std_logic;
   clk_out265          : out    std_logic;
   clk_out1325          : out    std_logic;
+  clk_out53          : out    std_logic;
   -- Status and control signals
   reset             : in     std_logic;
   locked            : out    std_logic
@@ -116,6 +119,7 @@ begin
    clk_out320e => clk_out320e,
    clk_out265 => clk_out265,
    clk_out1325 => clk_out1325,
+   clk_out53 => clk_out53,
   -- Status and control signals                
    reset => reset,
    locked => locked            

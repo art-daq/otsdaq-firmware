@@ -1,10 +1,10 @@
 -- Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
--- Date        : Mon Feb 12 09:39:14 2018
--- Host        : rulinux04.dhcp.fnal.gov running 64-bit Scientific Linux release 7.2 (Nitrogen)
+-- Date        : Thu May  3 12:11:59 2018
+-- Host        : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 -- Command     : write_vhdl -force -mode synth_stub
---               /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_/top/top.srcs/sources_1/ip/xilinx_64b_counter/xilinx_64b_counter_stub.vhdl
+--               /home/aprosser/ftbf_april2018/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/xilinx_64b_counter/xilinx_64b_counter_stub.vhdl
 -- Design      : xilinx_64b_counter
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7k325tffg900-2

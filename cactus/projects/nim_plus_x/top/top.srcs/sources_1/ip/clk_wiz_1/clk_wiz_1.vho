@@ -57,6 +57,7 @@
 -- CLK_OUT1___318.000______0.000______50.0______131.426____152.443
 -- CLK_OUT2____26.500______0.000______50.0______230.034____152.443
 -- CLK_OUT3____13.250______0.000______50.0______264.294____152.443
+-- CLK_OUT4____53.000______0.000______50.0______192.308____152.443
 --
 ------------------------------------------------------------------------------
 -- Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -74,6 +75,7 @@ port
   clk_out320e          : out    std_logic;
   clk_out265          : out    std_logic;
   clk_out1325          : out    std_logic;
+  clk_out53          : out    std_logic;
   -- Status and control signals
   reset             : in     std_logic;
   locked            : out    std_logic
@@ -85,7 +87,7 @@ ATTRIBUTE SYN_BLACK_BOX OF clk_wiz_1 : COMPONENT IS TRUE;
 
 
 ATTRIBUTE BLACK_BOX_PAD_PIN : STRING;
-ATTRIBUTE BLACK_BOX_PAD_PIN OF clk_wiz_1 : COMPONENT IS "clk_in40e,clk_out320e,clk_out265,clk_out1325,reset,locked";
+ATTRIBUTE BLACK_BOX_PAD_PIN OF clk_wiz_1 : COMPONENT IS "clk_in40e,clk_out320e,clk_out265,clk_out1325,clk_out53,reset,locked";
 
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
 -- The following code must appear in the VHDL architecture
@@ -100,6 +102,7 @@ your_instance_name : clk_wiz_1
    clk_out320e => clk_out320e,
    clk_out265 => clk_out265,
    clk_out1325 => clk_out1325,
+   clk_out53 => clk_out53,
   -- Status and control signals                
    reset => reset,
    locked => locked            

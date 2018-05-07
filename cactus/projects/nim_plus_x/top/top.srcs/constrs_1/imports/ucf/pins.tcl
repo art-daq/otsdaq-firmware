@@ -134,6 +134,8 @@ set_property PACKAGE_PIN L20 [get_ports NIM_OUT0_N]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT0_N]
 #Begin AGProsser 2017_03_31
 # Pulse Generator Output
+
+
 set_property PACKAGE_PIN J29 [get_ports NIM_OUT1_P]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT1_P]
  
@@ -208,11 +210,229 @@ set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT3_N]
 #set_property PACKAGE_PIN AA28 [get_ports CLK40_IN_EXT_N]
 #set_property IOSTANDARD LVDS_25 [get_ports CLK40_IN_EXT_N]
 
-set_property PACKAGE_PIN AJ13 [get_ports CLK25_6_IN_EXT_P]
-set_property IOSTANDARD LVDS [get_ports CLK25_6_IN_EXT_P]
+set_property PACKAGE_PIN Y28 [get_ports CLK25_6_IN_EXT_P]
+set_property IOSTANDARD LVDS_25 [get_ports CLK25_6_IN_EXT_P]
 
-set_property PACKAGE_PIN AJ12 [get_ports CLK25_6_IN_EXT_N]
-set_property IOSTANDARD LVDS [get_ports CLK25_6_IN_EXT_N]
+set_property PACKAGE_PIN AA28 [get_ports CLK25_6_IN_EXT_N]
+set_property IOSTANDARD LVDS_25 [get_ports CLK25_6_IN_EXT_N]
+
+#Begin Trig53 Trig40 RJ45s
+set_property PACKAGE_PIN AD4 [get_ports TRIG53_0_P]
+set_property IOSTANDARD LVDS [get_ports TRIG53_0_P]
+
+set_property PACKAGE_PIN AD3 [get_ports TRIG53_0_N]
+set_property IOSTANDARD LVDS [get_ports TRIG53_0_N]
+
+set_property PACKAGE_PIN AE5 [get_ports TRIG53_1_P]
+set_property IOSTANDARD LVDS [get_ports TRIG53_1_P]
+
+set_property PACKAGE_PIN AF5 [get_ports TRIG53_1_N]
+set_property IOSTANDARD LVDS [get_ports TRIG53_1_N]
+
+set_property PACKAGE_PIN AC5 [get_ports TRIG53_2_P]
+set_property IOSTANDARD LVDS [get_ports TRIG53_2_P]
+
+set_property PACKAGE_PIN AC4 [get_ports TRIG53_2_N]
+set_property IOSTANDARD LVDS [get_ports TRIG53_2_N]
+
+set_property PACKAGE_PIN AD6 [get_ports TRIG53_3_P]
+set_property IOSTANDARD LVDS [get_ports TRIG53_3_P]
+
+set_property PACKAGE_PIN AE6 [get_ports TRIG53_3_N]
+set_property IOSTANDARD LVDS [get_ports TRIG53_3_N]
+
+set_property PACKAGE_PIN AF3 [get_ports TRIG53_4_P]
+set_property IOSTANDARD LVDS [get_ports TRIG53_4_P]
+
+set_property PACKAGE_PIN AF2 [get_ports TRIG53_4_N]
+set_property IOSTANDARD LVDS [get_ports TRIG53_4_N]
+
+set_property PACKAGE_PIN AG4 [get_ports TRIG53_5_P]
+set_property IOSTANDARD LVDS [get_ports TRIG53_5_P]
+
+set_property PACKAGE_PIN AG3 [get_ports TRIG53_5_N]
+set_property IOSTANDARD LVDS [get_ports TRIG53_5_N]
+
+set_property PACKAGE_PIN AE10 [get_ports TRIG53_6_P]
+set_property IOSTANDARD LVDS [get_ports TRIG53_6_P]
+
+set_property PACKAGE_PIN AF10 [get_ports TRIG53_6_N]
+set_property IOSTANDARD LVDS [get_ports TRIG53_6_N]
+
+set_property PACKAGE_PIN AD12 [get_ports TRIG53_7_P]
+set_property IOSTANDARD LVDS [get_ports TRIG53_7_P]
+
+set_property PACKAGE_PIN AD11 [get_ports TRIG53_7_N]
+set_property IOSTANDARD LVDS [get_ports TRIG53_7_N]
+
+set_property PACKAGE_PIN AK11 [get_ports TRIG53_8_P]
+set_property IOSTANDARD LVDS [get_ports TRIG53_8_P]
+
+set_property PACKAGE_PIN AK10 [get_ports TRIG53_8_N]
+set_property IOSTANDARD LVDS [get_ports TRIG53_8_N]
+
+set_property PACKAGE_PIN AH11 [get_ports TRIG53_9_P]
+set_property IOSTANDARD LVDS [get_ports TRIG53_9_P]
+
+set_property PACKAGE_PIN AJ11 [get_ports TRIG53_9_N]
+set_property IOSTANDARD LVDS [get_ports TRIG53_9_N]
+
+set_property PACKAGE_PIN AK14 [get_ports TRIG53_10_P]
+set_property IOSTANDARD LVDS [get_ports TRIG53_10_P]
+
+set_property PACKAGE_PIN AK13 [get_ports TRIG53_10_N]
+set_property IOSTANDARD LVDS [get_ports TRIG53_10_N]
+
+set_property PACKAGE_PIN AJ13 [get_ports TRIG53_11_P]
+set_property IOSTANDARD LVDS [get_ports TRIG53_11_P]
+
+set_property PACKAGE_PIN AJ12 [get_ports TRIG53_11_N]
+set_property IOSTANDARD LVDS [get_ports TRIG53_11_N]
+
+set_property PACKAGE_PIN AG2 [get_ports TRIG40_0_P]
+set_property IOSTANDARD LVDS [get_ports TRIG40_0_P]
+
+set_property PACKAGE_PIN AH1 [get_ports TRIG40_0_N]
+set_property IOSTANDARD LVDS [get_ports TRIG40_0_N]
+
+set_property PACKAGE_PIN AJ1 [get_ports TRIG40_1_P]
+set_property IOSTANDARD LVDS [get_ports TRIG40_1_P]
+
+set_property PACKAGE_PIN AK1 [get_ports TRIG40_1_N]
+set_property IOSTANDARD LVDS [get_ports TRIG40_1_N]
+
+set_property PACKAGE_PIN AF7 [get_ports TRIG40_2_P]
+set_property IOSTANDARD LVDS [get_ports TRIG40_2_P]
+
+set_property PACKAGE_PIN AG7 [get_ports TRIG40_2_N]
+set_property IOSTANDARD LVDS [get_ports TRIG40_2_N]
+
+set_property PACKAGE_PIN AG13 [get_ports TRIG40_3_P]
+set_property IOSTANDARD LVDS [get_ports TRIG40_3_P]
+
+set_property PACKAGE_PIN AH12 [get_ports TRIG40_3_N]
+set_property IOSTANDARD LVDS [get_ports TRIG40_3_N]
+
+set_property PACKAGE_PIN AA8 [get_ports TRIG40_4_P]
+set_property IOSTANDARD LVDS [get_ports TRIG40_4_P]
+
+set_property PACKAGE_PIN AB8 [get_ports TRIG40_4_N]
+set_property IOSTANDARD LVDS [get_ports TRIG40_4_N]
+
+set_property PACKAGE_PIN Y11 [get_ports TRIG40_5_P]
+set_property IOSTANDARD LVDS [get_ports TRIG40_5_P]
+
+set_property PACKAGE_PIN Y10 [get_ports TRIG40_5_N]
+set_property IOSTANDARD LVDS [get_ports TRIG40_5_N]
+
+set_property PACKAGE_PIN AC2 [get_ports CLCK53_0_P]
+set_property IOSTANDARD LVDS [get_ports CLCK53_0_P]
+
+set_property PACKAGE_PIN AC1 [get_ports CLCK53_0_N]
+set_property IOSTANDARD LVDS [get_ports CLCK53_0_N]
+
+set_property PACKAGE_PIN AD2 [get_ports CLCK53_1_P]
+set_property IOSTANDARD LVDS [get_ports CLCK53_1_P]
+
+set_property PACKAGE_PIN AD1 [get_ports CLCK53_1_N]
+set_property IOSTANDARD LVDS [get_ports CLCK53_1_N]
+
+set_property PACKAGE_PIN AH4 [get_ports CLCK53_2_P]
+set_property IOSTANDARD LVDS [get_ports CLCK53_2_P]
+
+set_property PACKAGE_PIN AJ4 [get_ports CLCK53_2_N]
+set_property IOSTANDARD LVDS [get_ports CLCK53_2_N]
+
+set_property PACKAGE_PIN AJ6 [get_ports CLCK53_3_P]
+set_property IOSTANDARD LVDS [get_ports CLCK53_3_P]
+
+set_property PACKAGE_PIN AK6 [get_ports CLCK53_3_N]
+set_property IOSTANDARD LVDS [get_ports CLCK53_3_N]
+
+set_property PACKAGE_PIN AE1 [get_ports CLCK53_4_P]
+set_property IOSTANDARD LVDS [get_ports CLCK53_4_P]
+
+set_property PACKAGE_PIN AF1 [get_ports CLCK53_4_N]
+set_property IOSTANDARD LVDS [get_ports CLCK53_4_N]
+
+set_property PACKAGE_PIN AE4 [get_ports CLCK53_5_P]
+set_property IOSTANDARD LVDS_25 [get_ports CLCK53_5_P]
+
+set_property PACKAGE_PIN AE3 [get_ports CLCK53_5_N]
+set_property IOSTANDARD LVDS [get_ports CLCK53_5_N]
+
+set_property PACKAGE_PIN AJ9 [get_ports CLCK53_6_P]
+set_property IOSTANDARD LVDS [get_ports CLCK53_6_P]
+
+set_property PACKAGE_PIN AK9 [get_ports CLCK53_6_N]
+set_property IOSTANDARD LVDS [get_ports CLCK53_6_N]
+
+set_property PACKAGE_PIN AG9 [get_ports CLCK53_7_P]
+set_property IOSTANDARD LVDS [get_ports CLCK53_7_P]
+
+set_property PACKAGE_PIN AH9 [get_ports CLCK53_7_N]
+set_property IOSTANDARD LVDS [get_ports CLCK53_7_N]
+
+set_property PACKAGE_PIN AH6 [get_ports CLCK53_8_P]
+set_property IOSTANDARD LVDS [get_ports CLCK53_8_P]
+
+set_property PACKAGE_PIN AH5 [get_ports CLCK53_8_N]
+set_property IOSTANDARD LVDS [get_ports CLCK53_8_N]
+
+set_property PACKAGE_PIN AE13 [get_ports CLCK53_9_P]
+set_property IOSTANDARD LVDS [get_ports CLCK53_9_P]
+
+set_property PACKAGE_PIN AF13 [get_ports CLCK53_9_N]
+set_property IOSTANDARD LVDS [get_ports CLCK53_9_N]
+
+set_property PACKAGE_PIN AH14 [get_ports CLCK53_10_P]
+set_property IOSTANDARD LVDS [get_ports CLCK53_10_P]
+
+set_property PACKAGE_PIN AJ14 [get_ports CLCK53_10_N]
+set_property IOSTANDARD LVDS [get_ports CLCK53_10_N]
+
+set_property PACKAGE_PIN AF12 [get_ports CLCK53_11_P]
+set_property IOSTANDARD LVDS [get_ports CLCK53_11_P]
+
+set_property PACKAGE_PIN AG12 [get_ports CLCK53_11_N]
+set_property IOSTANDARD LVDS [get_ports CLCK53_11_N]
+
+set_property PACKAGE_PIN AH2 [get_ports CLCK40_0_P]
+set_property IOSTANDARD LVDS [get_ports CLCK40_0_P]
+
+set_property PACKAGE_PIN AJ2 [get_ports CLCK40_0_N]
+set_property IOSTANDARD LVDS [get_ports CLCK40_0_N]
+
+set_property PACKAGE_PIN AJ3 [get_ports CLCK40_1_P]
+set_property IOSTANDARD LVDS [get_ports CLCK40_1_P]
+
+set_property PACKAGE_PIN AK3 [get_ports CLCK40_1_N]
+set_property IOSTANDARD LVDS [get_ports CLCK40_1_N]
+
+set_property PACKAGE_PIN AH7 [get_ports CLCK40_2_P]
+set_property IOSTANDARD LVDS [get_ports CLCK40_2_P]
+
+set_property PACKAGE_PIN AJ7 [get_ports CLCK40_2_N]
+set_property IOSTANDARD LVDS [get_ports CLCK40_2_N]
+
+set_property PACKAGE_PIN AA12 [get_ports CLCK40_3_P]
+set_property IOSTANDARD LVDS_25 [get_ports CLCK40_3_P]
+
+set_property PACKAGE_PIN AB12 [get_ports CLCK40_3_N]
+set_property IOSTANDARD LVDS [get_ports CLCK40_3_N]
+
+set_property PACKAGE_PIN AB9 [get_ports CLCK40_4_P]
+set_property IOSTANDARD LVDS [get_ports CLCK40_4_P]
+
+set_property PACKAGE_PIN AC9 [get_ports CLCK40_4_N]
+set_property IOSTANDARD LVDS [get_ports CLCK40_4_N]
+
+set_property PACKAGE_PIN AA11 [get_ports CLCK40_5_P]
+set_property IOSTANDARD LVDS [get_ports CLCK40_5_P]
+
+set_property PACKAGE_PIN AA10 [get_ports CLCK40_5_N]
+set_property IOSTANDARD LVDS [get_ports CLCK40_5_N]
+#End Trig53 Trig40 RJ45s
 
 #End AGProsser 2017_03_31
 #Created by Constraints Editor (xc4vlx25-ff668-10) - 2011/09/17

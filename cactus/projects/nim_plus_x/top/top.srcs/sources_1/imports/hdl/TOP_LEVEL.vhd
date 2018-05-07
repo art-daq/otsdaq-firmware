@@ -44,6 +44,113 @@ entity top is
         TRIGB_CMS_OUT_P : out   std_logic;
         TRIGB_CMS_OUT_N : out   std_logic;
         
+TRIG53_0_P : out std_logic;
+TRIG53_0_N : out std_logic;        
+
+TRIG53_1_P : out std_logic;
+TRIG53_1_N : out std_logic; 
+
+TRIG53_2_P : out std_logic;
+TRIG53_2_N : out std_logic; 
+
+TRIG53_3_P : out std_logic;
+TRIG53_3_N : out std_logic; 
+
+TRIG53_4_P : out std_logic;
+TRIG53_4_N : out std_logic; 
+
+TRIG53_5_P : out std_logic;
+TRIG53_5_N : out std_logic; 
+
+TRIG53_6_P : out std_logic;
+TRIG53_6_N : out std_logic; 
+
+TRIG53_7_P : out std_logic;
+TRIG53_7_N : out std_logic; 
+
+TRIG53_8_P : out std_logic;
+TRIG53_8_N : out std_logic; 
+
+TRIG53_9_P : out std_logic;
+TRIG53_9_N : out std_logic; 
+
+TRIG53_10_P : out std_logic;
+TRIG53_10_N : out std_logic; 
+
+TRIG53_11_P : out std_logic;
+TRIG53_11_N : out std_logic; 
+
+TRIG40_0_P : out std_logic;
+TRIG40_0_N : out std_logic; 
+
+TRIG40_1_P : out std_logic;
+TRIG40_1_N : out std_logic;
+
+TRIG40_2_P : out std_logic;
+TRIG40_2_N : out std_logic;
+
+TRIG40_3_P : out std_logic;
+TRIG40_3_N : out std_logic;
+
+TRIG40_4_P : out std_logic;
+TRIG40_4_N : out std_logic;
+
+TRIG40_5_P : out std_logic;
+TRIG40_5_N : out std_logic;
+
+CLCK53_0_P : out std_logic;
+CLCK53_0_N : out std_logic;
+
+CLCK53_1_P : out std_logic;
+CLCK53_1_N : out std_logic;
+
+CLCK53_2_P : out std_logic;
+CLCK53_2_N : out std_logic;
+
+CLCK53_3_P : out std_logic;
+CLCK53_3_N : out std_logic;
+
+CLCK53_4_P : out std_logic;
+CLCK53_4_N : out std_logic;
+
+CLCK53_5_P : out std_logic;
+CLCK53_5_N : out std_logic;
+
+CLCK53_6_P : out std_logic;
+CLCK53_6_N : out std_logic;
+
+CLCK53_7_P : out std_logic;
+CLCK53_7_N : out std_logic;
+
+CLCK53_8_P : out std_logic;
+CLCK53_8_N : out std_logic;
+
+CLCK53_9_P : out std_logic;
+CLCK53_9_N : out std_logic;
+
+CLCK53_10_P : out std_logic;
+CLCK53_10_N : out std_logic;
+
+CLCK53_11_P : out std_logic;
+CLCK53_11_N : out std_logic;
+
+CLCK40_0_P : out std_logic;
+CLCK40_0_N : out std_logic;
+
+CLCK40_1_P : out std_logic;
+CLCK40_1_N : out std_logic;
+
+CLCK40_2_P : out std_logic;
+CLCK40_2_N : out std_logic;
+
+CLCK40_3_P : out std_logic;
+CLCK40_3_N : out std_logic;
+
+CLCK40_4_P : out std_logic;
+CLCK40_4_N : out std_logic;
+
+CLCK40_5_P : out std_logic;
+CLCK40_5_N : out std_logic;
 --        TRIG_CMS1_OUT_P : out   std_logic;
 --        TRIG_CMS1_OUT_N : out   std_logic;
         
@@ -179,6 +286,8 @@ architecture BEHAVIORAL of top is
     
     signal s_b_wr_out : std_logic;
     signal s_b_read : std_logic_vector (63 downto 0);
+    signal s_trig_40 : STD_LOGIC_VECTOR(5 downto 0);
+    signal s_trig_53 : STD_LOGIC_VECTOR(11 downto 0);
     
     
     signal selected_ext_clkg : std_logic;
@@ -204,6 +313,7 @@ architecture BEHAVIORAL of top is
     signal sigclk_1325 : std_logic;
     signal sigclk_265 : std_logic;
     signal s_clk25_6e : std_logic;   
+    signal sigclk_53: std_logic;
     
     
 --    signal bclk_1325 : std_logic;
@@ -326,7 +436,7 @@ architecture BEHAVIORAL of top is
     --  clk_out40e          : out    std_logic;
       clk_out1325 : out std_logic;
       clk_out265 : out std_logic;
-    --  clk_out3975 : out std_logic;
+    clk_out53 : out std_logic;
       -- Status and control signals
       reset             : in     std_logic;
       locked            : out    std_logic
@@ -668,6 +778,8 @@ begin
                       sclk => dac_sclk_sig,
                       sync => dac_sync_sig,
                       b_read => s_b_read(63 downto 0),
+                      trig_40 => s_trig_40(5 downto 0),
+                      trig_53 => s_trig_53(11 downto 0),
                       read_data_out => read_out_data
               );
       --generate dual clock fifo for burst data out from nim+ block
@@ -995,6 +1107,340 @@ begin
                    I => s_nim_out3      -- Buffer input 
                 ); 
                 -- End of OBUFDS_inst instantiation
+                
+-- Begin New section AGP 2018_05_03 RJ45 Panel Support
+-- Need 12 53 MHz clock differential buffers
+-- Need 6 40 MHz clock differential buffers
+
+OBUFDS_TRIG53_0 : OBUFDS
+           generic map (
+              IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+              SLEW => "FAST")          -- Specify the output slew rate
+           port map (
+              O => TRIG53_0_P,     -- Diff_p output (connect directly to top-level port)
+              OB => TRIG53_0_N,   -- Diff_n output (connect directly to top-level port)
+              I => s_trig_53(0)      -- Buffer input 
+            );     
+OBUFDS_TRIG53_1 : OBUFDS
+           generic map (
+              IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+              SLEW => "FAST")          -- Specify the output slew rate
+           port map (
+              O => TRIG53_1_P,     -- Diff_p output (connect directly to top-level port)
+              OB => TRIG53_1_N,   -- Diff_n output (connect directly to top-level port)
+              I => s_trig_53(1)      -- Buffer input 
+           );     
+OBUFDS_TRIG53_2 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG53_2_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG53_2_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_53(2)      -- Buffer input 
+);
+OBUFDS_TRIG53_3 : OBUFDS
+                                  generic map (
+                                     IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+                                     SLEW => "FAST")          -- Specify the output slew rate
+                                  port map (
+                                     O => TRIG53_3_P,     -- Diff_p output (connect directly to top-level port)
+                                     OB => TRIG53_3_N,   -- Diff_n output (connect directly to top-level port)
+                                     I => s_trig_53(3)      -- Buffer input 
+                                   );      
+OBUFDS_TRIG53_4 : OBUFDS
+                       generic map (
+                       IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+                                              SLEW => "FAST")          -- Specify the output slew rate
+                                              port map (
+                                                 O => TRIG53_4_P,     -- Diff_p output (connect directly to top-level port)
+                                                 OB => TRIG53_4_N,   -- Diff_n output (connect directly to top-level port)
+                                                 I => s_trig_53(4)      -- Buffer input 
+                                               );
+OBUFDS_TRIG53_5 : OBUFDS
+                                                          generic map (
+                                                             IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+                                                             SLEW => "FAST")          -- Specify the output slew rate
+                                                          port map (
+                                                             O => TRIG53_5_P,     -- Diff_p output (connect directly to top-level port)
+                                                             OB => TRIG53_5_N,   -- Diff_n output (connect directly to top-level port)
+                                                             I => s_trig_53(5)      -- Buffer input 
+                                                           ); 
+OBUFDS_TRIG53_6 : OBUFDS
+ generic map (
+                                                                         IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+                                                                         SLEW => "FAST")          -- Specify the output slew rate
+                                                                      port map (
+                                                                         O => TRIG53_6_P,     -- Diff_p output (connect directly to top-level port)
+                                                                         OB => TRIG53_6_N,   -- Diff_n output (connect directly to top-level port)
+                                                                         I => s_trig_53(6)      -- Buffer input 
+                                                                       );                                                                
+OBUFDS_TRIG53_7 : OBUFDS
+                                                                                  generic map (
+                                                                                     IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+                                                                                     SLEW => "FAST")          -- Specify the output slew rate
+                                                                                  port map (
+                                                                                     O => TRIG53_7_P,     -- Diff_p output (connect directly to top-level port)
+                                                                                     OB => TRIG53_7_N,   -- Diff_n output (connect directly to top-level port)
+                                                                                     I => s_trig_53(7)      -- Buffer input 
+                                                                                   );     
+OBUFDS_TRIG53_8 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG53_8_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG53_8_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_53(8)      -- Buffer input 
+);     
+OBUFDS_TRIG53_9 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG53_9_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG53_9_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_53(9)      -- Buffer input 
+);
+OBUFDS_TRIG53_10 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG53_10_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG53_10_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_53(10)      -- Buffer input 
+);
+OBUFDS_TRIG53_11 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG53_11_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG53_11_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_53(11)      -- Buffer input 
+);
+OBUFDS_TRIG40_0 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG40_0_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG40_0_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_40(0)      -- Buffer input 
+);
+OBUFDS_TRIG40_1 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG40_1_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG40_1_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_40(1)      -- Buffer input 
+);
+OBUFDS_TRIG40_2 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG40_2_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG40_2_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_40(2)      -- Buffer input 
+);
+OBUFDS_TRIG40_3 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG40_3_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG40_3_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_40(3)      -- Buffer input 
+);
+OBUFDS_TRIG40_4 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG40_4_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG40_4_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_40(4)      -- Buffer input 
+);
+OBUFDS_TRIG40_5 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG40_5_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG40_5_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_40(5)      -- Buffer input 
+);
+
+OBUFDS_CLCK53_0 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK53_0_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK53_0_N,   -- Diff_n output (connect directly to top-level port)
+I => sigclk_53      -- Buffer input 
+);
+OBUFDS_CLCK53_1 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK53_1_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK53_1_N,   -- Diff_n output (connect directly to top-level port)
+I => sigclk_53      -- Buffer input 
+);
+OBUFDS_CLCK53_2 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK53_2_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK53_2_N,   -- Diff_n output (connect directly to top-level port)
+I => sigclk_53      -- Buffer input 
+);
+OBUFDS_CLCK53_3 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK53_3_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK53_3_N,   -- Diff_n output (connect directly to top-level port)
+I => sigclk_53      -- Buffer input 
+);
+OBUFDS_CLCK53_4 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK53_4_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK53_4_N,   -- Diff_n output (connect directly to top-level port)
+I => sigclk_53      -- Buffer input 
+);
+OBUFDS_CLCK53_5 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK53_5_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK53_5_N,   -- Diff_n output (connect directly to top-level port)
+I => sigclk_53      -- Buffer input 
+);
+OBUFDS_CLCK53_6 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK53_6_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK53_6_N,   -- Diff_n output (connect directly to top-level port)
+I => sigclk_53      -- Buffer input 
+);
+OBUFDS_CLCK53_7 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK53_7_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK53_7_N,   -- Diff_n output (connect directly to top-level port)
+I => sigclk_53      -- Buffer input 
+);
+OBUFDS_CLCK53_8 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK53_8_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK53_8_N,   -- Diff_n output (connect directly to top-level port)
+I => sigclk_53      -- Buffer input 
+);
+OBUFDS_CLCK53_9 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK53_9_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK53_9_N,   -- Diff_n output (connect directly to top-level port)
+I => sigclk_53      -- Buffer input 
+);
+OBUFDS_CLCK53_10 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK53_10_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK53_10_N,   -- Diff_n output (connect directly to top-level port)
+I => sigclk_53      -- Buffer input 
+);
+OBUFDS_CLCK53_11 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK53_11_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK53_11_N,   -- Diff_n output (connect directly to top-level port)
+I => sigclk_53      -- Buffer input 
+);
+
+
+OBUFDS_CLCK40_0 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK40_0_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK40_0_N,   -- Diff_n output (connect directly to top-level port)
+I => bmx_40_adj      -- Buffer input 
+);
+OBUFDS_CLCK40_1 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK40_1_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK40_1_N,   -- Diff_n output (connect directly to top-level port)
+I => bmx_40_adj      -- Buffer input 
+);
+OBUFDS_CLCK40_2 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK40_2_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK40_2_N,   -- Diff_n output (connect directly to top-level port)
+I => bmx_40_adj      -- Buffer input 
+);
+OBUFDS_CLCK40_3 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK40_3_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK40_3_N,   -- Diff_n output (connect directly to top-level port)
+I => bmx_40_adj      -- Buffer input 
+);
+OBUFDS_CLCK40_4 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK40_4_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK40_4_N,   -- Diff_n output (connect directly to top-level port)
+I => bmx_40_adj      -- Buffer input 
+);
+OBUFDS_CLCK40_5 : OBUFDS
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => CLCK40_5_P,     -- Diff_p output (connect directly to top-level port)
+OB => CLCK40_5_N,   -- Diff_n output (connect directly to top-level port)
+I => bmx_40_adj      -- Buffer input 
+);
+
+-- End new section AGP 2018_05_03  RJ45 Panel Support               
                                 
                                              
     -----------------------

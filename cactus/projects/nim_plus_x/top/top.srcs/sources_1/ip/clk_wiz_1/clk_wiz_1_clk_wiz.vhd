@@ -58,6 +58,7 @@
 -- CLK_OUT1___318.000______0.000______50.0______131.426____152.443
 -- CLK_OUT2____26.500______0.000______50.0______230.034____152.443
 -- CLK_OUT3____13.250______0.000______50.0______264.294____152.443
+-- CLK_OUT4____53.000______0.000______50.0______192.308____152.443
 --
 ------------------------------------------------------------------------------
 -- Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -81,6 +82,7 @@ port
   clk_out320e          : out    std_logic;
   clk_out265          : out    std_logic;
   clk_out1325          : out    std_logic;
+  clk_out53          : out    std_logic;
   -- Status and control signals
   reset             : in     std_logic;
   locked            : out    std_logic
@@ -100,7 +102,7 @@ architecture xilinx of clk_wiz_1_clk_wiz is
   signal clkout1b_unused         : std_logic;
   signal clk_out1325_clk_wiz_1          : std_logic;
   signal clkout2b_unused         : std_logic;
-  signal clkout3_unused   : std_logic;
+  signal clk_out53_clk_wiz_1          : std_logic;
   signal clkout3b_unused  : std_logic;
   signal clkout4_unused   : std_logic;
   signal clkout5_unused   : std_logic;
@@ -152,6 +154,9 @@ begin
     CLKOUT2_DIVIDE       => 72,
     CLKOUT2_PHASE        => 0.000,
     CLKOUT2_DUTY_CYCLE   => 0.500,
+    CLKOUT3_DIVIDE       => 18,
+    CLKOUT3_PHASE        => 0.000,
+    CLKOUT3_DUTY_CYCLE   => 0.500,
     CLKIN1_PERIOD        => 18.867)
   port map
     -- Output clocks
@@ -160,7 +165,7 @@ begin
     CLKOUT0             => clk_out320e_clk_wiz_1,
     CLKOUT1             => clk_out265_clk_wiz_1,
     CLKOUT2             => clk_out1325_clk_wiz_1,
-    CLKOUT3             => clkout3_unused,
+    CLKOUT3             => clk_out53_clk_wiz_1,
     CLKOUT4             => clkout4_unused,
     CLKOUT5             => clkout5_unused,
     -- Input clock control
@@ -205,5 +210,7 @@ begin
   clk_out265 <= clk_out265_clk_wiz_1;
 
   clk_out1325 <= clk_out1325_clk_wiz_1;
+
+  clk_out53 <= clk_out53_clk_wiz_1;
 
 end xilinx;

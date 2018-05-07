@@ -1,10 +1,10 @@
 // Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
-// Date        : Tue Jan 30 15:28:53 2018
-// Host        : rulinux04.dhcp.fnal.gov running 64-bit Scientific Linux release 7.2 (Nitrogen)
+// Date        : Thu May  3 11:21:55 2018
+// Host        : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 // Command     : write_verilog -force -mode funcsim
-//               /home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus_x/nimPlus_nov16_2017_t0923/nimPlus_/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_funcsim.v
+//               /home/aprosser/ftbf_april2018/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_funcsim.v
 // Design      : clk_wiz_1
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,19 +12,21 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* core_generation_info = "clk_wiz_1,clk_wiz_v5_1,{component_name=clk_wiz_1,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=PLL,num_out_clk=3,clkin1_period=18.867,clkin2_period=10.0,use_power_down=false,use_reset=true,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}" *) 
+(* core_generation_info = "clk_wiz_1,clk_wiz_v5_1,{component_name=clk_wiz_1,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=PLL,num_out_clk=4,clkin1_period=18.867,clkin2_period=10.0,use_power_down=false,use_reset=true,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}" *) 
 (* NotValidForBitStream *)
 module clk_wiz_1
    (clk_in40e,
     clk_out320e,
     clk_out265,
     clk_out1325,
+    clk_out53,
     reset,
     locked);
   input clk_in40e;
   output clk_out320e;
   output clk_out265;
   output clk_out1325;
+  output clk_out53;
   input reset;
   output locked;
 
@@ -32,6 +34,7 @@ module clk_wiz_1
   wire clk_out1325;
   wire clk_out265;
   wire clk_out320e;
+  wire clk_out53;
   wire locked;
   wire reset;
 
@@ -40,6 +43,7 @@ module clk_wiz_1
         .clk_out1325(clk_out1325),
         .clk_out265(clk_out265),
         .clk_out320e(clk_out320e),
+        .clk_out53(clk_out53),
         .locked(locked),
         .reset(reset));
 endmodule
@@ -50,12 +54,14 @@ module clk_wiz_1_clk_wiz_1_clk_wiz
     clk_out320e,
     clk_out265,
     clk_out1325,
+    clk_out53,
     reset,
     locked);
   input clk_in40e;
   output clk_out320e;
   output clk_out265;
   output clk_out1325;
+  output clk_out53;
   input reset;
   output locked;
 
@@ -65,11 +71,11 @@ module clk_wiz_1_clk_wiz_1_clk_wiz
   wire clk_out265;
   wire clk_out320e;
   wire clk_out320e_clk_wiz_1;
+  wire clk_out53;
   wire clkfbout_buf_clk_wiz_1;
   wire clkfbout_clk_wiz_1;
   wire locked;
   wire reset;
-  wire NLW_plle2_adv_inst_CLKOUT3_UNCONNECTED;
   wire NLW_plle2_adv_inst_CLKOUT4_UNCONNECTED;
   wire NLW_plle2_adv_inst_CLKOUT5_UNCONNECTED;
   wire NLW_plle2_adv_inst_DRDY_UNCONNECTED;
@@ -103,7 +109,7 @@ module clk_wiz_1_clk_wiz_1_clk_wiz
     .CLKOUT2_DIVIDE(72),
     .CLKOUT2_DUTY_CYCLE(0.500000),
     .CLKOUT2_PHASE(0.000000),
-    .CLKOUT3_DIVIDE(1),
+    .CLKOUT3_DIVIDE(18),
     .CLKOUT3_DUTY_CYCLE(0.500000),
     .CLKOUT3_PHASE(0.000000),
     .CLKOUT4_DIVIDE(1),
@@ -129,7 +135,7 @@ module clk_wiz_1_clk_wiz_1_clk_wiz
         .CLKOUT0(clk_out320e_clk_wiz_1),
         .CLKOUT1(clk_out265),
         .CLKOUT2(clk_out1325),
-        .CLKOUT3(NLW_plle2_adv_inst_CLKOUT3_UNCONNECTED),
+        .CLKOUT3(clk_out53),
         .CLKOUT4(NLW_plle2_adv_inst_CLKOUT4_UNCONNECTED),
         .CLKOUT5(NLW_plle2_adv_inst_CLKOUT5_UNCONNECTED),
         .DADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
