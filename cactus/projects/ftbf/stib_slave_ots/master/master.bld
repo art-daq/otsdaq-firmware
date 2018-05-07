@@ -1,0 +1,292 @@
+Release 14.6 ngdbuild P.68d (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Command Line: /opt/local/xilinx/14.6/ISE_DS/ISE/bin/lin64/unwrapped/ngdbuild
+-intstyle ise -dd _ngo -sd ../stib -sd ../strip -nt timestamp -uc master.ucf -p
+xc4vlx25-ff668-10 master_cs.ngc master.ngd -bm
+/home/cmstestbeam/stib_June2015/stib/core.bmm
+
+Reading NGO file "/home/cmstestbeam/stib_June2015/master/master_cs.ngc" ...
+Gathering constraint information from source properties...
+Done.
+
+Annotating constraints to design from ucf file "master.ucf" ...
+Resolving constraint associations...
+Checking Constraint Associations...
+INFO:ConstraintSystem:178 - TNM 'TN_CLK15NS', used in period specification
+   'TS_CLK15NS', was traced into DCM_ADV instance tlk_imp/tlkclk_dcm. The
+   following new TNM groups and period specifications were generated at the
+   DCM_ADV output(s): 
+   CLKFX: <TIMESPEC TS_tlk_imp_tlkclk_clkfx = PERIOD "tlk_imp_tlkclk_clkfx"
+   TS_CLK15NS / 1.875 HIGH 50%>
+
+INFO:ConstraintSystem:178 - TNM 'TN_CLK15NS', used in period specification
+   'TS_CLK15NS', was traced into DCM_ADV instance mi_imp/bdclk_dcm_imp. The
+   following new TNM groups and period specifications were generated at the
+   DCM_ADV output(s): 
+   CLK0: <TIMESPEC TS_mi_imp_bdclk_0 = PERIOD "mi_imp_bdclk_0" TS_CLK15NS HIGH
+   50%>
+
+INFO:ConstraintSystem:178 - TNM 'TN_CLK15NS', used in period specification
+   'TS_CLK15NS', was traced into DCM_ADV instance mi_imp/bdclk_dcm_imp. The
+   following new TNM groups and period specifications were generated at the
+   DCM_ADV output(s): 
+   CLK2X: <TIMESPEC TS_mi_imp_bdclk_2x = PERIOD "mi_imp_bdclk_2x" TS_CLK15NS / 2
+   HIGH 50%>
+
+INFO:ConstraintSystem:178 - TNM 'TN_CLK15NS', used in period specification
+   'TS_CLK15NS', was traced into DCM_ADV instance mi_imp/bdclk_dcm_imp. The
+   following new TNM groups and period specifications were generated at the
+   DCM_ADV output(s): 
+   CLKDV: <TIMESPEC TS_mi_imp_bdclk_div = PERIOD "mi_imp_bdclk_div" TS_CLK15NS *
+   2 HIGH 50%>
+
+INFO:ConstraintSystem:178 - TNM 'BDCLK_IN_PAD_P', used in period specification
+   'TS_BDCLK_IN_PAD_P', was traced into DCM_ADV instance mi_imp/bdclk_dcm_imp.
+   The following new TNM groups and period specifications were generated at the
+   DCM_ADV output(s): 
+   CLK0: <TIMESPEC TS_mi_imp_bdclk_0_1 = PERIOD "mi_imp_bdclk_0_1"
+   TS_BDCLK_IN_PAD_P HIGH 50%>
+
+INFO:ConstraintSystem:178 - TNM 'BDCLK_IN_PAD_P', used in period specification
+   'TS_BDCLK_IN_PAD_P', was traced into DCM_ADV instance mi_imp/bdclk_dcm_imp.
+   The following new TNM groups and period specifications were generated at the
+   DCM_ADV output(s): 
+   CLK2X: <TIMESPEC TS_mi_imp_bdclk_2x_1 = PERIOD "mi_imp_bdclk_2x_1"
+   TS_BDCLK_IN_PAD_P / 2 HIGH 50%>
+
+INFO:ConstraintSystem:178 - TNM 'BDCLK_IN_PAD_P', used in period specification
+   'TS_BDCLK_IN_PAD_P', was traced into DCM_ADV instance mi_imp/bdclk_dcm_imp.
+   The following new TNM groups and period specifications were generated at the
+   DCM_ADV output(s): 
+   CLKDV: <TIMESPEC TS_mi_imp_bdclk_div_1 = PERIOD "mi_imp_bdclk_div_1"
+   TS_BDCLK_IN_PAD_P * 2 HIGH 50%>
+
+INFO:ConstraintSystem:178 - TNM 'BDCLK_IN_PAD_N', used in period specification
+   'TS_BDCLK_IN_PAD_N', was traced into DCM_ADV instance mi_imp/bdclk_dcm_imp.
+   The following new TNM groups and period specifications were generated at the
+   DCM_ADV output(s): 
+   CLK0: <TIMESPEC TS_mi_imp_bdclk_0_2 = PERIOD "mi_imp_bdclk_0_2"
+   TS_BDCLK_IN_PAD_N HIGH 50%>
+
+INFO:ConstraintSystem:178 - TNM 'BDCLK_IN_PAD_N', used in period specification
+   'TS_BDCLK_IN_PAD_N', was traced into DCM_ADV instance mi_imp/bdclk_dcm_imp.
+   The following new TNM groups and period specifications were generated at the
+   DCM_ADV output(s): 
+   CLK2X: <TIMESPEC TS_mi_imp_bdclk_2x_2 = PERIOD "mi_imp_bdclk_2x_2"
+   TS_BDCLK_IN_PAD_N / 2 HIGH 50%>
+
+INFO:ConstraintSystem:178 - TNM 'BDCLK_IN_PAD_N', used in period specification
+   'TS_BDCLK_IN_PAD_N', was traced into DCM_ADV instance mi_imp/bdclk_dcm_imp.
+   The following new TNM groups and period specifications were generated at the
+   DCM_ADV output(s): 
+   CLKDV: <TIMESPEC TS_mi_imp_bdclk_div_2 = PERIOD "mi_imp_bdclk_div_2"
+   TS_BDCLK_IN_PAD_N * 2 HIGH 50%>
+
+Done...
+
+Processing BMM file "/home/cmstestbeam/stib_June2015/stib/core.bmm" ...
+
+WARNING:NgdBuild:1212 - User specified non-default attribute value
+   (15.0000000000000000) was detected for the CLKIN_PERIOD attribute on DCM
+   "mi_imp/bdclk_dcm_imp".  This does not match the PERIOD constraint value (20
+   ns.).  The uncertainty calculation will use the non-default attribute value. 
+   This could result in incorrect uncertainty calculated for DCM output clocks.
+WARNING:NgdBuild:1212 - User specified non-default attribute value
+   (15.0000000000000000) was detected for the CLKIN_PERIOD attribute on DCM
+   "mi_imp/bdclk_dcm_imp".  This does not match the PERIOD constraint value (20
+   ns.).  The uncertainty calculation will use the non-default attribute value. 
+   This could result in incorrect uncertainty calculated for DCM output clocks.
+Checking expanded design ...
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[31].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[30].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[29].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[28].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[27].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[26].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[25].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[24].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[23].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[22].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[21].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[20].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[19].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[18].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[17].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[16].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[15].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[14].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[13].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[12].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[11].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[10].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[9].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[8].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[7].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[6].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[5].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[4].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[3].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[2].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[1].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_
+   FPGA.Result_Mux_Bits[0].Result_Mux_Bit_I/EX_Result_DFF' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_F
+   PGA.Not_All_Bits.PC_GEN[29].PC_Bit_I/PC_EX_DFF' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_F
+   PGA.Not_All_Bits.PC_GEN[28].PC_Bit_I/PC_EX_DFF' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_F
+   PGA.Not_All_Bits.PC_GEN[27].PC_Bit_I/PC_EX_DFF' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_F
+   PGA.Not_All_Bits.PC_GEN[26].PC_Bit_I/PC_EX_DFF' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_F
+   PGA.Not_All_Bits.PC_GEN[25].PC_Bit_I/PC_EX_DFF' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_F
+   PGA.Not_All_Bits.PC_GEN[24].PC_Bit_I/PC_EX_DFF' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_F
+   PGA.Not_All_Bits.PC_GEN[23].PC_Bit_I/PC_EX_DFF' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_F
+   PGA.Not_All_Bits.PC_GEN[22].PC_Bit_I/PC_EX_DFF' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_F
+   PGA.Not_All_Bits.PC_GEN[21].PC_Bit_I/PC_EX_DFF' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_F
+   PGA.Not_All_Bits.PC_GEN[20].PC_Bit_I/PC_EX_DFF' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_F
+   PGA.Not_All_Bits.PC_GEN[19].PC_Bit_I/PC_EX_DFF' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_F
+   PGA.Not_All_Bits.PC_GEN[18].PC_Bit_I/PC_EX_DFF' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_F
+   PGA.Not_All_Bits.PC_GEN[17].PC_Bit_I/PC_EX_DFF' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_F
+   PGA.Not_All_Bits.PC_GEN[16].PC_Bit_I/PC_EX_DFF' has unconnected output pin
+WARNING:NgdBuild:443 - SFF primitive
+   'mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/Using_FPGA.Ext_NM_BRK_
+   FDRSE' has unconnected output pin
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:  49
+
+Total memory usage is 620128 kilobytes
+
+Writing NGD file "master.ngd" ...
+Total REAL time to NGDBUILD completion:  10 sec
+Total CPU time to NGDBUILD completion:   10 sec
+
+Writing NGDBUILD log file "master.bld"...

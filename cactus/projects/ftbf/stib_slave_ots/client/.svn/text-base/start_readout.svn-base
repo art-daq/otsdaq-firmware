@@ -1,0 +1,14 @@
+#!/bin/csh
+./configure 192.168.133.20 0 1 2 3
+./reset_bco 192.168.133.20 &
+sleep 1
+./configure 192.168.133.36 0 1 2 3
+./reset_bco 192.168.133.36 &
+sleep 1
+./configure 192.168.133.132 0 1 2 3 4 5
+./reset_bco 192.168.133.132 &
+sleep 1
+./reset_vipic_ts 192.168.133.37 &
+sleep 1
+./poke 192.168.133.37 c5000000 8
+exit 0

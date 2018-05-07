@@ -1,0 +1,1173 @@
+----------------------------------------------------------------------------------
+-- Company:
+-- Engineer:       Matthew Jones - Purdue University
+-- 
+-- Create Date:    08:44:16 06/06/2013 
+-- Design Name:    stib
+-- Module Name:    top - RTL
+-- Project Name:   STIB firmware
+-- Target Devices: xc4vlx25ff668-10
+-- Tool versions:  ISE 14.4 / 14.6
+-- Description:    Top level design for STIB firmware.
+--                 All IO buffers are instantiated at this level.
+--
+-- Dependencies:   core
+--                 strip_interface
+--                 gbe_interface
+--                 tlkserdes_interface
+--                 clock_interface
+--                 iobus_interface
+--
+-- Revision: 
+-- Revision 0.01 - File Created
+-- Additional Comments: 
+--
+----------------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+--use IEEE.NUMERIC_STD.ALL;
+
+library UNISIM;
+use UNISIM.VComponents.all;
+
+library stib;
+use stib.iobus.all;
+use stib.tlkserdes.all;
+use stib.clock.all;
+use stib.gbe.all;
+
+--  SCIN is the net on the FSSR2 chip: it is an input on the FSSR2 and an
+--  output on the CAPTAN.
+
+--  SCOUT is the net on the FSSR2 chip: it is an output on the FSSR2 and an
+--  input on the CAPTAN.
+
+--  OUTx_y are outputs on the FSSR2 chips and inputs on the CAPTAN.
+
+entity top is
+    GENERIC ( NSENSOR : INTEGER := 6 );
+    Port ( CLK15NS_PAD : in STD_LOGIC;
+           CLK5MHZ_PAD : in STD_LOGIC;
+           LED_PAD : out  STD_LOGIC_VECTOR (1 downto 0);
+           UART_TX_PAD : out  STD_LOGIC;
+           UART_RX_PAD : in  STD_LOGIC;
+           DEBUG_PORT_PAD : out  STD_LOGIC_VECTOR (7 downto 0);
+           GMII_TXD_PAD : out  STD_LOGIC_VECTOR (7 downto 0);
+           GMII_TXER_PAD : out  STD_LOGIC;
+           GMII_TXEN_PAD : out  STD_LOGIC;
+           GMII_TXCLK_PAD : out  STD_LOGIC;
+           GMII_RESET_PAD : out  STD_LOGIC;
+           GMII_RXD_PAD : in  STD_LOGIC_VECTOR (7 downto 0);
+           GMII_RXER_PAD : in  STD_LOGIC;
+           GMII_RXDV_PAD : in  STD_LOGIC;
+           GMII_RXCLK_PAD : in  STD_LOGIC;
+           TLK_TXD_PAD : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+           TLK_GTX_CLK_PAD : OUT STD_LOGIC;
+           TLK_LCKREFN_PAD : OUT STD_LOGIC;
+           TLK_PREM_PAD : OUT STD_LOGIC;
+           TLK_TXEN_PAD : OUT STD_LOGIC;
+           TLK_TXER_PAD : OUT STD_LOGIC;
+           TLK_ENABLE_PAD : OUT STD_LOGIC;
+           TLK_LOOPEN_PAD : OUT STD_LOGIC;
+           TLK_PRBSEN_PAD : OUT STD_LOGIC;
+           TLK_TESTEN_PAD : OUT STD_LOGIC;
+           TLK_RXER_PAD : IN STD_LOGIC;
+           TLK_RXDV_PAD : IN STD_LOGIC;
+           TLK_RXCLK_PAD : IN STD_LOGIC;
+           TLK_RXD_PAD : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+           SFP_ENABLEN_PAD : OUT STD_LOGIC;
+           SFP_TXDIS_PAD : OUT STD_LOGIC;
+           SFP_RS_PAD : OUT STD_LOGIC;
+           SFP_TXFAULT_PAD : IN STD_LOGIC;
+           SFP_MODABS_PAD : IN STD_LOGIC;
+           SFP_LOS_PAD : IN STD_LOGIC;
+           EXT_CLK_PAD_P : IN STD_LOGIC;
+           EXT_CLK_PAD_N : IN STD_LOGIC;
+           EXT_TRIG_PAD_P : IN STD_LOGIC;
+           EXT_TRIG_PAD_N : IN STD_LOGIC;
+           EXT_CLK_OUT_PAD_P : OUT STD_LOGIC;
+           EXT_CLK_OUT_PAD_N : OUT STD_LOGIC;
+           EXT_TRIG_OUT_PAD_P : OUT STD_LOGIC;
+           EXT_TRIG_OUT_PAD_N : OUT STD_LOGIC;
+           JUMPER_PAD : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+           STRIP_DAC_CS_PAD : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+           STRIP_DAC_SDI_PAD : OUT STD_LOGIC;
+           STRIP_DAC_SDO_PAD : IN STD_LOGIC;
+           STRIP_DAC_SCLK_PAD : OUT STD_LOGIC;
+           STRIP_DAC_RESET_PAD : OUT STD_LOGIC;
+           STRIP_DAC_BUSAB_PAD : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
+           STRIP_DAC_DATACLK_PAD : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+           STRIP_DAC_CLK_PAD_P : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+           STRIP_DAC_CLK_PAD_N : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+           STRIP_RESET_PAD_P : OUT STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_RESET_PAD_N : OUT STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_SHIFT_PAD_P : OUT STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_SHIFT_PAD_N : OUT STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_SCIN_PAD_P : OUT STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0); 
+           STRIP_SCIN_PAD_N : OUT STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_SCOUT_PAD_P : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0); 
+           STRIP_SCOUT_PAD_N : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_BCOCLK_PAD_P : OUT STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_BCOCLK_PAD_N : OUT STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_MCLKA0_PAD_P : OUT STD_LOGIC;
+           STRIP_MCLKA0_PAD_N : OUT STD_LOGIC;
+           STRIP_MCLKB0_PAD_P : OUT STD_LOGIC;
+           STRIP_MCLKB0_PAD_N : OUT STD_LOGIC;
+           STRIP_MCLKA1_PAD_P : OUT STD_LOGIC;
+           STRIP_MCLKA1_PAD_N : OUT STD_LOGIC;
+           STRIP_MCLKB1_PAD_P : OUT STD_LOGIC;
+           STRIP_MCLKB1_PAD_N : OUT STD_LOGIC;
+           STRIP_OUT1_0_PAD_P : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_OUT1_0_PAD_N : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_OUT1_1_PAD_P : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_OUT1_1_PAD_N : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_OUT1_2_PAD_P : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_OUT1_2_PAD_N : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_OUT1_3_PAD_P : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_OUT1_3_PAD_N : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_OUT1_4_PAD_P : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_OUT1_4_PAD_N : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_GOTHITOR_PAD_P : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+           STRIP_GOTHITOR_PAD_N : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0)
+        );
+end top;
+
+architecture RTL of top is
+
+  COMPONENT core
+  PORT (
+    Clk : IN STD_LOGIC;
+    Reset : IN STD_LOGIC;
+    IO_Addr_Strobe : OUT STD_LOGIC;
+    IO_Read_Strobe : OUT STD_LOGIC;
+    IO_Write_Strobe : OUT STD_LOGIC;
+    IO_Address : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    IO_Byte_Enable : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    IO_Write_Data : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    IO_Read_Data : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    IO_Ready : IN STD_LOGIC;
+    UART_Rx : IN STD_LOGIC;
+    UART_Tx : OUT STD_LOGIC;
+    INTC_Interrupt : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    INTC_IRQ : OUT STD_LOGIC
+  );
+  END COMPONENT;
+
+  COMPONENT strip_interface
+    GENERIC ( NSENSOR : INTEGER := 2 );
+    PORT (
+      CLK : IN STD_LOGIC;
+      IOBUS : IN iobus_t;
+      WRITE_DATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+      IOBUS_READY : OUT STD_LOGIC;
+      CLKX : IN STD_LOGIC;
+      CLKY : IN STD_LOGIC;
+      EXT_CLK : IN STD_LOGIC;
+      EXT_TRIG : IN STD_LOGIC;
+      ext_halt : in std_logic;
+      ext_start : in std_logic;
+
+      DAC_CS : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+      DAC_SDI : OUT STD_LOGIC;
+      DAC_SDO : IN STD_LOGIC;
+      DAC_SCLK : OUT STD_LOGIC;
+      DAC_RESET : OUT STD_LOGIC;
+      DAC_BUSAB : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
+      DAC_CLK : OUT STD_LOGIC;
+      DAC_DATACLK : OUT STD_LOGIC;
+
+      MCLKA : OUT STD_LOGIC;
+      MCLKB : OUT STD_LOGIC;
+      BCOCLK : OUT STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+      RESET : OUT STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+      SHIFT : OUT STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+      SCIN : OUT STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+      SCOUT : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+      OUT1_0 : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+      OUT1_1 : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+      OUT1_2 : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+      OUT1_3 : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+      OUT1_4 : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+      HITOR : IN STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+      DATA_AVAILABLE : OUT STD_LOGIC;
+      SYNC_ERROR : OUT STD_LOGIC;
+      BCO_ZERO : OUT STD_LOGIC;
+      STREAM_RCLK : IN STD_LOGIC;
+      STREAM_READ_ENABLE : IN STD_LOGIC;
+      STREAM_DOUT : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+      STREAM_LENGTH : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+      STREAM_CKSUM : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+      STREAM_STROBE : OUT STD_LOGIC;
+      STREAM_READY : IN STD_LOGIC;
+
+      SERDES_DATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+      SERDES_DATA_WE : OUT STD_LOGIC;
+
+      STRIP_DEBUG : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+      DEBUG_SELECT : OUT STD_LOGIC
+    );
+  END COMPONENT;
+
+  COMPONENT trigpattern 
+    GENERIC (
+      PATTERN : STD_LOGIC_VECTOR := "000";
+      CLOCK_EDGE : STRING := "RISING";
+      WIDTH : INTEGER := 1
+    );
+    PORT (
+      CLK : IN STD_LOGIC;
+      D : IN STD_LOGIC;
+      TRIGGER : OUT STD_LOGIC
+    );
+  END COMPONENT;
+
+  SIGNAL CLK15NS : STD_LOGIC;
+  SIGNAL CLK5MHZ : STD_LOGIC;
+  SIGNAL CORE_RESET : STD_LOGIC := '0';
+  SIGNAL UART_RX : STD_LOGIC;
+  SIGNAL UART_TX : STD_LOGIC;
+  SIGNAL UART_IRX : STD_LOGIC;
+  SIGNAL UART_ITX : STD_LOGIC;
+  SIGNAL IRQ : STD_LOGIC;
+  SIGNAL INTERRUPT : STD_LOGIC_VECTOR(0 DOWNTO 0);
+  SIGNAL DEBUG : STD_LOGIC_VECTOR(7 DOWNTO 0);
+  SIGNAL GBE_DEBUG : STD_LOGIC_VECTOR(7 DOWNTO 0);
+  SIGNAL DEBUG_PORT : STD_LOGIC_VECTOR(7 DOWNTO 0);
+  SIGNAL LED : STD_LOGIC_VECTOR(1 DOWNTO 0);
+  SIGNAL LED_PORT : STD_LOGIC_VECTOR(1 DOWNTO 0);
+  SIGNAL JUMPERS : STD_LOGIC_VECTOR(7 DOWNTO 0);
+
+  SIGNAL STRIP_DAC_SCLK : STD_LOGIC;
+  SIGNAL STRIP_DAC_CS : STD_LOGIC_VECTOR(3 DOWNTO 0);
+  SIGNAL STRIP_DAC_SDI : STD_LOGIC;
+  SIGNAL STRIP_DAC_SDO : STD_LOGIC;
+  SIGNAL STRIP_DAC_RESET : STD_LOGIC;
+  SIGNAL STRIP_DAC_BUSAB : STD_LOGIC_VECTOR(11 DOWNTO 0);
+  SIGNAL STRIP_DAC_CLK : STD_LOGIC;
+  SIGNAL STRIP_DAC_DATACLK : STD_LOGIC;
+
+  SIGNAL EXT_CLK : STD_LOGIC;
+  SIGNAL EXT_CMD : STD_LOGIC;
+  signal ext_clk_out : std_logic;
+  signal ext_trig_out : std_logic;
+  SIGNAL HALT : STD_LOGIC;
+  SIGNAL START : STD_LOGIC;
+  SIGNAL TRIGGER : STD_LOGIC;
+ 
+  SIGNAL STRIP_MCLKA : STD_LOGIC;
+  SIGNAL STRIP_MCLKB : STD_LOGIC;
+  SIGNAL STRIP_BCOCLK : STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+  SIGNAL STRIP_RESET : STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+  SIGNAL STRIP_SHIFT : STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+  SIGNAL STRIP_SCIN : STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+  SIGNAL STRIP_SCOUT : STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+  SIGNAL STRIP_OUT1_0 : STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+  SIGNAL STRIP_OUT1_1 : STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+  SIGNAL STRIP_OUT1_2 : STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+  SIGNAL STRIP_OUT1_3 : STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+  SIGNAL STRIP_OUT1_4 : STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+  SIGNAL STRIP_DATA_AVAILABLE : STD_LOGIC;
+  SIGNAL STRIP_SYNC_ERROR : STD_LOGIC;
+  SIGNAL STRIP_BCO_ZERO : STD_LOGIC;
+  SIGNAL STRIP_HITOR : STD_LOGIC_VECTOR(NSENSOR-1 DOWNTO 0);
+
+  SIGNAL STREAM_READ_ENABLE : STD_LOGIC;
+  SIGNAL STREAM_DOUT : STD_LOGIC_VECTOR(7 DOWNTO 0);
+  SIGNAL STREAM_LENGTH : STD_LOGIC_VECTOR(15 DOWNTO 0);
+  SIGNAL STREAM_CKSUM : STD_LOGIC_VECTOR(15 DOWNTO 0);
+  SIGNAL STREAM_STROBE : STD_LOGIC;
+  SIGNAL STREAM_READY : STD_LOGIC;
+  SIGNAL STRIP_DEBUG : STD_LOGIC_VECTOR(7 DOWNTO 0);
+  signal trigger_debug : std_logic_vector(7 downto 0);
+
+  SIGNAL GMII_TXD : STD_LOGIC_VECTOR(7 DOWNTO 0);
+  SIGNAL GMII_TXER : STD_LOGIC;
+  SIGNAL GMII_TXEN : STD_LOGIC;
+  SIGNAL GMII_RESET : STD_LOGIC;
+  SIGNAL GMII_TXCLK : STD_LOGIC;
+  SIGNAL GMII_RXCLK : STD_LOGIC;
+  SIGNAL GMII_RXDV : STD_LOGIC;
+  SIGNAL GMII_RXER : STD_LOGIC;
+  SIGNAL GMII_RXD : STD_LOGIC_VECTOR(7 DOWNTO 0);
+
+  SIGNAL SERDES_STRIP_DATA : STD_LOGIC_VECTOR(31 DOWNTO 0);
+  SIGNAL SERDES_STRIP_DATA_WE : STD_LOGIC;
+
+  SIGNAL TLK_TXD : STD_LOGIC_VECTOR(15 DOWNTO 0);
+  SIGNAL TLK_GTX_CLK : STD_LOGIC;
+  SIGNAL TLK_GTX_CLK_OBUF : STD_LOGIC;
+  SIGNAL TLK_LCKREFN : STD_LOGIC;
+  SIGNAL TLK_PREM : STD_LOGIC;
+  SIGNAL TLK_TXEN : STD_LOGIC;
+  SIGNAL TLK_TXER : STD_LOGIC;
+  SIGNAL TLK_ENABLE : STD_LOGIC;
+  SIGNAL TLK_LOOPEN : STD_LOGIC;
+  SIGNAL TLK_PRBSEN : STD_LOGIC;
+  SIGNAL TLK_TESTEN : STD_LOGIC;
+  SIGNAL TLK_RXER : STD_LOGIC;
+  SIGNAL TLK_RXDV : STD_LOGIC;
+  SIGNAL TLK_RXCLK : STD_LOGIC;
+  SIGNAL TLK_RXD : STD_LOGIC_VECTOR(15 DOWNTO 0);
+  SIGNAL SFP_ENABLEN : STD_LOGIC;
+  SIGNAL SFP_TXDIS : STD_LOGIC;
+  SIGNAL SFP_RS : STD_LOGIC;
+  SIGNAL SFP_TXFAULT : STD_LOGIC;
+  SIGNAL SFP_MODABS : STD_LOGIC;
+  SIGNAL SFP_LOS : STD_LOGIC;
+
+  signal strip_debug_select : std_logic;
+
+  CONSTANT NSLAVE : INTEGER := 4;
+
+  SIGNAL MASTER_IOBUS : iobus_t;
+  SIGNAL SLAVE_IOBUS : iobus_array_t(NSLAVE-1 DOWNTO 0);
+  SIGNAL SLAVE_WRITE_DATA : data_array_t(NSLAVE-1 DOWNTO 0);
+  SIGNAL SLAVE_READY : ready_array_t(NSLAVE-1 DOWNTO 0);
+  SIGNAL IO_READ_DATA : STD_LOGIC_VECTOR(31 DOWNTO 0);
+  SIGNAL IO_READY : STD_LOGIC;
+
+  constant stib_type : string := "FNAL_SLAVE";
+--  constant stib_type : string := "PURDUE_SLAVE";
+
+BEGIN 
+  mcs_0 : core
+  PORT MAP (
+    Clk => CLK15NS,
+    Reset => CORE_RESET,
+    IO_Addr_Strobe => MASTER_IOBUS.IO_Addr_Strobe,
+    IO_Read_Strobe => MASTER_IOBUS.IO_Read_Strobe,
+    IO_Write_Strobe => MASTER_IOBUS.IO_Write_Strobe,
+    IO_Address => MASTER_IOBUS.IO_Address,
+    IO_Byte_Enable => MASTER_IOBUS.IO_Byte_Enable,
+    IO_Write_Data => MASTER_IOBUS.IO_Write_Data,
+    IO_Read_Data => IO_READ_DATA,
+    IO_Ready => IO_READY,
+    UART_Rx => UART_Rx,
+    UART_Tx => UART_Tx,
+    INTC_Interrupt => INTERRUPT,
+    INTC_IRQ => IRQ
+  );
+
+  gs1 : if ( stib_type = "FNAL_SLAVE" ) generate
+    gbe_imp : gbe_interface
+    GENERIC MAP (
+      MAC_ADDRESS => "00:80:55:ec:00:03",
+      IP_ADDRESS => "192.168.133.5",
+      NETMASK => "255.255.255.0",
+      GATEWAY => "192.168.133.1",
+      JUMPERS => true,
+      DHCP => false
+    )
+    PORT MAP (
+      RESET => GMII_RESET,
+      RXCLK => GMII_RXCLK,
+      RXD => GMII_RXD,
+      RXDV => GMII_RXDV,
+      RXER => GMII_RXER,
+      TXCLK => GMII_TXCLK,
+      TXD => GMII_TXD,
+      TXEN => GMII_TXEN,
+      TXER => GMII_TXER,
+      JUMPERED_ADDRESS => JUMPERS,
+      BUSCLK => CLK15NS,
+      IOBUS => SLAVE_IOBUS(1),
+      WRITE_DATA => SLAVE_WRITE_DATA(1),
+      IOBUS_READY => SLAVE_READY(1),
+      INTERRUPT => INTERRUPT(0),
+      STREAM_READ_ENABLE => STREAM_READ_ENABLE,
+      STREAM_DOUT => STREAM_DOUT,
+      STREAM_LENGTH => STREAM_LENGTH,
+      STREAM_CKSUM => STREAM_CKSUM,
+      STREAM_STROBE => STREAM_STROBE,
+      STREAM_READY => STREAM_READY,
+  
+      DEBUG => GBE_DEBUG
+    );
+  end generate;
+
+  gs2 : if ( stib_type = "PURDUE_SLAVE" ) generate
+    gbe_imp : gbe_interface
+    GENERIC MAP (
+      MAC_ADDRESS => "00:aa:bb:cc:00:1f",
+      IP_ADDRESS => "192.168.1.5",
+      NETMASK => "255.255.255.0",
+      GATEWAY => "192.168.1.102",
+      JUMPERS => false,
+      DHCP => false
+    )
+    PORT MAP (
+      RESET => GMII_RESET,
+      RXCLK => GMII_RXCLK,
+      RXD => GMII_RXD,
+      RXDV => GMII_RXDV,
+      RXER => GMII_RXER,
+      TXCLK => GMII_TXCLK,
+      TXD => GMII_TXD,
+      TXEN => GMII_TXEN,
+      TXER => GMII_TXER,
+      JUMPERED_ADDRESS => JUMPERS,
+      BUSCLK => CLK15NS,
+      IOBUS => SLAVE_IOBUS(1),
+      WRITE_DATA => SLAVE_WRITE_DATA(1),
+      IOBUS_READY => SLAVE_READY(1),
+      INTERRUPT => INTERRUPT(0),
+      STREAM_READ_ENABLE => STREAM_READ_ENABLE,
+      STREAM_DOUT => STREAM_DOUT,
+      STREAM_LENGTH => STREAM_LENGTH,
+      STREAM_CKSUM => STREAM_CKSUM,
+      STREAM_STROBE => STREAM_STROBE,
+      STREAM_READY => STREAM_READY,
+  
+      DEBUG => GBE_DEBUG
+    );
+  end generate;
+
+  tlk_imp : tlkserdes_interface
+  PORT MAP (
+    BUSCLK => CLK15NS,
+    IOBUS => SLAVE_IOBUS(2),
+    WRITE_DATA => SLAVE_WRITE_DATA(2),
+    IOBUS_READY => SLAVE_READY(2),
+    STRIP_DATA_CLK => STRIP_MCLKA,
+    STRIP_DATA => SERDES_STRIP_DATA,
+    STRIP_DATA_WE => SERDES_STRIP_DATA_WE,
+    ENABLE => TLK_ENABLE,
+    TESTEN => TLK_TESTEN,
+    LOOPEN => TLK_LOOPEN,
+    PRBSEN => TLK_PRBSEN,
+    LCKREFN => TLK_LCKREFN,
+    PREM => TLK_PREM,
+    GTXCLK => TLK_GTX_CLK,
+    RXCLK => TLK_RXCLK,
+    RXDV => TLK_RXDV,
+    RXER => TLK_RXER,
+    RXD => TLK_RXD,
+    TXEN => TLK_TXEN,
+    TXER => TLK_TXER,
+    TXD => TLK_TXD,
+    ENABLEN => SFP_ENABLEN,
+    TXDIS => SFP_TXDIS,
+    RATESEL => SFP_RS,
+    TXFAULT => SFP_TXFAULT,
+    MODULE_ABSENT => SFP_MODABS,
+    LOSS_OF_SYNC => SFP_LOS
+  );
+
+  clock_imp : clock_interface
+  PORT MAP (
+    CLK => CLK15NS,
+    BUSCLK => CLK15NS,
+    IOBUS => SLAVE_IOBUS(0),
+    WRITE_DATA => SLAVE_WRITE_DATA(0),
+    IOBUS_READY => SLAVE_READY(0),
+    ONEPPS => LED(0)
+  );
+ 
+  iobus_imp : iobus_interface
+  GENERIC MAP (
+    NSLAVE => NSLAVE
+  )
+  PORT MAP (
+    CLK => CLK15NS,
+    MASTER => MASTER_IOBUS,
+    IO_READ_DATA => IO_READ_DATA,
+    IO_READY => IO_READY,
+    SLAVE => SLAVE_IOBUS,
+    IO_WRITE_DATA => SLAVE_WRITE_DATA,
+    SLAVE_READY => SLAVE_READY
+  );
+
+  strip_imp : strip_interface
+  GENERIC MAP ( NSENSOR => NSENSOR )
+  PORT MAP (
+    CLK => CLK15NS,
+    IOBUS => SLAVE_IOBUS(3),
+    WRITE_DATA => SLAVE_WRITE_DATA(3),
+    IOBUS_READY => SLAVE_READY(3),
+    CLKX => CLK15NS,
+    CLKY => CLK5MHZ,
+    EXT_CLK => EXT_CLK,
+    EXT_TRIG => TRIGGER,
+    EXT_HALT => HALT,
+    EXT_START => START,
+    DAC_CS => STRIP_DAC_CS,
+    DAC_SDI => STRIP_DAC_SDI,
+    DAC_SDO => STRIP_DAC_SDO,
+    DAC_SCLK => STRIP_DAC_SCLK,
+    DAC_RESET => STRIP_DAC_RESET,
+    DAC_BUSAB => STRIP_DAC_BUSAB,
+    DAC_CLK => STRIP_DAC_CLK,
+    DAC_DATACLK => STRIP_DAC_DATACLK,
+    MCLKA => STRIP_MCLKA,
+    MCLKB => STRIP_MCLKB,
+    BCOCLK => STRIP_BCOCLK,
+    RESET => STRIP_RESET,
+    SHIFT => STRIP_SHIFT,
+    SCIN => STRIP_SCIN,
+    SCOUT => STRIP_SCOUT,
+    OUT1_0 => STRIP_OUT1_0,
+    OUT1_1 => STRIP_OUT1_1,
+    OUT1_2 => STRIP_OUT1_2,
+    OUT1_3 => STRIP_OUT1_3,
+    OUT1_4 => STRIP_OUT1_4,
+    HITOR => STRIP_HITOR,
+    DATA_AVAILABLE => STRIP_DATA_AVAILABLE,
+    SYNC_ERROR => STRIP_SYNC_ERROR,
+    BCO_ZERO => STRIP_BCO_ZERO,
+    STREAM_RCLK => GMII_RXCLK,
+    STREAM_READ_ENABLE => STREAM_READ_ENABLE,
+    STREAM_DOUT => STREAM_DOUT,
+    STREAM_LENGTH => STREAM_LENGTH,
+    STREAM_CKSUM => STREAM_CKSUM,
+    STREAM_STROBE => STREAM_STROBE,
+    STREAM_READY => STREAM_READY,
+    SERDES_DATA => SERDES_STRIP_DATA,
+    SERDES_DATA_WE => SERDES_STRIP_DATA_WE,
+    STRIP_DEBUG => STRIP_DEBUG,
+    DEBUG_SELECT => STRIP_DEBUG_SELECT
+  );
+
+  trigpattern_imp : trigpattern
+  GENERIC MAP (
+    PATTERN => "01010",
+    CLOCK_EDGE => "FALLING",
+    WIDTH => 1
+  )
+  PORT MAP (
+    CLK => EXT_CLK,
+    D => EXT_CMD,
+    TRIGGER => TRIGGER
+  );
+
+  startpattern_imp : trigpattern
+  GENERIC MAP (
+    PATTERN => "01101",
+    CLOCK_EDGE => "FALLING",
+    WIDTH => 4
+  )
+  PORT MAP (
+    CLK => EXT_CLK,
+    D => EXT_CMD,
+    TRIGGER => START
+  );
+
+  haltpattern_imp : trigpattern
+  GENERIC MAP (
+    PATTERN => "00111",
+    CLOCK_EDGE => "FALLING",
+    WIDTH => 2
+  )
+  PORT MAP (
+    CLK => EXT_CLK,
+    D => EXT_CMD,
+    TRIGGER => HALT
+  );
+
+  clk15ns_ibufg : IBUFG
+  GENERIC MAP (
+    IOSTANDARD => "LVCMOS25"
+  )
+  PORT MAP (
+    O => CLK15NS,
+    I => CLK15NS_PAD
+  );
+  clk5mhz_ibufg : IBUFG
+  GENERIC MAP (
+    IOSTANDARD => "LVCMOS25"
+  )
+  PORT MAP (
+    O => CLK5MHZ,
+    I => CLK5MHZ_PAD
+  );
+
+  G_SPI : FOR I IN 0 TO 3 GENERATE
+    dac_cs_obuf : OBUF
+    GENERIC MAP (
+      IOSTANDARD => "LVCMOS25"
+    )
+    PORT MAP (
+      I => NOT STRIP_DAC_CS(I),
+      O => STRIP_DAC_CS_PAD(I)
+    );
+  END GENERATE;
+
+  G_LED : FOR I IN 0 TO 1 GENERATE
+    led_obuf : OBUF
+    GENERIC MAP (
+      IOSTANDARD => "LVCMOS25",
+      SLEW => "SLOW"
+    )
+    PORT MAP (
+      I => LED(I),
+      O => LED_PAD(I)
+    );
+  END GENERATE;
+  G_DEBUG : FOR I IN 0 TO 7 GENERATE
+    debug_obuf : OBUF
+    GENERIC MAP (
+      IOSTANDARD => "LVCMOS25",
+      SLEW => "SLOW"
+    )
+    PORT MAP (
+      I => DEBUG_PORT(I),
+      O => DEBUG_PORT_PAD(I)
+    );
+  END GENERATE;
+  
+  uart_tx_obuf : OBUF
+  GENERIC MAP (
+    DRIVE => 12,
+    IOSTANDARD => "LVCMOS25",
+    SLEW => "SLOW" )
+  PORT MAP (
+    O => UART_TX_PAD,
+    I => UART_TX
+  );
+  uart_rx_ibuf : IBUF
+  GENERIC MAP (
+    IOSTANDARD => "LVCMOS25"
+  )
+  PORT MAP (
+    I => UART_RX_PAD,
+    O => UART_RX
+  );
+
+--  GMII interface to GbE PHY layer
+
+  gmii_rxclk_ibufg : IBUFG
+  GENERIC MAP (
+    IOSTANDARD => "LVCMOS25"
+  )
+  PORT MAP (
+    I => GMII_RXCLK_PAD,
+    O => GMII_RXCLK
+  );
+  gmii_rxdv_ibufg : IBUF
+  GENERIC MAP (
+    IOSTANDARD => "LVCMOS25"
+  )
+  PORT MAP (
+    I => GMII_RXDV_PAD,
+    O => GMII_RXDV
+  );
+  gmii_rxer_ibufg : IBUF
+  GENERIC MAP (
+    IOSTANDARD => "LVCMOS25"
+  )
+  PORT MAP (
+    I => GMII_RXER_PAD,
+    O => GMII_RXER
+  );
+
+  gmii_txer_obuf : ODDR
+  GENERIC MAP (
+    DDR_CLK_EDGE => "SAME_EDGE"
+  )
+  PORT MAP (
+    Q => GMII_TXER_PAD,
+    C => GMII_RXCLK,
+    CE => '1',
+    D1 => GMII_TXER,
+    D2 => GMII_TXER,
+    R => '0',
+    S => '0'
+  );
+  gmii_txen_obuf : ODDR
+  GENERIC MAP (
+    DDR_CLK_EDGE => "SAME_EDGE"
+  )
+  PORT MAP (
+    Q => GMII_TXEN_PAD,
+    C => GMII_RXCLK,
+    CE => '1',
+    D1 => GMII_TXEN,
+    D2 => GMII_TXEN,
+    R => '0',
+    S => '0'
+  );
+  gmii_txclk_obuf : ODDR
+  GENERIC MAP (
+    DDR_CLK_EDGE => "SAME_EDGE"
+  )
+  PORT MAP (
+    Q => GMII_TXCLK_PAD,
+    C => GMII_RXCLK,
+    CE => '1',
+    D1 => '0',
+    D2 => '1',
+    R => '0',
+    S => '0'
+  );
+  gmii_reset_obuf : OBUF
+  GENERIC MAP (
+    IOSTANDARD => "LVCMOS25",
+    SLEW => "SLOW"
+  ) 
+  PORT MAP (
+    I => GMII_RESET,
+    O => GMII_RESET_PAD
+  );
+  G_GMII: FOR I IN 0 TO 7 GENERATE
+    gmii_txd_obuf : ODDR
+    GENERIC MAP (
+      DDR_CLK_EDGE => "SAME_EDGE"
+    )
+    PORT MAP (
+      Q => GMII_TXD_PAD(I),
+      C => GMII_RXCLK,
+      CE => '1',
+      D1 => GMII_TXD(I),
+      D2 => GMII_TXD(I),
+      R => '0',
+      S => '0'
+    );
+    gmii_rxd_ibuf : IBUF
+    GENERIC MAP (
+      IOSTANDARD => "LVCMOS25"
+    )
+    PORT MAP (
+      I => GMII_RXD_PAD(I),
+      O => GMII_RXD(I)
+    );
+  END GENERATE;
+
+--  TLK3101 interface
+
+  G_TLK : FOR I IN 0 TO 15 GENERATE
+    tlk_txd_obuf : ODDR
+    GENERIC MAP (
+      DDR_CLK_EDGE => "SAME_EDGE"
+    )
+    PORT MAP (
+      Q => TLK_TXD_PAD(I),
+      C => TLK_GTX_CLK,
+      CE => '1',
+      D1 => TLK_TXD(I),
+      D2 => TLK_TXD(I),
+      R => '0',
+      S => '0'
+    );
+    tlk_rxd_ibuf : IBUF
+    GENERIC MAP (
+      IOSTANDARD => "LVCMOS25"
+    )
+    PORT MAP (
+      I => TLK_RXD_PAD(I),
+      O => TLK_RXD(I)
+    );
+  END GENERATE;
+  tlk_gtx_clk_oddr : ODDR
+  GENERIC MAP (
+    DDR_CLK_EDGE => "SAME_EDGE"
+  )
+  PORT MAP (
+    Q => TLK_GTX_CLK_OBUF,
+    C => TLK_GTX_CLK,
+    CE => '1',
+    D1 => '0',
+    D2 => '1',   -- This makes an inverted output clock so that the TLK3101 samples on the rising edge.
+    R => '0',
+    S => '0'
+  );
+  tlk_gtx_clk_output_buffer : OBUF
+  GENERIC MAP (
+    IOSTANDARD => "LVCMOS25",
+    DRIVE => 24,
+    SLEW => "FAST"
+  )
+  PORT MAP (
+    I => TLK_GTX_CLK_OBUF,
+    O => TLK_GTX_CLK_PAD
+  );
+
+  tlk_txen_obuf : ODDR
+  GENERIC MAP (
+    DDR_CLK_EDGE => "SAME_EDGE"
+  )
+  PORT MAP (
+    Q => TLK_TXEN_PAD,
+    C => TLK_GTX_CLK,
+    CE => '1',
+    D1 => TLK_TXEN,
+    D2 => TLK_TXEN,
+    R => '0',
+    S => '0'
+  );
+  tlk_txer_obuf : ODDR
+  GENERIC MAP (
+    DDR_CLK_EDGE => "SAME_EDGE"
+  )
+  PORT MAP (
+    Q => TLK_TXER_PAD,
+    C => TLK_GTX_CLK,
+    CE => '1',
+    D1 => TLK_TXER,
+    D2 => TLK_TXER,
+    R => '0',
+    S => '0'
+  );
+
+  tlk_lckrefn_obuf : OBUF
+  GENERIC MAP ( IOSTANDARD => "LVCMOS25" )
+  PORT MAP (
+    I => TLK_LCKREFN,
+    O => TLK_LCKREFN_PAD
+  );
+  tlk_prem_obuf : OBUF
+  GENERIC MAP ( IOSTANDARD => "LVCMOS25" )
+  PORT MAP (
+    I => TLK_PREM,
+    O => TLK_PREM_PAD
+  );
+  tlk_enable_obuf : OBUF
+  GENERIC MAP ( IOSTANDARD => "LVCMOS25" )
+  PORT MAP (
+    I => TLK_ENABLE,
+    O => TLK_ENABLE_PAD
+  );
+  tlk_loopen_obuf : OBUF
+  GENERIC MAP ( IOSTANDARD => "LVCMOS25" )
+  PORT MAP (
+    I => TLK_LOOPEN,
+    O => TLK_LOOPEN_PAD
+  );
+  tlk_prbsen_obuf : OBUF
+  GENERIC MAP ( IOSTANDARD => "LVCMOS25" )
+  PORT MAP (
+    I => TLK_PRBSEN,
+    O => TLK_PRBSEN_PAD
+  );
+  tlk_testen_obuf : OBUF
+  GENERIC MAP ( IOSTANDARD => "LVCMOS25" )
+  PORT MAP (
+    I => TLK_TESTEN,
+    O => TLK_TESTEN_PAD
+  );
+  tlk_rxer_ibuf : IBUF
+  GENERIC MAP ( IOSTANDARD => "LVCMOS25" )
+  PORT MAP (
+    I => TLK_RXER_PAD,
+    O => TLK_RXER
+  );
+  tlk_rxdv_ibuf : IBUF
+  GENERIC MAP ( IOSTANDARD => "LVCMOS25" )
+  PORT MAP (
+    I => TLK_RXDV_PAD,
+    O => TLK_RXDV
+  );
+  tlk_rxclk_ibufg : IBUFG
+  GENERIC MAP ( IOSTANDARD => "LVCMOS25" )
+  PORT MAP (
+    I => TLK_RXCLK_PAD,
+    O => TLK_RXCLK
+  );
+  sfp_enablen_obuf : OBUF
+  GENERIC MAP ( IOSTANDARD => "LVCMOS25" )
+  PORT MAP (
+    I => SFP_ENABLEN,
+    O => SFP_ENABLEN_PAD
+  );
+  sfp_txdis_obuf : OBUF
+  GENERIC MAP ( IOSTANDARD => "LVCMOS25" )
+  PORT MAP (
+    I => SFP_TXDIS,
+    O => SFP_TXDIS_PAD
+  );
+  sfp_rs_obuf : OBUF
+  GENERIC MAP ( IOSTANDARD => "LVCMOS25" )
+  PORT MAP (
+    I => SFP_RS,
+    O => SFP_RS_PAD
+  );
+  sfp_txfault_ibuf : IBUF
+  GENERIC MAP ( IOSTANDARD => "LVCMOS25" )
+  PORT MAP (
+    I => SFP_TXFAULT_PAD,
+    O => SFP_TXFAULT
+  );
+  sfp_modabs_ibuf : IBUF
+  GENERIC MAP ( IOSTANDARD => "LVCMOS25" )
+  PORT MAP (
+    I => SFP_MODABS_PAD,
+    O => SFP_MODABS
+  );
+  sfp_los_ibuf : IBUF
+  GENERIC MAP ( IOSTANDARD => "LVCMOS25" )
+  PORT MAP (
+    I => SFP_LOS_PAD,
+    O => SFP_LOS
+  );
+
+  ext_bcoclk_ibuf : IBUFDS
+  GENERIC MAP ( IOSTANDARD => "LVDS_25",
+                DIFF_TERM => TRUE )
+  PORT MAP (
+    I => EXT_CLK_PAD_P,
+    IB => EXT_CLK_PAD_N,
+    O => EXT_CLK
+  );
+  ext_trig_ibuf : IBUFDS
+  GENERIC MAP ( IOSTANDARD => "LVDS_25",
+                DIFF_TERM => TRUE )
+  PORT MAP (
+    I => EXT_TRIG_PAD_P,
+    IB => EXT_TRIG_PAD_N,
+    O => EXT_CMD
+  );
+
+  ext_clk_oddr : oddr
+  generic map (
+    ddr_clk_edge => "SAME_EDGE"
+  )
+  port map (
+    q => ext_clk_out,
+    c => ext_clk,
+    ce => '1',
+    d1 => '1',
+    d2 => '0',
+    s => '0',
+    r => '0'
+  );
+
+  ext_clk_obuf : obufds
+  generic map (
+    iostandard => "LVDS_25"
+  )
+  port map (
+    i => ext_clk_out,
+    o => ext_clk_out_pad_p,
+    ob => ext_clk_out_pad_n
+  );
+
+  ext_trig_oddr : oddr
+  generic map (
+    ddr_clk_edge => "SAME_EDGE"
+  )
+  port map (
+    q => ext_trig_out,
+    c => ext_clk,
+    ce => '1',
+    d1 => ext_cmd,
+    d2 => ext_cmd,
+    s => '0',
+    r => '0'
+  );
+
+  ext_trig_obuf : obufds
+  generic map (
+    iostandard => "LVDS_25"
+  )
+  port map (
+    i => ext_trig_out,
+    o => ext_trig_out_pad_p,
+    ob => ext_trig_out_pad_n
+  );
+
+  G_JUMPER : FOR I IN 0 TO 7 GENERATE
+    jumper_ibuf : IBUF
+    GENERIC MAP (
+      IOSTANDARD => "LVCMOS25"
+    )
+    PORT MAP (
+      I => JUMPER_PAD(I),
+      O => JUMPERS(I)
+    );
+  END GENERATE;
+
+--  Strip interface...
+  strip_mclka0_obuf : OBUFDS
+  GENERIC MAP ( IOSTANDARD => "LVDS_25" )
+  PORT MAP (
+    I => STRIP_MCLKA,
+    O => STRIP_MCLKA0_PAD_P,
+    OB => STRIP_MCLKA0_PAD_N
+  );
+  strip_mclkb0_obuf : OBUFDS
+  GENERIC MAP ( IOSTANDARD => "LVDS_25" )
+  PORT MAP (
+    I => STRIP_MCLKB,
+    O => STRIP_MCLKB0_PAD_P,
+    OB => STRIP_MCLKB0_PAD_N
+  );
+  strip_mclka1_obuf : OBUFDS
+  GENERIC MAP ( IOSTANDARD => "LVDS_25" )
+  PORT MAP (
+    I => STRIP_MCLKA,
+    O => STRIP_MCLKA1_PAD_P,
+    OB => STRIP_MCLKA1_PAD_N
+  );
+  strip_mclkb1_obuf : OBUFDS
+  GENERIC MAP ( IOSTANDARD => "LVDS_25" )
+  PORT MAP (
+    I => STRIP_MCLKB,
+    O => STRIP_MCLKB1_PAD_P,
+    OB => STRIP_MCLKB1_PAD_N
+  );
+
+  S : FOR I IN 0 TO NSENSOR-1 GENERATE
+    strip_reset_obuf : OBUFDS
+    GENERIC MAP ( IOSTANDARD => "LVDS_25" )
+    PORT MAP (
+      I => STRIP_RESET(I),
+      O => STRIP_RESET_PAD_P(I),
+      OB => STRIP_RESET_PAD_N(I)
+    );
+    strip_shift_obuf : OBUFDS
+    GENERIC MAP ( IOSTANDARD => "LVDS_25" )
+    PORT MAP (
+      I => STRIP_SHIFT(I),
+      O => STRIP_SHIFT_PAD_P(I),
+      OB => STRIP_SHIFT_PAD_N(I)
+    );
+    strip_scout_obuf : OBUFDS
+    GENERIC MAP ( IOSTANDARD => "LVDS_25" )
+    PORT MAP (
+      I => STRIP_SCIN(I),
+      O => STRIP_SCIN_PAD_P(I),
+      OB => STRIP_SCIN_PAD_N(I)
+    );
+    strip_bcoclk_obuf : OBUFDS
+    GENERIC MAP ( IOSTANDARD => "LVDS_25" )
+    PORT MAP (
+      I => STRIP_BCOCLK(I),
+      O => STRIP_BCOCLK_PAD_P(I),
+      OB => STRIP_BCOCLK_PAD_N(I)
+    );
+
+    strip_scout_ibuf : IBUFDS
+    GENERIC MAP ( IOSTANDARD => "LVDS_25",
+                  DIFF_TERM => TRUE )
+    PORT MAP (
+      I => STRIP_SCOUT_PAD_P(I),
+      IB => STRIP_SCOUT_PAD_N(I),
+      O => STRIP_SCOUT(I)
+    );
+    strip_out1_0_ibuf : IBUFDS
+    GENERIC MAP ( IOSTANDARD => "LVDS_25",
+                  DIFF_TERM => TRUE )
+    PORT MAP (
+      I => STRIP_OUT1_0_PAD_P(I),
+      IB => STRIP_OUT1_0_PAD_N(I),
+      O => STRIP_OUT1_0(I)
+    );
+    strip_out1_1_ibuf : IBUFDS
+    GENERIC MAP ( IOSTANDARD => "LVDS_25",
+                  DIFF_TERM => TRUE )
+    PORT MAP (
+      I => STRIP_OUT1_1_PAD_P(I),
+      IB => STRIP_OUT1_1_PAD_N(I),
+      O => STRIP_OUT1_1(I)
+    );
+    strip_out1_2_ibuf : IBUFDS
+    GENERIC MAP ( IOSTANDARD => "LVDS_25",
+                  DIFF_TERM => TRUE )
+    PORT MAP (
+      I => STRIP_OUT1_2_PAD_P(I),
+      IB => STRIP_OUT1_2_PAD_N(I),
+      O => STRIP_OUT1_2(I)
+    );
+    strip_out1_3_ibuf : IBUFDS
+    GENERIC MAP ( IOSTANDARD => "LVDS_25",
+                  DIFF_TERM => TRUE )
+    PORT MAP (
+      I => STRIP_OUT1_3_PAD_P(I),
+      IB => STRIP_OUT1_3_PAD_N(I),
+      O => STRIP_OUT1_3(I)
+    );
+    strip_out1_4_ibuf : IBUFDS
+    GENERIC MAP ( IOSTANDARD => "LVDS_25",
+                  DIFF_TERM => TRUE )
+    PORT MAP (
+      I => STRIP_OUT1_4_PAD_P(I),
+      IB => STRIP_OUT1_4_PAD_N(I),
+      O => STRIP_OUT1_4(I)
+    );
+
+    hitor_ibuf : IBUFDS
+    GENERIC MAP ( IOSTANDARD => "LVDS_25",
+                  DIFF_TERM => TRUE )
+    PORT MAP (
+      I => STRIP_GOTHITOR_PAD_P(I),
+      IB => STRIP_GOTHITOR_PAD_N(I),
+      O => STRIP_HITOR(I)
+    );
+
+  END GENERATE;
+  dac_sdi_obuf : OBUF
+  GENERIC MAP (
+    IOSTANDARD => "LVCMOS25"
+  )
+  PORT MAP (
+    I => STRIP_DAC_SDI,
+    O => STRIP_DAC_SDI_PAD
+  );
+  dac_sclk_obuf : OBUF
+  GENERIC MAP (
+    IOSTANDARD => "LVCMOS25"
+  )
+  PORT MAP (
+    I => STRIP_DAC_SCLK,
+    O => STRIP_DAC_SCLK_PAD
+  );
+  dac_sdo_ibuf : IBUF
+  GENERIC MAP (
+    IOSTANDARD => "LVCMOS25"
+  )
+  PORT MAP (
+    I => STRIP_DAC_SDO_PAD,
+    O => STRIP_DAC_SDO
+  );
+  dac_reset_obuf : OBUF
+  GENERIC MAP (
+    IOSTANDARD => "LVCMOS25"
+  )
+  PORT MAP (
+    I => NOT STRIP_DAC_RESET,
+    O => STRIP_DAC_RESET_PAD
+  );
+  DACBUS : FOR I IN 0 TO 11 GENERATE
+    dac_busa_obuf : ODDR
+    PORT MAP (
+      Q => STRIP_DAC_BUSAB_PAD(I),
+      C => STRIP_DAC_DATACLK,
+      CE => '1',
+      D1 => STRIP_DAC_BUSAB(I),
+      D2 => STRIP_DAC_BUSAB(I),
+      R => '0',
+      S => '0'
+    );
+  END GENERATE;
+  DATACLK : FOR I IN 0 TO 3 GENERATE
+    dac_dataclk_obuf : ODDR
+    PORT MAP (
+      Q => STRIP_DAC_DATACLK_PAD(I),
+      C => STRIP_DAC_DATACLK,
+      CE => '1',
+      D1 => '0',
+      D2 => '1',
+      R => '0',
+      S => '0'
+    );
+  END GENERATE;
+  
+  DACCLK : FOR I IN 0 TO 3 GENERATE
+    dac_clk_obuf : OBUFDS
+    GENERIC MAP (
+      IOSTANDARD => "LVDS_25"
+    )
+    PORT MAP (
+      I => STRIP_DAC_CLK,
+      O => STRIP_DAC_CLK_PAD_P(I),
+      OB => STRIP_DAC_CLK_PAD_N(I)
+    );
+  END GENERATE;
+
+--  Other interfaces...
+
+  LED(1) <= '1';
+
+  trigger_debug <= strip_bcoclk(0) & "00" & halt & start & trigger & ext_cmd & ext_clk;
+  debug_port <= trigger_debug when strip_debug_select = '0' else strip_debug;
+
+end RTL;

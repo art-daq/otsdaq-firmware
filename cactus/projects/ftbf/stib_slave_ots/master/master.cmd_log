@@ -1,0 +1,10 @@
+xst -intstyle ise -ifn "/home/cmstestbeam/stib_June2015/master/master.xst" -ofn "/home/cmstestbeam/stib_June2015/master/master.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../stib -sd ../strip -nt timestamp -uc master.ucf -p xc4vlx25-ff668-10 master_cs.ngc master.ngd -bm "/home/cmstestbeam/stib_June2014/stib/core.bmm" 
+map -intstyle ise -p xc4vlx25-ff668-10 -timing -logic_opt off -ol high -xe n -t 1 -register_duplication off -global_opt off -cm area -ir off -pr off -power off -o master_map.ncd master.ngd master.pcf 
+par -w -intstyle ise -ol high -xe n -t 1 master_map.ncd master.ncd master.pcf 
+trce -intstyle ise -v 3 -s 10 -n 3 -fastpaths -xml master.twx master.ncd -o master.twr master.pcf -ucf master.ucf 
+ngdbuild -intstyle ise -dd _ngo -sd ../stib -sd ../strip -nt timestamp -uc master.ucf -p xc4vlx25-ff668-10 master_cs.ngc master.ngd -bm "/home/cmstestbeam/stib_June2015/stib/core.bmm" 
+map -intstyle ise -p xc4vlx25-ff668-10 -timing -logic_opt off -ol high -xe n -t 1 -register_duplication off -global_opt off -cm area -ir off -pr off -power off -o master_map.ncd master.ngd master.pcf 
+par -w -intstyle ise -ol high -xe n -t 1 master_map.ncd master.ncd master.pcf 
+trce -intstyle ise -v 3 -s 10 -n 3 -fastpaths -xml master.twx master.ncd -o master.twr master.pcf -ucf master.ucf 
+bitgen -intstyle ise -f master.ut master.ncd 
