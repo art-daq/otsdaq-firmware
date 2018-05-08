@@ -332,7 +332,7 @@ BEGIN
 				slow_clk=>CLK15NS,
 				user_ready=>strip_ready_and,--strip_ready,
 				user_addr=>JUMPERS,
-                tx_rden=>tx_rden,
+            tx_rden=>tx_rden,
 				reset_out => reset,
 				tx_data(63 downto 0)=>tx_data(63 downto 0),
 				b_enable=>open,

@@ -117,6 +117,8 @@ architecture Behavioral of stripclk is
       q : out std_logic_vector(2 downto 0)
     );
   end component;
+  
+  signal fcbo_watchdog_reset : std_logic := '0';
 
 begin
 
@@ -205,6 +207,51 @@ begin
     ignore0 => '1'
   );
 
+	fboWatchdog : for i in 0 to 0 generate
+	
+		signal fcbo_watchdog_reset_sig : std_logic := '0';
+		
+		signal fcbo_watchdog_low_timer : unsigned(7 downto 0) := (others => '1');
+		signal fcbo_watchdog_reset_timer : unsigned(7 downto 0) := (others => '1');
+		
+	begin
+	
+		fcbo_watchdog_reset <= reset or fcbo_watchdog_reset_sig;
+				
+		process(clk_Z)
+		begin
+			if (rising_edge(clk_z)) then
+				
+				fcbo_watchdog_reset_sig <= '0';
+			
+				if ( dcm_fbco_locked = '1' ) then
+					fcbo_watchdog_low_timer <= (others => '1');
+					fcbo_watchdog_reset_timer <= (others => '1');
+				else -- 
+					if (fcbo_watchdog_low_timer = 0) then --been unlocked for a long time, try relocking
+					
+						--hold reset for a while
+						if (fcbo_watchdog_reset_timer = 0) then 
+							--unreset and start low timer again, hope re-locks!?
+							fcbo_watchdog_low_timer <= (others => '1');
+							fcbo_watchdog_reset_timer <= (others => '1');
+						else
+							fcbo_watchdog_reset_sig <= '1';
+							fcbo_watchdog_reset_timer <= fcbo_watchdog_reset_timer - 1;
+						end if;
+						
+					else --wait to see if unlocked for a long time
+						fcbo_watchdog_low_timer <= fcbo_watchdog_low_timer - 1;
+					end if;
+					
+					
+				
+				end if;				
+			
+			end if;
+		end process;
+	end generate;
+	
   fbcoclk_dcm : dcm_adv
   generic map (
     clkin_period => 15.0,
@@ -215,8 +262,8 @@ begin
   )
   port map (
     clkin => clk_z,
-    clkfb => dcm_fbco_a,   -- Direct feedback since this edje is not used
-    rst => reset,
+    clkfb => dcm_fbco_a,   -- Direct feedback since this edge is not used
+    rst => fcbo_watchdog_reset, --RAR reset,
     psincdec => '0',
     psclk => '0',
     psen => '0',

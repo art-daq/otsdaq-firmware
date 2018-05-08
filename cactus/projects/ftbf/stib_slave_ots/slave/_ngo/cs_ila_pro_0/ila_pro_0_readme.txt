@@ -1,5 +1,5 @@
 The following files were generated for 'ila_pro_0' in directory
-/home/rrivera/tmp/stib_ots_tk2_/slave/_ngo/cs_ila_pro_0/
+/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_slave_ots/slave/_ngo/cs_ila_pro_0/
 
 XCO file generator:
    Generate an XCO file for compatibility with legacy flows.

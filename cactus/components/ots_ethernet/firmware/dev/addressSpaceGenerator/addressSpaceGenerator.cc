@@ -63,7 +63,7 @@ int main()
 			"Enable Dynamic MAC Address Resolution for Normal mode",
 			"Enable Dynamic MAC Address Resolution for Burst mode",
 			"OEI Ethernet Interface Version",
-			"Force reset of OEI status/errors/FIFOs/FSMs",
+			"Force reset of OEI status/errors/FIFOs/FSMs and, additionally (if bit-1 is low), reset is forwarded out of Ethernet block",
 	};
 	//sz = sz; //DONT FORGET TO UPDATE SIZE!!!!!!!
 	unsigned int address[] =
@@ -84,7 +84,7 @@ int main()
 			1,
 			1, 1,
 			16,
-			1,
+			2,
 	};
 	unsigned int specialStrobe[] =
 	{
@@ -110,7 +110,7 @@ int main()
 
 	printf("\tinternal_eth_dout <= (others => '0');\n");
 	printf("\tinternal_dout <= (others => '0');\n");
-	printf("\tinternal_reset <= '0';\n");
+	printf("\tinternal_reset(0) <= '0';\n");
 	//for (int i=0; i<numSpecialStrobes; i++) 
 	//printf("\t%s <= '0';\n", specialStrobeSigs[i].c_str());
 	//
