@@ -2998,14 +2998,14 @@
             <blockpin signalname="rx_data(0)" name="D" />
             <blockpin signalname="XLXN_17849" name="Q" />
         </block>
-        <block symbolname="gnd" name="XLXI_5828">
-            <blockpin signalname="scin_phys(1)" name="G" />
-        </block>
-        <block symbolname="gnd" name="XLXI_5829">
-            <blockpin signalname="scin_phys(2)" name="G" />
-        </block>
         <block symbolname="gnd" name="XLXI_6434">
             <blockpin signalname="trigger_throttle" name="G" />
+        </block>
+        <block symbolname="vcc" name="XLXI_6435">
+            <blockpin signalname="scin_phys(1)" name="P" />
+        </block>
+        <block symbolname="vcc" name="XLXI_6436">
+            <blockpin signalname="scin_phys(2)" name="P" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="7040" height="5440">
@@ -6760,12 +6760,12 @@
             <wire x2="1824" y1="3376" y2="3424" x1="1824" />
             <wire x2="2784" y1="3376" y2="3376" x1="1824" />
         </branch>
-        <instance x="1760" y="3552" name="XLXI_5828" orien="R0" />
         <branch name="scin_phys(2)">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2848" y="3472" type="branch" />
             <wire x2="1904" y1="3472" y2="3520" x1="1904" />
             <wire x2="2848" y1="3472" y2="3472" x1="1904" />
         </branch>
-        <instance x="1840" y="3648" name="XLXI_5829" orien="R0" />
+        <instance x="1968" y="3520" name="XLXI_6436" orien="R180" />
+        <instance x="1888" y="3424" name="XLXI_6435" orien="R180" />
     </sheet>
 </drawing>

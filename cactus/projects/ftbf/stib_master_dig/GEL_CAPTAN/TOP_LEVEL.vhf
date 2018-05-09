@@ -7,7 +7,7 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : TOP_LEVEL.vhf
--- /___/   /\     Timestamp : 05/09/2018 10:55:02
+-- /___/   /\     Timestamp : 05/09/2018 11:42:59
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
@@ -4384,12 +4384,6 @@ begin
       port map (I=>token(3),
                 O=>token(0));
    
-   XLXI_5828 : GND
-      port map (G=>scin_phys(1));
-   
-   XLXI_5829 : GND
-      port map (G=>scin_phys(2));
-   
    XLXI_5836 : TriggerBlock
       port map (en=>telescope_trigger_en,
                 master_clk_delay(3 downto 0)=>rx_data(19 downto 16),
@@ -5049,6 +5043,12 @@ begin
    
    XLXI_6434 : GND
       port map (G=>trigger_throttle);
+   
+   XLXI_6435 : VCC
+      port map (P=>scin_phys(1));
+   
+   XLXI_6436 : VCC
+      port map (P=>scin_phys(2));
    
 end BEHAVIORAL;
 
