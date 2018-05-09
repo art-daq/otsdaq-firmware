@@ -364,10 +364,7 @@
         <signal name="event_number(63:0)" />
         <signal name="PSI_PHASE_FLIP_MAP" />
         <signal name="psi_token_in_mux(2)" />
-        <signal name="dut_dcm_clk90(2)" />
         <signal name="XLXN_18810" />
-        <signal name="dut_dcm_clk90(1)" />
-        <signal name="dut_dcm_clk90(0)" />
         <signal name="psi_token_in_mux(1)" />
         <signal name="psi_token_in_mux(0)" />
         <signal name="dut_src_clk" />
@@ -466,7 +463,32 @@
         <signal name="XLXN_19147" />
         <signal name="XLXN_19144" />
         <signal name="XLXN_19145" />
-        <signal name="EXT_TRIGG_FWD" />
+        <signal name="trig_veto_dur(19:0)" />
+        <signal name="trig_veto_dur(31:0)" />
+        <signal name="trig_veto_dur(15:0)" />
+        <signal name="trig_veto_dur(31:16)" />
+        <signal name="rx_data(31:16)" />
+        <signal name="trig_mask_hi" />
+        <signal name="trig_mask_en" />
+        <signal name="rx_data(36)" />
+        <signal name="rx_data(32)" />
+        <signal name="XLXN_18128" />
+        <signal name="trigger_throttle" />
+        <signal name="trig_fifo_ts(7:0)" />
+        <signal name="trig_fifo_re" />
+        <signal name="trig_fifo_we" />
+        <signal name="trig_fifo_read(7:0)" />
+        <signal name="trig_fifo_empty" />
+        <signal name="rx_data(27:20)" />
+        <signal name="rx_data(19:16)" />
+        <signal name="telescope_busy" />
+        <signal name="XLXN_17722" />
+        <signal name="XLXN_17849" />
+        <signal name="telescope_trigger_en" />
+        <signal name="scin_phys(0)" />
+        <signal name="scin_phys(2:0)" />
+        <signal name="scin_phys(1)" />
+        <signal name="scin_phys(2)" />
         <port polarity="Input" name="BUSC_16DP_32S" />
         <port polarity="Input" name="SECONDARY_CLK" />
         <port polarity="Output" name="BUSC_25DN_51S" />
@@ -960,13 +982,11 @@
             <line x2="384" y1="-544" y2="-544" x1="320" />
         </blockdef>
         <blockdef name="External_Trigger_Handler">
-            <timestamp>2018-5-3T19:41:33</timestamp>
-            <line x2="0" y1="-96" y2="-96" x1="64" />
-            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <timestamp>2018-5-9T15:9:22</timestamp>
+            <line x2="0" y1="32" y2="32" x1="64" />
+            <line x2="720" y1="32" y2="32" x1="656" />
             <line x2="0" y1="-160" y2="-160" x1="64" />
-            <rect width="592" x="64" y="-256" height="244" />
-            <line x2="720" y1="-96" y2="-96" x1="656" />
-            <line x2="720" y1="-32" y2="-32" x1="656" />
+            <rect width="592" x="64" y="-256" height="308" />
         </blockdef>
         <blockdef name="Trigger_Counter_Block">
             <timestamp>2011-9-16T12:45:11</timestamp>
@@ -1253,6 +1273,48 @@
             <line x2="96" y1="-192" y2="-448" x1="96" />
             <line x2="96" y1="-160" y2="-160" x1="128" />
             <line x2="128" y1="-200" y2="-160" x1="128" />
+        </blockdef>
+        <blockdef name="trigger_fifo_8">
+            <timestamp>2018-5-2T15:29:4</timestamp>
+            <rect width="256" x="64" y="-320" height="320" />
+            <line x2="0" y1="-288" y2="-288" x1="64" />
+            <line x2="0" y1="-224" y2="-224" x1="64" />
+            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <line x2="0" y1="-96" y2="-96" x1="64" />
+            <rect width="64" x="0" y="-44" height="24" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <line x2="384" y1="-288" y2="-288" x1="320" />
+            <line x2="384" y1="-160" y2="-160" x1="320" />
+            <rect width="64" x="320" y="-44" height="24" />
+            <line x2="384" y1="-32" y2="-32" x1="320" />
+        </blockdef>
+        <blockdef name="TriggerBlock">
+            <timestamp>2018-5-2T15:29:4</timestamp>
+            <rect width="64" x="0" y="436" height="24" />
+            <line x2="0" y1="448" y2="448" x1="64" />
+            <line x2="0" y1="336" y2="336" x1="64" />
+            <line x2="0" y1="384" y2="384" x1="64" />
+            <line x2="0" y1="32" y2="32" x1="64" />
+            <line x2="0" y1="96" y2="96" x1="64" />
+            <rect width="64" x="0" y="148" height="24" />
+            <line x2="0" y1="160" y2="160" x1="64" />
+            <rect width="64" x="0" y="212" height="24" />
+            <line x2="0" y1="224" y2="224" x1="64" />
+            <rect width="64" x="0" y="276" height="24" />
+            <line x2="0" y1="288" y2="288" x1="64" />
+            <line x2="0" y1="-288" y2="-288" x1="64" />
+            <line x2="0" y1="-224" y2="-224" x1="64" />
+            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <line x2="0" y1="-96" y2="-96" x1="64" />
+            <rect width="64" x="0" y="-44" height="24" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <line x2="448" y1="-288" y2="-288" x1="384" />
+            <line x2="448" y1="-176" y2="-176" x1="384" />
+            <line x2="448" y1="-112" y2="-112" x1="384" />
+            <rect width="64" x="384" y="-60" height="24" />
+            <line x2="448" y1="-48" y2="-48" x1="384" />
+            <line x2="448" y1="-240" y2="-240" x1="384" />
+            <rect width="320" x="64" y="-320" height="800" />
         </blockdef>
         <block symbolname="ibuf" name="XLXI_4248">
             <blockpin signalname="BUSC_16DP_32S" name="I" />
@@ -1730,7 +1792,7 @@
             <blockpin signalname="psi_token_out(0)" name="O" />
         </block>
         <block symbolname="obufds" name="XLXI_5543">
-            <blockpin signalname="dut_dcm_clk90(0)" name="I" />
+            <blockpin signalname="PSI_CLK90" name="I" />
             <blockpin signalname="BUSB_22DP_44S" name="O" />
             <blockpin signalname="BUSB_22DN_45S" name="OB" />
         </block>
@@ -1768,7 +1830,7 @@
             <blockpin signalname="psi_token_out(1)" name="O" />
         </block>
         <block symbolname="obufds" name="XLXI_5549">
-            <blockpin signalname="dut_dcm_clk90(1)" name="I" />
+            <blockpin signalname="PSI_CLK90" name="I" />
             <blockpin signalname="BUSAA_07DP_14S" name="O" />
             <blockpin signalname="BUSAA_07DN_15S" name="OB" />
         </block>
@@ -1935,10 +1997,8 @@
         </block>
         <block symbolname="External_Trigger_Handler" name="ext_trig_handler">
             <blockpin signalname="EXT_TRIGG" name="ext_trig_line_in" />
-            <blockpin signalname="PSI_CLK0" name="xclkToForward_0phase" />
-            <blockpin signalname="PSI_CLK90" name="xclkToForward_90phase" />
-            <blockpin signalname="EXT_TRIGG_FWD" name="extTrigToForward_0phase" />
-            <blockpin signalname="psi_extdom_trig" name="ext_trigger_90phase" />
+            <blockpin signalname="PSI_CLK90" name="xclk" />
+            <blockpin signalname="psi_extdom_trig" name="ext_trigger" />
         </block>
         <block symbolname="TokenStack" name="TokenStack_vector(2:0)">
             <blockpin signalname="PSI_CLK90" name="psi_clk" />
@@ -2179,7 +2239,7 @@
             </attr>
             <blockpin signalname="BUSD_26DP_52S" name="I" />
             <blockpin signalname="BUSD_26DN_53S" name="IB" />
-            <blockpin signalname="EXT_TRIGG" name="O" />
+            <blockpin signalname="scin_phys(0)" name="O" />
         </block>
         <block symbolname="ibufgds" name="XLXI_5567">
             <attr value="TRUE" name="DIFF_TERM">
@@ -2202,12 +2262,12 @@
             <blockpin signalname="BUSB_15DN_31S" name="OB" />
         </block>
         <block symbolname="obufds" name="XLXI_4830">
-            <blockpin signalname="EXT_TRIGG_FWD" name="I" />
+            <blockpin signalname="EXT_TRIGG" name="I" />
             <blockpin signalname="BUSD_15DP_30S" name="O" />
             <blockpin signalname="BUSD_15DN_31S" name="OB" />
         </block>
         <block symbolname="obufds" name="XLXI_4833">
-            <blockpin signalname="EXT_TRIGG_FWD" name="I" />
+            <blockpin signalname="EXT_TRIGG" name="I" />
             <blockpin signalname="BUSB_24DP_48S" name="O" />
             <blockpin signalname="BUSB_24DN_49S" name="OB" />
         </block>
@@ -2217,7 +2277,7 @@
             <blockpin signalname="BUSB_13DN_27S" name="OB" />
         </block>
         <block symbolname="obufds" name="XLXI_6047">
-            <blockpin signalname="EXT_TRIGG_FWD" name="I" />
+            <blockpin signalname="EXT_TRIGG" name="I" />
             <blockpin signalname="BUSB_14DP_28S" name="O" />
             <blockpin signalname="BUSB_14DN_29S" name="OB" />
         </block>
@@ -2327,7 +2387,7 @@
             <blockpin signalname="psi_token_out(2)" name="O" />
         </block>
         <block symbolname="obufds" name="XLXI_6185">
-            <blockpin signalname="dut_dcm_clk90(2)" name="I" />
+            <blockpin signalname="PSI_CLK90" name="I" />
             <blockpin signalname="BUSC_11DP_22S" name="O" />
             <blockpin signalname="BUSC_11DN_23S" name="OB" />
         </block>
@@ -2473,7 +2533,7 @@
         <block symbolname="psi_cmd_fifo32_512depth" name="psi_cmd_fifo_vector(2:0)">
             <blockpin signalname="psi_reset" name="rst" />
             <blockpin signalname="MASTER_CLK" name="wr_clk" />
-            <blockpin signalname="psi_i2c_clk(2:0)" name="rd_clk" />
+            <blockpin signalname="PSI_CLK0" name="rd_clk" />
             <blockpin signalname="PSI_CMD_FIFO_MAP" name="wr_en" />
             <blockpin signalname="psi_cmd_fifo_re(2:0)" name="rd_en" />
             <blockpin signalname="rx_data(31:0)" name="din(31:0)" />
@@ -2482,7 +2542,7 @@
             <blockpin signalname="psi_cmd_fifo_dout(95:0)" name="dout(31:0)" />
         </block>
         <block symbolname="psi_command_sender" name="psi_cmd_sender_vector(2:0)">
-            <blockpin signalname="psi_i2c_clk(2:0)" name="psi_clk" />
+            <blockpin signalname="PSI_CLK0" name="psi_clk" />
             <blockpin signalname="psi_reset" name="reset" />
             <blockpin signalname="psi_cmd_fifo_empty(2:0)" name="fifo_empty" />
             <blockpin signalname="psi_cmd_fifo_full(2:0)" name="fifo_full" />
@@ -2860,6 +2920,92 @@
             <blockpin signalname="XLXN_19144" name="CLR" />
             <blockpin signalname="XLXN_19145" name="T" />
             <blockpin signalname="XLXN_19147" name="Q" />
+        </block>
+        <block symbolname="fd16re" name="XLXI_6018">
+            <blockpin signalname="MASTER_CLK" name="C" />
+            <blockpin signalname="MASTER_VETO_MAP" name="CE" />
+            <blockpin signalname="rx_data(31:16)" name="D(15:0)" />
+            <blockpin signalname="reset" name="R" />
+            <blockpin signalname="trig_veto_dur(31:16)" name="Q(15:0)" />
+        </block>
+        <block symbolname="fd16re" name="XLXI_6016">
+            <blockpin signalname="MASTER_CLK" name="C" />
+            <blockpin signalname="MASTER_VETO_MAP" name="CE" />
+            <blockpin signalname="rx_data(15:0)" name="D(15:0)" />
+            <blockpin signalname="reset" name="R" />
+            <blockpin signalname="trig_veto_dur(15:0)" name="Q(15:0)" />
+        </block>
+        <block symbolname="fde" name="XLXI_6009">
+            <blockpin signalname="MASTER_CLK" name="C" />
+            <blockpin signalname="MASTER_TRIGGER_MAP" name="CE" />
+            <blockpin signalname="rx_data(36)" name="D" />
+            <blockpin signalname="trig_mask_hi" name="Q" />
+        </block>
+        <block symbolname="fde" name="XLXI_6008">
+            <blockpin signalname="MASTER_CLK" name="C" />
+            <blockpin signalname="MASTER_TRIGGER_MAP" name="CE" />
+            <blockpin signalname="rx_data(32)" name="D" />
+            <blockpin signalname="trig_mask_en" name="Q" />
+        </block>
+        <block symbolname="trigger_fifo_8" name="XLXI_5983">
+            <blockpin signalname="PSI_CLK0" name="clk" />
+            <blockpin signalname="XLXN_18128" name="rst" />
+            <blockpin signalname="trig_fifo_we" name="wr_en" />
+            <blockpin signalname="trig_fifo_re" name="rd_en" />
+            <blockpin signalname="trig_fifo_ts(7:0)" name="din(7:0)" />
+            <blockpin name="full" />
+            <blockpin signalname="trig_fifo_empty" name="empty" />
+            <blockpin signalname="trig_fifo_read(7:0)" name="dout(7:0)" />
+        </block>
+        <block symbolname="or2" name="XLXI_5988">
+            <blockpin signalname="trigger_throttle" name="I0" />
+            <blockpin signalname="reset" name="I1" />
+            <blockpin signalname="XLXN_18128" name="O" />
+        </block>
+        <block symbolname="or2" name="XLXI_5839">
+            <blockpin signalname="trigger_throttle" name="I0" />
+            <blockpin signalname="XLXN_17722" name="I1" />
+            <blockpin signalname="telescope_busy" name="O" />
+        </block>
+        <block symbolname="TriggerBlock" name="XLXI_5836">
+            <blockpin signalname="MASTER_CLK" name="mclk" />
+            <blockpin signalname="PSI_CLK0" name="xclk" />
+            <blockpin signalname="reset" name="rst" />
+            <blockpin signalname="telescope_trigger_en" name="en" />
+            <blockpin signalname="MASTER_TRIGGER_MAP" name="we" />
+            <blockpin signalname="trig_fifo_empty" name="trig_fifo_empty" />
+            <blockpin signalname="trig_mask_en" name="trig_mask_en" />
+            <blockpin signalname="trig_mask_hi" name="trig_mask_hi" />
+            <blockpin signalname="scin_phys(2:0)" name="scin(2:0)" />
+            <blockpin signalname="rx_data(19:16)" name="master_clk_delay(3:0)" />
+            <blockpin signalname="rx_data(27:20)" name="psi_clk_delay(7:0)" />
+            <blockpin signalname="trig_fifo_read(7:0)" name="trig_fifo_read(7:0)" />
+            <blockpin signalname="trig_fifo_we" name="trig_fifo_we" />
+            <blockpin signalname="trig_fifo_re" name="trig_fifo_re" />
+            <blockpin signalname="XLXN_17722" name="busy" />
+            <blockpin signalname="EXT_TRIGG" name="trig_out" />
+            <blockpin signalname="trig_fifo_ts(7:0)" name="trig_fifo_ts(7:0)" />
+            <blockpin signalname="trig_veto_dur(19:0)" name="veto_duration(19:0)" />
+        </block>
+        <block symbolname="and2b1" name="XLXI_5884">
+            <blockpin signalname="trigger_throttle" name="I0" />
+            <blockpin signalname="XLXN_17849" name="I1" />
+            <blockpin signalname="telescope_trigger_en" name="O" />
+        </block>
+        <block symbolname="fde" name="XLXI_5873">
+            <blockpin signalname="MASTER_CLK" name="C" />
+            <blockpin signalname="MASTER_TRIGGER_MAP" name="CE" />
+            <blockpin signalname="rx_data(0)" name="D" />
+            <blockpin signalname="XLXN_17849" name="Q" />
+        </block>
+        <block symbolname="gnd" name="XLXI_5828">
+            <blockpin signalname="scin_phys(1)" name="G" />
+        </block>
+        <block symbolname="gnd" name="XLXI_5829">
+            <blockpin signalname="scin_phys(2)" name="G" />
+        </block>
+        <block symbolname="gnd" name="XLXI_6434">
+            <blockpin signalname="trigger_throttle" name="G" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="7040" height="5440">
@@ -3975,7 +4121,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="512" y="752" type="branch" />
             <wire x2="592" y1="752" y2="752" x1="512" />
         </branch>
-        <branch name="psi_i2c_clk(2:0)">
+        <branch name="PSI_CLK0">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="512" y="560" type="branch" />
             <wire x2="592" y1="560" y2="560" x1="512" />
         </branch>
@@ -4018,7 +4164,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1248" y="704" type="branch" />
             <wire x2="1344" y1="704" y2="704" x1="1248" />
         </branch>
-        <branch name="psi_i2c_clk(2:0)">
+        <branch name="PSI_CLK0">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1248" y="656" type="branch" />
             <wire x2="1344" y1="656" y2="656" x1="1248" />
         </branch>
@@ -4200,21 +4346,257 @@
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="528" y="1312" type="branch" />
             <wire x2="592" y1="1312" y2="1312" x1="528" />
         </branch>
-        <branch name="PSI_CLK90">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2576" y="5072" type="branch" />
-            <wire x2="2656" y1="5072" y2="5072" x1="2576" />
+        <instance x="4640" y="2592" name="XLXI_6018" orien="R0" />
+        <instance x="4656" y="2192" name="XLXI_6016" orien="R0" />
+        <instance x="3696" y="2000" name="XLXI_6009" orien="R0" />
+        <instance x="3696" y="1664" name="XLXI_6008" orien="R0" />
+        <instance x="5488" y="1696" name="XLXI_5983" orien="R0">
+        </instance>
+        <instance x="4816" y="1568" name="XLXI_5988" orien="R0" />
+        <instance x="6416" y="656" name="XLXI_5839" orien="R0" />
+        <instance x="5456" y="816" name="XLXI_5836" orien="R0">
+        </instance>
+        <instance x="4864" y="624" name="XLXI_5884" orien="M180" />
+        <instance x="4144" y="1248" name="XLXI_5873" orien="R0" />
+        <text style="fontsize:32;fontname:Arial" x="5416" y="344">The TriggerBlock busy signal should OR'd with the TokenStack throttle signals from all CAPTAN stations</text>
+        <branch name="trig_veto_dur(19:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="5376" y="1264" type="branch" />
+            <wire x2="5456" y1="1264" y2="1264" x1="5376" />
         </branch>
-        <branch name="psi_extdom_trig">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3536" y="5072" type="branch" />
-            <wire x2="3536" y1="5072" y2="5072" x1="3376" />
+        <branch name="trig_veto_dur(31:0)">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="5424" y="2048" type="branch" />
+            <wire x2="5424" y1="2048" y2="2048" x1="5344" />
         </branch>
-        <branch name="EXT_TRIGG_FWD">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3536" y="5008" type="branch" />
-            <wire x2="3536" y1="5008" y2="5008" x1="3376" />
+        <branch name="trig_veto_dur(15:0)">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="5120" y="1936" type="branch" />
+            <wire x2="5120" y1="1936" y2="1936" x1="5040" />
+        </branch>
+        <branch name="trig_veto_dur(31:16)">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="5136" y="2336" type="branch" />
+            <wire x2="5136" y1="2336" y2="2336" x1="5024" />
+        </branch>
+        <branch name="reset">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4544" y="2560" type="branch" />
+            <wire x2="4560" y1="2560" y2="2560" x1="4544" />
+            <wire x2="4640" y1="2560" y2="2560" x1="4560" />
+        </branch>
+        <branch name="reset">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4560" y="2160" type="branch" />
+            <wire x2="4576" y1="2160" y2="2160" x1="4560" />
+            <wire x2="4656" y1="2160" y2="2160" x1="4576" />
+        </branch>
+        <branch name="MASTER_VETO_MAP">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4464" y="2400" type="branch" />
+            <wire x2="4480" y1="2400" y2="2400" x1="4464" />
+            <wire x2="4640" y1="2400" y2="2400" x1="4480" />
+        </branch>
+        <branch name="MASTER_CLK">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4544" y="2464" type="branch" />
+            <wire x2="4560" y1="2464" y2="2464" x1="4544" />
+            <wire x2="4640" y1="2464" y2="2464" x1="4560" />
+        </branch>
+        <branch name="rx_data(31:16)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4560" y="2336" type="branch" />
+            <wire x2="4576" y1="2336" y2="2336" x1="4560" />
+            <wire x2="4640" y1="2336" y2="2336" x1="4576" />
+        </branch>
+        <branch name="MASTER_VETO_MAP">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4480" y="2000" type="branch" />
+            <wire x2="4496" y1="2000" y2="2000" x1="4480" />
+            <wire x2="4656" y1="2000" y2="2000" x1="4496" />
+        </branch>
+        <branch name="MASTER_CLK">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4560" y="2064" type="branch" />
+            <wire x2="4576" y1="2064" y2="2064" x1="4560" />
+            <wire x2="4656" y1="2064" y2="2064" x1="4576" />
+        </branch>
+        <branch name="rx_data(15:0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4576" y="1936" type="branch" />
+            <wire x2="4592" y1="1936" y2="1936" x1="4576" />
+            <wire x2="4656" y1="1936" y2="1936" x1="4592" />
+        </branch>
+        <branch name="trig_mask_hi">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5376" y="1200" type="branch" />
+            <wire x2="5456" y1="1200" y2="1200" x1="5376" />
+        </branch>
+        <branch name="trig_mask_en">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5376" y="1152" type="branch" />
+            <wire x2="5456" y1="1152" y2="1152" x1="5376" />
+        </branch>
+        <branch name="trig_mask_hi">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="4176" y="1744" type="branch" />
+            <wire x2="4176" y1="1744" y2="1744" x1="4080" />
+        </branch>
+        <branch name="trig_mask_en">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="4160" y="1408" type="branch" />
+            <wire x2="4160" y1="1408" y2="1408" x1="4080" />
+        </branch>
+        <branch name="MASTER_TRIGGER_MAP">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3520" y="1808" type="branch" />
+            <wire x2="3536" y1="1808" y2="1808" x1="3520" />
+            <wire x2="3696" y1="1808" y2="1808" x1="3536" />
+        </branch>
+        <branch name="MASTER_CLK">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3600" y="1872" type="branch" />
+            <wire x2="3616" y1="1872" y2="1872" x1="3600" />
+            <wire x2="3696" y1="1872" y2="1872" x1="3616" />
+        </branch>
+        <branch name="rx_data(36)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3616" y="1744" type="branch" />
+            <wire x2="3632" y1="1744" y2="1744" x1="3616" />
+            <wire x2="3696" y1="1744" y2="1744" x1="3632" />
+        </branch>
+        <branch name="MASTER_TRIGGER_MAP">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3520" y="1472" type="branch" />
+            <wire x2="3536" y1="1472" y2="1472" x1="3520" />
+            <wire x2="3696" y1="1472" y2="1472" x1="3536" />
+        </branch>
+        <branch name="MASTER_CLK">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3600" y="1536" type="branch" />
+            <wire x2="3616" y1="1536" y2="1536" x1="3600" />
+            <wire x2="3696" y1="1536" y2="1536" x1="3616" />
+        </branch>
+        <branch name="rx_data(32)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3616" y="1408" type="branch" />
+            <wire x2="3632" y1="1408" y2="1408" x1="3616" />
+            <wire x2="3696" y1="1408" y2="1408" x1="3632" />
+        </branch>
+        <branch name="XLXN_18128">
+            <wire x2="5488" y1="1472" y2="1472" x1="5072" />
+        </branch>
+        <branch name="trigger_throttle">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4688" y="1504" type="branch" />
+            <wire x2="4816" y1="1504" y2="1504" x1="4688" />
+        </branch>
+        <branch name="reset">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4736" y="1440" type="branch" />
+            <wire x2="4816" y1="1440" y2="1440" x1="4736" />
+        </branch>
+        <branch name="trig_fifo_ts(7:0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5408" y="1664" type="branch" />
+            <wire x2="5488" y1="1664" y2="1664" x1="5408" />
+        </branch>
+        <branch name="trig_fifo_re">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5408" y="1600" type="branch" />
+            <wire x2="5488" y1="1600" y2="1600" x1="5408" />
+        </branch>
+        <branch name="trig_fifo_we">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5408" y="1536" type="branch" />
+            <wire x2="5488" y1="1536" y2="1536" x1="5408" />
         </branch>
         <branch name="PSI_CLK0">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2576" y="5008" type="branch" />
-            <wire x2="2656" y1="5008" y2="5008" x1="2576" />
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5408" y="1408" type="branch" />
+            <wire x2="5488" y1="1408" y2="1408" x1="5408" />
+        </branch>
+        <branch name="trig_fifo_read(7:0)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5952" y="1664" type="branch" />
+            <wire x2="5952" y1="1664" y2="1664" x1="5872" />
+        </branch>
+        <branch name="trig_fifo_empty">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5952" y="1536" type="branch" />
+            <wire x2="5952" y1="1536" y2="1536" x1="5872" />
+        </branch>
+        <branch name="trig_fifo_read(7:0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5376" y="1104" type="branch" />
+            <wire x2="5456" y1="1104" y2="1104" x1="5376" />
+        </branch>
+        <branch name="rx_data(27:20)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5376" y="1040" type="branch" />
+            <wire x2="5456" y1="1040" y2="1040" x1="5376" />
+        </branch>
+        <branch name="rx_data(19:16)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5376" y="976" type="branch" />
+            <wire x2="5456" y1="976" y2="976" x1="5376" />
+        </branch>
+        <branch name="trig_fifo_empty">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5376" y="912" type="branch" />
+            <wire x2="5456" y1="912" y2="912" x1="5376" />
+        </branch>
+        <branch name="MASTER_TRIGGER_MAP">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5376" y="848" type="branch" />
+            <wire x2="5456" y1="848" y2="848" x1="5376" />
+        </branch>
+        <branch name="trig_fifo_ts(7:0)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5984" y="768" type="branch" />
+            <wire x2="5984" y1="768" y2="768" x1="5904" />
+        </branch>
+        <branch name="trig_fifo_re">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5984" y="704" type="branch" />
+            <wire x2="5984" y1="704" y2="704" x1="5904" />
+        </branch>
+        <branch name="trig_fifo_we">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5984" y="640" type="branch" />
+            <wire x2="5984" y1="640" y2="640" x1="5904" />
+        </branch>
+        <branch name="EXT_TRIGG">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5984" y="576" type="branch" />
+            <wire x2="5984" y1="576" y2="576" x1="5904" />
+        </branch>
+        <branch name="trigger_throttle">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="6368" y="592" type="branch" />
+            <wire x2="6416" y1="592" y2="592" x1="6368" />
+        </branch>
+        <branch name="telescope_busy">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="6768" y="560" type="branch" />
+            <wire x2="6768" y1="560" y2="560" x1="6672" />
+        </branch>
+        <branch name="XLXN_17722">
+            <wire x2="6416" y1="528" y2="528" x1="5904" />
+        </branch>
+        <branch name="scin_phys(2:0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5376" y="784" type="branch" />
+            <wire x2="5456" y1="784" y2="784" x1="5376" />
+        </branch>
+        <branch name="XLXN_17849">
+            <wire x2="4688" y1="992" y2="992" x1="4528" />
+            <wire x2="4688" y1="752" y2="992" x1="4688" />
+            <wire x2="4864" y1="752" y2="752" x1="4688" />
+        </branch>
+        <branch name="trigger_throttle">
+            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="4464" y="688" type="branch" />
+            <wire x2="4464" y1="688" y2="688" x1="4384" />
+            <wire x2="4864" y1="688" y2="688" x1="4464" />
+        </branch>
+        <branch name="telescope_trigger_en">
+            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="5216" y="720" type="branch" />
+            <wire x2="5216" y1="720" y2="720" x1="5120" />
+            <wire x2="5456" y1="720" y2="720" x1="5216" />
+        </branch>
+        <branch name="MASTER_TRIGGER_MAP">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3968" y="1056" type="branch" />
+            <wire x2="3984" y1="1056" y2="1056" x1="3968" />
+            <wire x2="4144" y1="1056" y2="1056" x1="3984" />
+        </branch>
+        <branch name="MASTER_CLK">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4048" y="1120" type="branch" />
+            <wire x2="4064" y1="1120" y2="1120" x1="4048" />
+            <wire x2="4144" y1="1120" y2="1120" x1="4064" />
+        </branch>
+        <branch name="rx_data(0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4064" y="992" type="branch" />
+            <wire x2="4080" y1="992" y2="992" x1="4064" />
+            <wire x2="4144" y1="992" y2="992" x1="4080" />
+        </branch>
+        <branch name="MASTER_CLK">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5392" y="528" type="branch" />
+            <wire x2="5456" y1="528" y2="528" x1="5392" />
+        </branch>
+        <branch name="reset">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5408" y="656" type="branch" />
+            <wire x2="5456" y1="656" y2="656" x1="5408" />
+        </branch>
+        <branch name="PSI_CLK0">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5408" y="592" type="branch" />
+            <wire x2="5456" y1="592" y2="592" x1="5408" />
+        </branch>
+        <instance x="4320" y="816" name="XLXI_6434" orien="R0" />
+        <branch name="PSI_CLK90">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2576" y="5136" type="branch" />
+            <wire x2="2656" y1="5136" y2="5136" x1="2576" />
+        </branch>
+        <branch name="psi_extdom_trig">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3536" y="5136" type="branch" />
+            <wire x2="3536" y1="5136" y2="5136" x1="3376" />
         </branch>
     </sheet>
     <sheet sheetnum="4" width="7040" height="5440">
@@ -5549,7 +5931,7 @@
         <instance x="5472" y="480" name="XLXI_5545" orien="R0" />
         <instance x="5472" y="704" name="XLXI_5546" orien="R0" />
         <instance x="5472" y="576" name="XLXI_5547" orien="R0" />
-        <branch name="dut_dcm_clk90(0)">
+        <branch name="PSI_CLK90">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5264" y="912" type="branch" />
             <wire x2="5472" y1="912" y2="912" x1="5264" />
         </branch>
@@ -5607,7 +5989,7 @@
         <instance x="5472" y="1552" name="XLXI_5551" orien="R0" />
         <instance x="5472" y="1776" name="XLXI_5552" orien="R0" />
         <instance x="5472" y="1648" name="XLXI_5553" orien="R0" />
-        <branch name="dut_dcm_clk90(1)">
+        <branch name="PSI_CLK90">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5264" y="1984" type="branch" />
             <wire x2="5472" y1="1984" y2="1984" x1="5264" />
         </branch>
@@ -5691,7 +6073,7 @@
         <instance x="832" y="3440" name="XLXI_4794" orien="R0">
             <attrtext style="fontsize:28;fontname:Arial;displayformat:NAMEEQUALSVALUE" attrname="DIFF_TERM" x="0" y="-64" type="instance" />
         </instance>
-        <branch name="EXT_TRIGG">
+        <branch name="scin_phys(0)">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1184" y="3408" type="branch" />
             <wire x2="1184" y1="3408" y2="3408" x1="1056" />
         </branch>
@@ -5749,11 +6131,11 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="704" y="3824" type="branch" />
             <wire x2="784" y1="3824" y2="3824" x1="704" />
         </branch>
-        <branch name="EXT_TRIGG_FWD">
+        <branch name="EXT_TRIGG">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="704" y="3904" type="branch" />
             <wire x2="784" y1="3904" y2="3904" x1="704" />
         </branch>
-        <branch name="EXT_TRIGG_FWD">
+        <branch name="EXT_TRIGG">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="704" y="4112" type="branch" />
             <wire x2="784" y1="4112" y2="4112" x1="704" />
         </branch>
@@ -5776,7 +6158,7 @@
             <wire x2="1104" y1="4384" y2="4384" x1="1008" />
         </branch>
         <text style="fontsize:36;fontname:Arial" x="724" y="4328">STIB J28 - Bottom Right (Trig P1, Clk P2)</text>
-        <branch name="EXT_TRIGG_FWD">
+        <branch name="EXT_TRIGG">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="704" y="4400" type="branch" />
             <wire x2="784" y1="4400" y2="4400" x1="704" />
         </branch>
@@ -5905,7 +6287,7 @@
         <instance x="5472" y="2976" name="XLXI_6186" orien="R0" />
         <instance x="5472" y="2864" name="XLXI_6188" orien="R0" />
         <instance x="5472" y="2736" name="XLXI_6189" orien="R0" />
-        <branch name="dut_dcm_clk90(2)">
+        <branch name="PSI_CLK90">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5264" y="3072" type="branch" />
             <wire x2="5472" y1="3072" y2="3072" x1="5264" />
         </branch>
@@ -6369,5 +6751,21 @@
         <instance x="3792" y="5056" name="XLXI_6390" orien="R0" />
         <text style="fontsize:36;fontname:Arial" x="548" y="3316">STIB J2 - Bottom Left (Trig P1, Clk P2)</text>
         <text style="fontsize:36;fontname:Arial" x="520" y="3736">Flipped pins for downstream pixels - STIB J1 - Top Left (Trig P1, Clk P2)</text>
+        <branch name="scin_phys(2:0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1424" y="3216" type="branch" />
+            <wire x2="1600" y1="3216" y2="3216" x1="1424" />
+        </branch>
+        <branch name="scin_phys(1)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2784" y="3376" type="branch" />
+            <wire x2="1824" y1="3376" y2="3424" x1="1824" />
+            <wire x2="2784" y1="3376" y2="3376" x1="1824" />
+        </branch>
+        <instance x="1760" y="3552" name="XLXI_5828" orien="R0" />
+        <branch name="scin_phys(2)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2848" y="3472" type="branch" />
+            <wire x2="1904" y1="3472" y2="3520" x1="1904" />
+            <wire x2="2848" y1="3472" y2="3472" x1="1904" />
+        </branch>
+        <instance x="1840" y="3648" name="XLXI_5829" orien="R0" />
     </sheet>
 </drawing>

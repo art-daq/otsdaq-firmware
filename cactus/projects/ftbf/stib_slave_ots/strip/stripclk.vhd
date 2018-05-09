@@ -211,14 +211,14 @@ begin
 	
 		signal fcbo_watchdog_reset_sig : std_logic := '0';
 		
-		signal fcbo_watchdog_low_timer : unsigned(7 downto 0) := (others => '1');
-		signal fcbo_watchdog_reset_timer : unsigned(7 downto 0) := (others => '1');
+		signal fcbo_watchdog_low_timer : unsigned(15 downto 0) := (others => '1');
+		signal fcbo_watchdog_reset_timer : unsigned(3 downto 0) := (others => '1');
 		
 	begin
 	
 		fcbo_watchdog_reset <= reset or fcbo_watchdog_reset_sig;
 				
-		process(clk_Z)
+		process(clk_z)
 		begin
 			if (rising_edge(clk_z)) then
 				

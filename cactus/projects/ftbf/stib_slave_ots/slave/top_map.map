@@ -12,7 +12,7 @@ Target Package : ff668
 Target Speed   : -10
 Stepping Level : 0
 Mapper Version : virtex4 -- $Revision: 1.55 $
-Mapped Date    : Tue May  8 08:32:58 2018
+Mapped Date    : Tue May  8 10:42:07 2018
 
 vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 INFO:Security:67 - XILINXD_LICENSE_FILE is set to
@@ -57,6 +57,10 @@ WARNING:MapLib:701 - Signal STRIP_GOTHITOR_PAD_N<2> connected to top level port
    STRIP_GOTHITOR_PAD_N<2> has been removed.
 WARNING:MapLib:701 - Signal STRIP_GOTHITOR_PAD_N<3> connected to top level port
    STRIP_GOTHITOR_PAD_N<3> has been removed.
+WARNING:LIT:176 - Clock buffer is designated to drive clock loads. BUFGCTRL
+   symbol "strip_imp/stripclk_imp/bcoclkmux" (output signal=ila0_trig0<92>) has
+   a mix of clock and non-clock loads. The non-clock loads are:
+   Pin D of U_ila_pro_0/U0/I_TQ0.G_TW[92].U_TQ
 WARNING:LIT:176 - Clock buffer is designated to drive clock loads. BUFG symbol
    "strip_imp/stripclk_imp/bcoclk_bufg" (output signal=STRIP_BCOCLK<0>) has a
    mix of clock and non-clock loads. The non-clock loads are:
@@ -294,17 +298,17 @@ WARNING:Timing:3223 - Timing constraint PATH "TS_FBCOCLK_TO_BUSCLK_path" TIG
 WARNING:Timing:3223 - Timing constraint PATH "TS_MCLKB_TO_BCOCLK_path" TIG
    ignored during timing analysis.
 Running timing-driven placement...
-Total REAL time at the beginning of Placer: 1 mins 31 secs 
+Total REAL time at the beginning of Placer: 1 mins 30 secs 
 Total CPU  time at the beginning of Placer: 1 mins 30 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:703febb) REAL time: 1 mins 48 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:22c5613d) REAL time: 1 mins 47 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:703febb) REAL time: 1 mins 48 secs 
+Phase 2.7  Design Feasibility Check (Checksum:22c5613d) REAL time: 1 mins 47 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:fa07a54a) REAL time: 1 mins 48 secs 
+Phase 3.31  Local Placement Optimization (Checksum:29d48ac6) REAL time: 1 mins 47 secs 
 
 Phase 4.2  Initial Clock and IO Placement
 
@@ -327,13 +331,13 @@ WARNING:Place:644 - A clock IOB clock component is not placed at an optimal
    The use of this override is highly discouraged as it may lead to very poor
    timing results. It is recommended that this error condition be corrected in
    the design.
-Phase 4.2  Initial Clock and IO Placement (Checksum:7cd4bdd7) REAL time: 1 mins 49 secs 
+Phase 4.2  Initial Clock and IO Placement (Checksum:b3b07b0f) REAL time: 1 mins 48 secs 
 
 Phase 5.36  Local Placement Optimization
-Phase 5.36  Local Placement Optimization (Checksum:7cd4bdd7) REAL time: 1 mins 49 secs 
+Phase 5.36  Local Placement Optimization (Checksum:b3b07b0f) REAL time: 1 mins 48 secs 
 
-..................................
-.....................................................................................
+...................................
+....................................................................................................
 Phase 6.30  Global Clock Region Assignment
 
 
@@ -380,17 +384,17 @@ INST "strip_imp/stripclk_imp/bcoclk_pmcd" LOC = "PMCD_X0Y3" ;
 # strip_imp/stripclk_imp/clk_q driven by BUFGCTRL_X0Y17
 NET "strip_imp/stripclk_imp/clk_q" TNM_NET = "TN_strip_imp/stripclk_imp/clk_q" ;
 TIMEGRP "TN_strip_imp/stripclk_imp/clk_q" AREA_GROUP = "CLKAG_strip_imp/stripclk_imp/clk_q" ;
-AREA_GROUP "CLKAG_strip_imp/stripclk_imp/clk_q" RANGE =   CLOCKREGION_X0Y4, CLOCKREGION_X0Y5 ;
+AREA_GROUP "CLKAG_strip_imp/stripclk_imp/clk_q" RANGE =   CLOCKREGION_X0Y3, CLOCKREGION_X0Y4 ;
 
 # strip_imp/dcm_outclk driven by BUFGCTRL_X0Y2
 NET "strip_imp/dcm_outclk" TNM_NET = "TN_strip_imp/dcm_outclk" ;
 TIMEGRP "TN_strip_imp/dcm_outclk" AREA_GROUP = "CLKAG_strip_imp/dcm_outclk" ;
 AREA_GROUP "CLKAG_strip_imp/dcm_outclk" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2, CLOCKREGION_X0Y3, CLOCKREGION_X1Y3, CLOCKREGION_X0Y4, CLOCKREGION_X1Y4, CLOCKREGION_X0Y5, CLOCKREGION_X1Y5 ;
 
-# strip_imp/stripclk_imp/clk_z driven by BUFGCTRL_X0Y29
-NET "strip_imp/stripclk_imp/clk_z" TNM_NET = "TN_strip_imp/stripclk_imp/clk_z" ;
-TIMEGRP "TN_strip_imp/stripclk_imp/clk_z" AREA_GROUP = "CLKAG_strip_imp/stripclk_imp/clk_z" ;
-AREA_GROUP "CLKAG_strip_imp/stripclk_imp/clk_z" RANGE =   CLOCKREGION_X0Y5, CLOCKREGION_X1Y5 ;
+# ila0_trig0<92> driven by BUFGCTRL_X0Y29
+NET "ila0_trig0<92>" TNM_NET = "TN_ila0_trig0<92>" ;
+TIMEGRP "TN_ila0_trig0<92>" AREA_GROUP = "CLKAG_ila0_trig0<92>" ;
+AREA_GROUP "CLKAG_ila0_trig0<92>" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X0Y2, CLOCKREGION_X0Y5, CLOCKREGION_X1Y5 ;
 
 # STRIP_DAC_CLK driven by BUFGCTRL_X0Y12
 NET "STRIP_DAC_CLK" TNM_NET = "TN_STRIP_DAC_CLK" ;
@@ -415,12 +419,12 @@ AREA_GROUP "CLKAG_STRIP_MCLKB" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y2 ;
 # strip_imp/stripclk_imp/debug<0> driven by BUFGCTRL_X0Y23
 NET "strip_imp/stripclk_imp/debug<0>" TNM_NET = "TN_strip_imp/stripclk_imp/debug<0>" ;
 TIMEGRP "TN_strip_imp/stripclk_imp/debug<0>" AREA_GROUP = "CLKAG_strip_imp/stripclk_imp/debug<0>" ;
-AREA_GROUP "CLKAG_strip_imp/stripclk_imp/debug<0>" RANGE =   CLOCKREGION_X0Y1 ;
+AREA_GROUP "CLKAG_strip_imp/stripclk_imp/debug<0>" RANGE =   CLOCKREGION_X0Y2 ;
 
 # STRIP_BCOCLK<0> driven by BUFGCTRL_X0Y19
 NET "STRIP_BCOCLK<0>" TNM_NET = "TN_STRIP_BCOCLK<0>" ;
 TIMEGRP "TN_STRIP_BCOCLK<0>" AREA_GROUP = "CLKAG_STRIP_BCOCLK<0>" ;
-AREA_GROUP "CLKAG_STRIP_BCOCLK<0>" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2, CLOCKREGION_X0Y3, CLOCKREGION_X1Y3, CLOCKREGION_X0Y4, CLOCKREGION_X1Y4, CLOCKREGION_X1Y5 ;
+AREA_GROUP "CLKAG_STRIP_BCOCLK<0>" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X1Y2, CLOCKREGION_X1Y3, CLOCKREGION_X0Y4, CLOCKREGION_X1Y4, CLOCKREGION_X0Y5, CLOCKREGION_X1Y5 ;
 
 # strip_imp/strip_mclk<0> driven by BUFGCTRL_X0Y8
 NET "strip_imp/strip_mclk<0>" TNM_NET = "TN_strip_imp/strip_mclk<0>" ;
@@ -430,22 +434,22 @@ AREA_GROUP "CLKAG_strip_imp/strip_mclk<0>" RANGE =   CLOCKREGION_X1Y3, CLOCKREGI
 # strip_imp/strip_mclk<5> driven by BUFGCTRL_X0Y0
 NET "strip_imp/strip_mclk<5>" TNM_NET = "TN_strip_imp/strip_mclk<5>" ;
 TIMEGRP "TN_strip_imp/strip_mclk<5>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<5>" ;
-AREA_GROUP "CLKAG_strip_imp/strip_mclk<5>" RANGE =   CLOCKREGION_X0Y2, CLOCKREGION_X0Y3, CLOCKREGION_X0Y4, CLOCKREGION_X0Y5 ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<5>" RANGE =   CLOCKREGION_X0Y3, CLOCKREGION_X0Y4, CLOCKREGION_X0Y5 ;
 
 # strip_imp/strip_mclk<4> driven by BUFGCTRL_X0Y1
 NET "strip_imp/strip_mclk<4>" TNM_NET = "TN_strip_imp/strip_mclk<4>" ;
 TIMEGRP "TN_strip_imp/strip_mclk<4>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<4>" ;
-AREA_GROUP "CLKAG_strip_imp/strip_mclk<4>" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2 ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<4>" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X0Y3 ;
 
 # strip_imp/strip_mclk<3> driven by BUFGCTRL_X0Y15
 NET "strip_imp/strip_mclk<3>" TNM_NET = "TN_strip_imp/strip_mclk<3>" ;
 TIMEGRP "TN_strip_imp/strip_mclk<3>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<3>" ;
-AREA_GROUP "CLKAG_strip_imp/strip_mclk<3>" RANGE =   CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X1Y2 ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<3>" RANGE =   CLOCKREGION_X1Y0, CLOCKREGION_X1Y1, CLOCKREGION_X1Y2 ;
 
 # strip_imp/strip_mclk<2> driven by BUFGCTRL_X0Y9
 NET "strip_imp/strip_mclk<2>" TNM_NET = "TN_strip_imp/strip_mclk<2>" ;
 TIMEGRP "TN_strip_imp/strip_mclk<2>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<2>" ;
-AREA_GROUP "CLKAG_strip_imp/strip_mclk<2>" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2 ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<2>" RANGE =   CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2 ;
 
 # strip_imp/strip_mclk<1> driven by BUFGCTRL_X0Y5
 NET "strip_imp/strip_mclk<1>" TNM_NET = "TN_strip_imp/strip_mclk<1>" ;
@@ -455,7 +459,7 @@ AREA_GROUP "CLKAG_strip_imp/strip_mclk<1>" RANGE =   CLOCKREGION_X1Y3, CLOCKREGI
 # icon_control0<0> driven by BUFGCTRL_X0Y4
 NET "icon_control0<0>" TNM_NET = "TN_icon_control0<0>" ;
 TIMEGRP "TN_icon_control0<0>" AREA_GROUP = "CLKAG_icon_control0<0>" ;
-AREA_GROUP "CLKAG_icon_control0<0>" RANGE =   CLOCKREGION_X1Y0, CLOCKREGION_X0Y3, CLOCKREGION_X1Y3 ;
+AREA_GROUP "CLKAG_icon_control0<0>" RANGE =   CLOCKREGION_X0Y1, CLOCKREGION_X1Y3 ;
 
 # GMII_RXCLK driven by BUFGCTRL_X0Y13
 NET "GMII_RXCLK" TNM_NET = "TN_GMII_RXCLK" ;
@@ -485,7 +489,7 @@ Number of Global Clock Networks: 18
 Clock Region Assignment: SUCCESSFUL
 
 Clock-Region: <CLOCKREGION_X0Y0> 
- key resource utilizations (used/available): global-clocks - 7/8 ;
+ key resource utilizations (used/available): global-clocks - 5/8 ;
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
    BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
    FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
@@ -494,15 +498,13 @@ Clock-Region: <CLOCKREGION_X0Y0>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
         |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     20 |    207 |GMII_RXCLK
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     62 |STRIP_BCOCLK<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     28 |    545 |GMII_RXCLK
       0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    194 |STRIP_MCLKA
-      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     43 |strip_imp/dcm_outclk
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     19 |strip_imp/strip_mclk<2>
-      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      8 |strip_imp/strip_mclk<4>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |ila0_trig0<92>
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     57 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      2 |strip_imp/strip_mclk<4>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      1 |     20 |    533 | Total 
+      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      1 |     28 |    605 | Total 
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
 
 
@@ -516,16 +518,16 @@ Clock-Region: <CLOCKREGION_X1Y0>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
         |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      7 |    266 |GMII_RXCLK
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     38 |STRIP_BCOCLK<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    216 |GMII_RXCLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     10 |     39 |STRIP_BCOCLK<0>
       0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      1 |STRIP_DAC_CLK
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    167 |STRIP_MCLKA
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     33 |     19 |icon_control0<0>
-      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    133 |strip_imp/dcm_outclk
-      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     40 |strip_imp/strip_mclk<2>
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     48 |strip_imp/strip_mclk<3>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    178 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    146 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     14 |strip_imp/strip_mclk<2>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     17 |strip_imp/strip_mclk<3>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     14 |strip_imp/strip_mclk<4>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      1 |     40 |    712 | Total 
+      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      1 |     10 |    625 | Total 
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
 
 
@@ -540,14 +542,14 @@ Clock-Region: <CLOCKREGION_X0Y1>
         |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
       0 |      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |CLK15NS
-      0 |      0 |      0 |      0 |      0 |     11 |      0 |      0 |      0 |      0 |      0 |     90 |    294 |GMII_RXCLK
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     22 |     10 |STRIP_BCOCLK<0>
-      0 |      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      4 |     99 |STRIP_MCLKA
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    198 |strip_imp/dcm_outclk
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      2 |strip_imp/strip_mclk<3>
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    117 |strip_imp/strip_mclk<4>
+      2 |      0 |      0 |      0 |      0 |     11 |      0 |      0 |      0 |      0 |      0 |    181 |    599 |GMII_RXCLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |STRIP_BCOCLK<0>
+      0 |      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |STRIP_MCLKA
+      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     44 |     40 |icon_control0<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     66 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     22 |strip_imp/strip_mclk<4>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      0 |      2 |      0 |      0 |      0 |     11 |      0 |      0 |      0 |      0 |      0 |    116 |    721 | Total 
+      4 |      2 |      0 |      0 |      0 |     11 |      0 |      0 |      0 |      0 |      0 |    225 |    730 | Total 
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
 
 
@@ -561,16 +563,16 @@ Clock-Region: <CLOCKREGION_X1Y1>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
         |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     41 |    177 |GMII_RXCLK
-      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    104 |     11 |STRIP_BCOCLK<0>
+      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    177 |GMII_RXCLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     40 |     25 |STRIP_BCOCLK<0>
       0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     34 |    129 |STRIP_MCLKA
-      0 |      0 |      0 |      0 |      8 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    320 |strip_imp/dcm_outclk
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     65 |strip_imp/strip_mclk<2>
-      0 |      0 |      0 |      0 |      8 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    125 |strip_imp/strip_mclk<3>
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     15 |strip_imp/strip_mclk<4>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     50 |     59 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      8 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    300 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     89 |strip_imp/strip_mclk<2>
+      0 |      0 |      0 |      0 |      8 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    112 |strip_imp/strip_mclk<3>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     61 |strip_imp/strip_mclk<4>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      3 |      0 |      0 |      0 |     16 |      0 |      0 |      0 |      0 |      0 |      1 |    179 |    842 | Total 
+      4 |      0 |      0 |      0 |     16 |      0 |      0 |      0 |      0 |      0 |      1 |     90 |    823 | Total 
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
 
 
@@ -584,16 +586,16 @@ Clock-Region: <CLOCKREGION_X0Y2>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
         |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     81 |    489 |GMII_RXCLK
-      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      2 |STRIP_BCOCLK<0>
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      2 |      0 |      1 |STRIP_DAC_CLK
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     50 |     80 |STRIP_MCLKA
-      0 |      0 |      0 |      0 |     12 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    160 |strip_imp/dcm_outclk
-      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      9 |strip_imp/strip_mclk<2>
-      0 |      0 |      0 |      0 |      8 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     38 |strip_imp/strip_mclk<4>
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     10 |strip_imp/strip_mclk<5>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    218 |    510 |GMII_RXCLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      2 |      0 |      0 |STRIP_DAC_CLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |ila0_trig0<92>
+      0 |      0 |      0 |      0 |     12 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    144 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      7 |strip_imp/strip_mclk<2>
+      0 |      0 |      0 |      0 |      8 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     25 |strip_imp/strip_mclk<4>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     48 |strip_imp/stripclk_imp/debug<0>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      1 |      0 |      0 |      0 |     24 |      0 |      0 |      0 |      0 |      0 |      2 |    131 |    789 | Total 
+      0 |      0 |      0 |      0 |     24 |      0 |      0 |      0 |      0 |      0 |      2 |    218 |    736 | Total 
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
 
 
@@ -607,20 +609,20 @@ Clock-Region: <CLOCKREGION_X1Y2>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
         |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     52 |    281 |GMII_RXCLK
-      3 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      2 |      2 |STRIP_BCOCLK<0>
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
-      6 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    160 |    230 |STRIP_MCLKA
-      0 |      0 |      0 |      0 |      6 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    168 |strip_imp/dcm_outclk
-      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     10 |strip_imp/strip_mclk<2>
-      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      5 |strip_imp/strip_mclk<3>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      2 |     93 |GMII_RXCLK
+      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     78 |     26 |STRIP_BCOCLK<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      1 |STRIP_DAC_CLK
+      3 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    146 |    333 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      6 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    167 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     69 |strip_imp/strip_mclk<2>
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     51 |strip_imp/strip_mclk<3>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      9 |      0 |      0 |      0 |     12 |      0 |      0 |      0 |      0 |      0 |      1 |    214 |    696 | Total 
+      5 |      0 |      0 |      0 |     12 |      0 |      0 |      0 |      0 |      0 |      1 |    226 |    740 | Total 
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
 
 
 Clock-Region: <CLOCKREGION_X0Y3> 
- key resource utilizations (used/available): global-clocks - 6/8 ;
+ key resource utilizations (used/available): global-clocks - 8/8 ;
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
    BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
    FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
@@ -629,14 +631,16 @@ Clock-Region: <CLOCKREGION_X0Y3>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
         |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     79 |    408 |GMII_RXCLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     81 |    281 |GMII_RXCLK
       0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     12 |     63 |STRIP_MCLKA
-      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    136 |strip_imp/dcm_outclk
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     38 |strip_imp/fracbcoclk
-      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     80 |strip_imp/strip_mclk<5>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     86 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    243 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      2 |strip_imp/fracbcoclk
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      6 |strip_imp/strip_mclk<4>
+      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    166 |strip_imp/strip_mclk<5>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     43 |strip_imp/stripclk_imp/clk_q
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      0 |      0 |      0 |      0 |      8 |      0 |      0 |      0 |      0 |      0 |      1 |     91 |    725 | Total 
+      0 |      0 |      0 |      0 |      8 |      0 |      0 |      0 |      0 |      0 |      1 |     81 |    827 | Total 
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
 
 
@@ -650,20 +654,20 @@ Clock-Region: <CLOCKREGION_X1Y3>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
         |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      3 |    193 |GMII_RXCLK
-      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     14 |STRIP_BCOCLK<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      5 |    105 |GMII_RXCLK
+      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      9 |STRIP_BCOCLK<0>
       0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
-      7 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    150 |    185 |STRIP_MCLKA
-      0 |      0 |      0 |      0 |     16 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    262 |strip_imp/dcm_outclk
-      0 |      0 |      0 |      0 |      6 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     30 |strip_imp/strip_mclk<0>
-      0 |      0 |      0 |      0 |     10 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    153 |strip_imp/strip_mclk<1>
+      8 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    202 |    208 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |     16 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    260 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      6 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     24 |strip_imp/strip_mclk<0>
+      0 |      0 |      0 |      0 |     10 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    149 |strip_imp/strip_mclk<1>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-     11 |      0 |      0 |      0 |     32 |      0 |      0 |      0 |      0 |      0 |      1 |    153 |    837 | Total 
+     12 |      0 |      0 |      0 |     32 |      0 |      0 |      0 |      0 |      0 |      1 |    207 |    755 | Total 
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
 
 
 Clock-Region: <CLOCKREGION_X0Y4> 
- key resource utilizations (used/available): global-clocks - 7/8 ;
+ key resource utilizations (used/available): global-clocks - 8/8 ;
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
    BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
    FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
@@ -672,20 +676,21 @@ Clock-Region: <CLOCKREGION_X0Y4>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
         |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    116 |    390 |GMII_RXCLK
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    170 |STRIP_BCOCLK<0>
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |     12 |STRIP_DAC_CLK
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     30 |STRIP_MCLKA
-      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    116 |strip_imp/dcm_outclk
-      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     90 |strip_imp/strip_mclk<5>
-      0 |      0 |      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     21 |strip_imp/stripclk_imp/clk_q
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      8 |    311 |GMII_RXCLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    186 |STRIP_BCOCLK<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    219 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     63 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |strip_imp/fracbcoclk
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     14 |strip_imp/strip_mclk<5>
+      0 |      0 |      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      8 |strip_imp/stripclk_imp/clk_q
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      0 |      0 |      1 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      1 |    116 |    829 | Total 
+      0 |      0 |      1 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      1 |      8 |    802 | Total 
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
 
 
 Clock-Region: <CLOCKREGION_X1Y4> 
- key resource utilizations (used/available): global-clocks - 7/8 ;
+ key resource utilizations (used/available): global-clocks - 8/8 ;
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
    BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
    FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
@@ -694,15 +699,16 @@ Clock-Region: <CLOCKREGION_X1Y4>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
         |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      6 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     24 |    408 |GMII_RXCLK
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      5 |STRIP_BCOCLK<0>
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     38 |     71 |STRIP_MCLKA
-      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    116 |strip_imp/dcm_outclk
-      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     46 |strip_imp/fracbcoclk
-      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    143 |strip_imp/strip_mclk<0>
+      3 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     16 |    177 |GMII_RXCLK
+      3 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     31 |STRIP_BCOCLK<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |     12 |STRIP_DAC_CLK
+      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     50 |    135 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    241 |strip_imp/dcm_outclk
+      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     70 |strip_imp/fracbcoclk
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    155 |strip_imp/strip_mclk<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     31 |strip_imp/strip_mclk<1>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      7 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      1 |     62 |    789 | Total 
+      9 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      1 |     66 |    852 | Total 
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
 
 
@@ -716,15 +722,15 @@ Clock-Region: <CLOCKREGION_X0Y5>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
         |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      0 |      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     24 |    280 |GMII_RXCLK
+      0 |      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    212 |GMII_RXCLK
       0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     54 |STRIP_MCLKA
-      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     14 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    159 |STRIP_MCLKA
+      0 |      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |ila0_trig0<92>
+      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      3 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     39 |strip_imp/fracbcoclk
       0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |strip_imp/strip_mclk<5>
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     30 |strip_imp/stripclk_imp/clk_q
-      0 |      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |strip_imp/stripclk_imp/clk_z
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      0 |      2 |      0 |      0 |      8 |      0 |      0 |      0 |      0 |      0 |      1 |     24 |    378 | Total 
+      0 |      2 |      0 |      0 |      8 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |    413 | Total 
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
 
 
@@ -738,16 +744,16 @@ Clock-Region: <CLOCKREGION_X1Y5>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
         |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      3 |    243 |GMII_RXCLK
-      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    174 |STRIP_BCOCLK<0>
+      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    431 |GMII_RXCLK
+      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    171 |STRIP_BCOCLK<0>
       0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    242 |STRIP_MCLKA
-      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     81 |strip_imp/dcm_outclk
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |strip_imp/fracbcoclk
-      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      5 |strip_imp/strip_mclk<0>
-      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     18 |strip_imp/stripclk_imp/clk_z
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    127 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     21 |ila0_trig0<92>
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     57 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      5 |strip_imp/fracbcoclk
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |strip_imp/strip_mclk<0>
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
-      1 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      1 |      3 |    764 | Total 
+      3 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |    813 | Total 
 --------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
 
 NOTE:
@@ -760,39 +766,39 @@ maybe moved to adjacent clock-regions as long as the "number of clocks per regio
 ######################################################################################
 
 
-Phase 6.30  Global Clock Region Assignment (Checksum:7cd4bdd7) REAL time: 2 mins 7 secs 
+Phase 6.30  Global Clock Region Assignment (Checksum:b3b07b0f) REAL time: 2 mins 8 secs 
 
 Phase 7.3  Local Placement Optimization
-Phase 7.3  Local Placement Optimization (Checksum:7cd4bdd7) REAL time: 2 mins 8 secs 
+Phase 7.3  Local Placement Optimization (Checksum:b3b07b0f) REAL time: 2 mins 8 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:7cd4bdd7) REAL time: 2 mins 8 secs 
+Phase 8.5  Local Placement Optimization (Checksum:b3b07b0f) REAL time: 2 mins 8 secs 
 
 Phase 9.8  Global Placement
-................................
-..............................................................................................
-................................
-....................................................................................................................................
-.....................................
-.............................................
-................
-.........................................................
-Phase 9.8  Global Placement (Checksum:3d61c69) REAL time: 6 mins 41 secs 
+............................
+.........................................................................................................................
+........................
+................................................................................................................
+...................................................
+..........................................................
+............................................
+.................
+Phase 9.8  Global Placement (Checksum:724ab27c) REAL time: 5 mins 22 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:3d61c69) REAL time: 6 mins 41 secs 
+Phase 10.5  Local Placement Optimization (Checksum:724ab27c) REAL time: 5 mins 22 secs 
 
 Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:48206b15) REAL time: 11 mins 43 secs 
+Phase 11.18  Placement Optimization (Checksum:dd3703d8) REAL time: 10 mins 7 secs 
 
 Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:48206b15) REAL time: 11 mins 44 secs 
+Phase 12.5  Local Placement Optimization (Checksum:dd3703d8) REAL time: 10 mins 7 secs 
 
 Phase 13.34  Placement Validation
-Phase 13.34  Placement Validation (Checksum:48206b15) REAL time: 11 mins 44 secs 
+Phase 13.34  Placement Validation (Checksum:dd3703d8) REAL time: 10 mins 7 secs 
 
-Total REAL time to Placer completion: 11 mins 45 secs 
-Total CPU  time to Placer completion: 11 mins 38 secs 
+Total REAL time to Placer completion: 10 mins 8 secs 
+Total CPU  time to Placer completion: 10 mins 8 secs 
 Running post-placement packing...
 WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is sourced by a combinatorial pin. This is not
    good design practice. Use the CE pin to control the loading of data into the flip-flop.
@@ -822,23 +828,23 @@ Design Summary
 
 Design Summary:
 Number of errors:      0
-Number of warnings:   53
+Number of warnings:   54
 Logic Utilization:
-  Total Number Slice Registers:       9,072 out of  21,504   42%
-    Number used as Flip Flops:        9,071
+  Total Number Slice Registers:       9,080 out of  21,504   42%
+    Number used as Flip Flops:        9,079
     Number used as Latches:               1
-  Number of 4 input LUTs:            13,265 out of  21,504   61%
+  Number of 4 input LUTs:            13,249 out of  21,504   61%
 Logic Distribution:
-  Number of occupied Slices:          9,934 out of  10,752   92%
-    Number of Slices containing only related logic:   9,934 out of   9,934 100%
-    Number of Slices containing unrelated logic:          0 out of   9,934   0%
+  Number of occupied Slices:          9,917 out of  10,752   92%
+    Number of Slices containing only related logic:   9,917 out of   9,917 100%
+    Number of Slices containing unrelated logic:          0 out of   9,917   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:      14,135 out of  21,504   65%
-    Number used as logic:            12,074
-    Number used as a route-thru:        870
+  Total Number of 4 input LUTs:      14,118 out of  21,504   65%
+    Number used as logic:            12,057
+    Number used as a route-thru:        869
     Number used for Dual Port RAMs:     960
       (Two LUTs used per Dual Port RAM)
-    Number used as Shift registers:     231
+    Number used as Shift registers:     232
 
   The Slice Logic Distribution report is not meaningful if the design is
   over-mapped for a non-slice resource or if Placement fails.
@@ -859,11 +865,11 @@ Logic Distribution:
   Number of IDELAYCTRLs:                 12 out of      16   75%
 
   Number of RPM macros:            9
-Average Fanout of Non-Clock Nets:                3.45
+Average Fanout of Non-Clock Nets:                3.44
 
-Peak Memory Usage:  1340 MB
-Total REAL time to MAP completion:  11 mins 52 secs 
-Total CPU time to MAP completion:   11 mins 46 secs 
+Peak Memory Usage:  1337 MB
+Total REAL time to MAP completion:  10 mins 16 secs 
+Total CPU time to MAP completion:   10 mins 16 secs 
 
 Mapping completed.
 See MAP report file "top_map.mrp" for details.

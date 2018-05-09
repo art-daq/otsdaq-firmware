@@ -7,7 +7,7 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : TOP_LEVEL.vhf
--- /___/   /\     Timestamp : 05/03/2018 14:48:14
+-- /___/   /\     Timestamp : 05/09/2018 10:55:02
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
@@ -18,6 +18,149 @@
 --    This vhdl netlist is translated from an ECS schematic. It can be 
 --    synthesized and simulated, but it should not be modified. 
 --
+
+library ieee;
+use ieee.std_logic_1164.ALL;
+use ieee.numeric_std.ALL;
+library UNISIM;
+use UNISIM.Vcomponents.ALL;
+
+entity FD16RE_MXILINX_TOP_LEVEL is
+   port ( C  : in    std_logic; 
+          CE : in    std_logic; 
+          D  : in    std_logic_vector (15 downto 0); 
+          R  : in    std_logic; 
+          Q  : out   std_logic_vector (15 downto 0));
+end FD16RE_MXILINX_TOP_LEVEL;
+
+architecture BEHAVIORAL of FD16RE_MXILINX_TOP_LEVEL is
+   attribute BOX_TYPE   : string ;
+   component FDRE
+      generic( INIT : bit :=  '0');
+      port ( C  : in    std_logic; 
+             CE : in    std_logic; 
+             D  : in    std_logic; 
+             R  : in    std_logic; 
+             Q  : out   std_logic);
+   end component;
+   attribute BOX_TYPE of FDRE : component is "BLACK_BOX";
+   
+begin
+   I_Q0 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(0),
+                R=>R,
+                Q=>Q(0));
+   
+   I_Q1 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(1),
+                R=>R,
+                Q=>Q(1));
+   
+   I_Q2 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(2),
+                R=>R,
+                Q=>Q(2));
+   
+   I_Q3 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(3),
+                R=>R,
+                Q=>Q(3));
+   
+   I_Q4 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(4),
+                R=>R,
+                Q=>Q(4));
+   
+   I_Q5 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(5),
+                R=>R,
+                Q=>Q(5));
+   
+   I_Q6 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(6),
+                R=>R,
+                Q=>Q(6));
+   
+   I_Q7 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(7),
+                R=>R,
+                Q=>Q(7));
+   
+   I_Q8 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(8),
+                R=>R,
+                Q=>Q(8));
+   
+   I_Q9 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(9),
+                R=>R,
+                Q=>Q(9));
+   
+   I_Q10 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(10),
+                R=>R,
+                Q=>Q(10));
+   
+   I_Q11 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(11),
+                R=>R,
+                Q=>Q(11));
+   
+   I_Q12 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(12),
+                R=>R,
+                Q=>Q(12));
+   
+   I_Q13 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(13),
+                R=>R,
+                Q=>Q(13));
+   
+   I_Q14 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(14),
+                R=>R,
+                Q=>Q(14));
+   
+   I_Q15 : FDRE
+      port map (C=>C,
+                CE=>CE,
+                D=>D(15),
+                R=>R,
+                Q=>Q(15));
+   
+end BEHAVIORAL;
+
+
 
 library ieee;
 use ieee.std_logic_1164.ALL;
@@ -174,8 +317,8 @@ architecture BEHAVIORAL of M4_1E_MXILINX_TOP_LEVEL is
    end component;
    attribute BOX_TYPE of MUXF5 : component is "BLACK_BOX";
    
-   attribute HU_SET of I_M01 : label is "I_M01_1";
-   attribute HU_SET of I_M23 : label is "I_M23_0";
+   attribute HU_SET of I_M01 : label is "I_M01_3";
+   attribute HU_SET of I_M23 : label is "I_M23_2";
 begin
    I_M01 : M2_1E_MXILINX_TOP_LEVEL
       port map (D0=>D0,
@@ -1052,8 +1195,8 @@ architecture BEHAVIORAL of DATA_MANAGER_MUSER_TOP_LEVEL is
    end component;
    attribute BOX_TYPE of GND : component is "BLACK_BOX";
    
-   attribute HU_SET of XLXI_3527 : label is "XLXI_3527_2";
-   attribute HU_SET of XLXI_3532 : label is "XLXI_3532_3";
+   attribute HU_SET of XLXI_3527 : label is "XLXI_3527_4";
+   attribute HU_SET of XLXI_3532 : label is "XLXI_3532_5";
 begin
    rx_data(63 downto 0) <= rx_data_DUMMY(63 downto 0);
    RX_DATA_FIFO : DATA_FIFO_0
@@ -1642,149 +1785,6 @@ use ieee.numeric_std.ALL;
 library UNISIM;
 use UNISIM.Vcomponents.ALL;
 
-entity FD16RE_MXILINX_TOP_LEVEL is
-   port ( C  : in    std_logic; 
-          CE : in    std_logic; 
-          D  : in    std_logic_vector (15 downto 0); 
-          R  : in    std_logic; 
-          Q  : out   std_logic_vector (15 downto 0));
-end FD16RE_MXILINX_TOP_LEVEL;
-
-architecture BEHAVIORAL of FD16RE_MXILINX_TOP_LEVEL is
-   attribute BOX_TYPE   : string ;
-   component FDRE
-      generic( INIT : bit :=  '0');
-      port ( C  : in    std_logic; 
-             CE : in    std_logic; 
-             D  : in    std_logic; 
-             R  : in    std_logic; 
-             Q  : out   std_logic);
-   end component;
-   attribute BOX_TYPE of FDRE : component is "BLACK_BOX";
-   
-begin
-   I_Q0 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(0),
-                R=>R,
-                Q=>Q(0));
-   
-   I_Q1 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(1),
-                R=>R,
-                Q=>Q(1));
-   
-   I_Q2 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(2),
-                R=>R,
-                Q=>Q(2));
-   
-   I_Q3 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(3),
-                R=>R,
-                Q=>Q(3));
-   
-   I_Q4 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(4),
-                R=>R,
-                Q=>Q(4));
-   
-   I_Q5 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(5),
-                R=>R,
-                Q=>Q(5));
-   
-   I_Q6 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(6),
-                R=>R,
-                Q=>Q(6));
-   
-   I_Q7 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(7),
-                R=>R,
-                Q=>Q(7));
-   
-   I_Q8 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(8),
-                R=>R,
-                Q=>Q(8));
-   
-   I_Q9 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(9),
-                R=>R,
-                Q=>Q(9));
-   
-   I_Q10 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(10),
-                R=>R,
-                Q=>Q(10));
-   
-   I_Q11 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(11),
-                R=>R,
-                Q=>Q(11));
-   
-   I_Q12 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(12),
-                R=>R,
-                Q=>Q(12));
-   
-   I_Q13 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(13),
-                R=>R,
-                Q=>Q(13));
-   
-   I_Q14 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(14),
-                R=>R,
-                Q=>Q(14));
-   
-   I_Q15 : FDRE
-      port map (C=>C,
-                CE=>CE,
-                D=>D(15),
-                R=>R,
-                Q=>Q(15));
-   
-end BEHAVIORAL;
-
-
-
-library ieee;
-use ieee.std_logic_1164.ALL;
-use ieee.numeric_std.ALL;
-library UNISIM;
-use UNISIM.Vcomponents.ALL;
-
 entity DELAY16_MUSER_TOP_LEVEL is
    port ( CLOCK_INIT : in    std_logic; 
           in_sig     : in    std_logic; 
@@ -2325,7 +2325,6 @@ architecture BEHAVIORAL of TOP_LEVEL is
    signal event_number                : std_logic_vector (63 downto 0);
    signal EXT_CLK                     : std_logic;
    signal EXT_TRIGG                   : std_logic;
-   signal EXT_TRIGG_FWD               : std_logic;
    signal first_in_chain              : std_logic_vector (3 downto 0);
    signal gec_addrs                   : std_logic_vector (7 downto 0);
    signal GEC_DEST_ADDRS_MAP          : std_logic;
@@ -2424,8 +2423,11 @@ architecture BEHAVIORAL of TOP_LEVEL is
    signal rx_addr                     : std_logic_vector (63 downto 0);
    signal rx_data                     : std_logic_vector (63 downto 0);
    signal rx_wren                     : std_logic;
+   signal scin_phys                   : std_logic_vector (2 downto 0);
    signal sm_ready                    : std_logic_vector (2 downto 0);
    signal software_reset              : std_logic;
+   signal telescope_busy              : std_logic;
+   signal telescope_trigger_en        : std_logic;
    signal third_dut_ctrl              : std_logic_vector (7 downto 0);
    signal timestamp                   : std_logic_vector (12 downto 0);
    signal token                       : std_logic_vector (3 downto 0);
@@ -2434,7 +2436,16 @@ architecture BEHAVIORAL of TOP_LEVEL is
    signal token_throttle              : std_logic_vector (2 downto 0);
    signal trigger_busy                : std_logic;
    signal trigger_number              : std_logic_vector (63 downto 0);
+   signal trigger_throttle            : std_logic;
+   signal trig_fifo_empty             : std_logic;
+   signal trig_fifo_re                : std_logic;
+   signal trig_fifo_read              : std_logic_vector (7 downto 0);
+   signal trig_fifo_ts                : std_logic_vector (7 downto 0);
+   signal trig_fifo_we                : std_logic;
+   signal trig_mask_en                : std_logic;
+   signal trig_mask_hi                : std_logic;
    signal trig_reset                  : std_logic;
+   signal trig_veto_dur               : std_logic_vector (31 downto 0);
    signal tx_data                     : std_logic_vector (63 downto 0);
    signal vcc_sig                     : std_logic;
    signal XLXN_11574                  : std_logic;
@@ -2458,6 +2469,9 @@ architecture BEHAVIORAL of TOP_LEVEL is
    signal XLXN_17239                  : std_logic;
    signal XLXN_17430                  : std_logic;
    signal XLXN_17517                  : std_logic;
+   signal XLXN_17722                  : std_logic;
+   signal XLXN_17849                  : std_logic;
+   signal XLXN_18128                  : std_logic;
    signal XLXN_18354                  : std_logic;
    signal XLXN_18355                  : std_logic;
    signal XLXN_18365                  : std_logic;
@@ -2565,11 +2579,9 @@ architecture BEHAVIORAL of TOP_LEVEL is
    attribute BOX_TYPE of DCM_PS : component is "BLACK_BOX";
    
    component External_Trigger_Handler
-      port ( ext_trig_line_in        : in    std_logic; 
-             xclkToForward_0phase    : in    std_logic; 
-             xclkToForward_90phase   : in    std_logic; 
-             extTrigToForward_0phase : out   std_logic; 
-             ext_trigger_90phase     : out   std_logic);
+      port ( ext_trig_line_in : in    std_logic; 
+             xclk             : in    std_logic; 
+             ext_trigger      : out   std_logic);
    end component;
    
    component IDELAY
@@ -3068,6 +3080,38 @@ architecture BEHAVIORAL of TOP_LEVEL is
    end component;
    attribute BOX_TYPE of BUF : component is "BLACK_BOX";
    
+   component TriggerBlock
+      port ( mclk             : in    std_logic; 
+             xclk             : in    std_logic; 
+             rst              : in    std_logic; 
+             en               : in    std_logic; 
+             we               : in    std_logic; 
+             trig_fifo_empty  : in    std_logic; 
+             trig_mask_en     : in    std_logic; 
+             trig_mask_hi     : in    std_logic; 
+             scin             : in    std_logic_vector (2 downto 0); 
+             master_clk_delay : in    std_logic_vector (3 downto 0); 
+             psi_clk_delay    : in    std_logic_vector (7 downto 0); 
+             trig_fifo_read   : in    std_logic_vector (7 downto 0); 
+             trig_fifo_we     : out   std_logic; 
+             trig_fifo_re     : out   std_logic; 
+             busy             : out   std_logic; 
+             trig_out         : out   std_logic; 
+             trig_fifo_ts     : out   std_logic_vector (7 downto 0); 
+             veto_duration    : in    std_logic_vector (19 downto 0));
+   end component;
+   
+   component trigger_fifo_8
+      port ( clk   : in    std_logic; 
+             rst   : in    std_logic; 
+             wr_en : in    std_logic; 
+             rd_en : in    std_logic; 
+             din   : in    std_logic_vector (7 downto 0); 
+             full  : out   std_logic; 
+             empty : out   std_logic; 
+             dout  : out   std_logic_vector (7 downto 0));
+   end component;
+   
    component Ethernet_Interface_MUSER_TOP_LEVEL
       port ( MASTER_CLK           : in    std_logic; 
              reset                : in    std_logic; 
@@ -3157,58 +3201,60 @@ architecture BEHAVIORAL of TOP_LEVEL is
    attribute IOBDELAY_TYPE of idelay_psi_dig_0 : label is "VARIABLE";
    attribute IOBDELAY_TYPE of idelay_psi_dig_1 : label is "VARIABLE";
    attribute IOBDELAY_TYPE of idelay_psi_dig_2 : label is "VARIABLE";
-   attribute HU_SET of psi_cmd_clk_mux_0 : label is "psi_cmd_clk_mux_0_31";
-   attribute HU_SET of psi_cmd_clk_mux_1 : label is "psi_cmd_clk_mux_1_30";
-   attribute HU_SET of psi_cmd_clk_mux_2 : label is "psi_cmd_clk_mux_2_29";
+   attribute HU_SET of psi_cmd_clk_mux_0 : label is "psi_cmd_clk_mux_0_33";
+   attribute HU_SET of psi_cmd_clk_mux_1 : label is "psi_cmd_clk_mux_1_32";
+   attribute HU_SET of psi_cmd_clk_mux_2 : label is "psi_cmd_clk_mux_2_31";
    attribute CLKFX_MULTIPLY of XLXI_3254 : label is "16";
    attribute CLKFX_DIVIDE of XLXI_3254 : label is "27";
    attribute CLKIN_PERIOD of XLXI_3254 : label is "8.0";
    attribute CLKIN_PERIOD of XLXI_3410 : label is "8.0";
    attribute CLKFX_MULTIPLY of XLXI_3410 : label is "8";
    attribute CLKFX_DIVIDE of XLXI_3410 : label is "5";
-   attribute HU_SET of XLXI_3432 : label is "XLXI_3432_4";
-   attribute HU_SET of XLXI_4595 : label is "XLXI_4595_6";
+   attribute HU_SET of XLXI_3432 : label is "XLXI_3432_6";
+   attribute HU_SET of XLXI_4595 : label is "XLXI_4595_8";
    attribute CLKIN_PERIOD of XLXI_4615 : label is "26.0";
    attribute CLKFX_MULTIPLY of XLXI_4615 : label is "2";
    attribute CLKFX_DIVIDE of XLXI_4615 : label is "2";
    attribute DCM_PERFORMANCE_MODE of XLXI_4615 : label is "MAX_RANGE";
-   attribute HU_SET of XLXI_4677 : label is "XLXI_4677_5";
-   attribute HU_SET of XLXI_4773 : label is "XLXI_4773_12";
+   attribute HU_SET of XLXI_4677 : label is "XLXI_4677_7";
+   attribute HU_SET of XLXI_4773 : label is "XLXI_4773_14";
    attribute DIFF_TERM of XLXI_4794 : label is "TRUE";
-   attribute HU_SET of XLXI_4846 : label is "XLXI_4846_11";
-   attribute HU_SET of XLXI_5284 : label is "XLXI_5284_21";
+   attribute HU_SET of XLXI_4846 : label is "XLXI_4846_13";
+   attribute HU_SET of XLXI_5284 : label is "XLXI_5284_23";
    attribute DIFF_TERM of XLXI_5542 : label is "TRUE";
    attribute DIFF_TERM of XLXI_5548 : label is "TRUE";
-   attribute HU_SET of XLXI_5561 : label is "XLXI_5561_7";
+   attribute HU_SET of XLXI_5561 : label is "XLXI_5561_9";
    attribute DIFF_TERM of XLXI_5567 : label is "TRUE";
-   attribute HU_SET of XLXI_5677 : label is "XLXI_5677_8";
-   attribute HU_SET of XLXI_5678 : label is "XLXI_5678_9";
-   attribute HU_SET of XLXI_6015 : label is "XLXI_6015_10";
+   attribute HU_SET of XLXI_5677 : label is "XLXI_5677_10";
+   attribute HU_SET of XLXI_5678 : label is "XLXI_5678_11";
+   attribute HU_SET of XLXI_6015 : label is "XLXI_6015_12";
+   attribute HU_SET of XLXI_6016 : label is "XLXI_6016_38";
+   attribute HU_SET of XLXI_6018 : label is "XLXI_6018_37";
    attribute DIFF_TERM of XLXI_6040 : label is "TRUE";
-   attribute HU_SET of XLXI_6067 : label is "XLXI_6067_13";
-   attribute HU_SET of XLXI_6084 : label is "XLXI_6084_16";
-   attribute HU_SET of XLXI_6086 : label is "XLXI_6086_14";
+   attribute HU_SET of XLXI_6067 : label is "XLXI_6067_15";
+   attribute HU_SET of XLXI_6084 : label is "XLXI_6084_18";
+   attribute HU_SET of XLXI_6086 : label is "XLXI_6086_16";
    attribute CLKIN_PERIOD of XLXI_6096 : label is "16.0";
    attribute CLKFX_DIVIDE of XLXI_6096 : label is "4";
-   attribute HU_SET of XLXI_6104 : label is "XLXI_6104_32";
+   attribute HU_SET of XLXI_6104 : label is "XLXI_6104_34";
    attribute DIFF_TERM of XLXI_6184 : label is "TRUE";
-   attribute HU_SET of XLXI_6193 : label is "XLXI_6193_15";
-   attribute HU_SET of XLXI_6207 : label is "XLXI_6207_17";
-   attribute HU_SET of XLXI_6260 : label is "XLXI_6260_20";
-   attribute HU_SET of XLXI_6315 : label is "XLXI_6315_18";
-   attribute HU_SET of XLXI_6323 : label is "XLXI_6323_19";
-   attribute HU_SET of XLXI_6340 : label is "XLXI_6340_23";
-   attribute HU_SET of XLXI_6341 : label is "XLXI_6341_24";
-   attribute HU_SET of XLXI_6345 : label is "XLXI_6345_22";
-   attribute HU_SET of XLXI_6356 : label is "XLXI_6356_25";
-   attribute HU_SET of XLXI_6357 : label is "XLXI_6357_26";
-   attribute HU_SET of XLXI_6360 : label is "XLXI_6360_27";
-   attribute HU_SET of XLXI_6361 : label is "XLXI_6361_28";
+   attribute HU_SET of XLXI_6193 : label is "XLXI_6193_17";
+   attribute HU_SET of XLXI_6207 : label is "XLXI_6207_19";
+   attribute HU_SET of XLXI_6260 : label is "XLXI_6260_22";
+   attribute HU_SET of XLXI_6315 : label is "XLXI_6315_20";
+   attribute HU_SET of XLXI_6323 : label is "XLXI_6323_21";
+   attribute HU_SET of XLXI_6340 : label is "XLXI_6340_25";
+   attribute HU_SET of XLXI_6341 : label is "XLXI_6341_26";
+   attribute HU_SET of XLXI_6345 : label is "XLXI_6345_24";
+   attribute HU_SET of XLXI_6356 : label is "XLXI_6356_27";
+   attribute HU_SET of XLXI_6357 : label is "XLXI_6357_28";
+   attribute HU_SET of XLXI_6360 : label is "XLXI_6360_29";
+   attribute HU_SET of XLXI_6361 : label is "XLXI_6361_30";
    attribute CLKIN_PERIOD of XLXI_6376 : label is "25.0";
    attribute CLKFX_MULTIPLY of XLXI_6376 : label is "2";
    attribute CLKFX_DIVIDE of XLXI_6376 : label is "2";
-   attribute HU_SET of XLXI_6377 : label is "XLXI_6377_33";
-   attribute HU_SET of XLXI_6393 : label is "XLXI_6393_34";
+   attribute HU_SET of XLXI_6377 : label is "XLXI_6377_35";
+   attribute HU_SET of XLXI_6393 : label is "XLXI_6393_36";
 begin
    chipscope_dig_latch_0 : FDE
       port map (C=>MASTER_CLK,
@@ -3323,10 +3369,8 @@ begin
    
    ext_trig_handler : External_Trigger_Handler
       port map (ext_trig_line_in=>EXT_TRIGG,
-                xclkToForward_0phase=>PSI_CLK0,
-                xclkToForward_90phase=>PSI_CLK90,
-                extTrigToForward_0phase=>EXT_TRIGG_FWD,
-                ext_trigger_90phase=>psi_extdom_trig);
+                xclk=>PSI_CLK90,
+                ext_trigger=>psi_extdom_trig);
    
    idelay_psi_dig_0 : IDELAY
    -- synopsys translate_off
@@ -3405,7 +3449,7 @@ begin
    
    psi_cmd_fifo_vector_0 : psi_cmd_fifo32_512depth
       port map (din(31 downto 0)=>rx_data(31 downto 0),
-                rd_clk=>psi_i2c_clk(0),
+                rd_clk=>PSI_CLK0,
                 rd_en=>psi_cmd_fifo_re(0),
                 rst=>psi_reset,
                 wr_clk=>MASTER_CLK,
@@ -3416,7 +3460,7 @@ begin
    
    psi_cmd_fifo_vector_1 : psi_cmd_fifo32_512depth
       port map (din(31 downto 0)=>rx_data(31 downto 0),
-                rd_clk=>psi_i2c_clk(1),
+                rd_clk=>PSI_CLK0,
                 rd_en=>psi_cmd_fifo_re(1),
                 rst=>psi_reset,
                 wr_clk=>MASTER_CLK,
@@ -3427,7 +3471,7 @@ begin
    
    psi_cmd_fifo_vector_2 : psi_cmd_fifo32_512depth
       port map (din(31 downto 0)=>rx_data(31 downto 0),
-                rd_clk=>psi_i2c_clk(2),
+                rd_clk=>PSI_CLK0,
                 rd_en=>psi_cmd_fifo_re(2),
                 rst=>psi_reset,
                 wr_clk=>MASTER_CLK,
@@ -3464,7 +3508,7 @@ begin
       port map (data(31 downto 0)=>psi_cmd_fifo_dout(31 downto 0),
                 fifo_empty=>psi_cmd_fifo_empty(0),
                 fifo_full=>psi_cmd_fifo_full(0),
-                psi_clk=>psi_i2c_clk(0),
+                psi_clk=>PSI_CLK0,
                 reset=>psi_reset,
                 data_error=>psi_errors(32),
                 data_out=>psi_cmd_sender_dout(0),
@@ -3475,7 +3519,7 @@ begin
       port map (data(31 downto 0)=>psi_cmd_fifo_dout(63 downto 32),
                 fifo_empty=>psi_cmd_fifo_empty(1),
                 fifo_full=>psi_cmd_fifo_full(1),
-                psi_clk=>psi_i2c_clk(1),
+                psi_clk=>PSI_CLK0,
                 reset=>psi_reset,
                 data_error=>psi_errors(33),
                 data_out=>psi_cmd_sender_dout(1),
@@ -3486,7 +3530,7 @@ begin
       port map (data(31 downto 0)=>psi_cmd_fifo_dout(95 downto 64),
                 fifo_empty=>psi_cmd_fifo_empty(2),
                 fifo_full=>psi_cmd_fifo_full(2),
-                psi_clk=>psi_i2c_clk(2),
+                psi_clk=>PSI_CLK0,
                 reset=>psi_reset,
                 data_error=>psi_errors(34),
                 data_out=>psi_cmd_sender_dout(2),
@@ -4077,10 +4121,10 @@ begin
    -- synopsys translate_on
       port map (I=>BUSD_26DP_52S,
                 IB=>BUSD_26DN_53S,
-                O=>EXT_TRIGG);
+                O=>scin_phys(0));
    
    XLXI_4830 : OBUFDS
-      port map (I=>EXT_TRIGG_FWD,
+      port map (I=>EXT_TRIGG,
                 O=>BUSD_15DP_30S,
                 OB=>BUSD_15DN_31S);
    
@@ -4095,7 +4139,7 @@ begin
                 OB=>BUSB_15DN_31S);
    
    XLXI_4833 : OBUFDS
-      port map (I=>EXT_TRIGG_FWD,
+      port map (I=>EXT_TRIGG,
                 O=>BUSB_24DP_48S,
                 OB=>BUSB_24DN_49S);
    
@@ -4184,7 +4228,7 @@ begin
                 O=>psi_token_out(0));
    
    XLXI_5543 : OBUFDS
-      port map (I=>dut_dcm_clk90(0),
+      port map (I=>PSI_CLK90,
                 O=>BUSB_22DP_44S,
                 OB=>BUSB_22DN_45S);
    
@@ -4216,7 +4260,7 @@ begin
                 O=>psi_token_out(1));
    
    XLXI_5549 : OBUFDS
-      port map (I=>dut_dcm_clk90(1),
+      port map (I=>PSI_CLK90,
                 O=>BUSAA_07DP_14S,
                 OB=>BUSAA_07DN_15S);
    
@@ -4340,6 +4384,48 @@ begin
       port map (I=>token(3),
                 O=>token(0));
    
+   XLXI_5828 : GND
+      port map (G=>scin_phys(1));
+   
+   XLXI_5829 : GND
+      port map (G=>scin_phys(2));
+   
+   XLXI_5836 : TriggerBlock
+      port map (en=>telescope_trigger_en,
+                master_clk_delay(3 downto 0)=>rx_data(19 downto 16),
+                mclk=>MASTER_CLK,
+                psi_clk_delay(7 downto 0)=>rx_data(27 downto 20),
+                rst=>reset,
+                scin(2 downto 0)=>scin_phys(2 downto 0),
+                trig_fifo_empty=>trig_fifo_empty,
+                trig_fifo_read(7 downto 0)=>trig_fifo_read(7 downto 0),
+                trig_mask_en=>trig_mask_en,
+                trig_mask_hi=>trig_mask_hi,
+                veto_duration(19 downto 0)=>trig_veto_dur(19 downto 0),
+                we=>MASTER_TRIGGER_MAP,
+                xclk=>PSI_CLK0,
+                busy=>XLXN_17722,
+                trig_fifo_re=>trig_fifo_re,
+                trig_fifo_ts(7 downto 0)=>trig_fifo_ts(7 downto 0),
+                trig_fifo_we=>trig_fifo_we,
+                trig_out=>EXT_TRIGG);
+   
+   XLXI_5839 : OR2
+      port map (I0=>trigger_throttle,
+                I1=>XLXN_17722,
+                O=>telescope_busy);
+   
+   XLXI_5873 : FDE
+      port map (C=>MASTER_CLK,
+                CE=>MASTER_TRIGGER_MAP,
+                D=>rx_data(0),
+                Q=>XLXN_17849);
+   
+   XLXI_5884 : AND2B1
+      port map (I0=>trigger_throttle,
+                I1=>XLXN_17849,
+                O=>telescope_trigger_en);
+   
    XLXI_5976 : AND2
       port map (I0=>inv_psi_reset,
                 I1=>psi_token_reset_n(0),
@@ -4350,11 +4436,26 @@ begin
                 I1=>psi_token_reset_n(1),
                 O=>XLXN_18986);
    
+   XLXI_5983 : trigger_fifo_8
+      port map (clk=>PSI_CLK0,
+                din(7 downto 0)=>trig_fifo_ts(7 downto 0),
+                rd_en=>trig_fifo_re,
+                rst=>XLXN_18128,
+                wr_en=>trig_fifo_we,
+                dout(7 downto 0)=>trig_fifo_read(7 downto 0),
+                empty=>trig_fifo_empty,
+                full=>open);
+   
    XLXI_5987 : FDE
       port map (C=>MASTER_CLK,
                 CE=>TOKEN_STACK_MAP,
                 D=>rx_data(0),
                 Q=>bypass_token_stack);
+   
+   XLXI_5988 : OR2
+      port map (I0=>trigger_throttle,
+                I1=>reset,
+                O=>XLXN_18128);
    
    XLXI_5989 : OR2
       port map (I0=>reset,
@@ -4365,6 +4466,18 @@ begin
       port map (I0=>reset,
                 I1=>XLXN_17239,
                 O=>readout_reset);
+   
+   XLXI_6008 : FDE
+      port map (C=>MASTER_CLK,
+                CE=>MASTER_TRIGGER_MAP,
+                D=>rx_data(32),
+                Q=>trig_mask_en);
+   
+   XLXI_6009 : FDE
+      port map (C=>MASTER_CLK,
+                CE=>MASTER_TRIGGER_MAP,
+                D=>rx_data(36),
+                Q=>trig_mask_hi);
    
    XLXI_6013 : Ethernet_Interface_MUSER_TOP_LEVEL
       port map (b_data(63 downto 0)=>b_data(63 downto 0),
@@ -4406,6 +4519,20 @@ begin
                 R=>reset,
                 Q(7 downto 0)=>gec_addrs(7 downto 0));
    
+   XLXI_6016 : FD16RE_MXILINX_TOP_LEVEL
+      port map (C=>MASTER_CLK,
+                CE=>MASTER_VETO_MAP,
+                D(15 downto 0)=>rx_data(15 downto 0),
+                R=>reset,
+                Q(15 downto 0)=>trig_veto_dur(15 downto 0));
+   
+   XLXI_6018 : FD16RE_MXILINX_TOP_LEVEL
+      port map (C=>MASTER_CLK,
+                CE=>MASTER_VETO_MAP,
+                D(15 downto 0)=>rx_data(31 downto 16),
+                R=>reset,
+                Q(15 downto 0)=>trig_veto_dur(31 downto 16));
+   
    XLXI_6021 : BUF
       port map (I=>trigger_busy,
                 O=>psi_status(17));
@@ -4435,7 +4562,7 @@ begin
                 OB=>BUSB_13DN_27S);
    
    XLXI_6047 : OBUFDS
-      port map (I=>EXT_TRIGG_FWD,
+      port map (I=>EXT_TRIGG,
                 O=>BUSB_14DP_28S,
                 OB=>BUSB_14DN_29S);
    
@@ -4564,7 +4691,7 @@ begin
                 O=>psi_token_out(2));
    
    XLXI_6185 : OBUFDS
-      port map (I=>dut_dcm_clk90(2),
+      port map (I=>PSI_CLK90,
                 O=>BUSC_11DP_22S,
                 OB=>BUSC_11DN_23S);
    
@@ -4919,6 +5046,9 @@ begin
                 CLR=>XLXN_19144,
                 T=>XLXN_19145,
                 Q=>XLXN_19147);
+   
+   XLXI_6434 : GND
+      port map (G=>trigger_throttle);
    
 end BEHAVIORAL;
 

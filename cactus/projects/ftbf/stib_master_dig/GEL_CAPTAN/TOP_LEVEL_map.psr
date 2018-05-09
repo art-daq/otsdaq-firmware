@@ -29,15 +29,15 @@ Target Device                       : 4vlx25ff668-10
 *                        Optimizations                                  *
 =========================================================================
 ---- Statistics
-   Number of registers added by Synchronous Optimization     | 13              
+   Number of registers added by Synchronous Optimization     | 2               
    Number of SRLs added by SRL Inferencing                   | 1               
    Number of LUTs added by Replication                       | 1               
-   Number of LUTs added by Synchronous Optimization          | 9               
    Number of registers removed by SRL Inferencing            | 16              
-   Number of registers removed by Equivalence Removal        | 3               
-   Number of LUTs removed by Trimming                        | 52              
+   Number of registers removed by Trimming                   | 1               
+   Number of registers removed by Equivalence Removal        | 5               
+   Number of LUTs removed by Trimming                        | 60              
 
-   Overall change in number of design objects                |  -47             
+   Overall change in number of design objects                |  -78             
 
 
 ---- Details
@@ -46,27 +46,7 @@ New or modified components                             | Optimization           
 -------------------------------------------------------|--------------------------|----------------------
 Mshreg_XLXN_54                                         | SRL Inferencing          | Area
 XLXI_4005_1                                            | Replication              | Fanout Optimization
-data_down                                              | Synchronous Optimization | Performance
 inj_sig                                                | Synchronous Optimization | Performance
-rep_counter_0                                          | Synchronous Optimization | Performance
-rep_counter_0_rstpot                                   | Synchronous Optimization | Performance
-rep_counter_1                                          | Synchronous Optimization | Performance
-rep_counter_1_rstpot                                   | Synchronous Optimization | Performance
-rep_counter_2                                          | Synchronous Optimization | Performance
-rep_counter_2_rstpot                                   | Synchronous Optimization | Performance
-rep_counter_3                                          | Synchronous Optimization | Performance
-rep_counter_3_rstpot                                   | Synchronous Optimization | Performance
-rep_counter_4                                          | Synchronous Optimization | Performance
-rep_counter_4_rstpot                                   | Synchronous Optimization | Performance
-rep_counter_5                                          | Synchronous Optimization | Performance
-rep_counter_5_rstpot                                   | Synchronous Optimization | Performance
-rep_counter_6                                          | Synchronous Optimization | Performance
-rep_counter_6_rstpot                                   | Synchronous Optimization | Performance
-rep_counter_7                                          | Synchronous Optimization | Performance
-rep_counter_7_rstpot                                   | Synchronous Optimization | Performance
-started_down                                           | Synchronous Optimization | Performance
-started_down_rstpot                                    | Synchronous Optimization | Performance
-token_delay_0                                          | Synchronous Optimization | Performance
 trig_sig                                               | Synchronous Optimization | Performance
 
 
@@ -121,7 +101,9 @@ U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[7].U_HCE           | Trimming
 U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[7].U_LCE           | Trimming                 
 U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[8].U_HCE           | Trimming                 
 U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[9].U_HCE           | Trimming                 
+U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.rfwft/empty_fwft_i| Equivalence Removal      
 U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_i| Equivalence Removal      
+U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i| Equivalence Removal      
 U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg_0| Equivalence Removal      
 U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg_1| Equivalence Removal      
 XLXI_1                                                 | SRL Inferencing          
@@ -141,8 +123,17 @@ XLXI_45                                                | SRL Inferencing
 XLXI_46                                                | SRL Inferencing          
 XLXI_47                                                | SRL Inferencing          
 XLXI_5654                                              | Trimming                 
+XLXI_5839                                              | Trimming                 
 XLXI_7                                                 | SRL Inferencing          
-rep_counter_not000134                                  | Trimming                 
+busy                                                   | Trimming                 
+busy_not00011                                          | Trimming                 
+busy_or000021                                          | Trimming                 
+psi_cmd_inv0_0                                         | Trimming                 
+psi_cmd_inv0_1                                         | Trimming                 
+psi_cmd_inv0_2                                         | Trimming                 
+psi_cmd_inv1_0                                         | Trimming                 
+psi_cmd_inv1_1                                         | Trimming                 
+psi_cmd_inv1_2                                         | Trimming                 
 
 
    Flops added for Enable Generation                       

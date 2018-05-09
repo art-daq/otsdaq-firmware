@@ -282,7 +282,7 @@ BEGIN
         if(strip_ready_cnt /= 0) then -- countdown to ready again
         
 				strip_ready <= '0';
-            if(strip_clocks_locked = '1' and strip_busy = '0') then
+            if(strip_busy = '0') then --(strip_clocks_locked = '1' and strip_busy = '0') then
                 strip_ready_cnt <= strip_ready_cnt - 1;               
                 if(strip_ready_cnt = 1) then -- ready now!
                      strip_ready <= '1';
