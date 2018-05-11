@@ -28,7 +28,8 @@ INST "clk15ns_ibufg" LOC = "BUFGCTRL_X0Y10" ;
 INST "strip_imp/stripclk_imp/mclk_dcm" LOC = "DCM_ADV_X0Y2" ;
 INST "strip_imp/stripclk_imp/fbcoclk_dcm" LOC = "DCM_ADV_X0Y7" ;
 
-INST "strip_imp/stripclk_imp/bcoclk_pmcd" LOC = "PMCD_X0Y3" ;
+# RAR removed release and reset complication.. we were having problems not losing bco clock MAY 2018
+#INST "strip_imp/stripclk_imp/bcoclk_pmcd" LOC = "PMCD_X0Y3" ;
 
 # strip_imp/stripclk_imp/clk_q driven by BUFGCTRL_X0Y17
 NET "strip_imp/stripclk_imp/clk_q" TNM_NET = "TN_strip_imp/stripclk_imp/clk_q" ;

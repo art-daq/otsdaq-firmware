@@ -387,7 +387,7 @@ begin
 		dcm_bco_div <= local_quarterClk;
 		process(clk_q)
 		begin
-			if(rising_edge(clk)) then
+			if(rising_edge(clk_q)) then
 				local_halfClk <= not local_halfClk;
 				if(local_halfClk = '0') then
 					local_quarterClk <= not local_quarterClk;

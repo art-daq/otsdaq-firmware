@@ -1378,12 +1378,10 @@ Analyzing Entity <stripclk> in library <strip> (Architecture <behavioral>).
     Set user-defined property "PHASE_SHIFT =  0" for instance <fbcoclk_dcm> in unit <stripclk>.
     Set user-defined property "SIM_DEVICE =  VIRTEX4" for instance <fbcoclk_dcm> in unit <stripclk>.
     Set user-defined property "STARTUP_WAIT =  FALSE" for instance <fbcoclk_dcm> in unit <stripclk>.
-    Set user-defined property "EN_REL =  TRUE" for instance <bcoclk_pmcd> in unit <stripclk>.
-    Set user-defined property "RST_DEASSERT_CLK =  CLKA" for instance <bcoclk_pmcd> in unit <stripclk>.
     Set user-defined property "INIT_OUT =  0" for instance <bcoclkmux_imp> in unit <stripclk>.
     Set user-defined property "PRESELECT_I0 =  FALSE" for instance <bcoclkmux_imp> in unit <stripclk>.
     Set user-defined property "PRESELECT_I1 =  FALSE" for instance <bcoclkmux_imp> in unit <stripclk>.
-WARNING:Xst:2211 - "/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_slave_ots/strip/stripclk.vhd" line 428: Instantiating black box module <bcocounter>.
+WARNING:Xst:2211 - "/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_slave_ots/strip/stripclk.vhd" line 447: Instantiating black box module <bcocounter>.
 Entity <stripclk> analyzed. Unit <stripclk> generated.
 
 Analyzing Entity <fastbcocounter> in library <strip> (Architecture <rtl>).
@@ -3631,10 +3629,12 @@ WARNING:Xst:1780 - Signal <bco_reset_done> is never used or assigned. This uncon
     Found 16-bit down counter for signal <fcbo_watchdog_low_timer>.
     Found 1-bit register for signal <fcbo_watchdog_reset_sig>.
     Found 4-bit down counter for signal <fcbo_watchdog_reset_timer>.
+    Found 1-bit register for signal <local_halfClk>.
+    Found 1-bit register for signal <local_quarterClk>.
     Summary:
 	inferred   1 Finite State Machine(s).
 	inferred   4 Counter(s).
-	inferred  67 D-type flip-flop(s).
+	inferred  69 D-type flip-flop(s).
 Unit <stripclk> synthesized.
 
 
@@ -5950,8 +5950,8 @@ Macro Statistics
  7-bit up counter                                      : 1
  8-bit up counter                                      : 3
  9-bit up counter                                      : 1
-# Registers                                            : 2847
- 1-bit register                                        : 2509
+# Registers                                            : 2849
+ 1-bit register                                        : 2511
  11-bit register                                       : 8
  12-bit register                                       : 3
  16-bit register                                       : 16
@@ -7165,8 +7165,8 @@ Macro Statistics
  9-bit up counter                                      : 1
 # Accumulators                                         : 1
  12-bit up loadable accumulator                        : 1
-# Registers                                            : 6841
- Flip-Flops                                            : 6841
+# Registers                                            : 6843
+ Flip-Flops                                            : 6843
 # Comparators                                          : 40
  11-bit comparator less                                : 2
  12-bit comparator greatequal                          : 1
@@ -7914,10 +7914,8 @@ WARNING:Xst:2677 - Node <DOUT_31> of sequential type is unconnected in block <st
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block top, actual ratio is 96.
+Found area constraint ratio of 100 (+ 5) on block top, actual ratio is 95.
 Forward register balancing over carry chain Mcompar_local_bco_zero_cnt_cmp_eq0000_cy<0>
-In hierarchy level strip_imp/stripana_imp.
-Forward register balancing over carry chain Mcount_BCO_cy<0>
 INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/lut_f/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_fb_i> in Unit <stackGen[0].fifo_imp> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/lut_f/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_i> 
 INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/lut_f/gntv_or_sync_fifo.gl0.rd/rpntr/count_d1_0> in Unit <stackGen[0].fifo_imp> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/lut_f/gntv_or_sync_fifo.gl0.rd/rpntr/count_d1_0_1> 
 INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/lut_f/gntv_or_sync_fifo.gl0.rd/rpntr/count_d1_2> in Unit <stackGen[0].fifo_imp> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/lut_f/gntv_or_sync_fifo.gl0.rd/rpntr/count_d1_2_1> 
@@ -8175,6 +8173,137 @@ INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_
 
 Pipelining and Register Balancing Report ...
 
+Processing Unit <strip_imp/sc_imp> :
+	Register(s) BITS_OUT_0 has(ve) been backward balanced into : BITS_OUT_0_BRB2 BITS_OUT_0_BRB3.
+	Register(s) BITS_OUT_1 has(ve) been backward balanced into : BITS_OUT_1_BRB2 BITS_OUT_1_BRB3.
+	Register(s) BITS_OUT_10 has(ve) been backward balanced into : BITS_OUT_10_BRB2 BITS_OUT_10_BRB3.
+	Register(s) BITS_OUT_100 has(ve) been backward balanced into : BITS_OUT_100_BRB0 BITS_OUT_100_BRB1 BITS_OUT_100_BRB2 BITS_OUT_100_BRB3.
+	Register(s) BITS_OUT_101 has(ve) been backward balanced into : BITS_OUT_101_BRB2 BITS_OUT_101_BRB3.
+	Register(s) BITS_OUT_102 has(ve) been backward balanced into : BITS_OUT_102_BRB2 BITS_OUT_102_BRB3.
+	Register(s) BITS_OUT_103 has(ve) been backward balanced into : BITS_OUT_103_BRB2 BITS_OUT_103_BRB3.
+	Register(s) BITS_OUT_104 has(ve) been backward balanced into : BITS_OUT_104_BRB0 BITS_OUT_104_BRB2 BITS_OUT_104_BRB3.
+	Register(s) BITS_OUT_105 has(ve) been backward balanced into : BITS_OUT_105_BRB2 BITS_OUT_105_BRB3.
+	Register(s) BITS_OUT_106 has(ve) been backward balanced into : BITS_OUT_106_BRB1 BITS_OUT_106_BRB2 BITS_OUT_106_BRB3.
+	Register(s) BITS_OUT_107 has(ve) been backward balanced into : BITS_OUT_107_BRB1 BITS_OUT_107_BRB2 BITS_OUT_107_BRB3.
+	Register(s) BITS_OUT_108 has(ve) been backward balanced into : BITS_OUT_108_BRB2 BITS_OUT_108_BRB3.
+	Register(s) BITS_OUT_109 has(ve) been backward balanced into : BITS_OUT_109_BRB2 BITS_OUT_109_BRB3.
+	Register(s) BITS_OUT_11 has(ve) been backward balanced into : BITS_OUT_11_BRB2 BITS_OUT_11_BRB3.
+	Register(s) BITS_OUT_110 has(ve) been backward balanced into : BITS_OUT_110_BRB2 BITS_OUT_110_BRB3.
+	Register(s) BITS_OUT_111 has(ve) been backward balanced into : BITS_OUT_111_BRB2 BITS_OUT_111_BRB3.
+	Register(s) BITS_OUT_112 has(ve) been backward balanced into : BITS_OUT_112_BRB2 BITS_OUT_112_BRB3.
+	Register(s) BITS_OUT_113 has(ve) been backward balanced into : BITS_OUT_113_BRB2 BITS_OUT_113_BRB3.
+	Register(s) BITS_OUT_114 has(ve) been backward balanced into : BITS_OUT_114_BRB2 BITS_OUT_114_BRB3.
+	Register(s) BITS_OUT_115 has(ve) been backward balanced into : BITS_OUT_115_BRB2 BITS_OUT_115_BRB3.
+	Register(s) BITS_OUT_116 has(ve) been backward balanced into : BITS_OUT_116_BRB2 BITS_OUT_116_BRB3.
+	Register(s) BITS_OUT_117 has(ve) been backward balanced into : BITS_OUT_117_BRB2 BITS_OUT_117_BRB3.
+	Register(s) BITS_OUT_118 has(ve) been backward balanced into : BITS_OUT_118_BRB2 BITS_OUT_118_BRB3.
+	Register(s) BITS_OUT_119 has(ve) been backward balanced into : BITS_OUT_119_BRB2 BITS_OUT_119_BRB3.
+	Register(s) BITS_OUT_12 has(ve) been backward balanced into : BITS_OUT_12_BRB2 BITS_OUT_12_BRB3.
+	Register(s) BITS_OUT_120 has(ve) been backward balanced into : BITS_OUT_120_BRB2 BITS_OUT_120_BRB3.
+	Register(s) BITS_OUT_121 has(ve) been backward balanced into : BITS_OUT_121_BRB2 BITS_OUT_121_BRB3.
+	Register(s) BITS_OUT_122 has(ve) been backward balanced into : BITS_OUT_122_BRB2 BITS_OUT_122_BRB3.
+	Register(s) BITS_OUT_123 has(ve) been backward balanced into : BITS_OUT_123_BRB2 BITS_OUT_123_BRB3.
+	Register(s) BITS_OUT_124 has(ve) been backward balanced into : BITS_OUT_124_BRB2 BITS_OUT_124_BRB3.
+	Register(s) BITS_OUT_125 has(ve) been backward balanced into : BITS_OUT_125_BRB2 BITS_OUT_125_BRB3.
+	Register(s) BITS_OUT_126 has(ve) been backward balanced into : BITS_OUT_126_BRB2 BITS_OUT_126_BRB3.
+	Register(s) BITS_OUT_127 has(ve) been backward balanced into : BITS_OUT_127_BRB2 BITS_OUT_127_BRB3.
+	Register(s) BITS_OUT_13 has(ve) been backward balanced into : BITS_OUT_13_BRB2 BITS_OUT_13_BRB3.
+	Register(s) BITS_OUT_14 has(ve) been backward balanced into : BITS_OUT_14_BRB2 BITS_OUT_14_BRB3.
+	Register(s) BITS_OUT_15 has(ve) been backward balanced into : BITS_OUT_15_BRB2 BITS_OUT_15_BRB3.
+	Register(s) BITS_OUT_16 has(ve) been backward balanced into : BITS_OUT_16_BRB2 BITS_OUT_16_BRB3.
+	Register(s) BITS_OUT_17 has(ve) been backward balanced into : BITS_OUT_17_BRB2 BITS_OUT_17_BRB3.
+	Register(s) BITS_OUT_18 has(ve) been backward balanced into : BITS_OUT_18_BRB2 BITS_OUT_18_BRB3.
+	Register(s) BITS_OUT_19 has(ve) been backward balanced into : BITS_OUT_19_BRB2 BITS_OUT_19_BRB3.
+	Register(s) BITS_OUT_2 has(ve) been backward balanced into : BITS_OUT_2_BRB2 BITS_OUT_2_BRB3.
+	Register(s) BITS_OUT_20 has(ve) been backward balanced into : BITS_OUT_20_BRB2 BITS_OUT_20_BRB3.
+	Register(s) BITS_OUT_21 has(ve) been backward balanced into : BITS_OUT_21_BRB2 BITS_OUT_21_BRB3.
+	Register(s) BITS_OUT_22 has(ve) been backward balanced into : BITS_OUT_22_BRB2 BITS_OUT_22_BRB3.
+	Register(s) BITS_OUT_23 has(ve) been backward balanced into : BITS_OUT_23_BRB2 BITS_OUT_23_BRB3.
+	Register(s) BITS_OUT_24 has(ve) been backward balanced into : BITS_OUT_24_BRB2 BITS_OUT_24_BRB3.
+	Register(s) BITS_OUT_25 has(ve) been backward balanced into : BITS_OUT_25_BRB2 BITS_OUT_25_BRB3.
+	Register(s) BITS_OUT_26 has(ve) been backward balanced into : BITS_OUT_26_BRB2 BITS_OUT_26_BRB3.
+	Register(s) BITS_OUT_27 has(ve) been backward balanced into : BITS_OUT_27_BRB2 BITS_OUT_27_BRB3.
+	Register(s) BITS_OUT_28 has(ve) been backward balanced into : BITS_OUT_28_BRB2 BITS_OUT_28_BRB3.
+	Register(s) BITS_OUT_29 has(ve) been backward balanced into : BITS_OUT_29_BRB2 BITS_OUT_29_BRB3.
+	Register(s) BITS_OUT_3 has(ve) been backward balanced into : BITS_OUT_3_BRB2 BITS_OUT_3_BRB3.
+	Register(s) BITS_OUT_30 has(ve) been backward balanced into : BITS_OUT_30_BRB2 BITS_OUT_30_BRB3.
+	Register(s) BITS_OUT_31 has(ve) been backward balanced into : BITS_OUT_31_BRB2 BITS_OUT_31_BRB3.
+	Register(s) BITS_OUT_32 has(ve) been backward balanced into : BITS_OUT_32_BRB2 BITS_OUT_32_BRB3.
+	Register(s) BITS_OUT_33 has(ve) been backward balanced into : BITS_OUT_33_BRB2 BITS_OUT_33_BRB3.
+	Register(s) BITS_OUT_34 has(ve) been backward balanced into : BITS_OUT_34_BRB2 BITS_OUT_34_BRB3.
+	Register(s) BITS_OUT_35 has(ve) been backward balanced into : BITS_OUT_35_BRB2 BITS_OUT_35_BRB3.
+	Register(s) BITS_OUT_36 has(ve) been backward balanced into : BITS_OUT_36_BRB2 BITS_OUT_36_BRB3.
+	Register(s) BITS_OUT_37 has(ve) been backward balanced into : BITS_OUT_37_BRB2 BITS_OUT_37_BRB3.
+	Register(s) BITS_OUT_38 has(ve) been backward balanced into : BITS_OUT_38_BRB2 BITS_OUT_38_BRB3.
+	Register(s) BITS_OUT_39 has(ve) been backward balanced into : BITS_OUT_39_BRB2 BITS_OUT_39_BRB3.
+	Register(s) BITS_OUT_4 has(ve) been backward balanced into : BITS_OUT_4_BRB2 BITS_OUT_4_BRB3.
+	Register(s) BITS_OUT_40 has(ve) been backward balanced into : BITS_OUT_40_BRB2 BITS_OUT_40_BRB3.
+	Register(s) BITS_OUT_41 has(ve) been backward balanced into : BITS_OUT_41_BRB2 BITS_OUT_41_BRB3.
+	Register(s) BITS_OUT_42 has(ve) been backward balanced into : BITS_OUT_42_BRB2 BITS_OUT_42_BRB3.
+	Register(s) BITS_OUT_43 has(ve) been backward balanced into : BITS_OUT_43_BRB2 BITS_OUT_43_BRB3.
+	Register(s) BITS_OUT_44 has(ve) been backward balanced into : BITS_OUT_44_BRB2 BITS_OUT_44_BRB3.
+	Register(s) BITS_OUT_45 has(ve) been backward balanced into : BITS_OUT_45_BRB2 BITS_OUT_45_BRB3.
+	Register(s) BITS_OUT_46 has(ve) been backward balanced into : BITS_OUT_46_BRB0 BITS_OUT_46_BRB1 BITS_OUT_46_BRB2 BITS_OUT_46_BRB3.
+	Register(s) BITS_OUT_47 has(ve) been backward balanced into : BITS_OUT_47_BRB1 BITS_OUT_47_BRB2 BITS_OUT_47_BRB3.
+	Register(s) BITS_OUT_48 has(ve) been backward balanced into : BITS_OUT_48_BRB1 BITS_OUT_48_BRB2 BITS_OUT_48_BRB3.
+	Register(s) BITS_OUT_49 has(ve) been backward balanced into : BITS_OUT_49_BRB1 BITS_OUT_49_BRB2 BITS_OUT_49_BRB3.
+	Register(s) BITS_OUT_5 has(ve) been backward balanced into : BITS_OUT_5_BRB0 BITS_OUT_5_BRB1 BITS_OUT_5_BRB2 BITS_OUT_5_BRB3.
+	Register(s) BITS_OUT_50 has(ve) been backward balanced into : BITS_OUT_50_BRB2 BITS_OUT_50_BRB3.
+	Register(s) BITS_OUT_51 has(ve) been backward balanced into : BITS_OUT_51_BRB0 BITS_OUT_51_BRB1 BITS_OUT_51_BRB2 BITS_OUT_51_BRB3.
+	Register(s) BITS_OUT_52 has(ve) been backward balanced into : BITS_OUT_52_BRB1 BITS_OUT_52_BRB2 BITS_OUT_52_BRB3.
+	Register(s) BITS_OUT_53 has(ve) been backward balanced into : BITS_OUT_53_BRB1 BITS_OUT_53_BRB2 BITS_OUT_53_BRB3.
+	Register(s) BITS_OUT_54 has(ve) been backward balanced into : BITS_OUT_54_BRB1 BITS_OUT_54_BRB2 BITS_OUT_54_BRB3.
+	Register(s) BITS_OUT_55 has(ve) been backward balanced into : BITS_OUT_55_BRB1 BITS_OUT_55_BRB2 BITS_OUT_55_BRB3.
+	Register(s) BITS_OUT_56 has(ve) been backward balanced into : BITS_OUT_56_BRB2 BITS_OUT_56_BRB3.
+	Register(s) BITS_OUT_57 has(ve) been backward balanced into : BITS_OUT_57_BRB2 BITS_OUT_57_BRB3.
+	Register(s) BITS_OUT_58 has(ve) been backward balanced into : BITS_OUT_58_BRB1 BITS_OUT_58_BRB2 BITS_OUT_58_BRB3.
+	Register(s) BITS_OUT_59 has(ve) been backward balanced into : BITS_OUT_59_BRB2 BITS_OUT_59_BRB3.
+	Register(s) BITS_OUT_6 has(ve) been backward balanced into : BITS_OUT_6_BRB2 BITS_OUT_6_BRB3.
+	Register(s) BITS_OUT_60 has(ve) been backward balanced into : BITS_OUT_60_BRB2 BITS_OUT_60_BRB3.
+	Register(s) BITS_OUT_61 has(ve) been backward balanced into : BITS_OUT_61_BRB2 BITS_OUT_61_BRB3.
+	Register(s) BITS_OUT_62 has(ve) been backward balanced into : BITS_OUT_62_BRB2 BITS_OUT_62_BRB3.
+	Register(s) BITS_OUT_63 has(ve) been backward balanced into : BITS_OUT_63_BRB2 BITS_OUT_63_BRB3.
+	Register(s) BITS_OUT_64 has(ve) been backward balanced into : BITS_OUT_64_BRB0 BITS_OUT_64_BRB2 BITS_OUT_64_BRB3.
+	Register(s) BITS_OUT_65 has(ve) been backward balanced into : BITS_OUT_65_BRB2 BITS_OUT_65_BRB3.
+	Register(s) BITS_OUT_66 has(ve) been backward balanced into : BITS_OUT_66_BRB2 BITS_OUT_66_BRB3.
+	Register(s) BITS_OUT_67 has(ve) been backward balanced into : BITS_OUT_67_BRB2 BITS_OUT_67_BRB3.
+	Register(s) BITS_OUT_68 has(ve) been backward balanced into : BITS_OUT_68_BRB2 BITS_OUT_68_BRB3.
+	Register(s) BITS_OUT_69 has(ve) been backward balanced into : BITS_OUT_69_BRB2 BITS_OUT_69_BRB3.
+	Register(s) BITS_OUT_7 has(ve) been backward balanced into : BITS_OUT_7_BRB2 BITS_OUT_7_BRB3.
+	Register(s) BITS_OUT_70 has(ve) been backward balanced into : BITS_OUT_70_BRB2 BITS_OUT_70_BRB3.
+	Register(s) BITS_OUT_71 has(ve) been backward balanced into : BITS_OUT_71_BRB2 BITS_OUT_71_BRB3.
+	Register(s) BITS_OUT_72 has(ve) been backward balanced into : BITS_OUT_72_BRB0 BITS_OUT_72_BRB2 BITS_OUT_72_BRB3.
+	Register(s) BITS_OUT_73 has(ve) been backward balanced into : BITS_OUT_73_BRB2 BITS_OUT_73_BRB3.
+	Register(s) BITS_OUT_74 has(ve) been backward balanced into : BITS_OUT_74_BRB2 BITS_OUT_74_BRB3.
+	Register(s) BITS_OUT_75 has(ve) been backward balanced into : BITS_OUT_75_BRB2 BITS_OUT_75_BRB3.
+	Register(s) BITS_OUT_76 has(ve) been backward balanced into : BITS_OUT_76_BRB2 BITS_OUT_76_BRB3.
+	Register(s) BITS_OUT_77 has(ve) been backward balanced into : BITS_OUT_77_BRB2 BITS_OUT_77_BRB3.
+	Register(s) BITS_OUT_78 has(ve) been backward balanced into : BITS_OUT_78_BRB2 BITS_OUT_78_BRB3.
+	Register(s) BITS_OUT_79 has(ve) been backward balanced into : BITS_OUT_79_BRB2 BITS_OUT_79_BRB3.
+	Register(s) BITS_OUT_8 has(ve) been backward balanced into : BITS_OUT_8_BRB0 BITS_OUT_8_BRB1 BITS_OUT_8_BRB2 BITS_OUT_8_BRB3.
+	Register(s) BITS_OUT_80 has(ve) been backward balanced into : BITS_OUT_80_BRB2 BITS_OUT_80_BRB3.
+	Register(s) BITS_OUT_81 has(ve) been backward balanced into : BITS_OUT_81_BRB2 BITS_OUT_81_BRB3.
+	Register(s) BITS_OUT_82 has(ve) been backward balanced into : BITS_OUT_82_BRB2 BITS_OUT_82_BRB3.
+	Register(s) BITS_OUT_83 has(ve) been backward balanced into : BITS_OUT_83_BRB2 BITS_OUT_83_BRB3.
+	Register(s) BITS_OUT_84 has(ve) been backward balanced into : BITS_OUT_84_BRB2 BITS_OUT_84_BRB3.
+	Register(s) BITS_OUT_85 has(ve) been backward balanced into : BITS_OUT_85_BRB2 BITS_OUT_85_BRB3.
+	Register(s) BITS_OUT_86 has(ve) been backward balanced into : BITS_OUT_86_BRB2 BITS_OUT_86_BRB3.
+	Register(s) BITS_OUT_87 has(ve) been backward balanced into : BITS_OUT_87_BRB2 BITS_OUT_87_BRB3.
+	Register(s) BITS_OUT_88 has(ve) been backward balanced into : BITS_OUT_88_BRB2 BITS_OUT_88_BRB3.
+	Register(s) BITS_OUT_89 has(ve) been backward balanced into : BITS_OUT_89_BRB2 BITS_OUT_89_BRB3.
+	Register(s) BITS_OUT_9 has(ve) been backward balanced into : BITS_OUT_9_BRB1 BITS_OUT_9_BRB2 BITS_OUT_9_BRB3.
+	Register(s) BITS_OUT_90 has(ve) been backward balanced into : BITS_OUT_90_BRB2 BITS_OUT_90_BRB3.
+	Register(s) BITS_OUT_91 has(ve) been backward balanced into : BITS_OUT_91_BRB2 BITS_OUT_91_BRB3.
+	Register(s) BITS_OUT_92 has(ve) been backward balanced into : BITS_OUT_92_BRB2 BITS_OUT_92_BRB3.
+	Register(s) BITS_OUT_93 has(ve) been backward balanced into : BITS_OUT_93_BRB2 BITS_OUT_93_BRB3.
+	Register(s) BITS_OUT_94 has(ve) been backward balanced into : BITS_OUT_94_BRB2 BITS_OUT_94_BRB3.
+	Register(s) BITS_OUT_95 has(ve) been backward balanced into : BITS_OUT_95_BRB2 BITS_OUT_95_BRB3.
+	Register(s) BITS_OUT_96 has(ve) been backward balanced into : BITS_OUT_96_BRB2 BITS_OUT_96_BRB3.
+	Register(s) BITS_OUT_97 has(ve) been backward balanced into : BITS_OUT_97_BRB2 BITS_OUT_97_BRB3.
+	Register(s) BITS_OUT_98 has(ve) been backward balanced into : BITS_OUT_98_BRB2 BITS_OUT_98_BRB3.
+	Register(s) BITS_OUT_99 has(ve) been backward balanced into : BITS_OUT_99_BRB2 BITS_OUT_99_BRB3.
+Unit <strip_imp/sc_imp> processed.
+
 Processing Unit <strip_imp/stripana_imp> :
 	Register(s) STRIP_DATA_1 has(ve) been backward balanced into : STRIP_DATA_1_BRB2 STRIP_DATA_1_BRB3.
 	Register(s) STRIP_DATA_12 has(ve) been backward balanced into : STRIP_DATA_12_BRB2 STRIP_DATA_12_BRB3.
@@ -8250,8 +8379,8 @@ Unit <top> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 6619
- Flip-Flops                                            : 6619
+# Registers                                            : 6741
+ Flip-Flops                                            : 6741
 # Shift Registers                                      : 40
  2-bit shift register                                  : 32
  44-bit shift register                                 : 8
@@ -8283,46 +8412,46 @@ Design Statistics
 # IOs                              : 215
 
 Cell Usage :
-# BELS                             : 16704
+# BELS                             : 16458
 #      GND                         : 91
-#      INV                         : 453
+#      INV                         : 455
 #      LUT1                        : 728
-#      LUT2                        : 1599
-#      LUT2_D                      : 9
-#      LUT2_L                      : 29
-#      LUT3                        : 2536
-#      LUT3_D                      : 23
-#      LUT3_L                      : 20
-#      LUT4                        : 7292
-#      LUT4_D                      : 62
-#      LUT4_L                      : 366
+#      LUT2                        : 1367
+#      LUT2_D                      : 6
+#      LUT2_L                      : 18
+#      LUT3                        : 2527
+#      LUT3_D                      : 28
+#      LUT3_L                      : 21
+#      LUT4                        : 7486
+#      LUT4_D                      : 68
+#      LUT4_L                      : 290
 #      MULT_AND                    : 12
 #      MUXCY                       : 1790
-#      MUXF5                       : 523
+#      MUXF5                       : 400
 #      MUXF6                       : 21
 #      MUXF7                       : 10
 #      MUXF8                       : 5
 #      VCC                         : 74
 #      XORCY                       : 1061
-# FlipFlops/Latches                : 8889
-#      FD                          : 343
-#      FD_1                        : 191
+# FlipFlops/Latches                : 9011
+#      FD                          : 344
+#      FD_1                        : 471
 #      FDC                         : 532
 #      FDCE                        : 366
-#      FDE                         : 2789
+#      FDE                         : 2790
 #      FDE_1                       : 881
 #      FDP                         : 131
 #      FDPE                        : 184
 #      FDR                         : 838
-#      FDR_1                       : 18
-#      FDRE                        : 1668
+#      FDR_1                       : 19
+#      FDRE                        : 1637
 #      FDRE_1                      : 198
 #      FDRS                        : 275
-#      FDRS_1                      : 3
+#      FDRS_1                      : 2
 #      FDRSE                       : 2
 #      FDS                         : 52
-#      FDS_1                       : 268
-#      FDSE                        : 121
+#      FDS_1                       : 140
+#      FDSE                        : 120
 #      ODDR                        : 29
 # RAMS                             : 653
 #      FIFO16                      : 12
@@ -8343,10 +8472,9 @@ Cell Usage :
 #      OBUFDS                      : 34
 # DCM_ADVs                         : 3
 #      DCM_ADV                     : 3
-# Others                           : 62
+# Others                           : 61
 #      IDELAYCTRL                  : 1
 #      ISERDES                     : 60
-#      PMCD                        : 1
 =========================================================================
 
 Device utilization summary:
@@ -8354,10 +8482,10 @@ Device utilization summary:
 
 Selected Device : 4vlx25ff668-10 
 
- Number of Slices:                     9643  out of  10752    89%  
- Number of Slice Flip Flops:           8889  out of  21504    41%  
- Number of 4 input LUTs:              14453  out of  21504    67%  
-    Number used as logic:             13117
+ Number of Slices:                     9566  out of  10752    88%  
+ Number of Slice Flip Flops:           9011  out of  21504    41%  
+ Number of 4 input LUTs:              14330  out of  21504    66%  
+    Number used as logic:             12994
     Number used as Shift registers:      88
     Number used as RAMs:               1248
  Number of IOs:                         215
@@ -8368,7 +8496,6 @@ Selected Device : 4vlx25ff668-10
  Number of GCLKs:                        18  out of     32    56%  
  Number of DCM_ADVs:                      3  out of      8    37%  
  Number of ISERDESs:                     60  out of    448    13%  
- Number of PMCDs:                         1  out of      4    25%  
 
 ---------------------------
 Partition Resource Summary:
@@ -8388,20 +8515,20 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
-------------------------------------------------------+--------------------------------------------------------------------------------------+-------+
-Clock Signal                                          | Clock buffer(FF name)                                                                | Load  |
-------------------------------------------------------+--------------------------------------------------------------------------------------+-------+
-GMII_RXCLK_PAD                                        | IBUFG+BUFG                                                                           | 3539  |
-CLK15NS_PAD                                           | BUFGCTRL+clkzWatchdog[0].clkz_dcm:CLK0                                               | 3406  |
-EXT_CLK_PAD_P                                         | IBUFDS                                                                               | 91    |
-strip_imp/dac_imp/DIVCLK                              | NONE(DACBUS[0].dac_busa_obuf)                                                        | 46    |
-CLK15NS_PAD                                           | BUFGCTRL+clkzWatchdog[0].clkz_dcm:CLK0+fbcoclk_dcm:CLKFX+bcoclk_pmcd:CLKA1D4+BUFGCTRL| 717   |
-CLK15NS_PAD                                           | mclk_dcm:CLKDV                                                                       | 1807  |
-CLK5MHZ_PAD                                           | IBUFG                                                                                | 24    |
-CLK15NS_PAD                                           | mclk_dcm:CLKFX                                                                       | 14    |
-strip_imp/stripclk_imp/bcocounter_imp/blk00000001/Q<0>| NONE(strip_imp/striptbm_imp/NEED_BCO)                                                | 8     |
-CLK15NS_PAD                                           | BUFGCTRL+clkzWatchdog[0].clkz_dcm:CLK0+fbcoclk_dcm:CLKFX+bcoclk_pmcd:CLKA1           | 207   |
-------------------------------------------------------+--------------------------------------------------------------------------------------+-------+
+------------------------------------------------------+--------------------------------------------------------------+-------+
+Clock Signal                                          | Clock buffer(FF name)                                        | Load  |
+------------------------------------------------------+--------------------------------------------------------------+-------+
+GMII_RXCLK_PAD                                        | IBUFG+BUFG                                                   | 3539  |
+CLK15NS_PAD                                           | BUFGCTRL+clkzWatchdog[0].clkz_dcm:CLK0+BUFGCTRL              | 3454  |
+EXT_CLK_PAD_P                                         | IBUFDS                                                       | 91    |
+strip_imp/dac_imp/DIVCLK                              | NONE(DACBUS[0].dac_busa_obuf)                                | 46    |
+strip_imp/stripclk_imp/local_quarterClk               | BUFG                                                         | 789   |
+CLK15NS_PAD                                           | mclk_dcm:CLKDV                                               | 1807  |
+CLK5MHZ_PAD                                           | IBUFG                                                        | 24    |
+CLK15NS_PAD                                           | mclk_dcm:CLKFX                                               | 14    |
+strip_imp/stripclk_imp/bcocounter_imp/blk00000001/Q<0>| NONE(strip_imp/striptbm_imp/NEED_BCO)                        | 8     |
+CLK15NS_PAD                                           | BUFGCTRL+clkzWatchdog[0].clkz_dcm:CLK0+fbcoclk_dcm:CLKFX+BUFG| 208   |
+------------------------------------------------------+--------------------------------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
 Asynchronous Control Signals Information:
@@ -8616,15 +8743,14 @@ strip_imp/trigprim3_imp/fifo_imp/U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo
 strip_imp/trigprim3_imp/fifo_imp/U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/lut_f/rstblk/wr_rst_comb(strip_imp/trigprim3_imp/fifo_imp/U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/lut_f/rstblk/wr_rst_comb1:O)              | NONE(strip_imp/trigprim3_imp/fifo_imp/U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/lut_f/rstblk/wr_rst_reg_0)                                                                                           | 2     |
 strip_imp/trigproc_imp/fifo_imp/U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/lut_f/rstblk/rd_rst_comb(strip_imp/trigproc_imp/fifo_imp/U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/lut_f/rstblk/rd_rst_comb1:O)                | NONE(strip_imp/trigproc_imp/fifo_imp/U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/lut_f/rstblk/rd_rst_reg_1)                                                                                            | 2     |
 strip_imp/trigproc_imp/fifo_imp/U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/lut_f/rstblk/wr_rst_comb(strip_imp/trigproc_imp/fifo_imp/U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/lut_f/rstblk/wr_rst_comb1:O)                | NONE(strip_imp/trigproc_imp/fifo_imp/U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/lut_f/rstblk/wr_rst_reg_0)                                                                                            | 2     |
-strip_imp/stripclk_imp/debug<2>(strip_imp/stripclk_imp/bcoclk_reset1:O)                                                                                                                                                                                                                              | NONE(strip_imp/stripclk_imp/bcoclk_pmcd)                                                                                                                                                                                                   | 1     |
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -10
 
-   Minimum period: 11.915ns (Maximum Frequency: 83.931MHz)
-   Minimum input arrival time before clock: 7.036ns
+   Minimum period: 12.562ns (Maximum Frequency: 79.608MHz)
+   Minimum input arrival time before clock: 4.500ns
    Maximum output required time after clock: 8.534ns
    Maximum combinational path delay: 6.602ns
 
@@ -8635,7 +8761,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'GMII_RXCLK_PAD'
   Clock period: 8.735ns (frequency: 114.477MHz)
-  Total number of paths / destination ports: 160657 / 9191
+  Total number of paths / destination ports: 160591 / 9191
 -------------------------------------------------------------------------
 Delay:               8.735ns (Levels of Logic = 14)
   Source:            eth_interface/data_manager_blk/RAM_COMM_DEC/ram_addr_sig_53 (FF)
@@ -8671,10 +8797,10 @@ Delay:               8.735ns (Levels of Logic = 14)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK15NS_PAD'
-  Clock period: 11.915ns (frequency: 83.931MHz)
-  Total number of paths / destination ports: 182377 / 14644
+  Clock period: 12.562ns (frequency: 79.608MHz)
+  Total number of paths / destination ports: 133102 / 10505
 -------------------------------------------------------------------------
-Delay:               5.957ns (Levels of Logic = 5)
+Delay:               6.281ns (Levels of Logic = 6)
   Source:            strip_imp/stripana_imp/STRIP_DATA_31_BRB1 (FF)
   Destination:       strip_imp/stripana_imp/COUNTERS_3_0 (FF)
   Source Clock:      CLK15NS_PAD falling
@@ -8684,16 +8810,17 @@ Delay:               5.957ns (Levels of Logic = 5)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD_1:C->Q            17   0.307   0.805  STRIP_DATA_31_BRB1 (STRIP_DATA_31_BRB1)
-     LUT4:I2->O            2   0.195   0.602  STRIP_DATA_16_rstpot (STRIP_DATA_16)
-     LUT4:I2->O            1   0.195   0.741  COUNTERS_1_not00011117 (COUNTERS_1_not00011117)
-     LUT4:I0->O            1   0.195   0.523  COUNTERS_1_not00011249 (COUNTERS_1_not00011249)
-     LUT3_D:I2->O          4   0.195   0.537  COUNTERS_1_not00011259 (N11)
+     FD_1:C->Q            16   0.307   0.818  STRIP_DATA_31_BRB1 (STRIP_DATA_31_BRB1)
+     LUT4:I2->O            3   0.195   0.756  STRIP_DATA_13_rstpot (STRIP_DATA_13)
+     LUT4:I0->O            1   0.195   0.000  COUNTERS_1_not0001158_SW11 (COUNTERS_1_not0001158_SW1)
+     MUXF5:I1->O           1   0.374   0.523  COUNTERS_1_not0001158_SW1_f5 (N65)
+     LUT4:I3->O            1   0.195   0.523  COUNTERS_1_not0001158 (COUNTERS_1_not0001158)
+     LUT4_D:I3->O          4   0.195   0.537  COUNTERS_1_not00011259 (N11)
      LUT4:I3->O           32   0.195   0.928  COUNTERS_4_not00011 (COUNTERS_4_not0001)
      FDRE:CE                   0.540          COUNTERS_4_0
     ----------------------------------------
-    Total                      5.957ns (1.822ns logic, 4.135ns route)
-                                       (30.6% logic, 69.4% route)
+    Total                      6.281ns (2.196ns logic, 4.085ns route)
+                                       (35.0% logic, 65.0% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'strip_imp/dac_imp/DIVCLK'
@@ -8758,11 +8885,44 @@ Delay:               2.508ns (Levels of Logic = 2)
                                        (41.6% logic, 58.4% route)
 
 =========================================================================
+Timing constraint: Default period analysis for Clock 'strip_imp/stripclk_imp/local_quarterClk'
+  Clock period: 10.804ns (frequency: 92.555MHz)
+  Total number of paths / destination ports: 24899 / 1445
+-------------------------------------------------------------------------
+Delay:               5.402ns (Levels of Logic = 12)
+  Source:            strip_imp/sc_imp/IBIT_0 (FF)
+  Destination:       strip_imp/sc_imp/BITS_OUT_61_BRB2 (FF)
+  Source Clock:      strip_imp/stripclk_imp/local_quarterClk rising
+  Destination Clock: strip_imp/stripclk_imp/local_quarterClk falling
+
+  Data Path: strip_imp/sc_imp/IBIT_0 to strip_imp/sc_imp/BITS_OUT_61_BRB2
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              73   0.360   1.251  IBIT_0 (IBIT_0)
+     LUT2:I1->O            1   0.195   0.000  Msub_BITS_OUT_5_sub0000_lut<0> (Msub_BITS_OUT_5_sub0000_lut<0>)
+     MUXCY:S->O            1   0.366   0.000  Msub_BITS_OUT_5_sub0000_cy<0> (Msub_BITS_OUT_5_sub0000_cy<0>)
+     MUXCY:CI->O           1   0.045   0.000  Msub_BITS_OUT_5_sub0000_cy<1> (Msub_BITS_OUT_5_sub0000_cy<1>)
+     MUXCY:CI->O           1   0.045   0.000  Msub_BITS_OUT_5_sub0000_cy<2> (Msub_BITS_OUT_5_sub0000_cy<2>)
+     MUXCY:CI->O           1   0.045   0.000  Msub_BITS_OUT_5_sub0000_cy<3> (Msub_BITS_OUT_5_sub0000_cy<3>)
+     MUXCY:CI->O           1   0.045   0.000  Msub_BITS_OUT_5_sub0000_cy<4> (Msub_BITS_OUT_5_sub0000_cy<4>)
+     MUXCY:CI->O           1   0.045   0.000  Msub_BITS_OUT_5_sub0000_cy<5> (Msub_BITS_OUT_5_sub0000_cy<5>)
+     MUXCY:CI->O           1   0.045   0.000  Msub_BITS_OUT_5_sub0000_cy<6> (Msub_BITS_OUT_5_sub0000_cy<6>)
+     XORCY:CI->O           4   0.360   0.702  Msub_BITS_OUT_5_sub0000_xor<7> (BITS_OUT_5_sub0000<7>)
+     LUT3_D:I0->O          3   0.195   0.538  BITS_OUT_112_mux0000111 (N283)
+     LUT3:I2->O           16   0.195   0.756  BITS_OUT_121_mux0000111 (N307)
+     LUT4:I3->O            1   0.195   0.000  BITS_OUT_95_mux0000_SW0 (N211)
+     FD_1:D                    0.022          BITS_OUT_95_BRB2
+    ----------------------------------------
+    Total                      5.402ns (2.155ns logic, 3.247ns route)
+                                       (39.9% logic, 60.1% route)
+
+=========================================================================
 Timing constraint: Default period analysis for Clock 'CLK5MHZ_PAD'
-  Clock period: 7.163ns (frequency: 139.614MHz)
+  Clock period: 7.160ns (frequency: 139.659MHz)
   Total number of paths / destination ports: 263 / 26
 -------------------------------------------------------------------------
-Delay:               3.581ns (Levels of Logic = 2)
+Delay:               3.580ns (Levels of Logic = 2)
   Source:            strip_imp/dacspi_imp/STATE_FSM_FFd1 (FF)
   Destination:       strip_imp/dacspi_imp/DOUT_0 (FF)
   Source Clock:      CLK5MHZ_PAD falling
@@ -8773,12 +8933,12 @@ Delay:               3.581ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDR_1:C->Q           25   0.307   1.281  STATE_FSM_FFd1 (STATE_FSM_FFd1)
-     LUT4_D:I0->O          3   0.195   0.703  DOUT_0_not000121 (N13)
-     LUT3:I0->O            1   0.195   0.360  DOUT_1_not00011 (DOUT_1_not0001)
-     FDRE:CE                   0.540          DOUT_1
+     LUT4:I0->O            4   0.195   0.702  DOUT_0_not000121 (N13)
+     LUT3:I0->O            1   0.195   0.360  DOUT_2_not00011 (DOUT_2_not0001)
+     FDRE:CE                   0.540          DOUT_2
     ----------------------------------------
-    Total                      3.581ns (1.237ns logic, 2.344ns route)
-                                       (34.5% logic, 65.5% route)
+    Total                      3.580ns (1.237ns logic, 2.343ns route)
+                                       (34.6% logic, 65.4% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'strip_imp/stripclk_imp/bcocounter_imp/blk00000001/Q<0>'
@@ -8845,15 +9005,15 @@ Offset:              1.432ns (Levels of Logic = 2)
                                        (68.9% logic, 31.1% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK15NS_PAD'
-  Total number of paths / destination ports: 2620 / 158
+Timing constraint: Default OFFSET IN BEFORE for Clock 'strip_imp/stripclk_imp/local_quarterClk'
+  Total number of paths / destination ports: 160 / 8
 -------------------------------------------------------------------------
-Offset:              7.036ns (Levels of Logic = 8)
+Offset:              4.500ns (Levels of Logic = 7)
   Source:            STRIP_SCOUT_PAD_P<0> (PAD)
-  Destination:       strip_imp/sc_imp/BITS_OUT_46 (FF)
-  Destination Clock: CLK15NS_PAD falling 0.2X
+  Destination:       strip_imp/sc_imp/BITS_OUT_51_BRB0 (FF)
+  Destination Clock: strip_imp/stripclk_imp/local_quarterClk falling
 
-  Data Path: STRIP_SCOUT_PAD_P<0> to strip_imp/sc_imp/BITS_OUT_46
+  Data Path: STRIP_SCOUT_PAD_P<0> to strip_imp/sc_imp/BITS_OUT_51_BRB0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
@@ -8861,15 +9021,35 @@ Offset:              7.036ns (Levels of Logic = 8)
      begin scope: 'strip_imp'
      begin scope: 'sc_imp'
      LUT3:I1->O            1   0.195   0.000  Mmux_SCOUT_mux0000_7 (Mmux_SCOUT_mux0000_7)
-     MUXF5:I0->O           2   0.382   0.540  Mmux_SCOUT_mux0000_5_f5 (Mmux_SCOUT_mux0000_5_f5)
-     LUT4:I3->O            1   0.195   0.585  BITS_OUT_0_mux000031_SW1 (N9)
-     LUT4:I2->O            8   0.195   0.826  BITS_OUT_0_mux000031 (N325)
-     LUT4:I0->O           16   0.195   0.756  BITS_OUT_72_mux000031 (N1811)
-     LUT2:I1->O            1   0.195   0.360  BITS_OUT_95_mux00000 (BITS_OUT_95_mux00000)
-     FDS_1:S                   1.062          BITS_OUT_95
+     MUXF5:I0->O           2   0.382   0.602  Mmux_SCOUT_mux0000_5_f5 (Mmux_SCOUT_mux0000_5_f5)
+     LUT4:I2->O            1   0.195   0.585  BITS_OUT_0_mux000031_SW1 (N9)
+     LUT4_D:I2->O          7   0.195   0.579  BITS_OUT_0_mux000031 (N325)
+     LUT4:I3->O            1   0.195   0.000  BITS_OUT_72_mux000031 (N1811)
+     FD_1:D                    0.022          BITS_OUT_72_BRB0
     ----------------------------------------
-    Total                      7.036ns (3.384ns logic, 3.652ns route)
-                                       (48.1% logic, 51.9% route)
+    Total                      4.500ns (2.149ns logic, 2.351ns route)
+                                       (47.8% logic, 52.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK15NS_PAD'
+  Total number of paths / destination ports: 60 / 30
+-------------------------------------------------------------------------
+Offset:              2.405ns (Levels of Logic = 2)
+  Source:            STRIP_OUT1_4_PAD_P<0> (PAD)
+  Destination:       strip_imp/G[0].chipserdes4_imp/iserdes_master_imp (UNKNOWN)
+  Destination Clock: CLK15NS_PAD rising
+
+  Data Path: STRIP_OUT1_4_PAD_P<0> to strip_imp/G[0].chipserdes4_imp/iserdes_master_imp
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUFDS:I->O           1   0.965   0.360  S[0].strip_out1_4_ibuf (STRIP_OUT1_4<0>)
+     begin scope: 'strip_imp'
+     begin scope: 'G[0].chipserdes4_imp'
+     ISERDES:D                 1.080          iserdes_master_imp
+    ----------------------------------------
+    Total                      2.405ns (2.045ns logic, 0.360ns route)
+                                       (85.0% logic, 15.0% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'GMII_RXCLK_PAD'
@@ -8941,7 +9121,7 @@ Offset:              6.252ns (Levels of Logic = 5)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK15NS_PAD'
-  Total number of paths / destination ports: 74 / 38
+  Total number of paths / destination ports: 1 / 1
 -------------------------------------------------------------------------
 Offset:              8.534ns (Levels of Logic = 4)
   Source:            eth_interface/reset_mgr/reset (FF)
@@ -8980,6 +9160,30 @@ Offset:              4.901ns (Levels of Logic = 1)
     ----------------------------------------
     Total                      4.901ns (4.541ns logic, 0.360ns route)
                                        (92.7% logic, 7.3% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'strip_imp/stripclk_imp/local_quarterClk'
+  Total number of paths / destination ports: 73 / 37
+-------------------------------------------------------------------------
+Offset:              6.785ns (Levels of Logic = 5)
+  Source:            strip_imp/automatic_scr_set (FF)
+  Destination:       STRIP_SHIFT_PAD_N<5> (PAD)
+  Source Clock:      strip_imp/stripclk_imp/local_quarterClk rising
+
+  Data Path: strip_imp/automatic_scr_set to STRIP_SHIFT_PAD_N<5>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              39   0.360   1.118  automatic_scr_set (automatic_scr_set)
+     LUT2:I1->O            3   0.195   0.600  strip_sc<21>1 (strip_sc<21>)
+     begin scope: 'sc_imp'
+     LUT3:I1->O            1   0.195   0.360  SHIFT<5>1 (SHIFT<5>)
+     end scope: 'sc_imp'
+     end scope: 'strip_imp'
+     OBUFDS:I->O               3.957          S[5].strip_shift_obuf (STRIP_SHIFT_PAD_P<5>)
+    ----------------------------------------
+    Total                      6.785ns (4.707ns logic, 2.078ns route)
+                                       (69.4% logic, 30.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'strip_imp/dac_imp/DIVCLK'
@@ -9026,13 +9230,13 @@ Delay:               6.602ns (Levels of Logic = 5)
 =========================================================================
 
 
-Total REAL time to Xst completion: 212.00 secs
-Total CPU time to Xst completion: 211.01 secs
+Total REAL time to Xst completion: 260.00 secs
+Total CPU time to Xst completion: 250.75 secs
  
 --> 
 
 
-Total memory usage is 1426060 kilobytes
+Total memory usage is 1426140 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings : 1167 (   0 filtered)

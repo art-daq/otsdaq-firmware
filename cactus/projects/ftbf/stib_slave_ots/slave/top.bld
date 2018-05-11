@@ -102,28 +102,6 @@ WARNING:ConstraintSystem - TNM : EXT_CLK_PAD_P was distributed to a DCM but new
    <TIMESPEC TS_EXTCLK_TO_DACCLK = FROM "EXT_CLK_PAD_P" TO "TN_STRIP_DAC_CLK"
    TIG;> [stib.ucf(495)]
 
-WARNING:ConstraintSystem - TNM : TN_CLKQ was distributed to a DCM but new TNM
-   constraints were not derived. This TNM is used in the following user groups
-   or specifications:
-   <TIMESPEC TS_CLKQ_TO_DACCLK = FROM "TN_CLKQ" TO "TN_STRIP_DAC_CLK" TIG;>
-   [stib.ucf(510)]
-   <TIMESPEC TS_CLKQ_TO_BUSCLK = FROM "TN_CLKQ" TO "CLK15NS_PAD" TIG;>
-   [stib.ucf(513)]
-
-WARNING:ConstraintSystem - TNM : TN_STRIP_DAC_CLK was distributed to a DCM but
-   new TNM constraints were not derived. This TNM is used in the following user
-   groups or specifications:
-   <TIMESPEC TS_BUSCLK_TO_DACCLK = FROM "CLK15NS_PAD" TO "TN_STRIP_DAC_CLK"
-   TIG;> [stib.ucf(492)]
-   <TIMESPEC TS_EXTCLK_TO_DACCLK = FROM "EXT_CLK_PAD_P" TO "TN_STRIP_DAC_CLK"
-   TIG;> [stib.ucf(495)]
-   <TIMESPEC TS_BCOCLK_TO_DACCLK = FROM "TN_BCOCLK" TO "TN_STRIP_DAC_CLK" TIG;>
-   [stib.ucf(497)]
-   <TIMESPEC TS_CLKQ_TO_DACCLK = FROM "TN_CLKQ" TO "TN_STRIP_DAC_CLK" TIG;>
-   [stib.ucf(510)]
-   <TIMEGRP "TN_STRIP_DAC_CLK" AREA_GROUP = "CLKAG_STRIP_DAC_CLK" ;>
-   [stib_par.ucf(50)]
-
 Done...
 
 Checking expanded design ...
@@ -209,9 +187,9 @@ Partition Implementation Status
 
 NGDBUILD Design Results Summary:
   Number of errors:     0
-  Number of warnings:  53
+  Number of warnings:  51
 
-Total memory usage is 663140 kilobytes
+Total memory usage is 662956 kilobytes
 
 Writing NGD file "top.ngd" ...
 Total REAL time to NGDBUILD completion:  16 sec
