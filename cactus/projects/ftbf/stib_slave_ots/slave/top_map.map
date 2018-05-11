@@ -1245,3 +1245,87 @@ Phase 10.5  Local Placement Optimization
 Phase 10.5  Local Placement Optimization (Checksum:2e068212) REAL time: 10 mins 32 secs 
 
 Phase 11.18  Placement Optimization
+Phase 11.18  Placement Optimization (Checksum:91256822) REAL time: 15 mins 51 secs 
+
+Phase 12.5  Local Placement Optimization
+Phase 12.5  Local Placement Optimization (Checksum:91256822) REAL time: 15 mins 51 secs 
+
+Phase 13.34  Placement Validation
+Phase 13.34  Placement Validation (Checksum:91256822) REAL time: 15 mins 51 secs 
+
+Total REAL time to Placer completion: 15 mins 53 secs 
+Total CPU  time to Placer completion: 15 mins 48 secs 
+Running post-placement packing...
+WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is sourced by a combinatorial pin. This is not
+   good design practice. Use the CE pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:367 - The signal
+   <stackGen[0].fifo_imp/U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/tmpldoutp<3>>
+   is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <stackGen[0].fifo_imp/U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/tmpldoutp<2>>
+   is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <stackGen[0].fifo_imp/U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/tmpldoutp<1>>
+   is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <stackGen[0].fifo_imp/U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch/fblk/gen_wgtr.inst_wgtr/tmpldoutp<0>>
+   is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <eth_interface/data_manager_blk/rx_info_fifo_rd_data<6>> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <eth_interface/data_manager_blk/rx_info_fifo_rd_data<5>> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <eth_interface/data_manager_blk/rx_info_fifo_rd_data<4>> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <eth_interface/data_manager_blk/tx_ctrl_info_fifo_full> is incomplete. The
+   signal does not drive any load pins in the design.
+
+Design Summary
+--------------
+
+Design Summary:
+Number of errors:      0
+Number of warnings:   57
+Logic Utilization:
+  Total Number Slice Registers:       9,473 out of  21,504   44%
+    Number used as Flip Flops:        9,472
+    Number used as Latches:               1
+  Number of 4 input LUTs:            13,425 out of  21,504   62%
+Logic Distribution:
+  Number of occupied Slices:          9,959 out of  10,752   92%
+    Number of Slices containing only related logic:   9,959 out of   9,959 100%
+    Number of Slices containing unrelated logic:          0 out of   9,959   0%
+      *See NOTES below for an explanation of the effects of unrelated logic.
+  Total Number of 4 input LUTs:      14,298 out of  21,504   66%
+    Number used as logic:            12,107
+    Number used as a route-thru:        873
+    Number used for Dual Port RAMs:     960
+      (Two LUTs used per Dual Port RAM)
+    Number used as Shift registers:     358
+
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+  Number of bonded IOBs:                203 out of     448   45%
+    IOB Dual-Data Rate Flops:            29
+    IOB Master Pads:                     34
+    IOB Slave Pads:                      34
+  Number of BUFG/BUFGCTRLs:              19 out of      32   59%
+    Number used as BUFGs:                11
+    Number used as BUFGCTRLs:             8
+  Number of FIFO16/RAMB16s:              33 out of      72   45%
+    Number used as FIFO16s:              12
+    Number used as RAMB16s:              21
+  Number of DCM_ADVs:                     3 out of       8   37%
+  Number of PMCDs:                        1 out of       4   25%
+  Number of ISERDESs:                    60 out of     448   13%
+  Number of BSCAN_VIRTEX4s:               1 out of       4   25%
+  Number of IDELAYCTRLs:                 12 out of      16   75%
+
+  Number of RPM macros:            9
+Average Fanout of Non-Clock Nets:                3.42
+
+Peak Memory Usage:  1351 MB
+Total REAL time to MAP completion:  16 mins 1 secs 
+Total CPU time to MAP completion:   15 mins 56 secs 
+
+Mapping completed.
+See MAP report file "top_map.mrp" for details.

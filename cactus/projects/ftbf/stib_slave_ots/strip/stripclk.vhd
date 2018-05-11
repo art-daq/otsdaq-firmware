@@ -376,26 +376,45 @@ begin
     o => clk_q
   );
 
-  bcoclk_pmcd : pmcd
-  generic map (
-    rst_deassert_clk => "CLKA",
-    en_rel => true
-  )
-  port map (
-    clka => clk_q,
-    clkb => '0',
-    clkc => '0',
-    clkd => '0',
-    rst => bcoclk_reset,
-    rel => bcoclk_release,
-    clka1 => dcm_bco_a,
-    clka1d2 => open,
-    clka1d4 => dcm_bco_div,
-    clka1d8 => open,
-    clkb1 => open,
-    clkc1 => open,
-    clkd1 => open
-  );
+	--RAR now that BCO counter handling is at top level.. ignore this PMCD thing
+	-- and hope it doesn't break something. We need a 1x clock and a 1/4x clock
+	
+	dcm_bco_a <= clk_q;
+	genQuarterQclk : for i in 0 to 0 generate
+		signal local_halfClk : std_logic := '0';
+		signal local_quarterClk : std_logic := '0';
+	begin
+		dcm_bco_div <= local_quarterClk;
+		process(clk_q)
+		begin
+			if(rising_edge(clk)) then
+				local_halfClk <= not local_halfClk;
+				if(local_halfClk = '0') then
+					local_quarterClk <= not local_quarterClk;
+				end if;
+			end if;
+		end process;
+	end generate;
+--  bcoclk_pmcd : pmcd
+--  generic map (
+--    rst_deassert_clk => "CLKA",
+--    en_rel => true
+--  )
+--  port map (
+--    clka => clk_q,
+--    clkb => '0',
+--    clkc => '0',
+--    clkd => '0',
+--    rst => bcoclk_reset,
+--    rel => bcoclk_release,
+--    clka1 => dcm_bco_a,
+--    clka1d2 => open,
+--    clka1d4 => dcm_bco_div,
+--    clka1d8 => open,
+--    clkb1 => open,
+--    clkc1 => open,
+--    clkd1 => open
+--  );
 
 
   bcoclkfb_bufg : bufg
