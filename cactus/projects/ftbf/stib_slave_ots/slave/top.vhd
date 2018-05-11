@@ -385,6 +385,12 @@ BEGIN
 		
 		signal local_bco_zero : std_logic := '0';
 		signal local_bco_zero_cnt : unsigned(3 downto 0) := (others => '0');	
+		
+		signal local_stripdata_repeat : std_logic := '0';
+		signal local_stripdata_last : std_logic_vector(31 downto 0);
+		
+		
+		signal local_clock_lock_lost : std_logic_vector(1 downto 0) := (others => '0');
 	begin
 	
 	
@@ -422,7 +428,17 @@ BEGIN
 				fifo_b_data_re <= '0';
 				b_data_we <= '0';
 				
+				local_stripdata_repeat <= '0';
+				
 				local_mclk_time <= local_mclk_time + 1;
+				
+				--detect clock lost
+				if(local_clock_lock_lost(0) = '0' and strip_clocks_locked = '0') then
+					local_clock_lock_lost(0) <= '1';
+				end if;
+--				if(local_clock_lock_lost(1) = '0' and strip_clocks_locked(1) = '0') then
+--					local_clock_lock_lost(1) <= '1';
+--				end if;
 				
 				--give priority to trigger and start!
 				if(local_start(1) = '0' and local_start(0) = '1') then --have start
@@ -430,18 +446,20 @@ BEGIN
 					local_mclk_time <= (others => '0'); --reset time
 					local_trigger_count <= (others => '0'); --reset trigger
 					local_start_count <= local_start_count + 1;
-					b_data(31downto 0) <= std_logic_vector(local_start_count(23 downto 0)) & x"e8";
+					b_data(31 downto 0) <= std_logic_vector(local_start_count(23 downto 0)) & x"e8";
 					b_data_we <= '1';
 					local_bco_zero_cnt <= (others => '0');
 					local_read_done <= '1';
 					local_read_actually_done <= '0';
+					local_clock_lock_lost <= (others => '0');
 					
 				elsif(local_trigger(1) = '0' and local_trigger(0) = '1') then --have trigger
 					local_trigger_count <= local_trigger_count + 1;
 					b_data(31 downto 0) <= std_logic_vector(local_trigger_count(23 downto 0)) & x"f8";
 					b_data_we <= '1';
 				elsif(local_bco_wraparound = '1') then
-					b_data(31downto 0) <= std_logic_vector(local_bco_zero_cnt) & local_bco_zero & strip_clocks_locked & "0" & strip_busy &
+					b_data(31downto 0) <= std_logic_vector(local_bco_zero_cnt) & local_bco_zero & local_clock_lock_lost(0) & 
+						local_stripdata_repeat & strip_busy &
 						local_bco_time(47 downto 32) & x"18";
 					b_data_we <= '1';
 					local_bco_wraparound <= '0';
@@ -458,9 +476,15 @@ BEGIN
 					local_read_done <= '1';
 					local_read_actually_done <= '0';
 					
+					if(local_stripdata_last = fifo_b_data_out(31 downto 0)) then
+						local_stripdata_repeat <= '1'; -- found repeat!! look in chipscope to debug
+					end if;
+					
+					local_stripdata_last <= fifo_b_data_out(31 downto 0);
+					
 				end if;	
 				
-				if(local_read_done = '0') then --give one clock for data to be ready				
+				if(local_read_done = '0' and local_read_actually_done = '0') then --give one clock for data to be ready				
 					local_read_actually_done <= '1';
 				end if;
 				

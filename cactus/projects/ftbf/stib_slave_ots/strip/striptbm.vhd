@@ -65,6 +65,8 @@ BEGIN
         IF ( SENT_BCO = '1' AND NEED_BCO = '0' ) THEN
           SENT_BCO <= '0';
         END IF;
+		  
+		  
         CASE STATE IS
           WHEN Idle =>
             DATA_VALID <= '0';
