@@ -83,7 +83,7 @@ architecture Behavioral of stripclk is
   signal bcocounter_clock : std_logic;
 
   signal clk_q : std_logic;
-  signal clk_z : std_logic;
+  signal clk_z, clk_z_src : std_logic; -- RAR clk_z_src added because we were losing clk_q sporadically
   signal dcm_bco_a : std_logic;
   signal dcm_bco_div : std_logic;
   signal dcm_bco : std_logic;
@@ -198,7 +198,7 @@ begin
   port map (
     i0 => clk_x,
     i1 => clk_ext,
-    o => clk_z,
+    o => clk_z_src,
     s0 => not clksel,
     s1 => clksel,
     ce1 => '1',
@@ -206,6 +206,86 @@ begin
     ignore1 => '1',
     ignore0 => '1'
   );
+  
+  clkzWatchdog : for i in 0 to 0 generate
+	
+		signal clkz_unbuf, clkz_dcm_locked : std_logic;
+		signal clkz_watchdog_reset : std_logic := '0';
+		signal clkz_watchdog_reset_sig : std_logic := '0';
+		
+		signal clkz_watchdog_low_timer : unsigned(15 downto 0) := (others => '1');
+		signal clkz_watchdog_reset_timer : unsigned(3 downto 0) := (others => '1');
+		
+	begin
+	
+		clkz_watchdog_reset <= reset or clkz_watchdog_reset_sig;
+				
+		process(clk_z_src)
+		begin
+			if (rising_edge(clk_z_src)) then
+				
+				clkz_watchdog_reset_sig <= '0';
+			
+				if ( clkz_dcm_locked = '1' ) then
+					clkz_watchdog_low_timer <= (others => '1');
+					clkz_watchdog_reset_timer <= (others => '1');
+				else -- 
+					if (clkz_watchdog_low_timer = 0) then --been unlocked for a long time, try relocking
+					
+						--hold reset for a while
+						if (clkz_watchdog_reset_timer = 0) then 
+							--unreset and start low timer again, hope re-locks!?
+							clkz_watchdog_low_timer <= (others => '1');
+							clkz_watchdog_reset_timer <= (others => '1');
+						else
+							clkz_watchdog_reset_sig <= '1';
+							clkz_watchdog_reset_timer <= clkz_watchdog_reset_timer - 1;
+						end if;
+						
+					else --wait to see if unlocked for a long time
+						clkz_watchdog_low_timer <= clkz_watchdog_low_timer - 1;
+					end if;
+					
+					
+				
+				end if;				
+			
+			end if;
+		end process;
+		
+		
+	  clkz_dcm : dcm_base --added by RAR to try counter clk_q random losing
+	  generic map (
+		 clkfx_divide => 2,
+		 clkfx_multiply => 2,
+		 clkdv_divide => 2.0,
+		 clkin_divide_by_2 => false,
+		 clkin_period => 15.0   -- 15 ns when driven from busclk
+	  )
+	  port map (
+		 clk0 => clkz_unbuf,         -- 27 mhz
+		 clk180 => open,
+		 clk270 => open,
+		 clk90 => open,
+		 clk2x => open,
+		 clk2x180 => open,
+		 clkdv => open,       
+		 clkfx => open,       
+		 clkfx180 => open,
+		 locked => clkz_dcm_locked,
+		 clkfb => clkz_unbuf,
+		 clkin => clk_z_src,      
+		 rst => clkz_watchdog_reset
+	  );
+	  
+	  
+	  dcm_clkz_bufg : bufg    -- Well, it was a mux at one time...
+	  port map (
+		 i => clkz_unbuf,
+		 o => clk_z
+	  );
+	end generate;
+	
 
 	fboWatchdog : for i in 0 to 0 generate
 	

@@ -1345,6 +1345,22 @@ Analyzing Entity <stripclk> in library <strip> (Architecture <behavioral>).
     Set user-defined property "INIT_OUT =  0" for instance <bcoclkmux> in unit <stripclk>.
     Set user-defined property "PRESELECT_I0 =  FALSE" for instance <bcoclkmux> in unit <stripclk>.
     Set user-defined property "PRESELECT_I1 =  FALSE" for instance <bcoclkmux> in unit <stripclk>.
+    Set user-defined property "CLKDV_DIVIDE =  2.0000000000000000" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
+    Set user-defined property "CLKFX_DIVIDE =  2" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
+    Set user-defined property "CLKFX_MULTIPLY =  2" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
+    Set user-defined property "CLKIN_DIVIDE_BY_2 =  FALSE" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
+    Set user-defined property "CLKIN_PERIOD =  15.0000000000000000" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
+    Set user-defined property "CLKOUT_PHASE_SHIFT =  NONE" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
+    Set user-defined property "CLK_FEEDBACK =  1X" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
+    Set user-defined property "DCM_AUTOCALIBRATION =  TRUE" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
+    Set user-defined property "DCM_PERFORMANCE_MODE =  MAX_SPEED" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
+    Set user-defined property "DESKEW_ADJUST =  SYSTEM_SYNCHRONOUS" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
+    Set user-defined property "DFS_FREQUENCY_MODE =  LOW" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
+    Set user-defined property "DLL_FREQUENCY_MODE =  LOW" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
+    Set user-defined property "DUTY_CYCLE_CORRECTION =  TRUE" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
+    Set user-defined property "FACTORY_JF =  F0F0" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
+    Set user-defined property "PHASE_SHIFT =  0" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
+    Set user-defined property "STARTUP_WAIT =  FALSE" for instance <clkzWatchdog[0].clkz_dcm> in unit <stripclk>.
     Set user-defined property "CLKDV_DIVIDE =  4.0000000000000000" for instance <fbcoclk_dcm> in unit <stripclk>.
     Set user-defined property "CLKFX_DIVIDE =  4" for instance <fbcoclk_dcm> in unit <stripclk>.
     Set user-defined property "CLKFX_MULTIPLY =  3" for instance <fbcoclk_dcm> in unit <stripclk>.
@@ -1367,7 +1383,7 @@ Analyzing Entity <stripclk> in library <strip> (Architecture <behavioral>).
     Set user-defined property "INIT_OUT =  0" for instance <bcoclkmux_imp> in unit <stripclk>.
     Set user-defined property "PRESELECT_I0 =  FALSE" for instance <bcoclkmux_imp> in unit <stripclk>.
     Set user-defined property "PRESELECT_I1 =  FALSE" for instance <bcoclkmux_imp> in unit <stripclk>.
-WARNING:Xst:2211 - "/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_slave_ots/strip/stripclk.vhd" line 348: Instantiating black box module <bcocounter>.
+WARNING:Xst:2211 - "/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_slave_ots/strip/stripclk.vhd" line 428: Instantiating black box module <bcocounter>.
 Entity <stripclk> analyzed. Unit <stripclk> generated.
 
 Analyzing Entity <fastbcocounter> in library <strip> (Architecture <rtl>).
@@ -3608,14 +3624,17 @@ WARNING:Xst:1780 - Signal <bco_reset_done> is never used or assigned. This uncon
     -----------------------------------------------------------------------
     Found 16-bit register for signal <bcoclk_data_out>.
     Found 1-bit register for signal <bcoclk_release>.
+    Found 16-bit down counter for signal <clkz_watchdog_low_timer>.
+    Found 1-bit register for signal <clkz_watchdog_reset_sig>.
+    Found 4-bit down counter for signal <clkz_watchdog_reset_timer>.
     Found 48-bit register for signal <fbco_reset_sr>.
     Found 16-bit down counter for signal <fcbo_watchdog_low_timer>.
     Found 1-bit register for signal <fcbo_watchdog_reset_sig>.
     Found 4-bit down counter for signal <fcbo_watchdog_reset_timer>.
     Summary:
 	inferred   1 Finite State Machine(s).
-	inferred   2 Counter(s).
-	inferred  66 D-type flip-flop(s).
+	inferred   4 Counter(s).
+	inferred  67 D-type flip-flop(s).
 Unit <stripclk> synthesized.
 
 
@@ -5917,22 +5936,22 @@ Macro Statistics
  8-bit addsub                                          : 4
  8-bit subtractor                                      : 7
  9-bit subtractor                                      : 4
-# Counters                                             : 91
- 16-bit down counter                                   : 1
+# Counters                                             : 93
+ 16-bit down counter                                   : 2
  16-bit up counter                                     : 63
  2-bit down counter                                    : 1
  3-bit up counter                                      : 2
  32-bit up counter                                     : 11
  34-bit up counter                                     : 1
- 4-bit down counter                                    : 1
+ 4-bit down counter                                    : 2
  4-bit up counter                                      : 4
  5-bit down counter                                    : 1
  5-bit up counter                                      : 1
  7-bit up counter                                      : 1
  8-bit up counter                                      : 3
  9-bit up counter                                      : 1
-# Registers                                            : 2846
- 1-bit register                                        : 2508
+# Registers                                            : 2847
+ 1-bit register                                        : 2509
  11-bit register                                       : 8
  12-bit register                                       : 3
  16-bit register                                       : 16
@@ -7130,14 +7149,14 @@ Macro Statistics
  8-bit addsub                                          : 4
  8-bit subtractor                                      : 7
  9-bit subtractor                                      : 4
-# Counters                                             : 31
- 16-bit down counter                                   : 1
+# Counters                                             : 33
+ 16-bit down counter                                   : 2
  16-bit up counter                                     : 3
  2-bit down counter                                    : 1
  3-bit up counter                                      : 2
  32-bit up counter                                     : 11
  34-bit up counter                                     : 1
- 4-bit down counter                                    : 1
+ 4-bit down counter                                    : 2
  4-bit up counter                                      : 4
  5-bit down counter                                    : 1
  5-bit up counter                                      : 1
@@ -7146,8 +7165,8 @@ Macro Statistics
  9-bit up counter                                      : 1
 # Accumulators                                         : 1
  12-bit up loadable accumulator                        : 1
-# Registers                                            : 6840
- Flip-Flops                                            : 6840
+# Registers                                            : 6841
+ Flip-Flops                                            : 6841
 # Comparators                                          : 40
  11-bit comparator less                                : 2
  12-bit comparator greatequal                          : 1
@@ -7457,6 +7476,7 @@ WARNING:Xst:2677 - Node <local_trigger_count_29> of sequential type is unconnect
 WARNING:Xst:2677 - Node <local_trigger_count_30> of sequential type is unconnected in block <top>.
 WARNING:Xst:2677 - Node <local_trigger_count_31> of sequential type is unconnected in block <top>.
 INFO:Xst:1901 - Instance mclk_dcm in unit stripclk of type DCM_BASE has been replaced by DCM_ADV
+INFO:Xst:1901 - Instance clkzWatchdog[0].clkz_dcm in unit stripclk of type DCM_BASE has been replaced by DCM_ADV
 INFO:Xst:1901 - Instance G[0].bufgmux_imp in unit strip_interface of type BUFGMUX has been replaced by BUFGCTRL
 INFO:Xst:1901 - Instance G[1].bufgmux_imp in unit strip_interface of type BUFGMUX has been replaced by BUFGCTRL
 INFO:Xst:1901 - Instance G[2].bufgmux_imp in unit strip_interface of type BUFGMUX has been replaced by BUFGCTRL
@@ -8230,8 +8250,8 @@ Unit <top> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 6598
- Flip-Flops                                            : 6598
+# Registers                                            : 6619
+ Flip-Flops                                            : 6619
 # Shift Registers                                      : 40
  2-bit shift register                                  : 32
  44-bit shift register                                 : 8
@@ -8263,28 +8283,28 @@ Design Statistics
 # IOs                              : 215
 
 Cell Usage :
-# BELS                             : 16642
+# BELS                             : 16704
 #      GND                         : 91
-#      INV                         : 437
-#      LUT1                        : 727
-#      LUT2                        : 1597
+#      INV                         : 453
+#      LUT1                        : 728
+#      LUT2                        : 1599
 #      LUT2_D                      : 9
 #      LUT2_L                      : 29
-#      LUT3                        : 2533
+#      LUT3                        : 2536
 #      LUT3_D                      : 23
 #      LUT3_L                      : 20
-#      LUT4                        : 7283
+#      LUT4                        : 7292
 #      LUT4_D                      : 62
 #      LUT4_L                      : 366
 #      MULT_AND                    : 12
-#      MUXCY                       : 1775
+#      MUXCY                       : 1790
 #      MUXF5                       : 523
 #      MUXF6                       : 21
 #      MUXF7                       : 10
 #      MUXF8                       : 5
 #      VCC                         : 74
-#      XORCY                       : 1045
-# FlipFlops/Latches                : 8868
+#      XORCY                       : 1061
+# FlipFlops/Latches                : 8889
 #      FD                          : 343
 #      FD_1                        : 191
 #      FDC                         : 532
@@ -8293,7 +8313,7 @@ Cell Usage :
 #      FDE_1                       : 881
 #      FDP                         : 131
 #      FDPE                        : 184
-#      FDR                         : 837
+#      FDR                         : 838
 #      FDR_1                       : 18
 #      FDRE                        : 1668
 #      FDRE_1                      : 198
@@ -8302,7 +8322,7 @@ Cell Usage :
 #      FDRSE                       : 2
 #      FDS                         : 52
 #      FDS_1                       : 268
-#      FDSE                        : 101
+#      FDSE                        : 121
 #      ODDR                        : 29
 # RAMS                             : 653
 #      FIFO16                      : 12
@@ -8312,8 +8332,8 @@ Cell Usage :
 #      SRL16                       : 32
 #      SRL16E                      : 8
 #      SRLC16E                     : 48
-# Clock Buffers                    : 17
-#      BUFG                        : 9
+# Clock Buffers                    : 18
+#      BUFG                        : 10
 #      BUFGCTRL                    : 8
 # IO Buffers                       : 137
 #      IBUF                        : 19
@@ -8321,8 +8341,8 @@ Cell Usage :
 #      IBUFG                       : 3
 #      OBUF                        : 37
 #      OBUFDS                      : 34
-# DCM_ADVs                         : 2
-#      DCM_ADV                     : 2
+# DCM_ADVs                         : 3
+#      DCM_ADV                     : 3
 # Others                           : 62
 #      IDELAYCTRL                  : 1
 #      ISERDES                     : 60
@@ -8334,10 +8354,10 @@ Device utilization summary:
 
 Selected Device : 4vlx25ff668-10 
 
- Number of Slices:                     9628  out of  10752    89%  
- Number of Slice Flip Flops:           8868  out of  21504    41%  
- Number of 4 input LUTs:              14422  out of  21504    67%  
-    Number used as logic:             13086
+ Number of Slices:                     9643  out of  10752    89%  
+ Number of Slice Flip Flops:           8889  out of  21504    41%  
+ Number of 4 input LUTs:              14453  out of  21504    67%  
+    Number used as logic:             13117
     Number used as Shift registers:      88
     Number used as RAMs:               1248
  Number of IOs:                         215
@@ -8345,8 +8365,8 @@ Selected Device : 4vlx25ff668-10
  Number of FIFO16/RAMB16s:               29  out of     72    40%  
     Number used as FIFO16s:              12
     Number used as RAMB16s:              17
- Number of GCLKs:                        17  out of     32    53%  
- Number of DCM_ADVs:                      2  out of      8    25%  
+ Number of GCLKs:                        18  out of     32    56%  
+ Number of DCM_ADVs:                      3  out of      8    37%  
  Number of ISERDESs:                     60  out of    448    13%  
  Number of PMCDs:                         1  out of      4    25%  
 
@@ -8368,20 +8388,20 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
-------------------------------------------------------+--------------------------------------------------------+-------+
-Clock Signal                                          | Clock buffer(FF name)                                  | Load  |
-------------------------------------------------------+--------------------------------------------------------+-------+
-GMII_RXCLK_PAD                                        | IBUFG+BUFG                                             | 3539  |
-CLK15NS_PAD                                           | mclk_dcm:CLK0+BUFGCTRL                                 | 3385  |
-EXT_CLK_PAD_P                                         | IBUFDS                                                 | 91    |
-strip_imp/dac_imp/DIVCLK                              | NONE(DACBUS[0].dac_busa_obuf)                          | 46    |
-CLK15NS_PAD                                           | BUFGCTRL+fbcoclk_dcm:CLKFX+bcoclk_pmcd:CLKA1D4+BUFGCTRL| 717   |
-CLK15NS_PAD                                           | mclk_dcm:CLKDV                                         | 1807  |
-CLK5MHZ_PAD                                           | IBUFG                                                  | 24    |
-CLK15NS_PAD                                           | mclk_dcm:CLKFX                                         | 14    |
-strip_imp/stripclk_imp/bcocounter_imp/blk00000001/Q<0>| NONE(strip_imp/striptbm_imp/NEED_BCO)                  | 8     |
-CLK15NS_PAD                                           | BUFGCTRL+fbcoclk_dcm:CLKFX+bcoclk_pmcd:CLKA1           | 207   |
-------------------------------------------------------+--------------------------------------------------------+-------+
+------------------------------------------------------+--------------------------------------------------------------------------------------+-------+
+Clock Signal                                          | Clock buffer(FF name)                                                                | Load  |
+------------------------------------------------------+--------------------------------------------------------------------------------------+-------+
+GMII_RXCLK_PAD                                        | IBUFG+BUFG                                                                           | 3539  |
+CLK15NS_PAD                                           | BUFGCTRL+clkzWatchdog[0].clkz_dcm:CLK0                                               | 3406  |
+EXT_CLK_PAD_P                                         | IBUFDS                                                                               | 91    |
+strip_imp/dac_imp/DIVCLK                              | NONE(DACBUS[0].dac_busa_obuf)                                                        | 46    |
+CLK15NS_PAD                                           | BUFGCTRL+clkzWatchdog[0].clkz_dcm:CLK0+fbcoclk_dcm:CLKFX+bcoclk_pmcd:CLKA1D4+BUFGCTRL| 717   |
+CLK15NS_PAD                                           | mclk_dcm:CLKDV                                                                       | 1807  |
+CLK5MHZ_PAD                                           | IBUFG                                                                                | 24    |
+CLK15NS_PAD                                           | mclk_dcm:CLKFX                                                                       | 14    |
+strip_imp/stripclk_imp/bcocounter_imp/blk00000001/Q<0>| NONE(strip_imp/striptbm_imp/NEED_BCO)                                                | 8     |
+CLK15NS_PAD                                           | BUFGCTRL+clkzWatchdog[0].clkz_dcm:CLK0+fbcoclk_dcm:CLKFX+bcoclk_pmcd:CLKA1           | 207   |
+------------------------------------------------------+--------------------------------------------------------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
 Asynchronous Control Signals Information:
@@ -8652,7 +8672,7 @@ Delay:               8.735ns (Levels of Logic = 14)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK15NS_PAD'
   Clock period: 11.915ns (frequency: 83.931MHz)
-  Total number of paths / destination ports: 181491 / 14583
+  Total number of paths / destination ports: 182377 / 14644
 -------------------------------------------------------------------------
 Delay:               5.957ns (Levels of Logic = 5)
   Source:            strip_imp/stripana_imp/STRIP_DATA_31_BRB1 (FF)
@@ -9006,15 +9026,15 @@ Delay:               6.602ns (Levels of Logic = 5)
 =========================================================================
 
 
-Total REAL time to Xst completion: 213.00 secs
-Total CPU time to Xst completion: 212.42 secs
+Total REAL time to Xst completion: 212.00 secs
+Total CPU time to Xst completion: 211.01 secs
  
 --> 
 
 
-Total memory usage is 1425688 kilobytes
+Total memory usage is 1426060 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings : 1167 (   0 filtered)
-Number of infos    :  390 (   0 filtered)
+Number of infos    :  391 (   0 filtered)
 
