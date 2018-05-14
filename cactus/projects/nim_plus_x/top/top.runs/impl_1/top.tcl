@@ -50,50 +50,50 @@ set rc [catch {
   create_msg_db init_design.pb
   debug::add_scope template.lib 1
   set_property design_mode GateLvl [current_fileset]
-  set_property webtalk.parent_dir /home/rrivera/Desktop/nim_plus_x/top/top.cache/wt [current_project]
-  set_property parent.project_path /home/rrivera/Desktop/nim_plus_x/top/top.xpr [current_project]
-  set_property ip_repo_paths /home/rrivera/Desktop/nim_plus_x/top/top.cache/ip [current_project]
-  set_property ip_output_repo /home/rrivera/Desktop/nim_plus_x/top/top.cache/ip [current_project]
-  add_files -quiet /home/rrivera/Desktop/nim_plus_x/top/top.runs/synth_1/top.dcp
-  add_files -quiet /home/rrivera/Desktop/nim_plus_x/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp
-  set_property netlist_only true [get_files /home/rrivera/Desktop/nim_plus_x/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp]
-  add_files -quiet /home/rrivera/Desktop/nim_plus_x/top/top.runs/clk_wiz_0_synth_1/clk_wiz_0.dcp
-  set_property netlist_only true [get_files /home/rrivera/Desktop/nim_plus_x/top/top.runs/clk_wiz_0_synth_1/clk_wiz_0.dcp]
-  add_files -quiet /home/rrivera/Desktop/nim_plus_x/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp
-  set_property netlist_only true [get_files /home/rrivera/Desktop/nim_plus_x/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp]
-  add_files -quiet /home/rrivera/Desktop/nim_plus_x/top/top.runs/clk_wiz_2_synth_1/clk_wiz_2.dcp
-  set_property netlist_only true [get_files /home/rrivera/Desktop/nim_plus_x/top/top.runs/clk_wiz_2_synth_1/clk_wiz_2.dcp]
-  add_files -quiet /home/rrivera/Desktop/nim_plus_x/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp
-  set_property netlist_only true [get_files /home/rrivera/Desktop/nim_plus_x/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp]
-  read_xdc -mode out_of_context -ref NIM_CLKS -cells U0 /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_ooc.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_ooc.xdc]
-  read_xdc -prop_thru_buffers -ref NIM_CLKS -cells U0 /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_board.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_board.xdc]
-  read_xdc -ref NIM_CLKS -cells U0 /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.xdc]
-  read_xdc -mode out_of_context -ref clk_wiz_0 -cells U0 /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
-  read_xdc -prop_thru_buffers -ref clk_wiz_0 -cells U0 /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
-  read_xdc -ref clk_wiz_0 -cells U0 /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
-  read_xdc -mode out_of_context -ref clk_wiz_1 -cells U0 /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_ooc.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_ooc.xdc]
-  read_xdc -prop_thru_buffers -ref clk_wiz_1 -cells U0 /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_board.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_board.xdc]
-  read_xdc -ref clk_wiz_1 -cells U0 /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xdc]
-  read_xdc -mode out_of_context -ref clk_wiz_2 -cells U0 /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_2/clk_wiz_2_ooc.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_2/clk_wiz_2_ooc.xdc]
-  read_xdc -prop_thru_buffers -ref clk_wiz_2 -cells U0 /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_2/clk_wiz_2_board.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_2/clk_wiz_2_board.xdc]
-  read_xdc -ref clk_wiz_2 -cells U0 /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_2/clk_wiz_2.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_2/clk_wiz_2.xdc]
-  read_xdc -mode out_of_context -ref xilinx_64b_counter -cells U0 /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/xilinx_64b_counter/xilinx_64b_counter_ooc.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/xilinx_64b_counter/xilinx_64b_counter_ooc.xdc]
-  read_xdc -unmanaged /home/rrivera/Desktop/nim_plus_x/top/top.srcs/constrs_1/imports/ucf/pins.tcl
-  read_xdc -unmanaged /home/rrivera/Desktop/nim_plus_x/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl
-  read_xdc /home/rrivera/Desktop/nim_plus_x/top/top.srcs/constrs_1/new/top_11.xdc
+  set_property webtalk.parent_dir /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.cache/wt [current_project]
+  set_property parent.project_path /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.xpr [current_project]
+  set_property ip_repo_paths /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.cache/ip [current_project]
+  set_property ip_output_repo /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.cache/ip [current_project]
+  add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/synth_1/top.dcp
+  add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp
+  set_property netlist_only true [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp]
+  add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/clk_wiz_0_synth_1/clk_wiz_0.dcp
+  set_property netlist_only true [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/clk_wiz_0_synth_1/clk_wiz_0.dcp]
+  add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp
+  set_property netlist_only true [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp]
+  add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/clk_wiz_2_synth_1/clk_wiz_2.dcp
+  set_property netlist_only true [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/clk_wiz_2_synth_1/clk_wiz_2.dcp]
+  add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp
+  set_property netlist_only true [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp]
+  read_xdc -mode out_of_context -ref NIM_CLKS -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_ooc.xdc
+  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_ooc.xdc]
+  read_xdc -prop_thru_buffers -ref NIM_CLKS -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_board.xdc
+  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_board.xdc]
+  read_xdc -ref NIM_CLKS -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.xdc
+  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.xdc]
+  read_xdc -mode out_of_context -ref clk_wiz_0 -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc
+  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
+  read_xdc -prop_thru_buffers -ref clk_wiz_0 -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc
+  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
+  read_xdc -ref clk_wiz_0 -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc
+  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
+  read_xdc -mode out_of_context -ref clk_wiz_1 -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_ooc.xdc
+  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_ooc.xdc]
+  read_xdc -prop_thru_buffers -ref clk_wiz_1 -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_board.xdc
+  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_board.xdc]
+  read_xdc -ref clk_wiz_1 -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xdc
+  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xdc]
+  read_xdc -mode out_of_context -ref clk_wiz_2 -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_2/clk_wiz_2_ooc.xdc
+  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_2/clk_wiz_2_ooc.xdc]
+  read_xdc -prop_thru_buffers -ref clk_wiz_2 -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_2/clk_wiz_2_board.xdc
+  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_2/clk_wiz_2_board.xdc]
+  read_xdc -ref clk_wiz_2 -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_2/clk_wiz_2.xdc
+  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_2/clk_wiz_2.xdc]
+  read_xdc -mode out_of_context -ref xilinx_64b_counter -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/xilinx_64b_counter/xilinx_64b_counter_ooc.xdc
+  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/xilinx_64b_counter/xilinx_64b_counter_ooc.xdc]
+  read_xdc -unmanaged /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/constrs_1/imports/ucf/pins.tcl
+  read_xdc -unmanaged /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl
+  read_xdc /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/constrs_1/new/top_11.xdc
   link_design -top top -part xc7k325tffg900-2
   close_msg_db -file init_design.pb
 } RESULT]

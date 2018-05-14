@@ -2090,7 +2090,7 @@ U211 : reg_8
        wr_en => blk_wr_en(3)
   );
 
-sig_sel(0) <= (ys(0) and not sel_ctl(4)) or (sig_mod(0) and sel_ctl(4));
+sig_sel(0) <= (sig_mod(0) and not sel_ctl(4)) or (ys(0) and sel_ctl(4));
 
 U213 : pol_sel
   port map(
@@ -7638,13 +7638,13 @@ ck_mx_out(6) <= ext_clk_ctl(6);
 
 ck_mx_out(7) <= ext_clk_ctl(7);
 
-sig_sel(1) <= (ys(1) and not sel_ctl(5)) or (sig_mod(2) and sel_ctl(5));
+sig_sel(1) <= (sig_mod(1) and not sel_ctl(5)) or (ys(1) and sel_ctl(5));
 
-sig_sel(2) <= (ys(2) and not sel_ctl(6)) or (sig_mod(1) and sel_ctl(6));
+sig_sel(2) <= (sig_mod(2) and not sel_ctl(6)) or (ys(2) and sel_ctl(6));
 
 sigmux(3) <= bmy(2);
 
-sig_sel(3) <= (ys(3) and not sel_ctl(7)) or (sig_mod(3) and sel_ctl(7));
+sig_sel(3) <= (sig_mod(3) and not sel_ctl(7)) or (ys(3) and sel_ctl(7));
 
 U461 : reg_64
   port map(
