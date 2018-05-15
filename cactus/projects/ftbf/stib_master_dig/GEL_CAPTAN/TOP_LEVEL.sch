@@ -1597,7 +1597,7 @@
             <blockpin signalname="psi_status_en" name="Q" />
         </block>
         <block symbolname="psi_token_delay_blk" name="token_delay_vector(2:0)">
-            <blockpin signalname="PSI_CLK180" name="clk" />
+            <blockpin signalname="PSI_CLK0" name="clk" />
             <blockpin signalname="psi_token_out(2:0)" name="token" />
             <blockpin signalname="delayed_token(2:0)" name="token_delay" />
         </block>
@@ -1659,7 +1659,7 @@
             <blockpin signalname="PSI_PULSES_MAP" name="param_we" />
             <blockpin signalname="psi_extdom_trig" name="ext_trigger" />
             <blockpin signalname="MASTER_CLK" name="master_clk" />
-            <blockpin signalname="PSI_CLK180" name="psi_clk" />
+            <blockpin signalname="PSI_CLK0" name="psi_clk" />
             <blockpin signalname="trig_reset" name="rst" />
             <blockpin signalname="rx_data(15:0)" name="trig_repetition_per(15:0)" />
             <blockpin signalname="rx_data(23:16)" name="inject_trig_gap(7:0)" />
@@ -1794,7 +1794,7 @@
             <blockpin signalname="psi_token_out(0)" name="O" />
         </block>
         <block symbolname="obufds" name="XLXI_5543">
-            <blockpin signalname="PSI_CLK180" name="I" />
+            <blockpin signalname="PSI_CLK0" name="I" />
             <blockpin signalname="BUSB_22DP_44S" name="O" />
             <blockpin signalname="BUSB_22DN_45S" name="OB" />
         </block>
@@ -1832,7 +1832,7 @@
             <blockpin signalname="psi_token_out(1)" name="O" />
         </block>
         <block symbolname="obufds" name="XLXI_5549">
-            <blockpin signalname="PSI_CLK180" name="I" />
+            <blockpin signalname="PSI_CLK0" name="I" />
             <blockpin signalname="BUSAA_07DP_14S" name="O" />
             <blockpin signalname="BUSAA_07DN_15S" name="OB" />
         </block>
@@ -1999,11 +1999,11 @@
         </block>
         <block symbolname="External_Trigger_Handler" name="ext_trig_handler">
             <blockpin signalname="EXT_TRIGG" name="ext_trig_line_in" />
-            <blockpin signalname="PSI_CLK180" name="xclk" />
+            <blockpin signalname="PSI_CLK0" name="xclk" />
             <blockpin signalname="psi_extdom_trig" name="ext_trigger" />
         </block>
         <block symbolname="TokenStack" name="TokenStack_vector(2:0)">
-            <blockpin signalname="PSI_CLK180" name="psi_clk" />
+            <blockpin signalname="PSI_CLK0" name="psi_clk" />
             <blockpin signalname="psi_reset" name="rst" />
             <blockpin signalname="error_reset_req(2:0)" name="error_rst_req" />
             <blockpin signalname="psi_token_we" name="token_we" />
@@ -2389,7 +2389,7 @@
             <blockpin signalname="psi_token_out(2)" name="O" />
         </block>
         <block symbolname="obufds" name="XLXI_6185">
-            <blockpin signalname="PSI_CLK180" name="I" />
+            <blockpin signalname="PSI_CLK0" name="I" />
             <blockpin signalname="BUSC_11DP_22S" name="O" />
             <blockpin signalname="BUSC_11DN_23S" name="OB" />
         </block>
@@ -2535,7 +2535,7 @@
         <block symbolname="psi_cmd_fifo32_512depth" name="psi_cmd_fifo_vector(2:0)">
             <blockpin signalname="psi_reset" name="rst" />
             <blockpin signalname="MASTER_CLK" name="wr_clk" />
-            <blockpin signalname="PSI_CLK90" name="rd_clk" />
+            <blockpin signalname="PSI_CLK270" name="rd_clk" />
             <blockpin signalname="PSI_CMD_FIFO_MAP" name="wr_en" />
             <blockpin signalname="psi_cmd_fifo_re(2:0)" name="rd_en" />
             <blockpin signalname="rx_data(31:0)" name="din(31:0)" />
@@ -2544,7 +2544,7 @@
             <blockpin signalname="psi_cmd_fifo_dout(95:0)" name="dout(31:0)" />
         </block>
         <block symbolname="psi_command_sender" name="psi_cmd_sender_vector(2:0)">
-            <blockpin signalname="PSI_CLK90" name="psi_clk" />
+            <blockpin signalname="PSI_CLK270" name="psi_clk" />
             <blockpin signalname="psi_reset" name="reset" />
             <blockpin signalname="psi_cmd_fifo_empty(2:0)" name="fifo_empty" />
             <blockpin signalname="psi_cmd_fifo_full(2:0)" name="fifo_full" />
@@ -2627,7 +2627,7 @@
             <blockpin signalname="psi_trigger_mux(0)" name="O" />
         </block>
         <block symbolname="fd" name="XLXI_6352">
-            <blockpin signalname="PSI_CLK0" name="C" />
+            <blockpin signalname="PSI_CLK180" name="C" />
             <blockpin signalname="psi_trigger" name="D" />
             <blockpin signalname="psi180_trigger" name="Q" />
         </block>
@@ -2644,12 +2644,12 @@
             <blockpin signalname="psi_trigger_mux(1)" name="O" />
         </block>
         <block symbolname="fd" name="XLXI_6346">
-            <blockpin signalname="PSI_CLK0" name="C" />
+            <blockpin signalname="PSI_CLK180" name="C" />
             <blockpin signalname="psi_token_in(0)" name="D" />
             <blockpin signalname="psi180_token_in(0)" name="Q" />
         </block>
         <block symbolname="fd" name="XLXI_6359">
-            <blockpin signalname="PSI_CLK0" name="C" />
+            <blockpin signalname="PSI_CLK180" name="C" />
             <blockpin signalname="psi_token_in(1)" name="D" />
             <blockpin signalname="psi180_token_in(1)" name="Q" />
         </block>
@@ -2666,7 +2666,7 @@
             <blockpin signalname="psi_trigger_mux(2)" name="O" />
         </block>
         <block symbolname="fd" name="XLXI_6362">
-            <blockpin signalname="PSI_CLK0" name="C" />
+            <blockpin signalname="PSI_CLK180" name="C" />
             <blockpin signalname="psi_token_in(2)" name="D" />
             <blockpin signalname="psi180_token_in(2)" name="Q" />
         </block>
@@ -3959,7 +3959,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2528" y="4240" type="branch" />
             <wire x2="2656" y1="4240" y2="4240" x1="2528" />
         </branch>
-        <branch name="PSI_CLK180">
+        <branch name="PSI_CLK0">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2528" y="4304" type="branch" />
             <wire x2="2656" y1="4304" y2="4304" x1="2528" />
         </branch>
@@ -3978,7 +3978,7 @@
         <instance x="4720" y="3920" name="TokenStack_vector(2:0)" orien="R0">
             <attrtext style="fontsize:28;fontname:Arial" attrname="InstName" x="0" y="-504" type="instance" />
         </instance>
-        <branch name="PSI_CLK180">
+        <branch name="PSI_CLK0">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4624" y="3568" type="branch" />
             <wire x2="4720" y1="3568" y2="3568" x1="4624" />
         </branch>
@@ -4127,7 +4127,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="512" y="752" type="branch" />
             <wire x2="592" y1="752" y2="752" x1="512" />
         </branch>
-        <branch name="PSI_CLK90">
+        <branch name="PSI_CLK270">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="512" y="560" type="branch" />
             <wire x2="592" y1="560" y2="560" x1="512" />
         </branch>
@@ -4170,7 +4170,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1248" y="704" type="branch" />
             <wire x2="1344" y1="704" y2="704" x1="1248" />
         </branch>
-        <branch name="PSI_CLK90">
+        <branch name="PSI_CLK270">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1248" y="656" type="branch" />
             <wire x2="1344" y1="656" y2="656" x1="1248" />
         </branch>
@@ -4596,7 +4596,7 @@
             <wire x2="5456" y1="592" y2="592" x1="5408" />
         </branch>
         <instance x="4320" y="816" name="XLXI_6434" orien="R0" />
-        <branch name="PSI_CLK180">
+        <branch name="PSI_CLK0">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2576" y="5136" type="branch" />
             <wire x2="2656" y1="5136" y2="5136" x1="2576" />
         </branch>
@@ -4633,7 +4633,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="608" y="336" type="branch" />
             <wire x2="784" y1="336" y2="336" x1="608" />
         </branch>
-        <branch name="PSI_CLK180">
+        <branch name="PSI_CLK0">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="688" y="1360" type="branch" />
             <wire x2="704" y1="1360" y2="1360" x1="688" />
             <wire x2="736" y1="1360" y2="1360" x1="704" />
@@ -5948,7 +5948,7 @@
         <instance x="5472" y="480" name="XLXI_5545" orien="R0" />
         <instance x="5472" y="704" name="XLXI_5546" orien="R0" />
         <instance x="5472" y="576" name="XLXI_5547" orien="R0" />
-        <branch name="PSI_CLK180">
+        <branch name="PSI_CLK0">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5264" y="912" type="branch" />
             <wire x2="5472" y1="912" y2="912" x1="5264" />
         </branch>
@@ -6006,7 +6006,7 @@
         <instance x="5472" y="1552" name="XLXI_5551" orien="R0" />
         <instance x="5472" y="1776" name="XLXI_5552" orien="R0" />
         <instance x="5472" y="1648" name="XLXI_5553" orien="R0" />
-        <branch name="PSI_CLK180">
+        <branch name="PSI_CLK0">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5264" y="1984" type="branch" />
             <wire x2="5472" y1="1984" y2="1984" x1="5264" />
         </branch>
@@ -6304,7 +6304,7 @@
         <instance x="5472" y="2976" name="XLXI_6186" orien="R0" />
         <instance x="5472" y="2864" name="XLXI_6188" orien="R0" />
         <instance x="5472" y="2736" name="XLXI_6189" orien="R0" />
-        <branch name="PSI_CLK180">
+        <branch name="PSI_CLK0">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="5264" y="3072" type="branch" />
             <wire x2="5472" y1="3072" y2="3072" x1="5264" />
         </branch>
@@ -6488,7 +6488,7 @@
             <wire x2="4448" y1="464" y2="464" x1="4400" />
             <wire x2="4512" y1="464" y2="464" x1="4448" />
         </branch>
-        <branch name="PSI_CLK0">
+        <branch name="PSI_CLK180">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="3424" y="4208" type="branch" />
             <wire x2="3536" y1="4208" y2="4208" x1="3424" />
         </branch>
@@ -6548,7 +6548,7 @@
             <wire x2="4448" y1="1680" y2="1680" x1="4384" />
         </branch>
         <instance x="2928" y="688" name="XLXI_6346" orien="R0" />
-        <branch name="PSI_CLK0">
+        <branch name="PSI_CLK180">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2816" y="560" type="branch" />
             <wire x2="2928" y1="560" y2="560" x1="2816" />
         </branch>
@@ -6560,7 +6560,7 @@
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="3408" y="432" type="branch" />
             <wire x2="3408" y1="432" y2="432" x1="3312" />
         </branch>
-        <branch name="PSI_CLK0">
+        <branch name="PSI_CLK180">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2704" y="1824" type="branch" />
             <wire x2="2816" y1="1824" y2="1824" x1="2704" />
         </branch>
@@ -6609,7 +6609,7 @@
             <wire x2="4320" y1="2736" y2="2736" x1="4272" />
             <wire x2="4384" y1="2736" y2="2736" x1="4320" />
         </branch>
-        <branch name="PSI_CLK0">
+        <branch name="PSI_CLK180">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2640" y="2880" type="branch" />
             <wire x2="2752" y1="2880" y2="2880" x1="2640" />
         </branch>

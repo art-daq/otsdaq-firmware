@@ -7,7 +7,7 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : RESET_INIT.vhf
--- /___/   /\     Timestamp : 05/15/2018 14:40:19
+-- /___/   /\     Timestamp : 05/15/2018 15:48:20
 -- \   \  /  \ 
 --  \___\/\___\ 
 --

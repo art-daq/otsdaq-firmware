@@ -7,7 +7,7 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : TOP_LEVEL.vhf
--- /___/   /\     Timestamp : 05/15/2018 14:40:20
+-- /___/   /\     Timestamp : 05/15/2018 15:48:21
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
@@ -3371,7 +3371,7 @@ begin
    
    ext_trig_handler : External_Trigger_Handler
       port map (ext_trig_line_in=>EXT_TRIGG,
-                xclk=>PSI_CLK180,
+                xclk=>PSI_CLK0,
                 ext_trigger=>psi_extdom_trig);
    
    idelay_psi_dig_0 : IDELAY
@@ -3451,7 +3451,7 @@ begin
    
    psi_cmd_fifo_vector_0 : psi_cmd_fifo32_512depth
       port map (din(31 downto 0)=>rx_data(31 downto 0),
-                rd_clk=>PSI_CLK90,
+                rd_clk=>PSI_CLK270,
                 rd_en=>psi_cmd_fifo_re(0),
                 rst=>psi_reset,
                 wr_clk=>MASTER_CLK,
@@ -3462,7 +3462,7 @@ begin
    
    psi_cmd_fifo_vector_1 : psi_cmd_fifo32_512depth
       port map (din(31 downto 0)=>rx_data(31 downto 0),
-                rd_clk=>PSI_CLK90,
+                rd_clk=>PSI_CLK270,
                 rd_en=>psi_cmd_fifo_re(1),
                 rst=>psi_reset,
                 wr_clk=>MASTER_CLK,
@@ -3473,7 +3473,7 @@ begin
    
    psi_cmd_fifo_vector_2 : psi_cmd_fifo32_512depth
       port map (din(31 downto 0)=>rx_data(31 downto 0),
-                rd_clk=>PSI_CLK90,
+                rd_clk=>PSI_CLK270,
                 rd_en=>psi_cmd_fifo_re(2),
                 rst=>psi_reset,
                 wr_clk=>MASTER_CLK,
@@ -3510,7 +3510,7 @@ begin
       port map (data(31 downto 0)=>psi_cmd_fifo_dout(31 downto 0),
                 fifo_empty=>psi_cmd_fifo_empty(0),
                 fifo_full=>psi_cmd_fifo_full(0),
-                psi_clk=>PSI_CLK90,
+                psi_clk=>PSI_CLK270,
                 reset=>psi_reset,
                 data_error=>psi_errors(32),
                 data_out=>psi_cmd_sender_dout(0),
@@ -3521,7 +3521,7 @@ begin
       port map (data(31 downto 0)=>psi_cmd_fifo_dout(63 downto 32),
                 fifo_empty=>psi_cmd_fifo_empty(1),
                 fifo_full=>psi_cmd_fifo_full(1),
-                psi_clk=>PSI_CLK90,
+                psi_clk=>PSI_CLK270,
                 reset=>psi_reset,
                 data_error=>psi_errors(33),
                 data_out=>psi_cmd_sender_dout(1),
@@ -3532,7 +3532,7 @@ begin
       port map (data(31 downto 0)=>psi_cmd_fifo_dout(95 downto 64),
                 fifo_empty=>psi_cmd_fifo_empty(2),
                 fifo_full=>psi_cmd_fifo_full(2),
-                psi_clk=>PSI_CLK90,
+                psi_clk=>PSI_CLK270,
                 reset=>psi_reset,
                 data_error=>psi_errors(34),
                 data_out=>psi_cmd_sender_dout(2),
@@ -3649,7 +3649,7 @@ begin
    TokenStack_vector_0 : TokenStack
       port map (bypass_stack=>bypass_token_stack,
                 error_rst_req=>error_reset_req(0),
-                psi_clk=>PSI_CLK180,
+                psi_clk=>PSI_CLK0,
                 rst=>psi_reset,
                 sm_ready=>sm_ready(0),
                 token_we=>psi_token_we,
@@ -3663,7 +3663,7 @@ begin
    TokenStack_vector_1 : TokenStack
       port map (bypass_stack=>bypass_token_stack,
                 error_rst_req=>error_reset_req(1),
-                psi_clk=>PSI_CLK180,
+                psi_clk=>PSI_CLK0,
                 rst=>psi_reset,
                 sm_ready=>sm_ready(1),
                 token_we=>psi_token_we,
@@ -3677,7 +3677,7 @@ begin
    TokenStack_vector_2 : TokenStack
       port map (bypass_stack=>bypass_token_stack,
                 error_rst_req=>error_reset_req(2),
-                psi_clk=>PSI_CLK180,
+                psi_clk=>PSI_CLK0,
                 rst=>psi_reset,
                 sm_ready=>sm_ready(2),
                 token_we=>psi_token_we,
@@ -3689,17 +3689,17 @@ begin
                 tok_cnt(3 downto 0)=>token_count(11 downto 8));
    
    token_delay_vector_0 : psi_token_delay_blk
-      port map (clk=>PSI_CLK180,
+      port map (clk=>PSI_CLK0,
                 token=>psi_token_out(0),
                 token_delay=>delayed_token(0));
    
    token_delay_vector_1 : psi_token_delay_blk
-      port map (clk=>PSI_CLK180,
+      port map (clk=>PSI_CLK0,
                 token=>psi_token_out(1),
                 token_delay=>delayed_token(1));
    
    token_delay_vector_2 : psi_token_delay_blk
-      port map (clk=>PSI_CLK180,
+      port map (clk=>PSI_CLK0,
                 token=>psi_token_out(2),
                 token_delay=>delayed_token(2));
    
@@ -3710,7 +3710,7 @@ begin
                 master_clk=>MASTER_CLK,
                 num_of_triggers(7 downto 0)=>rx_data(47 downto 40),
                 param_we=>PSI_PULSES_MAP,
-                psi_clk=>PSI_CLK180,
+                psi_clk=>PSI_CLK0,
                 rst=>trig_reset,
                 sw_en_pulse=>cal_ctrl_sw_en_pulse,
                 trig_repetition_per(15 downto 0)=>rx_data(15 downto 0),
@@ -4230,7 +4230,7 @@ begin
                 O=>psi_token_out(0));
    
    XLXI_5543 : OBUFDS
-      port map (I=>PSI_CLK180,
+      port map (I=>PSI_CLK0,
                 O=>BUSB_22DP_44S,
                 OB=>BUSB_22DN_45S);
    
@@ -4262,7 +4262,7 @@ begin
                 O=>psi_token_out(1));
    
    XLXI_5549 : OBUFDS
-      port map (I=>PSI_CLK180,
+      port map (I=>PSI_CLK0,
                 O=>BUSAA_07DP_14S,
                 OB=>BUSAA_07DN_15S);
    
@@ -4687,7 +4687,7 @@ begin
                 O=>psi_token_out(2));
    
    XLXI_6185 : OBUFDS
-      port map (I=>PSI_CLK180,
+      port map (I=>PSI_CLK0,
                 O=>BUSC_11DP_22S,
                 OB=>BUSC_11DN_23S);
    
@@ -4872,12 +4872,12 @@ begin
                 Q(7 downto 0)=>dut_phase_ctrl(15 downto 8));
    
    XLXI_6346 : FD
-      port map (C=>PSI_CLK0,
+      port map (C=>PSI_CLK180,
                 D=>psi_token_in(0),
                 Q=>psi180_token_in(0));
    
    XLXI_6352 : FD
-      port map (C=>PSI_CLK0,
+      port map (C=>PSI_CLK180,
                 D=>psi_trigger,
                 Q=>psi180_trigger);
    
@@ -4894,7 +4894,7 @@ begin
                 O=>psi_trigger_mux(1));
    
    XLXI_6359 : FD
-      port map (C=>PSI_CLK0,
+      port map (C=>PSI_CLK180,
                 D=>psi_token_in(1),
                 Q=>psi180_token_in(1));
    
@@ -4911,7 +4911,7 @@ begin
                 O=>psi_trigger_mux(2));
    
    XLXI_6362 : FD
-      port map (C=>PSI_CLK0,
+      port map (C=>PSI_CLK180,
                 D=>psi_token_in(2),
                 Q=>psi180_token_in(2));
    

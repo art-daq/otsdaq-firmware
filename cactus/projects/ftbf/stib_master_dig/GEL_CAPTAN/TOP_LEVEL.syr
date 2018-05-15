@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Reading design: TOP_LEVEL.prj
@@ -2305,7 +2305,7 @@ WARNING:Xst:653 - Signal <adc_ss_data> is used but never assigned. This sourcele
 WARNING:Xst:646 - Signal <adc_clk_del_reset> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:653 - Signal <XLXI_5338_in7_openSignal> is used but never assigned. This sourceless signal will be automatically connected to value 0000000000000000000000000000000000000000000000000000000000000000.
 WARNING:Xst:646 - Signal <PSI_LEVELS_WE_MAP> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <PSI_CLK270> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <PSI_CLK90> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <ADC_TESTMODE_MAP> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <ADC_SAMPLE_CAL> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <ADC_CLK_DEL_MAP> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
@@ -3527,7 +3527,7 @@ Design Statistics
 # IOs                              : 91
 
 Cell Usage :
-# BELS                             : 6316
+# BELS                             : 6318
 #      AND2                        : 25
 #      AND2B1                      : 15
 #      AND3                        : 11
@@ -3545,7 +3545,7 @@ Cell Usage :
 #      LUT2                        : 612
 #      LUT2_D                      : 24
 #      LUT2_L                      : 11
-#      LUT3                        : 1000
+#      LUT3                        : 1001
 #      LUT3_D                      : 15
 #      LUT3_L                      : 10
 #      LUT4                        : 2333
@@ -3553,7 +3553,7 @@ Cell Usage :
 #      LUT4_L                      : 100
 #      MULT_AND                    : 5
 #      MUXCY                       : 636
-#      MUXF5                       : 272
+#      MUXF5                       : 273
 #      MUXF6                       : 65
 #      OR2                         : 37
 #      OR3                         : 2
@@ -3603,10 +3603,10 @@ Device utilization summary:
 
 Selected Device : 4vlx25ff668-10 
 
- Number of Slices:                     3086  out of  10752    28%  
+ Number of Slices:                     3087  out of  10752    28%  
  Number of Slice Flip Flops:           3001  out of  21504    13%  
- Number of 4 input LUTs:               4624  out of  21504    21%  
-    Number used as logic:              4620
+ Number of 4 input LUTs:               4625  out of  21504    21%  
+    Number used as logic:              4621
     Number used as Shift registers:       4
  Number of IOs:                          91
  Number of bonded IOBs:                  91  out of    448    20%  
@@ -3633,21 +3633,21 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+-------+
-Clock Signal                       | Clock buffer(FF name)                                                                                                                | Load  |
------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+-------+
-XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK90(*)(psi_cmd_fifo_vector_0/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_fb_i)| 348   |
-GEL_RXCLK                          | IBUFG+BUFG                                                                                                                           | 2081  |
-XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK0(*)(XLXI_5983/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i)             | 93    |
-XLXN_12498(XLXI_3522:O)            | NONE(*)(XLXI_3523)                                                                                                                   | 1     |
-XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK180(*)(ext_trig_handler/ext_trigger)                                                                                    | 146   |
-XLXI_6067/O(XLXI_6067/I_36_8:O)    | BUFG(*)(PSI_Dig_Blk_0/XLXI_6064/error)                                                                                               | 105   |
-XLXI_6086/O(XLXI_6086/I_36_8:O)    | BUFG(*)(PSI_Dig_Blk_1/XLXI_6064/error)                                                                                               | 105   |
-XLXI_6193/O(XLXI_6193/I_36_8:O)    | BUFG(*)(PSI_Dig_Blk_2/XLXI_6064/error)                                                                                               | 105   |
-SECONDARY_CLK                      | IBUFG                                                                                                                                | 32    |
-BUSD_25DP_50S                      | IBUFGDS                                                                                                                              | 1     |
-GEL_RXCLK                          | XLXI_3254:CLKFX                                                                                                                      | 1     |
------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+-------+
+-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)                                                                                                                 | Load  |
+-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+-------+
+XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK270(*)(psi_cmd_fifo_vector_0/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_fb_i)| 348   |
+GEL_RXCLK                          | IBUFG+BUFG                                                                                                                            | 2081  |
+XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK0(*)(XLXI_5983/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i)              | 235   |
+XLXN_12498(XLXI_3522:O)            | NONE(*)(XLXI_3523)                                                                                                                    | 1     |
+XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK180(*)(XLXI_6346)                                                                                                        | 4     |
+XLXI_6067/O(XLXI_6067/I_36_8:O)    | BUFG(*)(PSI_Dig_Blk_0/XLXI_6064/error)                                                                                                | 105   |
+XLXI_6086/O(XLXI_6086/I_36_8:O)    | BUFG(*)(PSI_Dig_Blk_1/XLXI_6064/error)                                                                                                | 105   |
+XLXI_6193/O(XLXI_6193/I_36_8:O)    | BUFG(*)(PSI_Dig_Blk_2/XLXI_6064/error)                                                                                                | 105   |
+SECONDARY_CLK                      | IBUFG                                                                                                                                 | 32    |
+BUSD_25DP_50S                      | IBUFGDS                                                                                                                               | 1     |
+GEL_RXCLK                          | XLXI_3254:CLKFX                                                                                                                       | 1     |
+-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+-------+
 (*) These 7 clock signal(s) are generated by combinatorial logic,
 and XST is not able to identify which are the primary clock signals.
 Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
@@ -3718,8 +3718,8 @@ Timing constraint: Default period analysis for Clock 'XLXI_4773/O'
 Delay:               3.026ns (Levels of Logic = 2)
   Source:            psi_cmd_sender_vector_2/derror (FF)
   Destination:       psi_cmd_sender_vector_2/started_down (FF)
-  Source Clock:      XLXI_4773/O rising +90
-  Destination Clock: XLXI_4773/O falling +90
+  Source Clock:      XLXI_4773/O rising +270
+  Destination Clock: XLXI_4773/O falling +270
 
   Data Path: psi_cmd_sender_vector_2/derror to psi_cmd_sender_vector_2/started_down
                                 Gate     Net
@@ -3736,7 +3736,7 @@ Delay:               3.026ns (Levels of Logic = 2)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'GEL_RXCLK'
   Clock period: 9.853ns (frequency: 101.494MHz)
-  Total number of paths / destination ports: 49983 / 3655
+  Total number of paths / destination ports: 49985 / 3655
 -------------------------------------------------------------------------
 Delay:               9.853ns (Levels of Logic = 17)
   Source:            XLXI_6207/I_Q2 (FF)
@@ -3931,7 +3931,7 @@ Timing constraint: Default OFFSET IN BEFORE for Clock 'XLXI_4773/O'
 Offset:              11.111ns (Levels of Logic = 9)
   Source:            BUSC_21DN_43S (PAD)
   Destination:       token_trigger_blk/inj_sig (FF)
-  Destination Clock: XLXI_4773/O rising +180
+  Destination Clock: XLXI_4773/O rising
 
   Data Path: BUSC_21DN_43S to token_trigger_blk/inj_sig
                                 Gate     Net
@@ -4131,7 +4131,7 @@ Timing constraint: Default OFFSET OUT AFTER for Clock 'XLXI_4773/O'
 Offset:              7.284ns (Levels of Logic = 5)
   Source:            XLXI_6362 (FF)
   Destination:       GENERAL_19DN_39S (PAD)
-  Source Clock:      XLXI_4773/O rising
+  Source Clock:      XLXI_4773/O rising +180
 
   Data Path: XLXI_6362 to GENERAL_19DN_39S
                                 Gate     Net
@@ -4175,12 +4175,12 @@ Delay:               13.301ns (Levels of Logic = 7)
 
 
 Total REAL time to Xst completion: 57.00 secs
-Total CPU time to Xst completion: 56.60 secs
+Total CPU time to Xst completion: 57.19 secs
  
 --> 
 
 
-Total memory usage is 820948 kilobytes
+Total memory usage is 820972 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  533 (   0 filtered)
