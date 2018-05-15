@@ -29,15 +29,16 @@ Target Device                       : 4vlx25ff668-10
 *                        Optimizations                                  *
 =========================================================================
 ---- Statistics
-   Number of registers added by Synchronous Optimization     | 2               
+   Number of registers added by Synchronous Optimization     | 6               
    Number of SRLs added by SRL Inferencing                   | 1               
-   Number of LUTs added by Replication                       | 1               
+   Number of LUTs added by Replication                       | 2               
+   Number of LUTs added by Synchronous Optimization          | 2               
    Number of registers removed by SRL Inferencing            | 16              
    Number of registers removed by Trimming                   | 1               
    Number of registers removed by Equivalence Removal        | 5               
    Number of LUTs removed by Trimming                        | 60              
 
-   Overall change in number of design objects                |  -78             
+   Overall change in number of design objects                |  -71             
 
 
 ---- Details
@@ -46,8 +47,15 @@ New or modified components                             | Optimization           
 -------------------------------------------------------|--------------------------|----------------------
 Mshreg_XLXN_54                                         | SRL Inferencing          | Area
 XLXI_4005_1                                            | Replication              | Fanout Optimization
+XLXI_5989_1                                            | Replication              | Fanout Optimization
+data_down                                              | Synchronous Optimization | Performance
+data_up                                                | Synchronous Optimization | Performance
+data_up_rstpot                                         | Synchronous Optimization | Performance
+fifo_re                                                | Synchronous Optimization | Performance
 inj_sig                                                | Synchronous Optimization | Performance
-trig_sig                                               | Synchronous Optimization | Performance
+shared_start_sig                                       | Synchronous Optimization | Performance
+shared_stop_sig                                        | Synchronous Optimization | Performance
+shared_stop_sig_rstpot                                 | Synchronous Optimization | Performance
 
 
 Removed components                                     | Optimization             
