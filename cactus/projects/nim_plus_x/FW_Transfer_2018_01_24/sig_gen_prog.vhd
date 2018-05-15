@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\sig_gen_prog.vhd
--- Generated   : 02/01/18 14:53:31
--- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_30_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\sig_gen_prog.asf
+-- File        : C:\AGP_2018_05_02_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\sig_gen_prog.vhd
+-- Generated   : 05/14/18 17:02:46
+-- From        : C:\AGP_2018_05_02_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\sig_gen_prog.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -42,6 +42,7 @@ constant u_32: STD_LOGIC_VECTOR (31 downto 0) := "000000000000000000000000000000
 constant z_28: STD_LOGIC_VECTOR (27 downto 0) := "0000000000000000000000000000";
 constant z_32: STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
 -- diagram signals declarations
+signal cond_reg: STD_LOGIC_VECTOR (2 downto 0);
 signal p_count_r: STD_LOGIC_VECTOR (27 downto 0);
 signal p_hi_r: STD_LOGIC_VECTOR (31 downto 0);
 signal p_lo_r: STD_LOGIC_VECTOR (31 downto 0);
@@ -50,13 +51,14 @@ signal p_lo_r: STD_LOGIC_VECTOR (31 downto 0);
 type Sreg0_type is (
     S1, S2, S3, S4, S5, S7, S8
 );
--- attribute enum_encoding of Sreg0_type: type is ... -- enum_encoding attribute is not supported for symbolic encoding
+-- attribute ENUM_ENCODING of Sreg0_type: type is ... -- enum_encoding attribute is not supported for symbolic encoding
 
 signal Sreg0, NextState_Sreg0: Sreg0_type;
 
 -- Declarations of pre-registered internal signals
 signal int_err_out, next_err_out: STD_LOGIC;
 signal int_p_out, next_p_out: STD_LOGIC;
+signal next_cond_reg: STD_LOGIC_VECTOR (2 downto 0);
 signal next_p_count_r: STD_LOGIC_VECTOR (27 downto 0);
 signal next_p_hi_r: STD_LOGIC_VECTOR (31 downto 0);
 signal next_p_lo_r: STD_LOGIC_VECTOR (31 downto 0);
@@ -70,7 +72,7 @@ begin
 ------------------------------------
 -- Next State Logic (combinatorial)
 ------------------------------------
-Sreg0_NextState: process (int_err_out, int_p_out, p_count, p_count_r, p_hi, p_hi_r, p_lo, p_lo_r, start_en, Sreg0)
+Sreg0_NextState: process (cond_reg, int_err_out, int_p_out, p_count, p_count_r, p_hi, p_hi_r, p_lo, p_lo_r, start_en, Sreg0)
 begin
 	NextState_Sreg0 <= Sreg0;
 	-- Set default values for outputs and signals
@@ -79,6 +81,7 @@ begin
 	next_p_count_r <= p_count_r;
 	next_p_hi_r <= p_hi_r;
 	next_p_lo_r <= p_lo_r;
+	next_cond_reg <= cond_reg;
 	case Sreg0 is
 		when S1 =>
 			if start_en = '0' then
@@ -91,6 +94,9 @@ begin
 				next_p_hi_r <= z_32;
 				next_p_lo_r <= z_32;
 				next_p_out <= '0';
+				if (p_count = z_28) then
+				  next_cond_reg(0) <= '1';
+				end if;
 			end if;
 		when S2 =>
 			if start_en = '0' then
@@ -103,6 +109,7 @@ begin
 				next_p_out <= '0';
 			else
 				NextState_Sreg0 <= S4;
+				next_p_count_r <= p_count_r + u_28;
 			end if;
 		when S3 =>
 			if start_en = '1' then
@@ -122,24 +129,34 @@ begin
 			elsif p_hi_r = p_hi then
 				NextState_Sreg0 <= S5;
 				next_p_out <= '0';
+				if (p_count_r < p_count) then
+				  next_cond_reg(1) <= '1';
+				else
+				  next_cond_reg(1) <= '0';
+				end if;
 			end if;
 		when S5 =>
 			if p_lo_r = p_lo then
 				NextState_Sreg0 <= S7;
-				next_p_count_r <= p_count_r + u_28;
+				-- p_count_r <= p_count_r + u_28;
+				if (p_count_r = p_count) then
+				    next_cond_reg(1) <= '0';
+				end if;
 			elsif p_lo_r < p_lo then
 				NextState_Sreg0 <= S5;
 				next_p_out <= '0';
 				next_p_lo_r <= p_lo_r + u_32;
 			end if;
 		when S7 =>
-			if (p_count_r < p_count and p_count /= z_28)
-				or p_count = z_28 then
+			if --(p_count_r < p_count and p_count /= z_28) --or p_count = z_28
+				(cond_reg(0) = '0' and cond_reg(1) = '1') or
+				cond_reg(0) = '1' then
 				NextState_Sreg0 <= S2;
 				next_p_hi_r <= z_32;
 				next_p_lo_r <= z_32;
-			elsif p_count_r = p_count and 
-				p_count /= z_28 then
+			elsif --p_count_r = p_count and  --p_count /= z_28
+				cond_reg(0) = '0' and
+				cond_reg(1) = '0' then
 				NextState_Sreg0 <= S8;
 				next_p_out <= '0';
 			end if;
@@ -181,12 +198,14 @@ begin
 			-- p_count_r <= 		-- Initialization in the reset state or default value required!
 			-- p_hi_r <= 		-- Initialization in the reset state or default value required!
 			-- p_lo_r <= 		-- Initialization in the reset state or default value required!
+			-- cond_reg <= 		-- Initialization in the reset state or default value required!
 			int_err_out <= '0';
 			int_p_out <= '0';
 		else
 			p_count_r <= next_p_count_r;
 			p_hi_r <= next_p_hi_r;
 			p_lo_r <= next_p_lo_r;
+			cond_reg <= next_cond_reg;
 			int_err_out <= next_err_out;
 			int_p_out <= next_p_out;
 		end if;
