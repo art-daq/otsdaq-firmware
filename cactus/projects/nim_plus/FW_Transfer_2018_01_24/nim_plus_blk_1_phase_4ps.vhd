@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Thu Mar  8 20:14:17 2018
--- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_02_07_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
+-- File        : C:\AGP_2018_05_02_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
+-- Generated   : Wed May  2 14:18:02 2018
+-- From        : C:\AGP_2018_05_02_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -57,6 +57,8 @@ entity nim_plus_blk_1_phase_4ps is
        ck_mx_out : out STD_LOGIC_VECTOR(7 downto 0);
        dac_clk_mgr_ctl : out STD_LOGIC_VECTOR(7 downto 0);
        read_data_out : out STD_LOGIC_VECTOR(63 downto 0);
+       trig_40 : out STD_LOGIC_VECTOR(5 downto 0);
+       trig_53 : out STD_LOGIC_VECTOR(11 downto 0);
        wiz_0_clk_mgr_ctl : out STD_LOGIC_VECTOR(7 downto 0);
        wiz_1_clk_mgr_ctl : out STD_LOGIC_VECTOR(7 downto 0);
        wiz_2_clk_mgr_ctl : out STD_LOGIC_VECTOR(7 downto 0)
@@ -291,6 +293,14 @@ component load_long_64_v_ps
        w_ext_in : in STD_LOGIC;
        s_out : out STD_LOGIC;
        v_ps_ld_ct_out : out STD_LOGIC
+  );
+end component;
+component mch_trig_out
+  port (
+       mxout : in STD_LOGIC_VECTOR(3 downto 0);
+       sel : in STD_LOGIC_VECTOR(63 downto 0);
+       trig_40 : out STD_LOGIC_VECTOR(5 downto 0);
+       trig_53 : out STD_LOGIC_VECTOR(11 downto 0)
   );
 end component;
 component mux64_2
@@ -656,167 +666,169 @@ signal veto_out_p2 : STD_LOGIC;
 signal vps_ld_ct_0 : STD_LOGIC;
 signal vps_ld_ct_1 : STD_LOGIC;
 signal vps_ld_ct_2 : STD_LOGIC;
-signal accel_sync_bus : STD_LOGIC_VECTOR (7 downto 0);
-signal bid1 : STD_LOGIC_VECTOR (3 downto 0);
-signal bid2 : STD_LOGIC_VECTOR (3 downto 0);
-signal bid3 : STD_LOGIC_VECTOR (3 downto 0);
-signal bid4 : STD_LOGIC_VECTOR (3 downto 0);
-signal bid5 : STD_LOGIC_VECTOR (3 downto 0);
-signal bid6 : STD_LOGIC_VECTOR (3 downto 0);
-signal bid7 : STD_LOGIC_VECTOR (3 downto 0);
-signal bid8 : STD_LOGIC_VECTOR (3 downto 0);
-signal blk_data_in_s : STD_LOGIC_VECTOR (15 downto 0);
-signal blk_wr_en : STD_LOGIC_VECTOR (7 downto 0);
-signal blk_wr_en_1 : STD_LOGIC_VECTOR (15 downto 0);
-signal blk_wr_en_2 : STD_LOGIC_VECTOR (7 downto 0);
-signal blk_wr_en_3 : STD_LOGIC_VECTOR (7 downto 0);
-signal blk_wr_en_4 : STD_LOGIC_VECTOR (7 downto 0);
-signal blk_wr_en_cts : STD_LOGIC_VECTOR (31 downto 0);
-signal bmy : STD_LOGIC_VECTOR (3 downto 0);
-signal bp_ctl : STD_LOGIC_VECTOR (7 downto 0);
-signal burst_mux_sel : STD_LOGIC_VECTOR (7 downto 0);
-signal burst_wr_in : STD_LOGIC_VECTOR (7 downto 0);
-signal BUS30353 : STD_LOGIC_VECTOR (31 downto 0);
-signal BUS34595 : STD_LOGIC_VECTOR (15 downto 0);
-signal BUS34604 : STD_LOGIC_VECTOR (15 downto 0);
-signal BUS44834 : STD_LOGIC_VECTOR (63 downto 0);
-signal BUS64341 : STD_LOGIC_VECTOR (63 downto 0);
-signal BUS64350 : STD_LOGIC_VECTOR (63 downto 0);
-signal BUS64461 : STD_LOGIC_VECTOR (63 downto 0);
-signal BUS64467 : STD_LOGIC_VECTOR (63 downto 0);
-signal cnt64_simp_out : STD_LOGIC_VECTOR (63 downto 0);
-signal ctr_enables : STD_LOGIC_VECTOR (15 downto 0);
-signal ctr_resets : STD_LOGIC_VECTOR (15 downto 0);
-signal dac_ctl : STD_LOGIC_VECTOR (7 downto 0);
-signal dcm : STD_LOGIC_VECTOR (7 downto 0);
-signal del_ct : STD_LOGIC_VECTOR (127 downto 0);
-signal dur_ct : STD_LOGIC_VECTOR (127 downto 0);
-signal ext_clk_ctl : STD_LOGIC_VECTOR (7 downto 0);
-signal fs_sync_bus : STD_LOGIC_VECTOR (15 downto 0);
-signal gate_sig_in : STD_LOGIC_VECTOR (7 downto 0);
-signal in_ch1_ctr_1 : STD_LOGIC_VECTOR (31 downto 0);
-signal in_ch1_ctr_2 : STD_LOGIC_VECTOR (31 downto 0);
-signal in_ch2_ctr_2 : STD_LOGIC_VECTOR (31 downto 0);
-signal in_ev_ctr_1 : STD_LOGIC_VECTOR (31 downto 0);
-signal in_ev_ctr_1b : STD_LOGIC_VECTOR (31 downto 0);
-signal in_ev_ctr_2 : STD_LOGIC_VECTOR (31 downto 0);
-signal in_ev_ctr_2b : STD_LOGIC_VECTOR (31 downto 0);
-signal in_ev_ctr_3 : STD_LOGIC_VECTOR (31 downto 0);
-signal in_ev_ctr_4 : STD_LOGIC_VECTOR (31 downto 0);
-signal in_pol_sel : STD_LOGIC_VECTOR (7 downto 0);
-signal jw121_ctl : STD_LOGIC_VECTOR (7 downto 0);
-signal jw121_data : STD_LOGIC_VECTOR (63 downto 0);
-signal jw121_logic_term : STD_LOGIC_VECTOR (31 downto 0);
-signal ld_reg : STD_LOGIC_VECTOR (63 downto 0);
-signal ld_regv1 : STD_LOGIC_VECTOR (63 downto 0);
-signal ld_regv2 : STD_LOGIC_VECTOR (63 downto 0);
-signal ld_reg_1 : STD_LOGIC_VECTOR (63 downto 0);
-signal ld_reg_2 : STD_LOGIC_VECTOR (63 downto 0);
-signal ld_reg_3 : STD_LOGIC_VECTOR (63 downto 0);
-signal ld_reg_4 : STD_LOGIC_VECTOR (63 downto 0);
-signal logterm : STD_LOGIC_VECTOR (15 downto 0);
-signal log_ev_ctr : STD_LOGIC_VECTOR (31 downto 0);
-signal log_ev_ctrb : STD_LOGIC_VECTOR (31 downto 0);
-signal log_lat_sel : STD_LOGIC_VECTOR (7 downto 0);
-signal long_r_1 : STD_LOGIC_VECTOR (63 downto 0);
-signal long_r_2 : STD_LOGIC_VECTOR (63 downto 0);
-signal long_r_norm : STD_LOGIC_VECTOR (63 downto 0);
-signal msig0 : STD_LOGIC_VECTOR (7 downto 0);
-signal msig1 : STD_LOGIC_VECTOR (7 downto 0);
-signal msig2 : STD_LOGIC_VECTOR (7 downto 0);
-signal msig3 : STD_LOGIC_VECTOR (7 downto 0);
-signal mssel : STD_LOGIC_VECTOR (15 downto 0);
-signal muxin_2 : STD_LOGIC_VECTOR (7 downto 0);
-signal muxin_3 : STD_LOGIC_VECTOR (7 downto 0);
-signal muxin_4 : STD_LOGIC_VECTOR (7 downto 0);
-signal muxsel_2 : STD_LOGIC_VECTOR (7 downto 0);
-signal muxsel_3 : STD_LOGIC_VECTOR (7 downto 0);
-signal muxsel_4 : STD_LOGIC_VECTOR (7 downto 0);
-signal mux_ctl : STD_LOGIC_VECTOR (7 downto 0);
-signal out_ctr_1 : STD_LOGIC_VECTOR (31 downto 0);
-signal out_ctr_1b : STD_LOGIC_VECTOR (31 downto 0);
-signal out_ctr_2 : STD_LOGIC_VECTOR (31 downto 0);
-signal out_ctr_2b : STD_LOGIC_VECTOR (31 downto 0);
-signal out_ctr_3 : STD_LOGIC_VECTOR (31 downto 0);
-signal out_ctr_3b : STD_LOGIC_VECTOR (31 downto 0);
-signal out_ctr_4 : STD_LOGIC_VECTOR (31 downto 0);
-signal out_ctr_4b : STD_LOGIC_VECTOR (31 downto 0);
-signal out_ev_ctr : STD_LOGIC_VECTOR (31 downto 0);
-signal out_ev_ctrb : STD_LOGIC_VECTOR (31 downto 0);
-signal out_pol_sel : STD_LOGIC_VECTOR (7 downto 0);
-signal overflow : STD_LOGIC_VECTOR (15 downto 0);
-signal pcnt : STD_LOGIC_VECTOR (31 downto 0);
-signal phi : STD_LOGIC_VECTOR (31 downto 0);
-signal plo : STD_LOGIC_VECTOR (31 downto 0);
-signal ps_c1 : STD_LOGIC_VECTOR (15 downto 8);
-signal ps_ct0 : STD_LOGIC_VECTOR (31 downto 0);
-signal ps_ct1 : STD_LOGIC_VECTOR (31 downto 0);
-signal ps_ct2 : STD_LOGIC_VECTOR (31 downto 0);
-signal pulse_ctl : STD_LOGIC_VECTOR (7 downto 0);
-signal pulse_ctl_1 : STD_LOGIC_VECTOR (7 downto 0);
-signal pulse_ctl_2 : STD_LOGIC_VECTOR (7 downto 0);
-signal pulse_ctl_3 : STD_LOGIC_VECTOR (7 downto 0);
-signal pulse_ctl_4 : STD_LOGIC_VECTOR (7 downto 0);
-signal rdb10 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdb11 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdb12 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdb13 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdb14 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdb15 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdb16 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdb17 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdb20 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdb7 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdb8 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdb9 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdd0 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdd1 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdd2 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdd3 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdd4 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdd5 : STD_LOGIC_VECTOR (63 downto 0);
-signal rdd6 : STD_LOGIC_VECTOR (63 downto 0);
-signal rd_data_out_dyn : STD_LOGIC_VECTOR (63 downto 0);
-signal rd_data_out_stat : STD_LOGIC_VECTOR (63 downto 0);
-signal scope_count : STD_LOGIC_VECTOR (63 downto 0);
-signal scope_ctl : STD_LOGIC_VECTOR (7 downto 0);
-signal scope_out : STD_LOGIC_VECTOR (63 downto 0);
-signal sel_blk_en_term : STD_LOGIC_VECTOR (15 downto 0);
-signal sel_ctl : STD_LOGIC_VECTOR (7 downto 0);
-signal sigmux : STD_LOGIC_VECTOR (31 downto 0);
-signal sig_event_cnts : STD_LOGIC_VECTOR (63 downto 0);
-signal sig_event_counts : STD_LOGIC_VECTOR (63 downto 0);
-signal sig_mod : STD_LOGIC_VECTOR (3 downto 0);
-signal sig_output_counts : STD_LOGIC_VECTOR (63 downto 0);
-signal sig_out_cnts : STD_LOGIC_VECTOR (63 downto 0);
-signal sig_sel : STD_LOGIC_VECTOR (3 downto 0);
-signal sig_v1_sel : STD_LOGIC_VECTOR (7 downto 0);
-signal sig_v2_sel : STD_LOGIC_VECTOR (7 downto 0);
-signal sp_signl_sel : STD_LOGIC_VECTOR (7 downto 0);
-signal start_sig_sel : STD_LOGIC_VECTOR (15 downto 0);
-signal stop_sig_sel : STD_LOGIC_VECTOR (15 downto 0);
-signal stop_tim_sig : STD_LOGIC_VECTOR (3 downto 0);
-signal stop_tim_sig_in : STD_LOGIC_VECTOR (4 downto 0);
-signal stop_tim_sig_n : STD_LOGIC_VECTOR (3 downto 0);
-signal tim_sig : STD_LOGIC_VECTOR (3 downto 0);
-signal tim_sig_in : STD_LOGIC_VECTOR (4 downto 0);
-signal veto1_ctl : STD_LOGIC_VECTOR (7 downto 0);
-signal veto2_ctl : STD_LOGIC_VECTOR (7 downto 0);
-signal veto_set_0 : STD_LOGIC_VECTOR (31 downto 0);
-signal veto_set_1 : STD_LOGIC_VECTOR (31 downto 0);
-signal veto_set_2 : STD_LOGIC_VECTOR (31 downto 0);
-signal v_num : STD_LOGIC_VECTOR (31 downto 0);
-signal w0cm : STD_LOGIC_VECTOR (7 downto 0);
-signal w1cm : STD_LOGIC_VECTOR (7 downto 0);
-signal w2cm : STD_LOGIC_VECTOR (7 downto 0);
-signal y : STD_LOGIC_VECTOR (3 downto 0);
-signal ys : STD_LOGIC_VECTOR (3 downto 0);
-signal z : STD_LOGIC_VECTOR (3 downto 0);
-signal z0_sel : STD_LOGIC_VECTOR (2 downto 0);
-signal z1_sel : STD_LOGIC_VECTOR (2 downto 0);
-signal z2_sel : STD_LOGIC_VECTOR (2 downto 0);
-signal z3_sel : STD_LOGIC_VECTOR (2 downto 0);
-signal z_sel : STD_LOGIC_VECTOR (15 downto 0);
+signal accel_sync_bus : STD_LOGIC_VECTOR(7 downto 0);
+signal bid1 : STD_LOGIC_VECTOR(3 downto 0);
+signal bid2 : STD_LOGIC_VECTOR(3 downto 0);
+signal bid3 : STD_LOGIC_VECTOR(3 downto 0);
+signal bid4 : STD_LOGIC_VECTOR(3 downto 0);
+signal bid5 : STD_LOGIC_VECTOR(3 downto 0);
+signal bid6 : STD_LOGIC_VECTOR(3 downto 0);
+signal bid7 : STD_LOGIC_VECTOR(3 downto 0);
+signal bid8 : STD_LOGIC_VECTOR(3 downto 0);
+signal blk_data_in_s : STD_LOGIC_VECTOR(15 downto 0);
+signal blk_wr_en : STD_LOGIC_VECTOR(7 downto 0);
+signal blk_wr_en_1 : STD_LOGIC_VECTOR(15 downto 0);
+signal blk_wr_en_2 : STD_LOGIC_VECTOR(7 downto 0);
+signal blk_wr_en_3 : STD_LOGIC_VECTOR(7 downto 0);
+signal blk_wr_en_4 : STD_LOGIC_VECTOR(7 downto 0);
+signal blk_wr_en_cts : STD_LOGIC_VECTOR(31 downto 0);
+signal bmy : STD_LOGIC_VECTOR(3 downto 0);
+signal bp_ctl : STD_LOGIC_VECTOR(7 downto 0);
+signal burst_mux_sel : STD_LOGIC_VECTOR(7 downto 0);
+signal burst_wr_in : STD_LOGIC_VECTOR(7 downto 0);
+signal BUS30353 : STD_LOGIC_VECTOR(31 downto 0);
+signal BUS34595 : STD_LOGIC_VECTOR(15 downto 0);
+signal BUS34604 : STD_LOGIC_VECTOR(15 downto 0);
+signal BUS44834 : STD_LOGIC_VECTOR(63 downto 0);
+signal BUS64341 : STD_LOGIC_VECTOR(63 downto 0);
+signal BUS64350 : STD_LOGIC_VECTOR(63 downto 0);
+signal BUS64461 : STD_LOGIC_VECTOR(63 downto 0);
+signal BUS64467 : STD_LOGIC_VECTOR(63 downto 0);
+signal cnt64_simp_out : STD_LOGIC_VECTOR(63 downto 0);
+signal ctr_enables : STD_LOGIC_VECTOR(15 downto 0);
+signal ctr_resets : STD_LOGIC_VECTOR(15 downto 0);
+signal dac_ctl : STD_LOGIC_VECTOR(7 downto 0);
+signal dcm : STD_LOGIC_VECTOR(7 downto 0);
+signal del_ct : STD_LOGIC_VECTOR(127 downto 0);
+signal dur_ct : STD_LOGIC_VECTOR(127 downto 0);
+signal ext_clk_ctl : STD_LOGIC_VECTOR(7 downto 0);
+signal fs_sync_bus : STD_LOGIC_VECTOR(15 downto 0);
+signal gate_sig_in : STD_LOGIC_VECTOR(7 downto 0);
+signal in_ch1_ctr_1 : STD_LOGIC_VECTOR(31 downto 0);
+signal in_ch1_ctr_2 : STD_LOGIC_VECTOR(31 downto 0);
+signal in_ch2_ctr_2 : STD_LOGIC_VECTOR(31 downto 0);
+signal in_ev_ctr_1 : STD_LOGIC_VECTOR(31 downto 0);
+signal in_ev_ctr_1b : STD_LOGIC_VECTOR(31 downto 0);
+signal in_ev_ctr_2 : STD_LOGIC_VECTOR(31 downto 0);
+signal in_ev_ctr_2b : STD_LOGIC_VECTOR(31 downto 0);
+signal in_ev_ctr_3 : STD_LOGIC_VECTOR(31 downto 0);
+signal in_ev_ctr_4 : STD_LOGIC_VECTOR(31 downto 0);
+signal in_pol_sel : STD_LOGIC_VECTOR(7 downto 0);
+signal jw121_ctl : STD_LOGIC_VECTOR(7 downto 0);
+signal jw121_data : STD_LOGIC_VECTOR(63 downto 0);
+signal jw121_logic_term : STD_LOGIC_VECTOR(31 downto 0);
+signal ld_reg : STD_LOGIC_VECTOR(63 downto 0);
+signal ld_regv1 : STD_LOGIC_VECTOR(63 downto 0);
+signal ld_regv2 : STD_LOGIC_VECTOR(63 downto 0);
+signal ld_reg_1 : STD_LOGIC_VECTOR(63 downto 0);
+signal ld_reg_2 : STD_LOGIC_VECTOR(63 downto 0);
+signal ld_reg_3 : STD_LOGIC_VECTOR(63 downto 0);
+signal ld_reg_4 : STD_LOGIC_VECTOR(63 downto 0);
+signal logterm : STD_LOGIC_VECTOR(15 downto 0);
+signal log_ev_ctr : STD_LOGIC_VECTOR(31 downto 0);
+signal log_ev_ctrb : STD_LOGIC_VECTOR(31 downto 0);
+signal log_lat_sel : STD_LOGIC_VECTOR(7 downto 0);
+signal long_r_1 : STD_LOGIC_VECTOR(63 downto 0);
+signal long_r_2 : STD_LOGIC_VECTOR(63 downto 0);
+signal long_r_norm : STD_LOGIC_VECTOR(63 downto 0);
+signal mch_in : STD_LOGIC_VECTOR(63 downto 0);
+signal msig0 : STD_LOGIC_VECTOR(7 downto 0);
+signal msig1 : STD_LOGIC_VECTOR(7 downto 0);
+signal msig2 : STD_LOGIC_VECTOR(7 downto 0);
+signal msig3 : STD_LOGIC_VECTOR(7 downto 0);
+signal mssel : STD_LOGIC_VECTOR(15 downto 0);
+signal muxin_2 : STD_LOGIC_VECTOR(7 downto 0);
+signal muxin_3 : STD_LOGIC_VECTOR(7 downto 0);
+signal muxin_4 : STD_LOGIC_VECTOR(7 downto 0);
+signal muxsel_2 : STD_LOGIC_VECTOR(7 downto 0);
+signal muxsel_3 : STD_LOGIC_VECTOR(7 downto 0);
+signal muxsel_4 : STD_LOGIC_VECTOR(7 downto 0);
+signal mux_ctl : STD_LOGIC_VECTOR(7 downto 0);
+signal mxout_mxin : STD_LOGIC_VECTOR(3 downto 0);
+signal out_ctr_1 : STD_LOGIC_VECTOR(31 downto 0);
+signal out_ctr_1b : STD_LOGIC_VECTOR(31 downto 0);
+signal out_ctr_2 : STD_LOGIC_VECTOR(31 downto 0);
+signal out_ctr_2b : STD_LOGIC_VECTOR(31 downto 0);
+signal out_ctr_3 : STD_LOGIC_VECTOR(31 downto 0);
+signal out_ctr_3b : STD_LOGIC_VECTOR(31 downto 0);
+signal out_ctr_4 : STD_LOGIC_VECTOR(31 downto 0);
+signal out_ctr_4b : STD_LOGIC_VECTOR(31 downto 0);
+signal out_ev_ctr : STD_LOGIC_VECTOR(31 downto 0);
+signal out_ev_ctrb : STD_LOGIC_VECTOR(31 downto 0);
+signal out_pol_sel : STD_LOGIC_VECTOR(7 downto 0);
+signal overflow : STD_LOGIC_VECTOR(15 downto 0);
+signal pcnt : STD_LOGIC_VECTOR(31 downto 0);
+signal phi : STD_LOGIC_VECTOR(31 downto 0);
+signal plo : STD_LOGIC_VECTOR(31 downto 0);
+signal ps_c1 : STD_LOGIC_VECTOR(15 downto 8);
+signal ps_ct0 : STD_LOGIC_VECTOR(31 downto 0);
+signal ps_ct1 : STD_LOGIC_VECTOR(31 downto 0);
+signal ps_ct2 : STD_LOGIC_VECTOR(31 downto 0);
+signal pulse_ctl : STD_LOGIC_VECTOR(7 downto 0);
+signal pulse_ctl_1 : STD_LOGIC_VECTOR(7 downto 0);
+signal pulse_ctl_2 : STD_LOGIC_VECTOR(7 downto 0);
+signal pulse_ctl_3 : STD_LOGIC_VECTOR(7 downto 0);
+signal pulse_ctl_4 : STD_LOGIC_VECTOR(7 downto 0);
+signal rdb10 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdb11 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdb12 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdb13 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdb14 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdb15 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdb16 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdb17 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdb20 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdb7 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdb8 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdb9 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdd0 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdd1 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdd2 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdd3 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdd4 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdd5 : STD_LOGIC_VECTOR(63 downto 0);
+signal rdd6 : STD_LOGIC_VECTOR(63 downto 0);
+signal rd_data_out_dyn : STD_LOGIC_VECTOR(63 downto 0);
+signal rd_data_out_stat : STD_LOGIC_VECTOR(63 downto 0);
+signal scope_count : STD_LOGIC_VECTOR(63 downto 0);
+signal scope_ctl : STD_LOGIC_VECTOR(7 downto 0);
+signal scope_out : STD_LOGIC_VECTOR(63 downto 0);
+signal sel_blk_en_term : STD_LOGIC_VECTOR(15 downto 0);
+signal sel_ctl : STD_LOGIC_VECTOR(7 downto 0);
+signal sigmux : STD_LOGIC_VECTOR(31 downto 0);
+signal sig_event_cnts : STD_LOGIC_VECTOR(63 downto 0);
+signal sig_event_counts : STD_LOGIC_VECTOR(63 downto 0);
+signal sig_mod : STD_LOGIC_VECTOR(3 downto 0);
+signal sig_output_counts : STD_LOGIC_VECTOR(63 downto 0);
+signal sig_out_cnts : STD_LOGIC_VECTOR(63 downto 0);
+signal sig_sel : STD_LOGIC_VECTOR(3 downto 0);
+signal sig_v1_sel : STD_LOGIC_VECTOR(7 downto 0);
+signal sig_v2_sel : STD_LOGIC_VECTOR(7 downto 0);
+signal sp_signl_sel : STD_LOGIC_VECTOR(7 downto 0);
+signal start_sig_sel : STD_LOGIC_VECTOR(15 downto 0);
+signal stop_sig_sel : STD_LOGIC_VECTOR(15 downto 0);
+signal stop_tim_sig : STD_LOGIC_VECTOR(3 downto 0);
+signal stop_tim_sig_in : STD_LOGIC_VECTOR(4 downto 0);
+signal stop_tim_sig_n : STD_LOGIC_VECTOR(3 downto 0);
+signal tim_sig : STD_LOGIC_VECTOR(3 downto 0);
+signal tim_sig_in : STD_LOGIC_VECTOR(4 downto 0);
+signal veto1_ctl : STD_LOGIC_VECTOR(7 downto 0);
+signal veto2_ctl : STD_LOGIC_VECTOR(7 downto 0);
+signal veto_set_0 : STD_LOGIC_VECTOR(31 downto 0);
+signal veto_set_1 : STD_LOGIC_VECTOR(31 downto 0);
+signal veto_set_2 : STD_LOGIC_VECTOR(31 downto 0);
+signal v_num : STD_LOGIC_VECTOR(31 downto 0);
+signal w0cm : STD_LOGIC_VECTOR(7 downto 0);
+signal w1cm : STD_LOGIC_VECTOR(7 downto 0);
+signal w2cm : STD_LOGIC_VECTOR(7 downto 0);
+signal y : STD_LOGIC_VECTOR(3 downto 0);
+signal ys : STD_LOGIC_VECTOR(3 downto 0);
+signal z : STD_LOGIC_VECTOR(3 downto 0);
+signal z0_sel : STD_LOGIC_VECTOR(2 downto 0);
+signal z1_sel : STD_LOGIC_VECTOR(2 downto 0);
+signal z2_sel : STD_LOGIC_VECTOR(2 downto 0);
+signal z3_sel : STD_LOGIC_VECTOR(2 downto 0);
+signal z_sel : STD_LOGIC_VECTOR(15 downto 0);
 
 ---- Declaration for Dangling input ----
 signal Dangling_Input_Signal : STD_LOGIC;
@@ -2078,7 +2090,7 @@ U211 : reg_8
        wr_en => blk_wr_en(3)
   );
 
-sig_sel(0) <= (ys(0) and not sel_ctl(4)) or (sig_mod(0) and sel_ctl(4));
+sig_sel(0) <= (sig_mod(0) and not sel_ctl(4)) or (ys(0) and sel_ctl(4));
 
 U213 : pol_sel
   port map(
@@ -7626,13 +7638,38 @@ ck_mx_out(6) <= ext_clk_ctl(6);
 
 ck_mx_out(7) <= ext_clk_ctl(7);
 
-sig_sel(1) <= (ys(1) and not sel_ctl(5)) or (sig_mod(2) and sel_ctl(5));
+sig_sel(1) <= (sig_mod(1) and not sel_ctl(5)) or (ys(1) and sel_ctl(5));
 
-sig_sel(2) <= (ys(2) and not sel_ctl(6)) or (sig_mod(1) and sel_ctl(6));
+sig_sel(2) <= (sig_mod(2) and not sel_ctl(6)) or (ys(2) and sel_ctl(6));
 
 sigmux(3) <= bmy(2);
 
-sig_sel(3) <= (ys(3) and not sel_ctl(7)) or (sig_mod(3) and sel_ctl(7));
+sig_sel(3) <= (sig_mod(3) and not sel_ctl(7)) or (ys(3) and sel_ctl(7));
+
+U461 : reg_64
+  port map(
+       clk => tx_clk,
+       d => rx_data,
+       q => mch_in,
+       reset_p => reset_out,
+       wr_en => blk_wr_en_2(0)
+  );
+
+U462 : mch_trig_out
+  port map(
+       mxout => mxout_mxin,
+       sel => mch_in,
+       trig_40 => trig_40,
+       trig_53 => trig_53
+  );
+
+mxout_mxin(0) <= mxout1a;
+
+mxout_mxin(1) <= mxout2a;
+
+mxout_mxin(2) <= mxout3a;
+
+mxout_mxin(3) <= mxout4a;
 
 sigmux(4) <= bmy(3);
 
@@ -7839,8 +7876,8 @@ U7 : sel_block
        blk_en => sel_ctl(1),
        en_term => sel_blk_en_term,
        logterm => logterm,
-       rst_p => reset_out,
        clk => clk0,
+       rst_p => reset_out,
        sig_out => NET20962,
        x => sig_sel
   );

@@ -1,8 +1,8 @@
 Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
-| Date             : Sat Apr 14 11:45:59 2018
-| Host             : rulinux04.dhcp.fnal.gov running 64-bit Scientific Linux release 7.2 (Nitrogen)
+| Date             : Wed May 16 08:58:44 2018
+| Host             : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb
 | Design           : top
 | Device           : xc7a200tffg1156-2
@@ -10,7 +10,7 @@ Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 | Grade            : commercial
 | Process          : typical
 | Characterization : Production
------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
 
 Power Report
 
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 0.849 |
-| Dynamic (W)              | 0.713 |
+| Total On-Chip Power (W)  | 0.847 |
+| Dynamic (W)              | 0.711 |
 | Device Static (W)        | 0.136 |
 | Total Off-Chip Power (W) | 0.010 |
 | Effective TJA (C/W)      | 1.5   |
@@ -50,22 +50,22 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.067 |       14 |       --- |             --- |
-| Slice Logic              |     0.025 |    22885 |       --- |             --- |
-|   LUT as Logic           |     0.021 |     7478 |    133800 |            5.59 |
-|   Register               |     0.002 |    10691 |    267600 |            4.00 |
+| Clocks                   |     0.064 |       14 |       --- |             --- |
+| Slice Logic              |     0.025 |    22895 |       --- |             --- |
+|   LUT as Logic           |     0.021 |     7488 |    133800 |            5.60 |
+|   Register               |     0.002 |    10693 |    267600 |            4.00 |
 |   CARRY4                 |     0.001 |      533 |     33450 |            1.59 |
 |   F7/F8 Muxes            |    <0.001 |      563 |    133800 |            0.42 |
 |   LUT as Shift Register  |    <0.001 |      302 |     46200 |            0.65 |
 |   LUT as Distributed RAM |    <0.001 |       24 |     46200 |            0.05 |
 |   BUFG                   |    <0.001 |        5 |        32 |           15.63 |
 |   Others                 |     0.000 |     2032 |       --- |             --- |
-| Signals                  |     0.035 |    16003 |       --- |             --- |
+| Signals                  |     0.036 |    16022 |       --- |             --- |
 | Block RAM                |     0.022 |       12 |       365 |            3.29 |
 | PLL                      |     0.252 |        3 |        10 |           30.00 |
 | I/O                      |     0.312 |       56 |       500 |           11.20 |
 | Static Power             |     0.136 |          |           |                 |
-| Total                    |     0.849 |          |           |                 |
+| Total                    |     0.847 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,7 +75,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.200 |       0.168 |      0.032 |
+| Vccint    |       1.000 |     0.198 |       0.166 |      0.032 |
 | Vccaux    |       1.800 |     0.169 |       0.139 |      0.031 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.126 |       0.121 |      0.005 |
@@ -154,9 +154,9 @@ Table of Contents
 +-----------------------------------------------------------------------+-----------+
 | Name                                                                  | Power (W) |
 +-----------------------------------------------------------------------+-----------+
-| top                                                                   |     0.713 |
+| top                                                                   |     0.711 |
 |   CLK_MUX                                                             |     0.001 |
-|   NIM_BLOCK                                                           |     0.057 |
+|   NIM_BLOCK                                                           |     0.055 |
 |     U1                                                                |    <0.001 |
 |     U10                                                               |    <0.001 |
 |     U11                                                               |    <0.001 |
@@ -464,7 +464,7 @@ Table of Contents
 |       U9                                                              |    <0.001 |
 |     U243                                                              |    <0.001 |
 |     U244                                                              |    <0.001 |
-|     U245                                                              |     0.002 |
+|     U245                                                              |     0.001 |
 |     U246                                                              |    <0.001 |
 |     U248                                                              |     0.001 |
 |     U250                                                              |    <0.001 |
@@ -996,7 +996,7 @@ Table of Contents
 |       TX_DATA_INFO_FIFO                                               |    <0.001 |
 |         FIFO_SYNC_MACRO_inst                                          |    <0.001 |
 |       burst_controller_sm                                             |    <0.001 |
-|     ec_wrapper                                                        |     0.025 |
+|     ec_wrapper                                                        |     0.024 |
 |       crcChk                                                          |    <0.001 |
 |       crcGen                                                          |     0.001 |
 |       crcSplice                                                       |    <0.001 |
@@ -1034,7 +1034,7 @@ Table of Contents
 |           U_CDONE                                                     |    <0.001 |
 |           U_NS0                                                       |    <0.001 |
 |           U_NS1                                                       |    <0.001 |
-|           u_cap_addrgen                                               |     0.001 |
+|           u_cap_addrgen                                               |    <0.001 |
 |             U_CMPRESET                                                |    <0.001 |
 |             u_cap_sample_counter                                      |    <0.001 |
 |               U_SCE                                                   |    <0.001 |

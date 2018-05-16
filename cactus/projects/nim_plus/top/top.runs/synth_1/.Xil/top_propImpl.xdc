@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:/home/cmstestbeam/ots/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_10.xdc rfile:../../../top.srcs/constrs_1/new/top_10.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_10.xdc rfile:../../../top.srcs/constrs_1/new/top_10.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:4 export:INPUT save:INPUT read:READ} [current_design]
 create_debug_core u_ila_0_0 ila
 set_property src_info {type:XDC file:1 line:5 export:INPUT save:INPUT read:READ} [current_design]
