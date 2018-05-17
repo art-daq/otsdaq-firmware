@@ -207,9 +207,15 @@ begin
 
 
 
-  clk_out265 <= clk_out265_clk_wiz_1;
+  clkout2_buf : BUFG
+  port map
+   (O   => clk_out265,
+    I   => clk_out265_clk_wiz_1);
 
-  clk_out1325 <= clk_out1325_clk_wiz_1;
+  clkout3_buf : BUFG
+  port map
+   (O   => clk_out1325,
+    I   => clk_out1325_clk_wiz_1);
 
   clkout4_buf : BUFG
   port map

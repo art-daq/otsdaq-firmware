@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : C:\AGP_2018_05_02_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Wed May  2 14:18:02 2018
--- From        : C:\AGP_2018_05_02_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
+-- File        : C:\AGP_2018_05_17_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
+-- Generated   : Thu May 17 14:00:45 2018
+-- From        : C:\AGP_2018_05_17_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -37,6 +37,7 @@ entity nim_plus_blk_1_phase_4ps is
        clk_26_5 : in STD_LOGIC;
        clk_40DCM : in STD_LOGIC;
        clk_ext : in STD_LOGIC;
+       cln_clk_53 : in STD_LOGIC;
        reset_out : in STD_LOGIC;
        rx_wren : in STD_LOGIC;
        tx_clk : in STD_LOGIC;
@@ -45,6 +46,7 @@ entity nim_plus_blk_1_phase_4ps is
        rx_data : in STD_LOGIC_VECTOR(63 downto 0);
        x : in STD_LOGIC_VECTOR(3 downto 0);
        b_wr_out : out STD_LOGIC;
+       clk160_2pta : out STD_LOGIC;
        clk_39_out : out STD_LOGIC;
        dac_out : out STD_LOGIC;
        muxout_1 : out STD_LOGIC;
@@ -441,9 +443,9 @@ end component;
 component sel_block
   port (
        blk_en : in STD_LOGIC;
+       clk0 : in STD_LOGIC;
        en_term : in STD_LOGIC_VECTOR(15 downto 0);
        rst_p : in STD_LOGIC;
-       clk : in STD_LOGIC;
        x : in STD_LOGIC_VECTOR(3 downto 0);
        logterm : out STD_LOGIC_VECTOR(15 downto 0);
        sig_out : out STD_LOGIC
@@ -552,6 +554,8 @@ signal c0sig : STD_LOGIC;
 signal c1sig : STD_LOGIC;
 signal cbp_a : STD_LOGIC;
 signal cbp_b : STD_LOGIC;
+signal clk13_lat : STD_LOGIC;
+signal clk_265_lat : STD_LOGIC;
 signal dac_ctl_reset : STD_LOGIC;
 signal fin_wr_out : STD_LOGIC;
 signal fs_ctl_0 : STD_LOGIC;
@@ -584,8 +588,6 @@ signal NET17374 : STD_LOGIC;
 signal NET17984 : STD_LOGIC;
 signal NET19190 : STD_LOGIC;
 signal NET19293 : STD_LOGIC;
-signal NET20962 : STD_LOGIC;
-signal NET20984 : STD_LOGIC;
 signal NET24020 : STD_LOGIC;
 signal NET24170 : STD_LOGIC;
 signal NET25266 : STD_LOGIC;
@@ -608,7 +610,6 @@ signal NET32706 : STD_LOGIC;
 signal NET33761 : STD_LOGIC;
 signal NET35351 : STD_LOGIC;
 signal NET36444 : STD_LOGIC;
-signal NET36449 : STD_LOGIC;
 signal NET41961 : STD_LOGIC;
 signal NET44704 : STD_LOGIC;
 signal NET59053 : STD_LOGIC;
@@ -631,6 +632,8 @@ signal NET65433 : STD_LOGIC;
 signal NET65437 : STD_LOGIC;
 signal NET65597 : STD_LOGIC;
 signal NET65601 : STD_LOGIC;
+signal NET69495 : STD_LOGIC;
+signal NET69568 : STD_LOGIC;
 signal NET9478 : STD_LOGIC;
 signal NET9526 : STD_LOGIC;
 signal out_cnt_rst : STD_LOGIC;
@@ -884,7 +887,6 @@ begin
     
     debug_fast_cnt <= cnt64_simp_out(15 downto 0);
 ----  Component instantiations  ----
-
 U1 : reg_64
   port map(
        clk => tx_clk,
@@ -1325,9 +1327,9 @@ U124 : reg_32
        wr_en => blk_wr_en_cts(29)
   );
 
-sigmux(30) <= veto_out_n0;
+sigmux(30) <= clk_ext;
 
-sigmux(31) <= GND;
+sigmux(31) <= veto_out_n0;
 
 U127 : mux_8_to_1
   port map(
@@ -1770,8 +1772,6 @@ U162 : s_cnt32_v2
   );
 
 NET19293 <= reset_out or ctr_resets(2) or pulse_ctl(5);
-
-sig_log <= NET20984 and NET20962;
 
 sigmux(14) <= veto_out_n2;
 
@@ -2886,15 +2886,13 @@ gate_sig_in(6) <= GND;
 
 gate_sig_in(7) <= NET35351;
 
-NET36449 <= reset_out or ctr_resets(6);
-
 U286 : acc_sync
   port map(
-       clk_13_25 => clk_13_25,
-       clk_26_5 => clk_26_5,
+       clk_13_25 => clk13_lat,
+       clk_26_5 => clk_265_lat,
        clk_in => clk0,
        release_p => acc_release,
-       reset_p => NET36449
+       reset_p => ctr_resets(6)
   );
 
 U287 : divide_by_8
@@ -3007,7 +3005,7 @@ jw121_logic_term(30) <= GND;
 
 jw121_logic_term(31) <= GND;
 
-NET36444 <= acc_release or NET36449;
+NET36444 <= acc_release or ctr_resets(6);
 
 U307 : reg_8
   port map(
@@ -7671,7 +7669,46 @@ mxout_mxin(2) <= mxout3a;
 
 mxout_mxin(3) <= mxout4a;
 
+U467 : sel_block
+  port map(
+       blk_en => sel_ctl(1),
+       clk0 => clk0,
+       en_term => sel_blk_en_term,
+       logterm => logterm,
+       rst_p => reset_out,
+       sig_out => sig_log,
+       x => sig_sel
+  );
+
+U468 : d_ff
+  port map(
+       clk => clk0,
+       dl => NET69495,
+       q => NET69568,
+       rst_p => GND
+  );
+
+NET69495 <= NET69568;
+
 sigmux(4) <= bmy(3);
+
+clk160_2pta <= NET69568;
+
+U471 : d_ff
+  port map(
+       clk => clk0,
+       dl => clk_13_25,
+       q => clk13_lat,
+       rst_p => GND
+  );
+
+U472 : d_ff
+  port map(
+       clk => clk0,
+       dl => clk_26_5,
+       q => clk_265_lat,
+       rst_p => GND
+  );
 
 sigmux(5) <= sig_mod(0);
 
@@ -7871,17 +7908,6 @@ U69 : reg_32
        wr_en => blk_wr_en_cts(5)
   );
 
-U7 : sel_block
-  port map(
-       blk_en => sel_ctl(1),
-       en_term => sel_blk_en_term,
-       logterm => logterm,
-       clk => clk0,
-       rst_p => reset_out,
-       sig_out => NET20962,
-       x => sig_sel
-  );
-
 NET25266 <= NET24020 or bkprout_v2 or veto_out_p2 or veto2_ctl(1);
 
 sigmux(26) <= muxout_3a;
@@ -8026,15 +8052,13 @@ rst_sgprog_p <= ctr_resets(5) or reset_out;
 
 ld_arr_rst_p <= reset_out or pulse_ctl(0);
 
-sigmux(29) <= clk_ext;
-
-NET20984 <= fs_sync_bus(8) or sync_w_40MHz;
+sigmux(29) <= cln_clk_53;
 
 U82 : section_counter
   port map(
        clk => clk0,
        release_p => acc_release,
-       reset_p => NET36449,
+       reset_p => ctr_resets(6),
        sec_en => sync_w_accel,
        sec_in => accel_sync_bus
   );

@@ -1,10 +1,10 @@
 -- Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
--- Date        : Mon May  7 13:12:46 2018
+-- Date        : Thu May 17 14:09:39 2018
 -- Host        : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 -- Command     : write_vhdl -force -mode funcsim
---               /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_funcsim.vhdl
+--               /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_funcsim.vhdl
 -- Design      : clk_wiz_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -30,6 +30,8 @@ end clk_wiz_1_clk_wiz_1_clk_wiz;
 
 architecture STRUCTURE of clk_wiz_1_clk_wiz_1_clk_wiz is
   signal clk_in40e_clk_wiz_1 : STD_LOGIC;
+  signal clk_out1325_clk_wiz_1 : STD_LOGIC;
+  signal clk_out265_clk_wiz_1 : STD_LOGIC;
   signal clk_out320e_clk_wiz_1 : STD_LOGIC;
   signal clk_out53_clk_wiz_1 : STD_LOGIC;
   signal clkfbout_buf_clk_wiz_1 : STD_LOGIC;
@@ -42,6 +44,8 @@ architecture STRUCTURE of clk_wiz_1_clk_wiz_1_clk_wiz is
   attribute box_type of clkf_buf : label is "PRIMITIVE";
   attribute box_type of clkin1_bufg : label is "PRIMITIVE";
   attribute box_type of clkout1_buf : label is "PRIMITIVE";
+  attribute box_type of clkout2_buf : label is "PRIMITIVE";
+  attribute box_type of clkout3_buf : label is "PRIMITIVE";
   attribute box_type of clkout4_buf : label is "PRIMITIVE";
   attribute box_type of plle2_adv_inst : label is "PRIMITIVE";
 begin
@@ -59,6 +63,16 @@ clkout1_buf: unisim.vcomponents.BUFG
      port map (
       I => clk_out320e_clk_wiz_1,
       O => clk_out320e
+    );
+clkout2_buf: unisim.vcomponents.BUFG
+     port map (
+      I => clk_out265_clk_wiz_1,
+      O => clk_out265
+    );
+clkout3_buf: unisim.vcomponents.BUFG
+     port map (
+      I => clk_out1325_clk_wiz_1,
+      O => clk_out1325
     );
 clkout4_buf: unisim.vcomponents.BUFG
      port map (
@@ -106,8 +120,8 @@ plle2_adv_inst: unisim.vcomponents.PLLE2_ADV
       CLKIN2 => '0',
       CLKINSEL => '1',
       CLKOUT0 => clk_out320e_clk_wiz_1,
-      CLKOUT1 => clk_out265,
-      CLKOUT2 => clk_out1325,
+      CLKOUT1 => clk_out265_clk_wiz_1,
+      CLKOUT2 => clk_out1325_clk_wiz_1,
       CLKOUT3 => clk_out53_clk_wiz_1,
       CLKOUT4 => NLW_plle2_adv_inst_CLKOUT4_UNCONNECTED,
       CLKOUT5 => NLW_plle2_adv_inst_CLKOUT5_UNCONNECTED,

@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2017_05_24_NIMPlus_jw121_320MHz_1Phase\NIMPlus\NIMPlus\compile\sel_block.vhd
--- Generated   : Wed May 24 10:42:17 2017
--- From        : U:/PREP/PREP_Modernization/Firmware_Backups/Aldec_Backups/One_Phase_Designs/AGP_2017_05_24_NIMPlus_jw121_320MHz_1Phase/NIMPlus/NIMPlus/src/sel_block.bde
+-- File        : C:\AGP_2018_05_02_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\sel_block.vhd
+-- Generated   : Fri May 11 15:26:52 2018
+-- From        : C:\AGP_2018_05_02_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\sel_block.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -29,8 +29,8 @@ use IEEE.std_logic_unsigned.all;
 entity sel_block is
   port(
        blk_en : in STD_LOGIC;
+       clk0 : in STD_LOGIC;
        rst_p : in STD_LOGIC;
-       clk : in STD_LOGIC;
        en_term : in STD_LOGIC_VECTOR(15 downto 0);
        x : in STD_LOGIC_VECTOR(3 downto 0);
        sig_out : out STD_LOGIC;
@@ -40,15 +40,30 @@ end sel_block;
 
 architecture sel_block of sel_block is
 
-signal sig_out_reg : STD_LOGIC;
+---- Component declarations -----
+
+component d_ff
+  port (
+       clk : in STD_LOGIC;
+       dl : in STD_LOGIC;
+       rst_p : in STD_LOGIC;
+       q : out STD_LOGIC
+  );
+end component;
+
+----     Constants     -----
+constant GND_CONSTANT   : STD_LOGIC := '0';
+
 ---- Signal declarations used on the diagram ----
 
+signal GND : STD_LOGIC;
 signal rst_n : STD_LOGIC;
 signal sig_term : STD_LOGIC;
-signal mterm : STD_LOGIC_VECTOR (3 downto 0);
-signal raw_term : STD_LOGIC_VECTOR (15 downto 0);
-signal term : STD_LOGIC_VECTOR (15 downto 0);
-signal xn : STD_LOGIC_VECTOR (3 downto 0);
+signal sig_un : STD_LOGIC;
+signal mterm : STD_LOGIC_VECTOR(3 downto 0);
+signal raw_term : STD_LOGIC_VECTOR(15 downto 0);
+signal term : STD_LOGIC_VECTOR(15 downto 0);
+signal xn : STD_LOGIC_VECTOR(3 downto 0);
 
 begin
 
@@ -126,14 +141,7 @@ mterm(3) <= term(15) or term(14) or term(13) or term(12);
 
 sig_term <= mterm(3) or mterm(2) or mterm(1) or mterm(0);
 
-sig_out <= sig_out_reg; --blk_en and sig_term;
-
-process(clk)
-begin
-    if( rising_edge(clk) )then
-        sig_out_reg <= blk_en and sig_term;
-    end if;
-end process;
+sig_un <= blk_en and sig_term;
 
 xn(3) <= not(rst_n and x(3));
 
@@ -173,11 +181,23 @@ logterm(15) <= term(15);
 
 term(0) <= en_term(0) and raw_term(0);
 
+U60 : d_ff
+  port map(
+       clk => clk0,
+       dl => sig_un,
+       q => sig_out,
+       rst_p => GND
+  );
+
 raw_term(1) <= xn(3) and xn(2) and xn(1) and x(0);
 
 term(1) <= en_term(1) and raw_term(1);
 
 raw_term(2) <= xn(3) and xn(2) and x(1) and xn(0);
 
+
+---- Power , ground assignment ----
+
+GND <= GND_CONSTANT;
 
 end sel_block;

@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_19_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\acc_sync.vhd
--- Generated   : 01/25/18 15:58:20
--- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_19_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\acc_sync.asf
+-- File        : C:\AGP_2018_05_02_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\acc_sync.vhd
+-- Generated   : 05/17/18 11:19:06
+-- From        : C:\AGP_2018_05_02_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\acc_sync.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -38,15 +38,22 @@ architecture acc_sync_arch of acc_sync is
 type Sreg0_type is (
     S3, S1, S2
 );
--- attribute enum_encoding of Sreg0_type: type is ... -- enum_encoding attribute is not supported for symbolic encoding
+-- attribute ENUM_ENCODING of Sreg0_type: type is ... -- enum_encoding attribute is not supported for symbolic encoding
 
 signal Sreg0, NextState_Sreg0: Sreg0_type;
 
 -- Declarations of pre-registered internal signals
 signal int_release_p, next_release_p: STD_LOGIC;
 
+signal old_13 : std_logic;
 begin
 
+process(clk_in)
+begin
+    if rising_edge(clk_in) then
+        old_13 <= clk_13_25;
+    end if;
+ end process;
 
 ----------------------------------------------------------------------
 -- Machine: Sreg0
@@ -54,7 +61,7 @@ begin
 ------------------------------------
 -- Next State Logic (combinatorial)
 ------------------------------------
-Sreg0_NextState: process (clk_13_25, clk_26_5, int_release_p, Sreg0)
+Sreg0_NextState: process (clk_13_25, int_release_p, Sreg0)
 begin
 	NextState_Sreg0 <= Sreg0;
 	-- Set default values for outputs and signals
@@ -64,20 +71,14 @@ begin
 			NextState_Sreg0 <= S3;
 			next_release_p <= '0';
 		when S1 =>
-			if (clk_13_25) = '0' and (clk_26_5 = '0') then
+			if (clk_13_25 = '0') and (clk_26_5 = '0') then
 				NextState_Sreg0 <= S2;
-				next_release_p <= '0';
-			elsif (clk_13_25) = '1' or (clk_26_5 = '1') then
-				NextState_Sreg0 <= S1;
 				next_release_p <= '0';
 			end if;
 		when S2 =>
-			if (clk_13_25) = '1' and (clk_26_5 = '1') then
+			if (old_13 = '0' and clk_13_25 = '1') then --rising edge of clk 13 
 				NextState_Sreg0 <= S3;
 				next_release_p <= '1';
-			elsif (clk_13_25) = '0' or (clk_26_5 = '0') then
-				NextState_Sreg0 <= S2;
-				next_release_p <= '0';
 			end if;
 --vhdl_cover_off
 		when others =>

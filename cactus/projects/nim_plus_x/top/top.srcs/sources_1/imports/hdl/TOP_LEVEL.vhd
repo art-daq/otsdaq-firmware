@@ -315,6 +315,7 @@ architecture BEHAVIORAL of top is
     signal s_clk25_6e : std_logic;   
     signal sigclk_53: std_logic;
     
+    signal clk160_2pta : std_logic;
     
 --    signal bclk_1325 : std_logic;
 --    signal bclk_265 : std_logic;
@@ -743,6 +744,9 @@ begin
                       clk_13_25 => sigclk_1325,
                       clk_26_5 => sigclk_265,
                       clk_40DCM => bmx_40,
+                      
+                      
+                      
                       reset_out => reset,
                       rx_wren => rx_wren,--masked_rx_wren2,--rx_wren,
                       tx_clk => MASTER_CLK,
@@ -766,8 +770,10 @@ begin
                       burst_full_ext => nim_b_fifo_full,
                       ck_mx_out => s_ck_mx_out, --8b external clock selector (0 - is int/ext lo/hi. 6:4 - is ext source select)
                       clk_39_out => bs_clk40e,
+                      clk160_2pta => clk160_2pta,
                       
                       clk_ext => selected_ext_clkg, --s_clk25_6e,
+                      cln_clk_53 => sigclk_53,
                       
                       dac_out => dac_din_sig,
                       muxout_1 => s_nim_out0,
@@ -894,7 +900,7 @@ begin
                 when "100" =>
                     selected_ext_clk <= nim_input(3);
                 when others =>
-                    selected_ext_clk <= s_clk25_6e;
+                    selected_ext_clk <= s_clk25_6e; --from other FMC (PTA connector)
             end case;    
                        
         end process;       
@@ -1283,7 +1289,7 @@ SLEW => "FAST")          -- Specify the output slew rate
 port map (
 O => CLCK53_0_P,     -- Diff_p output (connect directly to top-level port)
 OB => CLCK53_0_N,   -- Diff_n output (connect directly to top-level port)
-I => sigclk_53      -- Buffer input 
+I => sigclk_265      -- Buffer input 
 );
 OBUFDS_CLCK53_1 : OBUFDS
 generic map (
@@ -1292,7 +1298,7 @@ SLEW => "FAST")          -- Specify the output slew rate
 port map (
 O => CLCK53_1_P,     -- Diff_p output (connect directly to top-level port)
 OB => CLCK53_1_N,   -- Diff_n output (connect directly to top-level port)
-I => sigclk_53      -- Buffer input 
+I => sigclk_265      -- Buffer input 
 );
 OBUFDS_CLCK53_2 : OBUFDS
 generic map (
@@ -1301,7 +1307,7 @@ SLEW => "FAST")          -- Specify the output slew rate
 port map (
 O => CLCK53_2_P,     -- Diff_p output (connect directly to top-level port)
 OB => CLCK53_2_N,   -- Diff_n output (connect directly to top-level port)
-I => sigclk_53      -- Buffer input 
+I => sigclk_265      -- Buffer input 
 );
 OBUFDS_CLCK53_3 : OBUFDS
 generic map (
@@ -1310,7 +1316,7 @@ SLEW => "FAST")          -- Specify the output slew rate
 port map (
 O => CLCK53_3_P,     -- Diff_p output (connect directly to top-level port)
 OB => CLCK53_3_N,   -- Diff_n output (connect directly to top-level port)
-I => sigclk_53      -- Buffer input 
+I => sigclk_265      -- Buffer input 
 );
 OBUFDS_CLCK53_4 : OBUFDS
 generic map (
@@ -1319,7 +1325,7 @@ SLEW => "FAST")          -- Specify the output slew rate
 port map (
 O => CLCK53_4_P,     -- Diff_p output (connect directly to top-level port)
 OB => CLCK53_4_N,   -- Diff_n output (connect directly to top-level port)
-I => sigclk_53      -- Buffer input 
+I => sigclk_265      -- Buffer input 
 );
 OBUFDS_CLCK53_5 : OBUFDS
 generic map (
@@ -1328,7 +1334,7 @@ SLEW => "FAST")          -- Specify the output slew rate
 port map (
 O => CLCK53_5_P,     -- Diff_p output (connect directly to top-level port)
 OB => CLCK53_5_N,   -- Diff_n output (connect directly to top-level port)
-I => sigclk_53      -- Buffer input 
+I => sigclk_265      -- Buffer input 
 );
 OBUFDS_CLCK53_6 : OBUFDS
 generic map (
@@ -1420,7 +1426,7 @@ SLEW => "FAST")          -- Specify the output slew rate
 port map (
 O => CLCK40_3_P,     -- Diff_p output (connect directly to top-level port)
 OB => CLCK40_3_N,   -- Diff_n output (connect directly to top-level port)
-I => bmx_40_adj      -- Buffer input 
+I => clk160_2pta      -- Buffer input 
 );
 OBUFDS_CLCK40_4 : OBUFDS
 generic map (
@@ -1429,7 +1435,7 @@ SLEW => "FAST")          -- Specify the output slew rate
 port map (
 O => CLCK40_4_P,     -- Diff_p output (connect directly to top-level port)
 OB => CLCK40_4_N,   -- Diff_n output (connect directly to top-level port)
-I => bmx_40_adj      -- Buffer input 
+I => clk160_2pta      -- Buffer input 
 );
 OBUFDS_CLCK40_5 : OBUFDS
 generic map (
@@ -1438,7 +1444,7 @@ SLEW => "FAST")          -- Specify the output slew rate
 port map (
 O => CLCK40_5_P,     -- Diff_p output (connect directly to top-level port)
 OB => CLCK40_5_N,   -- Diff_n output (connect directly to top-level port)
-I => bmx_40_adj      -- Buffer input 
+I => clk160_2pta      -- Buffer input 
 );
 
 -- End new section AGP 2018_05_03  RJ45 Panel Support               
