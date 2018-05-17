@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : C:\AGP_2018_05_17_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Thu May 17 14:00:45 2018
+-- Generated   : Thu May 17 14:41:09 2018
 -- From        : C:\AGP_2018_05_17_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -649,6 +649,10 @@ signal sig_ch1 : STD_LOGIC;
 signal sig_ch2 : STD_LOGIC;
 signal sig_cms1 : STD_LOGIC;
 signal sig_cms2 : STD_LOGIC;
+signal sig_dlay_1 : STD_LOGIC;
+signal sig_dlay_2 : STD_LOGIC;
+signal sig_dlay_3 : STD_LOGIC;
+signal sig_dlay_4 : STD_LOGIC;
 signal sig_log : STD_LOGIC;
 signal sig_norm : STD_LOGIC;
 signal sumsig0 : STD_LOGIC;
@@ -887,6 +891,7 @@ begin
     
     debug_fast_cnt <= cnt64_simp_out(15 downto 0);
 ----  Component instantiations  ----
+
 U1 : reg_64
   port map(
        clk => tx_clk,
@@ -1772,6 +1777,14 @@ U162 : s_cnt32_v2
   );
 
 NET19293 <= reset_out or ctr_resets(2) or pulse_ctl(5);
+
+U164 : d_ff
+  port map(
+       clk => clk0,
+       dl => Dangling_Input_Signal,
+       q => sig_dlay_2,
+       rst_p => sig_dlay_1
+  );
 
 sigmux(14) <= veto_out_n2;
 
@@ -2886,6 +2899,14 @@ gate_sig_in(6) <= GND;
 
 gate_sig_in(7) <= NET35351;
 
+U285 : d_ff
+  port map(
+       clk => clk0,
+       dl => sig_dlay_2,
+       q => sig_dlay_3,
+       rst_p => sig_dlay_1
+  );
+
 U286 : acc_sync
   port map(
        clk_13_25 => clk13_lat,
@@ -3005,7 +3026,7 @@ jw121_logic_term(30) <= GND;
 
 jw121_logic_term(31) <= GND;
 
-NET36444 <= acc_release or ctr_resets(6);
+NET36444 <= sig_dlay_4 or ctr_resets(6);
 
 U307 : reg_8
   port map(
@@ -7710,6 +7731,14 @@ U472 : d_ff
        rst_p => GND
   );
 
+U473 : d_ff
+  port map(
+       clk => clk0,
+       dl => sig_dlay_3,
+       q => sig_dlay_4,
+       rst_p => sig_dlay_1
+  );
+
 sigmux(5) <= sig_mod(0);
 
 sigmux(6) <= sig_mod(1);
@@ -8054,10 +8083,18 @@ ld_arr_rst_p <= reset_out or pulse_ctl(0);
 
 sigmux(29) <= cln_clk_53;
 
+U81 : d_ff
+  port map(
+       clk => clk0,
+       dl => acc_release,
+       q => sig_dlay_1,
+       rst_p => sig_dlay_1
+  );
+
 U82 : section_counter
   port map(
        clk => clk0,
-       release_p => acc_release,
+       release_p => sig_dlay_2,
        reset_p => ctr_resets(6),
        sec_en => sync_w_accel,
        sec_in => accel_sync_bus
