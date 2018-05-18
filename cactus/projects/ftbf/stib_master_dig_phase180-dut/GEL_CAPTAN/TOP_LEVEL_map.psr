@@ -1,0 +1,144 @@
+Release 14.7 Physical Synthesis Report P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc. All rights reserved.
+
+TABLE OF CONTENTS
+  1) Physical Synthesis Options Summary
+  2) Optimizations statistics and details
+
+
+=========================================================================
+*                 Physical Synthesis Options Summary                    *
+=========================================================================
+---- Options
+Global Optimization                 : ON
+    Retiming                        : OFF
+    Equivalent Register Removal     : ON
+Timing-Driven Packing and Placement : ON
+    Logic Optimization              : OFF
+    Register Duplication            : OFF
+
+---- Intelligent clock gating       : OFF
+
+---- Target Parameters
+Target Device                       : 4vlx25ff668-10
+
+=========================================================================
+
+
+=========================================================================
+*                        Optimizations                                  *
+=========================================================================
+---- Statistics
+   Number of registers added by Synchronous Optimization     | 6               
+   Number of SRLs added by SRL Inferencing                   | 1               
+   Number of LUTs added by Replication                       | 2               
+   Number of LUTs added by Synchronous Optimization          | 2               
+   Number of registers removed by SRL Inferencing            | 16              
+   Number of registers removed by Equivalence Removal        | 5               
+   Number of LUTs removed by Trimming                        | 58              
+
+   Overall change in number of design objects                |  -68             
+
+
+---- Details
+
+New or modified components                             | Optimization             | Objective           
+-------------------------------------------------------|--------------------------|----------------------
+Mshreg_XLXN_54                                         | SRL Inferencing          | Area
+XLXI_4005_1                                            | Replication              | Fanout Optimization
+XLXI_5989_1                                            | Replication              | Fanout Optimization
+data_down                                              | Synchronous Optimization | Performance
+data_up                                                | Synchronous Optimization | Performance
+data_up_rstpot                                         | Synchronous Optimization | Performance
+fifo_re                                                | Synchronous Optimization | Performance
+inj_sig                                                | Synchronous Optimization | Performance
+shared_start_sig                                       | Synchronous Optimization | Performance
+shared_stop_sig                                        | Synchronous Optimization | Performance
+shared_stop_sig_rstpot                                 | Synchronous Optimization | Performance
+
+
+Removed components                                     | Optimization             
+-------------------------------------------------------|--------------------------
+I_36_30                                                | Trimming                 
+I_36_31                                                | Trimming                 
+I_36_32                                                | Trimming                 
+I_36_33                                                | Trimming                 
+U0/I_NO_D.U_ILA/U_STAT/U_DSR                           | Trimming                 
+U0/I_NO_D.U_ILA/U_TRIG/U_TC/I_STORAGE_QUAL.U_CAP_B     | Trimming                 
+U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[11].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[12].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[13].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[14].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[3].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[6].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[7].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[10].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[11].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[12].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[13].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[14].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[1].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[2].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[3].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[4].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[5].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[6].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[7].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[8].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[9].U_LUT           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[10].U_HCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[11].U_HCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[11].U_LCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[12].U_HCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[12].U_LCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[13].U_HCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[13].U_LCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[14].U_HCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[14].U_LCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[15].U_HCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[1].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[2].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[3].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[3].U_LCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[4].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[5].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[6].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[6].U_LCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[7].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[7].U_LCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[8].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[9].U_HCE           | Trimming                 
+U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.rfwft/empty_fwft_i| Equivalence Removal      
+U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_i| Equivalence Removal      
+U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i| Equivalence Removal      
+U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg_0| Equivalence Removal      
+U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg_1| Equivalence Removal      
+XLXI_1                                                 | SRL Inferencing          
+XLXI_2                                                 | SRL Inferencing          
+XLXI_3                                                 | SRL Inferencing          
+XLXI_36                                                | SRL Inferencing          
+XLXI_37                                                | SRL Inferencing          
+XLXI_38                                                | SRL Inferencing          
+XLXI_39                                                | SRL Inferencing          
+XLXI_40                                                | SRL Inferencing          
+XLXI_4007                                              | Trimming                 
+XLXI_41                                                | SRL Inferencing          
+XLXI_42                                                | SRL Inferencing          
+XLXI_43                                                | SRL Inferencing          
+XLXI_44                                                | SRL Inferencing          
+XLXI_45                                                | SRL Inferencing          
+XLXI_46                                                | SRL Inferencing          
+XLXI_47                                                | SRL Inferencing          
+XLXI_5654                                              | Trimming                 
+XLXI_5839                                              | Trimming                 
+XLXI_7                                                 | SRL Inferencing          
+psi_cmd_inv0_0                                         | Trimming                 
+psi_cmd_inv0_1                                         | Trimming                 
+psi_cmd_inv0_2                                         | Trimming                 
+psi_cmd_inv1_0                                         | Trimming                 
+psi_cmd_inv1_1                                         | Trimming                 
+psi_cmd_inv1_2                                         | Trimming                 
+
+
+   Flops added for Enable Generation                       
+-------------------------

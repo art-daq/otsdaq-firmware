@@ -1,10 +1,10 @@
 -- Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
--- Date        : Mon May  7 13:07:04 2018
+-- Date        : Fri May 18 15:37:25 2018
 -- Host        : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 -- Command     : write_vhdl -force -mode funcsim
---               /home/rrivera/Desktop/nim_plus_x/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_funcsim.vhdl
+--               /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_funcsim.vhdl
 -- Design      : NIM_CLKS
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.

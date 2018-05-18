@@ -1,0 +1,484 @@
+Release 14.7 ngdbuild P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Command Line: /opt/local/xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/ngdbuild
+-intstyle ise -dd _ngo -nt timestamp -uc TOP_LEVEL.ucf -p xc4vlx25-ff668-10
+TOP_LEVEL_cs.ngc TOP_LEVEL.ngd
+
+Reading NGO file
+"/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig/GEL
+_CAPTAN/TOP_LEVEL_cs.ngc" ...
+INFO:NgdBuild:1317 - Using core chipscope_ila_v1 requires a ChipScopePro
+   license.  The following blocks are instances of core chipscope_ila_v1:
+	/TOP_LEVEL/U_ila_pro_0
+
+-----------------------------------------------
+INFO:Security:67 - XILINXD_LICENSE_FILE is set to
+'/opt/local/xilinx/Vivado/2014.4/data/ip/core_licenses:27003@eselm1.fnal.gov:/op
+t/local/xilinx/Vivado/2014.1/data/ip/core_licenses' in /home/rrivera/.flexlmrc.
+INFO:Security:51 - The XILINXD_LICENSE_FILE environment variable is not set.
+INFO:Security:53 - The LM_LICENSE_FILE environment variable is not set.
+INFO:Security:71 - If a license for part 'xc4vlx25' is available, it will be
+possible to use 'ChipScopePro_TDP' instead of 'ChipScopePro'.
+WARNING:Security:43 - No license file was found in the standard Xilinx license
+directory.
+WARNING:Security:44 - Since no license file was found,
+       please run the Xilinx License Configuration Manager
+       (xlcm or "Manage Xilinx Licenses")
+       to assist in obtaining a license.
+WARNING:Security:42 - Your license support version '2018.05' for ChipScopePro
+expires in 13 days after which you will not qualify for Xilinx software updates
+or new releases.
+
+-----------------------------------------------
+
+-----------------------------------------------
+Gathering constraint information from source properties...
+Done.
+
+Annotating constraints to design from ucf file "TOP_LEVEL.ucf" ...
+Resolving constraint associations...
+Checking Constraint Associations...
+WARNING:ConstraintSystem:56 - Constraint <TIMESPEC "TS_digsclk_to_mclk" = FROM
+   "psi_dig_sdata_clk" TO "MASTER_CLK" 8.0 ns DATAPATHONLY;>
+   [TOP_LEVEL.ucf(1006)]: Unable to find an active 'TimeGrp' or 'TNM' or
+   'TPSync' constraint named 'psi_dig_sdata_clk'.
+
+WARNING:ConstraintSystem:56 - Constraint <TIMESPEC "TS_mclk_to_digsclk" = FROM
+   "MASTER_CLK" TO "psi_dig_sdata_clk" 8.0 ns DATAPATHONLY;>
+   [TOP_LEVEL.ucf(1007)]: Unable to find an active 'TimeGrp' or 'TNM' or
+   'TPSync' constraint named 'psi_dig_sdata_clk'.
+
+WARNING:ConstraintSystem:56 - Constraint <TIMESPEC "TS_digsclk_to_gtxclk" = FROM
+   "psi_dig_sdata_clk" TO "GEL_RXCLK" 8.0 ns DATAPATHONLY;>
+   [TOP_LEVEL.ucf(1019)]: Unable to find an active 'TimeGrp' or 'TNM' or
+   'TPSync' constraint named 'psi_dig_sdata_clk'.
+
+WARNING:ConstraintSystem:56 - Constraint <TIMESPEC "TS_gtxclk_to_digsclk" = FROM
+   "GEL_RXCLK" TO "psi_dig_sdata_clk" 8.0 ns DATAPATHONLY;>
+   [TOP_LEVEL.ucf(1020)]: Unable to find an active 'TimeGrp' or 'TNM' or
+   'TPSync' constraint named 'psi_dig_sdata_clk'.
+
+WARNING:ConstraintSystem - TNM : D_CLK was distributed to a DCM but new TNM
+   constraints were not derived. This TNM is used in the following user groups
+   or specifications:
+   <TIMESPEC TS_J_TO_D = FROM "J_CLK" TO "D_CLK" TIG;>
+   <TIMESPEC TS_D_TO_J = FROM "D_CLK" TO "J_CLK" TIG;>
+
+WARNING:ConstraintSystem - TNM : GEL_RXCLK was distributed to a DCM but new TNM
+   constraints were not derived. The requirement for derived TNM constraints is
+   that the distributed TNM is referenced by no more than a single PERIOD
+   constraint. Non-PERIOD referencers are also not allowed. This TNM is used in
+   the following user groups or specifications:
+   <TIMESPEC TS_GEL_RXCLK = PERIOD "GEL_RXCLK" 8 ns HIGH 50%;>
+   [TOP_LEVEL.ucf(950)]
+   <TIMESPEC "TS_digsclk_to_gtxclk" = FROM "psi_dig_sdata_clk" TO "GEL_RXCLK"
+   8.0 ns DATAPATHONLY;> [TOP_LEVEL.ucf(1019)]
+   <TIMESPEC "TS_gtxclk_to_digsclk" = FROM "GEL_RXCLK" TO "psi_dig_sdata_clk"
+   8.0 ns DATAPATHONLY;> [TOP_LEVEL.ucf(1020)]
+   <TIMESPEC "TS_digsclk1_to_gtxclk" = FROM "psi_dig_sdata_clk1" TO "GEL_RXCLK"
+   8.0 ns DATAPATHONLY;> [TOP_LEVEL.ucf(1021)]
+   <TIMESPEC "TS_gtxclk_to_digsclk1" = FROM "GEL_RXCLK" TO "psi_dig_sdata_clk1"
+   8.0 ns DATAPATHONLY;> [TOP_LEVEL.ucf(1022)]
+   <TIMESPEC "TS_digsclk2_to_gtxclk" = FROM "psi_dig_sdata_clk2" TO "GEL_RXCLK"
+   8.0 ns DATAPATHONLY;> [TOP_LEVEL.ucf(1023)]
+   <TIMESPEC "TS_gtxclk_to_digsclk2" = FROM "GEL_RXCLK" TO "psi_dig_sdata_clk2"
+   8.0 ns DATAPATHONLY;> [TOP_LEVEL.ucf(1024)]
+
+WARNING:ConstraintSystem - TNM : MASTER_CLK was distributed to a DCM but new TNM
+   constraints were not derived. This TNM is used in the following user groups
+   or specifications:
+   <TIMESPEC "TS_accclk_to_mclk" = FROM "ACC_CLK_IN" TO "MASTER_CLK" 8.0 ns
+   DATAPATHONLY;> [TOP_LEVEL.ucf(975)]
+   <TIMESPEC "TS_mclk_to_accclk" = FROM "MASTER_CLK" TO "ACC_CLK_IN" 8.0 ns
+   DATAPATHONLY;> [TOP_LEVEL.ucf(976)]
+   <TIMESPEC "TS_mclk_to_rstmclk" = FROM "MASTER_CLK" TO "XLXN_12498" 8.0 ns
+   DATAPATHONLY;> [TOP_LEVEL.ucf(992)]
+   <TIMESPEC "TS_rstmclk_to_mclk" = FROM "XLXN_12498" TO "MASTER_CLK" 8.0 ns
+   DATAPATHONLY;> [TOP_LEVEL.ucf(993)]
+   <TIMESPEC "TS_digsclk_to_mclk" = FROM "psi_dig_sdata_clk" TO "MASTER_CLK" 8.0
+   ns DATAPATHONLY;> [TOP_LEVEL.ucf(1006)]
+   <TIMESPEC "TS_mclk_to_digsclk" = FROM "MASTER_CLK" TO "psi_dig_sdata_clk" 8.0
+   ns DATAPATHONLY;> [TOP_LEVEL.ucf(1007)]
+   <TIMESPEC "TS_digsclk1_to_mclk" = FROM "psi_dig_sdata_clk1" TO "MASTER_CLK"
+   8.0 ns DATAPATHONLY;> [TOP_LEVEL.ucf(1010)]
+   <TIMESPEC "TS_mclk_to_digsclk1" = FROM "MASTER_CLK" TO "psi_dig_sdata_clk1"
+   8.0 ns DATAPATHONLY;> [TOP_LEVEL.ucf(1011)]
+   <TIMESPEC "TS_digsclk2_to_mclk" = FROM "psi_dig_sdata_clk2" TO "MASTER_CLK"
+   8.0 ns DATAPATHONLY;> [TOP_LEVEL.ucf(1014)]
+   <TIMESPEC "TS_mclk_to_digsclk2" = FROM "MASTER_CLK" TO "psi_dig_sdata_clk2"
+   8.0 ns DATAPATHONLY;> [TOP_LEVEL.ucf(1015)]
+
+WARNING:ConstraintSystem - TNM : ACC_CLK_IN was distributed to a DCM but new TNM
+   constraints were not derived. This TNM is used in the following user groups
+   or specifications:
+   <TIMESPEC "TS_accclk_to_mclk" = FROM "ACC_CLK_IN" TO "MASTER_CLK" 8.0 ns
+   DATAPATHONLY;> [TOP_LEVEL.ucf(975)]
+   <TIMESPEC "TS_mclk_to_accclk" = FROM "MASTER_CLK" TO "ACC_CLK_IN" 8.0 ns
+   DATAPATHONLY;> [TOP_LEVEL.ucf(976)]
+
+INFO:ConstraintSystem:178 - TNM 'dut_src_clk', used in period specification
+   'TS_dut_src_clk', was traced into DCM_ADV instance XLXI_4615. The following
+   new TNM groups and period specifications were generated at the DCM_ADV
+   output(s): 
+   CLK0: <TIMESPEC TS_XLXN_12172 = PERIOD "XLXN_12172" TS_dut_src_clk HIGH 50%>
+
+INFO:ConstraintSystem:178 - TNM 'dut_src_clk', used in period specification
+   'TS_dut_src_clk', was traced into DCM_ADV instance XLXI_4615. The following
+   new TNM groups and period specifications were generated at the DCM_ADV
+   output(s): 
+   CLK90: <TIMESPEC TS_XLXN_18993 = PERIOD "XLXN_18993" TS_dut_src_clk PHASE 8.5
+   ns HIGH 50%>
+
+INFO:ConstraintSystem:178 - TNM 'dut_src_clk', used in period specification
+   'TS_dut_src_clk', was traced into DCM_ADV instance XLXI_4615. The following
+   new TNM groups and period specifications were generated at the DCM_ADV
+   output(s): 
+   CLK180: <TIMESPEC TS_XLXN_19149 = PERIOD "XLXN_19149" TS_dut_src_clk PHASE 17
+   ns HIGH 50%>
+
+INFO:ConstraintSystem:178 - TNM 'dut_src_clk', used in period specification
+   'TS_dut_src_clk', was traced into DCM_ADV instance XLXI_4615. The following
+   new TNM groups and period specifications were generated at the DCM_ADV
+   output(s): 
+   CLK2X: <TIMESPEC TS_XLXN_18537 = PERIOD "XLXN_18537" TS_dut_src_clk / 2 HIGH
+   50%>
+
+WARNING:ConstraintSystem:192 - The TNM 'ACC_CLK_IN', does not directly or
+   indirectly drive any flip-flops, latches and/or RAMS and cannot be actively
+   used by the referencing MaxDelay constraint 'TS_accclk_to_mclk'. If clock
+   manager blocks are directly or indirectly driven, a new TNM constraint will
+   not be derived since the none of the referencing constraints are a PERIOD
+   constraint. This TNM is used in the following user groups and/or
+   specifications:
+   <TIMESPEC "TS_accclk_to_mclk" = FROM "ACC_CLK_IN" TO "MASTER_CLK" 8.0 ns
+   DATAPATHONLY;> [TOP_LEVEL.ucf(975)]
+   <TIMESPEC "TS_mclk_to_accclk" = FROM "MASTER_CLK" TO "ACC_CLK_IN" 8.0 ns
+   DATAPATHONLY;> [TOP_LEVEL.ucf(976)]
+
+WARNING:ConstraintSystem:197 - The following specification is invalid because
+   the referenced TNM constraint was removed:
+   <TIMESPEC "TS_accclk_to_mclk" = FROM "ACC_CLK_IN" TO "MASTER_CLK" 8.0 ns
+   DATAPATHONLY;> [TOP_LEVEL.ucf(975)]
+
+WARNING:ConstraintSystem:197 - The following specification is invalid because
+   the referenced TNM constraint was removed:
+   <TIMESPEC "TS_mclk_to_accclk" = FROM "MASTER_CLK" TO "ACC_CLK_IN" 8.0 ns
+   DATAPATHONLY;> [TOP_LEVEL.ucf(976)]
+
+INFO:ConstraintSystem:178 - TNM 'XLXN_18537', used in period specification
+   'TS_XLXN_18537', was traced into DCM_ADV instance XLXI_6096. The following
+   new TNM groups and period specifications were generated at the DCM_ADV
+   output(s): 
+   CLK2X: <TIMESPEC TS_XLXN_18354 = PERIOD "XLXN_18354" TS_XLXN_18537 / 2 HIGH
+   50%>
+
+INFO:ConstraintSystem:178 - TNM 'XLXN_18537', used in period specification
+   'TS_XLXN_18537', was traced into DCM_ADV instance XLXI_6096. The following
+   new TNM groups and period specifications were generated at the DCM_ADV
+   output(s): 
+   CLK2X180: <TIMESPEC TS_XLXN_18569 = PERIOD "XLXN_18569" TS_XLXN_18537 / 2
+   PHASE 4.25 ns HIGH 50%>
+
+Done...
+
+WARNING:NgdBuild:1212 - User specified non-default attribute value (26.0) was
+   detected for the CLKIN_PERIOD attribute on DCM "dut_clk_dcm_0".  This does
+   not match the PERIOD constraint value (34 ns.).  The uncertainty calculation
+   will use the non-default attribute value.  This could result in incorrect
+   uncertainty calculated for DCM output clocks.
+WARNING:NgdBuild:1212 - User specified non-default attribute value (26.0) was
+   detected for the CLKIN_PERIOD attribute on DCM "dut_clk_dcm_1".  This does
+   not match the PERIOD constraint value (34 ns.).  The uncertainty calculation
+   will use the non-default attribute value.  This could result in incorrect
+   uncertainty calculated for DCM output clocks.
+WARNING:NgdBuild:1212 - User specified non-default attribute value (26.0) was
+   detected for the CLKIN_PERIOD attribute on DCM "dut_clk_dcm_2".  This does
+   not match the PERIOD constraint value (34 ns.).  The uncertainty calculation
+   will use the non-default attribute value.  This could result in incorrect
+   uncertainty calculated for DCM output clocks.
+WARNING:NgdBuild:1212 - User specified non-default attribute value (26.0) was
+   detected for the CLKIN_PERIOD attribute on DCM "XLXI_4615".  This does not
+   match the PERIOD constraint value (34 ns.).  The uncertainty calculation will
+   use the non-default attribute value.  This could result in incorrect
+   uncertainty calculated for DCM output clocks.
+WARNING:NgdBuild:1212 - User specified non-default attribute value (16.0) was
+   detected for the CLKIN_PERIOD attribute on DCM "XLXI_6096".  This does not
+   match the PERIOD constraint value (17 ns.).  The uncertainty calculation will
+   use the non-default attribute value.  This could result in incorrect
+   uncertainty calculated for DCM output clocks.
+WARNING:NgdBuild:1212 - User specified non-default attribute value (25.0) was
+   detected for the CLKIN_PERIOD attribute on DCM "XLXI_6376".  This does not
+   match the PERIOD constraint value (17 ns.).  The uncertainty calculation will
+   use the non-default attribute value.  This could result in incorrect
+   uncertainty calculated for DCM output clocks.
+Checking expanded design ...
+WARNING:NgdBuild:440 - FF primitive 'XLXI_5137' has unconnected output pin
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_addrs<0>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_addrs<1>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_addrs<2>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_addrs<3>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_addrs<4>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_addrs<5>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_addrs<6>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_addrs<7>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<0>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<10>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<11>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<12>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<13>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<14>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<15>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<16>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<17>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<18>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<19>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<1>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<20>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<21>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<22>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<23>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<24>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<25>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<26>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<27>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<28>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<29>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<2>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<30>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<31>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<32>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<33>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<34>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<35>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<36>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<37>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<38>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<39>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<3>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<40>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<41>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<42>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<43>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<44>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<45>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<46>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<47>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<4>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<5>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<6>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<7>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<8>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_mac<9>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<0>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<10>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<11>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<12>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<13>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<14>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<15>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<1>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<2>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<3>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<4>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<5>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<6>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<7>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<8>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/gec_user_src_port<9>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<13>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<14>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<15>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<16>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<17>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<18>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<19>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<20>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<21>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<22>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<23>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<24>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<25>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<26>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<27>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<28>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<29>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<30>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<31>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<32>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<33>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<34>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<35>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<36>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<37>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<38>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<39>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<40>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<41>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<42>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<43>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<44>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<45>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<46>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<47>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<48>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<49>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<4>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<50>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<51>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<52>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<53>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<54>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<55>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<56>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<57>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<58>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<59>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<5>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<60>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<61>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<62>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<63>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<6>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/rx_addr<7>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'XLXI_6013/XLXI_3535/tx_info_fifo_data_burst<2>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'XLXI_6013/XLXI_3535/tx_info_fifo_data_burst<3>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'XLXI_6013/XLXI_3535/tx_info_fifo_data_burst<4>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'XLXI_6013/XLXI_3535/tx_info_fifo_data_burst<5>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'XLXI_6013/XLXI_3535/tx_info_fifo_data_burst<6>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'XLXI_6013/XLXI_3535/tx_info_fifo_data_burst<7>' has no driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<10>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<11>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<12>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<13>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<14>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<15>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<16>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<17>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<18>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<19>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<20>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<21>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<22>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<23>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<24>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<25>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<26>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<27>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<28>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<29>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<30>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<31>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<8>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'XLXI_6013/GEC/XLXI_249/dest_ip<9>' has no
+   driver
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings: 175
+
+Total memory usage is 592776 kilobytes
+
+Writing NGD file "TOP_LEVEL.ngd" ...
+Total REAL time to NGDBUILD completion:  9 sec
+Total CPU time to NGDBUILD completion:   9 sec
+
+Writing NGDBUILD log file "TOP_LEVEL.bld"...
