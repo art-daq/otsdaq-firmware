@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Reading design: TOP_LEVEL.prj
@@ -974,6 +974,8 @@ Analyzing Entity <FD8CE_MXILINX_TOP_LEVEL> in library <work> (Architecture <BEHA
 Entity <FD8CE_MXILINX_TOP_LEVEL> analyzed. Unit <FD8CE_MXILINX_TOP_LEVEL> generated.
 
 Analyzing Entity <TriggerBlock> in library <work> (Architecture <TriggerBlock>).
+INFO:Xst:2679 - Register <scin_mclk<2>> in unit <TriggerBlock> has a constant value of 1 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <scin_mclk<1>> in unit <TriggerBlock> has a constant value of 1 during circuit operation. The register is replaced by logic.
 Entity <TriggerBlock> analyzed. Unit <TriggerBlock> generated.
 
 Analyzing Entity <Ethernet_Interface_MUSER_TOP_LEVEL> in library <work> (Architecture <BEHAVIORAL>).
@@ -1123,6 +1125,12 @@ Entity <calibration_controller> analyzed. Unit <calibration_controller> generate
 WARNING:Xst:3052 - You have requested that asynchronous control signals of sequential elements be treated as if they were synchronous. Please review the details of this switch in chapter Design Constraints of the XST User Guide. This feature allows you to better explore the possibilities offered by the Xilinx solution without having to rewrite the descriptions of sequential elements. However, be well aware that the synthesis result, while providing you with a good way to assess final device usage and design performance, is not functionally equivalent to your HDL description. As a result, you will not be able to validate your design by comparison of pre-synthesis and post-synthesis simulation results. Please also note that in general we strongly recommend synchronous flip-flop initialization.
 
 Performing bidirectional port resolution...
+INFO:Xst:2679 - Register <scin_cnt_sig<3>> in unit <TriggerBlock> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <scin_cnt_sig<4>> in unit <TriggerBlock> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <scin_cnt_sig<5>> in unit <TriggerBlock> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <scin_cnt_sig<6>> in unit <TriggerBlock> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <scin_cnt_sig<7>> in unit <TriggerBlock> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <scin_cnt_sig<8>> in unit <TriggerBlock> has a constant value of 0 during circuit operation. The register is replaced by logic.
 
 Synthesizing Unit <External_Trigger_Handler>.
     Related source file is "/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig/GEL_CAPTAN/External_Trigger_Handler.vhd".
@@ -1312,6 +1320,8 @@ Unit <MUX64_2> synthesized.
 
 Synthesizing Unit <TriggerBlock>.
     Related source file is "/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig/GEL_CAPTAN/TriggerBlock.vhd".
+WARNING:Xst:647 - Input <scin<2:1>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Register <scin_sig<2>> equivalent to <scin_sig<1>> has been removed
     Found finite state machine <FSM_2> for signal <write_state_sig>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
@@ -1345,23 +1355,22 @@ Synthesizing Unit <TriggerBlock>.
     Found 1-bit register for signal <trig_out>.
     Found 8-bit register for signal <trig_fifo_ts>.
     Found 1-bit register for signal <coinc>.
-    Found 4-bit comparator not equal for signal <coinc$cmp_ne0000> created at line 174.
+    Found 4-bit comparator not equal for signal <coinc$cmp_ne0000> created at line 176.
     Found 4-bit up counter for signal <coinc_count>.
-    Found 5-bit comparator less for signal <coinc_count$cmp_lt0000> created at line 163.
+    Found 5-bit comparator less for signal <coinc_count$cmp_lt0000> created at line 165.
     Found 1-bit register for signal <delay_coinc>.
     Found 1-bit register for signal <mask_trig_sig>.
-    Found 1-bit xor2 for signal <mask_trig_sig$xor0000> created at line 179.
+    Found 1-bit xor2 for signal <mask_trig_sig$xor0000> created at line 181.
     Found 4-bit up counter for signal <master_clk_delay_cnt>.
-    Found 4-bit comparator equal for signal <master_clk_delay_cnt$cmp_eq0000> created at line 174.
+    Found 4-bit comparator equal for signal <master_clk_delay_cnt$cmp_eq0000> created at line 176.
     Found 4-bit register for signal <master_clk_delay_reg>.
     Found 8-bit up counter for signal <psi_clk_delay_cnt>.
     Found 8-bit register for signal <psi_clk_delay_reg>.
     Found 8-bit comparator equal for signal <read_state_sig$cmp_eq0000> created at line 117.
-    Found 9-bit register for signal <scin_cnt_sig>.
-    Found 3-bit subtractor for signal <scin_cnt_sig_2_0$sub0000> created at line 205.
-    Found 3-bit subtractor for signal <scin_cnt_sig_5_3$sub0000> created at line 205.
-    Found 3-bit subtractor for signal <scin_cnt_sig_8_6$sub0000> created at line 205.
-    Found 3-bit register for signal <scin_sig>.
+    Found 3-bit register for signal <scin_cnt_sig<2:0>>.
+    Found 3-bit subtractor for signal <scin_cnt_sig_2_0$sub0000> created at line 207.
+    Found 1-bit register for signal <scin_mclk<0>>.
+    Found 2-bit register for signal <scin_sig<1:0>>.
     Found 1-bit register for signal <tmp_coinc>.
     Found 8-bit comparator not equal for signal <trig_fifo_re$cmp_ne0000> created at line 117.
     Found 8-bit adder for signal <trig_fifo_ts$add0000> created at line 101.
@@ -1371,8 +1380,8 @@ Synthesizing Unit <TriggerBlock>.
     Summary:
 	inferred   2 Finite State Machine(s).
 	inferred   4 Counter(s).
-	inferred  40 D-type flip-flop(s).
-	inferred   4 Adder/Subtractor(s).
+	inferred  34 D-type flip-flop(s).
+	inferred   2 Adder/Subtractor(s).
 	inferred   6 Comparator(s).
 Unit <TriggerBlock> synthesized.
 
@@ -2316,7 +2325,7 @@ INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmet
 HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 58
+# Adders/Subtractors                                   : 56
  11-bit adder                                          : 5
  11-bit subtractor                                     : 2
  16-bit adder                                          : 6
@@ -2324,7 +2333,7 @@ Macro Statistics
  17-bit adder                                          : 3
  20-bit adder                                          : 3
  3-bit adder                                           : 3
- 3-bit subtractor                                      : 3
+ 3-bit subtractor                                      : 1
  4-bit adder                                           : 3
  4-bit subtractor                                      : 6
  5-bit adder                                           : 1
@@ -2344,8 +2353,8 @@ Macro Statistics
  4-bit updown counter                                  : 3
  6-bit up counter                                      : 9
  8-bit up counter                                      : 3
-# Registers                                            : 1458
- 1-bit register                                        : 1395
+# Registers                                            : 1452
+ 1-bit register                                        : 1389
  11-bit register                                       : 6
  16-bit register                                       : 7
  20-bit register                                       : 6
@@ -2876,7 +2885,7 @@ Advanced HDL Synthesis Report
 
 Macro Statistics
 # FSMs                                                 : 14
-# Adders/Subtractors                                   : 58
+# Adders/Subtractors                                   : 56
  11-bit adder                                          : 5
  11-bit subtractor                                     : 2
  16-bit adder                                          : 6
@@ -2884,7 +2893,7 @@ Macro Statistics
  17-bit adder                                          : 3
  20-bit adder                                          : 3
  3-bit adder                                           : 3
- 3-bit subtractor                                      : 3
+ 3-bit subtractor                                      : 1
  4-bit adder                                           : 3
  4-bit subtractor                                      : 6
  5-bit adder                                           : 1
@@ -2904,8 +2913,8 @@ Macro Statistics
  4-bit updown counter                                  : 3
  6-bit up counter                                      : 9
  8-bit up counter                                      : 3
-# Registers                                            : 2489
- Flip-Flops                                            : 2489
+# Registers                                            : 2483
+ Flip-Flops                                            : 2483
 # Comparators                                          : 67
  11-bit comparator greater                             : 2
  11-bit comparator less                                : 2
@@ -3413,16 +3422,9 @@ WARNING:Xst:1290 - Hierarchical block <XLXI_4660> is unconnected in block <TOP_L
    It will be removed from the design.
 WARNING:Xst:1290 - Hierarchical block <XLXI_5316> is unconnected in block <TOP_LEVEL>.
    It will be removed from the design.
-WARNING:Xst:2677 - Node <scin_cnt_sig_4> of sequential type is unconnected in block <XLXI_5836>.
-WARNING:Xst:2677 - Node <scin_cnt_sig_5> of sequential type is unconnected in block <XLXI_5836>.
-WARNING:Xst:2677 - Node <scin_cnt_sig_7> of sequential type is unconnected in block <XLXI_5836>.
-WARNING:Xst:2677 - Node <scin_cnt_sig_8> of sequential type is unconnected in block <XLXI_5836>.
-WARNING:Xst:2677 - Node <scin_cnt_sig_3> of sequential type is unconnected in block <XLXI_5836>.
-WARNING:Xst:2677 - Node <scin_cnt_sig_6> of sequential type is unconnected in block <XLXI_5836>.
 
 Mapping all equations...
 Building and optimizing final netlist ...
-INFO:Xst:2261 - The FF/Latch <scin_sig_1> in Unit <XLXI_5836> is equivalent to the following FF/Latch, which will be removed : <scin_sig_2> 
 Found area constraint ratio of 100 (+ 5) on block TOP_LEVEL, actual ratio is 30.
 INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_fb_i> in Unit <psi_cmd_fifo_vector_0> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_i> 
 INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/wr_rst_reg_1> in Unit <psi_cmd_fifo_vector_0> is equivalent to the following FF/Latch : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/wr_rst_reg_0> 
@@ -3493,8 +3495,8 @@ Unit <token_trigger_blk> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 2432
- Flip-Flops                                            : 2432
+# Registers                                            : 2433
+ Flip-Flops                                            : 2433
 # Shift Registers                                      : 4
  2-bit shift register                                  : 1
  4-bit shift register                                  : 3
@@ -3526,7 +3528,7 @@ Design Statistics
 # IOs                              : 91
 
 Cell Usage :
-# BELS                             : 6315
+# BELS                             : 6316
 #      AND2                        : 25
 #      AND2B1                      : 15
 #      AND3                        : 11
@@ -3541,18 +3543,18 @@ Cell Usage :
 #      GND                         : 39
 #      INV                         : 142
 #      LUT1                        : 320
-#      LUT2                        : 612
+#      LUT2                        : 610
 #      LUT2_D                      : 24
 #      LUT2_L                      : 11
-#      LUT3                        : 1000
+#      LUT3                        : 1002
 #      LUT3_D                      : 15
 #      LUT3_L                      : 10
-#      LUT4                        : 2333
-#      LUT4_D                      : 53
-#      LUT4_L                      : 100
+#      LUT4                        : 2335
+#      LUT4_D                      : 52
+#      LUT4_L                      : 99
 #      MULT_AND                    : 5
 #      MUXCY                       : 636
-#      MUXF5                       : 272
+#      MUXF5                       : 273
 #      MUXF6                       : 65
 #      OR2                         : 37
 #      OR3                         : 2
@@ -3560,19 +3562,19 @@ Cell Usage :
 #      VCC                         : 36
 #      XOR2                        : 1
 #      XORCY                       : 483
-# FlipFlops/Latches                : 3000
-#      FD                          : 511
+# FlipFlops/Latches                : 3001
+#      FD                          : 512
 #      FD_1                        : 10
 #      FDC                         : 255
 #      FDCE                        : 244
 #      FDE                         : 655
 #      FDP                         : 59
 #      FDPE                        : 23
-#      FDR                         : 225
-#      FDRE                        : 654
+#      FDR                         : 224
+#      FDRE                        : 656
 #      FDRE_1                      : 3
-#      FDRS                        : 111
-#      FDRSE                       : 50
+#      FDRS                        : 112
+#      FDRSE                       : 48
 #      FDS                         : 47
 #      FDS_1                       : 3
 #      FDSE                        : 150
@@ -3602,8 +3604,8 @@ Device utilization summary:
 
 Selected Device : 4vlx25ff668-10 
 
- Number of Slices:                     3085  out of  10752    28%  
- Number of Slice Flip Flops:           3000  out of  21504    13%  
+ Number of Slices:                     3083  out of  10752    28%  
+ Number of Slice Flip Flops:           3001  out of  21504    13%  
  Number of 4 input LUTs:               4624  out of  21504    21%  
     Number used as logic:              4620
     Number used as Shift registers:       4
@@ -3636,7 +3638,7 @@ Clock Information:
 Clock Signal                       | Clock buffer(FF name)                                                                                                                 | Load  |
 -----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+-------+
 XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK270(*)(psi_cmd_fifo_vector_0/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_fb_i)| 348   |
-GEL_RXCLK                          | IBUFG+BUFG                                                                                                                            | 2081  |
+GEL_RXCLK                          | IBUFG+BUFG                                                                                                                            | 2082  |
 XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK0(*)(XLXI_5983/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i)              | 235   |
 XLXN_12498(XLXI_3522:O)            | NONE(*)(XLXI_3523)                                                                                                                    | 1     |
 XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK180(*)(XLXI_6346)                                                                                                        | 4     |
@@ -3700,9 +3702,9 @@ Timing Summary:
 Speed Grade: -10
 
    Minimum period: 9.853ns (Maximum Frequency: 101.494MHz)
-   Minimum input arrival time before clock: 11.578ns
-   Maximum output required time after clock: 12.660ns
-   Maximum combinational path delay: 13.301ns
+   Minimum input arrival time before clock: 11.570ns
+   Maximum output required time after clock: 12.652ns
+   Maximum combinational path delay: 13.293ns
 
 Timing Detail:
 --------------
@@ -3711,7 +3713,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'XLXI_4773/O'
   Clock period: 6.053ns (frequency: 165.210MHz)
-  Total number of paths / destination ports: 7415 / 1051
+  Total number of paths / destination ports: 7419 / 1053
 -------------------------------------------------------------------------
 Delay:               3.026ns (Levels of Logic = 2)
   Source:            psi_cmd_sender_vector_2/derror (FF)
@@ -3734,7 +3736,7 @@ Delay:               3.026ns (Levels of Logic = 2)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'GEL_RXCLK'
   Clock period: 9.853ns (frequency: 101.494MHz)
-  Total number of paths / destination ports: 49983 / 3655
+  Total number of paths / destination ports: 49989 / 3659
 -------------------------------------------------------------------------
 Delay:               9.853ns (Levels of Logic = 17)
   Source:            XLXI_6207/I_Q2 (FF)
@@ -3878,9 +3880,9 @@ Delay:               1.556ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'GEL_RXCLK'
-  Total number of paths / destination ports: 2189 / 1655
+  Total number of paths / destination ports: 2183 / 1653
 -------------------------------------------------------------------------
-Offset:              9.908ns (Levels of Logic = 6)
+Offset:              9.901ns (Levels of Logic = 6)
   Source:            BUSC_21DN_43S (PAD)
   Destination:       PSI_Dig_Blk_2/CHIP_TMGR/latch_d_59 (FF)
   Destination Clock: GEL_RXCLK rising
@@ -3891,20 +3893,20 @@ Offset:              9.908ns (Levels of Logic = 6)
     ----------------------------------------  ------------
      IOBUF:IO->O           1   0.965   0.741  XLXI_4171 (reset_button)
      OR3B1:I0->O           2   0.195   0.758  XLXI_3430 (reset_start)
-     OR2:I0->O           460   0.195   2.982  XLXI_4005 (reset)
+     OR2:I0->O           458   0.195   2.974  XLXI_4005 (reset)
      OR2:I0->O            84   0.195   1.294  XLXI_5996 (readout_reset)
      LUT4:I3->O            3   0.195   0.600  PSI_Dig_Blk_0/CHIP_TMGR/latch_d_59_not000111 (N16)
      LUT4:I2->O           64   0.195   1.053  PSI_Dig_Blk_2/CHIP_TMGR/latch_d_59_not00011 (PSI_Dig_Blk_2/CHIP_TMGR/latch_d_59_not0001)
      FDE:CE                    0.540          PSI_Dig_Blk_2/CHIP_TMGR/latch_d_59
     ----------------------------------------
-    Total                      9.908ns (2.480ns logic, 7.428ns route)
+    Total                      9.901ns (2.480ns logic, 7.421ns route)
                                        (25.0% logic, 75.0% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'XLXI_4773/O'
   Total number of paths / destination ports: 413 / 394
 -------------------------------------------------------------------------
-Offset:              11.111ns (Levels of Logic = 9)
+Offset:              11.103ns (Levels of Logic = 9)
   Source:            BUSC_21DN_43S (PAD)
   Destination:       token_trigger_blk/inj_sig (FF)
   Destination Clock: XLXI_4773/O rising
@@ -3915,7 +3917,7 @@ Offset:              11.111ns (Levels of Logic = 9)
     ----------------------------------------  ------------
      IOBUF:IO->O           1   0.965   0.741  XLXI_4171 (reset_button)
      OR3B1:I0->O           2   0.195   0.758  XLXI_3430 (reset_start)
-     OR2:I0->O           460   0.195   2.982  XLXI_4005 (reset)
+     OR2:I0->O           458   0.195   2.974  XLXI_4005 (reset)
      OR2:I0->O            63   0.195   1.212  XLXI_5579 (trig_reset)
      begin scope: 'token_trigger_blk'
      LUT4:I3->O            2   0.195   0.540  inj_sig_or0000192 (inj_sig_or0000192)
@@ -3924,14 +3926,14 @@ Offset:              11.111ns (Levels of Logic = 9)
      LUT3:I2->O            1   0.195   0.360  inj_sig_or000051 (inj_sig_or0000)
      FDR:R                     1.062          inj_sig
     ----------------------------------------
-    Total                     11.111ns (3.392ns logic, 7.719ns route)
-                                       (30.5% logic, 69.5% route)
+    Total                     11.103ns (3.392ns logic, 7.711ns route)
+                                       (30.6% logic, 69.4% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'XLXI_6067/O'
   Total number of paths / destination ports: 140 / 118
 -------------------------------------------------------------------------
-Offset:              11.578ns (Levels of Logic = 9)
+Offset:              11.570ns (Levels of Logic = 9)
   Source:            BUSC_21DN_43S (PAD)
   Destination:       PSI_Dig_Blk_0/XLXI_6064/cnt_0 (FF)
   Destination Clock: XLXI_6067/O rising
@@ -3942,7 +3944,7 @@ Offset:              11.578ns (Levels of Logic = 9)
     ----------------------------------------  ------------
      IOBUF:IO->O           1   0.965   0.741  XLXI_4171 (reset_button)
      OR3B1:I0->O           2   0.195   0.758  XLXI_3430 (reset_start)
-     OR2:I0->O           460   0.195   2.982  XLXI_4005 (reset)
+     OR2:I0->O           458   0.195   2.974  XLXI_4005 (reset)
      OR2:I0->O            84   0.195   1.512  XLXI_5996 (readout_reset)
      begin scope: 'PSI_Dig_Blk_0/XLXI_6064'
      LUT4:I0->O            1   0.195   0.585  cnt_and000048 (cnt_and000048)
@@ -3951,14 +3953,14 @@ Offset:              11.578ns (Levels of Logic = 9)
      LUT4:I3->O            6   0.195   0.397  cnt_and000092 (cnt_and0000)
      FDRSE:R                   1.062          cnt_0
     ----------------------------------------
-    Total                     11.578ns (3.392ns logic, 8.186ns route)
+    Total                     11.570ns (3.392ns logic, 8.178ns route)
                                        (29.3% logic, 70.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'XLXI_6086/O'
   Total number of paths / destination ports: 140 / 118
 -------------------------------------------------------------------------
-Offset:              11.578ns (Levels of Logic = 9)
+Offset:              11.570ns (Levels of Logic = 9)
   Source:            BUSC_21DN_43S (PAD)
   Destination:       PSI_Dig_Blk_1/XLXI_6064/cnt_0 (FF)
   Destination Clock: XLXI_6086/O rising
@@ -3969,7 +3971,7 @@ Offset:              11.578ns (Levels of Logic = 9)
     ----------------------------------------  ------------
      IOBUF:IO->O           1   0.965   0.741  XLXI_4171 (reset_button)
      OR3B1:I0->O           2   0.195   0.758  XLXI_3430 (reset_start)
-     OR2:I0->O           460   0.195   2.982  XLXI_4005 (reset)
+     OR2:I0->O           458   0.195   2.974  XLXI_4005 (reset)
      OR2:I0->O            84   0.195   1.512  XLXI_5996 (readout_reset)
      begin scope: 'PSI_Dig_Blk_1/XLXI_6064'
      LUT4:I0->O            1   0.195   0.585  cnt_and000048 (cnt_and000048)
@@ -3978,14 +3980,14 @@ Offset:              11.578ns (Levels of Logic = 9)
      LUT4:I3->O            6   0.195   0.397  cnt_and000092 (cnt_and0000)
      FDRSE:R                   1.062          cnt_0
     ----------------------------------------
-    Total                     11.578ns (3.392ns logic, 8.186ns route)
+    Total                     11.570ns (3.392ns logic, 8.178ns route)
                                        (29.3% logic, 70.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'XLXI_6193/O'
   Total number of paths / destination ports: 140 / 118
 -------------------------------------------------------------------------
-Offset:              11.578ns (Levels of Logic = 9)
+Offset:              11.570ns (Levels of Logic = 9)
   Source:            BUSC_21DN_43S (PAD)
   Destination:       PSI_Dig_Blk_2/XLXI_6064/cnt_0 (FF)
   Destination Clock: XLXI_6193/O rising
@@ -3996,7 +3998,7 @@ Offset:              11.578ns (Levels of Logic = 9)
     ----------------------------------------  ------------
      IOBUF:IO->O           1   0.965   0.741  XLXI_4171 (reset_button)
      OR3B1:I0->O           2   0.195   0.758  XLXI_3430 (reset_start)
-     OR2:I0->O           460   0.195   2.982  XLXI_4005 (reset)
+     OR2:I0->O           458   0.195   2.974  XLXI_4005 (reset)
      OR2:I0->O            84   0.195   1.512  XLXI_5996 (readout_reset)
      begin scope: 'PSI_Dig_Blk_2/XLXI_6064'
      LUT4:I0->O            1   0.195   0.585  cnt_and000048 (cnt_and000048)
@@ -4005,7 +4007,7 @@ Offset:              11.578ns (Levels of Logic = 9)
      LUT4:I3->O            6   0.195   0.397  cnt_and000092 (cnt_and0000)
      FDRSE:R                   1.062          cnt_0
     ----------------------------------------
-    Total                     11.578ns (3.392ns logic, 8.186ns route)
+    Total                     11.570ns (3.392ns logic, 8.178ns route)
                                        (29.3% logic, 70.7% route)
 
 =========================================================================
@@ -4033,7 +4035,7 @@ Offset:              2.300ns (Levels of Logic = 3)
 Timing constraint: Default OFFSET OUT AFTER for Clock 'XLXN_12498'
   Total number of paths / destination ports: 5 / 4
 -------------------------------------------------------------------------
-Offset:              12.660ns (Levels of Logic = 6)
+Offset:              12.652ns (Levels of Logic = 6)
   Source:            XLXI_3523 (FF)
   Destination:       BUSC_02DP_04S (PAD)
   Source Clock:      XLXN_12498 rising
@@ -4044,20 +4046,20 @@ Offset:              12.660ns (Levels of Logic = 6)
     ----------------------------------------  ------------
      FDRE:C->Q             2   0.360   0.705  XLXI_3523 (software_reset)
      OR3B1:I1->O           2   0.195   0.758  XLXI_3430 (reset_start)
-     OR2:I0->O           460   0.195   2.982  XLXI_4005 (reset)
+     OR2:I0->O           458   0.195   2.974  XLXI_4005 (reset)
      OR2:I0->O           215   0.195   1.643  XLXI_5989 (psi_reset)
      INV:I->O              3   0.358   0.756  XLXI_5581 (inv_psi_reset)
      AND2:I0->O            1   0.195   0.360  XLXI_5976 (XLXN_18983)
      OBUF:I->O                 3.957          XLXI_5546 (BUSB_28DP_56S)
     ----------------------------------------
-    Total                     12.660ns (5.455ns logic, 7.205ns route)
+    Total                     12.652ns (5.455ns logic, 7.197ns route)
                                        (43.1% logic, 56.9% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'SECONDARY_CLK'
   Total number of paths / destination ports: 8 / 4
 -------------------------------------------------------------------------
-Offset:              12.557ns (Levels of Logic = 7)
+Offset:              12.549ns (Levels of Logic = 7)
   Source:            XLXI_4006/XLXI_44 (FF)
   Destination:       BUSC_02DP_04S (PAD)
   Source Clock:      SECONDARY_CLK rising
@@ -4069,14 +4071,14 @@ Offset:              12.557ns (Levels of Logic = 7)
      FD:C->Q               2   0.360   0.602  XLXI_44 (RESET_INIT)
      end scope: 'XLXI_4006'
      OR3B1:I2->O           2   0.195   0.758  XLXI_3430 (reset_start)
-     OR2:I0->O           460   0.195   2.982  XLXI_4005 (reset)
+     OR2:I0->O           458   0.195   2.974  XLXI_4005 (reset)
      OR2:I0->O           215   0.195   1.643  XLXI_5989 (psi_reset)
      INV:I->O              3   0.358   0.756  XLXI_5581 (inv_psi_reset)
      AND2:I0->O            1   0.195   0.360  XLXI_5976 (XLXN_18983)
      OBUF:I->O                 3.957          XLXI_5546 (BUSB_28DP_56S)
     ----------------------------------------
-    Total                     12.557ns (5.455ns logic, 7.102ns route)
-                                       (43.4% logic, 56.6% route)
+    Total                     12.549ns (5.455ns logic, 7.094ns route)
+                                       (43.5% logic, 56.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'GEL_RXCLK'
@@ -4128,7 +4130,7 @@ Offset:              7.284ns (Levels of Logic = 5)
 Timing constraint: Default path analysis
   Total number of paths / destination ports: 3 / 3
 -------------------------------------------------------------------------
-Delay:               13.301ns (Levels of Logic = 7)
+Delay:               13.293ns (Levels of Logic = 7)
   Source:            BUSC_21DN_43S (PAD)
   Destination:       BUSC_02DP_04S (PAD)
 
@@ -4138,27 +4140,27 @@ Delay:               13.301ns (Levels of Logic = 7)
     ----------------------------------------  ------------
      IOBUF:IO->O           1   0.965   0.741  XLXI_4171 (reset_button)
      OR3B1:I0->O           2   0.195   0.758  XLXI_3430 (reset_start)
-     OR2:I0->O           460   0.195   2.982  XLXI_4005 (reset)
+     OR2:I0->O           458   0.195   2.974  XLXI_4005 (reset)
      OR2:I0->O           215   0.195   1.643  XLXI_5989 (psi_reset)
      INV:I->O              3   0.358   0.756  XLXI_5581 (inv_psi_reset)
      AND2:I0->O            1   0.195   0.360  XLXI_5976 (XLXN_18983)
      OBUF:I->O                 3.957          XLXI_5546 (BUSB_28DP_56S)
     ----------------------------------------
-    Total                     13.301ns (6.060ns logic, 7.241ns route)
+    Total                     13.293ns (6.060ns logic, 7.233ns route)
                                        (45.6% logic, 54.4% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 61.00 secs
-Total CPU time to Xst completion: 60.12 secs
+Total REAL time to Xst completion: 58.00 secs
+Total CPU time to Xst completion: 57.90 secs
  
 --> 
 
 
-Total memory usage is 820572 kilobytes
+Total memory usage is 820900 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  533 (   0 filtered)
-Number of infos    :   92 (   0 filtered)
+Number of warnings :  528 (   0 filtered)
+Number of infos    :   99 (   0 filtered)
 

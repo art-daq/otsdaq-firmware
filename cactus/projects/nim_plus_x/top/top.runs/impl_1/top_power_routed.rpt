@@ -1,7 +1,7 @@
 Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
-| Date             : Thu May 17 14:55:02 2018
+| Date             : Fri May 18 14:13:05 2018
 | Host             : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb
 | Design           : top
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 1.643 |
-| Dynamic (W)              | 1.473 |
+| Total On-Chip Power (W)  | 1.652 |
+| Dynamic (W)              | 1.482 |
 | Device Static (W)        | 0.170 |
 | Total Off-Chip Power (W) | 0.054 |
 | Effective TJA (C/W)      | 1.8   |
@@ -50,23 +50,23 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.106 |       17 |       --- |             --- |
-| Slice Logic              |     0.030 |    23585 |       --- |             --- |
-|   LUT as Logic           |     0.025 |     7750 |    203800 |            3.80 |
-|   Register               |     0.003 |    10964 |    407600 |            2.69 |
+| Clocks                   |     0.114 |       17 |       --- |             --- |
+| Slice Logic              |     0.030 |    23620 |       --- |             --- |
+|   LUT as Logic           |     0.024 |     7747 |    203800 |            3.80 |
+|   Register               |     0.003 |    10978 |    407600 |            2.69 |
 |   CARRY4                 |     0.002 |      541 |     50950 |            1.06 |
 |   F7/F8 Muxes            |    <0.001 |      565 |    203800 |            0.28 |
-|   BUFG                   |    <0.001 |        6 |        32 |           18.75 |
+|   BUFG                   |    <0.001 |        7 |        32 |           21.88 |
 |   LUT as Shift Register  |    <0.001 |      325 |     64000 |            0.51 |
 |   LUT as Distributed RAM |    <0.001 |       24 |     64000 |            0.04 |
-|   Others                 |     0.000 |     2076 |       --- |             --- |
-| Signals                  |     0.044 |    16497 |       --- |             --- |
+|   Others                 |     0.000 |     2092 |       --- |             --- |
+| Signals                  |     0.045 |    16523 |       --- |             --- |
 | Block RAM                |     0.022 |       12 |       445 |            2.70 |
 | MMCM                     |     0.229 |        2 |        10 |           20.00 |
 | PLL                      |     0.166 |        2 |        10 |           20.00 |
 | I/O                      |     0.876 |      128 |       500 |           25.60 |
 | Static Power             |     0.170 |          |           |                 |
-| Total                    |     1.643 |          |           |                 |
+| Total                    |     1.652 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,7 +76,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.293 |       0.216 |      0.077 |
+| Vccint    |       1.000 |     0.302 |       0.225 |      0.077 |
 | Vccaux    |       1.800 |     0.252 |       0.223 |      0.029 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.123 |       0.122 |      0.001 |
@@ -158,9 +158,9 @@ Table of Contents
 +-----------------------------------------------------------------------+-----------+
 | Name                                                                  | Power (W) |
 +-----------------------------------------------------------------------+-----------+
-| top                                                                   |     1.473 |
+| top                                                                   |     1.482 |
 |   CLK_MUX                                                             |     0.002 |
-|   NIM_BLOCK                                                           |     0.103 |
+|   NIM_BLOCK                                                           |     0.110 |
 |     U1                                                                |    <0.001 |
 |     U10                                                               |    <0.001 |
 |     U11                                                               |    <0.001 |
@@ -357,14 +357,15 @@ Table of Contents
 |     U155                                                              |    <0.001 |
 |     U157                                                              |    <0.001 |
 |     U16                                                               |    <0.001 |
-|     U162                                                              |    <0.001 |
-|       U1                                                              |    <0.001 |
+|     U162                                                              |     0.001 |
+|       U1                                                              |     0.001 |
 |       U2                                                              |    <0.001 |
+|     U164                                                              |    <0.001 |
 |     U166                                                              |    <0.001 |
 |     U167                                                              |    <0.001 |
 |     U17                                                               |    <0.001 |
-|     U177                                                              |    <0.001 |
-|       U1                                                              |    <0.001 |
+|     U177                                                              |     0.001 |
+|       U1                                                              |     0.001 |
 |       U2                                                              |    <0.001 |
 |     U178                                                              |    <0.001 |
 |     U179                                                              |    <0.001 |
@@ -396,7 +397,7 @@ Table of Contents
 |     U229                                                              |    <0.001 |
 |     U23                                                               |    <0.001 |
 |     U230                                                              |    <0.001 |
-|     U24                                                               |    <0.001 |
+|     U24                                                               |     0.001 |
 |       U1                                                              |    <0.001 |
 |         U1                                                            |    <0.001 |
 |         U10                                                           |    <0.001 |
@@ -555,7 +556,7 @@ Table of Contents
 |                     i_q.i_simple.qreg                                 |    <0.001 |
 |       U9                                                              |    <0.001 |
 |     U269                                                              |    <0.001 |
-|     U27                                                               |    <0.001 |
+|     U27                                                               |     0.001 |
 |       U1                                                              |    <0.001 |
 |         U1                                                            |    <0.001 |
 |         U10                                                           |    <0.001 |
@@ -630,11 +631,13 @@ Table of Contents
 |     U273                                                              |    <0.001 |
 |     U274                                                              |    <0.001 |
 |     U275                                                              |    <0.001 |
+|     U285                                                              |    <0.001 |
+|     U286                                                              |    <0.001 |
 |     U287                                                              |    <0.001 |
 |     U288                                                              |    <0.001 |
 |     U289                                                              |    <0.001 |
 |     U29                                                               |    <0.001 |
-|     U3                                                                |    <0.001 |
+|     U3                                                                |     0.001 |
 |       U1                                                              |    <0.001 |
 |         U1                                                            |    <0.001 |
 |         U10                                                           |    <0.001 |
@@ -704,7 +707,7 @@ Table of Contents
 |         U8                                                            |    <0.001 |
 |         U9                                                            |    <0.001 |
 |       U9                                                              |    <0.001 |
-|     U30                                                               |    <0.001 |
+|     U30                                                               |     0.001 |
 |       U1                                                              |    <0.001 |
 |         U1                                                            |    <0.001 |
 |         U10                                                           |    <0.001 |
@@ -778,16 +781,16 @@ Table of Contents
 |     U308                                                              |    <0.001 |
 |     U309                                                              |    <0.001 |
 |     U310                                                              |    <0.001 |
-|     U311                                                              |     0.018 |
+|     U311                                                              |     0.019 |
 |       U1                                                              |     0.002 |
 |       U10                                                             |    <0.001 |
 |       U11                                                             |    <0.001 |
 |       U12                                                             |    <0.001 |
 |       U13                                                             |    <0.001 |
-|       U14                                                             |    <0.001 |
+|       U14                                                             |     0.001 |
 |       U15                                                             |    <0.001 |
 |       U16                                                             |    <0.001 |
-|       U17                                                             |    <0.001 |
+|       U17                                                             |     0.001 |
 |       U18                                                             |    <0.001 |
 |       U19                                                             |    <0.001 |
 |       U2                                                              |    <0.001 |
@@ -816,6 +819,7 @@ Table of Contents
 |     U335                                                              |     0.001 |
 |       U1                                                              |     0.001 |
 |       U2                                                              |    <0.001 |
+|     U34                                                               |     0.000 |
 |     U341                                                              |     0.001 |
 |       U1                                                              |     0.001 |
 |       U2                                                              |    <0.001 |
@@ -851,6 +855,7 @@ Table of Contents
 |     U407                                                              |     0.002 |
 |     U408                                                              |     0.002 |
 |     U409                                                              |     0.002 |
+|     U41                                                               |     0.000 |
 |     U410                                                              |     0.002 |
 |     U411                                                              |     0.002 |
 |     U413                                                              |    <0.001 |
@@ -860,6 +865,7 @@ Table of Contents
 |     U417                                                              |    <0.001 |
 |     U418                                                              |    <0.001 |
 |     U419                                                              |    <0.001 |
+|     U42                                                               |     0.000 |
 |     U420                                                              |    <0.001 |
 |     U421                                                              |    <0.001 |
 |     U422                                                              |    <0.001 |
@@ -897,12 +903,15 @@ Table of Contents
 |       U27                                                             |    <0.001 |
 |     U467                                                              |    <0.001 |
 |       U60                                                             |    <0.001 |
+|     U471                                                              |    <0.001 |
+|     U472                                                              |    <0.001 |
+|     U473                                                              |    <0.001 |
 |     U5                                                                |    <0.001 |
 |     U54                                                               |    <0.001 |
 |     U56                                                               |    <0.001 |
 |     U57                                                               |    <0.001 |
-|     U58                                                               |    <0.001 |
-|       U1                                                              |    <0.001 |
+|     U58                                                               |     0.001 |
+|       U1                                                              |     0.001 |
 |       U2                                                              |    <0.001 |
 |     U6                                                                |    <0.001 |
 |     U66                                                               |     0.001 |
@@ -917,6 +926,7 @@ Table of Contents
 |     U75                                                               |    <0.001 |
 |     U76                                                               |     0.002 |
 |     U77                                                               |    <0.001 |
+|     U81                                                               |    <0.001 |
 |     U82                                                               |    <0.001 |
 |     U83                                                               |    <0.001 |
 |   NIM_CLKS_BLOCK                                                      |     0.102 |
@@ -998,8 +1008,8 @@ Table of Contents
 |       N_EXT_BSCAN.bscan_inst                                          |    <0.001 |
 |   eth_interface                                                       |     0.050 |
 |     burst_traffic_controller_blk                                      |    <0.001 |
-|     data_manager_blk                                                  |     0.021 |
-|       GEC_RX_CTRL                                                     |    <0.001 |
+|     data_manager_blk                                                  |     0.022 |
+|       GEC_RX_CTRL                                                     |     0.001 |
 |       GEC_TX_SEQ_CTL                                                  |     0.001 |
 |       RAM_COMM_DEC                                                    |     0.006 |
 |       RX_DATA_FIFO                                                    |     0.006 |
@@ -1045,9 +1055,9 @@ Table of Contents
 |   genExtClkMux[0].clk_wiz_1_BLOCK                                     |     0.066 |
 |     U0                                                                |     0.066 |
 |   genNimPlusAndBurstFifo[0].FIFO_DUALCLOCK_MACRO_inst                 |     0.008 |
-|   u_ila_0                                                             |     0.030 |
-|     inst                                                              |     0.030 |
-|       ila_core_inst                                                   |     0.030 |
+|   u_ila_0                                                             |     0.031 |
+|     inst                                                              |     0.031 |
+|       ila_core_inst                                                   |     0.031 |
 |         ila_trace_memory_inst                                         |     0.002 |
 |           SUBCORE_RAM_BLK_MEM_1.trace_block_memory                    |     0.002 |
 |             inst_blk_mem_gen                                          |     0.002 |
@@ -1112,7 +1122,7 @@ Table of Contents
 |                       u_srlB                                          |    <0.001 |
 |                       u_srlC                                          |    <0.001 |
 |                       u_srlD                                          |    <0.001 |
-|         u_ila_regs                                                    |     0.020 |
+|         u_ila_regs                                                    |     0.021 |
 |           MU_SRL[0].mu_srl_reg                                        |    <0.001 |
 |           MU_SRL[10].mu_srl_reg                                       |    <0.001 |
 |           MU_SRL[11].mu_srl_reg                                       |    <0.001 |
@@ -1151,7 +1161,7 @@ Table of Contents
 |           MU_SRL[8].mu_srl_reg                                        |    <0.001 |
 |           MU_SRL[9].mu_srl_reg                                        |    <0.001 |
 |           TC_SRL[0].tc_srl_reg                                        |    <0.001 |
-|           U_XSDB_SLAVE                                                |     0.004 |
+|           U_XSDB_SLAVE                                                |     0.005 |
 |           reg_15                                                      |    <0.001 |
 |             I_EN_CTL_EQ1.U_CTL                                        |    <0.001 |
 |           reg_16                                                      |    <0.001 |
@@ -1200,7 +1210,7 @@ Table of Contents
 |           asyncrounous_transfer.halt_in_transfer_inst                 |    <0.001 |
 |           asyncrounous_transfer.halt_out_transfer_inst                |    <0.001 |
 |           halt_detection_inst                                         |    <0.001 |
-|         u_trig                                                        |     0.004 |
+|         u_trig                                                        |     0.005 |
 |           N_DDR_TC.N_DDR_TC_INST[0].U_TC                              |    <0.001 |
 |             allx_typeA_match_detection.ltlib_v1_0_allx_typeA_inst     |    <0.001 |
 |               DUT                                                     |    <0.001 |

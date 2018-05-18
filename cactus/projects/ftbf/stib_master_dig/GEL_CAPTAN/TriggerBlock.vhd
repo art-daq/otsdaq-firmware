@@ -49,7 +49,7 @@ end TriggerBlock;
 																												 
 architecture TriggerBlock of TriggerBlock is				   	  
 
-	signal scin_sig : STD_LOGIC_VECTOR(2 downto 0);	   			-- 3 scintillators
+	signal scin_sig,scin_mclk : STD_LOGIC_VECTOR(2 downto 0);	   			-- 3 scintillators
 	signal scin_cnt_sig : STD_LOGIC_VECTOR(3*3-1 downto 0);	   -- count up to 5 for each scintillator to extend pulse by 40 ns	    									   
 	signal read_state_sig : STD_LOGIC_VECTOR(2 downto 0);	   			-- read to fifo state  									     									   
 	signal write_state_sig : STD_LOGIC_VECTOR(2 downto 0);	   			-- write to fifo states
@@ -138,7 +138,9 @@ begin
 	process (mclk)
 	begin
 		if rising_edge(mclk) then	
-								 
+							
+			scin_mclk(0) <= scin(0);
+			scin_mclk(2 downto 1) <= (others => '1');
 			scin_sig <= (others => '0'); 
 			tmp_coinc <= '0';							
 			
@@ -197,8 +199,8 @@ begin
 				--extend scintillator signals for coincidence
 				for i in 0 to 2 loop	 	 	-- 3 scintillators
 										
-					if scin(i) = '1' then
-						scin_cnt_sig((i+1)*3-1 downto i*3) <= "011";	-- set count for 5 clock (8ns * 5 = 40 ns) extension
+					if scin_mclk(i) = '1' then
+						scin_cnt_sig((i+1)*3-1 downto i*3) <= "000";	-- set count for 5 clock (8ns * 5 = 40 ns) extension
 						scin_sig(i) <= '1';		 
 					elsif scin_cnt_sig((i+1)*3-1 downto i*3) /= "000" then
 						scin_sig(i) <= '1';	

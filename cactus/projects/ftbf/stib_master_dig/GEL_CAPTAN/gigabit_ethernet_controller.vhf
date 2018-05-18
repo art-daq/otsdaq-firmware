@@ -7,7 +7,7 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : gigabit_ethernet_controller.vhf
--- /___/   /\     Timestamp : 05/17/2018 16:12:59
+-- /___/   /\     Timestamp : 05/18/2018 14:01:14
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
