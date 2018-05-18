@@ -35,7 +35,7 @@ architecture Behavioral of VERSION_BLK is
 
 begin
 
-	version <= x"3B";
+	version <= x"3C";
 	
 end Behavioral;
 

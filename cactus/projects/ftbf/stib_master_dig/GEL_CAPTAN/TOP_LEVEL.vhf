@@ -7,7 +7,7 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : TOP_LEVEL.vhf
--- /___/   /\     Timestamp : 05/15/2018 15:48:21
+-- /___/   /\     Timestamp : 05/17/2018 16:13:01
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
@@ -157,60 +157,6 @@ begin
                 D=>D(15),
                 R=>R,
                 Q=>Q(15));
-   
-end BEHAVIORAL;
-
-
-
-library ieee;
-use ieee.std_logic_1164.ALL;
-use ieee.numeric_std.ALL;
-library UNISIM;
-use UNISIM.Vcomponents.ALL;
-
-entity FTC_MXILINX_TOP_LEVEL is
-   generic( INIT : bit :=  '0');
-   port ( C   : in    std_logic; 
-          CLR : in    std_logic; 
-          T   : in    std_logic; 
-          Q   : out   std_logic);
-end FTC_MXILINX_TOP_LEVEL;
-
-architecture BEHAVIORAL of FTC_MXILINX_TOP_LEVEL is
-   attribute BOX_TYPE   : string ;
-   attribute RLOC       : string ;
-   signal TQ      : std_logic;
-   signal Q_DUMMY : std_logic;
-   component XOR2
-      port ( I0 : in    std_logic; 
-             I1 : in    std_logic; 
-             O  : out   std_logic);
-   end component;
-   attribute BOX_TYPE of XOR2 : component is "BLACK_BOX";
-   
-   component FDC
-      generic( INIT : bit :=  '0');
-      port ( C   : in    std_logic; 
-             CLR : in    std_logic; 
-             D   : in    std_logic; 
-             Q   : out   std_logic);
-   end component;
-   attribute BOX_TYPE of FDC : component is "BLACK_BOX";
-   
-   attribute RLOC of I_36_35 : label is "X0Y0";
-begin
-   Q <= Q_DUMMY;
-   I_36_32 : XOR2
-      port map (I0=>T,
-                I1=>Q_DUMMY,
-                O=>TQ);
-   
-   I_36_35 : FDC
-   generic map( INIT => INIT)
-      port map (C=>C,
-                CLR=>CLR,
-                D=>TQ,
-                Q=>Q_DUMMY);
    
 end BEHAVIORAL;
 
@@ -642,6 +588,60 @@ begin
                 I1=>A1,
                 I2=>E,
                 O=>D0);
+   
+end BEHAVIORAL;
+
+
+
+library ieee;
+use ieee.std_logic_1164.ALL;
+use ieee.numeric_std.ALL;
+library UNISIM;
+use UNISIM.Vcomponents.ALL;
+
+entity FTC_MXILINX_TOP_LEVEL is
+   generic( INIT : bit :=  '0');
+   port ( C   : in    std_logic; 
+          CLR : in    std_logic; 
+          T   : in    std_logic; 
+          Q   : out   std_logic);
+end FTC_MXILINX_TOP_LEVEL;
+
+architecture BEHAVIORAL of FTC_MXILINX_TOP_LEVEL is
+   attribute BOX_TYPE   : string ;
+   attribute RLOC       : string ;
+   signal TQ      : std_logic;
+   signal Q_DUMMY : std_logic;
+   component XOR2
+      port ( I0 : in    std_logic; 
+             I1 : in    std_logic; 
+             O  : out   std_logic);
+   end component;
+   attribute BOX_TYPE of XOR2 : component is "BLACK_BOX";
+   
+   component FDC
+      generic( INIT : bit :=  '0');
+      port ( C   : in    std_logic; 
+             CLR : in    std_logic; 
+             D   : in    std_logic; 
+             Q   : out   std_logic);
+   end component;
+   attribute BOX_TYPE of FDC : component is "BLACK_BOX";
+   
+   attribute RLOC of I_36_35 : label is "X0Y0";
+begin
+   Q <= Q_DUMMY;
+   I_36_32 : XOR2
+      port map (I0=>T,
+                I1=>Q_DUMMY,
+                O=>TQ);
+   
+   I_36_35 : FDC
+   generic map( INIT => INIT)
+      port map (C=>C,
+                CLR=>CLR,
+                D=>TQ,
+                Q=>Q_DUMMY);
    
 end BEHAVIORAL;
 
@@ -2510,9 +2510,6 @@ architecture BEHAVIORAL of TOP_LEVEL is
    signal XLXN_19113                  : std_logic;
    signal XLXN_19130                  : std_logic;
    signal XLXN_19142                  : std_logic;
-   signal XLXN_19144                  : std_logic;
-   signal XLXN_19145                  : std_logic;
-   signal XLXN_19147                  : std_logic;
    signal XLXN_19149                  : std_logic;
    signal XLXI_5338_in7_openSignal    : std_logic_vector (63 downto 0);
    component FDE
@@ -3230,8 +3227,8 @@ architecture BEHAVIORAL of TOP_LEVEL is
    attribute HU_SET of XLXI_5677 : label is "XLXI_5677_10";
    attribute HU_SET of XLXI_5678 : label is "XLXI_5678_11";
    attribute HU_SET of XLXI_6015 : label is "XLXI_6015_12";
-   attribute HU_SET of XLXI_6016 : label is "XLXI_6016_38";
-   attribute HU_SET of XLXI_6018 : label is "XLXI_6018_37";
+   attribute HU_SET of XLXI_6016 : label is "XLXI_6016_37";
+   attribute HU_SET of XLXI_6018 : label is "XLXI_6018_36";
    attribute DIFF_TERM of XLXI_6040 : label is "TRUE";
    attribute HU_SET of XLXI_6067 : label is "XLXI_6067_15";
    attribute HU_SET of XLXI_6084 : label is "XLXI_6084_18";
@@ -3256,7 +3253,6 @@ architecture BEHAVIORAL of TOP_LEVEL is
    attribute CLKFX_MULTIPLY of XLXI_6376 : label is "2";
    attribute CLKFX_DIVIDE of XLXI_6376 : label is "2";
    attribute HU_SET of XLXI_6377 : label is "XLXI_6377_35";
-   attribute HU_SET of XLXI_6393 : label is "XLXI_6393_36";
 begin
    chipscope_dig_latch_0 : FDE
       port map (C=>MASTER_CLK,
@@ -4101,7 +4097,7 @@ begin
    
    XLXI_4773 : M2_1_MXILINX_TOP_LEVEL
       port map (D0=>XLXN_18532,
-                D1=>XLXN_19147,
+                D1=>EXT_CLK,
                 S0=>adc_clk_sel,
                 O=>dut_src_clk);
    
@@ -5030,18 +5026,6 @@ begin
                 CE=>MUX_CLK_OUT_MAP,
                 D=>rx_data(1),
                 Q=>mux_clk_out_sel1);
-   
-   XLXI_6391 : GND
-      port map (G=>XLXN_19144);
-   
-   XLXI_6392 : VCC
-      port map (P=>XLXN_19145);
-   
-   XLXI_6393 : FTC_MXILINX_TOP_LEVEL
-      port map (C=>EXT_CLK,
-                CLR=>XLXN_19144,
-                T=>XLXN_19145,
-                Q=>XLXN_19147);
    
    XLXI_6434 : GND
       port map (G=>trigger_throttle);

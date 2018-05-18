@@ -460,9 +460,6 @@
         <signal name="mux_clk_out_sel1" />
         <signal name="mux_clk_out_sel0" />
         <signal name="MUX_CLK_OUT_MAP" />
-        <signal name="XLXN_19147" />
-        <signal name="XLXN_19144" />
-        <signal name="XLXN_19145" />
         <signal name="trig_veto_dur(19:0)" />
         <signal name="trig_veto_dur(31:0)" />
         <signal name="trig_veto_dur(15:0)" />
@@ -2301,7 +2298,7 @@
         </block>
         <block symbolname="m2_1" name="XLXI_4773">
             <blockpin signalname="XLXN_18532" name="D0" />
-            <blockpin signalname="XLXN_19147" name="D1" />
+            <blockpin signalname="EXT_CLK" name="D1" />
             <blockpin signalname="adc_clk_sel" name="S0" />
             <blockpin signalname="dut_src_clk" name="O" />
         </block>
@@ -2910,18 +2907,6 @@
             <blockpin signalname="MUX_CLK_OUT_MAP" name="CE" />
             <blockpin signalname="rx_data(1)" name="D" />
             <blockpin signalname="mux_clk_out_sel1" name="Q" />
-        </block>
-        <block symbolname="gnd" name="XLXI_6391">
-            <blockpin signalname="XLXN_19144" name="G" />
-        </block>
-        <block symbolname="vcc" name="XLXI_6392">
-            <blockpin signalname="XLXN_19145" name="P" />
-        </block>
-        <block symbolname="ftc" name="XLXI_6393">
-            <blockpin signalname="EXT_CLK" name="C" />
-            <blockpin signalname="XLXN_19144" name="CLR" />
-            <blockpin signalname="XLXN_19145" name="T" />
-            <blockpin signalname="XLXN_19147" name="Q" />
         </block>
         <block symbolname="fd16re" name="XLXI_6018">
             <blockpin signalname="MASTER_CLK" name="C" />
@@ -5671,23 +5656,6 @@
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4720" y="1776" type="branch" />
             <wire x2="4784" y1="1776" y2="1776" x1="4720" />
         </branch>
-        <branch name="XLXN_19147">
-            <wire x2="3920" y1="3792" y2="3792" x1="3744" />
-            <wire x2="3936" y1="3792" y2="3792" x1="3920" />
-        </branch>
-        <branch name="EXT_CLK">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3264" y="3920" type="branch" />
-            <wire x2="3360" y1="3920" y2="3920" x1="3264" />
-        </branch>
-        <instance x="3184" y="3952" name="XLXI_6391" orien="R90" />
-        <branch name="XLXN_19144">
-            <wire x2="3360" y1="4016" y2="4016" x1="3312" />
-        </branch>
-        <instance x="3248" y="3856" name="XLXI_6392" orien="R270" />
-        <branch name="XLXN_19145">
-            <wire x2="3360" y1="3792" y2="3792" x1="3248" />
-        </branch>
-        <instance x="3360" y="4048" name="XLXI_6393" orien="R0" />
         <instance x="6096" y="3984" name="XLXI_6437" orien="R0" />
         <branch name="PSI_CLK180">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="6384" y="3952" type="branch" />
@@ -5698,6 +5666,10 @@
             <wire x2="5616" y1="3824" y2="3952" x1="5616" />
             <wire x2="5632" y1="3952" y2="3952" x1="5616" />
             <wire x2="6096" y1="3952" y2="3952" x1="5632" />
+        </branch>
+        <branch name="EXT_CLK">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3760" y="3792" type="branch" />
+            <wire x2="3936" y1="3792" y2="3792" x1="3760" />
         </branch>
     </sheet>
     <sheet sheetnum="6" width="7040" height="5440">

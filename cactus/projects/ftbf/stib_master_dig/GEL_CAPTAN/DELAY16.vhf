@@ -7,7 +7,7 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : DELAY16.vhf
--- /___/   /\     Timestamp : 05/15/2018 15:48:20
+-- /___/   /\     Timestamp : 05/17/2018 16:12:59
 -- \   \  /  \ 
 --  \___\/\___\ 
 --

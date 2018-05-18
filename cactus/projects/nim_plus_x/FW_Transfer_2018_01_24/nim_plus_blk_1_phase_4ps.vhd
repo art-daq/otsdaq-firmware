@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : C:\AGP_2018_05_17_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Thu May 17 14:41:09 2018
+-- Generated   : Thu May 17 15:28:04 2018
 -- From        : C:\AGP_2018_05_17_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -864,9 +864,11 @@ signal Dangling_Input_Signal : STD_LOGIC;
 --    attribute mark_debug of sig_output_counts : signal is "true";
     
     --for cms masking   
---     attribute mark_debug of sync_w_40MHz : signal is "true";
---     attribute mark_debug of sync_w_accel : signal is "true";
---     attribute mark_debug of acc_release : signal is "true";
+     attribute mark_debug of sync_w_40MHz : signal is "true";
+     attribute mark_debug of sync_w_accel : signal is "true";
+     attribute mark_debug of acc_release : signal is "true";
+     attribute mark_debug of clk_13_25 : signal is "true";
+     attribute mark_debug of clk_26_5 : signal is "true";
      
      --for sig mod
 --     attribute mark_debug of pulse_ctl : signal is "true";
@@ -1781,7 +1783,7 @@ NET19293 <= reset_out or ctr_resets(2) or pulse_ctl(5);
 U164 : d_ff
   port map(
        clk => clk0,
-       dl => Dangling_Input_Signal,
+       dl => sig_dlay_1,
        q => sig_dlay_2,
        rst_p => sig_dlay_1
   );

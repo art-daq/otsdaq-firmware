@@ -7,7 +7,7 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : Ethernet_Interface.vhf
--- /___/   /\     Timestamp : 05/15/2018 15:48:23
+-- /___/   /\     Timestamp : 05/17/2018 16:13:02
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
@@ -511,8 +511,8 @@ architecture BEHAVIORAL of DATA_MANAGER_MUSER_Ethernet_Interface is
    end component;
    attribute BOX_TYPE of GND : component is "BLACK_BOX";
    
-   attribute HU_SET of XLXI_3527 : label is "XLXI_3527_39";
-   attribute HU_SET of XLXI_3532 : label is "XLXI_3532_40";
+   attribute HU_SET of XLXI_3527 : label is "XLXI_3527_38";
+   attribute HU_SET of XLXI_3532 : label is "XLXI_3532_39";
 begin
    rx_data(63 downto 0) <= rx_data_DUMMY(63 downto 0);
    RX_DATA_FIFO : DATA_FIFO_0
