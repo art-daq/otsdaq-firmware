@@ -7,7 +7,7 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : Ethernet_Interface.vhf
--- /___/   /\     Timestamp : 05/18/2018 14:01:16
+-- /___/   /\     Timestamp : 05/18/2018 14:32:11
 -- \   \  /  \ 
 --  \___\/\___\ 
 --

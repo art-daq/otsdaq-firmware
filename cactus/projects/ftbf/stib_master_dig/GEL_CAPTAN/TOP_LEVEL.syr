@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Reading design: TOP_LEVEL.prj
@@ -1355,32 +1355,33 @@ WARNING:Xst:647 - Input <scin<2:1>> is never used. This port will be preserved a
     Found 1-bit register for signal <trig_out>.
     Found 8-bit register for signal <trig_fifo_ts>.
     Found 1-bit register for signal <coinc>.
-    Found 4-bit comparator not equal for signal <coinc$cmp_ne0000> created at line 176.
+    Found 4-bit comparator not equal for signal <coinc$cmp_ne0000> created at line 177.
     Found 4-bit up counter for signal <coinc_count>.
-    Found 5-bit comparator less for signal <coinc_count$cmp_lt0000> created at line 165.
+    Found 5-bit comparator less for signal <coinc_count$cmp_lt0000> created at line 166.
     Found 1-bit register for signal <delay_coinc>.
+    Found 1-bit register for signal <delay_coinc_xclk>.
     Found 1-bit register for signal <mask_trig_sig>.
-    Found 1-bit xor2 for signal <mask_trig_sig$xor0000> created at line 181.
+    Found 1-bit xor2 for signal <mask_trig_sig$xor0000> created at line 182.
     Found 4-bit up counter for signal <master_clk_delay_cnt>.
-    Found 4-bit comparator equal for signal <master_clk_delay_cnt$cmp_eq0000> created at line 176.
+    Found 4-bit comparator equal for signal <master_clk_delay_cnt$cmp_eq0000> created at line 177.
     Found 4-bit register for signal <master_clk_delay_reg>.
     Found 8-bit up counter for signal <psi_clk_delay_cnt>.
     Found 8-bit register for signal <psi_clk_delay_reg>.
-    Found 8-bit comparator equal for signal <read_state_sig$cmp_eq0000> created at line 117.
+    Found 8-bit comparator equal for signal <read_state_sig$cmp_eq0000> created at line 118.
     Found 3-bit register for signal <scin_cnt_sig<2:0>>.
-    Found 3-bit subtractor for signal <scin_cnt_sig_2_0$sub0000> created at line 207.
+    Found 3-bit subtractor for signal <scin_cnt_sig_2_0$sub0000> created at line 208.
     Found 1-bit register for signal <scin_mclk<0>>.
     Found 2-bit register for signal <scin_sig<1:0>>.
     Found 1-bit register for signal <tmp_coinc>.
-    Found 8-bit comparator not equal for signal <trig_fifo_re$cmp_ne0000> created at line 117.
-    Found 8-bit adder for signal <trig_fifo_ts$add0000> created at line 101.
+    Found 8-bit comparator not equal for signal <trig_fifo_re$cmp_ne0000> created at line 118.
+    Found 8-bit adder for signal <trig_fifo_ts$add0000> created at line 102.
     Found 1-bit register for signal <trig_fifo_we_sig>.
     Found 20-bit up counter for signal <veto_duration_sig>.
-    Found 20-bit comparator equal for signal <write_state_sig$cmp_eq0000> created at line 108.
+    Found 20-bit comparator equal for signal <write_state_sig$cmp_eq0000> created at line 109.
     Summary:
 	inferred   2 Finite State Machine(s).
 	inferred   4 Counter(s).
-	inferred  34 D-type flip-flop(s).
+	inferred  35 D-type flip-flop(s).
 	inferred   2 Adder/Subtractor(s).
 	inferred   6 Comparator(s).
 Unit <TriggerBlock> synthesized.
@@ -2353,8 +2354,8 @@ Macro Statistics
  4-bit updown counter                                  : 3
  6-bit up counter                                      : 9
  8-bit up counter                                      : 3
-# Registers                                            : 1452
- 1-bit register                                        : 1389
+# Registers                                            : 1453
+ 1-bit register                                        : 1390
  11-bit register                                       : 6
  16-bit register                                       : 7
  20-bit register                                       : 6
@@ -2913,8 +2914,8 @@ Macro Statistics
  4-bit updown counter                                  : 3
  6-bit up counter                                      : 9
  8-bit up counter                                      : 3
-# Registers                                            : 2483
- Flip-Flops                                            : 2483
+# Registers                                            : 2484
+ Flip-Flops                                            : 2484
 # Comparators                                          : 67
  11-bit comparator greater                             : 2
  11-bit comparator less                                : 2
@@ -3495,8 +3496,8 @@ Unit <token_trigger_blk> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 2433
- Flip-Flops                                            : 2433
+# Registers                                            : 2434
+ Flip-Flops                                            : 2434
 # Shift Registers                                      : 4
  2-bit shift register                                  : 1
  4-bit shift register                                  : 3
@@ -3562,8 +3563,8 @@ Cell Usage :
 #      VCC                         : 36
 #      XOR2                        : 1
 #      XORCY                       : 483
-# FlipFlops/Latches                : 3001
-#      FD                          : 512
+# FlipFlops/Latches                : 3002
+#      FD                          : 513
 #      FD_1                        : 10
 #      FDC                         : 255
 #      FDCE                        : 244
@@ -3604,8 +3605,8 @@ Device utilization summary:
 
 Selected Device : 4vlx25ff668-10 
 
- Number of Slices:                     3083  out of  10752    28%  
- Number of Slice Flip Flops:           3001  out of  21504    13%  
+ Number of Slices:                     3084  out of  10752    28%  
+ Number of Slice Flip Flops:           3002  out of  21504    13%  
  Number of 4 input LUTs:               4624  out of  21504    21%  
     Number used as logic:              4620
     Number used as Shift registers:       4
@@ -3639,7 +3640,7 @@ Clock Signal                       | Clock buffer(FF name)                      
 -----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+-------+
 XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK270(*)(psi_cmd_fifo_vector_0/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_fb_i)| 348   |
 GEL_RXCLK                          | IBUFG+BUFG                                                                                                                            | 2082  |
-XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK0(*)(XLXI_5983/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i)              | 235   |
+XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK0(*)(XLXI_5983/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i)              | 236   |
 XLXN_12498(XLXI_3522:O)            | NONE(*)(XLXI_3523)                                                                                                                    | 1     |
 XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK180(*)(XLXI_6346)                                                                                                        | 4     |
 XLXI_6067/O(XLXI_6067/I_36_8:O)    | BUFG(*)(PSI_Dig_Blk_0/XLXI_6064/error)                                                                                                | 105   |
@@ -3713,7 +3714,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'XLXI_4773/O'
   Clock period: 6.053ns (frequency: 165.210MHz)
-  Total number of paths / destination ports: 7419 / 1053
+  Total number of paths / destination ports: 7432 / 1053
 -------------------------------------------------------------------------
 Delay:               3.026ns (Levels of Logic = 2)
   Source:            psi_cmd_sender_vector_2/derror (FF)
@@ -4153,12 +4154,12 @@ Delay:               13.293ns (Levels of Logic = 7)
 
 
 Total REAL time to Xst completion: 58.00 secs
-Total CPU time to Xst completion: 57.90 secs
+Total CPU time to Xst completion: 58.44 secs
  
 --> 
 
 
-Total memory usage is 820900 kilobytes
+Total memory usage is 820628 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  528 (   0 filtered)

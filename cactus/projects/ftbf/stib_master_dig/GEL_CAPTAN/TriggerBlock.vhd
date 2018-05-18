@@ -53,7 +53,7 @@ architecture TriggerBlock of TriggerBlock is
 	signal scin_cnt_sig : STD_LOGIC_VECTOR(3*3-1 downto 0);	   -- count up to 5 for each scintillator to extend pulse by 40 ns	    									   
 	signal read_state_sig : STD_LOGIC_VECTOR(2 downto 0);	   			-- read to fifo state  									     									   
 	signal write_state_sig : STD_LOGIC_VECTOR(2 downto 0);	   			-- write to fifo states
-	signal coinc,delay_coinc : STD_LOGIC; 					-- extended coincidence found (only accept long trigger pulses).. delay coinc goes to psi domain
+	signal coinc,delay_coinc, delay_coinc_xclk : STD_LOGIC; 					-- extended coincidence found (only accept long trigger pulses).. delay coinc goes to psi domain
 	signal tmp_coinc : STD_LOGIC;				-- tmp real time coincidence	
 	signal coinc_count : STD_LOGIC_VECTOR(3 downto 0);--integer range 0 to 15;		
 	
@@ -81,6 +81,7 @@ begin
 			trig_fifo_we_sig <= '0';				
 			trig_fifo_re <= '0';   
 			trig_out <= '0';   
+			delay_coinc_xclk <= delay_coinc;
 			
 			if rst = '1' or en = '0' then 
 				
@@ -95,7 +96,7 @@ begin
 				psi_clk_delay_cnt <= psi_clk_delay_cnt + 1;	   --free running
 				
 					--write to fifo (must be busy for longer than read fifo takes to run.. or else 2nd trig could be skipped due to delay being missed)
-				if write_state_sig = "000" and delay_coinc = '1' then   --have trigger!! else stay in waiting state 
+				if write_state_sig = "000" and delay_coinc_xclk = '1' then   --have trigger!! else stay in waiting state 
 					trig_fifo_we_sig <= '1';		 									 --write trigger to FIFO
 					busy <= '1';	
 					trig_fifo_ts <= psi_clk_delay_cnt + psi_clk_delay_reg;
@@ -108,7 +109,7 @@ begin
 					if veto_duration_sig = veto_duration then
 						write_state_sig <= "011";  --move on after veto delay
 					end if;
-				elsif write_state_sig = "011" and delay_coinc = '0' then 		 -- reset state.. next state is waiting state for triggers	
+				elsif write_state_sig = "011" and delay_coinc_xclk = '0' then 		 -- reset state.. next state is waiting state for triggers	
 					write_state_sig <= "000";		-- if no coinc, then has been unresponsive to triggers for 3 external clock periods			
 					busy <= '0';
 				end if;
