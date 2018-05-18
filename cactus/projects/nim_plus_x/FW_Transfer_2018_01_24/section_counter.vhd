@@ -55,6 +55,10 @@ signal int_sec_en, next_sec_en: STD_LOGIC;
 signal next_sec_cnt: STD_LOGIC_VECTOR (5 downto 0);
 signal next_sec_reg: STD_LOGIC_VECTOR (7 downto 0);
 
+
+    attribute mark_debug : string;
+    attribute mark_debug of Sreg0 : signal is "true";
+
 begin
 
 

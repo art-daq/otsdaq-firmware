@@ -47,6 +47,10 @@ signal Sreg0, NextState_Sreg0: Sreg0_type;
 signal int_sigout, next_sigout: STD_LOGIC;
 signal next_curr_count: STD_LOGIC_VECTOR (7 downto 0);
 
+
+    attribute mark_debug : string;
+    attribute mark_debug of Sreg0 : signal is "true";
+    
 begin
 
 

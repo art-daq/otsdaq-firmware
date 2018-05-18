@@ -53,6 +53,9 @@ signal int_trig_sync_out, next_trig_sync_out: STD_LOGIC;
 signal next_Signal1: STD_LOGIC;
 signal next_trig_sync_reg: STD_LOGIC_VECTOR (7 downto 0);
 
+
+    attribute mark_debug : string;
+    attribute mark_debug of Sreg0 : signal is "true";
 begin
 
 
