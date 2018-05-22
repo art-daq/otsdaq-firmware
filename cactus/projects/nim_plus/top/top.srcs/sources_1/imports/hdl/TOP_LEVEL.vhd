@@ -552,6 +552,8 @@ begin
                       clk_26_5 => '0',
                       clk_ext => selected_ext_clkg, --s_clk40e,
                       
+                      cln_clk_53 => '0', --ignore for nim+
+                      
                       clk_40DCM => bmx_40,
                       reset_out => reset,
                       rx_wren => rx_wren,

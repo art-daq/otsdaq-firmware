@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : C:\AGP_2018_05_17_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Thu May 17 14:41:09 2018
+-- Generated   : Fri May 18 13:18:03 2018
 -- From        : C:\AGP_2018_05_17_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -609,7 +609,6 @@ signal NET32614 : STD_LOGIC;
 signal NET32706 : STD_LOGIC;
 signal NET33761 : STD_LOGIC;
 signal NET35351 : STD_LOGIC;
-signal NET36444 : STD_LOGIC;
 signal NET41961 : STD_LOGIC;
 signal NET44704 : STD_LOGIC;
 signal NET59053 : STD_LOGIC;
@@ -864,9 +863,13 @@ signal Dangling_Input_Signal : STD_LOGIC;
 --    attribute mark_debug of sig_output_counts : signal is "true";
     
     --for cms masking   
---     attribute mark_debug of sync_w_40MHz : signal is "true";
---     attribute mark_debug of sync_w_accel : signal is "true";
---     attribute mark_debug of acc_release : signal is "true";
+     attribute mark_debug of sync_w_40MHz : signal is "true";
+     attribute mark_debug of sync_w_accel : signal is "true";
+     attribute mark_debug of acc_release : signal is "true";
+     attribute mark_debug of clk_13_25 : signal is "true";
+     attribute mark_debug of clk_26_5 : signal is "true";
+     signal sync_ctrl : std_logic;
+     attribute mark_debug of sync_ctrl : signal is "true";
      
      --for sig mod
 --     attribute mark_debug of pulse_ctl : signal is "true";
@@ -890,7 +893,9 @@ begin
   --  debug_rx_data <= rx_data(7 downto 0);
     
     debug_fast_cnt <= cnt64_simp_out(15 downto 0);
+    sync_ctrl <= ctr_resets(6);
 ----  Component instantiations  ----
+
 
 U1 : reg_64
   port map(
@@ -1781,9 +1786,9 @@ NET19293 <= reset_out or ctr_resets(2) or pulse_ctl(5);
 U164 : d_ff
   port map(
        clk => clk0,
-       dl => Dangling_Input_Signal,
+       dl => sig_dlay_1,
        q => sig_dlay_2,
-       rst_p => sig_dlay_1
+       rst_p => GND
   );
 
 sigmux(14) <= veto_out_n2;
@@ -2904,7 +2909,7 @@ U285 : d_ff
        clk => clk0,
        dl => sig_dlay_2,
        q => sig_dlay_3,
-       rst_p => sig_dlay_1
+       rst_p => GND
   );
 
 U286 : acc_sync
@@ -2934,7 +2939,7 @@ U288 : trig_sync
        trig_sec_in(6) => fs_sync_bus(6),
        trig_sec_in(7) => fs_sync_bus(7),
        clk => clk0,
-       reset_p => NET36444,
+       reset_p => sig_dlay_4,
        trig_sync_out => sync_w_40MHz
   );
 
@@ -3025,8 +3030,6 @@ jw121_logic_term(29) <= GND;
 jw121_logic_term(30) <= GND;
 
 jw121_logic_term(31) <= GND;
-
-NET36444 <= sig_dlay_4 or ctr_resets(6);
 
 U307 : reg_8
   port map(
@@ -7736,7 +7739,7 @@ U473 : d_ff
        clk => clk0,
        dl => sig_dlay_3,
        q => sig_dlay_4,
-       rst_p => sig_dlay_1
+       rst_p => GND
   );
 
 sigmux(5) <= sig_mod(0);
@@ -8088,13 +8091,13 @@ U81 : d_ff
        clk => clk0,
        dl => acc_release,
        q => sig_dlay_1,
-       rst_p => sig_dlay_1
+       rst_p => GND
   );
 
 U82 : section_counter
   port map(
        clk => clk0,
-       release_p => sig_dlay_2,
+       release_p => sig_dlay_3,
        reset_p => ctr_resets(6),
        sec_en => sync_w_accel,
        sec_in => accel_sync_bus

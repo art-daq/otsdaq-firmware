@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2017_12_06_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\section_counter.vhd
--- Generated   : 12/06/17 11:55:46
--- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2017_12_06_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\section_counter.asf
+-- File        : C:\AGP_2018_05_17_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\section_counter.vhd
+-- Generated   : 05/18/18 13:14:51
+-- From        : C:\AGP_2018_05_17_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\section_counter.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ signal sec_reg: STD_LOGIC_VECTOR (7 downto 0);
 type Sreg0_type is (
     S11, S9, S10
 );
--- attribute enum_encoding of Sreg0_type: type is ... -- enum_encoding attribute is not supported for symbolic encoding
+-- attribute ENUM_ENCODING of Sreg0_type: type is ... -- enum_encoding attribute is not supported for symbolic encoding
 
 signal Sreg0, NextState_Sreg0: Sreg0_type;
 
@@ -85,17 +85,17 @@ begin
 				next_sec_cnt <= sec_cnt + u_5;
 			end if;
 		when S9 =>
-			if release_p = '1' then
+			if release_p = '0' then
+				NextState_Sreg0 <= S9;
+				next_sec_en <= '0';
+				next_sec_cnt <= z_5;
+				next_sec_reg <= sec_in;
+			elsif release_p = '1' then
 				NextState_Sreg0 <= S11;
 				next_sec_en <= sec_reg(0);
 				next_sec_reg(6 downto 0) <= sec_reg(7 downto 1);
 				next_sec_reg(7) <= '0';
 				next_sec_cnt <= sec_cnt + u_5;
-			elsif release_p = '0' then
-				NextState_Sreg0 <= S9;
-				next_sec_en <= '0';
-				next_sec_cnt <= z_5;
-				next_sec_reg <= sec_in;
 			end if;
 		when S10 =>
 			NextState_Sreg0 <= S10;
