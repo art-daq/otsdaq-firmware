@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : C:\AGP_2018_05_17_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Fri May 18 13:18:03 2018
--- From        : C:\AGP_2018_05_17_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
+-- File        : C:\AGP_2018_05_24_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
+-- Generated   : Fri May 25 14:39:53 2018
+-- From        : C:\AGP_2018_05_24_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -80,6 +80,17 @@ component acc_sync
        release_p : out STD_LOGIC
   );
 end component;
+component acc_sync_shft_reg
+  port (
+       clk0 : in STD_LOGIC;
+       ld : in STD_LOGIC_VECTOR(7 downto 0);
+       ld_f : in STD_LOGIC_VECTOR(23 downto 0);
+       ld_w_1 : in STD_LOGIC;
+       rst_p : in STD_LOGIC;
+       clk_39_out : out STD_LOGIC;
+       f_out : out STD_LOGIC
+  );
+end component;
 component ag284
   port (
        c4 : in STD_LOGIC_VECTOR(3 downto 0);
@@ -144,6 +155,14 @@ component buf8
   port (
        b_in : in STD_LOGIC_VECTOR(7 downto 0);
        b_out : out STD_LOGIC_VECTOR(7 downto 0)
+  );
+end component;
+component clk39_pattern
+  port (
+       clk : in STD_LOGIC;
+       d_in : in STD_LOGIC_VECTOR(2 downto 0);
+       rst_p : in STD_LOGIC;
+       pattern_out : out STD_LOGIC_VECTOR(7 downto 0)
   );
 end component;
 component clkd_burst_mux_8_to_1
@@ -253,13 +272,6 @@ component decode_addr_NIM_Plus_ctrs
        addr : in STD_LOGIC_VECTOR(31 downto 0);
        wr_en : in STD_LOGIC;
        blk_wr_en : out STD_LOGIC_VECTOR(31 downto 0)
-  );
-end component;
-component divide_by_8
-  port (
-       clock : in STD_LOGIC;
-       reset_p : in STD_LOGIC;
-       sigout : out STD_LOGIC
   );
 end component;
 component d_ff
@@ -431,15 +443,6 @@ component scope_probe_4ch
        br_wr_out : out STD_LOGIC
   );
 end component;
-component section_counter
-  port (
-       clk : in STD_LOGIC;
-       release_p : in STD_LOGIC;
-       reset_p : in STD_LOGIC;
-       sec_in : in STD_LOGIC_VECTOR(7 downto 0);
-       sec_en : out STD_LOGIC
-  );
-end component;
 component sel_block
   port (
        blk_en : in STD_LOGIC;
@@ -495,14 +498,6 @@ component test_mux
        s_addr : in STD_LOGIC_VECTOR(7 downto 0);
        sigtestin : in STD_LOGIC_VECTOR(31 downto 0);
        tsig_out : out STD_LOGIC
-  );
-end component;
-component trig_sync
-  port (
-       clk : in STD_LOGIC;
-       reset_p : in STD_LOGIC;
-       trig_sec_in : in STD_LOGIC_VECTOR(7 downto 0);
-       trig_sync_out : out STD_LOGIC
   );
 end component;
 component ver_code
@@ -648,17 +643,12 @@ signal sig_ch1 : STD_LOGIC;
 signal sig_ch2 : STD_LOGIC;
 signal sig_cms1 : STD_LOGIC;
 signal sig_cms2 : STD_LOGIC;
-signal sig_dlay_1 : STD_LOGIC;
-signal sig_dlay_2 : STD_LOGIC;
-signal sig_dlay_3 : STD_LOGIC;
-signal sig_dlay_4 : STD_LOGIC;
 signal sig_log : STD_LOGIC;
 signal sig_norm : STD_LOGIC;
 signal sumsig0 : STD_LOGIC;
 signal sumsig1 : STD_LOGIC;
 signal sumsig2 : STD_LOGIC;
 signal sync_w_40MHz : STD_LOGIC;
-signal sync_w_accel : STD_LOGIC;
 signal trig_sig1 : STD_LOGIC;
 signal trig_sig1nd : STD_LOGIC;
 signal trig_sig2 : STD_LOGIC;
@@ -708,7 +698,7 @@ signal dcm : STD_LOGIC_VECTOR(7 downto 0);
 signal del_ct : STD_LOGIC_VECTOR(127 downto 0);
 signal dur_ct : STD_LOGIC_VECTOR(127 downto 0);
 signal ext_clk_ctl : STD_LOGIC_VECTOR(7 downto 0);
-signal fs_sync_bus : STD_LOGIC_VECTOR(15 downto 0);
+signal fs_sync_bus : STD_LOGIC_VECTOR(31 downto 0);
 signal gate_sig_in : STD_LOGIC_VECTOR(7 downto 0);
 signal in_ch1_ctr_1 : STD_LOGIC_VECTOR(31 downto 0);
 signal in_ch1_ctr_2 : STD_LOGIC_VECTOR(31 downto 0);
@@ -763,6 +753,7 @@ signal out_ev_ctr : STD_LOGIC_VECTOR(31 downto 0);
 signal out_ev_ctrb : STD_LOGIC_VECTOR(31 downto 0);
 signal out_pol_sel : STD_LOGIC_VECTOR(7 downto 0);
 signal overflow : STD_LOGIC_VECTOR(15 downto 0);
+signal pat_out : STD_LOGIC_VECTOR(7 downto 0);
 signal pcnt : STD_LOGIC_VECTOR(31 downto 0);
 signal phi : STD_LOGIC_VECTOR(31 downto 0);
 signal plo : STD_LOGIC_VECTOR(31 downto 0);
@@ -836,6 +827,7 @@ signal z2_sel : STD_LOGIC_VECTOR(2 downto 0);
 signal z3_sel : STD_LOGIC_VECTOR(2 downto 0);
 signal z_sel : STD_LOGIC_VECTOR(15 downto 0);
 
+
 ---- Declaration for Dangling input ----
 signal Dangling_Input_Signal : STD_LOGIC;
 
@@ -864,7 +856,7 @@ signal Dangling_Input_Signal : STD_LOGIC;
     
     --for cms masking   
      attribute mark_debug of sync_w_40MHz : signal is "true";
-     attribute mark_debug of sync_w_accel : signal is "true";
+     --attribute mark_debug of sync_w_accel : signal is "true";
      attribute mark_debug of acc_release : signal is "true";
      attribute mark_debug of clk_13_25 : signal is "true";
      attribute mark_debug of clk_26_5 : signal is "true";
@@ -895,7 +887,6 @@ begin
     debug_fast_cnt <= cnt64_simp_out(15 downto 0);
     sync_ctrl <= ctr_resets(6);
 ----  Component instantiations  ----
-
 
 U1 : reg_64
   port map(
@@ -1782,14 +1773,6 @@ U162 : s_cnt32_v2
   );
 
 NET19293 <= reset_out or ctr_resets(2) or pulse_ctl(5);
-
-U164 : d_ff
-  port map(
-       clk => clk0,
-       dl => sig_dlay_1,
-       q => sig_dlay_2,
-       rst_p => GND
-  );
 
 sigmux(14) <= veto_out_n2;
 
@@ -2904,14 +2887,6 @@ gate_sig_in(6) <= GND;
 
 gate_sig_in(7) <= NET35351;
 
-U285 : d_ff
-  port map(
-       clk => clk0,
-       dl => sig_dlay_2,
-       q => sig_dlay_3,
-       rst_p => GND
-  );
-
 U286 : acc_sync
   port map(
        clk_13_25 => clk13_lat,
@@ -2921,26 +2896,14 @@ U286 : acc_sync
        reset_p => ctr_resets(6)
   );
 
-U287 : divide_by_8
+U287 : clk39_pattern
   port map(
-       clock => clk0,
-       reset_p => sync_w_accel,
-       sigout => clk_39_out
-  );
-
-U288 : trig_sync
-  port map(
-       trig_sec_in(0) => fs_sync_bus(0),
-       trig_sec_in(1) => fs_sync_bus(1),
-       trig_sec_in(2) => fs_sync_bus(2),
-       trig_sec_in(3) => fs_sync_bus(3),
-       trig_sec_in(4) => fs_sync_bus(4),
-       trig_sec_in(5) => fs_sync_bus(5),
-       trig_sec_in(6) => fs_sync_bus(6),
-       trig_sec_in(7) => fs_sync_bus(7),
+       d_in(0) => accel_sync_bus(0),
+       d_in(1) => accel_sync_bus(1),
+       d_in(2) => accel_sync_bus(2),
        clk => clk0,
-       reset_p => sig_dlay_4,
-       trig_sync_out => sync_w_40MHz
+       pattern_out => pat_out,
+       rst_p => reset_out
   );
 
 U289 : reg_8
@@ -3031,20 +2994,38 @@ jw121_logic_term(30) <= GND;
 
 jw121_logic_term(31) <= GND;
 
-U307 : reg_8
+U306 : acc_sync_shft_reg
   port map(
-       d(0) => rx_data(0),
-       d(1) => rx_data(1),
-       d(2) => rx_data(2),
-       d(3) => rx_data(3),
-       d(4) => rx_data(4),
-       d(5) => rx_data(5),
-       d(6) => rx_data(6),
-       d(7) => rx_data(7),
-       clk => tx_clk,
-       q => accel_sync_bus,
-       reset_p => reset_out,
-       wr_en => blk_wr_en_1(7)
+       ld_f(0) => fs_sync_bus(0),
+       ld_f(1) => fs_sync_bus(1),
+       ld_f(2) => fs_sync_bus(2),
+       ld_f(3) => fs_sync_bus(3),
+       ld_f(4) => fs_sync_bus(4),
+       ld_f(5) => fs_sync_bus(5),
+       ld_f(6) => fs_sync_bus(6),
+       ld_f(7) => fs_sync_bus(7),
+       ld_f(8) => fs_sync_bus(8),
+       ld_f(9) => fs_sync_bus(9),
+       ld_f(10) => fs_sync_bus(10),
+       ld_f(11) => fs_sync_bus(11),
+       ld_f(12) => fs_sync_bus(12),
+       ld_f(13) => fs_sync_bus(13),
+       ld_f(14) => fs_sync_bus(14),
+       ld_f(15) => fs_sync_bus(15),
+       ld_f(16) => fs_sync_bus(16),
+       ld_f(17) => fs_sync_bus(17),
+       ld_f(18) => fs_sync_bus(18),
+       ld_f(19) => fs_sync_bus(19),
+       ld_f(20) => fs_sync_bus(20),
+       ld_f(21) => fs_sync_bus(21),
+       ld_f(22) => fs_sync_bus(22),
+       ld_f(23) => fs_sync_bus(23),
+       clk0 => clk0,
+       clk_39_out => clk_39_out,
+       f_out => sync_w_40MHz,
+       ld => pat_out,
+       ld_w_1 => acc_release,
+       rst_p => ctr_resets(6)
   );
 
 U308 : reg_8
@@ -7734,14 +7715,6 @@ U472 : d_ff
        rst_p => GND
   );
 
-U473 : d_ff
-  port map(
-       clk => clk0,
-       dl => sig_dlay_3,
-       q => sig_dlay_4,
-       rst_p => GND
-  );
-
 sigmux(5) <= sig_mod(0);
 
 sigmux(6) <= sig_mod(1);
@@ -8086,24 +8059,47 @@ ld_arr_rst_p <= reset_out or pulse_ctl(0);
 
 sigmux(29) <= cln_clk_53;
 
-U81 : d_ff
+U82 : reg_32
   port map(
-       clk => clk0,
-       dl => acc_release,
-       q => sig_dlay_1,
-       rst_p => GND
+       d(0) => Dangling_Input_Signal,
+       d(1) => Dangling_Input_Signal,
+       d(2) => Dangling_Input_Signal,
+       d(3) => Dangling_Input_Signal,
+       d(4) => Dangling_Input_Signal,
+       d(5) => Dangling_Input_Signal,
+       d(6) => Dangling_Input_Signal,
+       d(7) => Dangling_Input_Signal,
+       d(8) => Dangling_Input_Signal,
+       d(9) => Dangling_Input_Signal,
+       d(10) => Dangling_Input_Signal,
+       d(11) => Dangling_Input_Signal,
+       d(12) => Dangling_Input_Signal,
+       d(13) => Dangling_Input_Signal,
+       d(14) => Dangling_Input_Signal,
+       d(15) => Dangling_Input_Signal,
+       d(16) => rx_data(0),
+       d(17) => rx_data(1),
+       d(18) => rx_data(2),
+       d(19) => rx_data(3),
+       d(20) => rx_data(4),
+       d(21) => rx_data(5),
+       d(22) => rx_data(6),
+       d(23) => rx_data(7),
+       d(24) => rx_data(8),
+       d(25) => rx_data(9),
+       d(26) => rx_data(10),
+       d(27) => rx_data(11),
+       d(28) => rx_data(12),
+       d(29) => rx_data(13),
+       d(30) => rx_data(14),
+       d(31) => rx_data(15),
+       clk => tx_clk,
+       q => fs_sync_bus,
+       reset_p => reset_out,
+       wr_en => blk_wr_en_cts(8)
   );
 
-U82 : section_counter
-  port map(
-       clk => clk0,
-       release_p => sig_dlay_3,
-       reset_p => ctr_resets(6),
-       sec_en => sync_w_accel,
-       sec_in => accel_sync_bus
-  );
-
-U83 : reg_16
+U83 : reg_8
   port map(
        d(0) => rx_data(0),
        d(1) => rx_data(1),
@@ -8113,18 +8109,10 @@ U83 : reg_16
        d(5) => rx_data(5),
        d(6) => rx_data(6),
        d(7) => rx_data(7),
-       d(8) => rx_data(8),
-       d(9) => rx_data(9),
-       d(10) => rx_data(10),
-       d(11) => rx_data(11),
-       d(12) => rx_data(12),
-       d(13) => rx_data(13),
-       d(14) => rx_data(14),
-       d(15) => rx_data(15),
        clk => tx_clk,
-       q => fs_sync_bus,
+       q => accel_sync_bus,
        reset_p => reset_out,
-       wr_en => blk_wr_en_cts(8)
+       wr_en => blk_wr_en_1(7)
   );
 
 U84 : stsp_counter

@@ -113,6 +113,9 @@ read_vhdl -library xil_defaultlib {
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/long_pulse.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/mch_trig_out.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/trig_out_mux.vhd
+  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/acc_sync_shft_reg.vhd
+  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/clk39_pattern.vhd
+  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/FW_Transfer_2018_01_24/dmux_ff.vhd
 }
 read_xdc /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/constrs_1/new/top_11.xdc
 set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x/top/top.srcs/constrs_1/new/top_11.xdc]
