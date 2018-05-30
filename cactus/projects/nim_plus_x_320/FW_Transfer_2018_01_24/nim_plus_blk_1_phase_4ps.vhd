@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : C:\AGP_2018_05_24_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Wed May 30 10:49:03 2018
+-- Generated   : Wed May 30 14:56:03 2018
 -- From        : C:\AGP_2018_05_24_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -331,6 +331,14 @@ component mux_2_1_16ch
        in_ch1 : in STD_LOGIC_VECTOR(15 downto 0);
        sel : in STD_LOGIC;
        s_out : out STD_LOGIC_VECTOR(15 downto 0)
+  );
+end component;
+component mux_4_to_1
+  port (
+       rst_p : in STD_LOGIC;
+       sel_in : in STD_LOGIC_VECTOR(1 downto 0);
+       sig_in : in STD_LOGIC_VECTOR(3 downto 0);
+       out_1 : out STD_LOGIC
   );
 end component;
 component mux_8_to_1
@@ -741,6 +749,10 @@ signal muxsel_3 : STD_LOGIC_VECTOR(7 downto 0);
 signal muxsel_4 : STD_LOGIC_VECTOR(7 downto 0);
 signal mux_ctl : STD_LOGIC_VECTOR(7 downto 0);
 signal mxout_mxin : STD_LOGIC_VECTOR(3 downto 0);
+signal mx_sig_in0 : STD_LOGIC_VECTOR(3 downto 0);
+signal mx_sig_in1 : STD_LOGIC_VECTOR(3 downto 0);
+signal mx_sig_in2 : STD_LOGIC_VECTOR(3 downto 0);
+signal mx_sig_in3 : STD_LOGIC_VECTOR(3 downto 0);
 signal out_ctr_1 : STD_LOGIC_VECTOR(31 downto 0);
 signal out_ctr_1b : STD_LOGIC_VECTOR(31 downto 0);
 signal out_ctr_2 : STD_LOGIC_VECTOR(31 downto 0);
@@ -792,7 +804,7 @@ signal scope_count : STD_LOGIC_VECTOR(63 downto 0);
 signal scope_ctl : STD_LOGIC_VECTOR(7 downto 0);
 signal scope_out : STD_LOGIC_VECTOR(63 downto 0);
 signal sel_blk_en_term : STD_LOGIC_VECTOR(15 downto 0);
-signal sel_ctl : STD_LOGIC_VECTOR(7 downto 0);
+signal sel_ctl : STD_LOGIC_VECTOR(15 downto 0);
 signal sigmux : STD_LOGIC_VECTOR(31 downto 0);
 signal sig_event_cnts : STD_LOGIC_VECTOR(63 downto 0);
 signal sig_event_counts : STD_LOGIC_VECTOR(63 downto 0);
@@ -895,22 +907,6 @@ U1 : reg_64
        q => ld_reg,
        reset_p => reset_out,
        wr_en => blk_wr_en(2)
-  );
-
-U10 : reg_8
-  port map(
-       d(0) => rx_data(0),
-       d(1) => rx_data(1),
-       d(2) => rx_data(2),
-       d(3) => rx_data(3),
-       d(4) => rx_data(4),
-       d(5) => rx_data(5),
-       d(6) => rx_data(6),
-       d(7) => rx_data(7),
-       clk => tx_clk,
-       q => sel_ctl,
-       reset_p => reset_out,
-       wr_en => blk_wr_en(6)
   );
 
 tim_sig_in(3) <= y(3);
@@ -2099,8 +2095,6 @@ U211 : reg_8
        wr_en => blk_wr_en(3)
   );
 
-qss_sel(0) <= (sig_mod(0) and not sel_ctl(4)) or (ys(0) and sel_ctl(4));
-
 U213 : pol_sel
   port map(
        sel_in => out_pol_sel(3),
@@ -3050,6 +3044,30 @@ U306 : acc_sync_shft_reg
        ld => pat_out,
        ld_w_1 => acc_release,
        rst_p => ctr_resets(6)
+  );
+
+U307 : reg_16
+  port map(
+       d(0) => rx_data(0),
+       d(1) => rx_data(1),
+       d(2) => rx_data(2),
+       d(3) => rx_data(3),
+       d(4) => rx_data(4),
+       d(5) => rx_data(5),
+       d(6) => rx_data(6),
+       d(7) => rx_data(7),
+       d(8) => rx_data(8),
+       d(9) => rx_data(9),
+       d(10) => rx_data(10),
+       d(11) => rx_data(11),
+       d(12) => rx_data(12),
+       d(13) => rx_data(13),
+       d(14) => rx_data(14),
+       d(15) => rx_data(15),
+       clk => tx_clk,
+       q => sel_ctl,
+       reset_p => reset_out,
+       wr_en => blk_wr_en(6)
   );
 
 U308 : reg_8
@@ -4197,6 +4215,14 @@ U316 : agrgate_8_by_8
        in4(5) => sel_blk_en_term(13),
        in4(6) => sel_blk_en_term(14),
        in4(7) => sel_blk_en_term(15),
+       in5(0) => sel_ctl(0),
+       in5(1) => sel_ctl(1),
+       in5(2) => sel_ctl(2),
+       in5(3) => sel_ctl(3),
+       in5(4) => sel_ctl(4),
+       in5(5) => sel_ctl(5),
+       in5(6) => sel_ctl(6),
+       in5(7) => sel_ctl(7),
        in6(0) => z_sel(0),
        in6(1) => z_sel(1),
        in6(2) => z_sel(2),
@@ -4214,7 +4240,6 @@ U316 : agrgate_8_by_8
        in7(6) => z_sel(14),
        in7(7) => z_sel(15),
        in2 => dac_ctl,
-       in5 => sel_ctl,
        out_0 => rdb10
   );
 
@@ -7665,13 +7690,7 @@ ck_mx_out(6) <= ext_clk_ctl(6);
 
 ck_mx_out(7) <= ext_clk_ctl(7);
 
-qss_sel(1) <= (sig_mod(1) and not sel_ctl(5)) or (ys(1) and sel_ctl(5));
-
-qss_sel(2) <= (sig_mod(2) and not sel_ctl(6)) or (ys(2) and sel_ctl(6));
-
 sigmux(3) <= bmy(2);
-
-qss_sel(3) <= (sig_mod(3) and not sel_ctl(7)) or (ys(3) and sel_ctl(7));
 
 U461 : reg_64
   port map(
@@ -7739,9 +7758,77 @@ U472 : d_ff
        rst_p => GND
   );
 
+U474 : mux_4_to_1
+  port map(
+       sel_in(0) => sel_ctl(8),
+       sel_in(1) => sel_ctl(9),
+       out_1 => qss_sel(0),
+       rst_p => GND,
+       sig_in => mx_sig_in0
+  );
+
+mx_sig_in0(2) <= not(GND);
+
+mx_sig_in0(0) <= ys(0);
+
+mx_sig_in0(1) <= sig_mod(0);
+
+mx_sig_in0(3) <= GND;
+
+mx_sig_in1(2) <= not(GND);
+
 sigmux(5) <= sig_mod(0);
 
+mx_sig_in1(0) <= ys(1);
+
+mx_sig_in1(1) <= sig_mod(1);
+
+mx_sig_in1(3) <= GND;
+
+U483 : mux_4_to_1
+  port map(
+       sel_in(0) => sel_ctl(10),
+       sel_in(1) => sel_ctl(11),
+       out_1 => qss_sel(1),
+       rst_p => GND,
+       sig_in => mx_sig_in1
+  );
+
+U484 : mux_4_to_1
+  port map(
+       sel_in(0) => sel_ctl(12),
+       sel_in(1) => sel_ctl(13),
+       out_1 => qss_sel(2),
+       rst_p => GND,
+       sig_in => mx_sig_in2
+  );
+
+mx_sig_in2(2) <= not(GND);
+
+mx_sig_in2(0) <= ys(2);
+
+mx_sig_in2(1) <= sig_mod(2);
+
+mx_sig_in2(3) <= GND;
+
+mx_sig_in3(0) <= ys(3);
+
 sigmux(6) <= sig_mod(1);
+
+mx_sig_in3(1) <= sig_mod(3);
+
+mx_sig_in3(2) <= not(GND);
+
+mx_sig_in3(3) <= GND;
+
+U493 : mux_4_to_1
+  port map(
+       sel_in(0) => sel_ctl(14),
+       sel_in(1) => sel_ctl(15),
+       out_1 => qss_sel(3),
+       rst_p => GND,
+       sig_in => mx_sig_in3
+  );
 
 U5 : reg_16
   port map(
