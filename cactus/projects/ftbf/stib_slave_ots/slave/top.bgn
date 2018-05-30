@@ -6,7 +6,7 @@ Loading device for application Rf_Device from file '4vlx25.nph' in environment
 The STEPPING level for this design is 0.
 Opened constraints file top.pcf.
 
-Fri May 11 15:31:24 2018
+Tue May 29 16:49:49 2018
 
 /opt/local/xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/bitgen -intstyle ise -w -g DebugBitstream:No -g Binary:no -g CRC:Enable -g ConfigRate:4 -g CclkPin:PullUp -g M0Pin:PullUp -g M1Pin:PullUp -g M2Pin:PullUp -g ProgPin:PullUp -g DonePin:PullUp -g InitPin:Pullup -g CsPin:Pullup -g DinPin:Pullup -g BusyPin:Pullup -g RdWrPin:Pullup -g PowerdownPin:PullUp -g HswapenPin:PullUp -g TckPin:PullUp -g TdiPin:PullUp -g TdoPin:PullUp -g TmsPin:PullUp -g UnusedPin:PullDown -g UserID:0xFFFFFFFF -g DCIUpdateMode:AsRequired -g StartUpClk:CClk -g DONE_cycle:4 -g GTS_cycle:5 -g GWE_cycle:6 -g LCK_cycle:NoWait -g Match_cycle:Auto -g Security:None -g DonePipe:Yes -g DriveDone:No -g Encrypt:No top.ncd 
 
@@ -117,6 +117,8 @@ Running DRC.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is
    sourced by a combinatorial pin. This is not good design practice. Use the CE
    pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:367 - The signal <ila0_trig0<152>> is incomplete. The
+   signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
    <stackGen[0].fifo_imp/U0/xst_fifo_generator/gconvfifo.rf/gbiv4.fgfifo16_patch
    /fblk/gen_wgtr.inst_wgtr/tmpldoutp<3>> is incomplete. The signal does not
@@ -151,7 +153,7 @@ WARNING:PhysDesignRules:367 - The signal
 WARNING:PhysDesignRules:367 - The signal
    <eth_interface/data_manager_blk/tx_ctrl_info_fifo_full> is incomplete. The
    signal does not drive any load pins in the design.
-DRC detected 0 errors and 9 warnings.  Please see the previously displayed
+DRC detected 0 errors and 10 warnings.  Please see the previously displayed
 individual error or warning messages for more details.
 INFO:Security:67 - XILINXD_LICENSE_FILE is set to
 '/opt/local/xilinx/Vivado/2014.4/data/ip/core_licenses:27003@eselm1.fnal.gov:/op
@@ -166,7 +168,7 @@ WARNING:Security:44 - Since no license file was found,
        (xlcm or "Manage Xilinx Licenses")
        to assist in obtaining a license.
 WARNING:Security:42 - Your license support version '2018.05' for ISE expires in
-20 days after which you will not qualify for Xilinx software updates or new
+2 days after which you will not qualify for Xilinx software updates or new
 releases.
 
 Creating bit map...

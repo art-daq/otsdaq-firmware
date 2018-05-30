@@ -1111,7 +1111,7 @@ begin
     BCOCLK => DCM_BCOCLK,
     BCO => STRIP_BCO_COUNTER(7 DOWNTO 0),
     FBCO => FRACBCO,
-	 ext_trig => latched_trig,
+	 ext_trig => '0', -- latched_trig,
     TRIG_INPUT => TRIG_OUTPUTS,
     BCO_OFFSET => STRIP_TRIG_CSR(3 DOWNTO 0),
     TRIGGER_NUMBER => STRIP_TRIGGER_NUMBER,    -- 40-bit trigger counter

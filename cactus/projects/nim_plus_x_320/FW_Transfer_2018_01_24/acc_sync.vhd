@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : C:\AGP_2018_05_17_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\acc_sync.vhd
--- Generated   : 05/18/18 13:17:18
--- From        : C:\AGP_2018_05_17_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\acc_sync.asf
+-- File        : C:\AGP_2018_05_24_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\acc_sync.vhd
+-- Generated   : 05/25/18 14:34:37
+-- From        : C:\AGP_2018_05_24_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\acc_sync.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -45,11 +45,6 @@ signal Sreg0, NextState_Sreg0: Sreg0_type;
 -- Declarations of pre-registered internal signals
 signal int_release_p, next_release_p: STD_LOGIC;
 
-    attribute mark_debug : string;
-    attribute mark_debug of Sreg0 : signal is "true";
-    attribute mark_debug of clk_13_25 : signal is "true";
-    attribute mark_debug of clk_26_5 : signal is "true";
-    attribute mark_debug of int_release_p : signal is "true";
 begin
 
 
@@ -66,7 +61,7 @@ begin
 	next_release_p <= int_release_p;
 	case Sreg0 is
 		when S3 =>
-			NextState_Sreg0 <= S3;
+			NextState_Sreg0 <= S1;
 			next_release_p <= '0';
 		when S1 =>
 			if (clk_13_25 = '0') and (clk_26_5 = '0') then

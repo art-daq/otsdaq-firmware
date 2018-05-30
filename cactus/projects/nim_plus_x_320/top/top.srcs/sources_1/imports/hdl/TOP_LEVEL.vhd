@@ -618,7 +618,7 @@ begin
 				PHY_RX_DV=>GMII_RX_DV_0_sig,
 				PHY_RX_ER=>GMII_RX_ER_0_sig,
 				MASTER_CLK=>MASTER_CLK,      
-				CONTINUOUS_CLK=>USER_CLK,          
+				slow_clk=>USER_CLK,          
 				reset_in=>reset_btn,
 				reset_out => reset,
 				

@@ -3946,9 +3946,10 @@ WARNING:Xst:646 - Signal <FIFO_OUTPUT<35:32>> is assigned but never used. This u
     Register <TOKEN> equivalent to <DOUT_VALID> has been removed
     Found 1-bit register for signal <DOUT_VALID>.
     Found 1-bit register for signal <CHECKED_TRIGGER>.
+    Found 1-bit register for signal <strip_fifo_empty_latch>.
     Found 32-bit register for signal <TRIGGERED_DATA>.
     Summary:
-	inferred  34 D-type flip-flop(s).
+	inferred  35 D-type flip-flop(s).
 Unit <stripfifo> synthesized.
 
 
@@ -5950,8 +5951,8 @@ Macro Statistics
  7-bit up counter                                      : 1
  8-bit up counter                                      : 3
  9-bit up counter                                      : 1
-# Registers                                            : 2849
- 1-bit register                                        : 2511
+# Registers                                            : 2855
+ 1-bit register                                        : 2517
  11-bit register                                       : 8
  12-bit register                                       : 3
  16-bit register                                       : 16
@@ -6910,6 +6911,7 @@ INFO:Xst:2261 - The FF/Latch <WORD_COUNT_1> in Unit <stripstream_imp> is equival
 INFO:Xst:2261 - The FF/Latch <CKSUM_LENGTH_INPUT_3> in Unit <stripstream_imp> is equivalent to the following 2 FFs/Latches, which will be removed : <CKSUM_LENGTH_INPUT_4> <CKSUM_LENGTH_INPUT_5> 
 WARNING:Xst:1426 - The value init of the FF/Latch EVER_STUFFED hinder the constant cleaning in the block stripstream_imp.
    You should achieve better results by setting this init to 1.
+WARNING:Xst:1710 - FF/Latch <DOUT_25> (without init value) has a constant value of 0 in block <G[4].chipserdes0_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <DOUT_24> (without init value) has a constant value of 1 in block <G[4].chipserdes0_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <DOUT_25> (without init value) has a constant value of 1 in block <G[4].chipserdes1_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <DOUT_24> (without init value) has a constant value of 0 in block <G[4].chipserdes1_imp>. This FF/Latch will be trimmed during the optimization process.
@@ -6938,6 +6940,7 @@ WARNING:Xst:1710 - FF/Latch <NEXT_CKSUM_16> (without init value) has a constant 
 WARNING:Xst:1293 - FF/Latch <STATE_7> has a constant value of 0 in block <stripstream_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <trig_fifo_input_3> (without init value) has a constant value of 1 in block <trigproc_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <trig_fifo_input_0> (without init value) has a constant value of 0 in block <trigproc_imp>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ext_trig_latch> (without init value) has a constant value of 0 in block <trigproc_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <dout_valid> (without init value) has a constant value of 0 in block <trigprim1_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <TRIGGERED_DATA_28> (without init value) has a constant value of 0 in block <G[5].strip_fifo_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <DOUT_25> (without init value) has a constant value of 0 in block <G[5].chipserdes0_imp>. This FF/Latch will be trimmed during the optimization process.
@@ -6952,7 +6955,6 @@ WARNING:Xst:1710 - FF/Latch <DOUT_25> (without init value) has a constant value 
 WARNING:Xst:1710 - FF/Latch <DOUT_24> (without init value) has a constant value of 1 in block <G[5].chipserdes4_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <TRIGGERED_DATA_28> (without init value) has a constant value of 0 in block <G[4].strip_fifo_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <TRIGGERED_DATA_27> (without init value) has a constant value of 0 in block <G[4].strip_fifo_imp>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <DOUT_25> (without init value) has a constant value of 0 in block <G[4].chipserdes0_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <DOUT_24> (without init value) has a constant value of 1 in block <G[1].chipserdes4_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <TRIGGERED_DATA_29> (without init value) has a constant value of 0 in block <G[0].strip_fifo_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <TRIGGERED_DATA_28> (without init value) has a constant value of 0 in block <G[0].strip_fifo_imp>. This FF/Latch will be trimmed during the optimization process.
@@ -6997,6 +6999,7 @@ WARNING:Xst:1710 - FF/Latch <DOUT_24> (without init value) has a constant value 
 WARNING:Xst:1710 - FF/Latch <DOUT_26> (without init value) has a constant value of 1 in block <G[1].chipserdes3_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <DOUT_24> (without init value) has a constant value of 0 in block <G[1].chipserdes3_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <DOUT_25> (without init value) has a constant value of 0 in block <G[1].chipserdes4_imp>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ext_trig_latch2> (without init value) has a constant value of 0 in block <trigproc_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <CKSUM_LENGTH_INPUT_2> (without init value) has a constant value of 0 in block <stripstream_imp>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <ram_wdata_48> of sequential type is unconnected in block <RAM_COMM_DEC>.
 WARNING:Xst:2677 - Node <ram_wdata_49> of sequential type is unconnected in block <RAM_COMM_DEC>.
@@ -7165,8 +7168,8 @@ Macro Statistics
  9-bit up counter                                      : 1
 # Accumulators                                         : 1
  12-bit up loadable accumulator                        : 1
-# Registers                                            : 6843
- Flip-Flops                                            : 6843
+# Registers                                            : 6849
+ Flip-Flops                                            : 6849
 # Comparators                                          : 40
  11-bit comparator less                                : 2
  12-bit comparator greatequal                          : 1
@@ -7407,7 +7410,8 @@ WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <DOUT_26> (without i
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <DOUT_27> (without init value) has a constant value of 1 in block <chipserdes_30>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <DOUT_28> (without init value) has a constant value of 0 in block <chipserdes_30>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <DOUT_29> (without init value) has a constant value of 1 in block <chipserdes_30>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <spy_data_0> (without init value) has a constant value of 0 in block <trigproc>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ext_trig_latch> (without init value) has a constant value of 0 in block <trigproc>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <spy_data_0> (without init value) has a constant value of 0 in block <trigproc>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <spy_data_1> (without init value) has a constant value of 0 in block <trigproc>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <spy_data_2> (without init value) has a constant value of 0 in block <trigproc>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <spy_data_3> (without init value) has a constant value of 1 in block <trigproc>. This FF/Latch will be trimmed during the optimization process.
@@ -7421,6 +7425,7 @@ WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <trig_fifo_input_3> 
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <trig_fifo_input_5> (without init value) has a constant value of 1 in block <trigproc>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <trig_fifo_input_6> (without init value) has a constant value of 0 in block <trigproc>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <trig_fifo_input_7> (without init value) has a constant value of 1 in block <trigproc>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ext_trig_latch2> (without init value) has a constant value of 0 in block <trigproc>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1426 - The value init of the FF/Latch EVER_STUFFED hinder the constant cleaning in the block stripstream.
    You should achieve better results by setting this init to 1.
 WARNING:Xst:1293 - FF/Latch <STATE_7> has a constant value of 0 in block <stripstream>. This FF/Latch will be trimmed during the optimization process.
@@ -8173,6 +8178,25 @@ INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_
 
 Pipelining and Register Balancing Report ...
 
+Processing Unit <strip_imp/stripana_imp> :
+	Register(s) STRIP_DATA_1 has(ve) been backward balanced into : STRIP_DATA_1_BRB2 STRIP_DATA_1_BRB3.
+	Register(s) STRIP_DATA_12 has(ve) been backward balanced into : STRIP_DATA_12_BRB2 STRIP_DATA_12_BRB3.
+	Register(s) STRIP_DATA_13 has(ve) been backward balanced into : STRIP_DATA_13_BRB2 STRIP_DATA_13_BRB3.
+	Register(s) STRIP_DATA_14 has(ve) been backward balanced into : STRIP_DATA_14_BRB2 STRIP_DATA_14_BRB3.
+	Register(s) STRIP_DATA_15 has(ve) been backward balanced into : STRIP_DATA_15_BRB2 STRIP_DATA_15_BRB3.
+	Register(s) STRIP_DATA_16 has(ve) been backward balanced into : STRIP_DATA_16_BRB2 STRIP_DATA_16_BRB3.
+	Register(s) STRIP_DATA_17 has(ve) been backward balanced into : STRIP_DATA_17_BRB2 STRIP_DATA_17_BRB3.
+	Register(s) STRIP_DATA_18 has(ve) been backward balanced into : STRIP_DATA_18_BRB2 STRIP_DATA_18_BRB3.
+	Register(s) STRIP_DATA_19 has(ve) been backward balanced into : STRIP_DATA_19_BRB2 STRIP_DATA_19_BRB3.
+	Register(s) STRIP_DATA_2 has(ve) been backward balanced into : STRIP_DATA_2_BRB2 STRIP_DATA_2_BRB3.
+	Register(s) STRIP_DATA_20 has(ve) been backward balanced into : STRIP_DATA_20_BRB2 STRIP_DATA_20_BRB3.
+	Register(s) STRIP_DATA_24 has(ve) been backward balanced into : STRIP_DATA_24_BRB2 STRIP_DATA_24_BRB3.
+	Register(s) STRIP_DATA_25 has(ve) been backward balanced into : STRIP_DATA_25_BRB2 STRIP_DATA_25_BRB3.
+	Register(s) STRIP_DATA_26 has(ve) been backward balanced into : STRIP_DATA_26_BRB2 STRIP_DATA_26_BRB3.
+	Register(s) STRIP_DATA_3 has(ve) been backward balanced into : STRIP_DATA_3_BRB2 STRIP_DATA_3_BRB3.
+	Register(s) STRIP_DATA_31 has(ve) been backward balanced into : STRIP_DATA_31_BRB0 STRIP_DATA_31_BRB1 STRIP_DATA_31_BRB2.
+Unit <strip_imp/stripana_imp> processed.
+
 Processing Unit <strip_imp/sc_imp> :
 	Register(s) BITS_OUT_0 has(ve) been backward balanced into : BITS_OUT_0_BRB2 BITS_OUT_0_BRB3.
 	Register(s) BITS_OUT_1 has(ve) been backward balanced into : BITS_OUT_1_BRB2 BITS_OUT_1_BRB3.
@@ -8304,25 +8328,6 @@ Processing Unit <strip_imp/sc_imp> :
 	Register(s) BITS_OUT_99 has(ve) been backward balanced into : BITS_OUT_99_BRB2 BITS_OUT_99_BRB3.
 Unit <strip_imp/sc_imp> processed.
 
-Processing Unit <strip_imp/stripana_imp> :
-	Register(s) STRIP_DATA_1 has(ve) been backward balanced into : STRIP_DATA_1_BRB2 STRIP_DATA_1_BRB3.
-	Register(s) STRIP_DATA_12 has(ve) been backward balanced into : STRIP_DATA_12_BRB2 STRIP_DATA_12_BRB3.
-	Register(s) STRIP_DATA_13 has(ve) been backward balanced into : STRIP_DATA_13_BRB2 STRIP_DATA_13_BRB3.
-	Register(s) STRIP_DATA_14 has(ve) been backward balanced into : STRIP_DATA_14_BRB2 STRIP_DATA_14_BRB3.
-	Register(s) STRIP_DATA_15 has(ve) been backward balanced into : STRIP_DATA_15_BRB2 STRIP_DATA_15_BRB3.
-	Register(s) STRIP_DATA_16 has(ve) been backward balanced into : STRIP_DATA_16_BRB2 STRIP_DATA_16_BRB3.
-	Register(s) STRIP_DATA_17 has(ve) been backward balanced into : STRIP_DATA_17_BRB2 STRIP_DATA_17_BRB3.
-	Register(s) STRIP_DATA_18 has(ve) been backward balanced into : STRIP_DATA_18_BRB2 STRIP_DATA_18_BRB3.
-	Register(s) STRIP_DATA_19 has(ve) been backward balanced into : STRIP_DATA_19_BRB2 STRIP_DATA_19_BRB3.
-	Register(s) STRIP_DATA_2 has(ve) been backward balanced into : STRIP_DATA_2_BRB2 STRIP_DATA_2_BRB3.
-	Register(s) STRIP_DATA_20 has(ve) been backward balanced into : STRIP_DATA_20_BRB2 STRIP_DATA_20_BRB3.
-	Register(s) STRIP_DATA_24 has(ve) been backward balanced into : STRIP_DATA_24_BRB2 STRIP_DATA_24_BRB3.
-	Register(s) STRIP_DATA_25 has(ve) been backward balanced into : STRIP_DATA_25_BRB2 STRIP_DATA_25_BRB3.
-	Register(s) STRIP_DATA_26 has(ve) been backward balanced into : STRIP_DATA_26_BRB2 STRIP_DATA_26_BRB3.
-	Register(s) STRIP_DATA_3 has(ve) been backward balanced into : STRIP_DATA_3_BRB2 STRIP_DATA_3_BRB3.
-	Register(s) STRIP_DATA_31 has(ve) been backward balanced into : STRIP_DATA_31_BRB0 STRIP_DATA_31_BRB1 STRIP_DATA_31_BRB2.
-Unit <strip_imp/stripana_imp> processed.
-
 Final Macro Processing ...
 
 Processing Unit <ICMPPingShiftRegBlock> :
@@ -8379,8 +8384,8 @@ Unit <top> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 6741
- Flip-Flops                                            : 6741
+# Registers                                            : 6745
+ Flip-Flops                                            : 6745
 # Shift Registers                                      : 40
  2-bit shift register                                  : 32
  44-bit shift register                                 : 8
@@ -8412,19 +8417,19 @@ Design Statistics
 # IOs                              : 215
 
 Cell Usage :
-# BELS                             : 16458
+# BELS                             : 16464
 #      GND                         : 91
 #      INV                         : 455
 #      LUT1                        : 728
-#      LUT2                        : 1367
+#      LUT2                        : 1368
 #      LUT2_D                      : 6
-#      LUT2_L                      : 18
-#      LUT3                        : 2527
-#      LUT3_D                      : 28
+#      LUT2_L                      : 17
+#      LUT3                        : 2522
+#      LUT3_D                      : 27
 #      LUT3_L                      : 21
-#      LUT4                        : 7486
-#      LUT4_D                      : 68
-#      LUT4_L                      : 290
+#      LUT4                        : 7495
+#      LUT4_D                      : 70
+#      LUT4_L                      : 291
 #      MULT_AND                    : 12
 #      MUXCY                       : 1790
 #      MUXF5                       : 400
@@ -8433,8 +8438,8 @@ Cell Usage :
 #      MUXF8                       : 5
 #      VCC                         : 74
 #      XORCY                       : 1061
-# FlipFlops/Latches                : 9011
-#      FD                          : 344
+# FlipFlops/Latches                : 9015
+#      FD                          : 348
 #      FD_1                        : 471
 #      FDC                         : 532
 #      FDCE                        : 366
@@ -8482,10 +8487,10 @@ Device utilization summary:
 
 Selected Device : 4vlx25ff668-10 
 
- Number of Slices:                     9566  out of  10752    88%  
- Number of Slice Flip Flops:           9011  out of  21504    41%  
- Number of 4 input LUTs:              14330  out of  21504    66%  
-    Number used as logic:             12994
+ Number of Slices:                     9569  out of  10752    88%  
+ Number of Slice Flip Flops:           9015  out of  21504    41%  
+ Number of 4 input LUTs:              14336  out of  21504    66%  
+    Number used as logic:             13000
     Number used as Shift registers:      88
     Number used as RAMs:               1248
  Number of IOs:                         215
@@ -8519,7 +8524,7 @@ Clock Information:
 Clock Signal                                          | Clock buffer(FF name)                                        | Load  |
 ------------------------------------------------------+--------------------------------------------------------------+-------+
 GMII_RXCLK_PAD                                        | IBUFG+BUFG                                                   | 3539  |
-CLK15NS_PAD                                           | BUFGCTRL+clkzWatchdog[0].clkz_dcm:CLK0+BUFGCTRL              | 3454  |
+CLK15NS_PAD                                           | BUFGCTRL+clkzWatchdog[0].clkz_dcm:CLK0+BUFGCTRL              | 3460  |
 EXT_CLK_PAD_P                                         | IBUFDS                                                       | 91    |
 strip_imp/dac_imp/DIVCLK                              | NONE(DACBUS[0].dac_busa_obuf)                                | 46    |
 strip_imp/stripclk_imp/local_quarterClk               | BUFG                                                         | 789   |
@@ -8527,7 +8532,7 @@ CLK15NS_PAD                                           | mclk_dcm:CLKDV          
 CLK5MHZ_PAD                                           | IBUFG                                                        | 24    |
 CLK15NS_PAD                                           | mclk_dcm:CLKFX                                               | 14    |
 strip_imp/stripclk_imp/bcocounter_imp/blk00000001/Q<0>| NONE(strip_imp/striptbm_imp/NEED_BCO)                        | 8     |
-CLK15NS_PAD                                           | BUFGCTRL+clkzWatchdog[0].clkz_dcm:CLK0+fbcoclk_dcm:CLKFX+BUFG| 208   |
+CLK15NS_PAD                                           | BUFGCTRL+clkzWatchdog[0].clkz_dcm:CLK0+fbcoclk_dcm:CLKFX+BUFG| 206   |
 ------------------------------------------------------+--------------------------------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
@@ -8798,7 +8803,7 @@ Delay:               8.735ns (Levels of Logic = 14)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK15NS_PAD'
   Clock period: 12.562ns (frequency: 79.608MHz)
-  Total number of paths / destination ports: 133102 / 10505
+  Total number of paths / destination ports: 134203 / 10510
 -------------------------------------------------------------------------
 Delay:               6.281ns (Levels of Logic = 6)
   Source:            strip_imp/stripana_imp/STRIP_DATA_31_BRB1 (FF)
@@ -9230,15 +9235,15 @@ Delay:               6.602ns (Levels of Logic = 5)
 =========================================================================
 
 
-Total REAL time to Xst completion: 260.00 secs
-Total CPU time to Xst completion: 250.75 secs
+Total REAL time to Xst completion: 210.00 secs
+Total CPU time to Xst completion: 208.86 secs
  
 --> 
 
 
-Total memory usage is 1426140 kilobytes
+Total memory usage is 1426152 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings : 1167 (   0 filtered)
+Number of warnings : 1171 (   0 filtered)
 Number of infos    :  391 (   0 filtered)
 

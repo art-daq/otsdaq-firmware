@@ -58,14 +58,12 @@ read_vhdl -library xil_defaultlib {
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/reg_32.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/Load_array_section_16.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/pol_sel.vhd
-  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/trig_sync.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/cnt_64_simp.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/sig_gen_prog.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_1.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/DAC_Control.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_3.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/stsp_counter.vhd
-  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/divide_by_8.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/cnt32.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/decode_addr_NIM_Plus_ctrs.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/agrgate16_1.vhd
@@ -99,7 +97,6 @@ read_vhdl -library xil_defaultlib {
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/load_array_64_v_ps.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/mux64_2.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/read_decode_p.vhd
-  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/section_counter.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/decode_addr_NIM_Plus.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/ethImports/hdl/ethernet_interface.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/reg_read_decode_p.vhd
@@ -113,6 +110,9 @@ read_vhdl -library xil_defaultlib {
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/long_pulse.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/mch_trig_out.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/trig_out_mux.vhd
+  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/dmux_ff.vhd
+  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/clk39_pattern.vhd
+  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/acc_sync_shft_reg.vhd
 }
 read_xdc /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.srcs/constrs_1/new/top_12.xdc
 set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.srcs/constrs_1/new/top_12.xdc]

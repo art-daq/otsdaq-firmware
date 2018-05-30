@@ -71,7 +71,7 @@ architecture Behavioral of stripfifo is
   SIGNAL SPY_FIFO_OUTPUT : STD_LOGIC_VECTOR(35 DOWNTO 0);
   SIGNAL FIFO_WE : STD_LOGIC;
   SIGNAL FIFO_FULL : STD_LOGIC;
-  SIGNAL STRIP_FIFO_EMPTY : STD_LOGIC;
+  SIGNAL STRIP_FIFO_EMPTY, strip_fifo_empty_latch, strip_fifo_empty_latchAND : STD_LOGIC;
 
   SIGNAL TOKEN : STD_LOGIC;
   SIGNAL READ_ENABLE : STD_LOGIC;
@@ -132,11 +132,14 @@ BEGIN
 
   PROCESS ( RDCLK ) BEGIN
     IF ( RDCLK'EVENT AND RDCLK = '1' ) THEN
+		strip_fifo_empty_latch <= STRIP_FIFO_EMPTY; --delay reading behavior by 1 clk RAR
+	 
+	 
       IF ( RESET = '1' ) THEN
         TOKEN <= '0';
 		  DOUT_VALID <= '0'; --RAR
       ELSE
-        IF ( STRIP_FIFO_EMPTY = '0' ) THEN
+        IF ( strip_fifo_empty_latchAND = '0' ) THEN
           IF ( TOKEN_IN = '1' ) THEN
             TOKEN <= '1';
             DOUT_VALID <= '1';
@@ -152,9 +155,11 @@ BEGIN
     END IF;
   END PROCESS;
 
-  READ_ENABLE <= TOKEN_IN AND NOT STRIP_FIFO_EMPTY;
-  FIFO_EMPTY <= STRIP_FIFO_EMPTY;
+	strip_fifo_empty_latchAND <= strip_fifo_empty_latch or STRIP_FIFO_EMPTY; --delay reading behavior by 1 clk RAR (but get the empty feedback right away)
+	
+  READ_ENABLE <= TOKEN_IN AND NOT strip_fifo_empty_latchAND;
+  FIFO_EMPTY <= strip_fifo_empty_latchAND;
   DOUT <= FIFO_OUTPUT(31 DOWNTO 0);
-  TOKEN_OUT <= TOKEN OR TOKEN_IN WHEN STRIP_FIFO_EMPTY = '1' ELSE TOKEN;
+  TOKEN_OUT <= TOKEN OR TOKEN_IN WHEN strip_fifo_empty_latchAND = '1' ELSE TOKEN;
 
 END Behavioral;
