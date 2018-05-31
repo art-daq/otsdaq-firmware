@@ -42,15 +42,12 @@ read_vhdl -library xil_defaultlib {
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/buf8.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/start_sig_mux.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/Load_array_section_16.vhd
-  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/section_counter.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/reg_64.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/veto_count.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/decode_addr_NIM_Plus.vhd
-  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/trig_sync.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/clk_mux_2_to_1_x_2.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/test_mux.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/reg_8.vhd
-  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/divide_by_8.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/cnt64.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/load_ctl_1_phase_4ps_fs_sync.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/nim_plus_package_1.vhd
@@ -111,6 +108,10 @@ read_vhdl -library xil_defaultlib {
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/long_pulse.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/mch_trig_out.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/trig_out_mux.vhd
+  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/acc_sync_shft_reg.vhd
+  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/mux_8_to_1.vhd
+  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/clk39_pattern.vhd
+  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/dmux_ff.vhd
 }
 read_xdc /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_10.xdc
 set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_10.xdc]

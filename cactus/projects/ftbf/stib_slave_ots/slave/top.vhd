@@ -378,6 +378,7 @@ BEGIN
 		
 		signal local_bco_time : std_logic_vector(47 downto 0) := (others => '0');
 		signal local_bco_time_old : std_logic_vector(31 downto 0);
+		signal local_lastdata_bco_time : std_logic_vector(31 downto 0);
 		
 		signal local_bco_clk : std_logic_vector(1 downto 0) := (others => '0');		
 		signal local_bco_wraparound : std_logic := '0';
@@ -389,6 +390,7 @@ BEGIN
 		signal local_stripdata_repeat : std_logic := '0';
 		signal local_stripdata_last : std_logic_vector(31 downto 0);
 		
+		signal local_bcodelta : unsigned(15 downto 0) := (others => '0');
 		
 		signal local_clock_lock_lost : std_logic_vector(1 downto 0) := (others => '0');
 	begin
@@ -458,11 +460,17 @@ BEGIN
 					b_data(31 downto 0) <= std_logic_vector(local_trigger_count(23 downto 0)) & x"f8";
 					b_data_we <= '1';
 				elsif(local_bco_wraparound = '1') then
-					b_data(31downto 0) <= std_logic_vector(local_bco_zero_cnt) & local_bco_zero & local_clock_lock_lost(0) & 
+					b_data(31 downto 0) <= std_logic_vector(local_bco_zero_cnt) & local_bco_zero & local_clock_lock_lost(0) & 
 						local_stripdata_repeat & strip_busy &
 						local_bco_time(47 downto 32) & x"18";
 					b_data_we <= '1';
 					local_bco_wraparound <= '0';
+				elsif(local_bcodelta = x"FFFF") then --bco delta count high (just to keep for chipscope)
+					
+					b_data(31 downto 0) <= std_logic_vector(local_bco_zero_cnt) & local_bco_zero & local_clock_lock_lost(0) & 
+						local_stripdata_repeat & strip_busy &
+						std_logic_vector(local_bcodelta) & x"28";
+					b_data_we <= '1';
 				elsif(local_data_ready = '1' and local_read_done = '1') then --have data
 				
 					fifo_b_data_re <= '1';
@@ -481,6 +489,14 @@ BEGIN
 					end if;
 					
 					local_stripdata_last <= fifo_b_data_out(31 downto 0);
+					
+					local_lastdata_bco_time <= local_bco_time(31 downto 0);
+					
+					if(unsigned(local_lastdata_bco_time) - unsigned(local_bco_time(31 downto 0)) < 4) then
+						local_bcodelta <= local_bcodelta + 1;
+					else
+						local_bcodelta <= (others => '0');
+					end if;
 					
 				end if;	
 				

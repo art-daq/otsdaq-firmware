@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : C:\AGP_2018_05_24_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Wed May 30 14:07:16 2018
+-- Generated   : Wed May 30 14:56:03 2018
 -- From        : C:\AGP_2018_05_24_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -899,6 +899,7 @@ begin
     debug_fast_cnt <= cnt64_simp_out(15 downto 0);
     sync_ctrl <= ctr_resets(6);
 ----  Component instantiations  ----
+
 U1 : reg_64
   port map(
        clk => tx_clk,
@@ -7802,13 +7803,13 @@ U484 : mux_4_to_1
        sig_in => mx_sig_in2
   );
 
-mx_sig_in2(0) <= not(GND);
+mx_sig_in2(2) <= not(GND);
 
 mx_sig_in2(0) <= ys(2);
 
-mx_sig_in2(0) <= sig_mod(2);
+mx_sig_in2(1) <= sig_mod(2);
 
-mx_sig_in2(0) <= GND;
+mx_sig_in2(3) <= GND;
 
 mx_sig_in3(0) <= ys(3);
 
