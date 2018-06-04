@@ -1,7 +1,7 @@
 Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
-| Date             : Thu May 31 12:50:35 2018
+| Date             : Mon Jun  4 10:39:39 2018
 | Host             : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb
 | Design           : top
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 0.850 |
-| Dynamic (W)              | 0.713 |
+| Total On-Chip Power (W)  | 0.849 |
+| Dynamic (W)              | 0.712 |
 | Device Static (W)        | 0.136 |
 | Total Off-Chip Power (W) | 0.010 |
 | Effective TJA (C/W)      | 1.5   |
@@ -50,22 +50,22 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.067 |       14 |       --- |             --- |
-| Slice Logic              |     0.025 |    23080 |       --- |             --- |
-|   LUT as Logic           |     0.021 |     7556 |    133800 |            5.65 |
-|   Register               |     0.002 |    10774 |    267600 |            4.03 |
+| Clocks                   |     0.066 |       14 |       --- |             --- |
+| Slice Logic              |     0.025 |    23111 |       --- |             --- |
+|   LUT as Logic           |     0.021 |     7565 |    133800 |            5.65 |
+|   Register               |     0.002 |    10790 |    267600 |            4.03 |
 |   CARRY4                 |     0.001 |      533 |     33450 |            1.59 |
 |   F7/F8 Muxes            |    <0.001 |      563 |    133800 |            0.42 |
 |   LUT as Shift Register  |    <0.001 |      302 |     46200 |            0.65 |
 |   LUT as Distributed RAM |    <0.001 |       24 |     46200 |            0.05 |
 |   BUFG                   |    <0.001 |        5 |        32 |           15.63 |
-|   Others                 |     0.000 |     2062 |       --- |             --- |
-| Signals                  |     0.035 |    16144 |       --- |             --- |
+|   Others                 |     0.000 |     2056 |       --- |             --- |
+| Signals                  |     0.036 |    16178 |       --- |             --- |
 | Block RAM                |     0.022 |       12 |       365 |            3.29 |
 | PLL                      |     0.252 |        3 |        10 |           30.00 |
 | I/O                      |     0.312 |       56 |       500 |           11.20 |
 | Static Power             |     0.136 |          |           |                 |
-| Total                    |     0.850 |          |           |                 |
+| Total                    |     0.849 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,7 +75,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.200 |       0.169 |      0.032 |
+| Vccint    |       1.000 |     0.199 |       0.168 |      0.032 |
 | Vccaux    |       1.800 |     0.169 |       0.139 |      0.031 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.126 |       0.121 |      0.005 |
@@ -154,9 +154,9 @@ Table of Contents
 +-----------------------------------------------------------------------+-----------+
 | Name                                                                  | Power (W) |
 +-----------------------------------------------------------------------+-----------+
-| top                                                                   |     0.713 |
+| top                                                                   |     0.712 |
 |   CLK_MUX                                                             |     0.001 |
-|   NIM_BLOCK                                                           |     0.055 |
+|   NIM_BLOCK                                                           |     0.057 |
 |     U1                                                                |    <0.001 |
 |     U11                                                               |    <0.001 |
 |     U112                                                              |    <0.001 |
@@ -824,7 +824,7 @@ Table of Contents
 |     U308                                                              |    <0.001 |
 |     U309                                                              |    <0.001 |
 |     U310                                                              |    <0.001 |
-|     U311                                                              |     0.010 |
+|     U311                                                              |     0.011 |
 |       U1                                                              |     0.002 |
 |       U10                                                             |    <0.001 |
 |       U11                                                             |    <0.001 |
@@ -1032,12 +1032,12 @@ Table of Contents
 |         U_STAT                                                        |    <0.001 |
 |         U_SYNC                                                        |    <0.001 |
 |       N_EXT_BSCAN.bscan_inst                                          |    <0.001 |
-|   eth_interface                                                       |     0.051 |
+|   eth_interface                                                       |     0.050 |
 |     burst_traffic_controller_blk                                      |    <0.001 |
-|     data_manager_blk                                                  |     0.023 |
+|     data_manager_blk                                                  |     0.022 |
 |       GEC_RX_CTRL                                                     |     0.001 |
 |       GEC_TX_SEQ_CTL                                                  |     0.001 |
-|       RAM_COMM_DEC                                                    |     0.007 |
+|       RAM_COMM_DEC                                                    |     0.006 |
 |       RX_DATA_FIFO                                                    |     0.006 |
 |         FIFO_SYNC_MACRO_inst                                          |     0.006 |
 |       RX_DATA_INFO_FIFO                                               |    <0.001 |
@@ -1079,9 +1079,9 @@ Table of Contents
 |       xgmii                                                           |     0.000 |
 |     reset_mgr                                                         |    <0.001 |
 |   genNimPlusAndBurstFifo[0].FIFO_DUALCLOCK_MACRO_inst                 |     0.008 |
-|   u_ila_0_0                                                           |     0.029 |
-|     inst                                                              |     0.029 |
-|       ila_core_inst                                                   |     0.029 |
+|   u_ila_0_0                                                           |     0.027 |
+|     inst                                                              |     0.027 |
+|       ila_core_inst                                                   |     0.027 |
 |         ila_trace_memory_inst                                         |     0.002 |
 |           SUBCORE_RAM_BLK_MEM_1.trace_block_memory                    |     0.002 |
 |             inst_blk_mem_gen                                          |     0.002 |
@@ -1097,7 +1097,7 @@ Table of Contents
 |           U_CDONE                                                     |    <0.001 |
 |           U_NS0                                                       |    <0.001 |
 |           U_NS1                                                       |    <0.001 |
-|           u_cap_addrgen                                               |     0.001 |
+|           u_cap_addrgen                                               |    <0.001 |
 |             U_CMPRESET                                                |    <0.001 |
 |             u_cap_sample_counter                                      |    <0.001 |
 |               U_SCE                                                   |    <0.001 |
@@ -1146,7 +1146,7 @@ Table of Contents
 |                       u_srlB                                          |    <0.001 |
 |                       u_srlC                                          |    <0.001 |
 |                       u_srlD                                          |    <0.001 |
-|         u_ila_regs                                                    |     0.019 |
+|         u_ila_regs                                                    |     0.017 |
 |           MU_SRL[0].mu_srl_reg                                        |    <0.001 |
 |           MU_SRL[10].mu_srl_reg                                       |    <0.001 |
 |           MU_SRL[11].mu_srl_reg                                       |    <0.001 |
@@ -1181,7 +1181,7 @@ Table of Contents
 |           MU_SRL[8].mu_srl_reg                                        |    <0.001 |
 |           MU_SRL[9].mu_srl_reg                                        |    <0.001 |
 |           TC_SRL[0].tc_srl_reg                                        |    <0.001 |
-|           U_XSDB_SLAVE                                                |     0.005 |
+|           U_XSDB_SLAVE                                                |     0.004 |
 |           reg_15                                                      |    <0.001 |
 |             I_EN_CTL_EQ1.U_CTL                                        |    <0.001 |
 |           reg_16                                                      |    <0.001 |

@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : C:\AGP_2018_05_24_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Wed May 30 14:56:03 2018
+-- Generated   : Thu May 31 16:06:33 2018
 -- From        : C:\AGP_2018_05_24_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
@@ -7504,22 +7504,22 @@ U43 : test_mux
 
 U430 : agrgate_8_by_8
   port map(
-       in2(0) => Dangling_Input_Signal,
-       in2(1) => Dangling_Input_Signal,
-       in2(2) => Dangling_Input_Signal,
-       in2(3) => Dangling_Input_Signal,
-       in2(4) => Dangling_Input_Signal,
-       in2(5) => Dangling_Input_Signal,
-       in2(6) => Dangling_Input_Signal,
-       in2(7) => Dangling_Input_Signal,
-       in3(0) => Dangling_Input_Signal,
-       in3(1) => Dangling_Input_Signal,
-       in3(2) => Dangling_Input_Signal,
-       in3(3) => Dangling_Input_Signal,
-       in3(4) => Dangling_Input_Signal,
-       in3(5) => Dangling_Input_Signal,
-       in3(6) => Dangling_Input_Signal,
-       in3(7) => Dangling_Input_Signal,
+       in2(0) => sel_ctl(0),
+       in2(1) => sel_ctl(1),
+       in2(2) => sel_ctl(2),
+       in2(3) => sel_ctl(3),
+       in2(4) => sel_ctl(4),
+       in2(5) => sel_ctl(5),
+       in2(6) => sel_ctl(6),
+       in2(7) => sel_ctl(7),
+       in3(0) => sel_ctl(8),
+       in3(1) => sel_ctl(9),
+       in3(2) => sel_ctl(10),
+       in3(3) => sel_ctl(11),
+       in3(4) => sel_ctl(12),
+       in3(5) => sel_ctl(13),
+       in3(6) => sel_ctl(14),
+       in3(7) => sel_ctl(15),
        in4(0) => fs_sync_bus(0),
        in4(1) => fs_sync_bus(1),
        in4(2) => fs_sync_bus(2),
