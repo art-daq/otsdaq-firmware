@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_19_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\compile\scope_probe_4ch.vhd
--- Generated   : 01/25/18 15:58:31
--- From        : U:\PREP\PREP_Modernization\Firmware_Backups\Aldec_Backups\One_Phase_Designs\AGP_2018_01_19_NIMPlus_jw121_320MHz_1Phase_Accel_Sync\NIMPlus\NIMPlus\src\scope_probe_4ch.asf
+-- File        : C:\AGP_2018_05_24_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\scope_probe_4ch.vhd
+-- Generated   : 06/04/18 14:30:28
+-- From        : C:\AGP_2018_05_24_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\scope_probe_4ch.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ signal sig_old_r: STD_LOGIC_VECTOR (3 downto 0);
 type Sreg0_type is (
     S1, S2
 );
--- attribute enum_encoding of Sreg0_type: type is ... -- enum_encoding attribute is not supported for symbolic encoding
+-- attribute ENUM_ENCODING of Sreg0_type: type is ... -- enum_encoding attribute is not supported for symbolic encoding
 
 signal Sreg0, NextState_Sreg0: Sreg0_type;
 
@@ -80,7 +80,7 @@ begin
 				    if b_full_p = '0' then
 				        next_br_wr_out <= '1';
 				    else
-				        next_br_wr_out <= '1';
+				        next_br_wr_out <= '0';
 				    end if;
 				end if;
 				next_sig_old_r <= sig_in;
