@@ -361,7 +361,7 @@ begin
     clk2x => open,
     clk2x180 => open,
     clkdv => open,
-    clkfx => dcm_fbco_fx,
+    clkfx => open, --dcm_fbco_fx,
     clkfx180 => open,
     locked => dcm_fbco_locked
   );
@@ -370,6 +370,8 @@ begin
 --  other logic.  This is to ensure that the timing of the BCO reset signal
 --  is predictable.
 
+	dcm_fbco_fx <= clk_z; --RAR
+	
   bcoclk_mux : bufg    -- Well, it was a mux at one time...
   port map (
     i => dcm_fbco_fx,
@@ -379,12 +381,14 @@ begin
 	--RAR now that BCO counter handling is at top level.. ignore this PMCD thing
 	-- and hope it doesn't break something. We need a 1x clock and a 1/4x clock
 	
-	dcm_bco_a <= clk_q;
+	--dcm_bco_a <= clk_q;
 	genQuarterQclk : for i in 0 to 0 generate
 		signal local_halfClk : std_logic := '0';
 		signal local_quarterClk : std_logic := '0';
 	begin
 		dcm_bco_div <= local_quarterClk;
+		dcm_bco_a <= local_halfClk;
+		
 		process(clk_q)
 		begin
 			if(rising_edge(clk_q)) then

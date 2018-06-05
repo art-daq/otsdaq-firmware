@@ -26,9 +26,9 @@ WARNING:Security:44 - Since no license file was found,
        please run the Xilinx License Configuration Manager
        (xlcm or "Manage Xilinx Licenses")
        to assist in obtaining a license.
-WARNING:Security:42 - Your license support version '2018.05' for ChipScopePro
-expires in 1 day after which you will not qualify for Xilinx software updates or
-new releases.
+WARNING:Security:42 - Your software subscription period has lapsed. Your current
+version of Xilinx tools will continue to function, but you no longer qualify for
+Xilinx software updates or new releases.
 
 -----------------------------------------------
 
@@ -41,15 +41,15 @@ Annotating constraints to design from ucf file "stib.ucf" ...
 Resolving constraint associations...
 Checking Constraint Associations...
 WARNING:ConstraintSystem:56 - Constraint <TIMESPEC TS_BUSCLK_TO_TLKCLK = FROM
-   "CLK15NS_PAD" TO "TLK_RXCLK_PAD" TIG;> [stib.ucf(508)]: Unable to find an
+   "CLK15NS_PAD" TO "TLK_RXCLK_PAD" TIG;> [stib.ucf(509)]: Unable to find an
    active 'TimeGrp' or 'TNM' or 'TPSync' constraint named 'TLK_RXCLK_PAD'.
 
 WARNING:ConstraintSystem:56 - Constraint <TIMESPEC TS_GTXCLK_TO_BUSCLK = FROM
-   "TN_GTXCLK" TO "CLK15NS_PAD" TIG;> [stib.ucf(511)]: Unable to find an active
+   "TN_GTXCLK" TO "CLK15NS_PAD" TIG;> [stib.ucf(512)]: Unable to find an active
    'TimeGrp' or 'TNM' or 'TPSync' constraint named 'TN_GTXCLK'.
 
 WARNING:ConstraintSystem:56 - Constraint <TIMESPEC TS_BUSCLK_TO_GTXCLK = FROM
-   "CLK15NS_PAD" TO "TN_GTXCLK" TIG;> [stib.ucf(512)]: Unable to find an active
+   "CLK15NS_PAD" TO "TN_GTXCLK" TIG;> [stib.ucf(513)]: Unable to find an active
    'TimeGrp' or 'TNM' or 'TPSync' constraint named 'TN_GTXCLK'.
 
 WARNING:ConstraintSystem - TNM : D_CLK was distributed to a DCM but new TNM
@@ -66,31 +66,31 @@ WARNING:ConstraintSystem - TNM : CLK15NS_PAD was distributed to a DCM but new
    <TIMESPEC TS_CLK15NS_PAD = PERIOD "CLK15NS_PAD" 15 ns HIGH 50%;>
    [stib.ucf(469)]
    <TIMESPEC TS_BUSCLK_TO_MCLKA = FROM "CLK15NS_PAD" TO "TN_STRIP_MCLKA" TIG;>
-   [stib.ucf(488)]
-   <TIMESPEC TS_BUSCLK_TO_MCLKB = FROM "CLK15NS_PAD" TO "TN_STRIP_MCLKB" TIG;>
    [stib.ucf(489)]
-   <TIMESPEC TS_MCLKA_TO_BUSCLK = FROM "TN_STRIP_MCLKA" TO "CLK15NS_PAD" TIG;>
+   <TIMESPEC TS_BUSCLK_TO_MCLKB = FROM "CLK15NS_PAD" TO "TN_STRIP_MCLKB" TIG;>
    [stib.ucf(490)]
-   <TIMESPEC TS_MCLKB_TO_BUSCLK = FROM "TN_STRIP_MCLKB" TO "CLK15NS_PAD" TIG;>
+   <TIMESPEC TS_MCLKA_TO_BUSCLK = FROM "TN_STRIP_MCLKA" TO "CLK15NS_PAD" TIG;>
    [stib.ucf(491)]
+   <TIMESPEC TS_MCLKB_TO_BUSCLK = FROM "TN_STRIP_MCLKB" TO "CLK15NS_PAD" TIG;>
+   [stib.ucf(492)]
    <TIMESPEC TS_BUSCLK_TO_DACCLK = FROM "CLK15NS_PAD" TO "TN_STRIP_DAC_CLK"
-   TIG;> [stib.ucf(492)]
+   TIG;> [stib.ucf(493)]
    <TIMESPEC TS_BUSCLK_TO_FBCOCLK = FROM "CLK15NS_PAD" TO "TN_FBCOCLK" TIG;>
-   [stib.ucf(493)]
-   <TIMESPEC TS_FBCOCLK_TO_BUSCLK = FROM "TN_FBCOCLK" TO "CLK15NS_PAD" TIG;>
    [stib.ucf(494)]
+   <TIMESPEC TS_FBCOCLK_TO_BUSCLK = FROM "TN_FBCOCLK" TO "CLK15NS_PAD" TIG;>
+   [stib.ucf(495)]
    <TIMESPEC TS_BUSCLK_TO_BCOCLK = FROM "CLK15NS_PAD" TO "TN_BCOCLK" TIG;>
-   [stib.ucf(499)]
-   <TIMESPEC TS_BCOCLK_TO_BUSCLK = FROM "TN_BCOCLK" TO "CLK15NS_PAD" TIG;>
    [stib.ucf(500)]
+   <TIMESPEC TS_BCOCLK_TO_BUSCLK = FROM "TN_BCOCLK" TO "CLK15NS_PAD" TIG;>
+   [stib.ucf(501)]
    <TIMESPEC TS_BUSCLK_TO_TLKCLK = FROM "CLK15NS_PAD" TO "TLK_RXCLK_PAD" TIG;>
-   [stib.ucf(508)]
+   [stib.ucf(509)]
    <TIMESPEC TS_GTXCLK_TO_BUSCLK = FROM "TN_GTXCLK" TO "CLK15NS_PAD" TIG;>
-   [stib.ucf(511)]
-   <TIMESPEC TS_BUSCLK_TO_GTXCLK = FROM "CLK15NS_PAD" TO "TN_GTXCLK" TIG;>
    [stib.ucf(512)]
-   <TIMESPEC TS_CLKQ_TO_BUSCLK = FROM "TN_CLKQ" TO "CLK15NS_PAD" TIG;>
+   <TIMESPEC TS_BUSCLK_TO_GTXCLK = FROM "CLK15NS_PAD" TO "TN_GTXCLK" TIG;>
    [stib.ucf(513)]
+   <TIMESPEC TS_CLKQ_TO_BUSCLK = FROM "TN_CLKQ" TO "CLK15NS_PAD" TIG;>
+   [stib.ucf(514)]
 
 WARNING:ConstraintSystem - TNM : EXT_CLK_PAD_P was distributed to a DCM but new
    TNM constraints were not derived. The requirement for derived TNM constraints
@@ -100,7 +100,7 @@ WARNING:ConstraintSystem - TNM : EXT_CLK_PAD_P was distributed to a DCM but new
    <TIMESPEC TS_EXT_CLK_PAD_P = PERIOD "EXT_CLK_PAD_P" 37 ns HIGH 50%;>
    [stib.ucf(471)]
    <TIMESPEC TS_EXTCLK_TO_DACCLK = FROM "EXT_CLK_PAD_P" TO "TN_STRIP_DAC_CLK"
-   TIG;> [stib.ucf(495)]
+   TIG;> [stib.ucf(496)]
 
 Done...
 
@@ -189,7 +189,7 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:  51
 
-Total memory usage is 665184 kilobytes
+Total memory usage is 665016 kilobytes
 
 Writing NGD file "top.ngd" ...
 Total REAL time to NGDBUILD completion:  16 sec

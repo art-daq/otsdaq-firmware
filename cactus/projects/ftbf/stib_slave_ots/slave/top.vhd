@@ -492,7 +492,7 @@ BEGIN
 					
 					local_lastdata_bco_time <= local_bco_time(31 downto 0);
 					
-					if(unsigned(local_lastdata_bco_time) - unsigned(local_bco_time(31 downto 0)) < 4) then
+					if(unsigned(local_bco_time) - unsigned(local_lastdata_bco_time(31 downto 0)) < 4) then
 						local_bcodelta <= local_bcodelta + 1;
 					else
 						local_bcodelta <= (others => '0');
