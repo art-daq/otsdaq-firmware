@@ -116,15 +116,16 @@ os.system("rm -f " + dest + "/*.vhd")
 
 print
 print  'Copying files...'
-os.system("cp " + src + \
-              "/ActiveHDL_proj/ethernet_controller/src/*.vhd " + \
-              dest + "/ethernet_controller/")
-os.system("cp " + src + \
-              "/ActiveHDL_proj/ethernet_controller/src/*.v  " + \
-              dest + "/ethernet_controller/")
+#copy compile files first, so they are overwritten by duplicates in src folder (which have customizations, e.g. tx_seq_ctl.vhd)
 os.system("cp " + src + \
               "/ActiveHDL_proj/ethernet_controller/compile/*.vhd " + \
               dest + "/ethernet_controller/")
+os.system("cp " + src + \
+			"/ActiveHDL_proj/ethernet_controller/src/*.v  " + \
+			dest + "/ethernet_controller/")
+os.system("cp " + src + \
+			  "/ActiveHDL_proj/ethernet_controller/src/*.vhd " + \
+			  dest + "/ethernet_controller/")
 
 print    
 print 'Changing permissions...'
@@ -188,17 +189,6 @@ phy = "MII_100_1000" #default phy
 if (args.phy):     #if option used, then use args.phy
     phy = args.phy
 	
-#if (phy != "XILINX_7SERIES_MII" or 
-#	phy != "XILINX_7SERIES_RGMII"): #insert jamieson fifo
-#	os.system("cp " + src + "/data_manager_xilinx_fifo.vhd " + \
-#			dest + \
-#			"/ethernet_controller/data_manager.vhd")
-#	os.system("cp " + src + \
-#	              "/fifo.vhd " + \
-#	               dest + "/ethernet_controller/")
-#	os.system("sed -i s/.*\?toolset/\#\?toolset/g " + dest + \
-#			   "/../cfg/ots_ethernet.dep")
-
 if (phy == "XILINX_7SERIES_MII"):
 	phy = "MII_100_1000" #for xmii handler choice
 	

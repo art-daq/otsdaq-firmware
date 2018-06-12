@@ -32,24 +32,24 @@ entity ethernet_interface is
           rx_data              	: out   std_logic_vector (63 downto 0);   	
           rx_wren              	: out   std_logic;												   
           tx_data              	: in    std_logic_vector (63 downto 0); 	 					 
-		  tx_rden			   	: out   std_logic;						  	--SCRIPT COMMENT OUT 
-		  ready		   			: in    std_logic; 						  	--SCRIPT COMMENT OUT 
+--erased for simple interface 
+--erased for simple interface 
 		  
 		  -- burst signals
    		  b_data               	: in    std_logic_vector (63 downto 0); 
           b_data_we            	: in    std_logic; 												                            
           b_enable             	: out   std_logic; 				  		  															 				   
-		  b_force_packet	   	: in    std_logic;						  	--SCRIPT COMMENT OUT  	
+--erased for simple interface  	
 		  
 		  
 		  -- internal address space signals							   
-          internal_block_sel  	: in    std_logic_vector (31 downto 0); 	--SCRIPT COMMENT OUT   
-          internal_addr  		: in    std_logic_vector (31 downto 0); 	--SCRIPT COMMENT OUT   
-		  internal_we			: in 	std_logic;							--SCRIPT COMMENT OUT					   
-          internal_din			: in    std_logic_vector (63 downto 0);		--SCRIPT COMMENT OUT					   
-          internal_dout			: out   std_logic_vector (63 downto 0); 	--SCRIPT COMMENT OUT  
+--erased for simple interface   
+--erased for simple interface   
+--erased for simple interface					   
+--erased for simple interface					   
+--erased for simple interface  
 		   
-          user_addr  			: in    std_logic_vector (7 downto 0); 		--SCRIPT COMMENT OUT  
+--erased for simple interface  
 		  
 		  
 		  -- PHY interface signals
@@ -112,7 +112,7 @@ architecture BEHAVIORAL of ethernet_interface is
 	signal ots_ready	   			: std_logic; 						  	
 	signal ots_user_mask  			: std_logic := '0'; 							   
     signal internal_eth_dout      	: std_logic_vector (63 downto 0); 	 				  	
-	signal internal_reset  			: std_logic := '0'; 	   							  	
+	signal internal_reset  			: std_logic_vector (1 downto 0) := (others => '0'); 	   							  	
 	signal reset_mgr_in  			: std_logic; 	   
 	
 	signal arp_announce				: std_logic := '0';  	
@@ -142,15 +142,15 @@ architecture BEHAVIORAL of ethernet_interface is
 	
 									 
 	-------- start simple declaration section -----------  	  
-	-- comments denoted as -- simple -- will be removed in this case by install script
-	-- and lines with --SCRIPT COMMENT OUT  will be commented out	
-    -- simple -- signal internal_block_sel  		: std_logic_vector (31 downto 0) := (others => '0'); 	  
-    -- simple -- signal internal_addr  				: std_logic_vector (31 downto 0):= (others => '0');  	  
-	-- simple -- signal internal_we					: std_logic := '0';							
-    -- simple -- signal internal_din				: std_logic_vector (63 downto 0):= (others => '0'); 	  
-    -- simple -- signal internal_dout				: std_logic_vector (63 downto 0):= (others => '0'); 	
+	-- comments denoted as  will be removed in this case by install script
+--erased for simple interface  will be commented out	
+     signal internal_block_sel  		: std_logic_vector (31 downto 0) := (others => '0'); 	  
+     signal internal_addr  				: std_logic_vector (31 downto 0):= (others => '0');  	  
+	 signal internal_we					: std_logic := '0';							
+     signal internal_din				: std_logic_vector (63 downto 0):= (others => '0'); 	  
+     signal internal_dout				: std_logic_vector (63 downto 0):= (others => '0'); 	
 		  
-    -- simple -- signal user_addr					: std_logic_vector (7 downto 0):= (others => '0'); 
+     signal user_addr					: std_logic_vector (7 downto 0):= (others => '0'); 
 	-------- end simple declaration section -----------	
   	 											  								     
 begin										 
@@ -268,7 +268,7 @@ begin
 			reset_start => reset_mgr_in,
 			reset => reset);
 						  		 
-	reset_out <= reset;
+	reset_out <= reset and (not internal_reset(1)); -- "soft" reset, for not forwarding out of block 
    	-------- end reset section -----------	  
 	   
 	   
@@ -295,7 +295,7 @@ begin
 	ots_dout <= tx_data when (ots_user_mask = '1') else internal_eth_dout;
 	ots_ready <= (not ots_user_mask) or user_ready; -- ots address space is always ready	  
 	
-	reset_mgr_in <= internal_reset or reset_in;
+	reset_mgr_in <= internal_reset(0) or reset_in;
 																								  
 	
 	process(MASTER_CLK)
@@ -310,7 +310,7 @@ begin
 			
 			internal_eth_dout <= (others => '0');
 			internal_dout <= (others => '0');
-			internal_reset <= '0'; 
+			internal_reset(0) <= '0'; 
 			
 		
 			if ( ots_wren = '1' and  				-- WRITE eth ===========
@@ -345,7 +345,7 @@ begin
 				elsif ( ots_block_addr = x"B" ) then 
 					 data_dynamic_mac_resolution <= ots_din(0); 
 				elsif ( ots_block_addr = x"FFFFFFFF" ) then 
-					 internal_reset <= ots_din(0); 
+					 internal_reset <= ots_din(1 downto 0); 
 				end if;
 			elsif ( internal_we = '1' and  				-- WRITE internal ===========
 				 unsigned(internal_block_sel) = x"1") then -- Ethernet block address space
@@ -379,7 +379,7 @@ begin
 				elsif ( unsigned(internal_addr) = x"B" ) then 
 					 data_dynamic_mac_resolution <= internal_din(0); 
 				elsif ( unsigned(internal_addr) = x"FFFFFFFF" ) then 
-					 internal_reset <= internal_din(0); 
+					 internal_reset <= internal_din(1 downto 0); 
 				end if;
 			elsif ( user_rx_src_capture_for_ctrl = '1' ) then  				-- SPECIAL WRITE for source capture for ctrl ===========
 				 tx_ctrl_dest_addr <= user_rx_src_addr;
@@ -494,17 +494,17 @@ begin
 	-------- end internal address space section -----------
 	   
 	   																  
-	user_ready <= ready;		  			--SCRIPT COMMENT OUT 	
-	tx_rden <= user_tx_rden;	  			--SCRIPT COMMENT OUT
-	user_b_force_packet <= b_force_packet;	--SCRIPT COMMENT OUT
+--erased for simple interface 	
+--erased for simple interface
+--erased for simple interface
 	
 	-------- start simple section -----------  
-	-- comments denoted as -- simple -- will be removed in this case by install script
-	-- and lines with --SCRIPT COMMENT OUT  will be commented out	
-	-- simple --								   
-	-- simple -- user_ready <= '1';
-	-- simple -- user_b_force_packet <= '0';	  
-	-- simple --	
+	-- comments denoted as  will be removed in this case by install script
+--erased for simple interface  will be commented out	
+									   
+	 user_ready <= '1';
+	 user_b_force_packet <= '0';	  
+		
 	-------- end simple section -----------
 	   
 end BEHAVIORAL;
