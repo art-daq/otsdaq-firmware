@@ -4,14 +4,14 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 0.00 secs
+Total REAL time to Xst completion: 1.00 secs
 Total CPU time to Xst completion: 0.04 secs
  
 --> 
@@ -2290,7 +2290,6 @@ WARNING:Xst:653 - Signal <psi_status<16:13>> is used but never assigned. This so
 WARNING:Xst:653 - Signal <psi_status<11:9>> is used but never assigned. This sourceless signal will be automatically connected to value 000.
 WARNING:Xst:653 - Signal <psi_status<7:5>> is used but never assigned. This sourceless signal will be automatically connected to value 000.
 WARNING:Xst:646 - Signal <psi_out_clk_sel<7:6>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <psi_i2c_clk> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:653 - Signal <psi_errors<63:41>> is used but never assigned. This sourceless signal will be automatically connected to value 00000000000000000000000.
 WARNING:Xst:653 - Signal <psi_errors<39>> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:653 - Signal <psi_errors<35>> is used but never assigned. This sourceless signal will be automatically connected to value 0.
@@ -2315,6 +2314,7 @@ WARNING:Xst:646 - Signal <adc_clk_del_reset> is assigned but never used. This un
 WARNING:Xst:653 - Signal <XLXI_5338_in7_openSignal> is used but never assigned. This sourceless signal will be automatically connected to value 0000000000000000000000000000000000000000000000000000000000000000.
 WARNING:Xst:646 - Signal <PSI_LEVELS_WE_MAP> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <PSI_CLK90> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <PSI_CLK270> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <ADC_TESTMODE_MAP> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <ADC_SAMPLE_CAL> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <ADC_CLK_DEL_MAP> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
@@ -3529,7 +3529,7 @@ Design Statistics
 # IOs                              : 91
 
 Cell Usage :
-# BELS                             : 6316
+# BELS                             : 6313
 #      AND2                        : 25
 #      AND2B1                      : 15
 #      AND3                        : 11
@@ -3544,10 +3544,10 @@ Cell Usage :
 #      GND                         : 39
 #      INV                         : 142
 #      LUT1                        : 320
-#      LUT2                        : 610
+#      LUT2                        : 611
 #      LUT2_D                      : 24
 #      LUT2_L                      : 11
-#      LUT3                        : 1002
+#      LUT3                        : 1000
 #      LUT3_D                      : 15
 #      LUT3_L                      : 10
 #      LUT4                        : 2335
@@ -3555,8 +3555,8 @@ Cell Usage :
 #      LUT4_L                      : 99
 #      MULT_AND                    : 5
 #      MUXCY                       : 636
-#      MUXF5                       : 273
-#      MUXF6                       : 65
+#      MUXF5                       : 272
+#      MUXF6                       : 64
 #      OR2                         : 37
 #      OR3                         : 2
 #      OR3B1                       : 1
@@ -3605,10 +3605,10 @@ Device utilization summary:
 
 Selected Device : 4vlx25ff668-10 
 
- Number of Slices:                     3084  out of  10752    28%  
+ Number of Slices:                     3082  out of  10752    28%  
  Number of Slice Flip Flops:           3002  out of  21504    13%  
- Number of 4 input LUTs:               4624  out of  21504    21%  
-    Number used as logic:              4620
+ Number of 4 input LUTs:               4623  out of  21504    21%  
+    Number used as logic:              4619
     Number used as Shift registers:       4
  Number of IOs:                          91
  Number of bonded IOBs:                  91  out of    448    20%  
@@ -3635,21 +3635,23 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+-------+
-Clock Signal                       | Clock buffer(FF name)                                                                                                                 | Load  |
------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+-------+
-XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK270(*)(psi_cmd_fifo_vector_0/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_fb_i)| 348   |
-GEL_RXCLK                          | IBUFG+BUFG                                                                                                                            | 2082  |
-XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK0(*)(XLXI_5983/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i)              | 236   |
-XLXN_12498(XLXI_3522:O)            | NONE(*)(XLXI_3523)                                                                                                                    | 1     |
-XLXI_4773/O(XLXI_4773/I_36_8:O)    | XLXI_4615:CLK180(*)(XLXI_6346)                                                                                                        | 4     |
-XLXI_6067/O(XLXI_6067/I_36_8:O)    | BUFG(*)(PSI_Dig_Blk_0/XLXI_6064/error)                                                                                                | 105   |
-XLXI_6086/O(XLXI_6086/I_36_8:O)    | BUFG(*)(PSI_Dig_Blk_1/XLXI_6064/error)                                                                                                | 105   |
-XLXI_6193/O(XLXI_6193/I_36_8:O)    | BUFG(*)(PSI_Dig_Blk_2/XLXI_6064/error)                                                                                                | 105   |
-SECONDARY_CLK                      | IBUFG                                                                                                                                 | 32    |
-GEL_RXCLK                          | XLXI_3254:CLKFX                                                                                                                       | 1     |
------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+-------+
-(*) These 7 clock signal(s) are generated by combinatorial logic,
+--------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+-------+
+Clock Signal                                | Clock buffer(FF name)                                                                                                     | Load  |
+--------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+-------+
+psi_cmd_clk_mux_0/O(psi_cmd_clk_mux_0/I_O:O)| BUFG(*)(psi_cmd_fifo_vector_0/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_fb_i)| 116   |
+GEL_RXCLK                                   | IBUFG+BUFG                                                                                                                | 2082  |
+psi_cmd_clk_mux_1/O(psi_cmd_clk_mux_1/I_O:O)| BUFG(*)(psi_cmd_fifo_vector_1/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_fb_i)| 116   |
+psi_cmd_clk_mux_2/O(psi_cmd_clk_mux_2/I_O:O)| BUFG(*)(psi_cmd_fifo_vector_2/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_fb_i)| 116   |
+XLXI_4773/O(XLXI_4773/I_36_8:O)             | XLXI_4615:CLK0(*)(XLXI_5983/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i)  | 236   |
+XLXN_12498(XLXI_3522:O)                     | NONE(*)(XLXI_3523)                                                                                                        | 1     |
+XLXI_4773/O(XLXI_4773/I_36_8:O)             | XLXI_4615:CLK180(*)(XLXI_6346)                                                                                            | 4     |
+XLXI_6067/O(XLXI_6067/I_36_8:O)             | BUFG(*)(PSI_Dig_Blk_0/XLXI_6064/error)                                                                                    | 105   |
+XLXI_6086/O(XLXI_6086/I_36_8:O)             | BUFG(*)(PSI_Dig_Blk_1/XLXI_6064/error)                                                                                    | 105   |
+XLXI_6193/O(XLXI_6193/I_36_8:O)             | BUFG(*)(PSI_Dig_Blk_2/XLXI_6064/error)                                                                                    | 105   |
+SECONDARY_CLK                               | IBUFG                                                                                                                     | 32    |
+GEL_RXCLK                                   | XLXI_3254:CLKFX                                                                                                           | 1     |
+--------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+-------+
+(*) These 9 clock signal(s) are generated by combinatorial logic,
 and XST is not able to identify which are the primary clock signals.
 Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
@@ -3712,17 +3714,17 @@ Timing Detail:
 All values displayed in nanoseconds (ns)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'XLXI_4773/O'
+Timing constraint: Default period analysis for Clock 'psi_cmd_clk_mux_0/O'
   Clock period: 6.053ns (frequency: 165.210MHz)
-  Total number of paths / destination ports: 7432 / 1053
+  Total number of paths / destination ports: 875 / 182
 -------------------------------------------------------------------------
 Delay:               3.026ns (Levels of Logic = 2)
-  Source:            psi_cmd_sender_vector_2/derror (FF)
-  Destination:       psi_cmd_sender_vector_2/started_down (FF)
-  Source Clock:      XLXI_4773/O rising +270
-  Destination Clock: XLXI_4773/O falling +270
+  Source:            psi_cmd_sender_vector_0/derror (FF)
+  Destination:       psi_cmd_sender_vector_0/started_down (FF)
+  Source Clock:      psi_cmd_clk_mux_0/O rising
+  Destination Clock: psi_cmd_clk_mux_0/O falling
 
-  Data Path: psi_cmd_sender_vector_2/derror to psi_cmd_sender_vector_2/started_down
+  Data Path: psi_cmd_sender_vector_0/derror to psi_cmd_sender_vector_0/started_down
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
@@ -3737,7 +3739,7 @@ Delay:               3.026ns (Levels of Logic = 2)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'GEL_RXCLK'
   Clock period: 9.853ns (frequency: 101.494MHz)
-  Total number of paths / destination ports: 49989 / 3659
+  Total number of paths / destination ports: 49986 / 3659
 -------------------------------------------------------------------------
 Delay:               9.853ns (Levels of Logic = 17)
   Source:            XLXI_6207/I_Q2 (FF)
@@ -3776,6 +3778,80 @@ Delay:               9.853ns (Levels of Logic = 17)
     ----------------------------------------
     Total                      9.853ns (2.527ns logic, 7.326ns route)
                                        (25.6% logic, 74.4% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'psi_cmd_clk_mux_1/O'
+  Clock period: 6.053ns (frequency: 165.210MHz)
+  Total number of paths / destination ports: 875 / 182
+-------------------------------------------------------------------------
+Delay:               3.026ns (Levels of Logic = 2)
+  Source:            psi_cmd_sender_vector_1/derror (FF)
+  Destination:       psi_cmd_sender_vector_1/started_down (FF)
+  Source Clock:      psi_cmd_clk_mux_1/O rising
+  Destination Clock: psi_cmd_clk_mux_1/O falling
+
+  Data Path: psi_cmd_sender_vector_1/derror to psi_cmd_sender_vector_1/started_down
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q             6   0.360   0.622  derror (derror)
+     LUT2:I0->O            4   0.195   0.755  bit_count_not000221 (state_FSM_ClkEn_FSM_inv)
+     LUT4:I0->O            1   0.195   0.360  started_down_not00011 (started_down_not0001)
+     FDRE_1:CE                 0.540          started_down
+    ----------------------------------------
+    Total                      3.026ns (1.290ns logic, 1.736ns route)
+                                       (42.6% logic, 57.4% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'psi_cmd_clk_mux_2/O'
+  Clock period: 6.053ns (frequency: 165.210MHz)
+  Total number of paths / destination ports: 875 / 182
+-------------------------------------------------------------------------
+Delay:               3.026ns (Levels of Logic = 2)
+  Source:            psi_cmd_sender_vector_2/derror (FF)
+  Destination:       psi_cmd_sender_vector_2/started_down (FF)
+  Source Clock:      psi_cmd_clk_mux_2/O rising
+  Destination Clock: psi_cmd_clk_mux_2/O falling
+
+  Data Path: psi_cmd_sender_vector_2/derror to psi_cmd_sender_vector_2/started_down
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q             6   0.360   0.622  derror (derror)
+     LUT2:I0->O            4   0.195   0.755  bit_count_not000221 (state_FSM_ClkEn_FSM_inv)
+     LUT4:I0->O            1   0.195   0.360  started_down_not00011 (started_down_not0001)
+     FDRE_1:CE                 0.540          started_down
+    ----------------------------------------
+    Total                      3.026ns (1.290ns logic, 1.736ns route)
+                                       (42.6% logic, 57.4% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'XLXI_4773/O'
+  Clock period: 5.872ns (frequency: 170.306MHz)
+  Total number of paths / destination ports: 4807 / 507
+-------------------------------------------------------------------------
+Delay:               5.872ns (Levels of Logic = 7)
+  Source:            token_trigger_blk/rep_counter_1 (FF)
+  Destination:       token_trigger_blk/shared_end (FF)
+  Source Clock:      XLXI_4773/O rising
+  Destination Clock: XLXI_4773/O rising
+
+  Data Path: token_trigger_blk/rep_counter_1 to token_trigger_blk/shared_end
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q             4   0.360   0.599  rep_counter_1 (rep_counter_1)
+     LUT3:I1->O            1   0.195   0.688  rep_counter_cmp_eq0000863_SW0 (N28)
+     LUT4_L:I1->LO         1   0.195   0.328  rep_counter_cmp_eq0000863 (rep_counter_cmp_eq0000863)
+     LUT4:I1->O            1   0.195   0.688  rep_counter_cmp_eq00008138_SW0 (N181)
+     LUT4_D:I1->LO         1   0.195   0.163  rep_counter_cmp_eq00008138 (N34)
+     LUT3:I2->O            2   0.195   0.602  rep_counter_cmp_eq00008239 (rep_counter_cmp_eq0000)
+     LUT4:I2->O            1   0.195   0.000  shared_end_not00011 (shared_end_not00011)
+     MUXF5:I1->O           1   0.374   0.360  shared_end_not0001_f5 (shared_end_not0001)
+     FDRE:CE                   0.540          shared_end
+    ----------------------------------------
+    Total                      5.872ns (2.444ns logic, 3.428ns route)
+                                       (41.6% logic, 58.4% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'XLXI_6067/O'
@@ -3904,8 +3980,83 @@ Offset:              9.901ns (Levels of Logic = 6)
                                        (25.0% logic, 75.0% route)
 
 =========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'psi_cmd_clk_mux_2/O'
+  Total number of paths / destination ports: 53 / 53
+-------------------------------------------------------------------------
+Offset:              10.304ns (Levels of Logic = 7)
+  Source:            BUSC_21DN_43S (PAD)
+  Destination:       psi_cmd_sender_vector_2/fifo_re (FF)
+  Destination Clock: psi_cmd_clk_mux_2/O rising
+
+  Data Path: BUSC_21DN_43S to psi_cmd_sender_vector_2/fifo_re
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IOBUF:IO->O           1   0.965   0.741  XLXI_4171 (reset_button)
+     OR3B1:I0->O           2   0.195   0.758  XLXI_3430 (reset_start)
+     OR2:I0->O           458   0.195   2.974  XLXI_4005 (reset)
+     OR2:I0->O           215   0.195   1.868  XLXI_5989 (psi_reset)
+     begin scope: 'psi_cmd_sender_vector_2'
+     LUT3:I1->O            3   0.195   0.600  shared_stop_sig_or000011 (N43)
+     LUT4:I2->O            1   0.195   0.360  fifo_re_or00001 (fifo_re_or0000)
+     FDR:R                     1.062          fifo_re
+    ----------------------------------------
+    Total                     10.304ns (3.002ns logic, 7.302ns route)
+                                       (29.1% logic, 70.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'psi_cmd_clk_mux_1/O'
+  Total number of paths / destination ports: 53 / 53
+-------------------------------------------------------------------------
+Offset:              10.304ns (Levels of Logic = 7)
+  Source:            BUSC_21DN_43S (PAD)
+  Destination:       psi_cmd_sender_vector_1/fifo_re (FF)
+  Destination Clock: psi_cmd_clk_mux_1/O rising
+
+  Data Path: BUSC_21DN_43S to psi_cmd_sender_vector_1/fifo_re
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IOBUF:IO->O           1   0.965   0.741  XLXI_4171 (reset_button)
+     OR3B1:I0->O           2   0.195   0.758  XLXI_3430 (reset_start)
+     OR2:I0->O           458   0.195   2.974  XLXI_4005 (reset)
+     OR2:I0->O           215   0.195   1.868  XLXI_5989 (psi_reset)
+     begin scope: 'psi_cmd_sender_vector_1'
+     LUT3:I1->O            3   0.195   0.600  shared_stop_sig_or000011 (N43)
+     LUT4:I2->O            1   0.195   0.360  fifo_re_or00001 (fifo_re_or0000)
+     FDR:R                     1.062          fifo_re
+    ----------------------------------------
+    Total                     10.304ns (3.002ns logic, 7.302ns route)
+                                       (29.1% logic, 70.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'psi_cmd_clk_mux_0/O'
+  Total number of paths / destination ports: 53 / 53
+-------------------------------------------------------------------------
+Offset:              10.304ns (Levels of Logic = 7)
+  Source:            BUSC_21DN_43S (PAD)
+  Destination:       psi_cmd_sender_vector_0/fifo_re (FF)
+  Destination Clock: psi_cmd_clk_mux_0/O rising
+
+  Data Path: BUSC_21DN_43S to psi_cmd_sender_vector_0/fifo_re
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IOBUF:IO->O           1   0.965   0.741  XLXI_4171 (reset_button)
+     OR3B1:I0->O           2   0.195   0.758  XLXI_3430 (reset_start)
+     OR2:I0->O           458   0.195   2.974  XLXI_4005 (reset)
+     OR2:I0->O           215   0.195   1.868  XLXI_5989 (psi_reset)
+     begin scope: 'psi_cmd_sender_vector_0'
+     LUT3:I1->O            3   0.195   0.600  shared_stop_sig_or000011 (N43)
+     LUT4:I2->O            1   0.195   0.360  fifo_re_or00001 (fifo_re_or0000)
+     FDR:R                     1.062          fifo_re
+    ----------------------------------------
+    Total                     10.304ns (3.002ns logic, 7.302ns route)
+                                       (29.1% logic, 70.9% route)
+
+=========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'XLXI_4773/O'
-  Total number of paths / destination ports: 413 / 394
+  Total number of paths / destination ports: 254 / 235
 -------------------------------------------------------------------------
 Offset:              11.103ns (Levels of Logic = 9)
   Source:            BUSC_21DN_43S (PAD)
@@ -4105,7 +4256,7 @@ Offset:              8.512ns (Levels of Logic = 4)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'XLXI_4773/O'
-  Total number of paths / destination ports: 51 / 27
+  Total number of paths / destination ports: 39 / 21
 -------------------------------------------------------------------------
 Offset:              7.284ns (Levels of Logic = 5)
   Source:            XLXI_6362 (FF)
@@ -4126,6 +4277,78 @@ Offset:              7.284ns (Levels of Logic = 5)
     ----------------------------------------
     Total                      7.284ns (5.065ns logic, 2.219ns route)
                                        (69.5% logic, 30.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'psi_cmd_clk_mux_1/O'
+  Total number of paths / destination ports: 4 / 2
+-------------------------------------------------------------------------
+Offset:              6.206ns (Levels of Logic = 5)
+  Source:            psi_cmd_sender_vector_1/data_up (FF)
+  Destination:       BUSA_21DN_43S (PAD)
+  Source Clock:      psi_cmd_clk_mux_1/O rising
+
+  Data Path: psi_cmd_sender_vector_1/data_up to BUSA_21DN_43S
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRS:C->Q             2   0.360   0.540  data_up (data_up)
+     LUT2:I1->O            4   0.195   0.599  data_out1 (data_out)
+     end scope: 'psi_cmd_sender_vector_1'
+     begin scope: 'XLXI_6260'
+     AND3B1:I2->O          1   0.195   0.360  I_36_32 (D1)
+     end scope: 'XLXI_6260'
+     OBUFDS:I->O               3.957          XLXI_5550 (BUSA_21DP_42S)
+    ----------------------------------------
+    Total                      6.206ns (4.707ns logic, 1.499ns route)
+                                       (75.8% logic, 24.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'psi_cmd_clk_mux_2/O'
+  Total number of paths / destination ports: 4 / 2
+-------------------------------------------------------------------------
+Offset:              6.206ns (Levels of Logic = 5)
+  Source:            psi_cmd_sender_vector_2/data_up (FF)
+  Destination:       BUSC_04DP_08S (PAD)
+  Source Clock:      psi_cmd_clk_mux_2/O rising
+
+  Data Path: psi_cmd_sender_vector_2/data_up to BUSC_04DP_08S
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRS:C->Q             2   0.360   0.540  data_up (data_up)
+     LUT2:I1->O            4   0.195   0.599  data_out1 (data_out)
+     end scope: 'psi_cmd_sender_vector_2'
+     begin scope: 'XLXI_5284'
+     AND3B1:I2->O          1   0.195   0.360  I_36_31 (D2)
+     end scope: 'XLXI_5284'
+     OBUFDS:I->O               3.957          XLXI_6186 (BUSC_04DP_08S)
+    ----------------------------------------
+    Total                      6.206ns (4.707ns logic, 1.499ns route)
+                                       (75.8% logic, 24.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'psi_cmd_clk_mux_0/O'
+  Total number of paths / destination ports: 4 / 2
+-------------------------------------------------------------------------
+Offset:              6.206ns (Levels of Logic = 5)
+  Source:            psi_cmd_sender_vector_0/data_up (FF)
+  Destination:       BUSB_31DP_62S (PAD)
+  Source Clock:      psi_cmd_clk_mux_0/O rising
+
+  Data Path: psi_cmd_sender_vector_0/data_up to BUSB_31DP_62S
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRS:C->Q             2   0.360   0.540  data_up (data_up)
+     LUT2:I1->O            4   0.195   0.599  data_out1 (data_out)
+     end scope: 'psi_cmd_sender_vector_0'
+     begin scope: 'XLXI_6323'
+     AND3B2:I2->O          1   0.195   0.360  I_36_33 (D0)
+     end scope: 'XLXI_6323'
+     OBUFDS:I->O               3.957          XLXI_5544 (BUSB_31DP_62S)
+    ----------------------------------------
+    Total                      6.206ns (4.707ns logic, 1.499ns route)
+                                       (75.8% logic, 24.2% route)
 
 =========================================================================
 Timing constraint: Default path analysis
@@ -4153,13 +4376,13 @@ Delay:               13.293ns (Levels of Logic = 7)
 =========================================================================
 
 
-Total REAL time to Xst completion: 58.00 secs
-Total CPU time to Xst completion: 58.44 secs
+Total REAL time to Xst completion: 60.00 secs
+Total CPU time to Xst completion: 58.79 secs
  
 --> 
 
 
-Total memory usage is 820628 kilobytes
+Total memory usage is 821040 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  528 (   0 filtered)

@@ -7,7 +7,7 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : TOP_LEVEL.vhf
--- /___/   /\     Timestamp : 05/18/2018 14:32:10
+-- /___/   /\     Timestamp : 10/18/2018 15:44:15
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
@@ -3416,30 +3416,30 @@ begin
                 O=>psi_i2c_clk(2));
    
    psi_cmd_clk_mux_0 : M4_1E_MXILINX_TOP_LEVEL
-      port map (D0=>dut_dcm_clk0(0),
-                D1=>dut_dcm_clk90(0),
-                D2=>dut_dcm_clk0_inv(0),
-                D3=>dut_dcm_clk90_inv(0),
+      port map (D0=>dut_dcm_clk90_inv(0),
+                D1=>dut_dcm_clk0(0),
+                D2=>dut_dcm_clk90(0),
+                D3=>dut_dcm_clk0_inv(0),
                 E=>XLXN_18398,
                 S0=>psi_out_clk_sel(0),
                 S1=>psi_out_clk_sel(3),
                 O=>XLXN_19101(0));
    
    psi_cmd_clk_mux_1 : M4_1E_MXILINX_TOP_LEVEL
-      port map (D0=>dut_dcm_clk0(1),
-                D1=>dut_dcm_clk90(1),
-                D2=>dut_dcm_clk0_inv(1),
-                D3=>dut_dcm_clk90_inv(1),
+      port map (D0=>dut_dcm_clk90_inv(1),
+                D1=>dut_dcm_clk0(1),
+                D2=>dut_dcm_clk90(1),
+                D3=>dut_dcm_clk0_inv(1),
                 E=>XLXN_18398,
                 S0=>psi_out_clk_sel(1),
                 S1=>psi_out_clk_sel(4),
                 O=>XLXN_19101(1));
    
    psi_cmd_clk_mux_2 : M4_1E_MXILINX_TOP_LEVEL
-      port map (D0=>dut_dcm_clk0(2),
-                D1=>dut_dcm_clk90(2),
-                D2=>dut_dcm_clk0_inv(2),
-                D3=>dut_dcm_clk90_inv(2),
+      port map (D0=>dut_dcm_clk90_inv(2),
+                D1=>dut_dcm_clk0(2),
+                D2=>dut_dcm_clk90(2),
+                D3=>dut_dcm_clk0_inv(2),
                 E=>XLXN_18398,
                 S0=>psi_out_clk_sel(2),
                 S1=>psi_out_clk_sel(5),
@@ -3447,7 +3447,7 @@ begin
    
    psi_cmd_fifo_vector_0 : psi_cmd_fifo32_512depth
       port map (din(31 downto 0)=>rx_data(31 downto 0),
-                rd_clk=>PSI_CLK270,
+                rd_clk=>psi_i2c_clk(0),
                 rd_en=>psi_cmd_fifo_re(0),
                 rst=>psi_reset,
                 wr_clk=>MASTER_CLK,
@@ -3458,7 +3458,7 @@ begin
    
    psi_cmd_fifo_vector_1 : psi_cmd_fifo32_512depth
       port map (din(31 downto 0)=>rx_data(31 downto 0),
-                rd_clk=>PSI_CLK270,
+                rd_clk=>psi_i2c_clk(1),
                 rd_en=>psi_cmd_fifo_re(1),
                 rst=>psi_reset,
                 wr_clk=>MASTER_CLK,
@@ -3469,7 +3469,7 @@ begin
    
    psi_cmd_fifo_vector_2 : psi_cmd_fifo32_512depth
       port map (din(31 downto 0)=>rx_data(31 downto 0),
-                rd_clk=>PSI_CLK270,
+                rd_clk=>psi_i2c_clk(2),
                 rd_en=>psi_cmd_fifo_re(2),
                 rst=>psi_reset,
                 wr_clk=>MASTER_CLK,
@@ -3506,7 +3506,7 @@ begin
       port map (data(31 downto 0)=>psi_cmd_fifo_dout(31 downto 0),
                 fifo_empty=>psi_cmd_fifo_empty(0),
                 fifo_full=>psi_cmd_fifo_full(0),
-                psi_clk=>PSI_CLK270,
+                psi_clk=>psi_i2c_clk(0),
                 reset=>psi_reset,
                 data_error=>psi_errors(32),
                 data_out=>psi_cmd_sender_dout(0),
@@ -3517,7 +3517,7 @@ begin
       port map (data(31 downto 0)=>psi_cmd_fifo_dout(63 downto 32),
                 fifo_empty=>psi_cmd_fifo_empty(1),
                 fifo_full=>psi_cmd_fifo_full(1),
-                psi_clk=>PSI_CLK270,
+                psi_clk=>psi_i2c_clk(1),
                 reset=>psi_reset,
                 data_error=>psi_errors(33),
                 data_out=>psi_cmd_sender_dout(1),
@@ -3528,7 +3528,7 @@ begin
       port map (data(31 downto 0)=>psi_cmd_fifo_dout(95 downto 64),
                 fifo_empty=>psi_cmd_fifo_empty(2),
                 fifo_full=>psi_cmd_fifo_full(2),
-                psi_clk=>PSI_CLK270,
+                psi_clk=>psi_i2c_clk(2),
                 reset=>psi_reset,
                 data_error=>psi_errors(34),
                 data_out=>psi_cmd_sender_dout(2),

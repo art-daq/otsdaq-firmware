@@ -271,7 +271,6 @@
         <signal name="BUSD_25DP_50S" />
         <signal name="BUSD_25DN_51S" />
         <signal name="BUSD_24DN_49S" />
-        <signal name="BUSD_24DP_48S" />
         <signal name="BUSB_15DP_30S" />
         <signal name="BUSB_15DN_31S" />
         <signal name="BUSD_15DN_31S" />
@@ -488,6 +487,7 @@
         <signal name="scin_phys(2)" />
         <signal name="PSI_CLK180" />
         <signal name="XLXN_19149" />
+        <signal name="BUSD_24DP_48S" />
         <port polarity="Input" name="BUSC_16DP_32S" />
         <port polarity="Input" name="SECONDARY_CLK" />
         <port polarity="Output" name="BUSC_25DN_51S" />
@@ -541,7 +541,6 @@
         <port polarity="Input" name="BUSD_25DP_50S" />
         <port polarity="Input" name="BUSD_25DN_51S" />
         <port polarity="Output" name="BUSD_24DN_49S" />
-        <port polarity="Output" name="BUSD_24DP_48S" />
         <port polarity="Output" name="BUSB_15DP_30S" />
         <port polarity="Output" name="BUSB_15DN_31S" />
         <port polarity="Output" name="BUSD_15DN_31S" />
@@ -579,6 +578,7 @@
         <port polarity="Output" name="BUSD_21DN_43S" />
         <port polarity="Output" name="BUSD_18DP_36S" />
         <port polarity="Output" name="BUSD_18DN_37S" />
+        <port polarity="Output" name="BUSD_24DP_48S" />
         <blockdef name="inv">
             <timestamp>2000-1-1T10:10:10</timestamp>
             <line x2="64" y1="-32" y2="-32" x1="0" />
@@ -2532,7 +2532,7 @@
         <block symbolname="psi_cmd_fifo32_512depth" name="psi_cmd_fifo_vector(2:0)">
             <blockpin signalname="psi_reset" name="rst" />
             <blockpin signalname="MASTER_CLK" name="wr_clk" />
-            <blockpin signalname="PSI_CLK270" name="rd_clk" />
+            <blockpin signalname="psi_i2c_clk(2:0)" name="rd_clk" />
             <blockpin signalname="PSI_CMD_FIFO_MAP" name="wr_en" />
             <blockpin signalname="psi_cmd_fifo_re(2:0)" name="rd_en" />
             <blockpin signalname="rx_data(31:0)" name="din(31:0)" />
@@ -2541,7 +2541,7 @@
             <blockpin signalname="psi_cmd_fifo_dout(95:0)" name="dout(31:0)" />
         </block>
         <block symbolname="psi_command_sender" name="psi_cmd_sender_vector(2:0)">
-            <blockpin signalname="PSI_CLK270" name="psi_clk" />
+            <blockpin signalname="psi_i2c_clk(2:0)" name="psi_clk" />
             <blockpin signalname="psi_reset" name="reset" />
             <blockpin signalname="psi_cmd_fifo_empty(2:0)" name="fifo_empty" />
             <blockpin signalname="psi_cmd_fifo_full(2:0)" name="fifo_full" />
@@ -2788,10 +2788,10 @@
             <blockpin signalname="XLXN_19007" name="P" />
         </block>
         <block symbolname="m4_1e" name="psi_cmd_clk_mux(2:0)">
-            <blockpin signalname="dut_dcm_clk0(2:0)" name="D0" />
-            <blockpin signalname="dut_dcm_clk90(2:0)" name="D1" />
-            <blockpin signalname="dut_dcm_clk0_inv(2:0)" name="D2" />
-            <blockpin signalname="dut_dcm_clk90_inv(2:0)" name="D3" />
+            <blockpin signalname="dut_dcm_clk90_inv(2:0)" name="D0" />
+            <blockpin signalname="dut_dcm_clk0(2:0)" name="D1" />
+            <blockpin signalname="dut_dcm_clk90(2:0)" name="D2" />
+            <blockpin signalname="dut_dcm_clk0_inv(2:0)" name="D3" />
             <blockpin signalname="XLXN_18398" name="E" />
             <blockpin signalname="psi_out_clk_sel(2:0)" name="S0" />
             <blockpin signalname="psi_out_clk_sel(5:3)" name="S1" />
@@ -4112,7 +4112,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="512" y="752" type="branch" />
             <wire x2="592" y1="752" y2="752" x1="512" />
         </branch>
-        <branch name="PSI_CLK270">
+        <branch name="psi_i2c_clk(2:0)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="512" y="560" type="branch" />
             <wire x2="592" y1="560" y2="560" x1="512" />
         </branch>
@@ -4155,7 +4155,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1248" y="704" type="branch" />
             <wire x2="1344" y1="704" y2="704" x1="1248" />
         </branch>
-        <branch name="PSI_CLK270">
+        <branch name="psi_i2c_clk(2:0)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1248" y="656" type="branch" />
             <wire x2="1344" y1="656" y2="656" x1="1248" />
         </branch>
@@ -4271,14 +4271,6 @@
             <wire x2="592" y1="1504" y2="1504" x1="528" />
         </branch>
         <instance x="592" y="1520" name="XLXI_6103" orien="R180" />
-        <branch name="dut_dcm_clk0(2:0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="528" y="1120" type="branch" />
-            <wire x2="592" y1="1120" y2="1120" x1="528" />
-        </branch>
-        <branch name="dut_dcm_clk90(2:0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="528" y="1184" type="branch" />
-            <wire x2="592" y1="1184" y2="1184" x1="528" />
-        </branch>
         <branch name="XLXN_19101(2:0)">
             <wire x2="1040" y1="1216" y2="1216" x1="912" />
         </branch>
@@ -4328,14 +4320,6 @@
         <branch name="dut_dcm_clk90_inv(2:0)">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="800" y="1760" type="branch" />
             <wire x2="800" y1="1760" y2="1760" x1="688" />
-        </branch>
-        <branch name="dut_dcm_clk0_inv(2:0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="528" y="1248" type="branch" />
-            <wire x2="592" y1="1248" y2="1248" x1="528" />
-        </branch>
-        <branch name="dut_dcm_clk90_inv(2:0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="528" y="1312" type="branch" />
-            <wire x2="592" y1="1312" y2="1312" x1="528" />
         </branch>
         <instance x="4640" y="2592" name="XLXI_6018" orien="R0" />
         <instance x="4656" y="2192" name="XLXI_6016" orien="R0" />
@@ -4588,6 +4572,23 @@
         <branch name="psi_extdom_trig">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3536" y="5136" type="branch" />
             <wire x2="3536" y1="5136" y2="5136" x1="3376" />
+        </branch>
+        <text style="fontsize:36;fontname:Arial" x="172" y="996">Default to 270 because that's what it was hard-wired to before option added.</text>
+        <branch name="dut_dcm_clk90_inv(2:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="528" y="1120" type="branch" />
+            <wire x2="592" y1="1120" y2="1120" x1="528" />
+        </branch>
+        <branch name="dut_dcm_clk0(2:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="528" y="1184" type="branch" />
+            <wire x2="592" y1="1184" y2="1184" x1="528" />
+        </branch>
+        <branch name="dut_dcm_clk90(2:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="528" y="1248" type="branch" />
+            <wire x2="592" y1="1248" y2="1248" x1="528" />
+        </branch>
+        <branch name="dut_dcm_clk0_inv(2:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="528" y="1312" type="branch" />
+            <wire x2="592" y1="1312" y2="1312" x1="528" />
         </branch>
     </sheet>
     <sheet sheetnum="4" width="7040" height="5440">

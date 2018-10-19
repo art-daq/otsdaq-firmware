@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-rulinux03.dhcp.fnal.gov::  Fri May 18 14:38:14 2018
+rulinux03.dhcp.fnal.gov::  Thu Oct 18 15:50:27 2018
 
 par -w -intstyle ise -ol high -xe n -t 1 TOP_LEVEL_map.ncd TOP_LEVEL.ncd
 TOP_LEVEL.pcf 
@@ -27,8 +27,8 @@ WARNING:Security:44 - Since no license file was found,
        please run the Xilinx License Configuration Manager
        (xlcm or "Manage Xilinx Licenses")
        to assist in obtaining a license.
-WARNING:Security:42 - Your license support version '2018.05' for ISE expires in 13 days after which you will not qualify
-for Xilinx software updates or new releases.
+WARNING:Security:42 - Your software subscription period has lapsed. Your current version of Xilinx tools will continue
+to function, but you no longer qualify for Xilinx software updates or new releases.
 
 ----------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ Device speed data version:  "PRODUCTION 1.71 2013-10-13".
 Device Utilization Summary:
 
    Number of BSCANs                          1 out of 4      25%
-   Number of BUFGs                          20 out of 32     62%
+   Number of BUFGs                          25 out of 32     78%
    Number of DCM_ADVs                        8 out of 8     100%
    Number of IDELAYCTRLs                     3 out of 16     18%
    Number of ILOGICs                         3 out of 448     1%
@@ -58,8 +58,8 @@ Device Utilization Summary:
 
    Number of OLOGICs                         1 out of 448     1%
    Number of RAMB16s                        16 out of 72     22%
-   Number of Slices                       4244 out of 10752  39%
-      Number of SLICEMs                    156 out of 5376    2%
+   Number of Slices                       4149 out of 10752  38%
+      Number of SLICEMs                    155 out of 5376    2%
 
 
 
@@ -90,28 +90,28 @@ WARNING:Par:288 - The signal XLXI_6013/XLXI_3535/info_fifo_rd_data<4> has no loa
 Starting Router
 
 
-Phase  1  : 26572 unrouted;      REAL time: 9 secs 
+Phase  1  : 26470 unrouted;      REAL time: 9 secs 
 
-Phase  2  : 22235 unrouted;      REAL time: 9 secs 
+Phase  2  : 22191 unrouted;      REAL time: 10 secs 
 
-Phase  3  : 7413 unrouted;      REAL time: 11 secs 
+Phase  3  : 7472 unrouted;      REAL time: 12 secs 
 
-Phase  4  : 7443 unrouted; (Setup:0, Hold:30654, Component Switching Limit:0)     REAL time: 13 secs 
+Phase  4  : 7476 unrouted; (Setup:0, Hold:28243, Component Switching Limit:0)     REAL time: 13 secs 
 
 Updating file: TOP_LEVEL.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Setup:0, Hold:32073, Component Switching Limit:0)     REAL time: 17 secs 
+Phase  5  : 0 unrouted; (Setup:0, Hold:27027, Component Switching Limit:0)     REAL time: 17 secs 
 
-Phase  6  : 0 unrouted; (Setup:0, Hold:32073, Component Switching Limit:0)     REAL time: 17 secs 
+Phase  6  : 0 unrouted; (Setup:0, Hold:27027, Component Switching Limit:0)     REAL time: 17 secs 
 
-Phase  7  : 0 unrouted; (Setup:0, Hold:32073, Component Switching Limit:0)     REAL time: 17 secs 
+Phase  7  : 0 unrouted; (Setup:0, Hold:27027, Component Switching Limit:0)     REAL time: 17 secs 
 
-Phase  8  : 0 unrouted; (Setup:0, Hold:32073, Component Switching Limit:0)     REAL time: 17 secs 
+Phase  8  : 0 unrouted; (Setup:0, Hold:27027, Component Switching Limit:0)     REAL time: 17 secs 
 
-Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 19 secs 
+Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 20 secs 
 
-Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 20 secs 
-Total REAL time to Router completion: 20 secs 
+Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 21 secs 
+Total REAL time to Router completion: 21 secs 
 Total CPU time to Router completion: 20 secs 
 
 Partition Implementation Status
@@ -130,39 +130,43 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|            PSI_CLK0 |BUFGCTRL_X0Y28| No   |  167 |  0.231     |  2.649      |
+|            PSI_CLK0 |BUFGCTRL_X0Y29| No   |  161 |  0.213     |  2.628      |
 +---------------------+--------------+------+------+------------+-------------+
-|          PSI_CLK270 |BUFGCTRL_X0Y30| No   |  244 |  0.207     |  2.653      |
+|      psi_i2c_clk<2> | BUFGCTRL_X0Y6| No   |   85 |  0.236     |  2.665      |
 +---------------------+--------------+------+------+------------+-------------+
-|       GTX_CLK_0_sig | BUFGCTRL_X0Y0| No   | 1972 |  0.295     |  2.742      |
+|      psi_i2c_clk<1> | BUFGCTRL_X0Y7| No   |   82 |  0.087     |  2.702      |
++---------------------+--------------+------+------+------------+-------------+
+|      psi_i2c_clk<0> | BUFGCTRL_X0Y8| No   |   80 |  0.187     |  2.652      |
++---------------------+--------------+------+------+------------+-------------+
+|       GTX_CLK_0_sig | BUFGCTRL_X0Y0| No   | 1936 |  0.327     |  2.742      |
 +---------------------+--------------+------+------+------------+-------------+
 |psi_dig_sdata_clk<0> |              |      |      |            |             |
-|                     | BUFGCTRL_X0Y8| No   |   84 |  0.212     |  2.622      |
+|                     |BUFGCTRL_X0Y20| No   |   79 |  0.109     |  2.551      |
 +---------------------+--------------+------+------+------------+-------------+
 |psi_dig_sdata_clk<1> |              |      |      |            |             |
-|                     | BUFGCTRL_X0Y6| No   |   91 |  0.121     |  2.542      |
+|                     |BUFGCTRL_X0Y10| No   |   69 |  0.140     |  2.565      |
 +---------------------+--------------+------+------+------------+-------------+
 |psi_dig_sdata_clk<2> |              |      |      |            |             |
-|                     | BUFGCTRL_X0Y5| No   |   89 |  0.140     |  2.633      |
+|                     | BUFGCTRL_X0Y9| No   |   86 |  0.171     |  2.682      |
 +---------------------+--------------+------+------+------------+-------------+
-|    icon_control0<0> | BUFGCTRL_X0Y9| No   |  141 |  0.267     |  2.672      |
+|    icon_control0<0> |BUFGCTRL_X0Y12| No   |  141 |  0.231     |  2.666      |
 +---------------------+--------------+------+------+------------+-------------+
 |          XLXN_15064 | BUFGCTRL_X0Y1| No   |    3 |  0.112     |  2.600      |
 +---------------------+--------------+------+------+------------+-------------+
-|          PSI_CLK180 |BUFGCTRL_X0Y29| No   |    4 |  0.092     |  2.520      |
+|          PSI_CLK180 |BUFGCTRL_X0Y30| No   |    4 |  0.020     |  2.458      |
 +---------------------+--------------+------+------+------------+-------------+
-|          clock_5mhz |         Local|      |    3 |  0.182     |  3.056      |
+|          clock_5mhz |         Local|      |    3 |  0.184     |  2.692      |
 +---------------------+--------------+------+------+------------+-------------+
 |U_icon_pro/U0/iUPDAT |              |      |      |            |             |
 |               E_OUT |         Local|      |    1 |  0.000     |  0.559      |
 +---------------------+--------------+------+------+------------+-------------+
-|    internal_acc_clk |         Local|      |    1 |  0.000     |  1.243      |
+|    internal_acc_clk |         Local|      |    1 |  0.000     |  0.572      |
 +---------------------+--------------+------+------+------------+-------------+
-|         MASTER_CLK1 |         Local|      |    7 |  0.554     |  3.468      |
+|         MASTER_CLK1 |         Local|      |    7 |  2.394     |  3.279      |
 +---------------------+--------------+------+------+------------+-------------+
-|   icon_control0<13> |         Local|      |    4 |  0.000     |  0.922      |
+|   icon_control0<13> |         Local|      |    4 |  0.000     |  0.778      |
 +---------------------+--------------+------+------+------------+-------------+
-|          XLXN_12498 |         Local|      |    1 |  0.000     |  1.449      |
+|          XLXN_12498 |         Local|      |    1 |  0.000     |  0.475      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -175,7 +179,7 @@ for example SLICE loads not FF loads.
 
 Timing Score: 0 (Setup: 0, Hold: 0, Component Switching Limit: 0)
 
-Number of Timing Constraints that were not applied: 17
+Number of Timing Constraints that were not applied: 20
 
 Asterisk (*) preceding a constraint indicates it was not met.
    This may be due to a setup or hold violation.
@@ -184,48 +188,48 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  TS_XLXN_18569 = PERIOD TIMEGRP "XLXN_1856 | SETUP       |     0.039ns|     8.422ns|       0|           0
-  9" TS_XLXN_18537 / 2 PHASE 4.25 ns        | HOLD        |     0.014ns|            |       0|           0
+  TS_XLXN_18569 = PERIOD TIMEGRP "XLXN_1856 | SETUP       |     0.012ns|     8.476ns|       0|           0
+  9" TS_XLXN_18537 / 2 PHASE 4.25 ns        | HOLD        |     0.010ns|            |       0|           0
     HIGH 50%                                |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  TS_GEL_RXCLK = PERIOD TIMEGRP "GEL_RXCLK" | SETUP       |     0.041ns|     7.938ns|       0|           0
-   8 ns HIGH 50%                            | HOLD        |     0.332ns|            |       0|           0
+  TS_GEL_RXCLK = PERIOD TIMEGRP "GEL_RXCLK" | SETUP       |     0.044ns|     7.912ns|       0|           0
+   8 ns HIGH 50%                            | HOLD        |     0.407ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  TS_rstmclk_to_mclk = MAXDELAY FROM TIMEGR | SETUP       |     0.063ns|     7.937ns|       0|           0
+  TS_rstmclk_to_mclk = MAXDELAY FROM TIMEGR | SETUP       |     0.209ns|     7.791ns|       0|           0
   P "XLXN_12498" TO TIMEGRP         "MASTER |             |            |            |        |            
   _CLK" 8 ns DATAPATHONLY                   |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  TS_rstmclk_to_digsclk = MAXDELAY FROM TIM | SETUP       |     1.137ns|     6.863ns|       0|           0
-  EGRP "XLXN_12498" TO TIMEGRP         "psi |             |            |            |        |            
-  _dig_sdata_clk0" 8 ns DATAPATHONLY        |             |            |            |        |            
+  TS_gtxclk_to_digsclk2 = MAXDELAY FROM TIM | SETUP       |     0.743ns|     7.257ns|       0|           0
+  EGRP "GEL_RXCLK" TO TIMEGRP         "psi_ |             |            |            |        |            
+  dig_sdata_clk2" 8 ns DATAPATHONLY         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_gtxclk_to_digsclk1 = MAXDELAY FROM TIM | SETUP       |     0.768ns|     7.232ns|       0|           0
+  EGRP "GEL_RXCLK" TO TIMEGRP         "psi_ |             |            |            |        |            
+  dig_sdata_clk1" 8 ns DATAPATHONLY         |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
   TS_dut_src_clk = PERIOD TIMEGRP "dut_src_ | MINPERIOD   |     1.376ns|    15.624ns|       0|           0
   clk" 34 ns HIGH 50%                       |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  TS_gtxclk_to_digsclk1 = MAXDELAY FROM TIM | MAXDELAY    |     1.711ns|     6.289ns|       0|           0
-  EGRP "GEL_RXCLK" TO TIMEGRP         "psi_ |             |            |            |        |            
-  dig_sdata_clk1" 8 ns DATAPATHONLY         |             |            |            |        |            
+  TS_rstmclk_to_digsclk = MAXDELAY FROM TIM | SETUP       |     1.403ns|     6.597ns|       0|           0
+  EGRP "XLXN_12498" TO TIMEGRP         "psi |             |            |            |        |            
+  _dig_sdata_clk0" 8 ns DATAPATHONLY        |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  TS_gtxclk_to_digsclk2 = MAXDELAY FROM TIM | SETUP       |     1.724ns|     6.276ns|       0|           0
-  EGRP "GEL_RXCLK" TO TIMEGRP         "psi_ |             |            |            |        |            
-  dig_sdata_clk2" 8 ns DATAPATHONLY         |             |            |            |        |            
-----------------------------------------------------------------------------------------------------------
-  TS_digsclk2_to_gtxclk = MAXDELAY FROM TIM | SETUP       |     2.483ns|     5.517ns|       0|           0
-  EGRP "psi_dig_sdata_clk2" TO TIMEGRP      |             |            |            |        |            
-      "GEL_RXCLK" 8 ns DATAPATHONLY         |             |            |            |        |            
-----------------------------------------------------------------------------------------------------------
-  TS_digsclk1_to_gtxclk = MAXDELAY FROM TIM | SETUP       |     2.646ns|     5.354ns|       0|           0
+  TS_digsclk1_to_gtxclk = MAXDELAY FROM TIM | SETUP       |     2.333ns|     5.667ns|       0|           0
   EGRP "psi_dig_sdata_clk1" TO TIMEGRP      |             |            |            |        |            
       "GEL_RXCLK" 8 ns DATAPATHONLY         |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  TS_mclk_to_rstmclk = MAXDELAY FROM TIMEGR | SETUP       |     3.756ns|     4.244ns|       0|           0
+  TS_digsclk2_to_gtxclk = MAXDELAY FROM TIM | SETUP       |     2.999ns|     5.001ns|       0|           0
+  EGRP "psi_dig_sdata_clk2" TO TIMEGRP      |             |            |            |        |            
+      "GEL_RXCLK" 8 ns DATAPATHONLY         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_mclk_to_rstmclk = MAXDELAY FROM TIMEGR | SETUP       |     4.294ns|     3.706ns|       0|           0
   P "MASTER_CLK" TO TIMEGRP         "XLXN_1 |             |            |            |        |            
   2498" 8 ns DATAPATHONLY                   |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
   TS_XLXN_18537 = PERIOD TIMEGRP "XLXN_1853 | MINLOWPULSE |    11.000ns|     6.000ns|       0|           0
   7" TS_dut_src_clk / 2 HIGH 50%            |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  TS_rstclk_to_all = MAXDELAY FROM TIMEGRP  | MAXDELAY    |     5.330ns|    10.670ns|       0|           0
+  TS_rstclk_to_all = MAXDELAY FROM TIMEGRP  | MAXDELAY    |     5.416ns|    10.584ns|       0|           0
   "XLXN_12498" 16 ns DATAPATHONLY           |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
   TS_XLXN_18597 = PERIOD TIMEGRP "XLXN_1859 | MINLOWPULSE |     6.942ns|     1.058ns|       0|           0
@@ -240,28 +244,47 @@ Asterisk (*) preceding a constraint indicates it was not met.
   TS_XLXN_18354 = PERIOD TIMEGRP "XLXN_1835 | MINLOWPULSE |     7.442ns|     1.058ns|       0|           0
   4" TS_XLXN_18537 / 2 HIGH 50%             |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  TS_U_TO_J = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    11.362ns|     3.638ns|       0|           0
+  TS_U_TO_J = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    11.968ns|     3.032ns|       0|           0
    TO TIMEGRP "J_CLK" 15 ns                 |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  TS_XLXN_19149 = PERIOD TIMEGRP "XLXN_1914 | SETUP       |    13.846ns|     6.308ns|       0|           0
-  9" TS_dut_src_clk PHASE 17 ns HIGH        | HOLD        |    18.576ns|            |       0|           0
+  TS_XLXN_18857_2_ = PERIOD TIMEGRP "XLXN_1 | SETUP       |    12.664ns|     8.672ns|       0|           0
+  8857_2_" TS_dut_src_clk PHASE 8.5 ns      | HOLD        |     0.532ns|            |       0|           0
+      HIGH 50%                              |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_XLXN_18857_0_ = PERIOD TIMEGRP "XLXN_1 | SETUP       |    13.357ns|     7.286ns|       0|           0
+  8857_0_" TS_dut_src_clk PHASE 8.5 ns      | HOLD        |     0.482ns|            |       0|           0
+      HIGH 50%                              |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_XLXN_19149 = PERIOD TIMEGRP "XLXN_1914 | SETUP       |    13.536ns|     6.928ns|       0|           0
+  9" TS_dut_src_clk PHASE 17 ns HIGH        | HOLD        |    17.992ns|            |       0|           0
     50%                                     |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  TS_U_TO_U = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    14.034ns|     0.966ns|       0|           0
+  TS_XLXN_18857_1_ = PERIOD TIMEGRP "XLXN_1 | SETUP       |    13.858ns|     6.284ns|       0|           0
+  8857_1_" TS_dut_src_clk PHASE 8.5 ns      | HOLD        |     0.497ns|            |       0|           0
+      HIGH 50%                              |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_U_TO_U = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    14.032ns|     0.968ns|       0|           0
    TO TIMEGRP "U_CLK" 15 ns                 |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  TS_XLXN_18992 = PERIOD TIMEGRP "XLXN_1899 | SETUP       |    14.153ns|     7.915ns|       0|           0
-  2" TS_dut_src_clk PHASE 25.5 ns HIGH      | HOLD        |     0.476ns|            |       0|           0
-      50%                                   |             |            |            |        |            
+  TS_J_CLK = PERIOD TIMEGRP "J_CLK" 30 ns H | SETUP       |    23.005ns|     6.995ns|       0|           0
+  IGH 50%                                   | HOLD        |     0.508ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  TS_J_CLK = PERIOD TIMEGRP "J_CLK" 30 ns H | SETUP       |    22.775ns|     7.225ns|       0|           0
-  IGH 50%                                   | HOLD        |     0.500ns|            |       0|           0
+  TS_XLXN_12172 = PERIOD TIMEGRP "XLXN_1217 | SETUP       |    26.150ns|     7.850ns|       0|           0
+  2" TS_dut_src_clk HIGH 50%                | HOLD        |     0.515ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  TS_XLXN_12172 = PERIOD TIMEGRP "XLXN_1217 | SETUP       |    25.823ns|     8.177ns|       0|           0
-  2" TS_dut_src_clk HIGH 50%                | HOLD        |     0.355ns|            |       0|           0
+  TS_XLXN_18856_1_ = PERIOD TIMEGRP "XLXN_1 | MINPERIOD   |    31.500ns|     2.500ns|       0|           0
+  8856_1_" TS_dut_src_clk HIGH 50%          |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  TS_SECONDARY_CLK = PERIOD TIMEGRP "SECOND | SETUP       |   197.270ns|     2.730ns|       0|           0
-  ARY_CLK" 5 MHz HIGH 50%                   | HOLD        |     0.362ns|            |       0|           0
+  TS_XLXN_18856_0_ = PERIOD TIMEGRP "XLXN_1 | MINPERIOD   |    31.500ns|     2.500ns|       0|           0
+  8856_0_" TS_dut_src_clk HIGH 50%          |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_XLXN_18856_2_ = PERIOD TIMEGRP "XLXN_1 | MINPERIOD   |    31.500ns|     2.500ns|       0|           0
+  8856_2_" TS_dut_src_clk HIGH 50%          |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_SECONDARY_CLK = PERIOD TIMEGRP "SECOND | SETUP       |   197.768ns|     2.232ns|       0|           0
+  ARY_CLK" 5 MHz HIGH 50%                   | HOLD        |     0.452ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_D2_TO_T2_ila_pro_0_path" TIG     | SETUP       |         N/A|     5.204ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
   TS_mclk_to_digsclk2 = MAXDELAY FROM TIMEG | N/A         |         N/A|         N/A|     N/A|         N/A
   RP "MASTER_CLK" TO TIMEGRP         "psi_d |             |            |            |        |            
@@ -287,6 +310,8 @@ Asterisk (*) preceding a constraint indicates it was not met.
   MEGRP "psi_dig_sdata_clk2" TO TIMEGRP     |             |            |            |        |            
        "XLXN_12498" 8 ns DATAPATHONLY       |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
+  PATH "TS_J2_TO_D2_ila_pro_0_path" TIG     | N/A         |         N/A|         N/A|     N/A|         N/A
+----------------------------------------------------------------------------------------------------------
   TS_rstmclk_to_digsclk1 = MAXDELAY FROM TI | N/A         |         N/A|         N/A|     N/A|         N/A
   MEGRP "XLXN_12498" TO TIMEGRP         "ps |             |            |            |        |            
   i_dig_sdata_clk1" 8 ns DATAPATHONLY       |             |            |            |        |            
@@ -299,17 +324,13 @@ Asterisk (*) preceding a constraint indicates it was not met.
   EGRP "psi_dig_sdata_clk0" TO TIMEGRP      |             |            |            |        |            
       "XLXN_12498" 8 ns DATAPATHONLY        |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_D_TO_J_path" TIG                 | SETUP       |         N/A|     4.598ns|     N/A|           0
-----------------------------------------------------------------------------------------------------------
-  PATH "TS_J_TO_D_path" TIG                 | SETUP       |         N/A|     8.270ns|     N/A|           0
-----------------------------------------------------------------------------------------------------------
-  PATH "TS_J4_TO_D2_ila_pro_0_path" TIG     | MAXDELAY    |         N/A|     4.118ns|     N/A|           0
-----------------------------------------------------------------------------------------------------------
   PATH "TS_J3_TO_D2_ila_pro_0_path" TIG     | N/A         |         N/A|         N/A|     N/A|         N/A
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_J2_TO_D2_ila_pro_0_path" TIG     | N/A         |         N/A|         N/A|     N/A|         N/A
+  PATH "TS_D_TO_J_path" TIG                 | SETUP       |         N/A|     5.106ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_D2_TO_T2_ila_pro_0_path" TIG     | SETUP       |         N/A|     4.771ns|     N/A|           0
+  PATH "TS_J_TO_D_path" TIG                 | SETUP       |         N/A|     9.059ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J4_TO_D2_ila_pro_0_path" TIG     | MAXDELAY    |         N/A|     3.395ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -323,13 +344,18 @@ Derived Constraints for TS_dut_src_clk
 |           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
 |                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
-|TS_dut_src_clk                 |     34.000ns|     15.624ns|     33.688ns|            0|            0|            0|        11372|
-| TS_XLXN_12172                 |     34.000ns|      8.177ns|          N/A|            0|            0|         4788|            0|
-| TS_XLXN_19149                 |     34.000ns|      6.308ns|          N/A|            0|            0|            5|            0|
-| TS_XLXN_18992                 |     34.000ns|      7.915ns|          N/A|            0|            0|         2511|            0|
-| TS_XLXN_18537                 |     17.000ns|      6.000ns|     16.844ns|            0|            0|            0|         4068|
+|TS_dut_src_clk                 |     34.000ns|     15.624ns|     33.904ns|            0|            0|            0|        11375|
+| TS_XLXN_18856_0_              |     34.000ns|      2.500ns|          N/A|            0|            0|            0|            0|
+| TS_XLXN_18857_0_              |     34.000ns|      7.286ns|          N/A|            0|            0|          838|            0|
+| TS_XLXN_18856_1_              |     34.000ns|      2.500ns|          N/A|            0|            0|            0|            0|
+| TS_XLXN_18857_1_              |     34.000ns|      6.284ns|          N/A|            0|            0|          838|            0|
+| TS_XLXN_18856_2_              |     34.000ns|      2.500ns|          N/A|            0|            0|            0|            0|
+| TS_XLXN_18857_2_              |     34.000ns|      8.672ns|          N/A|            0|            0|          838|            0|
+| TS_XLXN_12172                 |     34.000ns|      7.850ns|          N/A|            0|            0|         4788|            0|
+| TS_XLXN_19149                 |     34.000ns|      6.928ns|          N/A|            0|            0|            5|            0|
+| TS_XLXN_18537                 |     17.000ns|      6.000ns|     16.952ns|            0|            0|            0|         4068|
 |  TS_XLXN_18354                |      8.500ns|      1.058ns|          N/A|            0|            0|            0|            0|
-|  TS_XLXN_18569                |      8.500ns|      8.422ns|          N/A|            0|            0|         4068|            0|
+|  TS_XLXN_18569                |      8.500ns|      8.476ns|          N/A|            0|            0|         4068|            0|
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
 All constraints were met.
@@ -349,7 +375,7 @@ WARNING:Par:283 - There are 6 loadless signals in this design. This design will 
 Total REAL time to PAR completion: 22 secs 
 Total CPU time to PAR completion: 22 secs 
 
-Peak Memory Usage:  732 MB
+Peak Memory Usage:  734 MB
 
 Placer: Placement generated during map.
 Routing: Completed - No errors found.

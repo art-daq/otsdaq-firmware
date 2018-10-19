@@ -940,14 +940,15 @@ begin
               psincdec => ot_ps_ctrl(1),
              locked   => ot_ps_lock
             );
-          
+            
+         --Oct '18: inputs 0-3 should now match NIM+ (but experience is rotated 90deg)
          IBUFDS_COM0 : IBUFDS
          generic map (
             DIFF_TERM => TRUE, -- Differential Termination 
             IBUF_LOW_PWR => TRUE, -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
             IOSTANDARD => "DEFAULT")
          port map (
-            O => nim_input(2), --0),  -- Buffer output
+            O => nim_input(0), --2), --0),  -- Buffer output
             I => NIM_COM0_P,  -- Diff_p buffer input (connect directly to top-level port)
             IB => NIM_COM0_N -- Diff_n buffer input (connect directly to top-level port)
          );
@@ -958,7 +959,7 @@ begin
             IBUF_LOW_PWR => TRUE, -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
             IOSTANDARD => "DEFAULT")
          port map (
-            O => nim_input(0), --1),  -- Buffer output
+            O => nim_input(1), --0), --1),  -- Buffer output
             I => NIM_COM1_P,  -- Diff_p buffer input (connect directly to top-level port)
             IB => NIM_COM1_N -- Diff_n buffer input (connect directly to top-level port)
          );
@@ -969,7 +970,7 @@ begin
             IBUF_LOW_PWR => TRUE, -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
             IOSTANDARD => "DEFAULT")
          port map (
-            O => nim_input(3), --2),  -- Buffer output
+            O => nim_input(2), --3), --2),  -- Buffer output
             I => NIM_COM2_P,  -- Diff_p buffer input (connect directly to top-level port)
             IB => NIM_COM2_N -- Diff_n buffer input (connect directly to top-level port)
          );
@@ -980,7 +981,7 @@ begin
             IBUF_LOW_PWR => TRUE, -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
             IOSTANDARD => "DEFAULT")
          port map (
-            O => nim_input(1), --3),  -- Buffer output
+            O => nim_input(3), --1), --3),  -- Buffer output
             I => NIM_COM3_P,  -- Diff_p buffer input (connect directly to top-level port)
             IB => NIM_COM3_N -- Diff_n buffer input (connect directly to top-level port)
          );   
@@ -1072,6 +1073,7 @@ begin
               I => bmx_40_adj      -- Buffer input 
             );     
                
+               --Oct '18: outputs 0-3 should now match NIM+ (but experience is rotated 90deg) 
                OBUFDS_NIM_OUT0 : OBUFDS
                generic map (
                   IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
@@ -1079,7 +1081,7 @@ begin
                port map (
                   O => NIM_OUT0_P,     -- Diff_p output (connect directly to top-level port)
                   OB => NIM_OUT0_N,   -- Diff_n output (connect directly to top-level port)
-                  I => s_nim_out0      -- Buffer input 
+                  I => s_nim_out1 --0      -- Buffer input 
                ); -- What I call sout, the output signal after all coincidence, delay, and width processing
 
                -- End of OBUFDS_inst instantiation
@@ -1091,7 +1093,7 @@ begin
                 port map (
                    O => NIM_OUT1_P,     -- Diff_p output (connect directly to top-level port)
                    OB => NIM_OUT1_N,   -- Diff_n output (connect directly to top-level port)
-                   I => s_nim_out2 --1      -- Buffer input 
+                   I => s_nim_out0 --2 --1      -- Buffer input 
                 ); -- What I call sout, the output signal after all coincidence, delay, and width processing
  
           OBUFDS_NIM_OUT2: OBUFDS
@@ -1101,7 +1103,7 @@ begin
                 port map (
                    O => NIM_OUT2_P,     -- Diff_p output (connect directly to top-level port)
                    OB => NIM_OUT2_N,   -- Diff_n output (connect directly to top-level port)
-                   I => s_nim_out1 --2      -- Buffer input 
+                   I => s_nim_out3 --1 --2      -- Buffer input 
                 );
                           
                 OBUFDS_NIM_OUT3: OBUFDS
@@ -1111,32 +1113,32 @@ begin
                 port map (
                    O => NIM_OUT3_P,     -- Diff_p output (connect directly to top-level port)
                    OB => NIM_OUT3_N,   -- Diff_n output (connect directly to top-level port)
-                   I => s_nim_out3      -- Buffer input 
+                   I => s_nim_out2 --3      -- Buffer input 
                 ); 
                 -- End of OBUFDS_inst instantiation
-                
+
 -- Begin New section AGP 2018_05_03 RJ45 Panel Support
 -- Need 12 53 MHz clock differential buffers
 -- Need 6 40 MHz clock differential buffers
 
 OBUFDS_TRIG53_0 : OBUFDS
-           generic map (
-              IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
-              SLEW => "FAST")          -- Specify the output slew rate
-           port map (
-              O => TRIG53_0_P,     -- Diff_p output (connect directly to top-level port)
-              OB => TRIG53_0_N,   -- Diff_n output (connect directly to top-level port)
-              I => s_trig_53(0)      -- Buffer input 
-            );     
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG53_0_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG53_0_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_53(0)      -- Buffer input 
+);     
 OBUFDS_TRIG53_1 : OBUFDS
-           generic map (
-              IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
-              SLEW => "FAST")          -- Specify the output slew rate
-           port map (
-              O => TRIG53_1_P,     -- Diff_p output (connect directly to top-level port)
-              OB => TRIG53_1_N,   -- Diff_n output (connect directly to top-level port)
-              I => s_trig_53(1)      -- Buffer input 
-           );     
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG53_1_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG53_1_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_53(1)      -- Buffer input 
+);     
 OBUFDS_TRIG53_2 : OBUFDS
 generic map (
 IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
@@ -1147,50 +1149,50 @@ OB => TRIG53_2_N,   -- Diff_n output (connect directly to top-level port)
 I => s_trig_53(2)      -- Buffer input 
 );
 OBUFDS_TRIG53_3 : OBUFDS
-                                  generic map (
-                                     IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
-                                     SLEW => "FAST")          -- Specify the output slew rate
-                                  port map (
-                                     O => TRIG53_3_P,     -- Diff_p output (connect directly to top-level port)
-                                     OB => TRIG53_3_N,   -- Diff_n output (connect directly to top-level port)
-                                     I => s_trig_53(3)      -- Buffer input 
-                                   );      
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG53_3_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG53_3_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_53(3)      -- Buffer input 
+);      
 OBUFDS_TRIG53_4 : OBUFDS
-                       generic map (
-                       IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
-                                              SLEW => "FAST")          -- Specify the output slew rate
-                                              port map (
-                                                 O => TRIG53_4_P,     -- Diff_p output (connect directly to top-level port)
-                                                 OB => TRIG53_4_N,   -- Diff_n output (connect directly to top-level port)
-                                                 I => s_trig_53(4)      -- Buffer input 
-                                               );
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG53_4_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG53_4_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_53(4)      -- Buffer input 
+);
 OBUFDS_TRIG53_5 : OBUFDS
-                                                          generic map (
-                                                             IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
-                                                             SLEW => "FAST")          -- Specify the output slew rate
-                                                          port map (
-                                                             O => TRIG53_5_P,     -- Diff_p output (connect directly to top-level port)
-                                                             OB => TRIG53_5_N,   -- Diff_n output (connect directly to top-level port)
-                                                             I => s_trig_53(5)      -- Buffer input 
-                                                           ); 
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG53_5_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG53_5_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_53(5)      -- Buffer input 
+); 
 OBUFDS_TRIG53_6 : OBUFDS
- generic map (
-                                                                         IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
-                                                                         SLEW => "FAST")          -- Specify the output slew rate
-                                                                      port map (
-                                                                         O => TRIG53_6_P,     -- Diff_p output (connect directly to top-level port)
-                                                                         OB => TRIG53_6_N,   -- Diff_n output (connect directly to top-level port)
-                                                                         I => s_trig_53(6)      -- Buffer input 
-                                                                       );                                                                
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG53_6_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG53_6_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_53(6)      -- Buffer input 
+);                                                                
 OBUFDS_TRIG53_7 : OBUFDS
-                                                                                  generic map (
-                                                                                     IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
-                                                                                     SLEW => "FAST")          -- Specify the output slew rate
-                                                                                  port map (
-                                                                                     O => TRIG53_7_P,     -- Diff_p output (connect directly to top-level port)
-                                                                                     OB => TRIG53_7_N,   -- Diff_n output (connect directly to top-level port)
-                                                                                     I => s_trig_53(7)      -- Buffer input 
-                                                                                   );     
+generic map (
+IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
+SLEW => "FAST")          -- Specify the output slew rate
+port map (
+O => TRIG53_7_P,     -- Diff_p output (connect directly to top-level port)
+OB => TRIG53_7_N,   -- Diff_n output (connect directly to top-level port)
+I => s_trig_53(7)      -- Buffer input 
+);     
 OBUFDS_TRIG53_8 : OBUFDS
 generic map (
 IOSTANDARD => "DEFAULT", -- Specify the output I/O standard
