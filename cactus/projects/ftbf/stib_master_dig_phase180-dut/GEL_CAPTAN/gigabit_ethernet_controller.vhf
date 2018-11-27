@@ -7,11 +7,11 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : gigabit_ethernet_controller.vhf
--- /___/   /\     Timestamp : 05/18/2018 16:10:29
+-- /___/   /\     Timestamp : 11/05/2018 13:52:36
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
---Command: sch2hdl -intstyle ise -family virtex4 -flat -suppress -vhdl /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig/GEL_CAPTAN/gigabit_ethernet_controller.vhf -w /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig/GEL_CAPTAN/gigabit_ethernet_controller.sch
+--Command: sch2hdl -intstyle ise -family virtex4 -flat -suppress -vhdl /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig_phase180-dut/GEL_CAPTAN/gigabit_ethernet_controller.vhf -w /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig_phase180-dut/GEL_CAPTAN/gigabit_ethernet_controller.sch
 --Design Name: gigabit_ethernet_controller
 --Device: virtex4
 --Purpose:

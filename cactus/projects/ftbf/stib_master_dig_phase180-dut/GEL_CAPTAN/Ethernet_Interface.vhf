@@ -7,11 +7,11 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : Ethernet_Interface.vhf
--- /___/   /\     Timestamp : 05/18/2018 16:10:32
+-- /___/   /\     Timestamp : 11/05/2018 13:52:36
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
---Command: sch2hdl -intstyle ise -family virtex4 -flat -suppress -vhdl /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig/GEL_CAPTAN/Ethernet_Interface.vhf -w /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig/GEL_CAPTAN/Ethernet_Interface.sch
+--Command: sch2hdl -intstyle ise -family virtex4 -flat -suppress -vhdl /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig_phase180-dut/GEL_CAPTAN/Ethernet_Interface.vhf -w /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig_phase180-dut/GEL_CAPTAN/Ethernet_Interface.sch
 --Design Name: Ethernet_Interface
 --Device: virtex4
 --Purpose:
@@ -511,8 +511,8 @@ architecture BEHAVIORAL of DATA_MANAGER_MUSER_Ethernet_Interface is
    end component;
    attribute BOX_TYPE of GND : component is "BLACK_BOX";
    
-   attribute HU_SET of XLXI_3527 : label is "XLXI_3527_38";
-   attribute HU_SET of XLXI_3532 : label is "XLXI_3532_39";
+   attribute HU_SET of XLXI_3527 : label is "XLXI_3527_0";
+   attribute HU_SET of XLXI_3532 : label is "XLXI_3532_1";
 begin
    rx_data(63 downto 0) <= rx_data_DUMMY(63 downto 0);
    RX_DATA_FIFO : DATA_FIFO_0

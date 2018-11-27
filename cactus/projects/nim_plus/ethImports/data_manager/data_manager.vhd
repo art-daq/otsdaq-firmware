@@ -37,7 +37,10 @@ entity data_manager is
 		  tx_data_dest_port    		: in	std_logic_vector (15 downto 0); 
 		  user_tx_dest_addr   		: out	std_logic_vector (31 downto 0); 	
 		  user_tx_dest_mac     		: out	std_logic_vector (47 downto 0); 
-		  user_tx_dest_port    		: out	std_logic_vector (15 downto 0);  		   		 
+		  user_tx_dest_port    		: out	std_logic_vector (15 downto 0);  
+		  
+		  
+          fifo_debug_out            : out   std_logic_vector (63 downto 0);   		   		 
 		
           user_tx_enable_out 		: in    std_logic; 	 
 		  user_ready	 			: in    std_logic;
@@ -80,7 +83,9 @@ architecture BEHAVIORAL of data_manager is
    signal tx_data_fifo_read_enable             	: std_logic;	   
    signal tx_data_fifo_wr_en                   	: std_logic;		  
    signal tx_info_fifo_rden                    	: std_logic;	
-   signal rx_data_sig                          	: std_logic_vector (63 downto 0);	  	
+   signal rx_data_sig                          	: std_logic_vector (63 downto 0);
+   
+   signal fifo_debug_sig                      	: std_logic_vector (63 downto 0) := (others => '0');	  	
    																					 														  
    signal tx_data_reg			               	: std_logic_vector (63 downto 0); 
    signal rx_data_fifo_rd_data	               	: std_logic_vector (63 downto 0); 	   
@@ -123,12 +128,15 @@ architecture BEHAVIORAL of data_manager is
    signal tx_ctrl_info_fifo_full				: std_logic;
    
    
-       attribute mark_debug : string;
-       attribute mark_debug of rx_data_fifo_empty : signal is "true";
-              attribute mark_debug of rx_info_fifo_empty : signal is "true";
-              
-              attribute mark_debug of tx_ctrl_fifo_empty : signal is "true";
-                     attribute mark_debug of tx_ctrl_info_fifo_empty : signal is "true";
+    attribute mark_debug : string;
+    attribute mark_debug of rx_data_fifo_empty : signal is "true";
+    attribute mark_debug of rx_info_fifo_empty : signal is "true";
+    
+    attribute mark_debug of tx_ctrl_fifo_empty : signal is "true";
+    attribute mark_debug of tx_ctrl_info_fifo_empty : signal is "true";
+    
+    attribute mark_debug of rx_fifo_reset_sig : signal is "true";
+
    										
 begin
 
@@ -144,7 +152,19 @@ begin
 							tx_ctrl_mac_fifo_dout when tx_seq_ret_to_sender = '1' else 
 							tx_ctrl_dest_mac;	  								 		  
 		
-   		  
+	fifo_debug_out <= fifo_debug_sig;
+	
+	fifo_debug_sig(5 downto 0) <= 
+	   tx_ctrl_info_fifo_empty & tx_ctrl_fifo_empty &
+	   tx_data_info_fifo_empty & tx_data_fifo_empty & 
+	   rx_info_fifo_empty & rx_data_fifo_empty;
+	
+	fifo_debug_sig(13 downto 8) <=
+	   tx_ctrl_info_fifo_full & tx_ctrl_fifo_full &
+	   tx_data_info_fifo_full & tx_data_fifo_full &
+	   rx_info_fifo_full & rx_data_fifo_full;   
+                                                             
+                                                             
   	RX_DATA_FIFO : entity work.xilinx_fifo							 		--SCRIPT COMMENT OUT
    	  generic map (DATA_WIDTH => 64,	RDCOUNT_SIZE => 9, FIFO_SIZE => "36Kb")			 	--SCRIPT COMMENT OUT
       port map (clk=>MASTER_CLK, 								 	--SCRIPT COMMENT OUT

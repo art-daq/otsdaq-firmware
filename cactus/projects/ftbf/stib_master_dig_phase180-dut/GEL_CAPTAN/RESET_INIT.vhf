@@ -7,11 +7,11 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : RESET_INIT.vhf
--- /___/   /\     Timestamp : 05/18/2018 16:10:32
+-- /___/   /\     Timestamp : 11/05/2018 13:52:39
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
---Command: sch2hdl -intstyle ise -family virtex4 -flat -suppress -vhdl /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig/GEL_CAPTAN/RESET_INIT.vhf -w /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig/GEL_CAPTAN/RESET_INIT.sch
+--Command: sch2hdl -intstyle ise -family virtex4 -flat -suppress -vhdl /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig_phase180-dut/GEL_CAPTAN/RESET_INIT.vhf -w /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig_phase180-dut/GEL_CAPTAN/RESET_INIT.sch
 --Design Name: RESET_INIT
 --Device: virtex4
 --Purpose:

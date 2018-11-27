@@ -31,9 +31,7 @@ entity ethernet_interface is
           rx_addr              	: out   std_logic_vector (31 downto 0); 
           rx_data              	: out   std_logic_vector (63 downto 0);   	
           rx_wren              	: out   std_logic;							
-          tx_rden               : out   std_logic;    --added RAR 
-          user_ready              : in    std_logic; --added RAR
-          					   
+          tx_rden               : out   std_logic;    --added RAR 					   
           tx_data              	: in    std_logic_vector (63 downto 0); 	 					 
 --erased for simple interface 
 --erased for simple interface 
@@ -54,11 +52,12 @@ entity ethernet_interface is
 		   
 --erased for simple interface  
 		  
+		  slow_clk  	        : in    std_logic; --added RAR
+		  user_ready  	        : in    std_logic; --added RAR
+		  --user_addr					: in    std_logic_vector (7 downto 0); -- removed RAR 
 		  
 		  -- PHY interface signals
-		  MASTER_CLK           	: in    std_logic; 	    
-           CONTINUOUS_CLK        : in    std_logic;     
-		
+		  MASTER_CLK           	: in    std_logic; 			
 		  
           PHY_RXD             	: in    std_logic_vector (7 downto 0); 
           PHY_RX_DV           	: in    std_logic; 
@@ -103,7 +102,7 @@ architecture BEHAVIORAL of ethernet_interface is
 	signal user_tx_dest_port    	: std_logic_vector (15 downto 0); 		 
 	
 	signal user_tx_rden			   	: std_logic;						
-	--signal user_ready		   		: std_logic; 		RAR				
+	--signal user_ready		   		: std_logic; 						
 	signal user_b_force_packet	   	: std_logic;  						
 	signal crc_chk_out	   			: std_logic;		
 	
@@ -117,7 +116,7 @@ architecture BEHAVIORAL of ethernet_interface is
 	signal ots_ready	   			: std_logic; 						  	
 	signal ots_user_mask  			: std_logic := '0'; 							   
     signal internal_eth_dout      	: std_logic_vector (63 downto 0); 	 				  	
-	signal internal_reset  			: std_logic := '0'; 	   							  	
+	signal internal_reset  			: std_logic_vector(1 downto 0) := (others => '0'); 	   							  	
 	signal reset_mgr_in  			: std_logic; 	   
 	
 	signal arp_announce				: std_logic := '0';  	
@@ -145,6 +144,7 @@ architecture BEHAVIORAL of ethernet_interface is
 	signal resolved_addr			: std_logic_vector(31 downto 0);
 	signal resolved_mac 			: std_logic_vector(47 downto 0);
 	
+	signal fifo_debug_out           : std_logic_vector(63 downto 0);
 									 
 	-------- start simple declaration section -----------  	  
 	-- comments denoted as  will be removed in this case by install script
@@ -155,11 +155,11 @@ architecture BEHAVIORAL of ethernet_interface is
      signal internal_din				: std_logic_vector (63 downto 0):= (others => '0'); 	  
      signal internal_dout				: std_logic_vector (63 downto 0):= (others => '0'); 	
 		  
-     signal user_addr					: std_logic_vector (7 downto 0):= (others => '0'); 
+    signal user_addr					: std_logic_vector (7 downto 0):= (others => '0'); 
 	-------- end simple declaration section -----------	
   	 											  								     
-begin										 
-	tx_rden <= user_tx_rden; 
+begin						
+    tx_rden <= user_tx_rden;    				 
 	
    ec_wrapper : entity work.ethernet_controller_wrapper
       port map (
@@ -248,6 +248,8 @@ begin
                 user_tx_data_in(7 downto 0)=>user_tx_data_in(7 downto 0),
                 user_tx_size_in(10 downto 0)=>user_tx_size_in(10 downto 0),		 
 				
+				fifo_debug_out => fifo_debug_out,
+				
                 ram_addr(63 downto 0)=>ots_addr,
                 ram_rden=>ots_rden,							
                 ram_wren=>ots_wren,								   
@@ -270,11 +272,11 @@ begin
 	-- handle self reset for Eth Interface and input and output reset
 	reset_mgr : entity work.reset_mgr
 		port map (
-			slow_clk => CONTINUOUS_CLK,
+			slow_clk => slow_clk,
 			reset_start => reset_mgr_in,
 			reset => reset);
 						  		 
-	reset_out <= reset;
+	reset_out <= reset and (not internal_reset(1)); --for "soft" reset, to not forward out of block
    	-------- end reset section -----------	  
 	   
 	   
@@ -301,7 +303,7 @@ begin
 	ots_dout <= tx_data when (ots_user_mask = '1') else internal_eth_dout;
 	ots_ready <= (not ots_user_mask) or user_ready; -- ots address space is always ready	  
 	
-	reset_mgr_in <= internal_reset or reset_in;
+	reset_mgr_in <= internal_reset(0) or reset_in;
 																								  
 	
 	process(MASTER_CLK)
@@ -316,7 +318,7 @@ begin
 			
 			internal_eth_dout <= (others => '0');
 			internal_dout <= (others => '0');
-			internal_reset <= '0'; 
+			internal_reset(0) <= '0'; 
 			
 		
 			if ( ots_wren = '1' and  				-- WRITE eth ===========
@@ -351,7 +353,7 @@ begin
 				elsif ( ots_block_addr = x"B" ) then 
 					 data_dynamic_mac_resolution <= ots_din(0); 
 				elsif ( ots_block_addr = x"FFFFFFFF" ) then 
-					 internal_reset <= ots_din(0); 
+					 internal_reset <= ots_din(1 downto 0); 
 				end if;
 			elsif ( internal_we = '1' and  				-- WRITE internal ===========
 				 unsigned(internal_block_sel) = x"1") then -- Ethernet block address space
@@ -385,7 +387,7 @@ begin
 				elsif ( unsigned(internal_addr) = x"B" ) then 
 					 data_dynamic_mac_resolution <= internal_din(0); 
 				elsif ( unsigned(internal_addr) = x"FFFFFFFF" ) then 
-					 internal_reset <= internal_din(0); 
+					 internal_reset <= internal_din(1 downto 0); 
 				end if;
 			elsif ( user_rx_src_capture_for_ctrl = '1' ) then  				-- SPECIAL WRITE for source capture for ctrl ===========
 				 tx_ctrl_dest_addr <= user_rx_src_addr;
@@ -423,6 +425,9 @@ begin
 					 internal_eth_dout(0) <= ctrl_dynamic_mac_resolution; 
 				elsif ( ots_block_addr = x"B" ) then 
 					 internal_eth_dout(0) <= data_dynamic_mac_resolution; 
+			    elsif ( ots_block_addr = x"F" ) then 
+			         internal_eth_dout(31 downto 0) <= fifo_debug_out(31 downto 0);
+			         internal_eth_dout(63 downto 32) <= (others => '1');
 				elsif ( ots_block_addr = x"64" ) then 
 					 internal_eth_dout(15 downto 0) <= ETH_INTERFACE_VERSION; 
 				end if;
@@ -508,8 +513,8 @@ begin
 	-- comments denoted as  will be removed in this case by install script
 --erased for simple interface  will be commented out	
 									   
-	 --user_ready <= '1'; RAR
-	 user_b_force_packet <= '0';	  
+	 --RAR user_ready <= '1';
+	 user_b_force_packet <= '0';	    
 		
 	-------- end simple section -----------
 	   

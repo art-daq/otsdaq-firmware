@@ -1,5 +1,5 @@
 The following files were generated for 'icon_pro' in directory
-/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig/GEL_CAPTAN/_ngo/cs_icon_pro/
+/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig_phase180-dut/GEL_CAPTAN/_ngo/cs_icon_pro/
 
 XCO file generator:
    Generate an XCO file for compatibility with legacy flows.

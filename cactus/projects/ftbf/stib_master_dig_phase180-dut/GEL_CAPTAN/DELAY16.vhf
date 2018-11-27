@@ -7,11 +7,11 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : DELAY16.vhf
--- /___/   /\     Timestamp : 05/18/2018 16:10:30
+-- /___/   /\     Timestamp : 11/05/2018 13:52:36
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
---Command: sch2hdl -intstyle ise -family virtex4 -flat -suppress -vhdl /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig/GEL_CAPTAN/DELAY16.vhf -w /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig/GEL_CAPTAN/DELAY16.sch
+--Command: sch2hdl -intstyle ise -family virtex4 -flat -suppress -vhdl /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig_phase180-dut/GEL_CAPTAN/DELAY16.vhf -w /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig_phase180-dut/GEL_CAPTAN/DELAY16.sch
 --Design Name: DELAY16
 --Device: virtex4
 --Purpose:

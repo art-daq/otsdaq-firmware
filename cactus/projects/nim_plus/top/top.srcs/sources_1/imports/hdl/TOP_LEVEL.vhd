@@ -394,7 +394,7 @@ begin
                                 
 				
 				MASTER_CLK=>MASTER_CLK,      
-				CONTINUOUS_CLK=>USER_CLK,          
+				slow_clk=>USER_CLK,          
 				reset_in=>reset_btn,
 				reset_out => reset,
 				tx_data(63 downto 0)=>tx_data(63 downto 0),

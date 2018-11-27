@@ -144,6 +144,7 @@ architecture BEHAVIORAL of ethernet_interface is
 	signal resolved_addr			: std_logic_vector(31 downto 0);
 	signal resolved_mac 			: std_logic_vector(47 downto 0);
 	
+	signal fifo_debug_out           : std_logic_vector(63 downto 0);
 									 
 	-------- start simple declaration section -----------  	  
 	-- comments denoted as  will be removed in this case by install script
@@ -246,6 +247,8 @@ begin
                 user_tx_enable_out=>user_tx_enable_out,
                 user_tx_data_in(7 downto 0)=>user_tx_data_in(7 downto 0),
                 user_tx_size_in(10 downto 0)=>user_tx_size_in(10 downto 0),		 
+				
+				fifo_debug_out => fifo_debug_out,
 				
                 ram_addr(63 downto 0)=>ots_addr,
                 ram_rden=>ots_rden,							
@@ -422,6 +425,9 @@ begin
 					 internal_eth_dout(0) <= ctrl_dynamic_mac_resolution; 
 				elsif ( ots_block_addr = x"B" ) then 
 					 internal_eth_dout(0) <= data_dynamic_mac_resolution; 
+			    elsif ( ots_block_addr = x"F" ) then 
+			         internal_eth_dout(31 downto 0) <= fifo_debug_out(31 downto 0);
+			         internal_eth_dout(63 downto 32) <= (others => '1');
 				elsif ( ots_block_addr = x"64" ) then 
 					 internal_eth_dout(15 downto 0) <= ETH_INTERFACE_VERSION; 
 				end if;

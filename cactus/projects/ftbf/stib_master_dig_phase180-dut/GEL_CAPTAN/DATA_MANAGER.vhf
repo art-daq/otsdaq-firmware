@@ -7,11 +7,11 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : DATA_MANAGER.vhf
--- /___/   /\     Timestamp : 05/18/2018 16:10:32
+-- /___/   /\     Timestamp : 11/05/2018 13:52:39
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
---Command: sch2hdl -intstyle ise -family virtex4 -flat -suppress -vhdl /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig/GEL_CAPTAN/DATA_MANAGER.vhf -w /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig/GEL_CAPTAN/DATA_MANAGER.sch
+--Command: sch2hdl -intstyle ise -family virtex4 -flat -suppress -vhdl /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig_phase180-dut/GEL_CAPTAN/DATA_MANAGER.vhf -w /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_master_dig_phase180-dut/GEL_CAPTAN/DATA_MANAGER.sch
 --Design Name: DATA_MANAGER
 --Device: virtex4
 --Purpose:
@@ -319,8 +319,8 @@ architecture BEHAVIORAL of DATA_MANAGER is
    end component;
    attribute BOX_TYPE of GND : component is "BLACK_BOX";
    
-   attribute HU_SET of XLXI_3527 : label is "XLXI_3527_36";
-   attribute HU_SET of XLXI_3532 : label is "XLXI_3532_37";
+   attribute HU_SET of XLXI_3527 : label is "XLXI_3527_38";
+   attribute HU_SET of XLXI_3532 : label is "XLXI_3532_39";
 begin
    rx_data(63 downto 0) <= rx_data_DUMMY(63 downto 0);
    RX_DATA_FIFO : DATA_FIFO_0

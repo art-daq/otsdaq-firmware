@@ -106,6 +106,8 @@ attribute STATE_VECTOR of arch: architecture is "Sreg0";
     attribute mark_debug of rx_protocol_err_flag : signal is "true";
     attribute mark_debug of crc_err : signal is "true";
     
+    attribute mark_debug of Rx_FIFO_Reset : signal is "true";
+    
     
 begin
 

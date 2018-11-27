@@ -42,7 +42,6 @@ proc step_failed { step } {
   close $ch
 }
 
-set_msg_config -id {Common-41} -limit 4294967295
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
 
@@ -86,7 +85,7 @@ set rc [catch {
   set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/xilinx_64b_counter/xilinx_64b_counter_ooc.xdc]
   read_xdc -unmanaged /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/pins.tcl
   read_xdc -unmanaged /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl
-  read_xdc /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_10.xdc
+  read_xdc /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_11.xdc
   link_design -top top -part xc7a200tffg1156-2
   close_msg_db -file init_design.pb
 } RESULT]

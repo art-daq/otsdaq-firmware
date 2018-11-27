@@ -2532,7 +2532,7 @@
         <block symbolname="psi_cmd_fifo32_512depth" name="psi_cmd_fifo_vector(2:0)">
             <blockpin signalname="psi_reset" name="rst" />
             <blockpin signalname="MASTER_CLK" name="wr_clk" />
-            <blockpin signalname="PSI_CLK90" name="rd_clk" />
+            <blockpin signalname="psi_i2c_clk(2:0)" name="rd_clk" />
             <blockpin signalname="PSI_CMD_FIFO_MAP" name="wr_en" />
             <blockpin signalname="psi_cmd_fifo_re(2:0)" name="rd_en" />
             <blockpin signalname="rx_data(31:0)" name="din(31:0)" />
@@ -2541,7 +2541,7 @@
             <blockpin signalname="psi_cmd_fifo_dout(95:0)" name="dout(31:0)" />
         </block>
         <block symbolname="psi_command_sender" name="psi_cmd_sender_vector(2:0)">
-            <blockpin signalname="PSI_CLK90" name="psi_clk" />
+            <blockpin signalname="psi_i2c_clk(2:0)" name="psi_clk" />
             <blockpin signalname="psi_reset" name="reset" />
             <blockpin signalname="psi_cmd_fifo_empty(2:0)" name="fifo_empty" />
             <blockpin signalname="psi_cmd_fifo_full(2:0)" name="fifo_full" />
@@ -4112,7 +4112,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="512" y="752" type="branch" />
             <wire x2="592" y1="752" y2="752" x1="512" />
         </branch>
-        <branch name="PSI_CLK90">
+        <branch name="psi_i2c_clk(2:0)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="512" y="560" type="branch" />
             <wire x2="592" y1="560" y2="560" x1="512" />
         </branch>
@@ -4155,7 +4155,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1248" y="704" type="branch" />
             <wire x2="1344" y1="704" y2="704" x1="1248" />
         </branch>
-        <branch name="PSI_CLK90">
+        <branch name="psi_i2c_clk(2:0)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1248" y="656" type="branch" />
             <wire x2="1344" y1="656" y2="656" x1="1248" />
         </branch>
