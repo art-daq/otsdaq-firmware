@@ -1,7 +1,9 @@
 xst -intstyle ise -ifn "/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_slave_ots/slave/top.xst" -ofn "/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/stib_slave_ots/slave/top.syr" 
-ngdbuild -intstyle ise -dd _ngo -sd ../strip -sd ../work_eth/ipcore_dir -nt timestamp -uc stib_par.ucf -uc stib.ucf -p xc4vlx25-ff668-10 top_cs.ngc top.ngd  
-ngdbuild -intstyle ise -dd _ngo -sd ../strip -sd ../work_eth/ipcore_dir -nt timestamp -uc stib_par.ucf -uc stib.ucf -p xc4vlx25-ff668-10 top_cs.ngc top.ngd  
+ngdbuild -intstyle ise -dd _ngo -sd ../strip -sd ../work_eth/ipcore_dir -nt timestamp -uc stib.ucf -uc stib_par.ucf -p xc4vlx25-ff668-10 top_cs.ngc top.ngd  
 map -intstyle ise -p xc4vlx25-ff668-10 -timing -logic_opt off -ol high -xe n -t 1 -register_duplication off -global_opt speed -equivalent_register_removal on -cm speed -detail -ir off -pr off -power off -o top_map.ncd top.ngd top.pcf 
 par -w -intstyle ise -ol high -xe n -t 1 top_map.ncd top.ncd top.pcf 
-trce -intstyle ise -v 3 -s 10 -n 3 -fastpaths -xml top.twx top.ncd -o top.twr top.pcf -ucf stib_par.ucf -ucf stib.ucf 
+ngdbuild -intstyle ise -dd _ngo -sd ../strip -sd ../work_eth/ipcore_dir -nt timestamp -uc stib.ucf -uc stib_par.ucf -p xc4vlx25-ff668-10 top_cs.ngc top.ngd  
+map -intstyle ise -p xc4vlx25-ff668-10 -timing -logic_opt off -ol high -xe n -t 1 -register_duplication off -global_opt speed -equivalent_register_removal on -cm speed -detail -ir off -pr off -power off -o top_map.ncd top.ngd top.pcf 
+par -w -intstyle ise -ol high -xe n -t 1 top_map.ncd top.ncd top.pcf 
+trce -intstyle ise -v 3 -s 10 -n 3 -fastpaths -xml top.twx top.ncd -o top.twr top.pcf -ucf stib.ucf -ucf stib_par.ucf 
 bitgen -intstyle ise -f top.ut top.ncd 

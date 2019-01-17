@@ -27,6 +27,7 @@ entity ethernet_interface is
    		  reset_in             	: in    std_logic; 		-- optional for user to reset, this block will self reset on startup					
           reset_out            	: out   std_logic;  		-- ethernet reset can be used for "reset on start-up" or for reset to PHY  
 		  		
+		  
 		  -- rx/tx signals
           rx_addr              	: out   std_logic_vector (31 downto 0); 
           rx_data              	: out   std_logic_vector (63 downto 0);   	

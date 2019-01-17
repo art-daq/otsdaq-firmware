@@ -1,7 +1,7 @@
 Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
-| Date              : Fri Nov  2 11:09:27 2018
+| Date              : Fri Nov 30 14:18:56 2018
 | Host              : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 | Command           : report_clock_utilization -file top_clock_utilization_routed.rpt
 | Design            : top
@@ -301,12 +301,12 @@ set_property LOC IOB_X0Y256 [get_cells OBUFDS_CMS_CLK40A_OUT]
 set_property LOC IOB_X1Y108 [get_cells OBUFDS_CLCK40_2]
 set_property LOC IOB_X1Y118 [get_cells OBUFDS_CLCK40_0]
 set_property LOC IOB_X1Y114 [get_cells OBUFDS_CLCK40_1]
-set_property LOC IOB_X1Y146 [get_cells OBUFDS_CLCK53_0]
-set_property LOC IOB_X1Y106 [get_cells OBUFDS_CLCK53_3]
 set_property LOC IOB_X1Y144 [get_cells OBUFDS_CLCK53_1]
+set_property LOC IOB_X1Y124 [get_cells OBUFDS_CLCK53_2]
+set_property LOC IOB_X1Y106 [get_cells OBUFDS_CLCK53_3]
+set_property LOC IOB_X1Y146 [get_cells OBUFDS_CLCK53_0]
 set_property LOC IOB_X1Y134 [get_cells OBUFDS_CLCK53_4]
 set_property LOC IOB_X1Y130 [get_cells OBUFDS_CLCK53_5]
-set_property LOC IOB_X1Y124 [get_cells OBUFDS_CLCK53_2]
 set_property LOC IOB_X1Y54 [get_cells OBUFDS_CLCK53_11]
 set_property LOC IOB_X1Y58 [get_cells OBUFDS_CLCK53_10]
 set_property LOC IOB_X1Y70 [get_cells OBUFDS_CLCK53_6]
@@ -335,7 +335,7 @@ resize_pblock [get_pblocks {CLKAG_IBUF_USER_CLK_n_321}] -add {CLOCKREGION_X0Y3:C
 # Clock net "MASTER_CLK" driven by instance "IBUF_PHY_RXCLK" located at site "BUFGCTRL_X0Y0"
 #startgroup
 create_pblock {CLKAG_MASTER_CLK}
-add_cells_to_pblock [get_pblocks  {CLKAG_MASTER_CLK}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL && NAME!=NIM_CLKS_BLOCK/U0/plle2_adv_inst && NAME!=OBUF_PHY_TXCLK && NAME!=clk_wiz_0_BLOCK/U0/mmcm_adv_inst && NAME!=clk_wiz_2_BLOCK/U0/mmcm_adv_inst} -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="MASTER_CLK"}]]]
+add_cells_to_pblock [get_pblocks  {CLKAG_MASTER_CLK}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL && NAME!=OBUF_PHY_TXCLK && NAME!=clk_wiz_0_BLOCK/U0/mmcm_adv_inst && NAME!=NIM_CLKS_BLOCK/U0/plle2_adv_inst && NAME!=clk_wiz_2_BLOCK/U0/mmcm_adv_inst} -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="MASTER_CLK"}]]]
 resize_pblock [get_pblocks {CLKAG_MASTER_CLK}] -add {CLOCKREGION_X0Y2:CLOCKREGION_X0Y2 CLOCKREGION_X0Y3:CLOCKREGION_X0Y3 CLOCKREGION_X0Y4:CLOCKREGION_X0Y4 CLOCKREGION_X1Y3:CLOCKREGION_X1Y3 CLOCKREGION_X1Y4:CLOCKREGION_X1Y4}
 #endgroup
 
@@ -391,7 +391,7 @@ resize_pblock [get_pblocks {CLKAG_genExtClkMux[0].clk_wiz_1_BLOCK/U0/clk_out1325
 # Clock net "genExtClkMux[0].clk_wiz_1_BLOCK/U0/clk_out265" driven by instance "genExtClkMux[0].clk_wiz_1_BLOCK/U0/clkout2_buf" located at site "BUFGCTRL_X0Y1"
 #startgroup
 create_pblock {CLKAG_genExtClkMux[0].clk_wiz_1_BLOCK/U0/clk_out265}
-add_cells_to_pblock [get_pblocks  {CLKAG_genExtClkMux[0].clk_wiz_1_BLOCK/U0/clk_out265}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL && NAME!=OBUFDS_CLCK53_2 && NAME!=OBUFDS_CLCK53_5 && NAME!=OBUFDS_CLCK53_4 && NAME!=OBUFDS_CLCK53_1 && NAME!=OBUFDS_CLCK53_3 && NAME!=OBUFDS_CLCK53_0} -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="genExtClkMux[0].clk_wiz_1_BLOCK/U0/clk_out265"}]]]
+add_cells_to_pblock [get_pblocks  {CLKAG_genExtClkMux[0].clk_wiz_1_BLOCK/U0/clk_out265}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL && NAME!=OBUFDS_CLCK53_5 && NAME!=OBUFDS_CLCK53_4 && NAME!=OBUFDS_CLCK53_0 && NAME!=OBUFDS_CLCK53_3 && NAME!=OBUFDS_CLCK53_2 && NAME!=OBUFDS_CLCK53_1} -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="genExtClkMux[0].clk_wiz_1_BLOCK/U0/clk_out265"}]]]
 resize_pblock [get_pblocks {CLKAG_genExtClkMux[0].clk_wiz_1_BLOCK/U0/clk_out265}] -add {CLOCKREGION_X0Y2:CLOCKREGION_X0Y2 CLOCKREGION_X0Y3:CLOCKREGION_X0Y3}
 #endgroup
 

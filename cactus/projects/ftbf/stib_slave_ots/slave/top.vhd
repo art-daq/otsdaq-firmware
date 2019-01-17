@@ -471,6 +471,7 @@ BEGIN
 						local_stripdata_repeat & strip_busy &
 						std_logic_vector(local_bcodelta) & x"28";
 					b_data_we <= '1';
+					local_bcodelta <= (others => '0'); --clear it so we do not get stuck here
 				elsif(local_data_ready = '1' and local_read_done = '1') then --have data
 				
 					fifo_b_data_re <= '1';

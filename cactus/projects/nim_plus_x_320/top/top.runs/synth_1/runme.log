@@ -13,9 +13,9 @@ Command: synth_design -top top -part xc7k325tffg900-2 -flatten_hierarchy none
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7k325t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k325t'
-INFO: [Common 17-1223] The version limit for your license is '2018.05' and will expire in -155 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: [Common 17-1223] The version limit for your license is '2018.05' and will expire in -183 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1027.281 ; gain = 157.520 ; free physical = 758 ; free virtual = 32573
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1027.281 ; gain = 157.520 ; free physical = 4459 ; free virtual = 42643
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'top' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.srcs/sources_1/imports/hdl/TOP_LEVEL.vhd:209]
 INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.srcs/sources_1/imports/hdl/TOP_LEVEL.vhd:219]
@@ -48,7 +48,9 @@ INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/rrivera
 INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.srcs/sources_1/imports/hdl/TOP_LEVEL.vhd:335]
 INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.srcs/sources_1/imports/hdl/TOP_LEVEL.vhd:335]
 INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.srcs/sources_1/imports/hdl/TOP_LEVEL.vhd:383]
-INFO: [Synth 8-638] synthesizing module 'ethernet_interface' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/ethImports/hdl/ethernet_interface.vhd:75]
+INFO: [Synth 8-638] synthesizing module 'ethernet_interface' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/ethImports/hdl/ethernet_interface.vhd:82]
+	Parameter SIZE bound to: 8 - type: integer 
+	Parameter OTHER_SIZE bound to: 8 - type: integer 
 INFO: [Synth 8-638] synthesizing module 'ethernet_controller_wrapper' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/ethImports/ethernet_controller/ethernet_controller_wrapper.vhd:78]
 INFO: [Synth 8-638] synthesizing module 'ethernet_controller' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/ethImports/ethernet_controller/ethernet_controller.vhd:74]
 INFO: [Synth 8-3491] module 'address_container' declared at '/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/ethImports/ethernet_controller/address_container.vhd:21' bound to instance 'AddressContainer' of component 'address_container' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/ethImports/ethernet_controller/ethernet_controller.vhd:348]
@@ -496,7 +498,9 @@ INFO: [Synth 8-638] synthesizing module 'burst_traffic_controller' [/home/rriver
 INFO: [Synth 8-256] done synthesizing module 'burst_traffic_controller' (26#1) [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/ethImports/hdl/burst_traffic_controller.vhd:24]
 INFO: [Synth 8-638] synthesizing module 'reset_mgr' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/ethImports/hdl/reset_mgr.vhd:32]
 INFO: [Synth 8-256] done synthesizing module 'reset_mgr' (27#1) [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/ethImports/hdl/reset_mgr.vhd:32]
-INFO: [Synth 8-256] done synthesizing module 'ethernet_interface' (28#1) [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/ethImports/hdl/ethernet_interface.vhd:75]
+WARNING: [Synth 8-3848] Net delete_arr in module/entity ethernet_interface does not have driver. [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/ethImports/hdl/ethernet_interface.vhd:34]
+WARNING: [Synth 8-3848] Net delete_arr2 in module/entity ethernet_interface does not have driver. [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/ethImports/hdl/ethernet_interface.vhd:35]
+INFO: [Synth 8-256] done synthesizing module 'ethernet_interface' (28#1) [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/ethImports/hdl/ethernet_interface.vhd:82]
 INFO: [Synth 8-3491] module 'BUFG' declared at '/opt/local/xilinx/Vivado/2015.2/scripts/rt/data/unisim_comp.v:607' bound to instance 'CLK_mx_40_bufg' of component 'BUFG' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.srcs/sources_1/imports/hdl/TOP_LEVEL.vhd:712]
 INFO: [Synth 8-638] synthesizing module 'BUFG' [/opt/local/xilinx/Vivado/2015.2/scripts/rt/data/unisim_comp.v:607]
 INFO: [Synth 8-256] done synthesizing module 'BUFG' (29#1) [/opt/local/xilinx/Vivado/2015.2/scripts/rt/data/unisim_comp.v:607]
@@ -572,8 +576,8 @@ INFO: [Synth 8-3491] module 'long_pulse' declared at '/home/rrivera/ots/srcs/ots
 INFO: [Synth 8-638] synthesizing module 'long_pulse' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/long_pulse.vhd:37]
 INFO: [Synth 8-226] default block is never used [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/long_pulse.vhd:66]
 INFO: [Synth 8-256] done synthesizing module 'long_pulse' (39#1) [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/long_pulse.vhd:37]
-INFO: [Synth 8-3491] module 'xilinx_64b_counter' declared at '/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-16477-rulinux03.dhcp.fnal.gov/realtime/xilinx_64b_counter_stub.vhdl:5' bound to instance 'U7' of component 'xilinx_64b_counter' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/load_long_64_v_ps.vhd:219]
-INFO: [Synth 8-638] synthesizing module 'xilinx_64b_counter' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-16477-rulinux03.dhcp.fnal.gov/realtime/xilinx_64b_counter_stub.vhdl:15]
+INFO: [Synth 8-3491] module 'xilinx_64b_counter' declared at '/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-30924-rulinux03.dhcp.fnal.gov/realtime/xilinx_64b_counter_stub.vhdl:5' bound to instance 'U7' of component 'xilinx_64b_counter' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/load_long_64_v_ps.vhd:219]
+INFO: [Synth 8-638] synthesizing module 'xilinx_64b_counter' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-30924-rulinux03.dhcp.fnal.gov/realtime/xilinx_64b_counter_stub.vhdl:15]
 INFO: [Synth 8-3491] module 'load_ctl_1_phase_4ps_fs_sync' declared at '/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/load_ctl_1_phase_4ps_fs_sync.vhd:26' bound to instance 'U9' of component 'load_ctl_1_phase_4ps_fs_sync' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/load_long_64_v_ps.vhd:229]
 INFO: [Synth 8-638] synthesizing module 'load_ctl_1_phase_4ps_fs_sync' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/load_ctl_1_phase_4ps_fs_sync.vhd:37]
 INFO: [Synth 8-226] default block is never used [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/load_ctl_1_phase_4ps_fs_sync.vhd:66]
@@ -768,10 +772,10 @@ INFO: [Synth 8-638] synthesizing module 'unimacro_FIFO_DUALCLOCK_MACRO' [/opt/lo
 	Parameter SRVAL bound to: 72'b000000000000000000000000000000000000000000000000000000000000000000000000 
 INFO: [Synth 8-113] binding component instance 'fifo_36_bl_1' to cell 'FIFO36E1' [/opt/local/xilinx/Vivado/2015.2/data/vhdl/src/unimacro/FIFO_DUALCLOCK_MACRO.vhd:883]
 INFO: [Synth 8-256] done synthesizing module 'unimacro_FIFO_DUALCLOCK_MACRO' (88#1) [/opt/local/xilinx/Vivado/2015.2/data/vhdl/src/unimacro/FIFO_DUALCLOCK_MACRO.vhd:68]
-INFO: [Synth 8-638] synthesizing module 'NIM_CLKS' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-16477-rulinux03.dhcp.fnal.gov/realtime/NIM_CLKS_stub.vhdl:15]
-INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-16477-rulinux03.dhcp.fnal.gov/realtime/clk_wiz_0_stub.vhdl:16]
-INFO: [Synth 8-638] synthesizing module 'clk_wiz_1' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-16477-rulinux03.dhcp.fnal.gov/realtime/clk_wiz_1_stub.vhdl:18]
-INFO: [Synth 8-638] synthesizing module 'clk_wiz_2' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-16477-rulinux03.dhcp.fnal.gov/realtime/clk_wiz_2_stub.vhdl:19]
+INFO: [Synth 8-638] synthesizing module 'NIM_CLKS' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-30924-rulinux03.dhcp.fnal.gov/realtime/NIM_CLKS_stub.vhdl:15]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-30924-rulinux03.dhcp.fnal.gov/realtime/clk_wiz_0_stub.vhdl:16]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_1' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-30924-rulinux03.dhcp.fnal.gov/realtime/clk_wiz_1_stub.vhdl:18]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_2' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-30924-rulinux03.dhcp.fnal.gov/realtime/clk_wiz_2_stub.vhdl:19]
 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
 	Parameter DIFF_TERM bound to: 1 - type: bool 
 	Parameter DQS_BIAS bound to: FALSE - type: string 
@@ -1019,7 +1023,7 @@ INFO: [Synth 8-638] synthesizing module 'OBUF' [/opt/local/xilinx/Vivado/2015.2/
 INFO: [Synth 8-256] done synthesizing module 'OBUF' (90#1) [/opt/local/xilinx/Vivado/2015.2/scripts/rt/data/unisim_comp.v:17312]
 INFO: [Synth 8-256] done synthesizing module 'top' (91#1) [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.srcs/sources_1/imports/hdl/TOP_LEVEL.vhd:209]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1131.570 ; gain = 261.809 ; free physical = 648 ; free virtual = 32465
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1131.570 ; gain = 261.809 ; free physical = 4354 ; free virtual = 42539
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1101,7 +1105,7 @@ WARNING: [Synth 8-3295] tying undriven pin U93:sigin[4] to constant 0 [/home/rri
 WARNING: [Synth 8-3295] tying undriven pin U94:sigin[4] to constant 0 [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/nim_plus_blk_1_phase_4ps.vhd:8432]
 WARNING: [Synth 8-3295] tying undriven pin U95:sigin[4] to constant 0 [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/nim_plus_blk_1_phase_4ps.vhd:8442]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1131.570 ; gain = 261.809 ; free physical = 649 ; free virtual = 32466
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1131.570 ; gain = 261.809 ; free physical = 4354 ; free virtual = 42540
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 71 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -1110,14 +1114,14 @@ INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-16477-rulinux03.dhcp.fnal.gov/dcp/NIM_CLKS_in_context.xdc] for cell 'NIM_CLKS_BLOCK'
-Finished Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-16477-rulinux03.dhcp.fnal.gov/dcp/NIM_CLKS_in_context.xdc] for cell 'NIM_CLKS_BLOCK'
-Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-16477-rulinux03.dhcp.fnal.gov/dcp_2/clk_wiz_0_in_context.xdc] for cell 'clk_wiz_0_BLOCK'
-Finished Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-16477-rulinux03.dhcp.fnal.gov/dcp_2/clk_wiz_0_in_context.xdc] for cell 'clk_wiz_0_BLOCK'
-Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-16477-rulinux03.dhcp.fnal.gov/dcp_3/clk_wiz_1_in_context.xdc] for cell 'genExtClkMux[0].clk_wiz_1_BLOCK'
-Finished Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-16477-rulinux03.dhcp.fnal.gov/dcp_3/clk_wiz_1_in_context.xdc] for cell 'genExtClkMux[0].clk_wiz_1_BLOCK'
-Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-16477-rulinux03.dhcp.fnal.gov/dcp_4/clk_wiz_2_in_context.xdc] for cell 'clk_wiz_2_BLOCK'
-Finished Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-16477-rulinux03.dhcp.fnal.gov/dcp_4/clk_wiz_2_in_context.xdc] for cell 'clk_wiz_2_BLOCK'
+Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-30924-rulinux03.dhcp.fnal.gov/dcp/NIM_CLKS_in_context.xdc] for cell 'NIM_CLKS_BLOCK'
+Finished Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-30924-rulinux03.dhcp.fnal.gov/dcp/NIM_CLKS_in_context.xdc] for cell 'NIM_CLKS_BLOCK'
+Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-30924-rulinux03.dhcp.fnal.gov/dcp_2/clk_wiz_0_in_context.xdc] for cell 'clk_wiz_0_BLOCK'
+Finished Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-30924-rulinux03.dhcp.fnal.gov/dcp_2/clk_wiz_0_in_context.xdc] for cell 'clk_wiz_0_BLOCK'
+Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-30924-rulinux03.dhcp.fnal.gov/dcp_3/clk_wiz_1_in_context.xdc] for cell 'genExtClkMux[0].clk_wiz_1_BLOCK'
+Finished Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-30924-rulinux03.dhcp.fnal.gov/dcp_3/clk_wiz_1_in_context.xdc] for cell 'genExtClkMux[0].clk_wiz_1_BLOCK'
+Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-30924-rulinux03.dhcp.fnal.gov/dcp_4/clk_wiz_2_in_context.xdc] for cell 'clk_wiz_2_BLOCK'
+Finished Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.runs/synth_1/.Xil/Vivado-30924-rulinux03.dhcp.fnal.gov/dcp_4/clk_wiz_2_in_context.xdc] for cell 'clk_wiz_2_BLOCK'
 Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.srcs/constrs_1/new/top_12.xdc]
 Finished Parsing XDC File [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.srcs/constrs_1/new/top_12.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/top/top.srcs/constrs_1/new/top_12.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
@@ -1128,22 +1132,22 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 44 instances were transformed.
   OBUFDS => OBUFDS_DUAL_BUF (OBUFDS, OBUFDS, INV): 44 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1548.594 ; gain = 0.000 ; free physical = 400 ; free virtual = 32217
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1547.594 ; gain = 0.000 ; free physical = 4104 ; free virtual = 42289
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 1548.594 ; gain = 678.832 ; free physical = 399 ; free virtual = 32216
+Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1547.594 ; gain = 677.832 ; free physical = 4101 ; free virtual = 42286
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7k325tffg900-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 1548.594 ; gain = 678.832 ; free physical = 399 ; free virtual = 32216
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1547.594 ; gain = 677.832 ; free physical = 4101 ; free virtual = 42286
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 1548.594 ; gain = 678.832 ; free physical = 399 ; free virtual = 32216
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1547.594 ; gain = 677.832 ; free physical = 4101 ; free virtual = 42286
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5546] ROM "protocol_ping_strobe" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "p_2_in" won't be mapped to RAM because it is too sparse
@@ -1669,7 +1673,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'Sreg0_reg' using encoding 
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'Sreg0_reg' using encoding 'sequential' in module 'sig_gen_prog'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:29 ; elapsed = 00:00:29 . Memory (MB): peak = 1548.594 ; gain = 678.832 ; free physical = 386 ; free virtual = 32203
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1547.594 ; gain = 677.832 ; free physical = 4081 ; free virtual = 42267
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -5392,7 +5396,7 @@ BRAMs: 890 (col length: RAMB18 140 RAMB36 70)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
-Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1548.594 ; gain = 678.832 ; free physical = 385 ; free virtual = 32202
+Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 1547.594 ; gain = 677.832 ; free physical = 4079 ; free virtual = 42265
 ---------------------------------------------------------------------------------
 Start Cross Boundary Optimization
 ---------------------------------------------------------------------------------
@@ -5415,9 +5419,9 @@ INFO: [Synth 8-5545] ROM "self_addr" won't be mapped to RAM because address size
 INFO: [Synth 8-5545] ROM "arp_announce_sig" won't be mapped to RAM because address size (32) is larger than maximum supported(18)
 INFO: [Synth 8-5545] ROM "extra_clk_reset" won't be mapped to RAM because address size (32) is larger than maximum supported(18)
 ---------------------------------------------------------------------------------
-Finished Cross Boundary Optimization : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1548.594 ; gain = 678.832 ; free physical = 395 ; free virtual = 32213
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1547.594 ; gain = 677.832 ; free physical = 4089 ; free virtual = 42275
 ---------------------------------------------------------------------------------
-Finished Parallel Reinference  : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1548.594 ; gain = 678.832 ; free physical = 395 ; free virtual = 32213
+Finished Parallel Reinference  : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1547.594 ; gain = 677.832 ; free physical = 4089 ; free virtual = 42275
 
 Report RTL Partitions: 
 +------+------------------------------+------------+----------+
@@ -5633,9 +5637,9 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (NIM_BLOCK
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (NIM_BLOCK/i_321_0/U248/\u_64_r_reg[35] )
 INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Area Optimization : Time (s): cpu = 00:01:09 ; elapsed = 00:01:10 . Memory (MB): peak = 1548.594 ; gain = 678.832 ; free physical = 292 ; free virtual = 32110
+Finished Area Optimization : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 1547.594 ; gain = 677.832 ; free physical = 3978 ; free virtual = 42164
 ---------------------------------------------------------------------------------
-Finished Parallel Area Optimization  : Time (s): cpu = 00:01:09 ; elapsed = 00:01:10 . Memory (MB): peak = 1548.594 ; gain = 678.832 ; free physical = 292 ; free virtual = 32110
+Finished Parallel Area Optimization  : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 1547.594 ; gain = 677.832 ; free physical = 3978 ; free virtual = 42164
 
 Report RTL Partitions: 
 +------+------------------------------+------------+----------+
@@ -5645,7 +5649,7 @@ Report RTL Partitions:
 |2     |nim_plus_blk_1_phase_4ps__GB1 |           1|      6109|
 |3     |top__GC0                      |           1|     14730|
 +------+------------------------------+------------+----------+
-Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:01:09 ; elapsed = 00:01:10 . Memory (MB): peak = 1548.594 ; gain = 678.832 ; free physical = 292 ; free virtual = 32110
+Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 1547.594 ; gain = 677.832 ; free physical = 3977 ; free virtual = 42163
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
@@ -5670,10 +5674,10 @@ info: Source pin 'i_321_0/clk_wiz_2_BLOCK/clk_39_in' of generated clock is hiera
 info: Moving clock source from hierarchical pin 'i_321_0/clk_wiz_2_BLOCK/clk_39_in' to 'i_321_0/clk_39_in'
 INFO: Moved 13 constraints on hierarchical pins to their respective driving/loading pins
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:17 ; elapsed = 00:01:18 . Memory (MB): peak = 1595.387 ; gain = 725.625 ; free physical = 229 ; free virtual = 32034
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:12 ; elapsed = 00:01:13 . Memory (MB): peak = 1595.387 ; gain = 725.625 ; free physical = 3910 ; free virtual = 42096
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:19 ; elapsed = 00:01:20 . Memory (MB): peak = 1608.398 ; gain = 738.637 ; free physical = 215 ; free virtual = 32020
+Finished Timing Optimization : Time (s): cpu = 00:01:14 ; elapsed = 00:01:15 . Memory (MB): peak = 1608.398 ; gain = 738.637 ; free physical = 3897 ; free virtual = 42083
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -5688,7 +5692,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:33 ; elapsed = 00:01:34 . Memory (MB): peak = 1656.441 ; gain = 786.680 ; free physical = 769 ; free virtual = 32184
+Finished Technology Mapping : Time (s): cpu = 00:01:27 ; elapsed = 00:01:29 . Memory (MB): peak = 1657.441 ; gain = 787.680 ; free physical = 3846 ; free virtual = 42032
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -5836,7 +5840,7 @@ WARNING: [Synth 8-5396] Clock pin C has keep related attribute (keep/mark_debug/
 WARNING: [Synth 8-5396] Clock pin C has keep related attribute (keep/mark_debug/dont_touch) which could create extra logic on its net [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus_x_320/FW_Transfer_2018_01_24/reg_16.vhd:106]
 INFO: [Common 17-14] Message 'Synth 8-5396' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:35 ; elapsed = 00:01:36 . Memory (MB): peak = 1656.441 ; gain = 786.680 ; free physical = 767 ; free virtual = 32182
+Finished IO Insertion : Time (s): cpu = 00:01:28 ; elapsed = 00:01:30 . Memory (MB): peak = 1657.441 ; gain = 787.680 ; free physical = 3853 ; free virtual = 42039
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -5849,7 +5853,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:35 ; elapsed = 00:01:36 . Memory (MB): peak = 1656.441 ; gain = 786.680 ; free physical = 766 ; free virtual = 32182
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:29 ; elapsed = 00:01:30 . Memory (MB): peak = 1657.441 ; gain = 787.680 ; free physical = 3854 ; free virtual = 42040
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -6859,11 +6863,11 @@ Report Instance Areas:
 |931   |  \genNimPlusAndBurstFifo[0].FIFO_DUALCLOCK_MACRO_inst  |unimacro_FIFO_DUALCLOCK_MACRO            |     1|
 +------+--------------------------------------------------------+-----------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:36 ; elapsed = 00:01:37 . Memory (MB): peak = 1656.441 ; gain = 786.680 ; free physical = 767 ; free virtual = 32183
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:30 ; elapsed = 00:01:31 . Memory (MB): peak = 1657.441 ; gain = 787.680 ; free physical = 3852 ; free virtual = 42038
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 5682 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:26 ; elapsed = 00:01:27 . Memory (MB): peak = 1656.441 ; gain = 251.133 ; free physical = 767 ; free virtual = 32183
-Synthesis Optimization Complete : Time (s): cpu = 00:01:36 ; elapsed = 00:01:38 . Memory (MB): peak = 1656.441 ; gain = 786.680 ; free physical = 767 ; free virtual = 32183
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:20 ; elapsed = 00:01:21 . Memory (MB): peak = 1657.441 ; gain = 253.133 ; free physical = 3853 ; free virtual = 42040
+Synthesis Optimization Complete : Time (s): cpu = 00:01:30 ; elapsed = 00:01:31 . Memory (MB): peak = 1657.441 ; gain = 787.680 ; free physical = 3853 ; free virtual = 42040
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 1428 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -6876,8 +6880,8 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   SRLC32E => SRL16E: 8 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-742 Infos, 305 Warnings, 0 Critical Warnings and 0 Errors encountered.
+742 Infos, 307 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:40 ; elapsed = 00:01:41 . Memory (MB): peak = 1706.453 ; gain = 728.172 ; free physical = 763 ; free virtual = 32183
-report_utilization: Time (s): cpu = 00:00:00.27 ; elapsed = 00:00:00.33 . Memory (MB): peak = 1746.469 ; gain = 0.000 ; free physical = 758 ; free virtual = 32182
-INFO: [Common 17-206] Exiting Vivado at Fri Nov  2 10:54:04 2018...
+synth_design: Time (s): cpu = 00:01:33 ; elapsed = 00:01:35 . Memory (MB): peak = 1707.453 ; gain = 729.172 ; free physical = 3854 ; free virtual = 42040
+report_utilization: Time (s): cpu = 00:00:00.25 ; elapsed = 00:00:00.31 . Memory (MB): peak = 1747.469 ; gain = 0.000 ; free physical = 3850 ; free virtual = 42039
+INFO: [Common 17-206] Exiting Vivado at Fri Nov 30 14:13:50 2018...

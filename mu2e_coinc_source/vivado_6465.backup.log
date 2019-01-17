@@ -1,0 +1,42 @@
+#-----------------------------------------------------------
+# Vivado v2015.2 (64-bit)
+# SW Build 1266856 on Fri Jun 26 16:35:25 MDT 2015
+# IP Build 1264090 on Wed Jun 24 14:22:01 MDT 2015
+# Start of session at: Thu Aug 23 09:06:02 2018
+# Process ID: 28992
+# Log file: /home/rrivera/ots/srcs/otsdaq-firmware/mu2e_coinc_source/vivado.log
+# Journal file: /home/rrivera/ots/srcs/otsdaq-firmware/mu2e_coinc_source/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project top/top.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/local/xilinx/Vivado/2015.2/data/ip'.
+open_project: Time (s): cpu = 00:00:14 ; elapsed = 00:00:23 . Memory (MB): peak = 5869.578 ; gain = 98.777 ; free physical = 4454 ; free virtual = 45829
+write_cfgmem -force -format MCS -size 32 -interface SPIx4 -loadbit "up 0x0 /home/rrivera/ots/srcs/otsdaq-firmware/mu2e_coinc_source/top/top.runs/impl_1/top.bit" -file "/home/rrivera/ots/srcs/otsdaq-firmware/mu2e_coinc_source/mcsfile.mcs"
+Creating config memory files...
+Creating bitstream load up from address 0x00000000
+Loading bitfile /home/rrivera/ots/srcs/otsdaq-firmware/mu2e_coinc_source/top/top.runs/impl_1/top.bit
+ERROR: [Vivado 12-3735] SPI_BUSWIDTH property is set to "1" on bitfile /home/rrivera/ots/srcs/otsdaq-firmware/mu2e_coinc_source/top/top.runs/impl_1/top.bit. This property has to be set to "4" to generate a configuration memory file for the SPIX4 interface. Please ensure that a valid value has been set for the property BITSTREAM.Config.SPI_buswidth and rerun this command.
+ERROR: [Common 17-39] 'write_cfgmem' failed due to earlier errors.
+write_cfgmem -force -format MCS -size 32 -interface SPIx1 -loadbit "up 0x0 /home/rrivera/ots/srcs/otsdaq-firmware/mu2e_coinc_source/top/top.runs/impl_1/top.bit" -file "/home/rrivera/ots/srcs/otsdaq-firmware/mu2e_coinc_source/mcsfile.mcs"
+Creating config memory files...
+Creating bitstream load up from address 0x00000000
+Loading bitfile /home/rrivera/ots/srcs/otsdaq-firmware/mu2e_coinc_source/top/top.runs/impl_1/top.bit
+Writing file /home/rrivera/ots/srcs/otsdaq-firmware/mu2e_coinc_source/mcsfile.mcs
+Writing log file /home/rrivera/ots/srcs/otsdaq-firmware/mu2e_coinc_source/mcsfile.prm
+===================================
+Configuration Memory information
+===================================
+File Format        MCS
+Interface          SPIX1
+Size               32M
+Start Address      0x00000000
+End Address        0x01FFFFFF
+
+Addr1         Addr2         Date                    File(s)
+0x00000000    0x00947A5B    Aug 15 13:28:52 2018    /home/rrivera/ots/srcs/otsdaq-firmware/mu2e_coinc_source/top/top.runs/impl_1/top.bit
+exit
+INFO: [Common 17-206] Exiting Vivado at Thu Aug 23 09:10:01 2018...
