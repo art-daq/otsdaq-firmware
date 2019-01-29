@@ -216,7 +216,7 @@ COMPONENT chip_fifo
     SIGNAL STRIP_MCLKA : STD_LOGIC;
     SIGNAL STRIP_MCLKB : STD_LOGIC;
     SIGNAL STRIP_BCOCLK : STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
-    SIGNAL STRIP_RESET : STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
+    SIGNAL STRIP_RESET, strip_reset_sig : STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
     SIGNAL STRIP_SHIFT : STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
     SIGNAL STRIP_SCIN : STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
     SIGNAL STRIP_SCOUT : STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
@@ -265,6 +265,7 @@ COMPONENT chip_fifo
 
 		signal ext_clk, ext_cmd : std_logic;-- ext_trig, ext_trig_strobe : std_logic;
 		
+		signal b_throttle_reset, fifo_reset : std_logic;
 		
 		signal b_data_stack : std_logic_vector(63 downto 0);
 		signal b_data_stack_state : std_logic_vector(3 downto 0) := (others => '0');
@@ -310,6 +311,8 @@ BEGIN
    
    
 	gnd <= '0';
+	
+	fifo_reset <= reset or b_throttle_reset;
     
 	reset_n <= not reset;
 	reset_btn <= '0';
@@ -334,6 +337,7 @@ BEGIN
 				user_addr=>JUMPERS,
             tx_rden=>tx_rden,
 				reset_out => reset,
+				b_throttle_reset => b_throttle_reset,
 				tx_data(63 downto 0)=>tx_data(63 downto 0),
 				b_enable=>open,
 				TX_CLK=>GTX_CLK_0_sig,
@@ -513,7 +517,7 @@ BEGIN
 		fifo_b_data_in(35 downto 32) <= (others => '0');				
 		 fifo_imp : chip_fifo
 		PORT MAP (
-		 RST => reset,
+		 RST => fifo_reset,
 		 WR_CLK => STRIP_MCLKA,
 		 RD_CLK => GMII_RXCLK,
 		 DIN => fifo_b_data_in,
@@ -580,7 +584,7 @@ BEGIN
 		 MCLKB => STRIP_MCLKB,
 		 BCOCLK => STRIP_BCOCLK,
 		 bco_cnt_out => bco_cnt_out, --RAR
-		 STRIP_RESET => STRIP_RESET,
+		 STRIP_RESET => strip_reset_sig,--STRIP_RESET, RAR
 		 SHIFT => STRIP_SHIFT,
 		 SCIN => STRIP_SCIN,
 		 SCOUT => STRIP_SCOUT,
@@ -1084,6 +1088,8 @@ BEGIN
   );
 
   S : FOR I IN 0 TO NSENSOR-1 GENERATE
+		STRIP_RESET(I) <= b_throttle_reset or strip_reset_sig(i); --RAR
+		
     strip_reset_obuf : OBUFDS
     GENERIC MAP ( IOSTANDARD => "LVDS_25" )
     PORT MAP (

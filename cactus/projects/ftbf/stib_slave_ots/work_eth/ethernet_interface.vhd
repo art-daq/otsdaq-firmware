@@ -54,6 +54,8 @@ entity ethernet_interface is
 		  
 		  slow_clk  	        : in    std_logic; --added RAR
 		  user_ready  	        : in    std_logic; --added RAR
+		  b_throttle_reset     : out    std_logic; --added RAR
+		  
 		  user_addr					: in    std_logic_vector (7 downto 0); 
 		  
 		  -- PHY interface signals
@@ -156,8 +158,42 @@ architecture BEHAVIORAL of ethernet_interface is
 		  
     --signal user_addr					: std_logic_vector (7 downto 0):= (others => '0'); 
 	-------- end simple declaration section -----------	
+	
+	
+	--added for bandwidth throttle
+	--	
+	
+	signal b_data_throttle_threshold 		: unsigned(15 downto 0) := (others => '0');
+	signal b_data_throttle_cnt			 		: unsigned(15 downto 0) := (others => '0');
+	signal b_data_throttle_period_cnt 		: unsigned(23 downto 0) := (others => '0'); --goes from 134 ms @ 2^24 x 8ns
   	 											  								     
-begin						
+begin			
+
+	--generate throttle reset
+	process(MASTER_CLK)
+	begin
+		if (rising_edge(MASTER_CLK)) then
+			if (b_data_throttle_threshold > 0 and
+				b_data_throttle_cnt > b_data_throttle_threshold) then --throttle!
+				b_throttle_reset <= '1';
+			else
+				b_throttle_reset <= '0';
+				
+				if( b_enable_sig = '1' and b_data_we = '1') then
+					b_data_throttle_cnt <= b_data_throttle_cnt + 1;
+				end if;
+			end if;
+			
+			b_data_throttle_period_cnt <= b_data_throttle_period_cnt + 1;			
+			if( b_data_throttle_period_cnt = 0) then
+				b_data_throttle_cnt <= (others => '0'); --reset count for new period			
+			end if;				
+			
+		end if;
+	end process;
+	
+
+		
     tx_rden <= user_tx_rden;    				 
 	
    ec_wrapper : entity work.ethernet_controller_wrapper
@@ -349,6 +385,8 @@ begin
 					 ctrl_dynamic_mac_resolution <= ots_din(0); 
 				elsif ( ots_block_addr = x"B" ) then 
 					 data_dynamic_mac_resolution <= ots_din(0); 
+				elsif ( ots_block_addr = x"C" ) then
+					b_data_throttle_threshold <= unsigned(ots_din(15 downto 0));
 				elsif ( ots_block_addr = x"FFFFFFFF" ) then 
 					 internal_reset <= ots_din(1 downto 0); 
 				end if;
@@ -383,6 +421,8 @@ begin
 					 ctrl_dynamic_mac_resolution <= internal_din(0); 
 				elsif ( unsigned(internal_addr) = x"B" ) then 
 					 data_dynamic_mac_resolution <= internal_din(0); 
+				elsif ( unsigned(internal_addr) = x"C" ) then 
+					 b_data_throttle_threshold <= unsigned(internal_din(15 downto 0));
 				elsif ( unsigned(internal_addr) = x"FFFFFFFF" ) then 
 					 internal_reset <= internal_din(1 downto 0); 
 				end if;
@@ -421,7 +461,9 @@ begin
 				elsif ( ots_block_addr = x"A" ) then 
 					 internal_eth_dout(0) <= ctrl_dynamic_mac_resolution; 
 				elsif ( ots_block_addr = x"B" ) then 
-					 internal_eth_dout(0) <= data_dynamic_mac_resolution; 
+					 internal_eth_dout(0) <= data_dynamic_mac_resolution;
+				elsif ( ots_block_addr = x"C" ) then 
+					 internal_eth_dout(15 downto 0) <= std_logic_vector(b_data_throttle_threshold); 
 				elsif ( ots_block_addr = x"64" ) then 
 					 internal_eth_dout(15 downto 0) <= ETH_INTERFACE_VERSION; 
 				end if;
@@ -453,6 +495,8 @@ begin
 					 internal_dout(0) <= ctrl_dynamic_mac_resolution; 
 				elsif ( unsigned(internal_addr) = x"B" ) then 
 					 internal_dout(0) <= data_dynamic_mac_resolution; 
+				elsif ( unsigned(internal_addr) = x"C" ) then 
+					 internal_dout(15 downto 0) <= std_logic_vector(b_data_throttle_threshold); 
 				elsif ( unsigned(internal_addr) = x"64" ) then 
 					 internal_dout(15 downto 0) <= ETH_INTERFACE_VERSION; 
 				end if;

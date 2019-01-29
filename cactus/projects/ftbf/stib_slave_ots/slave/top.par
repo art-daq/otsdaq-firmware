@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-rulinux03.dhcp.fnal.gov::  Wed Nov 28 12:57:42 2018
+rulinux03.dhcp.fnal.gov::  Wed Jan 23 12:43:55 2019
 
 par -w -intstyle ise -ol high -xe n -t 1 top_map.ncd top.ncd top.pcf 
 
@@ -61,8 +61,8 @@ Device Utilization Summary:
    Number of ISERDESs                       60 out of 448    13%
    Number of OLOGICs                        35 out of 448     7%
    Number of RAMB16s                        21 out of 72     29%
-   Number of Slices                      10022 out of 10752  93%
-      Number of SLICEMs                    709 out of 5376   13%
+   Number of Slices                       9984 out of 10752  92%
+      Number of SLICEMs                    717 out of 5376   13%
 
 
 
@@ -106,33 +106,31 @@ WARNING:Par:288 - The signal eth_interface/data_manager_blk/tx_ctrl_info_fifo_fu
 Starting Router
 
 
-Phase  1  : 74711 unrouted;      REAL time: 16 secs 
+Phase  1  : 75102 unrouted;      REAL time: 17 secs 
 
-Phase  2  : 64223 unrouted;      REAL time: 17 secs 
+Phase  2  : 64583 unrouted;      REAL time: 17 secs 
 
-Phase  3  : 25725 unrouted;      REAL time: 22 secs 
+Phase  3  : 26326 unrouted;      REAL time: 22 secs 
 
-Phase  4  : 25810 unrouted; (Setup:6276, Hold:20526, Component Switching Limit:0)     REAL time: 24 secs 
-
-Updating file: top.ncd with current fully routed design.
-
-Phase  5  : 0 unrouted; (Setup:8003, Hold:47894, Component Switching Limit:0)     REAL time: 37 secs 
-
-Phase  6  : 0 unrouted; (Setup:2328, Hold:47915, Component Switching Limit:0)     REAL time: 1 mins 18 secs 
+Phase  4  : 26508 unrouted; (Setup:1170, Hold:2232, Component Switching Limit:0)     REAL time: 24 secs 
 
 Updating file: top.ncd with current fully routed design.
 
-Phase  7  : 0 unrouted; (Setup:2328, Hold:47915, Component Switching Limit:0)     REAL time: 1 mins 25 secs 
+Phase  5  : 0 unrouted; (Setup:4674, Hold:5863, Component Switching Limit:0)     REAL time: 39 secs 
 
-Phase  8  : 0 unrouted; (Setup:0, Hold:47915, Component Switching Limit:0)     REAL time: 2 mins 1 secs 
+Phase  6  : 0 unrouted; (Setup:0, Hold:5863, Component Switching Limit:0)     REAL time: 1 mins 19 secs 
+
+Phase  7  : 0 unrouted; (Setup:0, Hold:5863, Component Switching Limit:0)     REAL time: 1 mins 19 secs 
+
+Phase  8  : 0 unrouted; (Setup:0, Hold:5863, Component Switching Limit:0)     REAL time: 1 mins 19 secs 
 
 Updating file: top.ncd with current fully routed design.
 
-Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 2 mins 9 secs 
+Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 1 mins 27 secs 
 
-Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 2 mins 11 secs 
-Total REAL time to Router completion: 2 mins 11 secs 
-Total CPU time to Router completion: 2 mins 11 secs 
+Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 1 mins 29 secs 
+Total REAL time to Router completion: 1 mins 29 secs 
+Total CPU time to Router completion: 1 mins 29 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -150,64 +148,64 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|          GMII_RXCLK |BUFGCTRL_X0Y13|Yes   | 3011 |  0.373     |  3.690      |
+|          GMII_RXCLK |BUFGCTRL_X0Y13|Yes   | 3019 |  0.406     |  3.710      |
 +---------------------+--------------+------+------+------------+-------------+
-|             CLK15NS |BUFGCTRL_X0Y10|Yes   |   33 |  0.086     |  3.535      |
+|             CLK15NS |BUFGCTRL_X0Y10|Yes   |   36 |  0.099     |  3.556      |
 +---------------------+--------------+------+------+------------+-------------+
-|       STRIP_DAC_CLK |BUFGCTRL_X0Y12|Yes   |   25 |  0.324     |  3.517      |
+|       STRIP_DAC_CLK |BUFGCTRL_X0Y12|Yes   |   24 |  0.324     |  3.517      |
 +---------------------+--------------+------+------+------------+-------------+
-|         STRIP_MCLKA | BUFGCTRL_X0Y3|Yes   | 1442 |  0.246     |  3.641      |
+|         STRIP_MCLKA | BUFGCTRL_X0Y3|Yes   | 1431 |  0.225     |  3.632      |
 +---------------------+--------------+------+------+------------+-------------+
-|     STRIP_BCOCLK<0> |BUFGCTRL_X0Y19|Yes   |  490 |  0.392     |  3.728      |
+|     STRIP_BCOCLK<0> |BUFGCTRL_X0Y19|Yes   |  467 |  0.334     |  3.651      |
 +---------------------+--------------+------+------+------------+-------------+
-|     ila0_trig0<121> |BUFGCTRL_X0Y16| No   |   17 |  0.069     |  3.548      |
+|     ila0_trig0<121> |BUFGCTRL_X0Y16| No   |   17 |  0.039     |  3.493      |
 +---------------------+--------------+------+------+------------+-------------+
-|     ila0_trig0<153> |BUFGCTRL_X0Y17|Yes   |   41 |  0.108     |  3.498      |
+|     ila0_trig0<153> |BUFGCTRL_X0Y17|Yes   |   44 |  0.100     |  3.589      |
 +---------------------+--------------+------+------+------------+-------------+
-|    icon_control0<0> | BUFGCTRL_X0Y4| No   |  110 |  0.202     |  3.504      |
+|    icon_control0<0> | BUFGCTRL_X0Y4| No   |  113 |  0.205     |  3.544      |
 +---------------------+--------------+------+------+------------+-------------+
 |strip_imp/dcm_outclk |              |      |      |            |             |
-|                     | BUFGCTRL_X0Y2|Yes   | 1435 |  0.360     |  3.670      |
+|                     | BUFGCTRL_X0Y2|Yes   | 1458 |  0.339     |  3.670      |
 +---------------------+--------------+------+------+------------+-------------+
 |strip_imp/strip_mclk |              |      |      |            |             |
-|                 <0> | BUFGCTRL_X0Y8|Yes   |  162 |  0.153     |  3.517      |
+|                 <0> | BUFGCTRL_X0Y8|Yes   |  157 |  0.189     |  3.513      |
 +---------------------+--------------+------+------+------------+-------------+
 |strip_imp/strip_mclk |              |      |      |            |             |
-|                 <1> | BUFGCTRL_X0Y5|Yes   |  142 |  0.147     |  3.496      |
+|                 <1> | BUFGCTRL_X0Y5|Yes   |  145 |  0.170     |  3.502      |
 +---------------------+--------------+------+------+------------+-------------+
 |strip_imp/strip_mclk |              |      |      |            |             |
-|                 <2> | BUFGCTRL_X0Y9|Yes   |  161 |  0.190     |  3.504      |
+|                 <2> | BUFGCTRL_X0Y9|Yes   |  158 |  0.176     |  3.504      |
 +---------------------+--------------+------+------+------------+-------------+
 |strip_imp/strip_mclk |              |      |      |            |             |
-|                 <3> |BUFGCTRL_X0Y15|Yes   |  154 |  0.175     |  3.487      |
+|                 <3> |BUFGCTRL_X0Y15|Yes   |  156 |  0.215     |  3.537      |
 +---------------------+--------------+------+------+------------+-------------+
 |strip_imp/strip_mclk |              |      |      |            |             |
-|                 <4> | BUFGCTRL_X0Y1|Yes   |  164 |  0.304     |  3.574      |
+|                 <4> | BUFGCTRL_X0Y1|Yes   |  156 |  0.304     |  3.574      |
 +---------------------+--------------+------+------+------------+-------------+
 |strip_imp/strip_mclk |              |      |      |            |             |
-|                 <5> | BUFGCTRL_X0Y0|Yes   |  160 |  0.181     |  3.600      |
+|                 <5> | BUFGCTRL_X0Y0|Yes   |  156 |  0.226     |  3.600      |
 +---------------------+--------------+------+------+------------+-------------+
 |strip_imp/fracbcoclk |              |      |      |            |             |
-|                     |BUFGCTRL_X0Y31|Yes   |   75 |  0.137     |  3.508      |
+|                     |BUFGCTRL_X0Y31|Yes   |   76 |  0.128     |  3.484      |
 +---------------------+--------------+------+------+------------+-------------+
 |strip_imp/stripclk_i |              |      |      |            |             |
-|         mp/debug<0> |BUFGCTRL_X0Y23|Yes   |   24 |  0.021     |  3.425      |
+|         mp/debug<0> |BUFGCTRL_X0Y23|Yes   |   24 |  0.024     |  3.472      |
 +---------------------+--------------+------+------+------------+-------------+
 |strip_imp/stripclk_i |              |      |      |            |             |
-|        mp/clk_z_src |BUFGCTRL_X0Y29|Yes   |   12 |  0.025     |  3.529      |
+|        mp/clk_z_src |BUFGCTRL_X0Y29|Yes   |   14 |  0.094     |  3.545      |
 +---------------------+--------------+------+------+------------+-------------+
-|             ext_clk |         Local|      |   53 |  6.099     |  7.676      |
+|             ext_clk |         Local|      |   53 |  3.225     |  6.310      |
 +---------------------+--------------+------+------+------------+-------------+
-|       secondary_clk |         Local|      |   24 |  3.072     |  4.729      |
+|       secondary_clk |         Local|      |   24 |  1.705     |  3.481      |
 +---------------------+--------------+------+------+------------+-------------+
-|   STRIP_DAC_DATACLK |         Local|      |   35 |  1.667     |  2.588      |
+|   STRIP_DAC_DATACLK |         Local|      |   37 |  2.354     |  2.934      |
 +---------------------+--------------+------+------+------------+-------------+
-|      bco_cnt_out<0> |         Local|      |   22 |  0.953     |  2.853      |
+|      bco_cnt_out<0> |         Local|      |   22 |  1.112     |  2.466      |
++---------------------+--------------+------+------+------------+-------------+
+|   icon_control0<13> |         Local|      |    4 |  0.000     |  0.485      |
 +---------------------+--------------+------+------+------------+-------------+
 |U_icon_pro/U0/iUPDAT |              |      |      |            |             |
-|               E_OUT |         Local|      |    1 |  0.000     |  0.559      |
-+---------------------+--------------+------+------+------------+-------------+
-|   icon_control0<13> |         Local|      |    4 |  0.000     |  0.845      |
+|               E_OUT |         Local|      |    1 |  0.000     |  0.747      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -229,54 +227,54 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  TS_RXCLK = PERIOD TIMEGRP "TN_RXCLK" 8 ns | SETUP       |     0.070ns|     7.930ns|       0|           0
-   HIGH 50% INPUT_JITTER 0.08 ns            | HOLD        |     0.341ns|            |       0|           0
+  TS_RXCLK = PERIOD TIMEGRP "TN_RXCLK" 8 ns | SETUP       |     0.012ns|     7.988ns|       0|           0
+   HIGH 50% INPUT_JITTER 0.08 ns            | HOLD        |     0.322ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  TS_CLK15NS_PAD = PERIOD TIMEGRP "CLK15NS_ | SETUP       |     9.844ns|     5.156ns|       0|           0
-  PAD" 15 ns HIGH 50%                       | HOLD        |     0.582ns|            |       0|           0
+  TS_CLK15NS_PAD = PERIOD TIMEGRP "CLK15NS_ | SETUP       |     9.222ns|     5.778ns|       0|           0
+  PAD" 15 ns HIGH 50%                       | HOLD        |     0.546ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  TS_U_TO_J = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    12.442ns|     2.558ns|       0|           0
+  TS_U_TO_J = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    10.424ns|     4.576ns|       0|           0
    TO TIMEGRP "J_CLK" 15 ns                 |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  TS_EXT_CLK_PAD_P = PERIOD TIMEGRP "EXT_CL | SETUP       |    13.408ns|    10.184ns|       0|           0
-  K_PAD_P" 37 ns HIGH 50%                   | HOLD        |     0.222ns|            |       0|           0
-----------------------------------------------------------------------------------------------------------
-  TS_U_TO_U = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    14.044ns|     0.956ns|       0|           0
+  TS_U_TO_U = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    13.802ns|     1.198ns|       0|           0
    TO TIMEGRP "U_CLK" 15 ns                 |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  TS_J_CLK = PERIOD TIMEGRP "J_CLK" 30 ns H | SETUP       |    22.201ns|     7.799ns|       0|           0
-  IGH 50%                                   | HOLD        |     0.531ns|            |       0|           0
+  TS_EXT_CLK_PAD_P = PERIOD TIMEGRP "EXT_CL | SETUP       |    14.781ns|     7.438ns|       0|           0
+  K_PAD_P" 37 ns HIGH 50%                   | HOLD        |     0.528ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  TS_CLK5MHZ = PERIOD TIMEGRP "TN_CLK5MHZ"  | SETUP       |    93.273ns|    13.454ns|       0|           0
-  5 MHz HIGH 50%                            | HOLD        |     0.361ns|            |       0|           0
+  TS_J_CLK = PERIOD TIMEGRP "J_CLK" 30 ns H | SETUP       |    22.864ns|     7.136ns|       0|           0
+  IGH 50%                                   | HOLD        |     0.528ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_BCOCLK_TO_DACCLK_path" TIG       | SETUP       |         N/A|     4.423ns|     N/A|           0
+  TS_CLK5MHZ = PERIOD TIMEGRP "TN_CLK5MHZ"  | SETUP       |    94.705ns|    10.590ns|       0|           0
+  5 MHz HIGH 50%                            | HOLD        |     0.510ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_BUSCLK_TO_BCOCLK_path" TIG       | MAXDELAY    |         N/A|    10.332ns|     N/A|           0
+  PATH "TS_BCOCLK_TO_DACCLK_path" TIG       | SETUP       |         N/A|     6.179ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_BUSCLK_TO_BCOCLK_path" TIG       | MAXDELAY    |         N/A|    10.379ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
   PATH "TS_BCOCLK_TO_BUSCLK_path" TIG       | N/A         |         N/A|         N/A|     N/A|         N/A
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_BCOCLK_TO_MCLKA_path" TIG        | SETUP       |         N/A|    10.050ns|     N/A|           0
+  PATH "TS_BCOCLK_TO_MCLKA_path" TIG        | SETUP       |         N/A|    12.379ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_BCOCLK_TO_MCLKB_path" TIG        | SETUP       |         N/A|     6.512ns|     N/A|           0
+  PATH "TS_BCOCLK_TO_MCLKB_path" TIG        | SETUP       |         N/A|     6.442ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_MCLKA_TO_BCOCLK_path" TIG        | MAXDELAY    |         N/A|     3.793ns|     N/A|           0
+  PATH "TS_MCLKA_TO_BCOCLK_path" TIG        | MAXDELAY    |         N/A|     3.345ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
   PATH "TS_MCLKB_TO_BCOCLK_path" TIG        | N/A         |         N/A|         N/A|     N/A|         N/A
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_FBCOCLK_TO_MCLKA_path" TIG       | SETUP       |         N/A|     2.703ns|     N/A|           0
+  PATH "TS_FBCOCLK_TO_MCLKA_path" TIG       | SETUP       |         N/A|     3.199ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_MCLKA_TO_FBCOCLK_path" TIG       | SETUP       |         N/A|     2.821ns|     N/A|           0
+  PATH "TS_MCLKA_TO_FBCOCLK_path" TIG       | SETUP       |         N/A|     3.262ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
   PATH "TS_CLKQ_TO_DACCLK_path" TIG         | N/A         |         N/A|         N/A|     N/A|         N/A
 ----------------------------------------------------------------------------------------------------------
   PATH "TS_CLKQ_TO_BUSCLK_path" TIG         | N/A         |         N/A|         N/A|     N/A|         N/A
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_BCOCLK_TO_OUTCLK_path" TIG       | SETUP       |         N/A|     6.639ns|     N/A|           0
+  PATH "TS_BCOCLK_TO_OUTCLK_path" TIG       | SETUP       |         N/A|     7.221ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_MCLK_TO_MCLKA_path" TIG          | SETUP       |         N/A|     8.939ns|     N/A|           0
+  PATH "TS_MCLK_TO_MCLKA_path" TIG          | SETUP       |         N/A|     8.014ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_MCLK_TO_MCLKB_path" TIG          | SETUP       |         N/A|    14.142ns|     N/A|           0
+  PATH "TS_MCLK_TO_MCLKB_path" TIG          | SETUP       |         N/A|    12.090ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
   PATH "TS_EXTCLK_TO_DACCLK_path" TIG       | N/A         |         N/A|         N/A|     N/A|         N/A
 ----------------------------------------------------------------------------------------------------------
@@ -294,17 +292,17 @@ Asterisk (*) preceding a constraint indicates it was not met.
 ----------------------------------------------------------------------------------------------------------
   PATH "TS_BUSCLK_TO_MCLKA_path" TIG        | MAXDELAY    |         N/A|     6.587ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_D_TO_J_path" TIG                 | SETUP       |         N/A|     5.446ns|     N/A|           0
+  PATH "TS_D_TO_J_path" TIG                 | SETUP       |         N/A|     5.619ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_J_TO_D_path" TIG                 | SETUP       |         N/A|     6.607ns|     N/A|           0
+  PATH "TS_J_TO_D_path" TIG                 | SETUP       |         N/A|     6.785ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_J4_TO_D2_ila_pro_0_path" TIG     | MAXDELAY    |         N/A|     4.629ns|     N/A|           0
+  PATH "TS_J4_TO_D2_ila_pro_0_path" TIG     | MAXDELAY    |         N/A|     4.693ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
   PATH "TS_J3_TO_D2_ila_pro_0_path" TIG     | N/A         |         N/A|         N/A|     N/A|         N/A
 ----------------------------------------------------------------------------------------------------------
   PATH "TS_J2_TO_D2_ila_pro_0_path" TIG     | N/A         |         N/A|         N/A|     N/A|         N/A
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_D2_TO_T2_ila_pro_0_path" TIG     | SETUP       |         N/A|     4.777ns|     N/A|           0
+  PATH "TS_D2_TO_T2_ila_pro_0_path" TIG     | SETUP       |         N/A|     4.633ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -322,10 +320,10 @@ All signals are completely routed.
 
 WARNING:Par:283 - There are 8 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
 
-Total REAL time to PAR completion: 2 mins 15 secs 
-Total CPU time to PAR completion: 2 mins 14 secs 
+Total REAL time to PAR completion: 1 mins 33 secs 
+Total CPU time to PAR completion: 1 mins 33 secs 
 
-Peak Memory Usage:  978 MB
+Peak Memory Usage:  943 MB
 
 Placer: Placement generated during map.
 Routing: Completed - No errors found.

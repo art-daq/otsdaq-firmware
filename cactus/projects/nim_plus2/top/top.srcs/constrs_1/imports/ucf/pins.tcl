@@ -87,33 +87,67 @@ set_property IOSTANDARD LVCMOS25 [get_ports PHY_TXD7]
 # Above supplied by Ryan for CAPTAN+
 
 # Added by AGProsser
+
 # NIMPlus Comparator output pairs
+
+
 set_property PACKAGE_PIN AL30 [get_ports NIM_COM1_P]
+#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM1_P]
+##Above was 0
+
+#set_property PACKAGE_PIN AM30 [get_ports NIM_COM1_N]
+#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM1_N]
+##Above was 0
+
+#set_property PACKAGE_PIN AJ30 [get_ports NIM_COM0_P]
+#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM0_P]
+##Above was 1
+#set_property PACKAGE_PIN AK31 [get_ports NIM_COM0_N]
+#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM0_N]
+##Above was 1
+#set_property PACKAGE_PIN AJ26 [get_ports NIM_COM3_P]
+#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM3_P]
+##Above was 2
+#set_property PACKAGE_PIN AK26 [get_ports NIM_COM3_N]
+#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM3_N]
+##Above was 2
+#set_property PACKAGE_PIN AL25 [get_ports NIM_COM2_P]
+#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM2_P]
+##Above was 3
+#set_property PACKAGE_PIN AM25 [get_ports NIM_COM2_N]
+#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM2_N]
+##Above was 3
+
+
+set_property PACKAGE_PIN AN8 [get_ports NIM_COM1_P]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM1_P]
 #Above was 0
 
-set_property PACKAGE_PIN AM30 [get_ports NIM_COM1_N]
+set_property PACKAGE_PIN AP8 [get_ports NIM_COM1_N]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM1_N]
 #Above was 0
 
-set_property PACKAGE_PIN AJ30 [get_ports NIM_COM0_P]
+set_property PACKAGE_PIN AJ28 [get_ports NIM_COM0_P] 
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM0_P]
 #Above was 1
-set_property PACKAGE_PIN AK31 [get_ports NIM_COM0_N]
+set_property PACKAGE_PIN AK28 [get_ports NIM_COM0_N]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM0_N]
 #Above was 1
-set_property PACKAGE_PIN AJ26 [get_ports NIM_COM3_P]
+set_property PACKAGE_PIN AL4 [get_ports NIM_COM3_P]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM3_P]
 #Above was 2
-set_property PACKAGE_PIN AK26 [get_ports NIM_COM3_N]
+set_property PACKAGE_PIN AM4 [get_ports NIM_COM3_N]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM3_N]
 #Above was 2
-set_property PACKAGE_PIN AL25 [get_ports NIM_COM2_P]
+set_property PACKAGE_PIN AL5 [get_ports NIM_COM2_P]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM2_P]
 #Above was 3
-set_property PACKAGE_PIN AM25 [get_ports NIM_COM2_N]
+set_property PACKAGE_PIN AM5 [get_ports NIM_COM2_N]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM2_N]
 #Above was 3
+
+
+
 # DAC serial interface
 set_property PACKAGE_PIN AP25 [get_ports DAC_SER_CLK]
 set_property IOSTANDARD LVCMOS25 [get_ports DAC_SER_CLK]

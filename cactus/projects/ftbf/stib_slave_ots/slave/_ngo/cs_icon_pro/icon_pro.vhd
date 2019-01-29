@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
--- Copyright (c) 2018 Xilinx, Inc.
+-- Copyright (c) 2019 Xilinx, Inc.
 -- All Rights Reserved
 -------------------------------------------------------------------------------
 --   ____  ____
@@ -8,7 +8,7 @@
 -- \   \   \/     Version    : 14.7
 --  \   \         Application: XILINX CORE Generator
 --  /   /         Filename   : icon_pro.vhd
--- /___/   /\     Timestamp  : Wed Nov 28 12:22:32 CST 2018
+-- /___/   /\     Timestamp  : Wed Jan 23 12:29:16 CST 2019
 -- \   \  /  \
 --  \___\/\___\
 --
