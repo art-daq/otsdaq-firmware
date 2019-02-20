@@ -1,56 +1,56 @@
 /******************************************************************************
-*
-*       XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS"
-*       AS A COURTESY TO YOU, SOLELY FOR USE IN DEVELOPING PROGRAMS AND
-*       SOLUTIONS FOR XILINX DEVICES.  BY PROVIDING THIS DESIGN, CODE,
-*       OR INFORMATION AS ONE POSSIBLE IMPLEMENTATION OF THIS FEATURE,
-*       APPLICATION OR STANDARD, XILINX IS MAKING NO REPRESENTATION
-*       THAT THIS IMPLEMENTATION IS FREE FROM ANY CLAIMS OF INFRINGEMENT,
-*       AND YOU ARE RESPONSIBLE FOR OBTAINING ANY RIGHTS YOU MAY REQUIRE
-*       FOR YOUR IMPLEMENTATION.  XILINX EXPRESSLY DISCLAIMS ANY
-*       WARRANTY WHATSOEVER WITH RESPECT TO THE ADEQUACY OF THE
-*       IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OR
-*       REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE FROM CLAIMS OF
-*       INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-*       FOR A PARTICULAR PURPOSE.
-*
-*       (c) Copyright 2002-2008 Xilinx Inc.
-*       All rights reserved.
-*
-******************************************************************************/
+ *
+ *       XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS"
+ *       AS A COURTESY TO YOU, SOLELY FOR USE IN DEVELOPING PROGRAMS AND
+ *       SOLUTIONS FOR XILINX DEVICES.  BY PROVIDING THIS DESIGN, CODE,
+ *       OR INFORMATION AS ONE POSSIBLE IMPLEMENTATION OF THIS FEATURE,
+ *       APPLICATION OR STANDARD, XILINX IS MAKING NO REPRESENTATION
+ *       THAT THIS IMPLEMENTATION IS FREE FROM ANY CLAIMS OF INFRINGEMENT,
+ *       AND YOU ARE RESPONSIBLE FOR OBTAINING ANY RIGHTS YOU MAY REQUIRE
+ *       FOR YOUR IMPLEMENTATION.  XILINX EXPRESSLY DISCLAIMS ANY
+ *       WARRANTY WHATSOEVER WITH RESPECT TO THE ADEQUACY OF THE
+ *       IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OR
+ *       REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE FROM CLAIMS OF
+ *       INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ *       FOR A PARTICULAR PURPOSE.
+ *
+ *       (c) Copyright 2002-2008 Xilinx Inc.
+ *       All rights reserved.
+ *
+ ******************************************************************************/
 /*****************************************************************************/
 /**
-*
-* @file xenv_standalone.h
-*
-* Defines common services specified by xenv.h.
-*
-* @note
-* 	This file is not intended to be included directly by driver code.
-* 	Instead, the generic xenv.h file is intended to be included by driver
-* 	code.
-*
-* <pre>
-* MODIFICATION HISTORY:
-*
-* Ver   Who  Date     Changes
-* ----- ---- -------- -----------------------------------------------
-* 1.00a wgr  02/28/07 Added cache handling macros.
-* 1.00a wgr  02/27/07 Simplified code. Deprecated old-style macro names.
-* 1.00a rmm  01/24/06 Implemented XENV_USLEEP. Assume implementation is being
-*                     used under Xilinx standalone BSP.
-* 1.00a xd   11/03/04 Improved support for doxygen.
-* 1.00a rmm  03/21/02 First release
-* 1.00a wgr  03/22/07 Converted to new coding style.
-* 1.00a rpm  06/29/07 Added udelay macro for standalone
-* 1.00a xd   07/19/07 Included xparameters.h as XPAR_ constants are referred
-*                     to in MICROBLAZE section
-* 1.00a ecm  09/19/08 updated for v7.20 of Microblaze, new functionality
-*
-* </pre>
-*
-*
-******************************************************************************/
+ *
+ * @file xenv_standalone.h
+ *
+ * Defines common services specified by xenv.h.
+ *
+ * @note
+ * 	This file is not intended to be included directly by driver code.
+ * 	Instead, the generic xenv.h file is intended to be included by driver
+ * 	code.
+ *
+ * <pre>
+ * MODIFICATION HISTORY:
+ *
+ * Ver   Who  Date     Changes
+ * ----- ---- -------- -----------------------------------------------
+ * 1.00a wgr  02/28/07 Added cache handling macros.
+ * 1.00a wgr  02/27/07 Simplified code. Deprecated old-style macro names.
+ * 1.00a rmm  01/24/06 Implemented XENV_USLEEP. Assume implementation is being
+ *                     used under Xilinx standalone BSP.
+ * 1.00a xd   11/03/04 Improved support for doxygen.
+ * 1.00a rmm  03/21/02 First release
+ * 1.00a wgr  03/22/07 Converted to new coding style.
+ * 1.00a rpm  06/29/07 Added udelay macro for standalone
+ * 1.00a xd   07/19/07 Included xparameters.h as XPAR_ constants are referred
+ *                     to in MICROBLAZE section
+ * 1.00a ecm  09/19/08 updated for v7.20 of Microblaze, new functionality
+ *
+ * </pre>
+ *
+ *
+ ******************************************************************************/
 
 #ifndef XENV_STANDALONE_H
 #define XENV_STANDALONE_H
@@ -69,12 +69,12 @@ extern "C" {
 #include <string.h>
 
 #if defined __MICROBLAZE__
-#  include "mb_interface.h"
-#  include "xparameters.h"   /* XPAR constants used below in MB section */
+#include "mb_interface.h"
+#include "xparameters.h" /* XPAR constants used below in MB section */
 
 #elif defined __PPC__
-#  include "sleep.h"
-#  include "xcache_l.h"      /* also include xcache_l.h for caching macros */
+#include "sleep.h"
+#include "xcache_l.h" /* also include xcache_l.h for caching macros */
 #endif
 
 /******************************************************************************
@@ -111,10 +111,8 @@ extern "C" {
  *
  *****************************************************************************/
 
-#define XENV_MEM_COPY(DestPtr, SrcPtr, Bytes) \
-	memcpy((void *) DestPtr, (const void *) SrcPtr, (size_t) Bytes)
-
-
+#define XENV_MEM_COPY(DestPtr, SrcPtr, Bytes)                                  \
+  memcpy((void *)DestPtr, (const void *)SrcPtr, (size_t)Bytes)
 
 /*****************************************************************************/
 /**
@@ -137,10 +135,8 @@ extern "C" {
  *
  *****************************************************************************/
 
-#define XENV_MEM_FILL(DestPtr, Data, Bytes) \
-	memset((void *) DestPtr, (int) Data, (size_t) Bytes)
-
-
+#define XENV_MEM_FILL(DestPtr, Data, Bytes)                                    \
+  memset((void *)DestPtr, (int)Data, (size_t)Bytes)
 
 /******************************************************************************
  *
@@ -187,7 +183,7 @@ typedef int XENV_TIME_STAMP;
  * This macro must be implemented by the user.
  *
  *****************************************************************************/
-#define XENV_TIME_STAMP_DELTA_US(Stamp1Ptr, Stamp2Ptr)     (0)
+#define XENV_TIME_STAMP_DELTA_US(Stamp1Ptr, Stamp2Ptr) (0)
 
 /*****************************************************************************/
 /**
@@ -204,7 +200,7 @@ typedef int XENV_TIME_STAMP;
  * This macro must be implemented by the user.
  *
  *****************************************************************************/
-#define XENV_TIME_STAMP_DELTA_MS(Stamp1Ptr, Stamp2Ptr)     (0)
+#define XENV_TIME_STAMP_DELTA_MS(Stamp1Ptr, Stamp2Ptr) (0)
 
 /*****************************************************************************/
 /**
@@ -221,13 +217,12 @@ typedef int XENV_TIME_STAMP;
  *****************************************************************************/
 
 #ifdef __PPC__
-#define XENV_USLEEP(delay)	usleep(delay)
-#define udelay(delay)	usleep(delay)
+#define XENV_USLEEP(delay) usleep(delay)
+#define udelay(delay) usleep(delay)
 #else
 #define XENV_USLEEP(delay)
 #define udelay(delay)
 #endif
-
 
 /******************************************************************************
  *
@@ -240,12 +235,17 @@ typedef int XENV_TIME_STAMP;
  *
  ******************************************************************************/
 
-#define XCACHE_ENABLE_CACHE()	\
-		{ XCACHE_ENABLE_DCACHE(); XCACHE_ENABLE_ICACHE(); }
+#define XCACHE_ENABLE_CACHE()                                                  \
+  {                                                                            \
+    XCACHE_ENABLE_DCACHE();                                                    \
+    XCACHE_ENABLE_ICACHE();                                                    \
+  }
 
-#define XCACHE_DISABLE_CACHE()	\
-		{ XCACHE_DISABLE_DCACHE(); XCACHE_DISABLE_ICACHE(); }
-
+#define XCACHE_DISABLE_CACHE()                                                 \
+  {                                                                            \
+    XCACHE_DISABLE_DCACHE();                                                   \
+    XCACHE_DISABLE_ICACHE();                                                   \
+  }
 
 /******************************************************************************
  *
@@ -262,47 +262,45 @@ typedef int XENV_TIME_STAMP;
 /* Check if MicroBlaze data cache was built into the core.
  */
 #if (XPAR_MICROBLAZE_USE_DCACHE == 1)
-#  define XCACHE_ENABLE_DCACHE()		microblaze_enable_dcache()
-#  define XCACHE_DISABLE_DCACHE()		microblaze_disable_dcache()
-#  define XCACHE_INVALIDATE_DCACHE()  	microblaze_invalidate_dcache()
+#define XCACHE_ENABLE_DCACHE() microblaze_enable_dcache()
+#define XCACHE_DISABLE_DCACHE() microblaze_disable_dcache()
+#define XCACHE_INVALIDATE_DCACHE() microblaze_invalidate_dcache()
 
-#  define XCACHE_INVALIDATE_DCACHE_RANGE(Addr, Len) \
-			microblaze_invalidate_dcache_range((int)(Addr), (int)(Len))
+#define XCACHE_INVALIDATE_DCACHE_RANGE(Addr, Len)                              \
+  microblaze_invalidate_dcache_range((int)(Addr), (int)(Len))
 
 #if (XPAR_MICROBLAZE_DCACHE_USE_WRITEBACK == 1)
-#  define XCACHE_FLUSH_DCACHE()  		microblaze_flush_dcache()
-#  define XCACHE_FLUSH_DCACHE_RANGE(Addr, Len) \
-			microblaze_flush_dcache_range((int)(Addr), (int)(Len))
+#define XCACHE_FLUSH_DCACHE() microblaze_flush_dcache()
+#define XCACHE_FLUSH_DCACHE_RANGE(Addr, Len)                                   \
+  microblaze_flush_dcache_range((int)(Addr), (int)(Len))
 #else
-#  define XCACHE_FLUSH_DCACHE()  		microblaze_invalidate_dcache()
-#  define XCACHE_FLUSH_DCACHE_RANGE(Addr, Len) \
-			microblaze_invalidate_dcache_range((int)(Addr), (int)(Len))
-#endif	/*XPAR_MICROBLAZE_DCACHE_USE_WRITEBACK*/
+#define XCACHE_FLUSH_DCACHE() microblaze_invalidate_dcache()
+#define XCACHE_FLUSH_DCACHE_RANGE(Addr, Len)                                   \
+  microblaze_invalidate_dcache_range((int)(Addr), (int)(Len))
+#endif /*XPAR_MICROBLAZE_DCACHE_USE_WRITEBACK*/
 
 #else
-#  define XCACHE_ENABLE_DCACHE()
-#  define XCACHE_DISABLE_DCACHE()
-#  define XCACHE_INVALIDATE_DCACHE_RANGE(Addr, Len)
-#  define XCACHE_FLUSH_DCACHE_RANGE(Addr, Len)
-#endif	/*XPAR_MICROBLAZE_USE_DCACHE*/
-
+#define XCACHE_ENABLE_DCACHE()
+#define XCACHE_DISABLE_DCACHE()
+#define XCACHE_INVALIDATE_DCACHE_RANGE(Addr, Len)
+#define XCACHE_FLUSH_DCACHE_RANGE(Addr, Len)
+#endif /*XPAR_MICROBLAZE_USE_DCACHE*/
 
 /* Check if MicroBlaze instruction cache was built into the core.
  */
 #if (XPAR_MICROBLAZE_USE_ICACHE == 1)
-#  define XCACHE_ENABLE_ICACHE()		microblaze_enable_icache()
-#  define XCACHE_DISABLE_ICACHE()		microblaze_disable_icache()
+#define XCACHE_ENABLE_ICACHE() microblaze_enable_icache()
+#define XCACHE_DISABLE_ICACHE() microblaze_disable_icache()
 
-#  define XCACHE_INVALIDATE_ICACHE()  	microblaze_invalidate_icache()
+#define XCACHE_INVALIDATE_ICACHE() microblaze_invalidate_icache()
 
-#  define XCACHE_INVALIDATE_ICACHE_RANGE(Addr, Len) \
-			microblaze_invalidate_icache_range((int)(Addr), (int)(Len))
+#define XCACHE_INVALIDATE_ICACHE_RANGE(Addr, Len)                              \
+  microblaze_invalidate_icache_range((int)(Addr), (int)(Len))
 
 #else
-#  define XCACHE_ENABLE_ICACHE()
-#  define XCACHE_DISABLE_ICACHE()
-#endif	/*XPAR_MICROBLAZE_USE_ICACHE*/
-
+#define XCACHE_ENABLE_ICACHE()
+#define XCACHE_DISABLE_ICACHE()
+#endif /*XPAR_MICROBLAZE_USE_ICACHE*/
 
 /******************************************************************************
  *
@@ -323,19 +321,18 @@ typedef int XENV_TIME_STAMP;
 
 #elif defined __PPC__
 
-#define XCACHE_ENABLE_DCACHE()		XCache_EnableDCache(0x80000001)
-#define XCACHE_DISABLE_DCACHE()		XCache_DisableDCache()
-#define XCACHE_ENABLE_ICACHE()		XCache_EnableICache(0x80000001)
-#define XCACHE_DISABLE_ICACHE()		XCache_DisableICache()
+#define XCACHE_ENABLE_DCACHE() XCache_EnableDCache(0x80000001)
+#define XCACHE_DISABLE_DCACHE() XCache_DisableDCache()
+#define XCACHE_ENABLE_ICACHE() XCache_EnableICache(0x80000001)
+#define XCACHE_DISABLE_ICACHE() XCache_DisableICache()
 
-#define XCACHE_INVALIDATE_DCACHE_RANGE(Addr, Len) \
-		XCache_InvalidateDCacheRange((unsigned int)(Addr), (unsigned)(Len))
+#define XCACHE_INVALIDATE_DCACHE_RANGE(Addr, Len)                              \
+  XCache_InvalidateDCacheRange((unsigned int)(Addr), (unsigned)(Len))
 
-#define XCACHE_FLUSH_DCACHE_RANGE(Addr, Len) \
-		XCache_FlushDCacheRange((unsigned int)(Addr), (unsigned)(Len))
+#define XCACHE_FLUSH_DCACHE_RANGE(Addr, Len)                                   \
+  XCache_FlushDCacheRange((unsigned int)(Addr), (unsigned)(Len))
 
-#define XCACHE_INVALIDATE_ICACHE()	XCache_InvalidateICache()
-
+#define XCACHE_INVALIDATE_ICACHE() XCache_InvalidateICache()
 
 /******************************************************************************
  *
@@ -347,10 +344,8 @@ typedef int XENV_TIME_STAMP;
 /* #error "Unknown processor / architecture. Must be MicroBlaze or PowerPC." */
 #endif
 
-
 #ifdef __cplusplus
 }
 #endif
 
-#endif	/* #ifndef XENV_STANDALONE_H */
-
+#endif /* #ifndef XENV_STANDALONE_H */

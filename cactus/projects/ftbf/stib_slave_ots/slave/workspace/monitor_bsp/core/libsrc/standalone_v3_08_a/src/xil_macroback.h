@@ -1,12 +1,12 @@
 /*********************************************************************/
 /**
  * (c) Copyright 2010 Xilinx, Inc. All rights reserved.
- * 
+ *
  * This file contains confidential and proprietary information
  * of Xilinx, Inc. and is protected under U.S. and
  * international copyright and other intellectual property
  * laws.
- * 
+ *
  * DISCLAIMER
  * This disclaimer is not a license and does not grant any
  * rights to the materials distributed herewith. Except as
@@ -28,7 +28,7 @@
  * by a third party) even if such damage or loss was
  * reasonably foreseeable or Xilinx had been advised of the
  * possibility of the same.
- * 
+ *
  * CRITICAL APPLICATIONS
  * Xilinx products are not designed or intended to be fail-
  * safe, or for use in any application requiring fail-safe
@@ -42,7 +42,7 @@
  * liability of any use of Xilinx products in Critical
  * Applications, subject only to applicable laws and
  * regulations governing limitations on product liability.
- * 
+ *
  * THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
  * PART OF THIS FILE AT ALL TIMES.
  *********************************************************************/
@@ -50,7 +50,7 @@
 /*********************************************************************/
 /**
  * @file xil_macroback.h
- * 
+ *
  * This header file is meant to bring back the removed _m macros.
  * This header file must be included last.
  * The following macros are not defined here due to the driver change:
@@ -69,9 +69,9 @@
  *   XWdtTb_mRestartWdt
  *   XWdtTb_mGetTimebaseReg
  *   XWdtTb_mHasReset
- * 
+ *
  * Please refer the corresonding driver document for replacement.
- * 
+ *
  *********************************************************************/
 
 #ifndef XIL_MACROBACK_H
@@ -80,7 +80,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XCan
- * 
+ *
  *********************************************************************/
 #ifndef XCan_mReadReg
 #define XCan_mReadReg XCan_ReadReg
@@ -121,7 +121,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XDmaCentral
- * 
+ *
  *********************************************************************/
 #ifndef XDmaCentral_mWriteReg
 #define XDmaCentral_mWriteReg XDmaCentral_WriteReg
@@ -134,7 +134,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XDsAdc
- * 
+ *
  *********************************************************************/
 #ifndef XDsAdc_mWriteReg
 #define XDsAdc_mWriteReg XDsAdc_WriteReg
@@ -171,7 +171,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XDsDac
- * 
+ *
  *********************************************************************/
 #ifndef XDsDac_mWriteReg
 #define XDsDac_mWriteReg XDsDac_WriteReg
@@ -196,7 +196,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XEmacLite
- * 
+ *
  *********************************************************************/
 #ifndef XEmacLite_mReadReg
 #define XEmacLite_mReadReg XEmacLite_ReadReg
@@ -261,7 +261,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XGpio
- * 
+ *
  *********************************************************************/
 #ifndef XGpio_mWriteReg
 #define XGpio_mWriteReg XGpio_WriteReg
@@ -274,7 +274,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XHwIcap
- * 
+ *
  *********************************************************************/
 #ifndef XHwIcap_mFifoWrite
 #define XHwIcap_mFifoWrite XHwIcap_FifoWrite
@@ -371,7 +371,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XIic
- * 
+ *
  *********************************************************************/
 #ifndef XIic_mReadReg
 #define XIic_mReadReg XIic_ReadReg
@@ -484,7 +484,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XIntc
- * 
+ *
  *********************************************************************/
 #ifndef XIntc_mMasterEnable
 #define XIntc_mMasterEnable XIntc_MasterEnable
@@ -513,7 +513,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XLlDma
- * 
+ *
  *********************************************************************/
 #ifndef XLlDma_mBdRead
 #define XLlDma_mBdRead XLlDma_BdRead
@@ -658,7 +658,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XMbox
- * 
+ *
  *********************************************************************/
 #ifndef XMbox_mWriteReg
 #define XMbox_mWriteReg XMbox_WriteReg
@@ -703,7 +703,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XMpmc
- * 
+ *
  *********************************************************************/
 #ifndef XMpmc_mReadReg
 #define XMpmc_mReadReg XMpmc_ReadReg
@@ -716,7 +716,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XMutex
- * 
+ *
  *********************************************************************/
 #ifndef XMutex_mWriteReg
 #define XMutex_mWriteReg XMutex_WriteReg
@@ -729,7 +729,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XPcie
- * 
+ *
  *********************************************************************/
 #ifndef XPcie_mReadReg
 #define XPcie_mReadReg XPcie_ReadReg
@@ -742,7 +742,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XSpi
- * 
+ *
  *********************************************************************/
 #ifndef XSpi_mIntrGlobalEnable
 #define XSpi_mIntrGlobalEnable XSpi_IntrGlobalEnable
@@ -807,7 +807,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XSysAce
- * 
+ *
  *********************************************************************/
 #ifndef XSysAce_mGetControlReg
 #define XSysAce_mGetControlReg XSysAce_GetControlReg
@@ -860,7 +860,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XSysMon
- * 
+ *
  *********************************************************************/
 #ifndef XSysMon_mIsEventSamplingModeSet
 #define XSysMon_mIsEventSamplingModeSet XSysMon_IsEventSamplingModeSet
@@ -901,7 +901,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XTmrCtr
- * 
+ *
  *********************************************************************/
 #ifndef XTimerCtr_mReadReg
 #define XTimerCtr_mReadReg XTimerCtr_ReadReg
@@ -958,7 +958,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XUartLite
- * 
+ *
  *********************************************************************/
 #ifndef XUartLite_mUpdateStats
 #define XUartLite_mUpdateStats XUartLite_UpdateStats
@@ -1007,7 +1007,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XUartNs550
- * 
+ *
  *********************************************************************/
 #ifndef XUartNs550_mUpdateStats
 #define XUartNs550_mUpdateStats XUartNs550_UpdateStats
@@ -1056,7 +1056,7 @@
 /*********************************************************************/
 /**
  * Macros for Driver XUsb
- * 
+ *
  *********************************************************************/
 #ifndef XUsb_mReadReg
 #define XUsb_mReadReg XUsb_ReadReg

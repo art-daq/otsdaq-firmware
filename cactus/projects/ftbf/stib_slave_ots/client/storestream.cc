@@ -1,17 +1,17 @@
 
+#include <arpa/inet.h>
+#include <errno.h>
+#include <fcntl.h>
 #include <iostream>
+#include <netdb.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
-#include <netdb.h>
-#include <time.h>
-#include <sys/time.h>
-#include <arpa/inet.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include <sys/socket.h>
+#include <sys/stat.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <time.h>
 
 #include "stib.hh"
 
@@ -22,7 +22,7 @@ static unsigned char recvbuf[BUFLEN];
 using namespace std;
 using namespace stib;
 
-int main(int argc,char **argv) {
+int main(int argc, char **argv) {
   int ierr, i, s, strip, dlen;
   socklen_t namelen;
   int broadcast_enable;
@@ -38,33 +38,34 @@ int main(int argc,char **argv) {
   uint64_t bco_counter = 0ULL;
   uint64_t last_bco = 0ULL;
 
-  if ( argc < 3 ) {
+  if (argc < 3) {
     cerr << "Usage: " << argv[0] << " <port> <file> [<file> ...]" << endl;
     exit(1);
   }
-  if ( ( s = socket(PF_INET,SOCK_DGRAM,0) ) < 0 ) {
-    fprintf( stderr, "%s : socket() - %s\n", argv[0], strerror(errno) );
+  if ((s = socket(PF_INET, SOCK_DGRAM, 0)) < 0) {
+    fprintf(stderr, "%s : socket() - %s\n", argv[0], strerror(errno));
     exit(1);
   }
-  bzero((char *)&saddr,sizeof(saddr));
+  bzero((char *)&saddr, sizeof(saddr));
   saddr.sin_family = AF_INET;
-  //saddr.sin_addr.s_addr = INADDR_ANY;
+  // saddr.sin_addr.s_addr = INADDR_ANY;
   port = atoi(argv[1]);
   saddr.sin_port = htons(port);
 
-  if ( bind(s,(struct sockaddr *)&saddr,sizeof(saddr)) < 0 ) {
-    fprintf( stderr, "%s : bind() - %s\n", argv[0], strerror(errno) );
+  if (bind(s, (struct sockaddr *)&saddr, sizeof(saddr)) < 0) {
+    fprintf(stderr, "%s : bind() - %s\n", argv[0], strerror(errno));
     exit(1);
   }
-  printf("Listening on port %d.\n", port );
-  int nfds = argc-2;
+  printf("Listening on port %d.\n", port);
+  int nfds = argc - 2;
   fds = new int[nfds];
   stibs = new int[4];
-  for ( int ifd=0; ifd<nfds; ifd++ ) {
-    fds[ifd] = open(argv[ifd+2],O_CREAT|O_RDWR|O_APPEND,S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH);
-    if ( fds[ifd] < 0 ) {
-      fprintf( stderr, "%s : open(%s) - %s\n",
-               argv[0], argv[ifd+2], strerror(errno) );
+  for (int ifd = 0; ifd < nfds; ifd++) {
+    fds[ifd] = open(argv[ifd + 2], O_CREAT | O_RDWR | O_APPEND,
+                    S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+    if (fds[ifd] < 0) {
+      fprintf(stderr, "%s : open(%s) - %s\n", argv[0], argv[ifd + 2],
+              strerror(errno));
       exit(1);
     }
     stibs[ifd] = 0;
@@ -80,29 +81,31 @@ int main(int argc,char **argv) {
   do {
     dlen = sizeof(daddr);
     int len;
-    if ( ( len = recvfrom(s,recvbuf,BUFLEN,0,(struct sockaddr *)&daddr,(socklen_t *)&dlen) ) < 0 ) {
-      fprintf( stderr, "%s : recvfrom() - %s\n", argv[0], strerror(errno) );
+    if ((len = recvfrom(s, recvbuf, BUFLEN, 0, (struct sockaddr *)&daddr,
+                        (socklen_t *)&dlen)) < 0) {
+      fprintf(stderr, "%s : recvfrom() - %s\n", argv[0], strerror(errno));
       exit(1);
     }
-    int addr = ntohl(daddr.sin_addr.s_addr)&0xff;
+    int addr = ntohl(daddr.sin_addr.s_addr) & 0xff;
     int ifd = 0;
-    while ( stibs[ifd] != addr && ifd < nfds ) ifd++;
-    if ( ifd < nfds ) {
+    while (stibs[ifd] != addr && ifd < nfds)
+      ifd++;
+    if (ifd < nfds) {
       nwrite += len;
       dwrite += len;
-      if ( write(fds[ifd],recvbuf,len) != len ) {
-        fprintf( stderr, "%s : write(%d) - %s\n",
-                 argv[0], fds[i], strerror(errno) );
+      if (write(fds[ifd], recvbuf, len) != len) {
+        fprintf(stderr, "%s : write(%d) - %s\n", argv[0], fds[i],
+                strerror(errno));
       }
     }
     time(&t1);
-    if ( dwrite > 65536 || t1-t0 > 10 ) {
-      cout << nwrite << " bytes - " << (float)dwrite/(t1-t0) << " bytes/sec" << endl;
+    if (dwrite > 65536 || t1 - t0 > 10) {
+      cout << nwrite << " bytes - " << (float)dwrite / (t1 - t0) << " bytes/sec"
+           << endl;
       dwrite = 0;
       t0 = t1;
     }
-  }
-  while ( 1 );
+  } while (1);
 
   return 0;
 }

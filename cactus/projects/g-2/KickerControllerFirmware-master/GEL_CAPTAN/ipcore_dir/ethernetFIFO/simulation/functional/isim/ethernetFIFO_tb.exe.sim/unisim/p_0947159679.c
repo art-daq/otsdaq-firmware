@@ -22,10 +22,7 @@
 #define alloca _alloca
 #endif
 
-
-
-
-extern void unisim_p_0947159679_init()
-{
-	xsi_register_didat("unisim_p_0947159679", "isim/ethernetFIFO_tb.exe.sim/unisim/p_0947159679.didat");
+extern void unisim_p_0947159679_init() {
+  xsi_register_didat("unisim_p_0947159679",
+                     "isim/ethernetFIFO_tb.exe.sim/unisim/p_0947159679.didat");
 }

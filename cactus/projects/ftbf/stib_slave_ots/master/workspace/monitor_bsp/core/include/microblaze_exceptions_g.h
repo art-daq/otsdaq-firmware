@@ -7,8 +7,7 @@
 *
 * Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-* 
+*
 * Description: Exception Handling Header for MicroBlaze Processor
 *
 *******************************************************************/
-

@@ -1,49 +1,49 @@
 /******************************************************************************
-*
-*       XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS"
-*       AS A COURTESY TO YOU, SOLELY FOR USE IN DEVELOPING PROGRAMS AND
-*       SOLUTIONS FOR XILINX DEVICES.  BY PROVIDING THIS DESIGN, CODE,
-*       OR INFORMATION AS ONE POSSIBLE IMPLEMENTATION OF THIS FEATURE,
-*       APPLICATION OR STANDARD, XILINX IS MAKING NO REPRESENTATION
-*       THAT THIS IMPLEMENTATION IS FREE FROM ANY CLAIMS OF INFRINGEMENT,
-*       AND YOU ARE RESPONSIBLE FOR OBTAINING ANY RIGHTS YOU MAY REQUIRE
-*       FOR YOUR IMPLEMENTATION.  XILINX EXPRESSLY DISCLAIMS ANY
-*       WARRANTY WHATSOEVER WITH RESPECT TO THE ADEQUACY OF THE
-*       IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OR
-*       REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE FROM CLAIMS OF
-*       INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-*       FOR A PARTICULAR PURPOSE.
-*
-*       (c) Copyright 2002-2007 Xilinx Inc.
-*       All rights reserved.
-*
-******************************************************************************/
+ *
+ *       XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS"
+ *       AS A COURTESY TO YOU, SOLELY FOR USE IN DEVELOPING PROGRAMS AND
+ *       SOLUTIONS FOR XILINX DEVICES.  BY PROVIDING THIS DESIGN, CODE,
+ *       OR INFORMATION AS ONE POSSIBLE IMPLEMENTATION OF THIS FEATURE,
+ *       APPLICATION OR STANDARD, XILINX IS MAKING NO REPRESENTATION
+ *       THAT THIS IMPLEMENTATION IS FREE FROM ANY CLAIMS OF INFRINGEMENT,
+ *       AND YOU ARE RESPONSIBLE FOR OBTAINING ANY RIGHTS YOU MAY REQUIRE
+ *       FOR YOUR IMPLEMENTATION.  XILINX EXPRESSLY DISCLAIMS ANY
+ *       WARRANTY WHATSOEVER WITH RESPECT TO THE ADEQUACY OF THE
+ *       IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OR
+ *       REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE FROM CLAIMS OF
+ *       INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ *       FOR A PARTICULAR PURPOSE.
+ *
+ *       (c) Copyright 2002-2007 Xilinx Inc.
+ *       All rights reserved.
+ *
+ ******************************************************************************/
 /*****************************************************************************/
 /**
-*
-* @file xenv_linux.h
-*
-* Defines common services specified by xenv.h.
-*
-* @note
-* 	This file is not intended to be included directly by driver code.
-* 	Instead, the generic xenv.h file is intended to be included by driver
-* 	code.
-*
-* <pre>
-* MODIFICATION HISTORY:
-*
-* Ver   Who  Date     Changes
-* ----- ---- -------- -----------------------------------------------
-* 1.00a wgr  02/28/07 Added cache handling macros.
-* 1.00a wgr  02/27/07 Simplified code. Deprecated old-style macro names.
-* 1.00a xd   11/03/04 Improved support for doxygen.
-* 1.00a ch   10/24/02 First release
-* 1.10a wgr  03/22/07 Converted to new coding style.
-* </pre>
-*
-*
-******************************************************************************/
+ *
+ * @file xenv_linux.h
+ *
+ * Defines common services specified by xenv.h.
+ *
+ * @note
+ * 	This file is not intended to be included directly by driver code.
+ * 	Instead, the generic xenv.h file is intended to be included by driver
+ * 	code.
+ *
+ * <pre>
+ * MODIFICATION HISTORY:
+ *
+ * Ver   Who  Date     Changes
+ * ----- ---- -------- -----------------------------------------------
+ * 1.00a wgr  02/28/07 Added cache handling macros.
+ * 1.00a wgr  02/27/07 Simplified code. Deprecated old-style macro names.
+ * 1.00a xd   11/03/04 Improved support for doxygen.
+ * 1.00a ch   10/24/02 First release
+ * 1.10a wgr  03/22/07 Converted to new coding style.
+ * </pre>
+ *
+ *
+ ******************************************************************************/
 
 #ifndef XENV_LINUX_H
 #define XENV_LINUX_H
@@ -52,14 +52,12 @@
 extern "C" {
 #endif
 
-
 /***************************** Include Files *********************************/
 
 #include <asm/cache.h>
 #include <asm/cacheflush.h>
-#include <linux/string.h>
 #include <linux/delay.h>
-
+#include <linux/string.h>
 
 /******************************************************************************
  *
@@ -90,10 +88,8 @@ extern "C" {
  *
  *****************************************************************************/
 
-#define XENV_MEM_COPY(DestPtr, SrcPtr, Bytes) \
-		memcpy(DestPtr, SrcPtr, Bytes)
+#define XENV_MEM_COPY(DestPtr, SrcPtr, Bytes) memcpy(DestPtr, SrcPtr, Bytes)
 /*		do_not_use_XENV_MEM_COPY_use_memcpy_instead */
-
 
 /*****************************************************************************/
 /**
@@ -113,10 +109,8 @@ extern "C" {
  *
  *****************************************************************************/
 
-#define XENV_MEM_FILL(DestPtr, Data, Bytes) \
-		memset(DestPtr, Data, Bytes)
+#define XENV_MEM_FILL(DestPtr, Data, Bytes) memset(DestPtr, Data, Bytes)
 /*		do_not_use_XENV_MEM_FILL_use_memset_instead */
-
 
 /******************************************************************************
  *
@@ -162,7 +156,7 @@ typedef int XENV_TIME_STAMP;
  * This macro must be implemented by the user.
  *
  *****************************************************************************/
-#define XENV_TIME_STAMP_DELTA_US(Stamp1Ptr, Stamp2Ptr)     (0)
+#define XENV_TIME_STAMP_DELTA_US(Stamp1Ptr, Stamp2Ptr) (0)
 
 /*****************************************************************************/
 /**
@@ -179,7 +173,7 @@ typedef int XENV_TIME_STAMP;
  * This macro must be implemented by the user
  *
  *****************************************************************************/
-#define XENV_TIME_STAMP_DELTA_MS(Stamp1Ptr, Stamp2Ptr)     (0)
+#define XENV_TIME_STAMP_DELTA_MS(Stamp1Ptr, Stamp2Ptr) (0)
 
 /*****************************************************************************/
 /**
@@ -195,9 +189,8 @@ typedef int XENV_TIME_STAMP;
  *
  *****************************************************************************/
 
-#define XENV_USLEEP(delay)	udelay(delay)
+#define XENV_USLEEP(delay) udelay(delay)
 /*		do_not_use_XENV_MEM_COPY_use_memcpy_instead */
-
 
 /******************************************************************************
  *
@@ -214,28 +207,34 @@ typedef int XENV_TIME_STAMP;
  *
  ******************************************************************************/
 
-#define XCACHE_ENABLE_DCACHE()		__enable_dcache()
-#define XCACHE_DISABLE_DCACHE()		__disable_dcache()
-#define XCACHE_ENABLE_ICACHE()		__enable_icache()
-#define XCACHE_DISABLE_ICACHE()		__disable_icache()
+#define XCACHE_ENABLE_DCACHE() __enable_dcache()
+#define XCACHE_DISABLE_DCACHE() __disable_dcache()
+#define XCACHE_ENABLE_ICACHE() __enable_icache()
+#define XCACHE_DISABLE_ICACHE() __disable_icache()
 
-#define XCACHE_INVALIDATE_DCACHE_RANGE(Addr, Len) invalidate_dcache_range((u32)(Addr), ((u32)(Addr)+(Len)))
-#define XCACHE_FLUSH_DCACHE_RANGE(Addr, Len)      flush_dcache_range((u32)(Addr), ((u32)(Addr)+(Len)))
+#define XCACHE_INVALIDATE_DCACHE_RANGE(Addr, Len)                              \
+  invalidate_dcache_range((u32)(Addr), ((u32)(Addr) + (Len)))
+#define XCACHE_FLUSH_DCACHE_RANGE(Addr, Len)                                   \
+  flush_dcache_range((u32)(Addr), ((u32)(Addr) + (Len)))
 
-#define XCACHE_INVALIDATE_ICACHE_RANGE(Addr, Len) "XCACHE_INVALIDATE_ICACHE_RANGE unsupported"
-#define XCACHE_FLUSH_ICACHE_RANGE(Addr, Len)      flush_icache_range(Addr, Len)
+#define XCACHE_INVALIDATE_ICACHE_RANGE(Addr, Len)                              \
+  "XCACHE_INVALIDATE_ICACHE_RANGE unsupported"
+#define XCACHE_FLUSH_ICACHE_RANGE(Addr, Len) flush_icache_range(Addr, Len)
 
-#define XCACHE_ENABLE_CACHE()	\
-		{ XCACHE_ENABLE_DCACHE(); XCACHE_ENABLE_ICACHE(); }
+#define XCACHE_ENABLE_CACHE()                                                  \
+  {                                                                            \
+    XCACHE_ENABLE_DCACHE();                                                    \
+    XCACHE_ENABLE_ICACHE();                                                    \
+  }
 
-#define XCACHE_DISABLE_CACHE()	\
-		{ XCACHE_DISABLE_DCACHE(); XCACHE_DISABLE_ICACHE(); }
-
-
+#define XCACHE_DISABLE_CACHE()                                                 \
+  {                                                                            \
+    XCACHE_DISABLE_DCACHE();                                                   \
+    XCACHE_DISABLE_ICACHE();                                                   \
+  }
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif            /* end of protection macro */
-
+#endif /* end of protection macro */

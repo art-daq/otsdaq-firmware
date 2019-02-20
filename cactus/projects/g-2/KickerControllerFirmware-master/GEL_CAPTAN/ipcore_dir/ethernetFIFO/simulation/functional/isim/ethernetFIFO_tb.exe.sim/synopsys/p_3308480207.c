@@ -22,10 +22,8 @@
 #define alloca _alloca
 #endif
 
-
-
-
-extern void synopsys_p_3308480207_init()
-{
-	xsi_register_didat("synopsys_p_3308480207", "isim/ethernetFIFO_tb.exe.sim/synopsys/p_3308480207.didat");
+extern void synopsys_p_3308480207_init() {
+  xsi_register_didat(
+      "synopsys_p_3308480207",
+      "isim/ethernetFIFO_tb.exe.sim/synopsys/p_3308480207.didat");
 }

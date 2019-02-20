@@ -17,17 +17,15 @@
 // $Id: _profile_clean.c,v 1.1.2.1 2011/05/17 04:37:55 sadanan Exp $
 //
 
-#include "profile.h"
 #include "_profile_timer_hw.h"
+#include "profile.h"
 #include "xil_exception.h"
 
 /*
  * This function is the exit routine and is called by the crtinit, when the
  * program terminates. The name needs to be changed later..
  */
-void _profile_clean( void )
-{
-	Xil_ExceptionDisable();
-	disable_timer();
+void _profile_clean(void) {
+  Xil_ExceptionDisable();
+  disable_timer();
 }
-

@@ -29,37 +29,45 @@
 
 #ifdef PROC_PPC
 #if defined __GNUC__
-#  define SYNCHRONIZE_IO __asm__ volatile ("eieio")
+#define SYNCHRONIZE_IO __asm__ volatile("eieio")
 #elif defined __DCC__
-#  define SYNCHRONIZE_IO __asm volatile(" eieio")
+#define SYNCHRONIZE_IO __asm volatile(" eieio")
 #else
-#  define SYNCHRONIZE_IO
+#define SYNCHRONIZE_IO
 #endif
 #endif
 
 #ifdef PROC_PPC
-#define ProfIo_In32(InputPtr) (*(volatile u32 *)(InputPtr)); SYNCHRONIZE_IO;
-#define ProfIo_Out32(OutputPtr, Value) { (*(volatile u32 *)(OutputPtr) = Value); SYNCHRONIZE_IO; }
+#define ProfIo_In32(InputPtr)                                                  \
+  (*(volatile u32 *)(InputPtr));                                               \
+  SYNCHRONIZE_IO;
+#define ProfIo_Out32(OutputPtr, Value)                                         \
+  {                                                                            \
+    (*(volatile u32 *)(OutputPtr) = Value);                                    \
+    SYNCHRONIZE_IO;                                                            \
+  }
 #else
 #define ProfIo_In32(InputPtr) (*(volatile u32 *)(InputPtr));
-#define ProfIo_Out32(OutputPtr, Value) { (*(volatile u32 *)(OutputPtr) = Value); }
+#define ProfIo_Out32(OutputPtr, Value)                                         \
+  { (*(volatile u32 *)(OutputPtr) = Value); }
 #endif
 
-#define ProfTmrCtr_mWriteReg(BaseAddress, TmrCtrNumber, RegOffset, ValueToWrite)\
-	ProfIo_Out32(((BaseAddress) + XTmrCtr_Offsets[(TmrCtrNumber)] +	\
-			   (RegOffset)), (ValueToWrite))
+#define ProfTmrCtr_mWriteReg(BaseAddress, TmrCtrNumber, RegOffset,             \
+                             ValueToWrite)                                     \
+  ProfIo_Out32(                                                                \
+      ((BaseAddress) + XTmrCtr_Offsets[(TmrCtrNumber)] + (RegOffset)),         \
+      (ValueToWrite))
 
-#define ProfTimerCtr_mReadReg(BaseAddress, TmrCtrNumber, RegOffset)	\
-	ProfIo_In32((BaseAddress) + XTmrCtr_Offsets[(TmrCtrNumber)] + (RegOffset))
+#define ProfTimerCtr_mReadReg(BaseAddress, TmrCtrNumber, RegOffset)            \
+  ProfIo_In32((BaseAddress) + XTmrCtr_Offsets[(TmrCtrNumber)] + (RegOffset))
 
-#define ProfTmrCtr_mSetControlStatusReg(BaseAddress, TmrCtrNumber, RegisterValue)\
-	ProfTmrCtr_mWriteReg((BaseAddress), (TmrCtrNumber), XTC_TCSR_OFFSET,     \
-					   (RegisterValue))
+#define ProfTmrCtr_mSetControlStatusReg(BaseAddress, TmrCtrNumber,             \
+                                        RegisterValue)                         \
+  ProfTmrCtr_mWriteReg((BaseAddress), (TmrCtrNumber), XTC_TCSR_OFFSET,         \
+                       (RegisterValue))
 
-#define ProfTmrCtr_mGetControlStatusReg(BaseAddress, TmrCtrNumber)		\
-	ProfTimerCtr_mReadReg((BaseAddress), (TmrCtrNumber), XTC_TCSR_OFFSET)
-
-
+#define ProfTmrCtr_mGetControlStatusReg(BaseAddress, TmrCtrNumber)             \
+  ProfTimerCtr_mReadReg((BaseAddress), (TmrCtrNumber), XTC_TCSR_OFFSET)
 
 #ifdef __cplusplus
 extern "C" {
@@ -67,25 +75,25 @@ extern "C" {
 
 #ifdef PROC_PPC
 #include "xexception_l.h"
-#include "xtime_l.h"
 #include "xpseudo_asm.h"
+#include "xtime_l.h"
 #endif
 
 #ifdef TIMER_CONNECT_INTC
-#include "xintc_l.h"
 #include "xintc.h"
-#endif	// TIMER_CONNECT_INTC
+#include "xintc_l.h"
+#endif // TIMER_CONNECT_INTC
 
 #if (!defined PPC_PIT_INTERRUPT && !defined PROC_CORTEXA9)
 #include "xtmrctr_l.h"
 #endif
 
 #ifdef PROC_CORTEXA9
-#include "xscutimer_hw.h"
 #include "xscugic.h"
+#include "xscutimer_hw.h"
 #endif
 
-extern unsigned int timer_clk_ticks ;
+extern unsigned int timer_clk_ticks;
 
 //--------------------------------------------------------------------
 // PowerPC Target - Timer related functions
@@ -93,7 +101,7 @@ extern unsigned int timer_clk_ticks ;
 #ifdef PROC_PPC
 
 #ifdef PPC_PIT_INTERRUPT
-unsigned long timer_lo_clk_ticks ;	// Clk ticks when Timer is disabled in CG
+unsigned long timer_lo_clk_ticks; // Clk ticks when Timer is disabled in CG
 #endif
 
 #ifdef PROC_PPC440
@@ -113,25 +121,26 @@ unsigned long timer_lo_clk_ticks ;	// Clk ticks when Timer is disabled in CG
 //--------------------------------------------------------------------
 
 #ifdef PPC_PIT_INTERRUPT
-#define disable_timer() 		\
-	{				\
-		unsigned long val;	\
-		val=mfspr(XREG_SPR_TCR);	\
-		mtspr(XREG_SPR_TCR, val & ~XREG_TCR_PIT_INTERRUPT_ENABLE);	\
-		timer_lo_clk_ticks = mfspr(XREG_SPR_PIT);			\
-		mtspr(XREG_SPR_PIT, 0);	\
-	}
+#define disable_timer()                                                        \
+  {                                                                            \
+    unsigned long val;                                                         \
+    val = mfspr(XREG_SPR_TCR);                                                 \
+    mtspr(XREG_SPR_TCR, val & ~XREG_TCR_PIT_INTERRUPT_ENABLE);                 \
+    timer_lo_clk_ticks = mfspr(XREG_SPR_PIT);                                  \
+    mtspr(XREG_SPR_PIT, 0);                                                    \
+  }
 #else
-#define disable_timer() 	\
-   { \
-      u32 addr = (PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] + XTC_TCSR_OFFSET; \
-      u32 tmp_v = ProfIo_In32(addr); \
-      tmp_v = tmp_v & ~XTC_CSR_ENABLE_TMR_MASK; \
-      ProfIo_Out32((PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] + XTC_TCSR_OFFSET, tmp_v); \
-   }
+#define disable_timer()                                                        \
+  {                                                                            \
+    u32 addr =                                                                 \
+        (PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] + XTC_TCSR_OFFSET;     \
+    u32 tmp_v = ProfIo_In32(addr);                                             \
+    tmp_v = tmp_v & ~XTC_CSR_ENABLE_TMR_MASK;                                  \
+    ProfIo_Out32((PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] +             \
+                     XTC_TCSR_OFFSET,                                          \
+                 tmp_v);                                                       \
+  }
 #endif
-
-
 
 //--------------------------------------------------------------------
 // Enable the Timer
@@ -141,24 +150,25 @@ unsigned long timer_lo_clk_ticks ;	// Clk ticks when Timer is disabled in CG
 //	2. XTime_PITEnableInterrupt() ;
 //--------------------------------------------------------------------
 #ifdef PPC_PIT_INTERRUPT
-#define enable_timer()				\
-	{					\
-		unsigned long val;		\
-		val=mfspr(XREG_SPR_TCR);	\
-		mtspr(XREG_SPR_PIT, timer_lo_clk_ticks);	\
-		mtspr(XREG_SPR_TCR, val | XREG_TCR_PIT_INTERRUPT_ENABLE); \
-	}
+#define enable_timer()                                                         \
+  {                                                                            \
+    unsigned long val;                                                         \
+    val = mfspr(XREG_SPR_TCR);                                                 \
+    mtspr(XREG_SPR_PIT, timer_lo_clk_ticks);                                   \
+    mtspr(XREG_SPR_TCR, val | XREG_TCR_PIT_INTERRUPT_ENABLE);                  \
+  }
 #else
-#define enable_timer()						\
-	{							\
-      u32 addr = (PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] + XTC_TCSR_OFFSET; \
-      u32 tmp_v = ProfIo_In32(addr); \
-      tmp_v = tmp_v |  XTC_CSR_ENABLE_TMR_MASK; \
-      ProfIo_Out32((PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] + XTC_TCSR_OFFSET, tmp_v); \
-	}
+#define enable_timer()                                                         \
+  {                                                                            \
+    u32 addr =                                                                 \
+        (PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] + XTC_TCSR_OFFSET;     \
+    u32 tmp_v = ProfIo_In32(addr);                                             \
+    tmp_v = tmp_v | XTC_CSR_ENABLE_TMR_MASK;                                   \
+    ProfIo_Out32((PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] +             \
+                     XTC_TCSR_OFFSET,                                          \
+                 tmp_v);                                                       \
+  }
 #endif
-
-
 
 //--------------------------------------------------------------------
 // Send Ack to Timer Interrupt
@@ -169,29 +179,27 @@ unsigned long timer_lo_clk_ticks ;	// Clk ticks when Timer is disabled in CG
 //	3. Clear PIT Timer Status bits
 //--------------------------------------------------------------------
 #ifdef PPC_PIT_INTERRUPT
-#define timer_ack()							\
-	{								\
-		unsigned long val;					\
-		mtspr(XREG_SPR_PIT, timer_clk_ticks);			\
-		mtspr(XREG_SPR_TSR, XREG_TSR_PIT_INTERRUPT_STATUS);	\
-		val=mfspr(XREG_SPR_TCR);				\
-		mtspr(XREG_SPR_TCR, val| XREG_TCR_PIT_INTERRUPT_ENABLE| XREG_TCR_AUTORELOAD_ENABLE); \
-	}
+#define timer_ack()                                                            \
+  {                                                                            \
+    unsigned long val;                                                         \
+    mtspr(XREG_SPR_PIT, timer_clk_ticks);                                      \
+    mtspr(XREG_SPR_TSR, XREG_TSR_PIT_INTERRUPT_STATUS);                        \
+    val = mfspr(XREG_SPR_TCR);                                                 \
+    mtspr(XREG_SPR_TCR,                                                        \
+          val | XREG_TCR_PIT_INTERRUPT_ENABLE | XREG_TCR_AUTORELOAD_ENABLE);   \
+  }
 #else
-#define timer_ack()				\
-	{						\
-		unsigned int csr;			\
-		csr = ProfTmrCtr_mGetControlStatusReg(PROFILE_TIMER_BASEADDR, 0);	\
-		ProfTmrCtr_mSetControlStatusReg(PROFILE_TIMER_BASEADDR, 0, csr);	\
-	}
+#define timer_ack()                                                            \
+  {                                                                            \
+    unsigned int csr;                                                          \
+    csr = ProfTmrCtr_mGetControlStatusReg(PROFILE_TIMER_BASEADDR, 0);          \
+    ProfTmrCtr_mSetControlStatusReg(PROFILE_TIMER_BASEADDR, 0, csr);           \
+  }
 #endif
 
 //--------------------------------------------------------------------
-#endif	// PROC_PPC
+#endif // PROC_PPC
 //--------------------------------------------------------------------
-
-
-
 
 //--------------------------------------------------------------------
 // MicroBlaze Target - Timer related functions
@@ -202,41 +210,45 @@ unsigned long timer_lo_clk_ticks ;	// Clk ticks when Timer is disabled in CG
 // Disable the Timer during Call-Graph Data collection
 //
 //--------------------------------------------------------------------
-#define disable_timer()					\
-	{						\
-      u32 addr = (PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] + XTC_TCSR_OFFSET; \
-      u32 tmp_v = ProfIo_In32(addr); \
-      tmp_v = tmp_v & ~XTC_CSR_ENABLE_TMR_MASK; \
-      ProfIo_Out32((PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] + XTC_TCSR_OFFSET, tmp_v); \
-    }
-
+#define disable_timer()                                                        \
+  {                                                                            \
+    u32 addr =                                                                 \
+        (PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] + XTC_TCSR_OFFSET;     \
+    u32 tmp_v = ProfIo_In32(addr);                                             \
+    tmp_v = tmp_v & ~XTC_CSR_ENABLE_TMR_MASK;                                  \
+    ProfIo_Out32((PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] +             \
+                     XTC_TCSR_OFFSET,                                          \
+                 tmp_v);                                                       \
+  }
 
 //--------------------------------------------------------------------
 // Enable the Timer after Call-Graph Data collection
 //
 //--------------------------------------------------------------------
-#define enable_timer()					\
-	{						\
-      u32 addr = (PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] + XTC_TCSR_OFFSET; \
-      u32 tmp_v = ProfIo_In32(addr); \
-      tmp_v = tmp_v |  XTC_CSR_ENABLE_TMR_MASK; \
-      ProfIo_Out32((PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] + XTC_TCSR_OFFSET, tmp_v); \
-	}
-
+#define enable_timer()                                                         \
+  {                                                                            \
+    u32 addr =                                                                 \
+        (PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] + XTC_TCSR_OFFSET;     \
+    u32 tmp_v = ProfIo_In32(addr);                                             \
+    tmp_v = tmp_v | XTC_CSR_ENABLE_TMR_MASK;                                   \
+    ProfIo_Out32((PROFILE_TIMER_BASEADDR) + XTmrCtr_Offsets[(0)] +             \
+                     XTC_TCSR_OFFSET,                                          \
+                 tmp_v);                                                       \
+  }
 
 //--------------------------------------------------------------------
 // Send Ack to Timer Interrupt
 //
 //--------------------------------------------------------------------
-#define timer_ack()				\
-	{						\
-		unsigned int csr;			\
-		csr = ProfTmrCtr_mGetControlStatusReg(PROFILE_TIMER_BASEADDR, 0);	\
-		ProfTmrCtr_mSetControlStatusReg(PROFILE_TIMER_BASEADDR, 0, csr);	\
-	}
+#define timer_ack()                                                            \
+  {                                                                            \
+    unsigned int csr;                                                          \
+    csr = ProfTmrCtr_mGetControlStatusReg(PROFILE_TIMER_BASEADDR, 0);          \
+    ProfTmrCtr_mSetControlStatusReg(PROFILE_TIMER_BASEADDR, 0, csr);           \
+  }
 
 //--------------------------------------------------------------------
-#endif	// PROC_MICROBLAZE
+#endif // PROC_MICROBLAZE
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
@@ -248,42 +260,39 @@ unsigned long timer_lo_clk_ticks ;	// Clk ticks when Timer is disabled in CG
 // Disable the Timer during Call-Graph Data collection
 //
 //--------------------------------------------------------------------
-#define disable_timer()							\
-{								\
-	u32 Reg;							\
-	Reg = Xil_In32(PROFILE_TIMER_BASEADDR + XSCUTIMER_CONTROL_OFFSET); \
-	Reg &= ~XSCUTIMER_CONTROL_ENABLE_MASK;\
-	Xil_Out32(PROFILE_TIMER_BASEADDR + XSCUTIMER_CONTROL_OFFSET, Reg);\
-}								\
-
+#define disable_timer()                                                        \
+  {                                                                            \
+    u32 Reg;                                                                   \
+    Reg = Xil_In32(PROFILE_TIMER_BASEADDR + XSCUTIMER_CONTROL_OFFSET);         \
+    Reg &= ~XSCUTIMER_CONTROL_ENABLE_MASK;                                     \
+    Xil_Out32(PROFILE_TIMER_BASEADDR + XSCUTIMER_CONTROL_OFFSET, Reg);         \
+  }
 
 //--------------------------------------------------------------------
 // Enable the Timer after Call-Graph Data collection
 //
 //--------------------------------------------------------------------
-#define enable_timer()							\
-{								\
-	u32 Reg;							\
-	Reg = Xil_In32(PROFILE_TIMER_BASEADDR + XSCUTIMER_CONTROL_OFFSET); \
-	Reg |= XSCUTIMER_CONTROL_ENABLE_MASK; \
-	Xil_Out32(PROFILE_TIMER_BASEADDR + XSCUTIMER_CONTROL_OFFSET, Reg);\
-}								\
-
+#define enable_timer()                                                         \
+  {                                                                            \
+    u32 Reg;                                                                   \
+    Reg = Xil_In32(PROFILE_TIMER_BASEADDR + XSCUTIMER_CONTROL_OFFSET);         \
+    Reg |= XSCUTIMER_CONTROL_ENABLE_MASK;                                      \
+    Xil_Out32(PROFILE_TIMER_BASEADDR + XSCUTIMER_CONTROL_OFFSET, Reg);         \
+  }
 
 //--------------------------------------------------------------------
 // Send Ack to Timer Interrupt
 //
 //--------------------------------------------------------------------
-#define timer_ack()						\
-{							\
-	Xil_Out32(PROFILE_TIMER_BASEADDR + XSCUTIMER_ISR_OFFSET, \
-		XSCUTIMER_ISR_EVENT_FLAG_MASK);\
-}
+#define timer_ack()                                                            \
+  {                                                                            \
+    Xil_Out32(PROFILE_TIMER_BASEADDR + XSCUTIMER_ISR_OFFSET,                   \
+              XSCUTIMER_ISR_EVENT_FLAG_MASK);                                  \
+  }
 
 //--------------------------------------------------------------------
-#endif	// PROC_CORTEXA9
+#endif // PROC_CORTEXA9
 //--------------------------------------------------------------------
-
 
 #ifdef __cplusplus
 }

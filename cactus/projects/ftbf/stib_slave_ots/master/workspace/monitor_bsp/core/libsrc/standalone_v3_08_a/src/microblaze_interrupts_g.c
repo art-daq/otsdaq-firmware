@@ -7,7 +7,7 @@
 *
 * Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-* 
+*
 * Description: Interrupt Handler Table for MicroBlaze Processor
 *
 *******************************************************************/
@@ -15,16 +15,11 @@
 #include "microblaze_interrupts_i.h"
 #include "xparameters.h"
 
-
-extern void XNullHandler (void *);
+extern void XNullHandler(void *);
 
 /*
-* The interrupt handler table for microblaze processor
-*/
+ * The interrupt handler table for microblaze processor
+ */
 
-MB_InterruptVectorTableEntry MB_InterruptVectorTable[] =
-{
-{	XNullHandler,
-	(void*) XNULL}
-};
-
+MB_InterruptVectorTableEntry MB_InterruptVectorTable[] = {
+    {XNullHandler, (void *)XNULL}};

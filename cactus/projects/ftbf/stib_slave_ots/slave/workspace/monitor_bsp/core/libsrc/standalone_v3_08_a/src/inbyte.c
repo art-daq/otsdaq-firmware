@@ -1,5 +1,5 @@
-#include "xparameters.h"
 #include "xiomodule_l.h"
+#include "xparameters.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -7,8 +7,6 @@ extern "C" {
 char inbyte(void);
 #ifdef __cplusplus
 }
-#endif 
+#endif
 
-char inbyte(void) {
-	 return XIOModule_RecvByte(STDIN_BASEADDRESS);
-}
+char inbyte(void) { return XIOModule_RecvByte(STDIN_BASEADDRESS); }

@@ -41,14 +41,13 @@ extern int cortexa9_init(void);
 
 #endif
 
+int profile_version = 1; // Version of S/W Intrusive Profiling library
 
-
-int profile_version = 1;	// Version of S/W Intrusive Profiling library
-
-int binsize = BINSIZE;    			// Histogram Bin Size
-unsigned int cpu_clk_freq = CPU_FREQ_HZ ;	// CPU Clock Frequency
-unsigned int sample_freq_hz = SAMPLE_FREQ_HZ ;	// Histogram Sampling Frequency
-unsigned int timer_clk_ticks = TIMER_CLK_TICKS ;// Timer Clock Ticks for the Timer
+int binsize = BINSIZE;                        // Histogram Bin Size
+unsigned int cpu_clk_freq = CPU_FREQ_HZ;      // CPU Clock Frequency
+unsigned int sample_freq_hz = SAMPLE_FREQ_HZ; // Histogram Sampling Frequency
+unsigned int timer_clk_ticks =
+    TIMER_CLK_TICKS; // Timer Clock Ticks for the Timer
 
 // Structure for Storing the Profiling Data
 struct gmonparam *_gmonparam = (struct gmonparam *)0xffffffff;
@@ -56,8 +55,7 @@ int n_gmon_sections = 1;
 
 // This is the initialization code, which is called from the crtinit.
 //
-void _profile_init( void )
-{
+void _profile_init(void) {
 /* 	print("Gmon Init called....\r\n") ; */
 /* 	putnum(n_gmon_sections) ; print("\r\n") ; */
 /* 	if( _gmonparam == 0xffffffff ) */
@@ -66,15 +64,15 @@ void _profile_init( void )
 /* 		putnum(_gmonparam[i].lowpc) ; print("\t") ; */
 /* 		putnum(_gmonparam[i].highpc) ; print("\r\n") ; */
 /* 		putnum( _gmonparam[i].textsize ); print("\r\n") ; */
-/* 		putnum( _gmonparam[i].kcountsize * sizeof(unsigned short));print("\r\n"); */
+/* 		putnum( _gmonparam[i].kcountsize * sizeof(unsigned
+ * short));print("\r\n"); */
 /* 	} */
 
 #ifdef PROC_MICROBLAZE
-	microblaze_init();
+  microblaze_init();
 #elif defined PROC_PPC
-	powerpc405_init();
+  powerpc405_init();
 #else
-	cortexa9_init ();
+  cortexa9_init();
 #endif
 }
-

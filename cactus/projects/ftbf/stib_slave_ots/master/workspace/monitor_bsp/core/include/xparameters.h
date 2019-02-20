@@ -7,7 +7,7 @@
 *
 * Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-* 
+*
 * Description: Driver parameters
 *
 *******************************************************************/
@@ -35,7 +35,6 @@
 #define XPAR_DLMB_CNTLR_BASEADDR 0x00000000
 #define XPAR_DLMB_CNTLR_HIGHADDR 0x0000FFFF
 
-
 /* Definitions for peripheral ILMB_CNTLR */
 #define XPAR_ILMB_CNTLR_DEVICE_ID 1
 #define XPAR_ILMB_CNTLR_DATA_WIDTH 32
@@ -50,7 +49,6 @@
 #define XPAR_ILMB_CNTLR_WRITE_ACCESS 2
 #define XPAR_ILMB_CNTLR_BASEADDR 0x00000000
 #define XPAR_ILMB_CNTLR_HIGHADDR 0x0000FFFF
-
 
 /******************************************************************/
 
@@ -83,7 +81,6 @@
 #define XPAR_BRAM_1_WRITE_ACCESS 2
 #define XPAR_BRAM_1_BASEADDR 0x00000000
 #define XPAR_BRAM_1_HIGHADDR 0x0000FFFF
-
 
 /******************************************************************/
 
@@ -167,9 +164,7 @@
 #define XPAR_IOMODULE_0_IO_HIGHADDR 0xFFFFFFFF
 #define XPAR_IOMODULE_0_IO_MASK 0xC0000000
 
-
 /******************************************************************/
-
 
 /* Additional definitions for peripheral IOMODULE_0 */
 #define XPAR_IOMODULE_0_GPO1_INIT 0x00000000
@@ -179,10 +174,9 @@
 #define XPAR_IOMODULE_0_INTC_LEVEL_EDGE 0x0000
 #define XPAR_IOMODULE_0_INTC_POSITIVE 0xFFFF
 
-
 /******************************************************************/
 
-#define XPAR_IOMODULE_INTC_MAX_INTR_SIZE 17 
+#define XPAR_IOMODULE_INTC_MAX_INTR_SIZE 17
 #define XPAR_IOMODULE_SINGLE_BASEADDR 0x80000000
 #define XPAR_IOMODULE_SINGLE_HIGHADDR 0x8000007F
 #define XPAR_IOMODULE_INTC_SINGLE_DEVICE_ID XPAR_IOMODULE_0_DEVICE_ID
@@ -190,8 +184,6 @@
 #define XPAR_IOMODULE_0_SYSTEM_INTC_INTERRUPT_0_INTR 0
 
 /******************************************************************/
-
-
 
 /******************************************************************/
 
@@ -205,7 +197,6 @@
 #define XPAR_MICROBLAZE_CORE_CLOCK_FREQ_HZ 66667000
 
 /******************************************************************/
-
 
 /* Definitions for peripheral CORE */
 #define XPAR_CORE_SCO 0
@@ -648,4 +639,3 @@
 #define XPAR_MICROBLAZE_HW_VER "8.40.a"
 
 /******************************************************************/
-

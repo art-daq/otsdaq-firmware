@@ -16,38 +16,36 @@
 //
 // $Id: profile_hist.c,v 1.1.2.1 2011/05/17 04:37:57 sadanan Exp $
 //
-#include "profile.h"
-#include "mblaze_nt_types.h"
 #include "_profile_timer_hw.h"
+#include "mblaze_nt_types.h"
+#include "profile.h"
 
 #ifdef PROC_PPC
 #include "xpseudo_asm.h"
 #define SPR_SRR0 0x01A
 #endif
 
-extern int binsize ;
-uint32_t prof_pc ;
+extern int binsize;
+uint32_t prof_pc;
 
-void profile_intr_handler( void )
-{
+void profile_intr_handler(void) {
 
-	int j;
+  int j;
 
 #ifdef PROC_MICROBLAZE
-	asm( "swi r14, r0, prof_pc" ) ;
+  asm("swi r14, r0, prof_pc");
 #elif defined PROC_PPC
-	prof_pc = mfspr(SPR_SRR0);
+  prof_pc = mfspr(SPR_SRR0);
 #else
-	// for cortexa9, lr is saved in asm interrupt handler
+  // for cortexa9, lr is saved in asm interrupt handler
 #endif
-	//print("PC: "); putnum(prof_pc); print("\r\n");
-	for(j = 0; j < n_gmon_sections; j++ ){
-		if((prof_pc >= _gmonparam[j].lowpc) && (prof_pc < _gmonparam[j].highpc)) {
-			_gmonparam[j].kcount[(prof_pc-_gmonparam[j].lowpc)/(4 * binsize)]++;
-			break;
-		}
-	}
-	// Ack the Timer Interrupt
-	timer_ack();
+  // print("PC: "); putnum(prof_pc); print("\r\n");
+  for (j = 0; j < n_gmon_sections; j++) {
+    if ((prof_pc >= _gmonparam[j].lowpc) && (prof_pc < _gmonparam[j].highpc)) {
+      _gmonparam[j].kcount[(prof_pc - _gmonparam[j].lowpc) / (4 * binsize)]++;
+      break;
+    }
+  }
+  // Ack the Timer Interrupt
+  timer_ack();
 }
-

@@ -22,10 +22,8 @@
 #define alloca _alloca
 #endif
 
-
-
-
-extern void work_a_2290829330_1083906754_init()
-{
-	xsi_register_didat("work_a_2290829330_1083906754", "isim/ethernetFIFO_tb.exe.sim/work/a_2290829330_1083906754.didat");
+extern void work_a_2290829330_1083906754_init() {
+  xsi_register_didat(
+      "work_a_2290829330_1083906754",
+      "isim/ethernetFIFO_tb.exe.sim/work/a_2290829330_1083906754.didat");
 }

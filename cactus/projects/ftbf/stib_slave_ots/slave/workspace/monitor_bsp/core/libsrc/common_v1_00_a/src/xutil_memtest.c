@@ -1,41 +1,41 @@
 /* $Id: xutil_memtest.c,v 1.10 2007/05/04 21:55:59 wre Exp $ */
 /******************************************************************************
-*
-*       XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS"
-*       AS A COURTESY TO YOU, SOLELY FOR USE IN DEVELOPING PROGRAMS AND
-*       SOLUTIONS FOR XILINX DEVICES.  BY PROVIDING THIS DESIGN, CODE,
-*       OR INFORMATION AS ONE POSSIBLE IMPLEMENTATION OF THIS FEATURE,
-*       APPLICATION OR STANDARD, XILINX IS MAKING NO REPRESENTATION
-*       THAT THIS IMPLEMENTATION IS FREE FROM ANY CLAIMS OF INFRINGEMENT,
-*       AND YOU ARE RESPONSIBLE FOR OBTAINING ANY RIGHTS YOU MAY REQUIRE
-*       FOR YOUR IMPLEMENTATION.  XILINX EXPRESSLY DISCLAIMS ANY
-*       WARRANTY WHATSOEVER WITH RESPECT TO THE ADEQUACY OF THE
-*       IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OR
-*       REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE FROM CLAIMS OF
-*       INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-*       FOR A PARTICULAR PURPOSE.
-*
-*       (c) Copyright 2002 Xilinx Inc.
-*       All rights reserved.
-*
-******************************************************************************/
+ *
+ *       XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS"
+ *       AS A COURTESY TO YOU, SOLELY FOR USE IN DEVELOPING PROGRAMS AND
+ *       SOLUTIONS FOR XILINX DEVICES.  BY PROVIDING THIS DESIGN, CODE,
+ *       OR INFORMATION AS ONE POSSIBLE IMPLEMENTATION OF THIS FEATURE,
+ *       APPLICATION OR STANDARD, XILINX IS MAKING NO REPRESENTATION
+ *       THAT THIS IMPLEMENTATION IS FREE FROM ANY CLAIMS OF INFRINGEMENT,
+ *       AND YOU ARE RESPONSIBLE FOR OBTAINING ANY RIGHTS YOU MAY REQUIRE
+ *       FOR YOUR IMPLEMENTATION.  XILINX EXPRESSLY DISCLAIMS ANY
+ *       WARRANTY WHATSOEVER WITH RESPECT TO THE ADEQUACY OF THE
+ *       IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OR
+ *       REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE FROM CLAIMS OF
+ *       INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ *       FOR A PARTICULAR PURPOSE.
+ *
+ *       (c) Copyright 2002 Xilinx Inc.
+ *       All rights reserved.
+ *
+ ******************************************************************************/
 /*****************************************************************************/
 /**
-*
-* @file xutil_memtest.c
-*
-* Contains the memory test utility functions.
-*
-* <pre>
-* MODIFICATION HISTORY:
-*
-* Ver    Who    Date    Changes
-* ----- ---- -------- -----------------------------------------------
-* 1.00a ecm  11/01/01 First release
-* 1.00a xd   11/03/04 Improved support for doxygen.
-* </pre>
-*
-*****************************************************************************/
+ *
+ * @file xutil_memtest.c
+ *
+ * Contains the memory test utility functions.
+ *
+ * <pre>
+ * MODIFICATION HISTORY:
+ *
+ * Ver    Who    Date    Changes
+ * ----- ---- -------- -----------------------------------------------
+ * 1.00a ecm  11/01/01 First release
+ * 1.00a xd   11/03/04 Improved support for doxygen.
+ * </pre>
+ *
+ *****************************************************************************/
 
 /***************************** Include Files ********************************/
 #include "xbasic_types.h"
@@ -53,1121 +53,1042 @@ static u32 RotateLeft(u32 Input, u8 Width);
 static u32 RotateRight(u32 Input, u8 Width);
 #endif /* ROTATE_RIGHT */
 
-
 /*****************************************************************************/
 /**
-*
-* Performs a destructive 32-bit wide memory test.
-*
-* @param    Addr is a pointer to the region of memory to be tested.
-* @param    Words is the length of the block.
-* @param    Pattern is the constant used for the constant pattern test, if 0,
-*           0xDEADBEEF is used.
-* @param    Subtest is the test selected. See xutil.h for possible values.
-*
-* @return
-*
-* - XST_MEMTEST_FAILED is returned for a failure
-* - XST_SUCCESS is returned for a pass
-*
-* @note
-*
-* Used for spaces where the address range of the region is smaller than
-* the data width. If the memory range is greater than 2 ** width,
-* the patterns used in XUT_WALKONES and XUT_WALKZEROS will repeat on a
-* boundry of a power of two making it more difficult to detect addressing
-* errors. The XUT_INCREMENT and XUT_INVERSEADDR tests suffer the same
-* problem. Ideally, if large blocks of memory are to be tested, break
-* them up into smaller regions of memory to allow the test patterns used
-* not to repeat over the region tested.
-*
-*****************************************************************************/
-int XUtil_MemoryTest32(u32 *Addr, u32 Words, u32 Pattern, u8 Subtest)
-{
-	u32 i;
-	u32 j;
-	u32 Val = XUT_MEMTEST_INIT_VALUE;
-	u32 FirstVal = XUT_MEMTEST_INIT_VALUE;
-	u32 Word;
-
-	XASSERT_NONVOID(Words != 0);
-	XASSERT_NONVOID(Subtest <= XUT_MAXTEST);
-
-	/*
-	 * Select the proper Subtest
-	 */
-
-
-	switch (Subtest) {
-
-	case XUT_ALLMEMTESTS:
-
-		/* this case executes all of the Subtests */
+ *
+ * Performs a destructive 32-bit wide memory test.
+ *
+ * @param    Addr is a pointer to the region of memory to be tested.
+ * @param    Words is the length of the block.
+ * @param    Pattern is the constant used for the constant pattern test, if 0,
+ *           0xDEADBEEF is used.
+ * @param    Subtest is the test selected. See xutil.h for possible values.
+ *
+ * @return
+ *
+ * - XST_MEMTEST_FAILED is returned for a failure
+ * - XST_SUCCESS is returned for a pass
+ *
+ * @note
+ *
+ * Used for spaces where the address range of the region is smaller than
+ * the data width. If the memory range is greater than 2 ** width,
+ * the patterns used in XUT_WALKONES and XUT_WALKZEROS will repeat on a
+ * boundry of a power of two making it more difficult to detect addressing
+ * errors. The XUT_INCREMENT and XUT_INVERSEADDR tests suffer the same
+ * problem. Ideally, if large blocks of memory are to be tested, break
+ * them up into smaller regions of memory to allow the test patterns used
+ * not to repeat over the region tested.
+ *
+ *****************************************************************************/
+int XUtil_MemoryTest32(u32 *Addr, u32 Words, u32 Pattern, u8 Subtest) {
+  u32 i;
+  u32 j;
+  u32 Val = XUT_MEMTEST_INIT_VALUE;
+  u32 FirstVal = XUT_MEMTEST_INIT_VALUE;
+  u32 Word;
+
+  XASSERT_NONVOID(Words != 0);
+  XASSERT_NONVOID(Subtest <= XUT_MAXTEST);
+
+  /*
+   * Select the proper Subtest
+   */
+
+  switch (Subtest) {
+
+  case XUT_ALLMEMTESTS:
+
+    /* this case executes all of the Subtests */
+
+    /* fall through case statement */
+
+  case XUT_INCREMENT: {
+
+    /*
+     * Fill the memory with incrementing
+     * values starting from 'FirstVal'
+     */
+    for (i = 0L; i < Words; i++) {
+      Addr[i] = Val;
+
+      /* write memory location */
+
+      Val++;
+    }
+
+    /*
+     * Restore the reference 'Val' to the
+     * initial value
+     */
+
+    Val = FirstVal;
+
+    /*
+     * Check every word within the Words
+     * of tested memory and compare it
+     * with the incrementing reference
+     * Val
+     */
+
+    for (i = 0L; i < Words; i++) {
+      Word = Addr[i];
+
+      if (Word != Val) {
+        return XST_MEMTEST_FAILED;
+      }
+
+      Val++;
+    }
+
+    if (Subtest != XUT_ALLMEMTESTS) {
+      return XST_SUCCESS;
+    }
 
-		/* fall through case statement */
+  } /* end of case 1 */
 
-	case XUT_INCREMENT:
-		{
+    /* fall through case statement */
 
-			/*
-			 * Fill the memory with incrementing
-			 * values starting from 'FirstVal'
-			 */
-			for (i = 0L; i < Words; i++) {
-				Addr[i] = Val;
+  case XUT_WALKONES: {
+    /*
+     * set up to cycle through all possible initial
+     * test Patterns for walking ones test
+     */
 
-				/* write memory location */
+    for (j = 0L; j < 32; j++) {
+      /*
+       * Generate an initial value for walking ones test to test for bad
+       * data bits
+       */
 
-				Val++;
-			}
+      Val = 1 << j;
 
-			/*
-			 * Restore the reference 'Val' to the
-			 * initial value
-			 */
+      /*
+       * START walking ones test
+       * Write a one to each data bit indifferent locations
+       */
 
-			Val = FirstVal;
+      for (i = 0L; i < 32; i++) {
 
-			/*
-			 * Check every word within the Words
-			 * of tested memory and compare it
-			 * with the incrementing reference
-			 * Val
-			 */
+        /* write memory location */
 
-			for (i = 0L; i < Words; i++) {
-				Word = Addr[i];
+        Addr[i] = Val;
+        Val = (u32)RotateLeft(Val, 32);
+      }
 
-				if (Word != Val) {
-					return XST_MEMTEST_FAILED;
-				}
+      /*
+       * Restore the reference 'Val' to the
+       * initial value
+       */
+      Val = 1 << j;
 
-				Val++;
-			}
+      /* Read the values from each location that was written */
 
+      for (i = 0L; i < 32; i++) {
+        /* read memory location */
 
-			if (Subtest != XUT_ALLMEMTESTS) {
-				return XST_SUCCESS;
-			}
+        Word = Addr[i];
 
+        if (Word != Val) {
+          return XST_MEMTEST_FAILED;
+        }
 
-		}		/* end of case 1 */
+        Val = (u32)RotateLeft(Val, 32);
+      }
+    }
 
-		/* fall through case statement */
+    if (Subtest != XUT_ALLMEMTESTS) {
+      return XST_SUCCESS;
+    }
 
-	case XUT_WALKONES:
-		{
-			/*
-			 * set up to cycle through all possible initial
-			 * test Patterns for walking ones test
-			 */
+  } /* end of case 2 */
 
-			for (j = 0L; j < 32; j++) {
-				/*
-				 * Generate an initial value for walking ones test to test for bad
-				 * data bits
-				 */
+    /* fall through case statement */
 
-				Val = 1 << j;
+  case XUT_WALKZEROS: {
+    /*
+     * set up to cycle through all possible
+     * initial test Patterns for walking zeros test
+     */
 
-				/*
-				 * START walking ones test
-				 * Write a one to each data bit indifferent locations
-				 */
+    for (j = 0L; j < 32; j++) {
 
-				for (i = 0L; i < 32; i++) {
+      /*
+       * Generate an initial value for walking ones test to test for
+       * bad data bits
+       */
 
-					/* write memory location */
+      Val = ~(1 << j);
 
-					Addr[i] = Val;
-					Val = (u32) RotateLeft(Val, 32);
+      /*
+       * START walking zeros test
+       * Write a one to each data bit indifferent locations
+       */
 
-				}
+      for (i = 0L; i < 32; i++) {
 
-				/*
-				 * Restore the reference 'Val' to the
-				 * initial value
-				 */
-				Val = 1 << j;
+        /* write memory location */
 
-				/* Read the values from each location that was written */
+        Addr[i] = Val;
+        Val = ~((u32)RotateLeft(~Val, 32));
+      }
 
-				for (i = 0L; i < 32; i++) {
-					/* read memory location */
+      /*
+       * Restore the reference 'Val' to the
+       * initial value
+       */
 
-					Word = Addr[i];
+      Val = ~(1 << j);
 
-					if (Word != Val) {
-						return XST_MEMTEST_FAILED;
-					}
+      /* Read the values from each location that was written */
 
-					Val = (u32) RotateLeft(Val, 32);
+      for (i = 0L; i < 32; i++) {
 
-				}
+        /* read memory location */
 
-			}
+        Word = Addr[i];
 
-			if (Subtest != XUT_ALLMEMTESTS) {
-				return XST_SUCCESS;
-			}
+        if (Word != Val) {
+          return XST_MEMTEST_FAILED;
+        }
 
+        Val = ~((u32)RotateLeft(~Val, 32));
+      }
+    }
 
-		}		/* end of case 2 */
+    if (Subtest != XUT_ALLMEMTESTS) {
+      return XST_SUCCESS;
+    }
 
-		/* fall through case statement */
+  } /* end of case 3 */
 
-	case XUT_WALKZEROS:
-		{
-			/*
-			 * set up to cycle through all possible
-			 * initial test Patterns for walking zeros test
-			 */
+    /* fall through case statement */
 
-			for (j = 0L; j < 32; j++) {
+  case XUT_INVERSEADDR: {
 
-				/*
-				 * Generate an initial value for walking ones test to test for
-				 * bad data bits
-				 */
+    /* Fill the memory with inverse of address */
 
-				Val = ~(1 << j);
+    for (i = 0L; i < Words; i++) {
 
-				/*
-				 * START walking zeros test
-				 * Write a one to each data bit indifferent locations
-				 */
+      /* write memory location */
 
-				for (i = 0L; i < 32; i++) {
+      Val = (u32)(~((u32)(&Addr[i])));
 
-					/* write memory location */
+      Addr[i] = Val;
+    }
 
-					Addr[i] = Val;
-					Val = ~((u32) RotateLeft(~Val, 32));
+    /*
+     * Check every word within the Words
+     * of tested memory
+     */
 
-				}
+    for (i = 0L; i < Words; i++) {
 
-				/*
-				 * Restore the reference 'Val' to the
-				 * initial value
-				 */
+      /* Read the location */
 
-				Val = ~(1 << j);
+      Word = Addr[i];
 
-				/* Read the values from each location that was written */
+      Val = (u32)(~((u32)(&Addr[i])));
 
-				for (i = 0L; i < 32; i++) {
+      if ((Word ^ Val) != 0x00000000) {
+        return XST_MEMTEST_FAILED;
+      }
+    }
 
-					/* read memory location */
+    if (Subtest != XUT_ALLMEMTESTS) {
+      return XST_SUCCESS;
+    }
 
-					Word = Addr[i];
+  } /* end of case 4 */
 
-					if (Word != Val) {
-						return XST_MEMTEST_FAILED;
-					}
+    /* fall through case statement */
 
-					Val = ~((u32) RotateLeft(~Val, 32));
+  case XUT_FIXEDPATTERN: {
 
-				}
+    /*
+     * Generate an initial value for
+     * memory testing
+     */
 
-			}
+    if (Pattern == 0) {
+      Val = 0xDEADBEEF;
 
-			if (Subtest != XUT_ALLMEMTESTS) {
-				return XST_SUCCESS;
-			}
+    } else {
+      Val = Pattern;
+    }
 
-		}		/* end of case 3 */
+    /*
+     * Fill the memory with fixed pattern
+     */
 
-		/* fall through case statement */
+    for (i = 0L; i < Words; i++) {
+      /* write memory location */
 
-	case XUT_INVERSEADDR:
-		{
+      Addr[i] = Val;
+    }
 
-			/* Fill the memory with inverse of address */
+    /*
+     * Check every word within the Words
+     * of tested memory and compare it
+     * with the fixed pattern
+     */
 
-			for (i = 0L; i < Words; i++) {
+    for (i = 0L; i < Words; i++) {
 
-				/* write memory location */
+      /* read memory location */
 
-				Val = (u32) (~((u32) (&Addr[i])));
+      Word = Addr[i];
 
-				Addr[i] = Val;
+      if (Word != Val) {
+        return XST_MEMTEST_FAILED;
+      }
+    }
 
-			}
+    if (Subtest != XUT_ALLMEMTESTS) {
+      return XST_SUCCESS;
+    }
 
-			/*
-			 * Check every word within the Words
-			 * of tested memory
-			 */
+  } /* end of case 5 */
 
-			for (i = 0L; i < Words; i++) {
+  /* this break is for the prior fall through case statements */
 
-				/* Read the location */
+  break;
 
-				Word = Addr[i];
+  default: { return XST_MEMTEST_FAILED; }
 
-				Val = (u32) (~((u32) (&Addr[i])));
+  } /* end of switch */
 
-				if ((Word ^ Val) != 0x00000000) {
-					return XST_MEMTEST_FAILED;
-				}
-			}
+  /* Successfully passed memory test ! */
 
-			if (Subtest != XUT_ALLMEMTESTS) {
-				return XST_SUCCESS;
-			}
-
-
-		}		/* end of case 4 */
-
-
-		/* fall through case statement */
-
-	case XUT_FIXEDPATTERN:
-		{
-
-			/*
-			 * Generate an initial value for
-			 * memory testing
-			 */
-
-			if (Pattern == 0) {
-				Val = 0xDEADBEEF;
-
-			}
-			else {
-				Val = Pattern;
-
-			}
-
-			/*
-			 * Fill the memory with fixed pattern
-			 */
-
-			for (i = 0L; i < Words; i++) {
-				/* write memory location */
-
-				Addr[i] = Val;
-
-			}
-
-			/*
-			 * Check every word within the Words
-			 * of tested memory and compare it
-			 * with the fixed pattern
-			 */
-
-			for (i = 0L; i < Words; i++) {
-
-				/* read memory location */
-
-				Word = Addr[i];
-
-				if (Word != Val) {
-					return XST_MEMTEST_FAILED;
-				}
-			}
-
-			if (Subtest != XUT_ALLMEMTESTS) {
-				return XST_SUCCESS;
-			}
-
-		}		/* end of case 5 */
-
-		/* this break is for the prior fall through case statements */
-
-		break;
-
-	default:
-		{
-			return XST_MEMTEST_FAILED;
-		}
-
-	}			/* end of switch */
-
-	/* Successfully passed memory test ! */
-
-	return XST_SUCCESS;
+  return XST_SUCCESS;
 }
 
 /*****************************************************************************/
 /**
-*
-* Performs a destructive 16-bit wide memory test.
-*
-* @param    Addr is a pointer to the region of memory to be tested.
-* @param    Words is the length of the block.
-* @param    Pattern is the constant used for the constant pattern test, if 0,
-*           0xDEADBEEF is used.
-* @param    Subtest is the test selected. See xutil.h for possible values.
-*
-* @return
-*
-* - XST_MEMTEST_FAILED is returned for a failure
-* - XST_SUCCESS is returned for a pass
-*
-* @note
-*
-* Used for spaces where the address range of the region is smaller than
-* the data width. If the memory range is greater than 2 ** width,
-* the patterns used in XUT_WALKONES and XUT_WALKZEROS will repeat on a
-* boundry of a power of two making it more difficult to detect addressing
-* errors. The XUT_INCREMENT and XUT_INVERSEADDR tests suffer the same
-* problem. Ideally, if large blocks of memory are to be tested, break
-* them up into smaller regions of memory to allow the test patterns used
-* not to repeat over the region tested.
-*
-*****************************************************************************/
-int XUtil_MemoryTest16(u16 *Addr, u32 Words, u16 Pattern, u8 Subtest)
-{
-	u32 i;
-	u32 j;
-	u16 Val = XUT_MEMTEST_INIT_VALUE;
-	u16 FirstVal = XUT_MEMTEST_INIT_VALUE;
-	u16 Word;
-
-	XASSERT_NONVOID(Words != 0);
-	XASSERT_NONVOID(Subtest <= XUT_MAXTEST);
-
-	/*
-	 * selectthe proper Subtest(s)
-	 */
-
-	switch (Subtest) {
-
-	case XUT_ALLMEMTESTS:
+ *
+ * Performs a destructive 16-bit wide memory test.
+ *
+ * @param    Addr is a pointer to the region of memory to be tested.
+ * @param    Words is the length of the block.
+ * @param    Pattern is the constant used for the constant pattern test, if 0,
+ *           0xDEADBEEF is used.
+ * @param    Subtest is the test selected. See xutil.h for possible values.
+ *
+ * @return
+ *
+ * - XST_MEMTEST_FAILED is returned for a failure
+ * - XST_SUCCESS is returned for a pass
+ *
+ * @note
+ *
+ * Used for spaces where the address range of the region is smaller than
+ * the data width. If the memory range is greater than 2 ** width,
+ * the patterns used in XUT_WALKONES and XUT_WALKZEROS will repeat on a
+ * boundry of a power of two making it more difficult to detect addressing
+ * errors. The XUT_INCREMENT and XUT_INVERSEADDR tests suffer the same
+ * problem. Ideally, if large blocks of memory are to be tested, break
+ * them up into smaller regions of memory to allow the test patterns used
+ * not to repeat over the region tested.
+ *
+ *****************************************************************************/
+int XUtil_MemoryTest16(u16 *Addr, u32 Words, u16 Pattern, u8 Subtest) {
+  u32 i;
+  u32 j;
+  u16 Val = XUT_MEMTEST_INIT_VALUE;
+  u16 FirstVal = XUT_MEMTEST_INIT_VALUE;
+  u16 Word;
+
+  XASSERT_NONVOID(Words != 0);
+  XASSERT_NONVOID(Subtest <= XUT_MAXTEST);
+
+  /*
+   * selectthe proper Subtest(s)
+   */
 
-		/* this case executes all of the Subtests */
-
-		/* fall through case statement */
+  switch (Subtest) {
+
+  case XUT_ALLMEMTESTS:
 
-	case XUT_INCREMENT:
-		{
+    /* this case executes all of the Subtests */
+
+    /* fall through case statement */
 
-			/*
-			 * Fill the memory with incrementing
-			 * values starting from 'FirstVal'
-			 */
-			for (i = 0L; i < Words; i++) {
-				/* write memory location */
+  case XUT_INCREMENT: {
+
+    /*
+     * Fill the memory with incrementing
+     * values starting from 'FirstVal'
+     */
+    for (i = 0L; i < Words; i++) {
+      /* write memory location */
 
-				Addr[i] = Val;
+      Addr[i] = Val;
 
-				Val++;
-			}
+      Val++;
+    }
 
-			/*
-			 * Restore the reference 'Val' to the
-			 * initial value
-			 */
+    /*
+     * Restore the reference 'Val' to the
+     * initial value
+     */
 
-			Val = FirstVal;
+    Val = FirstVal;
 
-			/*
-			 * Check every word within the Words
-			 * of tested memory and compare it
-			 * with the incrementing reference
-			 * Val
-			 */
+    /*
+     * Check every word within the Words
+     * of tested memory and compare it
+     * with the incrementing reference
+     * Val
+     */
 
-			for (i = 0L; i < Words; i++) {
+    for (i = 0L; i < Words; i++) {
 
-				/* read memory location */
+      /* read memory location */
 
-				Word = Addr[i];
+      Word = Addr[i];
 
-				if (Word != Val) {
-					return XST_MEMTEST_FAILED;
-				}
-				Val++;
-			}
+      if (Word != Val) {
+        return XST_MEMTEST_FAILED;
+      }
+      Val++;
+    }
 
-			if (Subtest != XUT_ALLMEMTESTS) {
-				return XST_SUCCESS;
-			}
+    if (Subtest != XUT_ALLMEMTESTS) {
+      return XST_SUCCESS;
+    }
 
-		}		/* end of case 1 */
+  } /* end of case 1 */
 
-		/* fall through case statement */
+    /* fall through case statement */
 
-	case XUT_WALKONES:
-		{
-			/*
-			 * set up to cycle through all possible initial test
-			 * Patterns for walking ones test
-			 */
+  case XUT_WALKONES: {
+    /*
+     * set up to cycle through all possible initial test
+     * Patterns for walking ones test
+     */
 
-			for (j = 0L; j < 16; j++) {
-				/*
-				 * Generate an initial value for walking ones test to test for bad
-				 * data bits
-				 */
+    for (j = 0L; j < 16; j++) {
+      /*
+       * Generate an initial value for walking ones test to test for bad
+       * data bits
+       */
 
-				Val = 1 << j;
+      Val = 1 << j;
 
-				/*
-				 * START walking ones test
-				 * Write a one to each data bit indifferent locations
-				 */
+      /*
+       * START walking ones test
+       * Write a one to each data bit indifferent locations
+       */
 
-				for (i = 0L; i < 16; i++) {
+      for (i = 0L; i < 16; i++) {
 
-					/* write memory location */
+        /* write memory location */
 
-					Addr[i] = Val;
+        Addr[i] = Val;
 
-					Val = (u16) RotateLeft(Val, 16);
+        Val = (u16)RotateLeft(Val, 16);
+      }
 
-				}
+      /*
+       * Restore the reference 'Val' to the
+       * initial value
+       */
 
-				/*
-				 * Restore the reference 'Val' to the
-				 * initial value
-				 */
+      Val = 1 << j;
 
-				Val = 1 << j;
+      /* Read the values from each location that was written */
 
-				/* Read the values from each location that was written */
+      for (i = 0L; i < 16; i++) {
 
-				for (i = 0L; i < 16; i++) {
+        /* read memory location */
 
-					/* read memory location */
+        Word = Addr[i];
 
-					Word = Addr[i];
+        if (Word != Val) {
+          return XST_MEMTEST_FAILED;
+        }
 
-					if (Word != Val) {
-						return XST_MEMTEST_FAILED;
-					}
+        Val = (u16)RotateLeft(Val, 16);
+      }
+    }
 
-					Val = (u16) RotateLeft(Val, 16);
+    if (Subtest != XUT_ALLMEMTESTS) {
+      return XST_SUCCESS;
+    }
 
-				}
+  } /* end of case 2 */
 
-			}
+    /* fall through case statement */
 
-			if (Subtest != XUT_ALLMEMTESTS) {
-				return XST_SUCCESS;
-			}
+  case XUT_WALKZEROS: {
+    /*
+     * set up to cycle through all possible initial
+     * test Patterns for walking zeros test
+     */
 
+    for (j = 0L; j < 16; j++) {
 
-		}		/* end of case 2 */
+      /*
+       * Generate an initial value for walking ones
+       * test to test for bad
+       * data bits
+       */
 
-		/* fall through case statement */
+      Val = ~(1 << j);
 
-	case XUT_WALKZEROS:
-		{
-			/*
-			 * set up to cycle through all possible initial
-			 * test Patterns for walking zeros test
-			 */
+      /*
+       * START walking zeros test
+       * Write a one to each data bit indifferent locations
+       */
 
-			for (j = 0L; j < 16; j++) {
+      for (i = 0L; i < 16; i++) {
 
-				/*
-				 * Generate an initial value for walking ones
-				 * test to test for bad
-				 * data bits
-				 */
+        /* write memory location */
 
-				Val = ~(1 << j);
+        Addr[i] = Val;
+        Val = ~((u16)RotateLeft(~Val, 16));
+      }
 
-				/*
-				 * START walking zeros test
-				 * Write a one to each data bit indifferent locations
-				 */
+      /*
+       * Restore the reference 'Val' to the
+       * initial value
+       */
 
-				for (i = 0L; i < 16; i++) {
+      Val = ~(1 << j);
 
+      /* Read the values from each location that was written */
 
-					/* write memory location */
+      for (i = 0L; i < 16; i++) {
 
-					Addr[i] = Val;
-					Val = ~((u16) RotateLeft(~Val, 16));
+        /* read memory location */
 
-				}
+        Word = Addr[i];
 
-				/*
-				 * Restore the reference 'Val' to the
-				 * initial value
-				 */
+        if (Word != Val) {
+          return XST_MEMTEST_FAILED;
+        }
 
-				Val = ~(1 << j);
+        Val = ~((u16)RotateLeft(~Val, 16));
+      }
+    }
 
-				/* Read the values from each location that was written */
+    if (Subtest != XUT_ALLMEMTESTS) {
+      return XST_SUCCESS;
+    }
 
-				for (i = 0L; i < 16; i++) {
+  } /* end of case 3 */
 
-					/* read memory location */
+    /* fall through case statement */
 
-					Word = Addr[i];
+  case XUT_INVERSEADDR: {
 
-					if (Word != Val) {
-						return XST_MEMTEST_FAILED;
-					}
+    /* Fill the memory with inverse of address */
 
-					Val = ~((u16) RotateLeft(~Val, 16));
+    for (i = 0L; i < Words; i++) {
+      /* write memory location */
 
-				}
+      Val = (u16)(~((u32)(&Addr[i])));
+      Addr[i] = Val;
+    }
 
-			}
+    /*
+     * Check every word within the Words
+     * of tested memory
+     */
 
-			if (Subtest != XUT_ALLMEMTESTS) {
-				return XST_SUCCESS;
-			}
+    for (i = 0L; i < Words; i++) {
 
-		}		/* end of case 3 */
+      /* read memory location */
 
-		/* fall through case statement */
+      Word = Addr[i];
 
-	case XUT_INVERSEADDR:
-		{
+      Val = (u16)(~((u32)(&Addr[i])));
 
-			/* Fill the memory with inverse of address */
+      if ((Word ^ Val) != 0x0000) {
+        return XST_MEMTEST_FAILED;
+      }
+    }
 
-			for (i = 0L; i < Words; i++) {
-				/* write memory location */
+    if (Subtest != XUT_ALLMEMTESTS) {
+      return XST_SUCCESS;
+    }
 
-				Val = (u16) (~((u32) (&Addr[i])));
-				Addr[i] = Val;
+  } /* end of case 4 */
 
-			}
+    /* fall through case statement */
 
-			/*
-			 * Check every word within the Words
-			 * of tested memory
-			 */
+  case XUT_FIXEDPATTERN: {
 
-			for (i = 0L; i < Words; i++) {
+    /*
+     * Generate an initial value for
+     * memory testing
+     */
 
-				/* read memory location */
+    if (Pattern == 0) {
+      Val = 0xDEAD;
 
-				Word = Addr[i];
+    } else {
+      Val = Pattern;
+    }
 
-				Val = (u16) (~((u32) (&Addr[i])));
+    /*
+     * Fill the memory with fixed pattern
+     */
 
-				if ((Word ^ Val) != 0x0000) {
-					return XST_MEMTEST_FAILED;
-				}
-			}
+    for (i = 0L; i < Words; i++) {
 
-			if (Subtest != XUT_ALLMEMTESTS) {
-				return XST_SUCCESS;
-			}
+      /* write memory location */
 
+      Addr[i] = Val;
+    }
 
-		}		/* end of case 4 */
+    /*
+     * Check every word within the Words
+     * of tested memory and compare it
+     * with the fixed pattern
+     */
 
+    for (i = 0L; i < Words; i++) {
 
-		/* fall through case statement */
+      /* read memory location */
 
-	case XUT_FIXEDPATTERN:
-		{
+      Word = Addr[i];
 
-			/*
-			 * Generate an initial value for
-			 * memory testing
-			 */
+      if (Word != Val) {
+        return XST_MEMTEST_FAILED;
+      }
+    }
 
-			if (Pattern == 0) {
-				Val = 0xDEAD;
+    if (Subtest != XUT_ALLMEMTESTS) {
+      return XST_SUCCESS;
+    }
 
-			}
-			else {
-				Val = Pattern;
+  } /* end of case 5 */
 
-			}
+  /* this break is for the prior fall through case statements */
 
-			/*
-			 * Fill the memory with fixed pattern
-			 */
+  break;
 
-			for (i = 0L; i < Words; i++) {
+  default: { return XST_MEMTEST_FAILED; }
 
-				/* write memory location */
+  } /* end of switch */
 
-				Addr[i] = Val;
+  /* Successfully passed memory test ! */
 
-			}
-
-			/*
-			 * Check every word within the Words
-			 * of tested memory and compare it
-			 * with the fixed pattern
-			 */
-
-			for (i = 0L; i < Words; i++) {
-
-				/* read memory location */
-
-				Word = Addr[i];
-
-				if (Word != Val) {
-					return XST_MEMTEST_FAILED;
-				}
-			}
-
-			if (Subtest != XUT_ALLMEMTESTS) {
-				return XST_SUCCESS;
-			}
-
-		}		/* end of case 5 */
-
-		/* this break is for the prior fall through case statements */
-
-		break;
-
-	default:
-		{
-			return XST_MEMTEST_FAILED;
-		}
-
-	}			/* end of switch */
-
-	/* Successfully passed memory test ! */
-
-	return XST_SUCCESS;
+  return XST_SUCCESS;
 }
-
 
 /*****************************************************************************/
 /**
-*
-* Performs a destructive 8-bit wide memory test.
-*
-* @param    Addr is a pointer to the region of memory to be tested.
-* @param    Words is the length of the block.
-* @param    Pattern is the constant used for the constant pattern test, if 0,
-*           0xDEADBEEF is used.
-* @param    Subtest is the test selected. See xutil.h for possible values.
-*
-* @return
-*
-* - XST_MEMTEST_FAILED is returned for a failure
-* - XST_SUCCESS is returned for a pass
-*
-* @note
-*
-* Used for spaces where the address range of the region is smaller than
-* the data width. If the memory range is greater than 2 ** width,
-* the patterns used in XUT_WALKONES and XUT_WALKZEROS will repeat on a
-* boundry of a power of two making it more difficult to detect addressing
-* errors. The XUT_INCREMENT and XUT_INVERSEADDR tests suffer the same
-* problem. Ideally, if large blocks of memory are to be tested, break
-* them up into smaller regions of memory to allow the test patterns used
-* not to repeat over the region tested.
-*
-*****************************************************************************/
-int XUtil_MemoryTest8(u8 *Addr, u32 Words, u8 Pattern, u8 Subtest)
-{
-	u32 i;
-	u32 j;
-	u8 Val = XUT_MEMTEST_INIT_VALUE;
-	u8 FirstVal = XUT_MEMTEST_INIT_VALUE;
-	u8 Word;
-
-	XASSERT_NONVOID(Words != 0);
-	XASSERT_NONVOID(Subtest <= XUT_MAXTEST);
-
-	/*
-	 * select the proper Subtest(s)
-	 */
-
-	switch (Subtest) {
-
-	case XUT_ALLMEMTESTS:
-
-		/* this case executes all of the Subtests */
-
-		/* fall through case statement */
+ *
+ * Performs a destructive 8-bit wide memory test.
+ *
+ * @param    Addr is a pointer to the region of memory to be tested.
+ * @param    Words is the length of the block.
+ * @param    Pattern is the constant used for the constant pattern test, if 0,
+ *           0xDEADBEEF is used.
+ * @param    Subtest is the test selected. See xutil.h for possible values.
+ *
+ * @return
+ *
+ * - XST_MEMTEST_FAILED is returned for a failure
+ * - XST_SUCCESS is returned for a pass
+ *
+ * @note
+ *
+ * Used for spaces where the address range of the region is smaller than
+ * the data width. If the memory range is greater than 2 ** width,
+ * the patterns used in XUT_WALKONES and XUT_WALKZEROS will repeat on a
+ * boundry of a power of two making it more difficult to detect addressing
+ * errors. The XUT_INCREMENT and XUT_INVERSEADDR tests suffer the same
+ * problem. Ideally, if large blocks of memory are to be tested, break
+ * them up into smaller regions of memory to allow the test patterns used
+ * not to repeat over the region tested.
+ *
+ *****************************************************************************/
+int XUtil_MemoryTest8(u8 *Addr, u32 Words, u8 Pattern, u8 Subtest) {
+  u32 i;
+  u32 j;
+  u8 Val = XUT_MEMTEST_INIT_VALUE;
+  u8 FirstVal = XUT_MEMTEST_INIT_VALUE;
+  u8 Word;
+
+  XASSERT_NONVOID(Words != 0);
+  XASSERT_NONVOID(Subtest <= XUT_MAXTEST);
+
+  /*
+   * select the proper Subtest(s)
+   */
+
+  switch (Subtest) {
+
+  case XUT_ALLMEMTESTS:
+
+    /* this case executes all of the Subtests */
+
+    /* fall through case statement */
+
+  case XUT_INCREMENT: {
+
+    /*
+     * Fill the memory with incrementing
+     * values starting from 'FirstVal'
+     */
+    for (i = 0L; i < Words; i++) {
+
+      /* write memory location */
+
+      Addr[i] = Val;
+      Val++;
+    }
+
+    /*
+     * Restore the reference 'Val' to the
+     * initial value
+     */
+
+    Val = FirstVal;
 
-	case XUT_INCREMENT:
-		{
+    /*
+     * Check every word within the Words
+     * of tested memory and compare it
+     * with the incrementing reference
+     * Val
+     */
 
-			/*
-			 * Fill the memory with incrementing
-			 * values starting from 'FirstVal'
-			 */
-			for (i = 0L; i < Words; i++) {
+    for (i = 0L; i < Words; i++) {
 
-				/* write memory location */
+      /* read memory location */
 
-				Addr[i] = Val;
-				Val++;
-			}
+      Word = Addr[i];
 
-			/*
-			 * Restore the reference 'Val' to the
-			 * initial value
-			 */
+      if (Word != Val) {
+        return XST_MEMTEST_FAILED;
+      }
+      Val++;
+    }
 
-			Val = FirstVal;
+    if (Subtest != XUT_ALLMEMTESTS) {
+      return XST_SUCCESS;
+    }
 
-			/*
-			 * Check every word within the Words
-			 * of tested memory and compare it
-			 * with the incrementing reference
-			 * Val
-			 */
+  } /* end of case 1 */
 
-			for (i = 0L; i < Words; i++) {
+    /* fall through case statement */
 
-				/* read memory location */
+  case XUT_WALKONES: {
+    /*
+     * set up to cycle through all possible initial
+     * test Patterns for walking ones test
+     */
 
-				Word = Addr[i];
+    for (j = 0L; j < 8; j++) {
+      /*
+       * Generate an initial value for walking ones test to test
+       * for bad data bits
+       */
 
-				if (Word != Val) {
-					return XST_MEMTEST_FAILED;
-				}
-				Val++;
-			}
+      Val = 1 << j;
 
+      /*
+       * START walking ones test
+       * Write a one to each data bit indifferent locations
+       */
 
-			if (Subtest != XUT_ALLMEMTESTS) {
-				return XST_SUCCESS;
-			}
+      for (i = 0L; i < 8; i++) {
 
+        /* write memory location */
 
-		}		/* end of case 1 */
+        Addr[i] = Val;
+        Val = (u8)RotateLeft(Val, 8);
+      }
 
-		/* fall through case statement */
+      /*
+       * Restore the reference 'Val' to the
+       * initial value
+       */
+      Val = 1 << j;
 
-	case XUT_WALKONES:
-		{
-			/*
-			 * set up to cycle through all possible initial
-			 * test Patterns for walking ones test
-			 */
+      /* Read the values from each location that was written */
 
-			for (j = 0L; j < 8; j++) {
-				/*
-				 * Generate an initial value for walking ones test to test
-				 * for bad data bits
-				 */
+      for (i = 0L; i < 8; i++) {
 
-				Val = 1 << j;
+        /* read memory location */
 
-				/*
-				 * START walking ones test
-				 * Write a one to each data bit indifferent locations
-				 */
+        Word = Addr[i];
 
-				for (i = 0L; i < 8; i++) {
+        if (Word != Val) {
+          return XST_MEMTEST_FAILED;
+        }
 
-					/* write memory location */
+        Val = (u8)RotateLeft(Val, 8);
+      }
+    }
 
-					Addr[i] = Val;
-					Val = (u8) RotateLeft(Val, 8);
-				}
+    if (Subtest != XUT_ALLMEMTESTS) {
+      return XST_SUCCESS;
+    }
 
-				/*
-				 * Restore the reference 'Val' to the
-				 * initial value
-				 */
-				Val = 1 << j;
+  } /* end of case 2 */
 
-				/* Read the values from each location that was written */
+    /* fall through case statement */
 
-				for (i = 0L; i < 8; i++) {
+  case XUT_WALKZEROS: {
+    /*
+     * set up to cycle through all possible initial test
+     * Patterns for walking zeros test
+     */
 
-					/* read memory location */
+    for (j = 0L; j < 8; j++) {
 
-					Word = Addr[i];
+      /*
+       * Generate an initial value for walking ones test to test
+       * for bad data bits
+       */
 
-					if (Word != Val) {
-						return XST_MEMTEST_FAILED;
-					}
+      Val = ~(1 << j);
 
-					Val = (u8) RotateLeft(Val, 8);
+      /*
+       * START walking zeros test
+       * Write a one to each data bit indifferent locations
+       */
 
-				}
+      for (i = 0L; i < 8; i++) {
 
-			}
+        /* write memory location */
 
-			if (Subtest != XUT_ALLMEMTESTS) {
-				return XST_SUCCESS;
-			}
+        Addr[i] = Val;
+        Val = ~((u8)RotateLeft(~Val, 8));
+      }
 
+      /*
+       * Restore the reference 'Val' to the
+       * initial value
+       */
 
-		}		/* end of case 2 */
+      Val = ~(1 << j);
 
-		/* fall through case statement */
+      /* Read the values from each location that was written */
 
-	case XUT_WALKZEROS:
-		{
-			/*
-			 * set up to cycle through all possible initial test
-			 * Patterns for walking zeros test
-			 */
+      for (i = 0L; i < 8; i++) {
 
-			for (j = 0L; j < 8; j++) {
+        /* read memory location */
 
-				/*
-				 * Generate an initial value for walking ones test to test
-				 * for bad data bits
-				 */
+        Word = Addr[i];
 
-				Val = ~(1 << j);
+        if (Word != Val) {
+          return XST_MEMTEST_FAILED;
+        }
 
-				/*
-				 * START walking zeros test
-				 * Write a one to each data bit indifferent locations
-				 */
+        Val = ~((u8)RotateLeft(~Val, 8));
+      }
+    }
 
-				for (i = 0L; i < 8; i++) {
+    if (Subtest != XUT_ALLMEMTESTS) {
+      return XST_SUCCESS;
+    }
 
+  } /* end of case 3 */
 
-					/* write memory location */
+    /* fall through case statement */
 
-					Addr[i] = Val;
-					Val = ~((u8) RotateLeft(~Val, 8));
+  case XUT_INVERSEADDR: {
 
-				}
+    /* Fill the memory with inverse of address */
 
-				/*
-				 * Restore the reference 'Val' to the
-				 * initial value
-				 */
+    for (i = 0L; i < Words; i++) {
 
-				Val = ~(1 << j);
+      /* write memory location */
 
-				/* Read the values from each location that was written */
+      Val = (u8)(~((u32)(&Addr[i])));
+      Addr[i] = Val;
+    }
 
-				for (i = 0L; i < 8; i++) {
+    /*
+     * Check every word within the Words
+     * of tested memory
+     */
 
-					/* read memory location */
+    for (i = 0L; i < Words; i++) {
 
-					Word = Addr[i];
+      /* read memory location */
 
-					if (Word != Val) {
-						return XST_MEMTEST_FAILED;
-					}
+      Word = Addr[i];
 
-					Val = ~((u8) RotateLeft(~Val, 8));
+      Val = (u8)(~((u32)(&Addr[i])));
 
-				}
+      if ((Word ^ Val) != 0x00) {
+        return XST_MEMTEST_FAILED;
+      }
+    }
 
-			}
+    if (Subtest != XUT_ALLMEMTESTS) {
+      return XST_SUCCESS;
+    }
 
-			if (Subtest != XUT_ALLMEMTESTS) {
-				return XST_SUCCESS;
-			}
+  } /* end of case 4 */
 
-		}		/* end of case 3 */
+    /* fall through case statement */
 
-		/* fall through case statement */
+  case XUT_FIXEDPATTERN: {
 
-	case XUT_INVERSEADDR:
-		{
+    /*
+     * Generate an initial value for
+     * memory testing
+     */
 
-			/* Fill the memory with inverse of address */
+    if (Pattern == 0) {
+      Val = 0xA5;
 
-			for (i = 0L; i < Words; i++) {
+    } else {
+      Val = Pattern;
+    }
 
-				/* write memory location */
+    /*
+     * Fill the memory with fixed pattern
+     */
 
-				Val = (u8) (~((u32) (&Addr[i])));
-				Addr[i] = Val;
+    for (i = 0L; i < Words; i++) {
 
-			}
+      /* write memory location */
 
-			/*
-			 * Check every word within the Words
-			 * of tested memory
-			 */
+      Addr[i] = Val;
+    }
 
-			for (i = 0L; i < Words; i++) {
+    /*
+     * Check every word within the Words
+     * of tested memory and compare it
+     * with the fixed pattern
+     */
 
-				/* read memory location */
+    for (i = 0L; i < Words; i++) {
 
-				Word = Addr[i];
+      /* read memory location */
 
-				Val = (u8) (~((u32) (&Addr[i])));
+      Word = Addr[i];
 
-				if ((Word ^ Val) != 0x00) {
-					return XST_MEMTEST_FAILED;
-				}
-			}
+      if (Word != Val) {
+        return XST_MEMTEST_FAILED;
+      }
+    }
 
-			if (Subtest != XUT_ALLMEMTESTS) {
-				return XST_SUCCESS;
-			}
+    if (Subtest != XUT_ALLMEMTESTS) {
+      return XST_SUCCESS;
+    }
 
+  } /* end of case 5 */
 
-		}		/* end of case 4 */
+  /* this break is for the prior fall through case statements */
 
+  break;
 
-		/* fall through case statement */
+  default: { return XST_MEMTEST_FAILED; }
 
-	case XUT_FIXEDPATTERN:
-		{
+  } /* end of switch */
 
-			/*
-			 * Generate an initial value for
-			 * memory testing
-			 */
+  /* Successfully passed memory test ! */
 
-			if (Pattern == 0) {
-				Val = 0xA5;
-
-			}
-			else {
-				Val = Pattern;
-
-			}
-
-			/*
-			 * Fill the memory with fixed pattern
-			 */
-
-			for (i = 0L; i < Words; i++) {
-
-				/* write memory location */
-
-				Addr[i] = Val;
-
-			}
-
-			/*
-			 * Check every word within the Words
-			 * of tested memory and compare it
-			 * with the fixed pattern
-			 */
-
-			for (i = 0L; i < Words; i++) {
-
-				/* read memory location */
-
-				Word = Addr[i];
-
-				if (Word != Val) {
-					return XST_MEMTEST_FAILED;
-				}
-			}
-
-			if (Subtest != XUT_ALLMEMTESTS) {
-				return XST_SUCCESS;
-			}
-
-		}		/* end of case 5 */
-
-		/* this break is for the prior fall through case statements */
-
-		break;
-
-	default:
-		{
-			return XST_MEMTEST_FAILED;
-		}
-
-	}			/* end of switch */
-
-	/* Successfully passed memory test ! */
-
-	return XST_SUCCESS;
+  return XST_SUCCESS;
 }
-
 
 /*****************************************************************************/
 /**
-*
-* Rotates the provided value to the left one bit position
-*
-* @param    Input is value to be rotated to the left
-* @param    Width is the number of bits in the input data
-*
-* @return
-*
-* The resulting unsigned long value of the rotate left
-*
-* @note
-*
-* None.
-*
-*****************************************************************************/
-static u32 RotateLeft(u32 Input, u8 Width)
-{
-	u32 Msb;
-	u32 ReturnVal;
-	u32 WidthMask;
-	u32 MsbMask;
+ *
+ * Rotates the provided value to the left one bit position
+ *
+ * @param    Input is value to be rotated to the left
+ * @param    Width is the number of bits in the input data
+ *
+ * @return
+ *
+ * The resulting unsigned long value of the rotate left
+ *
+ * @note
+ *
+ * None.
+ *
+ *****************************************************************************/
+static u32 RotateLeft(u32 Input, u8 Width) {
+  u32 Msb;
+  u32 ReturnVal;
+  u32 WidthMask;
+  u32 MsbMask;
 
-	/*
-	 * set up the WidthMask and the MsbMask
-	 */
+  /*
+   * set up the WidthMask and the MsbMask
+   */
 
-	MsbMask = 1 << (Width - 1);
+  MsbMask = 1 << (Width - 1);
 
-	WidthMask = (MsbMask << 1) - 1;
+  WidthMask = (MsbMask << 1) - 1;
 
-	/*
-	 * set the width of the Input to the correct width
-	 */
+  /*
+   * set the width of the Input to the correct width
+   */
 
-	Input = Input & WidthMask;
+  Input = Input & WidthMask;
 
-	Msb = Input & MsbMask;
+  Msb = Input & MsbMask;
 
-	ReturnVal = Input << 1;
+  ReturnVal = Input << 1;
 
-	if (Msb != 0x00000000) {
-		ReturnVal = ReturnVal | 0x00000001;
-	}
+  if (Msb != 0x00000000) {
+    ReturnVal = ReturnVal | 0x00000001;
+  }
 
-	ReturnVal = ReturnVal & WidthMask;
+  ReturnVal = ReturnVal & WidthMask;
 
-	return (ReturnVal);
-
+  return (ReturnVal);
 }
 
 #ifdef ROTATE_RIGHT
 /*****************************************************************************/
 /**
-*
-* Rotates the provided value to the right one bit position
-*
-* @param    Input is value to be rotated to the right
-* @param    Width is the number of bits in the input data
-*
-* @return
-*
-* The resulting u32 value of the rotate right
-*
-* @note
-*
-* None.
-*
-*****************************************************************************/
-static u32 RotateRight(u32 Input, u8 Width)
-{
-	u32 Lsb;
-	u32 ReturnVal;
-	u32 WidthMask;
-	u32 MsbMask;
+ *
+ * Rotates the provided value to the right one bit position
+ *
+ * @param    Input is value to be rotated to the right
+ * @param    Width is the number of bits in the input data
+ *
+ * @return
+ *
+ * The resulting u32 value of the rotate right
+ *
+ * @note
+ *
+ * None.
+ *
+ *****************************************************************************/
+static u32 RotateRight(u32 Input, u8 Width) {
+  u32 Lsb;
+  u32 ReturnVal;
+  u32 WidthMask;
+  u32 MsbMask;
 
-	/*
-	 * set up the WidthMask and the MsbMask
-	 */
+  /*
+   * set up the WidthMask and the MsbMask
+   */
 
-	MsbMask = 1 << (Width - 1);
+  MsbMask = 1 << (Width - 1);
 
-	WidthMask = (MsbMask << 1) - 1;
+  WidthMask = (MsbMask << 1) - 1;
 
-	/*
-	 * set the width of the Input to the correct width
-	 */
+  /*
+   * set the width of the Input to the correct width
+   */
 
-	Input = Input & WidthMask;
+  Input = Input & WidthMask;
 
-	ReturnVal = Input >> 1;
+  ReturnVal = Input >> 1;
 
-	Lsb = Input & 0x00000001;
+  Lsb = Input & 0x00000001;
 
-	if (Lsb != 0x00000000) {
-		ReturnVal = ReturnVal | MsbMask;
-	}
+  if (Lsb != 0x00000000) {
+    ReturnVal = ReturnVal | MsbMask;
+  }
 
-	ReturnVal = ReturnVal & WidthMask;
+  ReturnVal = ReturnVal & WidthMask;
 
-	return (ReturnVal);
-
+  return (ReturnVal);
 }
 #endif /* ROTATE_RIGHT */

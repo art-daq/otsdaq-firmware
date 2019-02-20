@@ -1,51 +1,51 @@
 /******************************************************************************
-*
-*       XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS"
-*       AS A COURTESY TO YOU, SOLELY FOR USE IN DEVELOPING PROGRAMS AND
-*       SOLUTIONS FOR XILINX DEVICES.  BY PROVIDING THIS DESIGN, CODE,
-*       OR INFORMATION AS ONE POSSIBLE IMPLEMENTATION OF THIS FEATURE,
-*       APPLICATION OR STANDARD, XILINX IS MAKING NO REPRESENTATION
-*       THAT THIS IMPLEMENTATION IS FREE FROM ANY CLAIMS OF INFRINGEMENT,
-*       AND YOU ARE RESPONSIBLE FOR OBTAINING ANY RIGHTS YOU MAY REQUIRE
-*       FOR YOUR IMPLEMENTATION.  XILINX EXPRESSLY DISCLAIMS ANY
-*       WARRANTY WHATSOEVER WITH RESPECT TO THE ADEQUACY OF THE
-*       IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OR
-*       REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE FROM CLAIMS OF
-*       INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-*       FOR A PARTICULAR PURPOSE.
-*
-*       (c) Copyright 2002-2007 Xilinx Inc.
-*       All rights reserved.
-*
-******************************************************************************/
+ *
+ *       XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS"
+ *       AS A COURTESY TO YOU, SOLELY FOR USE IN DEVELOPING PROGRAMS AND
+ *       SOLUTIONS FOR XILINX DEVICES.  BY PROVIDING THIS DESIGN, CODE,
+ *       OR INFORMATION AS ONE POSSIBLE IMPLEMENTATION OF THIS FEATURE,
+ *       APPLICATION OR STANDARD, XILINX IS MAKING NO REPRESENTATION
+ *       THAT THIS IMPLEMENTATION IS FREE FROM ANY CLAIMS OF INFRINGEMENT,
+ *       AND YOU ARE RESPONSIBLE FOR OBTAINING ANY RIGHTS YOU MAY REQUIRE
+ *       FOR YOUR IMPLEMENTATION.  XILINX EXPRESSLY DISCLAIMS ANY
+ *       WARRANTY WHATSOEVER WITH RESPECT TO THE ADEQUACY OF THE
+ *       IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OR
+ *       REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE FROM CLAIMS OF
+ *       INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ *       FOR A PARTICULAR PURPOSE.
+ *
+ *       (c) Copyright 2002-2007 Xilinx Inc.
+ *       All rights reserved.
+ *
+ ******************************************************************************/
 /*****************************************************************************/
 /**
-*
-* @file xenv_vxworks.h
-*
-* Defines common services specified by xenv.h.
-*
-* @note
-* 	This file is not intended to be included directly by driver code.
-* 	Instead, the generic xenv.h file is intended to be included by driver
-* 	code.
-*
-* <pre>
-* MODIFICATION HISTORY:
-*
-* Ver   Who  Date     Changes
-* ----- ---- -------- -----------------------------------------------
-* 1.00a wgr  02/28/07 Added cache handling macros.
-* 1.00a wgr  02/27/07 Simplified code. Deprecated old-style macro names.
-* 1.00a xd   11/03/04 Improved support for doxygen.
-*       rmm  09/13/03 CR 177068: Fix compiler warning in XENV_MEM_FILL
-*       rmm  10/24/02 Added XENV_USLEEP macro
-* 1.00a rmm  07/16/01 First release
-* 1.10a wgr  03/22/07 Converted to new coding style.
-* </pre>
-*
-*
-******************************************************************************/
+ *
+ * @file xenv_vxworks.h
+ *
+ * Defines common services specified by xenv.h.
+ *
+ * @note
+ * 	This file is not intended to be included directly by driver code.
+ * 	Instead, the generic xenv.h file is intended to be included by driver
+ * 	code.
+ *
+ * <pre>
+ * MODIFICATION HISTORY:
+ *
+ * Ver   Who  Date     Changes
+ * ----- ---- -------- -----------------------------------------------
+ * 1.00a wgr  02/28/07 Added cache handling macros.
+ * 1.00a wgr  02/27/07 Simplified code. Deprecated old-style macro names.
+ * 1.00a xd   11/03/04 Improved support for doxygen.
+ *       rmm  09/13/03 CR 177068: Fix compiler warning in XENV_MEM_FILL
+ *       rmm  10/24/02 Added XENV_USLEEP macro
+ * 1.00a rmm  07/16/01 First release
+ * 1.10a wgr  03/22/07 Converted to new coding style.
+ * </pre>
+ *
+ *
+ ******************************************************************************/
 
 #ifndef XENV_VXWORKS_H
 #define XENV_VXWORKS_H
@@ -56,11 +56,11 @@ extern "C" {
 
 /***************************** Include Files *********************************/
 
-#include "xbasic_types.h"
-#include "vxWorks.h"
-#include "vxLib.h"
-#include "sysLibExtra.h"
 #include "cacheLib.h"
+#include "sysLibExtra.h"
+#include "vxLib.h"
+#include "vxWorks.h"
+#include "xbasic_types.h"
 #include <string.h>
 
 /*****************************************************************************/
@@ -83,9 +83,8 @@ extern "C" {
  *
  *****************************************************************************/
 
-#define XENV_MEM_COPY(DestPtr, SrcPtr, Bytes) \
-	memcpy((void *) DestPtr, (const void *) SrcPtr, (size_t) Bytes)
-
+#define XENV_MEM_COPY(DestPtr, SrcPtr, Bytes)                                  \
+  memcpy((void *)DestPtr, (const void *)SrcPtr, (size_t)Bytes)
 
 /*****************************************************************************/
 /**
@@ -107,19 +106,17 @@ extern "C" {
  *
  *****************************************************************************/
 
-#define XENV_MEM_FILL(DestPtr, Data, Bytes) \
-	memset((void *) DestPtr, (int) Data, (size_t) Bytes)
+#define XENV_MEM_FILL(DestPtr, Data, Bytes)                                    \
+  memset((void *)DestPtr, (int)Data, (size_t)Bytes)
 
-
-#if (CPU_FAMILY==PPC)
+#if (CPU_FAMILY == PPC)
 /**
  * A structure that contains a time stamp used by other time stamp macros
  * defined below. This structure is processor dependent.
  */
-typedef struct
-{
-	u32 TimeBaseUpper;
-	u32 TimeBaseLower;
+typedef struct {
+  u32 TimeBaseUpper;
+  u32 TimeBaseLower;
 } XENV_TIME_STAMP;
 
 /*****************************************************************************/
@@ -136,11 +133,11 @@ typedef struct
  * Signature: void XENV_TIME_STAMP_GET(XTIME_STAMP *StampPtr)
  *
  *****************************************************************************/
-#define XENV_TIME_STAMP_GET(StampPtr)                   \
-{                                                       \
-    vxTimeBaseGet((UINT32*)&(StampPtr)->TimeBaseUpper,  \
-                  (UINT32*)&(StampPtr)->TimeBaseLower); \
-}
+#define XENV_TIME_STAMP_GET(StampPtr)                                          \
+  {                                                                            \
+    vxTimeBaseGet((UINT32 *)&(StampPtr)->TimeBaseUpper,                        \
+                  (UINT32 *)&(StampPtr)->TimeBaseLower);                       \
+  }
 
 /*****************************************************************************/
 /**
@@ -155,7 +152,7 @@ typedef struct
  * @note    None.
  *
  *****************************************************************************/
-#define XENV_TIME_STAMP_DELTA_US(Stamp1Ptr, Stamp2Ptr)     (0)
+#define XENV_TIME_STAMP_DELTA_US(Stamp1Ptr, Stamp2Ptr) (0)
 
 /*****************************************************************************/
 /**
@@ -172,8 +169,7 @@ typedef struct
  * None.
  *
  *****************************************************************************/
-#define XENV_TIME_STAMP_DELTA_MS(Stamp1Ptr, Stamp2Ptr)     (0)
-
+#define XENV_TIME_STAMP_DELTA_MS(Stamp1Ptr, Stamp2Ptr) (0)
 
 /* For non-PPC systems the above macros are not defined. Generate a error to
  * make the developer aware of the problem.
@@ -181,7 +177,6 @@ typedef struct
 #else
 #error "XENV_TIME_STAMP_GET used in a non-PPC system. Aborting."
 #endif
-
 
 /*****************************************************************************/
 /**
@@ -195,10 +190,9 @@ typedef struct
  *
  *****************************************************************************/
 
-#define XENV_USLEEP(delay)	sysUsDelay(delay)
+#define XENV_USLEEP(delay) sysUsDelay(delay)
 
-#define udelay(delay)	sysUsDelay(delay)
-
+#define udelay(delay) sysUsDelay(delay)
 
 /******************************************************************************
  *
@@ -211,33 +205,36 @@ typedef struct
  *
  ******************************************************************************/
 
-#if (CPU_FAMILY==PPC)
+#if (CPU_FAMILY == PPC)
 
-#define XCACHE_ENABLE_CACHE()	\
-		{ XCACHE_ENABLE_DCACHE(); XCACHE_ENABLE_ICACHE(); }
+#define XCACHE_ENABLE_CACHE()                                                  \
+  {                                                                            \
+    XCACHE_ENABLE_DCACHE();                                                    \
+    XCACHE_ENABLE_ICACHE();                                                    \
+  }
 
-#define XCACHE_DISABLE_CACHE()	\
-		{ XCACHE_DISABLE_DCACHE(); XCACHE_DISABLE_ICACHE(); }
+#define XCACHE_DISABLE_CACHE()                                                 \
+  {                                                                            \
+    XCACHE_DISABLE_DCACHE();                                                   \
+    XCACHE_DISABLE_ICACHE();                                                   \
+  }
 
+#define XCACHE_ENABLE_DCACHE() cacheEnable(DATA_CACHE)
+#define XCACHE_DISABLE_DCACHE() cacheDisable(DATA_CACHE)
+#define XCACHE_ENABLE_ICACHE() cacheEnable(INSTRUCTION_CACHE)
+#define XCACHE_DISABLE_ICACHE() cacheDisable(INSTRUCTION_CACHE)
 
-#define XCACHE_ENABLE_DCACHE()		cacheEnable(DATA_CACHE)
-#define XCACHE_DISABLE_DCACHE()		cacheDisable(DATA_CACHE)
-#define XCACHE_ENABLE_ICACHE()		cacheEnable(INSTRUCTION_CACHE)
-#define XCACHE_DISABLE_ICACHE()		cacheDisable(INSTRUCTION_CACHE)
+#define XCACHE_INVALIDATE_DCACHE_RANGE(Addr, Len)                              \
+  cacheInvalidate(DATA_CACHE, (void *)(Addr), (Len))
 
+#define XCACHE_FLUSH_DCACHE_RANGE(Addr, Len)                                   \
+  cacheFlush(DATA_CACHE, (void *)(Addr), (Len))
 
-#define XCACHE_INVALIDATE_DCACHE_RANGE(Addr, Len) \
-		cacheInvalidate(DATA_CACHE, (void *)(Addr), (Len))
+#define XCACHE_INVALIDATE_ICACHE_RANGE(Addr, Len)                              \
+  cacheInvalidate(INSTRUCTION_CACHE, (void *)(Addr), (Len))
 
-#define XCACHE_FLUSH_DCACHE_RANGE(Addr, Len) \
-		cacheFlush(DATA_CACHE, (void *)(Addr), (Len))
-
-#define XCACHE_INVALIDATE_ICACHE_RANGE(Addr, Len) \
-		cacheInvalidate(INSTRUCTION_CACHE, (void *)(Addr), (Len))
-
-#define XCACHE_FLUSH_ICACHE_RANGE(Addr, Len) \
-		cacheFlush(INSTRUCTION_CACHE, (void *)(Addr), (Len))
-
+#define XCACHE_FLUSH_ICACHE_RANGE(Addr, Len)                                   \
+  cacheFlush(INSTRUCTION_CACHE, (void *)(Addr), (Len))
 
 /******************************************************************************
  *
@@ -249,10 +246,8 @@ typedef struct
 #error "Unknown processor / architecture. Must be PPC for VxWorks."
 #endif
 
-
 #ifdef __cplusplus
 }
 #endif
 
-#endif	/* #ifdef XENV_VXWORKS_H */
-
+#endif /* #ifdef XENV_VXWORKS_H */

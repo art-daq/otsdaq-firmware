@@ -1,22 +1,22 @@
 
+#include <arpa/inet.h>
+#include <errno.h>
 #include <iostream>
+#include <netdb.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
-#include <netdb.h>
-#include <time.h>
-#include <sys/time.h>
-#include <arpa/inet.h>
-#include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <time.h>
 
 #include "stib.hh"
 
 using namespace std;
 using namespace stib;
 
-int main(int argc,char **argv) {
+int main(int argc, char **argv) {
   int ierr, i, s, strip;
   socklen_t namelen;
   int broadcast_enable;
@@ -25,42 +25,43 @@ int main(int argc,char **argv) {
   struct hostent *hp;
   unsigned int mask[4];
 
-  if ( argc < 2 ) {
+  if (argc < 2) {
     cerr << "Usage: " << argv[0] << " <addr>" << endl;
     exit(1);
   }
-  if ( ( s = socket(PF_INET,SOCK_DGRAM,0) ) < 0 ) {
-    fprintf( stderr, "%s : socket() - %s\n", argv[0], strerror(errno) );
+  if ((s = socket(PF_INET, SOCK_DGRAM, 0)) < 0) {
+    fprintf(stderr, "%s : socket() - %s\n", argv[0], strerror(errno));
     exit(1);
   }
-  bzero((char *)&saddr,sizeof(saddr));
+  bzero((char *)&saddr, sizeof(saddr));
   saddr.sin_family = AF_INET;
-  if ( bind(s,(struct sockaddr *)&saddr,sizeof(saddr)) < 0 ) {
-    fprintf( stderr, "%s : bind() - %s\n", argv[0], strerror(errno) );
+  if (bind(s, (struct sockaddr *)&saddr, sizeof(saddr)) < 0) {
+    fprintf(stderr, "%s : bind() - %s\n", argv[0], strerror(errno));
     exit(1);
   }
   namelen = sizeof(saddr);
-  if ( getsockname(s,(struct sockaddr *)&saddr,&namelen) < 0 ) {
-    fprintf( stderr, "%s : getsockname() - %s\n", argv[0], strerror(errno) );
+  if (getsockname(s, (struct sockaddr *)&saddr, &namelen) < 0) {
+    fprintf(stderr, "%s : getsockname() - %s\n", argv[0], strerror(errno));
     exit(1);
   }
-  printf( "Source port = %d (0x%04x)\n", ntohs(saddr.sin_port), ntohs(saddr.sin_port) );
+  printf("Source port = %d (0x%04x)\n", ntohs(saddr.sin_port),
+         ntohs(saddr.sin_port));
 
-  if ( ( hp = gethostbyname(argv[1]) ) == NULL ) {
-    fprintf( stderr, "%s : gethostbyname(%s) - %s\n",
-             argv[0], argv[1], strerror(errno) );
+  if ((hp = gethostbyname(argv[1])) == NULL) {
+    fprintf(stderr, "%s : gethostbyname(%s) - %s\n", argv[0], argv[1],
+            strerror(errno));
     exit(1);
   }
-  bcopy(hp->h_addr,&daddr.sin_addr,hp->h_length);
+  bcopy(hp->h_addr, &daddr.sin_addr, hp->h_length);
 
   daddr.sin_family = hp->h_addrtype;
   port = STIB_PORT;
   daddr.sin_port = htons(port);
-  if ( (ntohl(daddr.sin_addr.s_addr)&0xff) == 0xff ) {
+  if ((ntohl(daddr.sin_addr.s_addr) & 0xff) == 0xff) {
     broadcast_enable = 1;
-    if ( setsockopt(s,SOL_SOCKET,SO_BROADCAST,&broadcast_enable,
-                     sizeof(broadcast_enable)) < 0 ) {
-      fprintf( stderr, "%s : setsockopt() - %s\n", argv[0], strerror(errno) );
+    if (setsockopt(s, SOL_SOCKET, SO_BROADCAST, &broadcast_enable,
+                   sizeof(broadcast_enable)) < 0) {
+      fprintf(stderr, "%s : setsockopt() - %s\n", argv[0], strerror(errno));
       exit(1);
     }
     printf("Enabled broadcast.\n");
@@ -69,29 +70,29 @@ int main(int argc,char **argv) {
   struct timeval timeout;
   timeout.tv_sec = 2;
   timeout.tv_usec = 0;
-  if ( setsockopt(s,SOL_SOCKET,SO_RCVTIMEO,&timeout,sizeof(timeout)) < 0 ) {
-    fprintf( stderr, "%s : setsockopt() - %s\n", argv[0], strerror(errno) );
+  if (setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) < 0) {
+    fprintf(stderr, "%s : setsockopt() - %s\n", argv[0], strerror(errno));
     exit(1);
   }
- 
-  Stib *msg = new Stib(s,(struct sockaddr *)&daddr,sizeof(daddr));
+
+  Stib *msg = new Stib(s, (struct sockaddr *)&daddr, sizeof(daddr));
 
   msg->Clear();
-  msg->Write(STRIP_SC_CSR,0xa0010bc9);
-  int ind1 = msg->SlowControls(9,0,ACQUIRE_BCO,READ);
-  msg->Write(STRIP_SC_CSR,0xa0010bc9);
-  int ind2 = msg->SlowControls(9,0,ACQUIRE_BCO,READ);
+  msg->Write(STRIP_SC_CSR, 0xa0010bc9);
+  int ind1 = msg->SlowControls(9, 0, ACQUIRE_BCO, READ);
+  msg->Write(STRIP_SC_CSR, 0xa0010bc9);
+  int ind2 = msg->SlowControls(9, 0, ACQUIRE_BCO, READ);
   msg->PrintTx();
   msg->Send();
-  if ( ( ierr = msg->Receive() ) < 0 ) {
-    cout << "Receive error..." <<endl;
-  }
-  else {
+  if ((ierr = msg->Receive()) < 0) {
+    cout << "Receive error..." << endl;
+  } else {
     msg->PrintRx();
   }
-  int bco1 = msg->RxData(ind1,1)&0xff;
-  int bco2 = msg->RxData(ind2,1)&0xff;
-  cout << "BCO difference = " << dec << bco2 << "-" << bco1 << " = " << bco2-bco1 << endl;
+  int bco1 = msg->RxData(ind1, 1) & 0xff;
+  int bco2 = msg->RxData(ind2, 1) & 0xff;
+  cout << "BCO difference = " << dec << bco2 << "-" << bco1 << " = "
+       << bco2 - bco1 << endl;
 
   return 0;
 }

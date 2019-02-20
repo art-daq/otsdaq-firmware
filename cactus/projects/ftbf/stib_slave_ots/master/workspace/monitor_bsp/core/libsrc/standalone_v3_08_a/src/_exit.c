@@ -20,9 +20,9 @@
 #include <unistd.h>
 
 /* _exit - Simple implementation. Does not return.
-*/
-void _exit (int status)
-{
-  (void) status;
-  while (1);
+ */
+void _exit(int status) {
+  (void)status;
+  while (1)
+    ;
 }

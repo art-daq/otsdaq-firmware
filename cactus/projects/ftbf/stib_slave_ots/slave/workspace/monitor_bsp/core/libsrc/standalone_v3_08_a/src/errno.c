@@ -5,8 +5,4 @@
 #include <errno.h>
 #include <reent.h>
 
-int *
-__errno ()
-{
-  return &_REENT->_errno;
-}
+int *__errno() { return &_REENT->_errno; }

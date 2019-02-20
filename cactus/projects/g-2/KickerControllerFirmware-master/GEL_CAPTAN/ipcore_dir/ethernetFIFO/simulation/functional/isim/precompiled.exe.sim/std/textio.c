@@ -22,10 +22,6 @@
 #define alloca _alloca
 #endif
 
-
-
-
-extern void std_textio_init()
-{
-	xsi_register_didat("std_textio", "isim/precompiled.exe.sim/std/textio.didat");
+extern void std_textio_init() {
+  xsi_register_didat("std_textio", "isim/precompiled.exe.sim/std/textio.didat");
 }

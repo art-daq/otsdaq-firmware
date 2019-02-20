@@ -26,23 +26,23 @@
 extern "C" {
 #endif
 
-typedef char            byte;
-typedef short           half;
-typedef int             word;
-typedef unsigned char   ubyte;
-typedef unsigned short  uhalf;
-typedef unsigned int    uword;
-typedef ubyte           boolean;
+typedef char byte;
+typedef short half;
+typedef int word;
+typedef unsigned char ubyte;
+typedef unsigned short uhalf;
+typedef unsigned int uword;
+typedef ubyte boolean;
 
-//typedef unsigned char   u_char;
-//typedef unsigned short  u_short;
-//typedef unsigned int    u_int;
-//typedef unsigned long   u_long;
+// typedef unsigned char   u_char;
+// typedef unsigned short  u_short;
+// typedef unsigned int    u_int;
+// typedef unsigned long   u_long;
 
-typedef short           int16_t;
-typedef unsigned short  uint16_t;
-typedef int             int32_t;
-typedef unsigned int    uint32_t;
+typedef short int16_t;
+typedef unsigned short uint16_t;
+typedef int int32_t;
+typedef unsigned int uint32_t;
 
 #ifdef __cplusplus
 }

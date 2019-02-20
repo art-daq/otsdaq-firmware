@@ -14,26 +14,27 @@
 // FROM CLAIMS OF INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY
 // AND FITNESS FOR A PARTICULAR PURPOSE.
 //
-// $Id: microblaze_interrupt_handler.c,v 1.1.2.1 2011/05/17 04:37:30 sadanan Exp $
+// $Id: microblaze_interrupt_handler.c,v 1.1.2.1 2011/05/17 04:37:30 sadanan Exp
+// $
 ////////////////////////////////////////////////////////////////////////////////
 
 /*****************************************************************************/
 /**
-*
-* @file microblaze_interrupt_handler.c
-*
-* This file contains the standard interrupt handler for the MicroBlaze processor.
-*
-* <pre>
-* MODIFICATION HISTORY:
-*
-* Ver   Date     Changes
-* ----- -------- -----------------------------------------------
-* 1.00b 10/03/03 First release
-* </pre>
-*
-******************************************************************************/
-
+ *
+ * @file microblaze_interrupt_handler.c
+ *
+ * This file contains the standard interrupt handler for the MicroBlaze
+ *processor.
+ *
+ * <pre>
+ * MODIFICATION HISTORY:
+ *
+ * Ver   Date     Changes
+ * ----- -------- -----------------------------------------------
+ * 1.00b 10/03/03 First release
+ * </pre>
+ *
+ ******************************************************************************/
 
 /***************************** Include Files *********************************/
 
@@ -41,45 +42,42 @@
 
 /************************** Constant Definitions *****************************/
 
-
 /**************************** Type Definitions *******************************/
-
 
 /***************** Macros (Inline Functions) Definitions *********************/
 
-
 /************************** Function Prototypes ******************************/
 
-void __interrupt_handler (void) __attribute__ ((interrupt_handler));
+void __interrupt_handler(void) __attribute__((interrupt_handler));
 
 /************************** Variable Definitions *****************************/
 
 extern MB_InterruptVectorTableEntry MB_InterruptVectorTable;
 /*****************************************************************************/
 /**
-*
-* This function is the standard interrupt handler used by the MicroBlaze processor.
-* It saves all volatile registers, calls the users top level interrupt handler.
-* When this returns, it restores all registers, and returns using a rtid instruction.
-*
-* @param
-*
-* None
-*
-* @return
-*
-* None.
-*
-* @note
-*
-* None.
-*
-******************************************************************************/
-void __interrupt_handler(void)
-{
-	/* The compiler saves all volatiles and the MSR */
-	MB_InterruptVectorTable.Handler(MB_InterruptVectorTable.CallBackRef);
-	/* The compiler restores all volatiles and MSR, and returns from interrupt */
+ *
+ * This function is the standard interrupt handler used by the MicroBlaze
+ *processor. It saves all volatile registers, calls the users top level
+ *interrupt handler. When this returns, it restores all registers, and returns
+ *using a rtid instruction.
+ *
+ * @param
+ *
+ * None
+ *
+ * @return
+ *
+ * None.
+ *
+ * @note
+ *
+ * None.
+ *
+ ******************************************************************************/
+void __interrupt_handler(void) {
+  /* The compiler saves all volatiles and the MSR */
+  MB_InterruptVectorTable.Handler(MB_InterruptVectorTable.CallBackRef);
+  /* The compiler restores all volatiles and MSR, and returns from interrupt */
 }
 
 /****************************************************************************/
@@ -101,9 +99,7 @@ void __interrupt_handler(void)
 * None.
 *
 ****************************************************************************/
-void microblaze_register_handler(XInterruptHandler Handler, void *DataPtr)
-{
-   MB_InterruptVectorTable.Handler = Handler;
-   MB_InterruptVectorTable.CallBackRef = DataPtr;
+void microblaze_register_handler(XInterruptHandler Handler, void *DataPtr) {
+  MB_InterruptVectorTable.Handler = Handler;
+  MB_InterruptVectorTable.CallBackRef = DataPtr;
 }
-

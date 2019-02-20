@@ -1,45 +1,45 @@
 /******************************************************************************
-*
-*       XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS"
-*       AS A COURTESY TO YOU, SOLELY FOR USE IN DEVELOPING PROGRAMS AND
-*       SOLUTIONS FOR XILINX DEVICES.  BY PROVIDING THIS DESIGN, CODE,
-*       OR INFORMATION AS ONE POSSIBLE IMPLEMENTATION OF THIS FEATURE,
-*       APPLICATION OR STANDARD, XILINX IS MAKING NO REPRESENTATION
-*       THAT THIS IMPLEMENTATION IS FREE FROM ANY CLAIMS OF INFRINGEMENT,
-*       AND YOU ARE RESPONSIBLE FOR OBTAINING ANY RIGHTS YOU MAY REQUIRE
-*       FOR YOUR IMPLEMENTATION.  XILINX EXPRESSLY DISCLAIMS ANY
-*       WARRANTY WHATSOEVER WITH RESPECT TO THE ADEQUACY OF THE
-*       IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OR
-*       REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE FROM CLAIMS OF
-*       INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-*       FOR A PARTICULAR PURPOSE.
-*
-*       (c) Copyright 2002 Xilinx Inc.
-*       All rights reserved.
-*
-******************************************************************************/
+ *
+ *       XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS"
+ *       AS A COURTESY TO YOU, SOLELY FOR USE IN DEVELOPING PROGRAMS AND
+ *       SOLUTIONS FOR XILINX DEVICES.  BY PROVIDING THIS DESIGN, CODE,
+ *       OR INFORMATION AS ONE POSSIBLE IMPLEMENTATION OF THIS FEATURE,
+ *       APPLICATION OR STANDARD, XILINX IS MAKING NO REPRESENTATION
+ *       THAT THIS IMPLEMENTATION IS FREE FROM ANY CLAIMS OF INFRINGEMENT,
+ *       AND YOU ARE RESPONSIBLE FOR OBTAINING ANY RIGHTS YOU MAY REQUIRE
+ *       FOR YOUR IMPLEMENTATION.  XILINX EXPRESSLY DISCLAIMS ANY
+ *       WARRANTY WHATSOEVER WITH RESPECT TO THE ADEQUACY OF THE
+ *       IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OR
+ *       REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE FROM CLAIMS OF
+ *       INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ *       FOR A PARTICULAR PURPOSE.
+ *
+ *       (c) Copyright 2002 Xilinx Inc.
+ *       All rights reserved.
+ *
+ ******************************************************************************/
 /*****************************************************************************/
 /**
-*
-* @file xenv.h
-*
-* Defines common services that are typically found in a host operating.
-* environment. This include file simply includes an OS specific file based
-* on the compile-time constant BUILD_ENV_*, where * is the name of the target
-* environment.
-*
-* All services are defined as macros.
-*
-* <pre>
-* MODIFICATION HISTORY:
-*
-* Ver   Who  Date     Changes
-* ----- ---- -------- -----------------------------------------------
-* 1.00b ch   10/24/02 Added XENV_LINUX
-* 1.00a rmm  04/17/02 First release
-* </pre>
-*
-******************************************************************************/
+ *
+ * @file xenv.h
+ *
+ * Defines common services that are typically found in a host operating.
+ * environment. This include file simply includes an OS specific file based
+ * on the compile-time constant BUILD_ENV_*, where * is the name of the target
+ * environment.
+ *
+ * All services are defined as macros.
+ *
+ * <pre>
+ * MODIFICATION HISTORY:
+ *
+ * Ver   Who  Date     Changes
+ * ----- ---- -------- -----------------------------------------------
+ * 1.00b ch   10/24/02 Added XENV_LINUX
+ * 1.00a rmm  04/17/02 First release
+ * </pre>
+ *
+ ******************************************************************************/
 
 #ifndef XENV_H /* prevent circular inclusions */
 #define XENV_H /* by using protection macros */
@@ -73,7 +73,6 @@ extern "C" {
 #include "xenv_standalone.h"
 #endif
 
-
 /*
  * The following comments specify the types and macro wrappers that are
  * expected to be defined by the target specific header files
@@ -89,7 +88,6 @@ extern "C" {
  * A structure that contains a time stamp used by other time stamp macros
  * defined below. This structure is processor dependent.
  */
-
 
 /***************** Macros (Inline Functions) Definitions *********************/
 
@@ -158,20 +156,19 @@ extern "C" {
  * @return  An unsigned int value with units of milliseconds.
  */
 
-/*****************************************************************************//**
- *
- * XENV_USLEEP(unsigned delay)
- *
- * Delay the specified number of microseconds.
- *
- * @param   delay is the number of microseconds to delay.
- *
- * @return  None
- */
+/*****************************************************************************/ /**
+                                                                                 *
+                                                                                 * XENV_USLEEP(unsigned delay)
+                                                                                 *
+                                                                                 * Delay the specified number of microseconds.
+                                                                                 *
+                                                                                 * @param   delay is the number of microseconds to delay.
+                                                                                 *
+                                                                                 * @return  None
+                                                                                 */
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif            /* end of protection macro */
-
+#endif /* end of protection macro */
