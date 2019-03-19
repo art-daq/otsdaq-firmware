@@ -32,7 +32,7 @@ set_max_delay 16.000 -from [get_pins {strip_imp/*strip_fifo_imp/fifo_imp/*/*/*/*
 set_max_delay 16.000 -from [get_pins strip_imp/*/TOKEN_*/C]  -to [get_clocks [list PHY_RXCLK]]
 
 #extra delay read data from strip instance.. since a ton of delay in readback strobe user_ready signal
-set_max_delay  64.000 -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ tx_data*)}] 
+# used before slave solution for tx readout... RAR ... set_max_delay  64.000 -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ tx_data*)}] 
 set_max_delay  64.000 -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ strip_imp/write_data*)}] 
 #extra delay write data to strip instance.. since 2 extra clocks of delay in write strobe
 set_max_delay  24.000 -from [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ eth_interface/data_manager_blk/RAM_COMM_DEC/ram_wdata*)}] -to [get_cells * -hierarchical -filter {IS_PRIMITIVE == true && (NAME =~ strip_imp/*)}]
