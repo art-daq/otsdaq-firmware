@@ -1,0 +1,1031 @@
+#-----------------------------------------------------------
+# Vivado v2015.2 (64-bit)
+# SW Build 1266856 on Fri Jun 26 16:35:25 MDT 2015
+# IP Build 1264090 on Wed Jun 24 14:22:01 MDT 2015
+# Start of session at: Fri May 27 11:23:45 2016
+# Process ID: 32134
+# Log file: /home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/impl_1/top.vdi
+# Journal file: /home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source top.tcl -notrace
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Project 1-454] Reading design checkpoint '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/packetfifo_synth_1/packetfifo.dcp' for cell 'strip_imp/stripstream_imp/packetfifo_imp'
+INFO: [Project 1-454] Reading design checkpoint '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/streamipbuf_synth_1/streamipbuf.dcp' for cell 'strip_imp/stripstream_imp/streamipbuf_imp'
+INFO: [Project 1-454] Reading design checkpoint '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/strips_mclk_mmcm_synth_1/strips_mclk_mmcm.dcp' for cell 'strip_imp/stripclk_imp/strips_mclk_gen'
+INFO: [Project 1-454] Reading design checkpoint '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp' for cell 'strip_imp/G[0].strip_fifo_imp/fifo_imp'
+INFO: [Project 1-454] Reading design checkpoint '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp' for cell 'strip_imp/G[1].strip_fifo_imp/fifo_imp'
+INFO: [Project 1-454] Reading design checkpoint '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp' for cell 'strip_imp/trigprim0_imp/fifo_imp'
+INFO: [Project 1-454] Reading design checkpoint '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp' for cell 'strip_imp/trigprim1_imp/fifo_imp'
+INFO: [Project 1-454] Reading design checkpoint '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp' for cell 'strip_imp/trigprim2_imp/fifo_imp'
+INFO: [Project 1-454] Reading design checkpoint '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp' for cell 'strip_imp/trigprim3_imp/fifo_imp'
+INFO: [Project 1-454] Reading design checkpoint '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp' for cell 'strip_imp/trigproc_imp/fifo_imp'
+INFO: [Project 1-454] Reading design checkpoint '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp' for cell 'strip_imp/spy_fifo_a_imp'
+INFO: [Project 1-454] Reading design checkpoint '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp' for cell 'strip_imp/spy_fifo_b_imp'
+INFO: [Project 1-454] Reading design checkpoint '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp' for cell 'strip_imp/spy_fifo_c_imp'
+INFO: [Project 1-454] Reading design checkpoint '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/trigbuf_synth_1/trigbuf.dcp' for cell 'strip_imp/G[0].trigbuf_imp'
+INFO: [Project 1-454] Reading design checkpoint '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/trigbuf_synth_1/trigbuf.dcp' for cell 'strip_imp/G[1].trigbuf_imp'
+INFO: [Netlist 29-17] Analyzing 292 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2015.2
+INFO: [Device 21-403] Loading part xc7k325tffg900-2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+WARNING: [Constraints 18-1079] Register strip_imp/G[0].strip_fifo_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_reg_reg and strip_imp/G[0].strip_fifo_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/G[0].strip_fifo_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/G[0].strip_fifo_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/G[1].strip_fifo_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_reg_reg and strip_imp/G[1].strip_fifo_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/G[1].strip_fifo_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/G[1].strip_fifo_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim0_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_reg_reg and strip_imp/trigprim0_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim0_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/trigprim0_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim1_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_reg_reg and strip_imp/trigprim1_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim1_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/trigprim1_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim2_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_reg_reg and strip_imp/trigprim2_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim2_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/trigprim2_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim3_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_reg_reg and strip_imp/trigprim3_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim3_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/trigprim3_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigproc_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_reg_reg and strip_imp/trigproc_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigproc_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/trigproc_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/spy_fifo_a_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_reg_reg and strip_imp/spy_fifo_a_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/spy_fifo_a_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/spy_fifo_a_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/spy_fifo_b_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_reg_reg and strip_imp/spy_fifo_b_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/spy_fifo_b_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/spy_fifo_b_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/spy_fifo_c_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_reg_reg and strip_imp/spy_fifo_c_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/spy_fifo_c_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/spy_fifo_c_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/packetfifo/packetfifo/packetfifo.xdc] for cell 'strip_imp/stripstream_imp/packetfifo_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/packetfifo/packetfifo/packetfifo.xdc] for cell 'strip_imp/stripstream_imp/packetfifo_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/streamipbuf/streamipbuf/streamipbuf.xdc] for cell 'strip_imp/stripstream_imp/streamipbuf_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/streamipbuf/streamipbuf/streamipbuf.xdc] for cell 'strip_imp/stripstream_imp/streamipbuf_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/strips_mclk_mmcm/strips_mclk_mmcm_board.xdc] for cell 'strip_imp/stripclk_imp/strips_mclk_gen/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/strips_mclk_mmcm/strips_mclk_mmcm_board.xdc] for cell 'strip_imp/stripclk_imp/strips_mclk_gen/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/strips_mclk_mmcm/strips_mclk_mmcm.xdc] for cell 'strip_imp/stripclk_imp/strips_mclk_gen/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/strips_mclk_mmcm/strips_mclk_mmcm.xdc] for cell 'strip_imp/stripclk_imp/strips_mclk_gen/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/G[0].strip_fifo_imp/fifo_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/G[0].strip_fifo_imp/fifo_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/G[1].strip_fifo_imp/fifo_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/G[1].strip_fifo_imp/fifo_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/trigprim0_imp/fifo_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/trigprim0_imp/fifo_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/trigprim1_imp/fifo_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/trigprim1_imp/fifo_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/trigprim2_imp/fifo_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/trigprim2_imp/fifo_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/trigprim3_imp/fifo_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/trigprim3_imp/fifo_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/trigproc_imp/fifo_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/trigproc_imp/fifo_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/spy_fifo_a_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/spy_fifo_a_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/spy_fifo_b_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/spy_fifo_b_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/spy_fifo_c_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc] for cell 'strip_imp/spy_fifo_c_imp/U0'
+Sourcing Tcl File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl]
+INFO: [Timing 38-35] Done setting XDC timing constraints. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:25]
+INFO: [Timing 38-2] Deriving generated clocks [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:25]
+get_clocks: Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1893.477 ; gain = 553.672 ; free physical = 1594 ; free virtual = 49891
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_21' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_20' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_2' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_19' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_18' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_17' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_16' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_15' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_14' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_13' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_12' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_11' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_10' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_1' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_9' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_8' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_7' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_6' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_5' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_4' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_38' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_37' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_36' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_35' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_34' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_33' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_32' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_31' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_30' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_3' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_29' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_28' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_27' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_26' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_25' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_24' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_23' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_22' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_2' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_15' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_14' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_13' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_1' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_22' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_21' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_20' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_2' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_19' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_18' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_17' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_16' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_15' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_14' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_13' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_12' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_11' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_10' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_1' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_9' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_8' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_7' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_5' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_3' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_29' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_28' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_27' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_26' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_25' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_24' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_23' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_22' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_21' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_20' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_2' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_19' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_18' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_17' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_16' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_15' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_12' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_11' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_10' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_1' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_9' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_8' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_7' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_6' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_5' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_4' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_35' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_34' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_33' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_32' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_31' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_30' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_29' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_28' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_27' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_26' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_25' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+INFO: [Common 17-14] Message 'Constraints 18-401' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+WARNING: [Constraints 18-402] set_max_delay: 'eth_interface/data_manager_blk/RAM_COMM_DEC/ram_wdata[63]_i_1' is not a valid startpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:34]
+Resolution: A valid start point is a main or generated clock pin or port, a clock pin of a sequential cell, or a primary input or inout port. Please validate that all the objects returned by your query belong to this list.
+Finished Sourcing Tcl File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl]
+Sourcing Tcl File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/pins_kc705.tcl]
+Finished Sourcing Tcl File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/pins_kc705.tcl]
+Sourcing Tcl File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/pins.tcl]
+Finished Sourcing Tcl File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/pins.tcl]
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/reset_mask'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:1]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:1]
+WARNING: [Vivado 12-507] No nets matched 'STRIP_HITOR'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:2]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:2]
+WARNING: [Vivado 12-507] No nets matched 'STRIP_OUT1_0'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:3]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:3]
+WARNING: [Vivado 12-507] No nets matched 'STRIP_OUT1_1'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:4]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:4]
+WARNING: [Vivado 12-507] No nets matched 'STRIP_OUT1_2'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:5]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:5]
+WARNING: [Vivado 12-507] No nets matched 'STRIP_OUT1_3'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:6]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:6]
+WARNING: [Vivado 12-507] No nets matched 'STRIP_OUT1_4'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:7]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:7]
+WARNING: [Vivado 12-507] No nets matched 'STRIP_RESET'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:8]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:8]
+WARNING: [Vivado 12-507] No nets matched 'STRIP_SCIN'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:9]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:9]
+WARNING: [Vivado 12-507] No nets matched 'STRIP_SCOUT'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:10]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:10]
+WARNING: [Vivado 12-507] No nets matched 'STRIP_SHIFT'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:11]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:11]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/sc_imp/rar_state[0]'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:16]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/sc_imp/rar_state[1]'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:16]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/sc_imp/rar_state[2]'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:16]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/sc_imp/rar_state[3]'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:16]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/sc_imp/rar_state[4]'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:16]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:16]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/G[1].chipserdes4_imp/iddr_sel_toggle'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:17]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:17]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/G[0].chipserdes1_imp/iddr_sel_toggle'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:18]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:18]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/G[1].chipserdes2_imp/iddr_sel_toggle'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:19]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:19]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/G[0].chipserdes2_imp/iddr_sel_toggle'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:20]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:20]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/G[0].chipserdes0_imp/iddr_sel_toggle'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:21]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:21]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/G[1].chipserdes3_imp/iddr_sel_toggle'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:22]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:22]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/G[0].chipserdes3_imp/iddr_sel_toggle'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:23]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:23]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/G[1].chipserdes1_imp/iddr_sel_toggle'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:24]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:24]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/G[0].chipserdes4_imp/iddr_sel_toggle'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:25]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:25]
+WARNING: [Vivado 12-507] No nets matched 'strip_imp/G[1].chipserdes0_imp/iddr_sel_toggle'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:26]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:26]
+WARNING: [Vivado 12-507] No nets matched 'secondary_clk'. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:27]
+CRITICAL WARNING: [Vivado 12-1419] Debug core 'u_ila_0' was not found. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc:27]
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/new/top.xdc]
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/packetfifo_synth_1/packetfifo.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/streamipbuf_synth_1/streamipbuf.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/strips_mclk_mmcm_synth_1/strips_mclk_mmcm.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/trigbuf_synth_1/trigbuf.dcp'
+INFO: [Project 1-538] Using original IP XDC constraints instead of the XDC constraints in dcp '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/trigbuf_synth_1/trigbuf.dcp'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/streamipbuf/streamipbuf/streamipbuf_clocks.xdc] for cell 'strip_imp/stripstream_imp/streamipbuf_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/streamipbuf/streamipbuf/streamipbuf_clocks.xdc] for cell 'strip_imp/stripstream_imp/streamipbuf_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/G[0].strip_fifo_imp/fifo_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/G[0].strip_fifo_imp/fifo_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/G[1].strip_fifo_imp/fifo_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/G[1].strip_fifo_imp/fifo_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/trigprim0_imp/fifo_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/trigprim0_imp/fifo_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/trigprim1_imp/fifo_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/trigprim1_imp/fifo_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/trigprim2_imp/fifo_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/trigprim2_imp/fifo_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/trigprim3_imp/fifo_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/trigprim3_imp/fifo_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/trigproc_imp/fifo_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/trigproc_imp/fifo_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/spy_fifo_a_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/spy_fifo_a_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/spy_fifo_b_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/spy_fifo_b_imp/U0'
+Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/spy_fifo_c_imp/U0'
+Finished Parsing XDC File [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo_clocks.xdc] for cell 'strip_imp/spy_fifo_c_imp/U0'
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+link_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:22 . Memory (MB): peak = 1899.477 ; gain = 921.234 ; free physical = 1546 ; free virtual = 49834
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7k325t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7k325t'
+INFO: [Common 17-1223] The version limit for your license is '2016.05' and will expire in 4 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:00.25 ; elapsed = 00:00:00.24 . Memory (MB): peak = 1916.508 ; gain = 7.027 ; free physical = 1518 ; free virtual = 49806
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_21' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_20' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_2' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_19' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_18' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_17' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_16' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_15' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_14' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_13' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_12' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_11' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_10' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_1' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_9' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_8' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_7' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_6' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_5' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_4' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_38' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_37' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_36' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_35' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_34' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_33' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_32' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_31' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_30' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_3' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_29' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_28' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_27' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_26' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_25' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_24' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_23' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_22' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_2' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_15' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_14' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_13' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_1' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_22' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_21' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_20' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_2' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_19' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_18' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_17' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_16' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_15' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_14' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_13' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_12' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_11' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_10' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_1' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_9' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_8' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_7' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_5' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_3' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_29' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_28' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_27' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_26' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_25' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_24' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_23' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_22' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_21' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_20' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_2' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_19' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_18' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_17' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_16' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_15' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_12' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_11' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_10' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_1' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_9' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_8' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_7' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_6' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_5' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_4' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_35' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_34' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_33' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_32' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_31' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_30' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_29' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_28' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_27' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_26' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_25' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+INFO: [Common 17-14] Message 'Constraints 18-401' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Constraints 18-402] set_max_delay: 'eth_interface/data_manager_blk/RAM_COMM_DEC/ram_wdata[63]_i_1' is not a valid startpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:34]
+Resolution: A valid start point is a main or generated clock pin or port, a clock pin of a sequential cell, or a primary input or inout port. Please validate that all the objects returned by your query belong to this list.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Starting Logic Optimization Task
+
+Phase 1 Generate And Synthesize Debug Cores
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.cache/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/local/xilinx/Vivado/2015.2/data/ip'.
+INFO: [IP_Flow 19-3806] Processing IP xilinx.com:ip:xsdbm:1.1 for cell dbg_hub_CV.
+INFO: [Chipscope 16-220] Re-using generated and synthesized IP, "xilinx.com:ip:xsdbm:1.1", from Vivado IP cache entry "60ce41d909435c59".
+INFO: [IP_Flow 19-3806] Processing IP xilinx.com:ip:ila:5.1 for cell u_ila_0_CV.
+INFO: [Chipscope 16-220] Re-using generated and synthesized IP, "xilinx.com:ip:ila:5.1", from Vivado IP cache entry "ff2bf34209969b73".
+Netlist sorting complete. Time (s): cpu = 00:00:00.17 ; elapsed = 00:00:00.17 . Memory (MB): peak = 2068.609 ; gain = 0.000 ; free physical = 1368 ; free virtual = 49513
+Phase 1 Generate And Synthesize Debug Cores | Checksum: 1f27498fd
+
+Time (s): cpu = 00:01:31 ; elapsed = 00:01:31 . Memory (MB): peak = 2068.609 ; gain = 152.102 ; free physical = 1368 ; free virtual = 49513
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim0_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/trigprim0_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim1_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/trigprim1_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim2_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/trigprim2_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim3_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/trigprim3_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigproc_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/trigproc_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/spy_fifo_a_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_reg_reg and strip_imp/spy_fifo_a_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/spy_fifo_b_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_reg_reg and strip_imp/spy_fifo_b_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/spy_fifo_b_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/spy_fifo_b_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/spy_fifo_c_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_reg_reg and strip_imp/spy_fifo_c_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.rd_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/spy_fifo_c_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/spy_fifo_c_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-402] set_max_delay: 'eth_interface/data_manager_blk/RAM_COMM_DEC/ram_wdata[63]_i_1' is not a valid startpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:34]
+Resolution: A valid start point is a main or generated clock pin or port, a clock pin of a sequential cell, or a primary input or inout port. Please validate that all the objects returned by your query belong to this list.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 2 Retarget
+INFO: [Opt 31-138] Pushed 18 inverter(s) to 21 load pin(s).
+INFO: [Opt 31-274] Optimized connectivity to 1 cascaded BUFGCE cells
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 2 Retarget | Checksum: 219022b7d
+
+Time (s): cpu = 00:01:41 ; elapsed = 00:01:38 . Memory (MB): peak = 2128.609 ; gain = 212.102 ; free physical = 1338 ; free virtual = 49483
+
+Phase 3 Constant Propagation
+INFO: [Opt 31-138] Pushed 2 inverter(s) to 2 load pin(s).
+INFO: [Opt 31-10] Eliminated 139 cells.
+Phase 3 Constant Propagation | Checksum: 177433e7f
+
+Time (s): cpu = 00:01:44 ; elapsed = 00:01:41 . Memory (MB): peak = 2128.609 ; gain = 212.102 ; free physical = 1342 ; free virtual = 49488
+
+Phase 4 Sweep
+INFO: [Opt 31-12] Eliminated 2329 unconnected nets.
+INFO: [Opt 31-11] Eliminated 616 unconnected cells.
+Phase 4 Sweep | Checksum: 18309b718
+
+Time (s): cpu = 00:01:47 ; elapsed = 00:01:44 . Memory (MB): peak = 2128.609 ; gain = 212.102 ; free physical = 1342 ; free virtual = 49488
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.08 . Memory (MB): peak = 2128.609 ; gain = 0.000 ; free physical = 1342 ; free virtual = 49488
+Ending Logic Optimization Task | Checksum: 18309b718
+
+Time (s): cpu = 00:01:47 ; elapsed = 00:01:44 . Memory (MB): peak = 2128.609 ; gain = 212.102 ; free physical = 1347 ; free virtual = 49493
+Implement Debug Cores | Checksum: 1710bd80c
+Logic Optimization | Checksum: 192c377eb
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 3.12 ns.
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 122 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 28 newly gated: 0 Total Ports: 244
+Ending PowerOpt Patch Enables Task | Checksum: 1cfe235d3
+
+Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.07 . Memory (MB): peak = 2412.258 ; gain = 0.000 ; free physical = 1066 ; free virtual = 49213
+Ending Power Optimization Task | Checksum: 1cfe235d3
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2412.258 ; gain = 283.648 ; free physical = 1066 ; free virtual = 49213
+INFO: [Common 17-83] Releasing license: Implementation
+74 Infos, 261 Warnings, 23 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:02:04 ; elapsed = 00:02:02 . Memory (MB): peak = 2412.258 ; gain = 512.781 ; free physical = 1066 ; free virtual = 49213
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2452.273 ; gain = 0.000 ; free physical = 1063 ; free virtual = 49212
+write_checkpoint: Time (s): cpu = 00:00:09 ; elapsed = 00:00:06 . Memory (MB): peak = 2452.273 ; gain = 40.016 ; free physical = 1054 ; free virtual = 49210
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Coretcl 2-168] The results of DRC are in file /home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.runs/impl_1/top_drc_opted.rpt.
+INFO: [#UNDEF] Cannot write hardware definition file as there are no IPI block design hardware handoff files present
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7k325t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7k325t'
+INFO: [Common 17-1223] The version limit for your license is '2016.05' and will expire in 4 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+WARNING: [DRC 23-20] Rule violation (CKLD-2) Clock Net has direct IO Driver - Clock net MASTER_CLK is directly driven by an IO rather than a Clock Buffer. Driver(s): IBUF_PHY_RXCLK/O2000
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors, 1 Warnings
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 8 CPUs
+
+Phase 1 Placer Runtime Estimator
+Phase 1 Placer Runtime Estimator | Checksum: d1f48f19
+
+Time (s): cpu = 00:00:00.51 ; elapsed = 00:00:00.50 . Memory (MB): peak = 2452.273 ; gain = 0.000 ; free physical = 1050 ; free virtual = 49207
+
+Phase 2 Placer Initialization
+Netlist sorting complete. Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.09 . Memory (MB): peak = 2452.273 ; gain = 0.000 ; free physical = 1050 ; free virtual = 49207
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2452.273 ; gain = 0.000 ; free physical = 1049 ; free virtual = 49206
+
+Phase 2.1 IO Placement/ Clock Placement/ Build Placer Device
+
+Phase 2.1.1 Pre-Place Cells
+Phase 2.1.1 Pre-Place Cells | Checksum: 0d620157
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2452.273 ; gain = 0.000 ; free physical = 1049 ; free virtual = 49206
+WARNING: [Constraints 18-1079] Register strip_imp/G[0].strip_fifo_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/G[0].strip_fifo_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/G[1].strip_fifo_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/G[1].strip_fifo_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim0_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/trigprim0_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim1_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/trigprim1_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim2_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/trigprim2_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigprim3_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/trigprim3_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/trigproc_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/trigproc_imp/fifo_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/spy_fifo_a_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/spy_fifo_a_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/spy_fifo_b_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/spy_fifo_b_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-1079] Register strip_imp/spy_fifo_c_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_reg_reg and strip_imp/spy_fifo_c_imp/U0/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/rsync.ric.wr_rst_fb_reg[4] are from the same synchronizer and have the ASYNC_REG property set, but could not be placed into the same slice due to constraints or mismatched control signals on the registers.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_21' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_20' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_2' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_18' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_17' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_16' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_15' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_12' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[10]_i_10' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_9' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_8' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_7' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_6' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_5' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_4' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_38' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_37' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_36' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_34' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_33' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_32' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_31' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_30' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_3' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_29' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_28' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_27' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_26' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_25' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_24' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_23' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_22' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_2' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_15' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_14' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_13' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[0]_i_1' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_22' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_21' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_20' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_2' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_19' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_18' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_17' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_16' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_15' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_14' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_13' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_12' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_11' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_10' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[18]_i_1' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_9' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_8' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_7' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_5' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_3' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_29' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_28' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_27' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_26' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_25' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_24' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_23' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_22' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_21' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_20' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_2' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_19' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_18' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_17' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_16' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_15' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_12' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_11' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_10' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[17]_i_1' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_9' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_8' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_7' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_6' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_5' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_4' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_35' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_34' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_33' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_32' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_31' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_30' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_29' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_28' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_27' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_26' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_25' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_24' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_23' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_21' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_20' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_2' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+WARNING: [Constraints 18-401] set_max_delay: 'strip_imp/write_data[16]_i_16' is not a valid endpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:32]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+INFO: [Common 17-14] Message 'Constraints 18-401' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Constraints 18-402] set_max_delay: 'eth_interface/data_manager_blk/RAM_COMM_DEC/ram_wdata[63]_i_1' is not a valid startpoint. [/home/rrivera/tmp/kc705_mvp_strips_cs_iddr/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl:34]
+Resolution: A valid start point is a main or generated clock pin or port, a clock pin of a sequential cell, or a primary input or inout port. Please validate that all the objects returned by your query belong to this list.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 2.1.2 IO & Clk Clean Up
+WARNING: [Place 30-574] Poor placement for routing between an IO pin and BUFG. This is normally an ERROR but the CLOCK_DEDICATED_ROUTE constraint is set to FALSE allowing your design to continue. The use of this override is highly discouraged as it may lead to very poor timing results. It is recommended that this error condition be corrected in the design.
+
+	ext_bcoclk_ibuf (IBUFDS.O) is locked to IOB_X0Y88
+	ext_bcoclk_bufg (BUFG.I) is provisionally placed by clockplacer on BUFGCTRL_X0Y4
+Resolution: Poor placement of an IO pin and a BUFG has resulted in the router using a non-dedicated path between the two.  There are several things that could trigger this DRC, each of which can cause unpredictable clock insertion delays that result in poor timing.  This DRC could be caused by any of the following: (a) a clock port was placed on a pin that is not a CCIO-pin (b)the BUFG has not been placed in the same half of the device or SLR as the CCIO-pin (c) a single ended clock has been placed on the N-Side of a differential pair CCIO-pin.
+Phase 2.1.2 IO & Clk Clean Up | Checksum: 0d620157
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:15 . Memory (MB): peak = 2512.297 ; gain = 60.023 ; free physical = 1048 ; free virtual = 49206
+
+Phase 2.1.3 Implementation Feasibility check On IDelay
+Phase 2.1.3 Implementation Feasibility check On IDelay | Checksum: 0d620157
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:15 . Memory (MB): peak = 2512.297 ; gain = 60.023 ; free physical = 1020 ; free virtual = 49177
+
+Phase 2.1.4 Commit IO Placement
+Phase 2.1.4 Commit IO Placement | Checksum: d96240a3
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:15 . Memory (MB): peak = 2512.297 ; gain = 60.023 ; free physical = 1020 ; free virtual = 49177
+Phase 2.1 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 117ed26fc
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:15 . Memory (MB): peak = 2512.297 ; gain = 60.023 ; free physical = 1020 ; free virtual = 49177
+
+Phase 2.2 Build Placer Netlist Model
+
+Phase 2.2.1 Place Init Design
+
+Phase 2.2.1.1 Init Lut Pin Assignment
+Phase 2.2.1.1 Init Lut Pin Assignment | Checksum: 1fa09fe50
+
+Time (s): cpu = 00:00:23 ; elapsed = 00:00:18 . Memory (MB): peak = 2512.297 ; gain = 60.023 ; free physical = 1048 ; free virtual = 49205
+Phase 2.2.1 Place Init Design | Checksum: 17c0a1f54
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:25 . Memory (MB): peak = 2512.297 ; gain = 60.023 ; free physical = 1016 ; free virtual = 49175
+Phase 2.2 Build Placer Netlist Model | Checksum: 17c0a1f54
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:25 . Memory (MB): peak = 2512.297 ; gain = 60.023 ; free physical = 1016 ; free virtual = 49175
+
+Phase 2.3 Constrain Clocks/Macros
+
+Phase 2.3.1 Constrain Global/Regional Clocks
+Phase 2.3.1 Constrain Global/Regional Clocks | Checksum: 17c0a1f54
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:25 . Memory (MB): peak = 2512.297 ; gain = 60.023 ; free physical = 1015 ; free virtual = 49174
+Phase 2.3 Constrain Clocks/Macros | Checksum: 17c0a1f54
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:25 . Memory (MB): peak = 2512.297 ; gain = 60.023 ; free physical = 1015 ; free virtual = 49174
+Phase 2 Placer Initialization | Checksum: 17c0a1f54
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:25 . Memory (MB): peak = 2512.297 ; gain = 60.023 ; free physical = 1015 ; free virtual = 49174
+
+Phase 3 Global Placement
+Phase 3 Global Placement | Checksum: 8042c61b
+
+Time (s): cpu = 00:01:36 ; elapsed = 00:00:46 . Memory (MB): peak = 2607.836 ; gain = 155.562 ; free physical = 921 ; free virtual = 49081
+
+Phase 4 Detail Placement
+
+Phase 4.1 Commit Multi Column Macros
+Phase 4.1 Commit Multi Column Macros | Checksum: 8042c61b
+
+Time (s): cpu = 00:01:36 ; elapsed = 00:00:46 . Memory (MB): peak = 2607.836 ; gain = 155.562 ; free physical = 921 ; free virtual = 49081
+
+Phase 4.2 Commit Most Macros & LUTRAMs
+Phase 4.2 Commit Most Macros & LUTRAMs | Checksum: 7767cd9f
+
+Time (s): cpu = 00:02:01 ; elapsed = 00:00:54 . Memory (MB): peak = 2607.836 ; gain = 155.562 ; free physical = 910 ; free virtual = 49070
+
+Phase 4.3 Area Swap Optimization
+Phase 4.3 Area Swap Optimization | Checksum: 1083fc1c7
+
+Time (s): cpu = 00:02:01 ; elapsed = 00:00:55 . Memory (MB): peak = 2607.836 ; gain = 155.562 ; free physical = 910 ; free virtual = 49070
+
+Phase 4.4 updateClock Trees: DP
+Phase 4.4 updateClock Trees: DP | Checksum: 1083fc1c7
+
+Time (s): cpu = 00:02:01 ; elapsed = 00:00:55 . Memory (MB): peak = 2607.836 ; gain = 155.562 ; free physical = 910 ; free virtual = 49070
+
+Phase 4.5 Timing Path Optimizer
+Phase 4.5 Timing Path Optimizer | Checksum: ac94537d
+
+Time (s): cpu = 00:02:14 ; elapsed = 00:00:58 . Memory (MB): peak = 2607.836 ; gain = 155.562 ; free physical = 903 ; free virtual = 49063
+
+Phase 4.6 Small Shape Detail Placement
+
+Phase 4.6.1 Commit Small Macros & Core Logic
+
+Phase 4.6.1.1 setBudgets
+Phase 4.6.1.1 setBudgets | Checksum: 98142391
+
+Time (s): cpu = 00:02:14 ; elapsed = 00:00:59 . Memory (MB): peak = 2607.836 ; gain = 155.562 ; free physical = 906 ; free virtual = 49066
+
+Phase 4.6.1.2 Commit Slice Clusters
