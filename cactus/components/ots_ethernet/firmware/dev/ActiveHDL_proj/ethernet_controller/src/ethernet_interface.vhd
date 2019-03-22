@@ -26,7 +26,9 @@ entity ethernet_interface is
    port ( 								
    		  reset_in             	: in    std_logic; 		-- optional for user to reset, this block will self reset on startup					
           reset_out            	: out   std_logic;  		-- ethernet reset can be used for "reset on start-up" or for reset to PHY  
-		  		
+
+          USER_CLK  			: in    std_logic; 							--SCRIPT COMMENT OUT
+          
 		  -- rx/tx signals
           rx_addr              	: out   std_logic_vector (31 downto 0); 
           rx_data              	: out   std_logic_vector (63 downto 0);   	
@@ -40,7 +42,8 @@ entity ethernet_interface is
           b_data_we            	: in    std_logic; 												                            
           b_enable             	: out   std_logic; 				  		  															 				   
 		  b_force_packet	   	: in    std_logic;						  	--SCRIPT COMMENT OUT  	
-		  
+
+          b_throttle_reset      : out    std_logic; 						--SCRIPT COMMENT OUT 
 		  
 		  -- internal address space signals							   
           internal_block_sel  	: in    std_logic_vector (31 downto 0); 	--SCRIPT COMMENT OUT   
@@ -50,7 +53,7 @@ entity ethernet_interface is
           internal_dout			: out   std_logic_vector (63 downto 0); 	--SCRIPT COMMENT OUT  
 		   
           user_addr  			: in    std_logic_vector (7 downto 0); 		--SCRIPT COMMENT OUT  
-		  
+		    
 		  
 		  -- PHY interface signals
 		  MASTER_CLK           	: in    std_logic; 			
@@ -140,6 +143,11 @@ architecture BEHAVIORAL of ethernet_interface is
 	signal resolved_addr			: std_logic_vector(31 downto 0);
 	signal resolved_mac 			: std_logic_vector(47 downto 0);
 	
+
+	signal b_data_throttle_threshold 		: unsigned(15 downto 0) := (others => '0');
+	signal b_data_throttle_cnt			 	: unsigned(15 downto 0) := (others => '0');
+	signal b_data_throttle_period_cnt 		: unsigned(23 downto 0) := (others => '0'); --goes from 134 ms @ 2^24 x 8ns
+  	 		
 									 
 	-------- start simple declaration section -----------  	  
 	-- comments denoted as -- simple -- will be removed in this case by install script
@@ -254,7 +262,7 @@ begin
 	
    burst_traffic_controller_blk : entity work.burst_traffic_controller
       port map (BURST_WE=>b_masked_we,
-	  			MASTER_CLK=>MASTER_CLK,		
+	  			MASTER_CLK=>MASTER_CLK,	--USER_CLK	
 	  			BURST_FORCE_PACKET=>user_b_force_packet,
                 RESET=>reset,
                 BURST_END_PACKET=>b_end_packet);
@@ -344,6 +352,8 @@ begin
 					 ctrl_dynamic_mac_resolution <= ots_din(0); 
 				elsif ( ots_block_addr = x"B" ) then 
 					 data_dynamic_mac_resolution <= ots_din(0); 
+				elsif ( ots_block_addr = x"C" ) then
+					b_data_throttle_threshold <= unsigned(ots_din(15 downto 0));
 				elsif ( ots_block_addr = x"FFFFFFFF" ) then 
 					 internal_reset <= ots_din(1 downto 0); 
 				end if;
@@ -378,6 +388,8 @@ begin
 					 ctrl_dynamic_mac_resolution <= internal_din(0); 
 				elsif ( unsigned(internal_addr) = x"B" ) then 
 					 data_dynamic_mac_resolution <= internal_din(0); 
+				elsif ( unsigned(internal_addr) = x"C" ) then 
+					b_data_throttle_threshold <= unsigned(internal_din(15 downto 0));
 				elsif ( unsigned(internal_addr) = x"FFFFFFFF" ) then 
 					 internal_reset <= internal_din(1 downto 0); 
 				end if;
@@ -417,6 +429,8 @@ begin
 					 internal_eth_dout(0) <= ctrl_dynamic_mac_resolution; 
 				elsif ( ots_block_addr = x"B" ) then 
 					 internal_eth_dout(0) <= data_dynamic_mac_resolution; 
+				elsif ( ots_block_addr = x"C" ) then 
+					 internal_eth_dout(15 downto 0) <= b_data_throttle_threshold; 
 				elsif ( ots_block_addr = x"64" ) then 
 					 internal_eth_dout(15 downto 0) <= ETH_INTERFACE_VERSION; 
 				end if;
@@ -447,7 +461,9 @@ begin
 				elsif ( unsigned(internal_addr) = x"A" ) then 
 					 internal_dout(0) <= ctrl_dynamic_mac_resolution; 
 				elsif ( unsigned(internal_addr) = x"B" ) then 
-					 internal_dout(0) <= data_dynamic_mac_resolution; 
+					 internal_dout(0) <= data_dynamic_mac_resolution;
+				elsif ( unsigned(internal_addr) = x"C" ) then 
+					 internal_dout(15 downto 0) <= b_data_throttle_threshold;				
 				elsif ( unsigned(internal_addr) = x"64" ) then 
 					 internal_dout(15 downto 0) <= ETH_INTERFACE_VERSION; 
 				end if;
@@ -493,6 +509,32 @@ begin
 		  
 	-------- end internal address space section -----------
 	   
+
+	--generate throttle reset
+	process(MASTER_CLK)
+	begin
+		if (rising_edge(MASTER_CLK)) then
+			if (b_data_throttle_threshold > 0 and
+				b_data_throttle_cnt > b_data_throttle_threshold) then --throttle!
+				b_throttle_reset <= '1';
+			else
+				b_throttle_reset <= '0';
+				
+				if( b_enable_sig = '1' and b_data_we = '1') then
+					b_data_throttle_cnt <= b_data_throttle_cnt + 1;
+				end if;
+			end if;
+			
+			b_data_throttle_period_cnt <= b_data_throttle_period_cnt + 1;			
+			if( b_data_throttle_period_cnt = 0) then
+				b_data_throttle_cnt <= (others => '0'); --reset count for new period			
+			end if;				
+			
+		end if;
+	end process;
+	
+	
+	
 	   																  
 	user_ready <= ready;		  			--SCRIPT COMMENT OUT 	
 	tx_rden <= user_tx_rden;	  			--SCRIPT COMMENT OUT
