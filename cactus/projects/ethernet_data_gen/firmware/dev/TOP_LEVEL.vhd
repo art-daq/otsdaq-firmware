@@ -59,6 +59,7 @@ architecture BEHAVIORAL of top is
     signal GMII_RX_ER_0_sig         : std_logic;
     signal GTX_CLK_0_sig            : std_logic;
     signal MASTER_CLK               : std_logic;
+    --signal USER_CLK               : std_logic;
     signal CLK15NS, CLK15NS_sig     : std_logic;                                   
    
     signal gec_mac, gec_user_src_mac       : std_logic_vector (47 downto 0);
@@ -308,11 +309,13 @@ begin
      GMII_RX_ER_0_sig <= '0';
      
      IBUF_PHY_RXCLK : BUFG      port map (I=>PHY_RXCLK,  O=>MASTER_CLK);
+     --IBUF_USER_CLK : BUFG      port map (I=>USER_CLOCK,  O=>USER_CLK);
         
     -----------------------
     ----------------------- OBUF 's 
     	 
     OBUF_PHY_RESET : OBUF	   port map (I=>'1',  O=>PHY_RESET); --hold not reset
+    --OBUF_PHY_RESET : OBUF	   port map (I=>reset_n,  O=>PHY_RESET); --hold not reset
 		 
     OBUF_PHY_TXER : OBUF       port map (I=>PHY_TXER_sig,  O=>PHY_TXER);
 	 
