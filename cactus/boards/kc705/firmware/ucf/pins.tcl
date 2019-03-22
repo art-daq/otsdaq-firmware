@@ -22,7 +22,8 @@ set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets MASTER_CLK]
 
 #66 MHz EMCCLK flash clock
 set_property IOSTANDARD LVCMOS25 [get_ports USER_CLOCK]
-set_property PACKAGE_PIN R24 [get_ports USER_CLOCK]							  
+set_property PACKAGE_PIN R24 [get_ports USER_CLOCK]		
+#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets USER_CLK]					  
 
 set_property PACKAGE_PIN R28 [get_ports PHY_RXCTL_RXDV]
 set_property IOSTANDARD LVCMOS25 [get_ports PHY_RXCTL_RXDV]
