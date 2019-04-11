@@ -5,6 +5,8 @@
 # In xdc, all clocks are related by default. This differs from ucf, where clocks are unrelated unless specified otherwise. As a result, you may now see cross-clock paths that were previously unconstrained in ucf. Commented out xdc false path constraints have been generated and can be uncommented, should you wish to remove these new paths. These commands are located after the last clock definition
 
 create_clock -name PHY_RXCLK -period 8.000 [get_ports PHY_RXCLK]
+create_clock -name USER_CLOCK -period 10.000 [get_ports USER_CLOCK]
+
 create_clock -name CLK15NS -period 16.000 [get_pins CLK15NS_bufg/O]
 create_clock -name CLK5MHZ -period 256.000 [get_pins CLK5MHz_bufg/O]
 
@@ -22,8 +24,9 @@ set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets EXT_CLK_input]
 #set_property CLOCK_DEDICATED_ROUTE BACKBONE [get_nets strip_imp/stripclk_imp/bcoclk]
 
 
-set_false_path -from [get_clocks [list BCOCLK BCOCLK_FAST]] -to [get_clocks [list PHY_RXCLK   CLK5MHZ   CLK15NS    MCLK_A_strips_mclk_mmcm    MCLK_MULT3_strips_mclk_mmcm]]
-set_false_path -from [get_clocks [list PHY_RXCLK   CLK5MHZ   CLK15NS    MCLK_A_strips_mclk_mmcm    MCLK_MULT3_strips_mclk_mmcm]]  -to [get_clocks [list BCOCLK BCOCLK_FAST]]
+
+set_false_path -from [get_clocks [list BCOCLK BCOCLK_FAST USER_CLOCK]] -to [get_clocks [list PHY_RXCLK   CLK5MHZ   CLK15NS    MCLK_A_strips_mclk_mmcm    MCLK_MULT3_strips_mclk_mmcm]]
+set_false_path -from [get_clocks [list PHY_RXCLK   CLK5MHZ   CLK15NS    MCLK_A_strips_mclk_mmcm    MCLK_MULT3_strips_mclk_mmcm]]  -to [get_clocks [list BCOCLK BCOCLK_FAST USER_CLOCK]]
 
 #this is supposed to be for chipscope stuff.. but it is messing up burst write pulse timing
 #set_max_delay  16.000 -from [get_clocks [list MCLK_A_strips_mclk_mmcm CLK15NS CLK5MHZ]] -to [get_clocks [list PHY_RXCLK]]

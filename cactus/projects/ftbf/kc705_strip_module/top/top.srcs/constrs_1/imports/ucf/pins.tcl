@@ -1,7 +1,13 @@
 # constraints for kc705
 # Modified Mar 2016 by rrivera at fnal dot gov
 
-
+set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 4 [current_design]
+set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
+set_property BITSTREAM.CONFIG.CONFIGRATE 33 [current_design]
+set_property CONFIG_VOLTAGE 3.3 [current_design]
+set_property CFGBVS VCCO [current_design]
+set_property BITSTREAM.CONFIG.SPI_32BIT_ADDR YES [current_design] 
+set_property BITSTREAM.CONFIG.SPI_FALL_EDGE YES [current_design] 
 
 ####################################################################################
 # Constraints from file : 'TOP_LEVEL.ucf'
@@ -11,6 +17,10 @@
 set_property IOSTANDARD LVCMOS25 [get_ports PHY_RXCLK]
 set_property PACKAGE_PIN U27 [get_ports PHY_RXCLK]
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets MASTER_CLK]
+
+#66 MHz EMCCLK flash clock
+set_property PACKAGE_PIN R24 [get_ports USER_CLOCK]
+set_property IOSTANDARD LVCMOS25 [get_ports USER_CLOCK]
 
 set_property PACKAGE_PIN R28 [get_ports PHY_RXCTL_RXDV]
 set_property IOSTANDARD LVCMOS25 [get_ports PHY_RXCTL_RXDV]

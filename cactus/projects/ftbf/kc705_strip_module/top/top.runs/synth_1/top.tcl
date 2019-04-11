@@ -76,6 +76,7 @@ read_vhdl -library xil_defaultlib {
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/ethernet_controller_wrapper.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/user_addrs_mux.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/arp_reply.vhd
+  /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/fifo.vhd
 }
 read_xdc /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.srcs/constrs_1/new/top.xdc
 set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.srcs/constrs_1/new/top.xdc]

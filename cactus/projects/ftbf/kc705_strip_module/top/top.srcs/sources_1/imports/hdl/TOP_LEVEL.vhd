@@ -23,7 +23,7 @@ entity top is
 	PHY_RXD7	: in    std_logic; 
 		  
 		--PHY_RXER     : in    std_logic; 
-		--USER_CLOCK   : in    std_logic; 
+	USER_CLOCK   : in    std_logic; 
           
 	PHY_RESET	: out    std_logic; 
 		
@@ -116,7 +116,8 @@ architecture BEHAVIORAL of top is
     signal GMII_RX_ER_0_sig         : std_logic;
     signal GTX_CLK_0_sig            : std_logic;
     signal MASTER_CLK               : std_logic;
-    signal CLK15NS, CLK15NS_sig     : std_logic;                                   
+    signal CLK15NS, CLK15NS_sig     : std_logic;   
+    signal USER_CLK                 : std_logic;                                
     
     signal iobus : iobus_t;
     
@@ -378,10 +379,9 @@ begin
 				PHY_RX_DV=>GMII_RX_DV_0_sig,
 				PHY_RX_ER=>GMII_RX_ER_0_sig,
 				MASTER_CLK=>MASTER_CLK,                
-				reset_in=>reset_btn,
-				slow_clk=>MASTER_CLK,
-				user_ready=>strip_ready_and, --strip_ready
-				user_addr=>(others => '0'),--JUMPERS,
+				reset_in=>reset_btn,   
+                user_clk=>USER_CLK,   
+				user_ready=>strip_ready_and, --strip_ready				
                 tx_rden=>tx_rden,
 				reset_out => reset,
 				b_throttle_reset => b_throttle_reset,
@@ -747,12 +747,14 @@ begin
      
      GMII_RX_ER_0_sig <= '0';
      
-     IBUF_PHY_RXCLK : IBUFG      port map (I=>PHY_RXCLK,  O=>MASTER_CLK);
+     IBUF_PHY_RXCLK : BUFG      port map (I=>PHY_RXCLK,  O=>MASTER_CLK);
+     IBUF_USER_CLK : IBUFG      port map (I=>USER_CLOCK, O=>USER_CLK);
         
     -----------------------
     ----------------------- OBUF 's 
     	 
-	OBUF_PHY_RESET : OBUF	   port map (I=>'1',  O=>PHY_RESET); --hold not reset
+	--OBUF_PHY_RESET : OBUF	   port map (I=>'1',  O=>PHY_RESET); --hold not reset
+    OBUF_PHY_RESET : OBUF       port map (I=>reset_n,  O=>PHY_RESET);
 		 
 	OBUF_PHY_TXER : OBUF       port map (I=>PHY_TXER_sig,  O=>PHY_TXER);
 	 

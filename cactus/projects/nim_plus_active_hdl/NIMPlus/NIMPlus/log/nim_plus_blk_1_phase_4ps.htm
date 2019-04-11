@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+
+<!----------------------------------------------------------------------------->
+<!--                          BEGIN HTML HEAD                                -->
+<!--                                                                         -->
+
+<HEAD>
+<TITLE>DRC Report File - nim_plus_blk_1_phase_4ps.bde</TITLE>
+<STYLE>
+.Err	{color:#FF0000;cursor:hand;text-decoration:underline;}
+.Warn	{color:#0000FF;cursor:hand;text-decoration:underline;}
+.Info	{color:#000000;cursor:hand;text-decoration:underline;}
+.Sccss  {color:#009600;cursor:hand;text-decoration:underline;}
+.ErrH	{color:#FF0000;cursor:hand;text-decoration:underline;}
+.WarnH	{color:#0000FF;cursor:hand;text-decoration:underline;}
+.InfoH	{color:#000000;cursor:hand;text-decoration:underline;}
+.Err1	{color:#FF0000;}
+.Warn1	{color:#0000FF;}
+.Info1	{color:#000000;}
+.Sccss1 {color:#009600;}
+</STYLE>
+</HEAD>
+<BODY BGCOLOR="white" TEXT="black" LINK="blue" VLINK="purple" BACKGROUND="C:\Aldec\Active-HDL-10.3\\Flows\Res\default.bmp">
+<FONT FACE="Serif">
+<tt>
+<!--                                                                         -->
+<!--                             END HEADER                                  -->
+<!----------------------------------------------------------------------------->
+
+<!----------------------------------------------------------------------------->
+<!--                            BEGIN VBSCRIPT                               -->
+<!--                                                                         -->
+<SCRIPT LANGUAGE=JSCRIPT>
+	function RollOn() {
+		switch(window.event.srcElement.className) {
+			case 'Err':
+				window.event.srcElement.className = 'ErrH'; break;
+			case 'Warn':
+				window.event.srcElement.className = 'WarnH'; break;
+			case 'Info':
+				window.event.srcElement.className = 'InfoH'; break;
+		}
+	}
+	function RollOff() {
+		switch(window.event.srcElement.className) {
+			case 'ErrH':
+				window.event.srcElement.className = 'Err'; break;
+			case 'WarnH':
+				window.event.srcElement.className = 'Warn'; break;
+			case 'InfoH':
+				window.event.srcElement.className = 'Info'; break;
+		}
+	}
+	function OnError(sMsg,sUrl,sLine) {
+		return true;
+	}
+	
+	document.onmouseover = RollOn;
+	document.onmouseout = RollOff;
+	window.onerror = OnError;
+</SCRIPT>
+
+<SCRIPT LANGUAGE=VBSCRIPT>
+
+Function IID_IDispatch
+	IID_IDispatch = "{00020400-0000-0000-C000-000000000046}"
+End Function
+
+Function CLSID_Executor
+	CLSID_Executor = "Aldec.ExePlugIn.Generic.7"
+End Function
+
+
+Sub OpenPlugIn (progid, template, document, element, string)
+
+	Dim executor, command
+
+	Set executor = window.external.aldec.connector.OpenPlugIn(CLSID_Executor, IID_IDispatch)
+
+	command = "?Activate[<"+progid+">][<"+template+">][<"+document+">][<"+element+">][<"+string+">]"
+
+	executor.ExecuteCommand command, ""
+
+End Sub
+
+
+</SCRIPT>
+<!--                                                                         -->
+<!--                             END VBSCRIPT                                -->
+<!----------------------------------------------------------------------------->
+
+<H2>DRC Report File - nim_plus_blk_1_phase_4ps.bde</H2>
+
+Created on Fri 2019-03-22 at 14:39:48
+<HR NOSHADE COLOR="#008080">
+<SPAN class=Info1>Checking file 'C:\AGP_2019_03_22_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde'.</SPAN><BR>
+<SPAN class=Info1>
+	<p class = Warn1 style=font-weight:bold;margin-top:0px;margin-bottom:0px>Nets connected to multiple sources
+	</p><ul style=margin-left:30px;margin-top:0px;margin-bottom:0px>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=14728,14729,,14730,,,14731');>	'del_ct' bus signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=17101,17259,,17433,,,17434');>	'dur_ct' bus signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=41498,45572,,46013,,,46490,,,,46491');>	'rdb16' bus signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=58983,59466,,58403,,,58404,,,,58415,,,,,58419');>	'rdb17' bus signal</a></li></ul></SPAN><BR>
+<SPAN class=Info1>
+	<p class = Warn1 style=font-weight:bold;margin-top:0px;margin-bottom:0px>Nets without source
+	</p><ul style=margin-left:30px;margin-top:0px;margin-bottom:0px>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=59335,59336,,59337,,,59338');>	'in_ch2_ctr_2' bus signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=42313');>	'ps_c1' bus signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=15260,15493');>	'sgp' wire signal</a></li></ul></SPAN><BR>
+<SPAN class=Info1>
+	<p class = Warn1 style=font-weight:bold;margin-top:0px;margin-bottom:0px>Nets without load
+	</p><ul style=margin-left:30px;margin-top:0px;margin-bottom:0px>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=14728,14729,,14730,,,14731');>	'del_ct' bus signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=17101,17259,,17433,,,17434');>	'dur_ct' bus signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=59382');>	'in_ch1_ctr_2' bus signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=8916');>	'overflow' bus signal</a></li></ul></SPAN><BR>
+<SPAN class=Info1>
+	<p class = Warn1 style=font-weight:bold;margin-top:0px;margin-bottom:0px>Unconnected symbol pins
+	</p><ul style=margin-left:30px;margin-top:0px;margin-bottom:0px>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=733');>	In instance 'U11': 'wr_error'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=63734');>	In instance 'U121': 'fin_wr'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=63743');>	In instance 'U123': 'fin_wr'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=32345');>	In instance 'U24': 'v_ps_ld_ct_out'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=64855,64855,,64855,,,64855');>	In instance 'U245': 'sig4', 'sig5', 'sig6', 'sig7'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=32541');>	In instance 'U27': 'v_ps_ld_ct_out'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=32200');>	In instance 'U3': 'v_ps_ld_ct_out'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=32647');>	In instance 'U30': 'v_ps_ld_ct_out'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=62093,62093,,62093,,,62093,,,,62093,,,,,62093,,,,,,62093,,,,,,,62093,,,,,,,,62093,,,,,,,,,62093,,,,,,,,,,62093,,,,,,,,,,,62093,,,,,,,,,,,,62093');>	In instance 'U311': 'sig18', 'sig19', 'sig21', 'sig22', 'sig23', 'sig24', 'sig25', 'sig26', 'sig27', 'sig28', 'sig29', 'sig30', 'sig31'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=61730,61730,,61730,,,61730,,,,61730,,,,,61730,,,,,,61730,,,,,,,61730,,,,,,,,61730,,,,,,,,,61730,,,,,,,,,,61730,,,,,,,,,,,61730,,,,,,,,,,,,61730,,,,,,,,,,,,,61730,,,,,,,,,,,,,,61730,,,,,,,,,,,,,,,61730,,,,,,,,,,,,,,,,61730,,,,,,,,,,,,,,,,,61730,,,,,,,,,,,,,,,,,,61730,,,,,,,,,,,,,,,,,,,61730,,,,,,,,,,,,,,,,,,,,61730,,,,,,,,,,,,,,,,,,,,,61730,,,,,,,,,,,,,,,,,,,,,,61730,,,,,,,,,,,,,,,,,,,,,,,61730');>	In instance 'U322': 'sig10', 'sig11', 'sig12', 'sig13', 'sig14', 'sig15', 'sig16', 'sig17', 'sig19', 'sig20', 'sig21', 'sig22', 'sig23', 'sig24', 'sig25', 'sig26', 'sig27', 'sig28', 'sig29', 'sig30', 'sig31', 'sig7', 'sig8', 'sig9'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=45903');>	In instance 'U34': 'in15'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=45737,45737,,45737,,,45737');>	In instance 'U40': 'in12', 'in13', 'in14', 'in15'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2019_03_22_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\nim_plus_blk_1_phase_4ps.bde','','-errorid=66251');>	In instance 'U76': 'err_out'</a></li></ul></SPAN><BR>
+<SPAN class=Warn1>nim_plus_blk_1_phase_4ps.bde - 0 error(s), 24 warning(s)</SPAN><BR>
+<SPAN class=Info1>DRC process completed in 6 second(s).</SPAN><BR>
+</tt>
+</FONT>
+       
+        </BODY>
+</HTML>

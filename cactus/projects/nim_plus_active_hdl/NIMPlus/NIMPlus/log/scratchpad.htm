@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+
+<!----------------------------------------------------------------------------->
+<!--                          BEGIN HTML HEAD                                -->
+<!--                                                                         -->
+
+<HEAD>
+<TITLE>DRC Report File - scratchpad.bde</TITLE>
+<STYLE>
+.Err	{color:#FF0000;cursor:hand;text-decoration:underline;}
+.Warn	{color:#0000FF;cursor:hand;text-decoration:underline;}
+.Info	{color:#000000;cursor:hand;text-decoration:underline;}
+.Sccss  {color:#009600;cursor:hand;text-decoration:underline;}
+.ErrH	{color:#FF0000;cursor:hand;text-decoration:underline;}
+.WarnH	{color:#0000FF;cursor:hand;text-decoration:underline;}
+.InfoH	{color:#000000;cursor:hand;text-decoration:underline;}
+.Err1	{color:#FF0000;}
+.Warn1	{color:#0000FF;}
+.Info1	{color:#000000;}
+.Sccss1 {color:#009600;}
+</STYLE>
+</HEAD>
+<BODY BGCOLOR="white" TEXT="black" LINK="blue" VLINK="purple" BACKGROUND="C:\Aldec\Active-HDL-10.3\\Flows\Res\default.bmp">
+<FONT FACE="Serif">
+<tt>
+<!--                                                                         -->
+<!--                             END HEADER                                  -->
+<!----------------------------------------------------------------------------->
+
+<!----------------------------------------------------------------------------->
+<!--                            BEGIN VBSCRIPT                               -->
+<!--                                                                         -->
+<SCRIPT LANGUAGE=JSCRIPT>
+	function RollOn() {
+		switch(window.event.srcElement.className) {
+			case 'Err':
+				window.event.srcElement.className = 'ErrH'; break;
+			case 'Warn':
+				window.event.srcElement.className = 'WarnH'; break;
+			case 'Info':
+				window.event.srcElement.className = 'InfoH'; break;
+		}
+	}
+	function RollOff() {
+		switch(window.event.srcElement.className) {
+			case 'ErrH':
+				window.event.srcElement.className = 'Err'; break;
+			case 'WarnH':
+				window.event.srcElement.className = 'Warn'; break;
+			case 'InfoH':
+				window.event.srcElement.className = 'Info'; break;
+		}
+	}
+	function OnError(sMsg,sUrl,sLine) {
+		return true;
+	}
+	
+	document.onmouseover = RollOn;
+	document.onmouseout = RollOff;
+	window.onerror = OnError;
+</SCRIPT>
+
+<SCRIPT LANGUAGE=VBSCRIPT>
+
+Function IID_IDispatch
+	IID_IDispatch = "{00020400-0000-0000-C000-000000000046}"
+End Function
+
+Function CLSID_Executor
+	CLSID_Executor = "Aldec.ExePlugIn.Generic.7"
+End Function
+
+
+Sub OpenPlugIn (progid, template, document, element, string)
+
+	Dim executor, command
+
+	Set executor = window.external.aldec.connector.OpenPlugIn(CLSID_Executor, IID_IDispatch)
+
+	command = "?Activate[<"+progid+">][<"+template+">][<"+document+">][<"+element+">][<"+string+">]"
+
+	executor.ExecuteCommand command, ""
+
+End Sub
+
+
+</SCRIPT>
+<!--                                                                         -->
+<!--                             END VBSCRIPT                                -->
+<!----------------------------------------------------------------------------->
+
+<H2>DRC Report File - scratchpad.bde</H2>
+
+Created on Wed 2018-05-02 at 14:15:25
+<HR NOSHADE COLOR="#008080">
+<SPAN class=Info1>Checking file 'C:\AGP_2018_05_02_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\scratchpad.bde'.</SPAN><BR>
+<SPAN class=Info1>
+	<p class = Warn1 style=font-weight:bold;margin-top:0px;margin-bottom:0px>Nets without source
+	</p><ul style=margin-left:30px;margin-top:0px;margin-bottom:0px>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=152');>	'burst_w_in' bus signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=346');>	'in_ev_ctr_1' bus signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=349');>	'in_ev_ctr_2' bus signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=355');>	'out_cnt_rst' wire signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=341');>	'out_ev_ctr' bus signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=50,515');>	'reset_out' wire signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=68,623');>	'rx_data' bus signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=382');>	'sig_norm' wire signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=52,350,,537');>	'tx_clk' wire signal</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=507');>	'y' bus signal</a></li></ul></SPAN><BR>
+<SPAN class=Info1>
+	<p class = Warn1 style=font-weight:bold;margin-top:0px;margin-bottom:0px>Unconnected symbol pins
+	</p><ul style=margin-left:30px;margin-top:0px;margin-bottom:0px>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=365');>	In instance 'U166': 'wd_in1'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=333');>	In instance 'U167': 'fin_wr'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=28,28,,28,,,28,,,,28,,,,,28');>	In instance 'U4': 'v_sig_in_2', 'v_sig_in_3', 'v_sig_in_4', 'v_sig_in_5', 'v_sig_in_6', 'v_sig_in_7'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=879,879,,879,,,879,,,,879');>	In instance 'U7': 'b_wr', 'clk', 'fin_wr', 'reset_p', 'sig_in'</a></li>
+	<li ;text-align:left><a class = Warn onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=905,905,,905,,,905,,,,905,,,,,905,,,,,,905,,,,,,,905,,,,,,,,905,,,,,,,,,905,,,,,,,,,,905,,,,,,,,,,,905,,,,,,,,,,,,905,,,,,,,,,,,,,905,,,,,,,,,,,,,,905,,,,,,,,,,,,,,,905,,,,,,,,,,,,,,,,905,,,,,,,,,,,,,,,,,905,,,,,,,,,,,,,,,,,,905,,,,,,,,,,,,,,,,,,,905,,,,,,,,,,,,,,,,,,,,905,,,,,,,,,,,,,,,,,,,,,905');>	In instance 'U8': 'b_read', 'b_wr_out', 'bkpa', 'bkpb', 'ck_mx_out', 'clk0', 'clk_40DCM', 'DAC_clk', 'dac_out', 'muxout_1', 'muxout_2', 'muxout_3', 'muxout_4', 'read_data_out', 'reset_out', 'rx_addr', 'rx_data', 'rx_wren', 'sclk', 'sync', 'tx_clk', 'x'</a></li></ul></SPAN><BR>
+<SPAN class=Info1>
+	<p class = Err1 style=font-weight:bold;margin-top:0px;margin-bottom:0px>Bus taps of undefined nets
+	</p><ul style=margin-left:30px;margin-top:0px;margin-bottom:0px>
+	<li ;text-align:left><a class = Err onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=608');>	'blk_wr_en_cts(14)' wire bus tap signal</a></li>
+	<li ;text-align:left><a class = Err onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=636');>	'blk_wr_en_cts(15)' wire bus tap signal</a></li>
+	<li ;text-align:left><a class = Err onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=831');>	'burst_wr_in(0)' wire bus tap signal</a></li>
+	<li ;text-align:left><a class = Err onclick=OpenPlugin('Aldec.BDE.7','0','C:\\AGP_2018_05_02_NIMPlus_T_C_RJ45\\NIMPlus\\NIMPlus\\src\\scratchpad.bde','','-errorid=837');>	'burst_wr_in(1)' wire bus tap signal</a></li></ul></SPAN><BR>
+<SPAN class=Err1>scratchpad.bde - 4 error(s), 15 warning(s)</SPAN><BR>
+<SPAN class=Info1>DRC process completed in 1 second(s).</SPAN><BR>
+</tt>
+</FONT>
+</BODY>
+
+</HTML>

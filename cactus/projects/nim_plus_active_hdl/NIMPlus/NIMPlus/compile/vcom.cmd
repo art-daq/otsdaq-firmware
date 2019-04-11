@@ -1,0 +1,1 @@
+-w -erf C:/AGP_2019_03_22_NIMPlus_T_C_RJ45/NIMPlus/NIMPlus/compile/NIMPlus.erf -d C:/AGP_2019_03_22_NIMPlus_T_C_RJ45/NIMPlus/NIMPlus/compile -s C:/AGP_2019_03_22_NIMPlus_T_C_RJ45/NIMPlus/library.cfg -j C:/AGP_2019_03_22_NIMPlus_T_C_RJ45/NIMPlus/NIMPlus/projlib.cfg -work NIMPlus -O3 -e 100 -work NIMPlus -2002 ./../compile/nim_plus_blk_1_phase_4ps.vhd 

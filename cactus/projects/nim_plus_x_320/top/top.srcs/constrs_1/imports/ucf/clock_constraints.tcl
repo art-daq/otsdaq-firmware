@@ -26,6 +26,7 @@ set_max_delay 32.00 -from [get_cells * -hierarchical -filter {IS_PRIMITIVE == tr
 # In xdc, all clocks are related by default. This differs from ucf, where clocks are unrelated unless specified otherwise. As a result, you may now see cross-clock paths that were previously unconstrained in ucf. Commented out xdc false path constraints have been generated and can be uncommented, should you wish to remove these new paths. These commands are located after the last clock definition
 
 create_clock -name PHY_RXCLK -period 8.000 [get_ports PHY_RXCLK]
+create_clock -name USER_CLOCK -period 10.000 [get_ports USER_CLOCK]
 
 #create_clock -name CLK_40e -period 25.000 [get_pins CLK_40e_bufg/O]
 #create_clock -name CLK_40i -period 25.000 [get_pins CLK_40i_bufg/O]
@@ -62,7 +63,10 @@ create_clock -name DAC_IN_CLK -period 80.000 [get_pins DAC_CLK_bufg/O]
 #set_false_path -from [get_clocks DAC_SER_CLK] -to [get_clocks [list CLK_bmx_320 CLK_bmx_40 CLK_40e CLK_320e CLK_40i CLK_320i PHY_RXCLK DAC_IN_CLK]]
 #set_false_path -from [get_clocks DAC_IN_CLK] -to [get_clocks [list CLK_bmx_320 CLK_bmx_40 CLK_40e CLK_320e CLK_40i CLK_320i PHY_RXCLK DAC_SER_CLK]]
 
-set_false_path -from [get_clocks PHY_RXCLK] -to [get_clocks [list CLK_bmx_320 CLK_bmx_40 DAC_SER_CLK DAC_IN_CLK]]
+set_false_path -from [get_clocks PHY_RXCLK] -to [get_clocks [list CLK_bmx_320 CLK_bmx_40 DAC_SER_CLK DAC_IN_CLK USER_CLOCK]]
+
+set_false_path -from [get_clocks USER_CLOCK] -to [get_clocks [list CLK_bmx_320 CLK_bmx_40 DAC_SER_CLK DAC_IN_CLK PHY_RXCLK]]
+
 #set_false_path -from [get_clocks clkout40_clk_wiz_0] -to [get_clocks [list PHY_RXCLK DAC_SER_CLK DAC_IN_CLK]]
 #set_false_path -from [get_clocks CLK_40eP] -to [get_clocks [list PHY_RXCLK DAC_SER_CLK DAC_IN_CLK]]
 ##set_false_path -from [get_clocks CLK_40eN] -to [get_clocks [list CLK_40e CLK_320e PHY_RXCLK DAC_SER_CLK DAC_IN_CLK]]

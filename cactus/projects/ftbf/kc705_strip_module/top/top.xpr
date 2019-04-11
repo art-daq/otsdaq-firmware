@@ -328,6 +328,12 @@
       <File Path="$PPRDIR/../eth_source/ipcore_dir/ADDR_FIFO/ADDR_FIFO.upgrade_log"/>
       <File Path="$PPRDIR/../eth_source/ipcore_dir/DATA_FIFO_0/DATA_FIFO_0.upgrade_log"/>
       <File Path="$PPRDIR/../eth_source/ipcore_dir/INFO_FIFO_0/INFO_FIFO_0.upgrade_log"/>
+      <File Path="$PPRDIR/../eth_source/fifo.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="top"/>
@@ -565,27 +571,21 @@
     </Run>
     <Run Id="ADDR_FIFO_synth_1" Type="Ft3:Synth" SrcSet="ADDR_FIFO" Part="xc7k325tffg900-2" ConstrsSet="ADDR_FIFO" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/ADDR_FIFO_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
     </Run>
     <Run Id="DATA_FIFO_0_synth_1" Type="Ft3:Synth" SrcSet="DATA_FIFO_0" Part="xc7k325tffg900-2" ConstrsSet="DATA_FIFO_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/DATA_FIFO_0_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
     </Run>
     <Run Id="INFO_FIFO_0_synth_1" Type="Ft3:Synth" SrcSet="INFO_FIFO_0" Part="xc7k325tffg900-2" ConstrsSet="INFO_FIFO_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/INFO_FIFO_0_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -677,9 +677,7 @@
     </Run>
     <Run Id="ADDR_FIFO_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="ADDR_FIFO" Description="Vivado Implementation Defaults" SynthRun="ADDR_FIFO_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015">
-          <Desc>Vivado Implementation Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -693,9 +691,7 @@
     </Run>
     <Run Id="DATA_FIFO_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="DATA_FIFO_0" Description="Vivado Implementation Defaults" SynthRun="DATA_FIFO_0_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015">
-          <Desc>Vivado Implementation Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -709,9 +705,7 @@
     </Run>
     <Run Id="INFO_FIFO_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="INFO_FIFO_0" Description="Vivado Implementation Defaults" SynthRun="INFO_FIFO_0_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015">
-          <Desc>Vivado Implementation Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>

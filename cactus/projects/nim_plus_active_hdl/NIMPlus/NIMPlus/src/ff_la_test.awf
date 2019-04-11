@@ -1,0 +1,92 @@
+$WAVE4
+$RESOLUTION 1000
+I 1 "c#9#STD_LOGICc9 UX01ZWLH-"
+$OUT 56 1 "/ld_array_4/q" -1 0 1000000
+$S +1 1 12 0 GND -1 0 1000000
+$S +1 1 12 0 q1 -1 0 1000000
+$S +1 1 13 0 "2" -1 0 1000000
+$S +1 1 13 0 "3" -1 0 1000000
+$IN +1 1 12 0 clk -1 0 1000000
+I 2 "a#28#STD_LOGIC_VECTOR(3 downto 0)1 ricd3 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS S +1 2 4 12 0 ld
+$SC +1-+3
+$IN +1 1 12 0 rst_p -1 0 1000000
+I 3 "a#28#STD_LOGIC_VECTOR(7 downto 0)1 ricd7 0 c#9#STD_LOGICc9 UX01ZWLH-"
+$BUS IN +1 3 8 12 0 dl
+$SC +1-+7
+P 0 56-76 CS "0"
+P 0 61 Stimulator "CLK:FRM:Override:4.000000;2;1;0;50;1:Clock:1:"
+P 0 +1 +5 +1 Stimulator "CST:FRM:Override: :Cs:1:"
+$WAVES 56
+=0 D 0 1
+=1 D 2k 2
+=2 D 24k 2
+=3 D 12k 2
+=4 D 116k 2
+=5 D 8k 2
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+$VALUES
+V 1
+0
+$END
+$WAVES +1
+*0
+*1
+*2
+*5
+=6 D 120k 2
+=7 D 4k 2
+$VALUES
+V 1
+U
+R 2 2 0 1
+V 1
+0
+$END
+$WAVES +1
+*0
+*1
+*2
+*7
+$VALUES
+V 4
+U
+0
+1
+0
+$END
+$WAVES +1
+*0
+*1
+$VALUES
+V 2
+U
+0
+$END
+$WAVES +1
+*0
+R 1 500 =8 T 2k
+$VALUES
+R 2 250 0 1
+V 1
+0
+$END
+$WAVES +6
+*0
+=9 T 14500
+=10 T 678300
+$VALUES
+V 3
+1
+0
+U
+$END
+$ENDWAVE
