@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : C:\AGP_2018_05_02_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\sig_gen_prog.vhd
--- Generated   : 05/14/18 17:02:46
--- From        : C:\AGP_2018_05_02_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\sig_gen_prog.asf
+-- File        : P:\CAPTAN\NIMPlus_Archive\AGP_2019_04_10_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\sig_gen_prog.vhd
+-- Generated   : 04/10/19 11:03:33
+-- From        : P:\CAPTAN\NIMPlus_Archive\AGP_2019_04_10_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\sig_gen_prog.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
 -------------------------------------------------------------------------------
@@ -94,8 +94,14 @@ begin
 				next_p_hi_r <= z_32;
 				next_p_lo_r <= z_32;
 				next_p_out <= '0';
+				next_cond_reg(1) <= '1';
+				-- Starting
 				if (p_count = z_28) then
 				  next_cond_reg(0) <= '1';
+				  -- Infinite loop
+				else
+				  next_cond_reg(0) <= '0';
+				  -- Finite number
 				end if;
 			end if;
 		when S2 =>

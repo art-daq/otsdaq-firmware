@@ -1,7 +1,7 @@
 Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
-| Date             : Tue Nov  6 14:40:17 2018
+| Date             : Thu Apr 11 15:07:09 2019
 | Host             : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb
 | Design           : top
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 0.856 |
-| Dynamic (W)              | 0.720 |
+| Total On-Chip Power (W)  | 0.859 |
+| Dynamic (W)              | 0.722 |
 | Device Static (W)        | 0.136 |
 | Total Off-Chip Power (W) | 0.010 |
 | Effective TJA (C/W)      | 1.5   |
@@ -50,9 +50,9 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.071 |       14 |       --- |             --- |
+| Clocks                   |     0.074 |       14 |       --- |             --- |
 | Slice Logic              |     0.025 |    24771 |       --- |             --- |
-|   LUT as Logic           |     0.022 |     7983 |    133800 |            5.97 |
+|   LUT as Logic           |     0.021 |     7979 |    133800 |            5.96 |
 |   Register               |     0.002 |    11587 |    267600 |            4.33 |
 |   CARRY4                 |     0.001 |      564 |     33450 |            1.69 |
 |   F7/F8 Muxes            |    <0.001 |      575 |    133800 |            0.43 |
@@ -60,12 +60,12 @@ Table of Contents
 |   LUT as Distributed RAM |    <0.001 |       24 |     46200 |            0.05 |
 |   BUFG                   |    <0.001 |        5 |        32 |           15.63 |
 |   Others                 |     0.000 |     2197 |       --- |             --- |
-| Signals                  |     0.037 |    17196 |       --- |             --- |
+| Signals                  |     0.036 |    17191 |       --- |             --- |
 | Block RAM                |     0.022 |       13 |       365 |            3.56 |
 | PLL                      |     0.252 |        3 |        10 |           30.00 |
 | I/O                      |     0.312 |       56 |       500 |           11.20 |
 | Static Power             |     0.136 |          |           |                 |
-| Total                    |     0.856 |          |           |                 |
+| Total                    |     0.859 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,7 +75,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.207 |       0.175 |      0.032 |
+| Vccint    |       1.000 |     0.209 |       0.178 |      0.032 |
 | Vccaux    |       1.800 |     0.169 |       0.139 |      0.031 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.126 |       0.121 |      0.005 |
@@ -154,9 +154,9 @@ Table of Contents
 +-----------------------------------------------------------------------+-----------+
 | Name                                                                  | Power (W) |
 +-----------------------------------------------------------------------+-----------+
-| top                                                                   |     0.720 |
+| top                                                                   |     0.722 |
 |   CLK_MUX                                                             |    <0.001 |
-|   NIM_BLOCK                                                           |     0.055 |
+|   NIM_BLOCK                                                           |     0.058 |
 |     U1                                                                |    <0.001 |
 |     U11                                                               |    <0.001 |
 |     U112                                                              |    <0.001 |
@@ -825,7 +825,7 @@ Table of Contents
 |     U308                                                              |    <0.001 |
 |     U309                                                              |    <0.001 |
 |     U310                                                              |    <0.001 |
-|     U311                                                              |     0.010 |
+|     U311                                                              |     0.011 |
 |       U1                                                              |     0.002 |
 |       U10                                                             |    <0.001 |
 |       U11                                                             |    <0.001 |
@@ -925,6 +925,7 @@ Table of Contents
 |     U439                                                              |    <0.001 |
 |     U440                                                              |    <0.001 |
 |     U441                                                              |    <0.001 |
+|     U459                                                              |    <0.001 |
 |     U467                                                              |    <0.001 |
 |       U60                                                             |    <0.001 |
 |     U471                                                              |    <0.001 |
@@ -933,6 +934,7 @@ Table of Contents
 |     U483                                                              |    <0.001 |
 |     U484                                                              |    <0.001 |
 |     U493                                                              |    <0.001 |
+|     U495                                                              |    <0.001 |
 |     U5                                                                |    <0.001 |
 |     U54                                                               |    <0.001 |
 |     U56                                                               |    <0.001 |
@@ -1037,8 +1039,8 @@ Table of Contents
 |     burst_traffic_controller_blk                                      |    <0.001 |
 |     data_manager_blk                                                  |     0.022 |
 |       GEC_RX_CTRL                                                     |     0.001 |
-|       GEC_TX_SEQ_CTL                                                  |     0.002 |
-|       RAM_COMM_DEC                                                    |     0.007 |
+|       GEC_TX_SEQ_CTL                                                  |     0.001 |
+|       RAM_COMM_DEC                                                    |     0.006 |
 |       RX_DATA_FIFO                                                    |     0.006 |
 |         FIFO_SYNC_MACRO_inst                                          |     0.006 |
 |       RX_DATA_INFO_FIFO                                               |    <0.001 |
@@ -1060,7 +1062,7 @@ Table of Contents
 |       TX_DATA_INFO_FIFO                                               |    <0.001 |
 |         FIFO_SYNC_MACRO_inst                                          |    <0.001 |
 |       burst_controller_sm                                             |    <0.001 |
-|     ec_wrapper                                                        |     0.024 |
+|     ec_wrapper                                                        |     0.025 |
 |       crcChk                                                          |    <0.001 |
 |       crcGen                                                          |     0.001 |
 |       crcSplice                                                       |    <0.001 |

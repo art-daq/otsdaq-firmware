@@ -113,6 +113,9 @@ read_vhdl -library xil_defaultlib {
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/clk39_pattern.vhd
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/FW_Transfer_2018_01_24/dmux_ff.vhd
 }
+read_xdc /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_11.xdc
+set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/constrs_1/new/top_11.xdc]
+
 synth_design -top top -part xc7a200tffg1156-2 -flatten_hierarchy none
 write_checkpoint -noxdef top.dcp
 catch { report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb }

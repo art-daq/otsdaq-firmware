@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : C:\AGP_2018_05_24_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Mon Jun  4 14:38:07 2018
--- From        : C:\AGP_2018_05_24_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
+-- File        : C:\AGP_2019_03_22_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
+-- Generated   : Fri Mar 22 14:40:05 2019
+-- From        : C:\AGP_2019_03_22_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -653,6 +653,7 @@ signal sig_cms1 : STD_LOGIC;
 signal sig_cms2 : STD_LOGIC;
 signal sig_log : STD_LOGIC;
 signal sig_norm : STD_LOGIC;
+signal sig_norm_sg_ch0 : STD_LOGIC;
 signal sumsig0 : STD_LOGIC;
 signal sumsig1 : STD_LOGIC;
 signal sumsig2 : STD_LOGIC;
@@ -806,6 +807,8 @@ signal scope_out : STD_LOGIC_VECTOR(63 downto 0);
 signal sel_blk_en_term : STD_LOGIC_VECTOR(15 downto 0);
 signal sel_ctl : STD_LOGIC_VECTOR(15 downto 0);
 signal sigmux : STD_LOGIC_VECTOR(31 downto 0);
+signal sig_cms1_sg : STD_LOGIC_VECTOR(7 downto 0);
+signal sig_cms2_sg : STD_LOGIC_VECTOR(7 downto 0);
 signal sig_event_cnts : STD_LOGIC_VECTOR(63 downto 0);
 signal sig_event_counts : STD_LOGIC_VECTOR(63 downto 0);
 signal sig_mod : STD_LOGIC_VECTOR(3 downto 0);
@@ -899,7 +902,6 @@ begin
     debug_fast_cnt <= cnt64_simp_out(15 downto 0);
     sync_ctrl <= ctr_resets(6);
 ----  Component instantiations  ----
-
 
 U1 : reg_64
   port map(
@@ -2150,11 +2152,7 @@ U22 : reg_64
        wr_en => blk_wr_en_cts(3)
   );
 
-sig_ch2 <= (sig_log and not sig_v2_sel(0)) or (sig_norm and sig_v2_sel(0));
-
 bkprout_v1 <= bkpress and bp_ctl(1);
-
-sig_ch1 <= (sig_log and not sig_v1_sel(0)) or (sig_norm and sig_v1_sel(0));
 
 U223 : reg_64
   port map(
@@ -2773,7 +2771,7 @@ U266 : load_long_64_v_ps
        phi => long_r_norm,
        rst_p => ld_arr_rst_p,
        s_out => sig_norm,
-       sig_in => sig_log,
+       sig_in => sig_norm_sg_ch0,
        v_ps_hold_in => sumsig0,
        v_ps_ld_ct_out => vps_ld_ct_0,
        w_ext_in => GND
@@ -7691,7 +7689,21 @@ ck_mx_out(6) <= ext_clk_ctl(6);
 
 ck_mx_out(7) <= ext_clk_ctl(7);
 
+sig_norm_sg_ch0 <= (sig_log and not sig_v1_sel(7)) or (sg_out_s and sig_v1_sel(7));
+
+U459 : mux_8_to_1
+  port map(
+       sel_in(0) => sig_v1_sel(0),
+       sel_in(1) => sig_v1_sel(1),
+       sel_in(2) => sig_v1_sel(2),
+       out_1 => sig_ch1,
+       rst_p => reset_out,
+       sig_in => sig_cms1_sg
+  );
+
 sigmux(3) <= bmy(2);
+
+sig_cms1_sg(0) <= sig_log;
 
 U461 : reg_64
   port map(
@@ -7758,6 +7770,8 @@ U472 : d_ff
        q => clk_265_lat,
        rst_p => GND
   );
+
+sig_cms1_sg(1) <= sig_norm;
 
 U474 : mux_4_to_1
   port map(
@@ -7830,6 +7844,24 @@ U493 : mux_4_to_1
        rst_p => GND,
        sig_in => mx_sig_in3
   );
+
+sig_cms1_sg(2) <= sg_out_s;
+
+U495 : mux_8_to_1
+  port map(
+       sel_in(0) => sig_v2_sel(0),
+       sel_in(1) => sig_v2_sel(1),
+       sel_in(2) => sig_v2_sel(2),
+       out_1 => sig_ch2,
+       rst_p => reset_out,
+       sig_in => sig_cms2_sg
+  );
+
+sig_cms2_sg(0) <= sig_log;
+
+sig_cms2_sg(1) <= sig_norm;
+
+sig_cms2_sg(2) <= sg_out_s;
 
 U5 : reg_16
   port map(
