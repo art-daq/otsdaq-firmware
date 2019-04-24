@@ -65,12 +65,6 @@ set rc [catch {
   set_property netlist_only true [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp]
   add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/trigbuf_synth_1/trigbuf.dcp
   set_property netlist_only true [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/trigbuf_synth_1/trigbuf.dcp]
-  add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/ADDR_FIFO_synth_1/ADDR_FIFO.dcp
-  set_property netlist_only true [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/ADDR_FIFO_synth_1/ADDR_FIFO.dcp]
-  add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/DATA_FIFO_0_synth_1/DATA_FIFO_0.dcp
-  set_property netlist_only true [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/DATA_FIFO_0_synth_1/DATA_FIFO_0.dcp]
-  add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/INFO_FIFO_0_synth_1/INFO_FIFO_0.dcp
-  set_property netlist_only true [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/INFO_FIFO_0_synth_1/INFO_FIFO_0.dcp]
   read_xdc -mode out_of_context -ref packetfifo -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.srcs/sources_1/ip/packetfifo/packetfifo_ooc.xdc
   set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.srcs/sources_1/ip/packetfifo/packetfifo_ooc.xdc]
   read_xdc -ref packetfifo -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.srcs/sources_1/ip/packetfifo/packetfifo/packetfifo.xdc
@@ -91,18 +85,6 @@ set rc [catch {
   set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.srcs/sources_1/ip/chip_fifo/chip_fifo/chip_fifo.xdc]
   read_xdc -mode out_of_context -ref trigbuf -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.srcs/sources_1/ip/trigbuf/trigbuf_ooc.xdc
   set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.srcs/sources_1/ip/trigbuf/trigbuf_ooc.xdc]
-  read_xdc -mode out_of_context -ref ADDR_FIFO -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/ipcore_dir/ADDR_FIFO/ADDR_FIFO_ooc.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/ipcore_dir/ADDR_FIFO/ADDR_FIFO_ooc.xdc]
-  read_xdc -ref ADDR_FIFO -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/ipcore_dir/ADDR_FIFO/ADDR_FIFO/ADDR_FIFO.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/ipcore_dir/ADDR_FIFO/ADDR_FIFO/ADDR_FIFO.xdc]
-  read_xdc -mode out_of_context -ref DATA_FIFO_0 -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/ipcore_dir/DATA_FIFO_0/DATA_FIFO_0_ooc.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/ipcore_dir/DATA_FIFO_0/DATA_FIFO_0_ooc.xdc]
-  read_xdc -ref DATA_FIFO_0 -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/ipcore_dir/DATA_FIFO_0/DATA_FIFO_0/DATA_FIFO_0.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/ipcore_dir/DATA_FIFO_0/DATA_FIFO_0/DATA_FIFO_0.xdc]
-  read_xdc -mode out_of_context -ref INFO_FIFO_0 -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/ipcore_dir/INFO_FIFO_0/INFO_FIFO_0_ooc.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/ipcore_dir/INFO_FIFO_0/INFO_FIFO_0_ooc.xdc]
-  read_xdc -ref INFO_FIFO_0 -cells U0 /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/ipcore_dir/INFO_FIFO_0/INFO_FIFO_0/INFO_FIFO_0.xdc
-  set_property processing_order EARLY [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/ipcore_dir/INFO_FIFO_0/INFO_FIFO_0/INFO_FIFO_0.xdc]
   read_xdc -unmanaged /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.srcs/constrs_1/imports/ucf/clock_constraints.tcl
   read_xdc -unmanaged /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.srcs/constrs_1/imports/ucf/pins_kc705.tcl
   read_xdc -unmanaged /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.srcs/constrs_1/imports/ucf/pins.tcl

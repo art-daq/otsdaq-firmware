@@ -302,7 +302,7 @@ begin
     bco_makeSlowClock : for i in 0 to 0 generate
          signal cnt : unsigned(1 downto 0) := (others => '0');
     begin
-         dcm_bco_div <= cnt(0); -- 2 times slower clock than MASTER_CLK
+         dcm_bco_div <= cnt(1); -- 1/4 clock compared to external clock
          process(clk_z)
          begin
              if (rising_edge(clk_z)) then

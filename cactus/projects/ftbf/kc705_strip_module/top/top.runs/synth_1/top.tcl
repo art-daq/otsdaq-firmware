@@ -23,12 +23,6 @@ add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc7
 set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/chip_fifo_synth_1/chip_fifo.dcp]
 add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/trigbuf_synth_1/trigbuf.dcp
 set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/trigbuf_synth_1/trigbuf.dcp]
-add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/ADDR_FIFO_synth_1/ADDR_FIFO.dcp
-set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/ADDR_FIFO_synth_1/ADDR_FIFO.dcp]
-add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/DATA_FIFO_0_synth_1/DATA_FIFO_0.dcp
-set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/DATA_FIFO_0_synth_1/DATA_FIFO_0.dcp]
-add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/INFO_FIFO_0_synth_1/INFO_FIFO_0.dcp
-set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/top/top.runs/INFO_FIFO_0_synth_1/INFO_FIFO_0.dcp]
 read_verilog -library xil_defaultlib {
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/crc_chk.v
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/ftbf/kc705_strip_module/eth_source/crc_gen.v
