@@ -8,7 +8,7 @@
 -------------------------------------------------------------------------------
 --
 -- File        : P:\CAPTAN\NIMPlus_Archive\AGP_2019_04_10_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\sig_gen_prog.vhd
--- Generated   : 04/10/19 11:03:33
+-- Generated   : 04/24/19 14:12:20
 -- From        : P:\CAPTAN\NIMPlus_Archive\AGP_2019_04_10_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\sig_gen_prog.asf
 -- By          : FSM2VHDL ver. 5.0.7.2
 --
@@ -105,10 +105,7 @@ begin
 				end if;
 			end if;
 		when S2 =>
-			if start_en = '0' then
-				NextState_Sreg0 <= S1;
-				next_p_out <= '0';
-			elsif p_hi = z_32 or 
+			if p_hi = z_32 or 
 				p_lo = z_32 then
 				NextState_Sreg0 <= S3;
 				next_err_out <= '1';
@@ -201,9 +198,9 @@ Sreg0_RegOutput: process (clk)
 begin
 	if clk'event and clk = '1' then
 		if reset_p = '1' then
-			-- p_count_r <= 		-- Initialization in the reset state or default value required!
-			-- p_hi_r <= 		-- Initialization in the reset state or default value required!
-			-- p_lo_r <= 		-- Initialization in the reset state or default value required!
+			p_count_r <= z_28;
+			p_hi_r <= z_32;
+			p_lo_r <= z_32;
 			-- cond_reg <= 		-- Initialization in the reset state or default value required!
 			int_err_out <= '0';
 			int_p_out <= '0';
