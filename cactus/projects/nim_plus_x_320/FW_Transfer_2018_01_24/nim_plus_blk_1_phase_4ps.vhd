@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : C:\AGP_2019_03_22_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Fri Mar 22 14:40:05 2019
--- From        : C:\AGP_2019_03_22_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
+-- File        : P:\CAPTAN\NIMPlus_Archive\AGP_2019_04_10_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
+-- Generated   : Mon Apr 29 14:07:48 2019
+-- From        : P:\CAPTAN\NIMPlus_Archive\AGP_2019_04_10_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -710,7 +710,6 @@ signal ext_clk_ctl : STD_LOGIC_VECTOR(7 downto 0);
 signal fs_sync_bus : STD_LOGIC_VECTOR(31 downto 0);
 signal gate_sig_in : STD_LOGIC_VECTOR(7 downto 0);
 signal in_ch1_ctr_1 : STD_LOGIC_VECTOR(31 downto 0);
-signal in_ch1_ctr_2 : STD_LOGIC_VECTOR(31 downto 0);
 signal in_ch2_ctr_2 : STD_LOGIC_VECTOR(31 downto 0);
 signal in_ev_ctr_1 : STD_LOGIC_VECTOR(31 downto 0);
 signal in_ev_ctr_1b : STD_LOGIC_VECTOR(31 downto 0);
@@ -6456,7 +6455,7 @@ NET59133 <= ctr_resets(0) or reset_out;
 U343 : s_cnt32_v2
   port map(
        clk0 => clk0,
-       out32 => in_ch1_ctr_2,
+       out32 => in_ch2_ctr_2,
        rst_p => NET59133,
        sigin => sig_mod(1)
   );

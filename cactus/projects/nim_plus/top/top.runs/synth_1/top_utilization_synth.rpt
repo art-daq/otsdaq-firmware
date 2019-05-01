@@ -1,7 +1,7 @@
 Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
-| Date         : Thu Apr 25 06:34:33 2019
+| Date         : Wed May  1 14:13:40 2019
 | Host         : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -27,20 +27,20 @@ Table of Contents
 1. Slice Logic
 --------------
 
-+----------------------------+------+-------+-----------+-------+
-|          Site Type         | Used | Fixed | Available | Util% |
-+----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                | 9282 |     0 |    134600 |  6.90 |
-|   LUT as Logic             | 9266 |     0 |    134600 |  6.88 |
-|   LUT as Memory            |   16 |     0 |     46200 |  0.03 |
-|     LUT as Distributed RAM |    0 |     0 |           |       |
-|     LUT as Shift Register  |   16 |     0 |           |       |
-| Slice Registers            | 9964 |     0 |    269200 |  3.70 |
-|   Register as Flip Flop    | 9964 |     0 |    269200 |  3.70 |
-|   Register as Latch        |    0 |     0 |    269200 |  0.00 |
-| F7 Muxes                   |  643 |     0 |     67300 |  0.96 |
-| F8 Muxes                   |  129 |     0 |     33650 |  0.38 |
-+----------------------------+------+-------+-----------+-------+
++----------------------------+-------+-------+-----------+-------+
+|          Site Type         |  Used | Fixed | Available | Util% |
++----------------------------+-------+-------+-----------+-------+
+| Slice LUTs*                |  9294 |     0 |    134600 |  6.90 |
+|   LUT as Logic             |  9278 |     0 |    134600 |  6.89 |
+|   LUT as Memory            |    16 |     0 |     46200 |  0.03 |
+|     LUT as Distributed RAM |     0 |     0 |           |       |
+|     LUT as Shift Register  |    16 |     0 |           |       |
+| Slice Registers            | 10062 |     0 |    269200 |  3.74 |
+|   Register as Flip Flop    | 10062 |     0 |    269200 |  3.74 |
+|   Register as Latch        |     0 |     0 |    269200 |  0.00 |
+| F7 Muxes                   |   647 |     0 |     67300 |  0.96 |
+| F8 Muxes                   |   129 |     0 |     33650 |  0.38 |
++----------------------------+-------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
 
@@ -59,7 +59,7 @@ Table of Contents
 | 64    |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
 | 40    |          Yes |         Set |            - |
-| 9860  |          Yes |       Reset |            - |
+| 9958  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -152,15 +152,15 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     | 9860 |        Flop & Latch |
-| LUT6     | 5719 |                 LUT |
-| LUT4     | 1362 |                 LUT |
-| LUT5     | 1123 |                 LUT |
+| FDRE     | 9958 |        Flop & Latch |
+| LUT6     | 5749 |                 LUT |
+| LUT4     | 1370 |                 LUT |
+| LUT5     | 1096 |                 LUT |
 | LUT3     |  860 |                 LUT |
-| MUXF7    |  643 |               MuxFx |
-| LUT1     |  577 |                 LUT |
-| LUT2     |  392 |                 LUT |
-| CARRY4   |  391 |          CarryLogic |
+| MUXF7    |  647 |               MuxFx |
+| LUT1     |  579 |                 LUT |
+| CARRY4   |  399 |          CarryLogic |
+| LUT2     |  391 |                 LUT |
 | MUXF8    |  129 |               MuxFx |
 | FDPE     |   64 |        Flop & Latch |
 | FDSE     |   40 |        Flop & Latch |
