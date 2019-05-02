@@ -7,9 +7,9 @@
 --
 -------------------------------------------------------------------------------
 --
--- File        : P:\CAPTAN\NIMPlus_Archive\AGP_2019_04_10_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
--- Generated   : Mon Apr 29 14:07:48 2019
--- From        : P:\CAPTAN\NIMPlus_Archive\AGP_2019_04_10_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
+-- File        : P:\CAPTAN\NIMPlus_Archive\AGP_2019_05_02_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\compile\nim_plus_blk_1_phase_4ps.vhd
+-- Generated   : Thu May  2 11:16:08 2019
+-- From        : P:\CAPTAN\NIMPlus_Archive\AGP_2019_05_02_NIMPlus_T_C_RJ45\NIMPlus\NIMPlus\src\nim_plus_blk_1_phase_4ps.bde
 -- By          : Bde2Vhdl ver. 2.6
 --
 -------------------------------------------------------------------------------
@@ -841,7 +841,6 @@ signal z1_sel : STD_LOGIC_VECTOR(2 downto 0);
 signal z2_sel : STD_LOGIC_VECTOR(2 downto 0);
 signal z3_sel : STD_LOGIC_VECTOR(2 downto 0);
 signal z_sel : STD_LOGIC_VECTOR(15 downto 0);
-
 ---- Declaration for Dangling input ----
 signal Dangling_Input_Signal : STD_LOGIC;
 
@@ -1747,7 +1746,7 @@ U157 : reg_32
        wr_en => blk_wr_en_cts(18)
   );
 
-muxin_2(3) <= clk_40DCM;
+muxin_2(3) <= sg_pout;
 
 veto_out_p1 <= not(veto_out_n1);
 
@@ -1926,13 +1925,13 @@ U182 : reg_32
        wr_en => blk_wr_en_cts(30)
   );
 
-muxin_2(4) <= sg_pout;
+muxin_2(4) <= clk_ext;
 
-muxin_2(5) <= clk_ext;
+muxin_2(5) <= clk_26_5;
 
-muxin_2(6) <= GND;
+muxin_2(6) <= clk_40DCM;
 
-muxin_2(7) <= GND;
+muxin_2(7) <= cln_clk_53;
 
 U187 : mux_8_to_1
   port map(
@@ -1975,15 +1974,15 @@ muxin_3(1) <= sig_cms1;
 
 muxin_3(2) <= sig_cms2;
 
-muxin_3(3) <= clk_40DCM;
+muxin_3(3) <= sg_pout;
 
-muxin_3(4) <= sg_pout;
+muxin_3(4) <= clk_ext;
 
-muxin_3(5) <= clk_ext;
+muxin_3(5) <= clk_26_5;
 
-muxin_3(6) <= GND;
+muxin_3(6) <= clk_40DCM;
 
-muxin_3(7) <= GND;
+muxin_3(7) <= cln_clk_53;
 
 U197 : mux_8_to_1
   port map(
@@ -2026,15 +2025,15 @@ muxin_4(1) <= sig_cms1;
 
 muxin_4(2) <= sig_cms2;
 
-muxin_4(3) <= clk_40DCM;
+muxin_4(3) <= sg_pout;
 
-muxin_4(4) <= sg_pout;
+muxin_4(4) <= clk_ext;
 
-muxin_4(5) <= clk_ext;
+muxin_4(5) <= clk_26_5;
 
-muxin_4(6) <= GND;
+muxin_4(6) <= clk_40DCM;
 
-muxin_4(7) <= GND;
+muxin_4(7) <= cln_clk_53;
 
 NET24020 <= z(2) and veto2_ctl(2);
 

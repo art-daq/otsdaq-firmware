@@ -283,7 +283,10 @@ architecture BEHAVIORAL of top is
          (-- Clock in ports
           MASTER_CLK           : in     std_logic;
           -- Clock out ports
-          clkout320          : out    std_logic;
+          clkout160          : out    std_logic;
+                    clkout53          : out    std_logic;
+                    clkout26          : out    std_logic;
+                    clkout13          : out    std_logic;
           clkout40 : out    std_logic;
           -- Status and control signals
           reset             : in     std_logic;
@@ -366,6 +369,8 @@ end component;
        signal extra_clk_reset : std_logic_vector(3 downto 0) := (others => '0');
        signal extra_clk_reset_OR : std_logic_vector(3 downto 0) := (others => '0');
    
+   
+   signal sysclk_13, sysclk_26, sysclk_53 : std_logic;
 begin
    
 	gnd <= '0';
@@ -516,7 +521,7 @@ begin
 		 e_320 => bs_clk320i,
 		 i_40 => bs_clk40e,
 		 e_40 => bs_clk40i,
-		 out_320 => mx_320,
+		 out_320 => mx_320,	
 		 out_40 => mx_40
 	     );  
 	     
@@ -548,11 +553,11 @@ begin
                       bkpb => s_bkpressb,
                       clk0 => bmx_320,
                       
-                      clk_13_25 => '0',
-                      clk_26_5 => '0',
+                      clk_13_25 => sysclk_13,
+                      clk_26_5 => sysclk_26,
                       clk_ext => selected_ext_clkg, --s_clk40e,
                       
-                      cln_clk_53 => '0', --ignore for nim+
+                      cln_clk_53 => sysclk_53,
                       
                       clk_40DCM => bmx_40,
                       reset_out => reset,
@@ -673,7 +678,12 @@ begin
          port map(
 --           clk_in_40MHz => bs_clk_in_40MHz,   
            MASTER_CLK => MASTER_CLK,
-           clkout320 => bs_clk320i,
+           clkout160 => bs_clk320i,
+           
+            clkout53 => sysclk_53,
+            clkout26 => sysclk_26,
+            clkout13 => sysclk_13,
+            
            clkout40 => bs_clk40i,           
            reset => extra_clk_reset_OR(0),
            locked => fs_gen_lock

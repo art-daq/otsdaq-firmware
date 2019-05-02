@@ -1,7 +1,7 @@
 -- Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
--- Date        : Tue May 22 11:40:04 2018
+-- Date        : Thu May  2 11:03:15 2019
 -- Host        : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_funcsim.vhdl
@@ -17,8 +17,11 @@ use UNISIM.VCOMPONENTS.ALL;
 entity clk_wiz_0_clk_wiz_0_clk_wiz is
   port (
     MASTER_CLK : in STD_LOGIC;
-    clkout320 : out STD_LOGIC;
+    clkout160 : out STD_LOGIC;
     clkout40 : out STD_LOGIC;
+    clkout53 : out STD_LOGIC;
+    clkout26 : out STD_LOGIC;
+    clkout13 : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC
   );
@@ -30,11 +33,8 @@ architecture STRUCTURE of clk_wiz_0_clk_wiz_0_clk_wiz is
   signal MASTER_CLK_clk_wiz_0 : STD_LOGIC;
   signal clkfbout_buf_clk_wiz_0 : STD_LOGIC;
   signal clkfbout_clk_wiz_0 : STD_LOGIC;
-  signal clkout320_clk_wiz_0 : STD_LOGIC;
+  signal clkout160_clk_wiz_0 : STD_LOGIC;
   signal clkout40_clk_wiz_0 : STD_LOGIC;
-  signal NLW_plle2_adv_inst_CLKOUT2_UNCONNECTED : STD_LOGIC;
-  signal NLW_plle2_adv_inst_CLKOUT3_UNCONNECTED : STD_LOGIC;
-  signal NLW_plle2_adv_inst_CLKOUT4_UNCONNECTED : STD_LOGIC;
   signal NLW_plle2_adv_inst_CLKOUT5_UNCONNECTED : STD_LOGIC;
   signal NLW_plle2_adv_inst_DRDY_UNCONNECTED : STD_LOGIC;
   signal NLW_plle2_adv_inst_DO_UNCONNECTED : STD_LOGIC_VECTOR ( 15 downto 0 );
@@ -57,8 +57,8 @@ clkin1_bufg: unisim.vcomponents.BUFG
     );
 clkout1_buf: unisim.vcomponents.BUFG
      port map (
-      I => clkout320_clk_wiz_0,
-      O => clkout320
+      I => clkout160_clk_wiz_0,
+      O => clkout160
     );
 clkout2_buf: unisim.vcomponents.BUFG
      port map (
@@ -68,23 +68,23 @@ clkout2_buf: unisim.vcomponents.BUFG
 plle2_adv_inst: unisim.vcomponents.PLLE2_ADV
     generic map(
       BANDWIDTH => "OPTIMIZED",
-      CLKFBOUT_MULT => 32,
+      CLKFBOUT_MULT => 64,
       CLKFBOUT_PHASE => 0.000000,
       CLKIN1_PERIOD => 8.000000,
       CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE => 5,
+      CLKOUT0_DIVIDE => 10,
       CLKOUT0_DUTY_CYCLE => 0.500000,
       CLKOUT0_PHASE => 0.000000,
-      CLKOUT1_DIVIDE => 20,
+      CLKOUT1_DIVIDE => 40,
       CLKOUT1_DUTY_CYCLE => 0.500000,
       CLKOUT1_PHASE => 0.000000,
-      CLKOUT2_DIVIDE => 1,
+      CLKOUT2_DIVIDE => 30,
       CLKOUT2_DUTY_CYCLE => 0.500000,
       CLKOUT2_PHASE => 0.000000,
-      CLKOUT3_DIVIDE => 1,
+      CLKOUT3_DIVIDE => 60,
       CLKOUT3_DUTY_CYCLE => 0.500000,
       CLKOUT3_PHASE => 0.000000,
-      CLKOUT4_DIVIDE => 1,
+      CLKOUT4_DIVIDE => 121,
       CLKOUT4_DUTY_CYCLE => 0.500000,
       CLKOUT4_PHASE => 0.000000,
       CLKOUT5_DIVIDE => 1,
@@ -105,11 +105,11 @@ plle2_adv_inst: unisim.vcomponents.PLLE2_ADV
       CLKIN1 => MASTER_CLK_clk_wiz_0,
       CLKIN2 => '0',
       CLKINSEL => '1',
-      CLKOUT0 => clkout320_clk_wiz_0,
+      CLKOUT0 => clkout160_clk_wiz_0,
       CLKOUT1 => clkout40_clk_wiz_0,
-      CLKOUT2 => NLW_plle2_adv_inst_CLKOUT2_UNCONNECTED,
-      CLKOUT3 => NLW_plle2_adv_inst_CLKOUT3_UNCONNECTED,
-      CLKOUT4 => NLW_plle2_adv_inst_CLKOUT4_UNCONNECTED,
+      CLKOUT2 => clkout53,
+      CLKOUT3 => clkout26,
+      CLKOUT4 => clkout13,
       CLKOUT5 => NLW_plle2_adv_inst_CLKOUT5_UNCONNECTED,
       DADDR(6) => '0',
       DADDR(5) => '0',
@@ -151,15 +151,18 @@ use UNISIM.VCOMPONENTS.ALL;
 entity clk_wiz_0 is
   port (
     MASTER_CLK : in STD_LOGIC;
-    clkout320 : out STD_LOGIC;
+    clkout160 : out STD_LOGIC;
     clkout40 : out STD_LOGIC;
+    clkout53 : out STD_LOGIC;
+    clkout26 : out STD_LOGIC;
+    clkout13 : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of clk_wiz_0 : entity is true;
   attribute core_generation_info : string;
-  attribute core_generation_info of clk_wiz_0 : entity is "clk_wiz_0,clk_wiz_v5_1,{component_name=clk_wiz_0,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=PLL,num_out_clk=2,clkin1_period=8.0,clkin2_period=10.0,use_power_down=false,use_reset=true,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}";
+  attribute core_generation_info of clk_wiz_0 : entity is "clk_wiz_0,clk_wiz_v5_1,{component_name=clk_wiz_0,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=PLL,num_out_clk=5,clkin1_period=8.0,clkin2_period=10.0,use_power_down=false,use_reset=true,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}";
 end clk_wiz_0;
 
 architecture STRUCTURE of clk_wiz_0 is
@@ -167,8 +170,11 @@ begin
 U0: entity work.clk_wiz_0_clk_wiz_0_clk_wiz
      port map (
       MASTER_CLK => MASTER_CLK,
-      clkout320 => clkout320,
+      clkout13 => clkout13,
+      clkout160 => clkout160,
+      clkout26 => clkout26,
       clkout40 => clkout40,
+      clkout53 => clkout53,
       locked => locked,
       reset => reset
     );

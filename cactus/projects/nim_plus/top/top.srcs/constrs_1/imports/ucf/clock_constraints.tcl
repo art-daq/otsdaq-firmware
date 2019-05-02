@@ -67,3 +67,7 @@ set_false_path -from [get_clocks CLK_bmx_40] -to [get_clocks [list PHY_RXCLK DAC
 
 set_false_path -from [get_clocks DAC_SER_CLK] -to [get_clocks [list CLK_bmx_320 CLK_bmx_40 PHY_RXCLK DAC_IN_CLK]]
 set_false_path -from [get_clocks DAC_IN_CLK] -to [get_clocks [list CLK_bmx_320 CLK_bmx_40 PHY_RXCLK DAC_SER_CLK]]
+
+set_false_path -from [get_clocks clkout13] -to [get_clocks [list CLK_bmx_320]]
+set_false_path -from [get_clocks clkout26] -to [get_clocks [list CLK_bmx_320]]
+
