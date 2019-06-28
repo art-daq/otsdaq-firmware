@@ -55,13 +55,17 @@
 --  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 --   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 ------------------------------------------------------------------------------
--- CLK_OUT1___160.000______0.000______50.0______190.317____208.802
--- CLK_OUT2____40.000______0.000______50.0______273.894____208.802
+-- CLK_OUT1___159.000______0.000______50.0______164.772____131.758
+-- CLK_OUT2____13.250______0.000______50.0______285.100____131.758
+-- CLK_OUT3_____6.625______0.000______50.0______325.772____131.758
+-- CLK_OUT4____39.750______0.000______50.0______228.151____131.758
+-- CLK_OUT5____53.000______0.000______50.0______213.774____131.758
+-- CLK_OUT6____26.500______0.000______50.0______248.151____131.758
 --
 ------------------------------------------------------------------------------
 -- Input Clock   Freq (MHz)    Input Jitter (UI)
 ------------------------------------------------------------------------------
--- __primary______________40____________0.010
+-- __primary______________53____________0.010
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -75,10 +79,14 @@ use unisim.vcomponents.all;
 entity clk_wiz_1 is
 port
  (-- Clock in ports
-  clk_in40e           : in     std_logic;
+  clk_in_external53           : in     std_logic;
   -- Clock out ports
-  clk_out320e          : out    std_logic;
-  clk_out40e          : out    std_logic;
+  clk_out_external160          : out    std_logic;
+  clk_out_external13          : out    std_logic;
+  clk_out_external6          : out    std_logic;
+  clk_out_external40          : out    std_logic;
+  clk_out_external53          : out    std_logic;
+  clk_out_external26          : out    std_logic;
   -- Status and control signals
   reset             : in     std_logic;
   locked            : out    std_logic
@@ -87,15 +95,19 @@ end clk_wiz_1;
 
 architecture xilinx of clk_wiz_1 is
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of xilinx : architecture is "clk_wiz_1,clk_wiz_v5_1,{component_name=clk_wiz_1,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=PLL,num_out_clk=2,clkin1_period=25.0,clkin2_period=10.0,use_power_down=false,use_reset=true,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}";
+  attribute CORE_GENERATION_INFO of xilinx : architecture is "clk_wiz_1,clk_wiz_v5_1,{component_name=clk_wiz_1,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=MMCM,num_out_clk=6,clkin1_period=18.867,clkin2_period=10.0,use_power_down=false,use_reset=true,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}";
 
 component clk_wiz_1_clk_wiz
 port
  (-- Clock in ports
-  clk_in40e           : in     std_logic;
+  clk_in_external53           : in     std_logic;
   -- Clock out ports
-  clk_out320e          : out    std_logic;
-  clk_out40e          : out    std_logic;
+  clk_out_external160          : out    std_logic;
+  clk_out_external13          : out    std_logic;
+  clk_out_external6          : out    std_logic;
+  clk_out_external40          : out    std_logic;
+  clk_out_external53          : out    std_logic;
+  clk_out_external26          : out    std_logic;
   -- Status and control signals
   reset             : in     std_logic;
   locked            : out    std_logic
@@ -108,10 +120,14 @@ begin
    port map ( 
 
    -- Clock in ports
-   clk_in40e => clk_in40e,
+   clk_in_external53 => clk_in_external53,
   -- Clock out ports  
-   clk_out320e => clk_out320e,
-   clk_out40e => clk_out40e,
+   clk_out_external160 => clk_out_external160,
+   clk_out_external13 => clk_out_external13,
+   clk_out_external6 => clk_out_external6,
+   clk_out_external40 => clk_out_external40,
+   clk_out_external53 => clk_out_external53,
+   clk_out_external26 => clk_out_external26,
   -- Status and control signals                
    reset => reset,
    locked => locked            

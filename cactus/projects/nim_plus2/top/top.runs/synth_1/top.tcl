@@ -13,14 +13,14 @@ set_property webtalk.parent_dir /home/rrivera/ots/srcs/otsdaq-firmware/cactus/pr
 set_property parent.project_path /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp
-set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp]
-add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.runs/clk_wiz_0_synth_1/clk_wiz_0.dcp
-set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.runs/clk_wiz_0_synth_1/clk_wiz_0.dcp]
-add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp
-set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp]
 add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp
 set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.runs/xilinx_64b_counter_synth_1/xilinx_64b_counter.dcp]
+add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp
+set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.runs/clk_wiz_1_synth_1/clk_wiz_1.dcp]
+add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.runs/clk_wiz_internalClocks_synth_1/clk_wiz_internalClocks.dcp
+set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.runs/clk_wiz_internalClocks_synth_1/clk_wiz_internalClocks.dcp]
+add_files -quiet /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp
+set_property used_in_implementation false [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.dcp]
 read_verilog -library xil_defaultlib {
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/ethImports/ethernet_controller/crc_gen.v
   /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/ethImports/ethernet_controller/crc_chk.v

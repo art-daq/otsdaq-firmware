@@ -165,10 +165,10 @@ architecture BEHAVIORAL of top is
     signal ei40_gen_lock : std_logic;
     
     
-        signal fs_gen_lock_latch, ei40_gen_lock_latch, ot_ps_lock_latch, nim_clk_lock_latch : std_logic_vector(1 downto 0) := (others => '0');
-        signal fs_gen_lock_loss, ei40_gen_lock_loss, ot_ps_lock_loss, nim_clk_lock_loss : std_logic := '0';
-        
-            signal selected_ext_clkg : std_logic;
+    signal fs_gen_lock_latch, ei40_gen_lock_latch, ot_ps_lock_latch, nim_clk_lock_latch : std_logic_vector(1 downto 0) := (others => '0');
+    signal fs_gen_lock_loss, ei40_gen_lock_loss, ot_ps_lock_loss, nim_clk_lock_loss : std_logic := '0';
+    
+    signal selected_ext_clkg : std_logic;
     
     signal s_bkpressa : std_logic;
     signal s_bkpressb : std_logic;
@@ -182,21 +182,21 @@ architecture BEHAVIORAL of top is
     signal s_b_wr_out : std_logic;
     signal s_b_read : std_logic_vector (63 downto 0);
     
- --
- --   
-
+    -- all internal, external here are non-BUFG !!! only BUFG after mux
+    signal external_clk6, external_clk13, external_clk26, external_clk53, external_clk40, external_clk160 : std_logic;
+    signal internal_clk6, internal_clk13, internal_clk26, internal_clk53,                 internal_clk160 : std_logic;
+    
+    -- all sysclk are non-BUFG !!!
+    signal sysclk_6, sysclk_13, sysclk_26, sysclk_53 : std_logic;
     
     signal s_clk40e  : std_logic;
---    signal s_clk320e : std_logic;
-    signal bs_clk40e  : std_logic;
-    signal bs_clk320e : std_logic;
+    --signal bs_clk40e  : std_logic;
+    --signal bs_clk160e : std_logic;
     
---    signal s_clk40i  : std_logic;
---    signal s_clk320i : std_logic;
     signal bs_clk40i  : std_logic;
-    signal bs_clk320i : std_logic;
+    --signal bs_clk160i : std_logic;
     
-    signal mx_320 : std_logic;
+    signal mx_160 : std_logic;
     signal mx_40 : std_logic;
     signal bmx_320 : std_logic;
     signal bmx_40 : std_logic;
@@ -214,7 +214,7 @@ architecture BEHAVIORAL of top is
     attribute mark_debug of bmx_40 : signal is "true";
 --    --attribute mark_debug of mx_40 : signal is "true";
     attribute mark_debug of bs_clk40i : signal is "true";
-    attribute mark_debug of bs_clk40e : signal is "true";
+    attribute mark_debug of external_clk40 : signal is "true";
     attribute mark_debug of fs_gen_lock : signal is "true";
     attribute mark_debug of ei40_gen_lock : signal is "true";
     attribute mark_debug of nim_clk_lock : signal is "true";
@@ -268,59 +268,87 @@ architecture BEHAVIORAL of top is
    --        attribute mark_debug of rx_addr : signal is "true";
   --         attribute mark_debug of rx_data : signal is "true";
        
-       component NIM_CLKS
-          port ( 
+    component NIM_CLKS
+        port ( 
             MASTER_CLK : in STD_LOGIC;
-            clk_out0 : out STD_LOGIC;
+            clk_out_dac125 : out STD_LOGIC;
+            clk_out_internal40 : out STD_LOGIC;
             reset : in STD_LOGIC;
             locked : out STD_LOGIC
-          );
+        );        
+    end component NIM_CLKS;  -- Cut and pasted from stub.vhdl file
         
-        end component;  -- Cut and pasted from stub.vhdl file
-        
-        component clk_wiz_0
-        port
-         (-- Clock in ports
-          MASTER_CLK           : in     std_logic;
-          -- Clock out ports
-          clkout160          : out    std_logic;
-                    clkout53          : out    std_logic;
-                    clkout26          : out    std_logic;
-                    clkout13          : out    std_logic;
-          clkout40 : out    std_logic;
-          -- Status and control signals
-          reset             : in     std_logic;
-          locked            : out    std_logic
-         );
-   end component;  
+--    component clk_wiz_0
+--        port (-- Clock in ports
+--            MASTER_CLK           : in     std_logic;
+--            -- Clock out ports
+--            clkout160          : out    std_logic;
+--            clkout53          : out    std_logic;
+--            clkout26          : out    std_logic;
+--            clkout13          : out    std_logic;
+--            clkout40 : out    std_logic;
+--            -- Status and control signals
+--            reset             : in     std_logic;
+--            locked            : out    std_logic
+--        );
+--    end component clk_wiz_0;  
    
-component clk_wiz_1
-port
- (-- Clock in ports
- clk_in40e  : in std_logic;
- -- clk_in40e_p         : in     std_logic;
- -- clk_in40e_n         : in     std_logic;
-  -- Clock out ports
-  clk_out320e          : out    std_logic;
-  clk_out40e          : out    std_logic;
-  -- Status and control signals
-  reset             : in     std_logic;
-  locked            : out    std_logic
- );
-end component;
+    component clk_wiz_1
+        port (-- Clock in ports
+            clk_in_external53 : in STD_LOGIC;
+            clk_out_external160 : out STD_LOGIC;
+            clk_out_external26 : out STD_LOGIC;
+            clk_out_external13 : out STD_LOGIC;
+            clk_out_external6 : out STD_LOGIC;
+            clk_out_external40 : out STD_LOGIC;
+            clk_out_external53 : out STD_LOGIC;
+            --clkfb_in : inout STD_LOGIC;
+            --clkfb_out : out STD_LOGIC;
+            reset : in STD_LOGIC;
+            locked : out STD_LOGIC
+        );
+    end component clk_wiz_1;
 
-component clk_mux_2_to_1_x_2
-	 port(
-	 	 sel : in STD_LOGIC;
-		 e_320 : in STD_LOGIC;
-		 i_320 : in STD_LOGIC;
-		 e_40 : in STD_LOGIC;
-		 i_40 : in STD_LOGIC;
-		 out_320 : out STD_LOGIC;
-		 out_40 : out STD_LOGIC
-	     );
-	     
-end component;  
+    component clk_wiz_internalClocks
+        port ( 
+            clk_in_internal40 : in STD_LOGIC;
+            clk_out_internal160 : out STD_LOGIC;
+            clk_out_internal13 : out STD_LOGIC;
+            clk_out_internal6 : out STD_LOGIC;
+            clk_out_internal26 : out STD_LOGIC;
+            --clkfb_in : inout STD_LOGIC;
+            --clkfb_out : out STD_LOGIC;
+            reset : in STD_LOGIC;
+            locked : out STD_LOGIC
+        );
+    end component clk_wiz_internalClocks;
+
+    component clk_mux_2_to_1_x_2
+        port(
+            sel     : in STD_LOGIC;
+            
+            e_160   : in STD_LOGIC;
+            e_40    : in STD_LOGIC;
+            e_53    : in STD_LOGIC;
+            e_26    : in STD_LOGIC;
+            e_13    : in STD_LOGIC;
+            e_6     : in STD_LOGIC;
+            
+            i_160   : in STD_LOGIC;        
+            i_40    : in STD_LOGIC;        
+            i_53    : in STD_LOGIC;        
+            i_26    : in STD_LOGIC;        
+            i_13    : in STD_LOGIC;        
+            i_6     : in STD_LOGIC;
+            
+            out_160 : out STD_LOGIC;
+            out_40  : out STD_LOGIC;
+            out_53  : out STD_LOGIC;
+            out_26  : out STD_LOGIC;
+            out_13  : out STD_LOGIC;
+            out_6   : out STD_LOGIC
+        );
+    end component clk_mux_2_to_1_x_2;  
 
    component OBUF
       port ( I : in    std_logic; 
@@ -366,11 +394,11 @@ end component;
    end component;
    
    
-       signal extra_clk_reset : std_logic_vector(3 downto 0) := (others => '0');
-       signal extra_clk_reset_OR : std_logic_vector(3 downto 0) := (others => '0');
-   
-   
-   signal sysclk_13, sysclk_26, sysclk_53 : std_logic;
+    signal extra_clk_reset : std_logic_vector(3 downto 0) := (others => '0');
+    signal extra_clk_reset_OR : std_logic_vector(3 downto 0) := (others => '0');
+    
+    signal external_clk_fdbk, external_clk_fdbk_g, internal_clk_fdbk, internal_clk_fdbk_g : std_logic;
+    
 begin
    
 	gnd <= '0';
@@ -414,28 +442,10 @@ begin
 					 
 	-- end simple OEI
 
-     
 
-
-
---    CLKMHZ_40_bufg : BUFG  -- Try IBUFG to get rid of DRC error
---        port map (I=>nim_input(2),  O=>bs_clk_in_40MHz);
-
-            
- --  CLK_40e_bufg : BUFG
- --               port map (I=>s_clk40e,  O=>bs_clk40e);
-                 
---    CLK_40i_bufg : BUFG
---                 port map (I=>s_clk40i,  O=>bs_clk40i);
-
- --  CLK_320e_bufg : BUFG
- --                port map (I=>s_clk320e,  O=>bs_clk320e);
-                 
- --   CLK_320i_bufg : BUFG
- --                port map (I=>s_clk320i,  O=>bs_clk320i);
                      
-    CLK_mx_320_bufg : BUFG
-                              port map (I=>mx_320,  O=>bmx_320);       
+    CLK_mx_160_bufg : BUFG
+                              port map (I=>mx_160,  O=>bmx_320);       
 
     CLK_mx_40_bufg : BUFG
                               port map (I=>mx_40,  O=>bmx_40);
@@ -514,31 +524,6 @@ begin
      extra_clk_reset_OR(2) <= extra_clk_reset(2) or reset;
      extra_clk_reset_OR(3) <= extra_clk_reset(3) or reset;
 
-    CLK_MUX : clk_mux_2_to_1_x_2
-	 port map(
-	 	 sel => s_ck_mx_out(0),
-		 i_320 => bs_clk320e,
-		 e_320 => bs_clk320i,
-		 i_40 => bs_clk40e,
-		 e_40 => bs_clk40i,
-		 out_320 => mx_320,	
-		 out_40 => mx_40
-	     );  
-	     
---	      CLK_MUX40 : BUFGMUX
---             port map(
---                 S => s_ck_mx_out,
---                 I0 => bs_clk40e,
---                 I1 => bs_clk40i,
---                 O => mx_40
---                 );  
---           CLK_MUX320 : BUFGMUX
---              port map(
---                  S => s_ck_mx_out,
---                  I0 => bs_clk320e,
---                  I1 => bs_clk320i,
---                  O => mx_320
---                  ); 
    
    
 
@@ -551,13 +536,13 @@ begin
                       DAC_clk => b_nim_dac_clk,
                       bkpa => s_bkpressa,
                       bkpb => s_bkpressb,
-                      clk0 => bmx_320,
+                      clk0 => bmx_320, --actually 160 MHz
                       
-                      clk_13_25 => sysclk_13,
-                      clk_26_5 => sysclk_26,
-                      clk_ext => selected_ext_clkg, --s_clk40e,
+                      clk_13_25 => sysclk_6,    --half to match clk0 ratio a la NIM+X
+                      clk_26_5 => sysclk_13,    --half to match clk0 ratio a la NIM+X
+                      clk_ext => selected_ext_clkg,
                       
-                      cln_clk_53 => sysclk_53,
+                      cln_clk_53 => sysclk_26,  --half to match clk0 ratio a la NIM+X
                       
                       clk_40DCM => bmx_40,
                       reset_out => reset,
@@ -664,30 +649,59 @@ begin
          -- End of FIFO_DUALCLOCK_MACRO_inst instantiation  
    end generate;
       
-      
-    
-   NIM_CLKS_BLOCK : NIM_CLKS
-         port map( 
-           MASTER_CLK => MASTER_CLK,
-           clk_out0 => nim_dac_clk,
-           reset => extra_clk_reset_OR(2),
-           locked => nim_clk_lock
-         );
-   
-   clk_wiz_0_BLOCK : clk_wiz_0
-         port map(
---           clk_in_40MHz => bs_clk_in_40MHz,   
-           MASTER_CLK => MASTER_CLK,
-           clkout160 => bs_clk320i,
-           
-            clkout53 => sysclk_53,
-            clkout26 => sysclk_26,
-            clkout13 => sysclk_13,
+     
+    CLK_MUX : clk_mux_2_to_1_x_2
+        port map(
+            sel         => s_ck_mx_out(0),
             
-           clkout40 => bs_clk40i,           
-           reset => extra_clk_reset_OR(0),
-           locked => fs_gen_lock
-          );    
+            e_160       => external_clk160,     --: in STD_LOGIC;
+            e_40        => external_clk40,      --: in STD_LOGIC;
+            e_53        => external_clk53,      --: in STD_LOGIC;
+            e_26        => external_clk26,      --: in STD_LOGIC;
+            e_13        => external_clk13,      --: in STD_LOGIC;
+            e_6         => external_clk6,       --: in STD_LOGIC;
+            
+            i_160       => internal_clk160,     --: in STD_LOGIC;
+            i_40        => bs_clk40i,           --: in STD_LOGIC;
+            i_53        => internal_clk53,      --: in STD_LOGIC;
+            i_26        => internal_clk26,      --: in STD_LOGIC;
+            i_13        => internal_clk13,      --: in STD_LOGIC;
+            i_6         => internal_clk6,       --: in STD_LOGIC;
+            
+            out_160     => mx_160,              --: out STD_LOGIC;
+            out_40      => mx_40,               --: out STD_LOGIC;
+            out_53      => sysclk_53,           --: out STD_LOGIC;
+            out_26      => sysclk_26,           --: out STD_LOGIC;
+            out_13      => sysclk_13,           --: out STD_LOGIC;
+            out_6       => sysclk_6             --: out STD_LOGIC;           
+        );          
+    
+    NIM_CLKS_BLOCK : NIM_CLKS
+        port map( 
+            MASTER_CLK          => MASTER_CLK,
+            clk_out_dac125      => nim_dac_clk,
+            clk_out_internal40  => bs_clk40i,
+            reset               => extra_clk_reset_OR(2),
+            locked              => nim_clk_lock
+        );
+   
+    internal_clk_BLOCK : clk_wiz_internalClocks
+        port map(
+            clk_in_internal40   => bs_clk40i,               --: in STD_LOGIC;
+            clk_out_internal160 => internal_clk160,         --: out STD_LOGIC;
+            clk_out_internal26  => internal_clk26,          --: out STD_LOGIC;
+            clk_out_internal13  => internal_clk13,          --: out STD_LOGIC;
+            clk_out_internal6   => internal_clk6,           --: out STD_LOGIC;
+            --clkfb_in            => internal_clk_fdbk_g,
+            --clkfb_out           => internal_clk_fdbk,
+            reset               => extra_clk_reset_OR(1),   --: in STD_LOGIC;
+            locked              => fs_gen_lock              --: out STD_LOGIC
+        ); 
+        
+--      intFeedbackClockBUFG: BUFG
+--         port map( I => internal_clk_fdbk, 
+--                O => internal_clk_fdbk_g);   
+        
 
         --generate external clock PLL and source control
         genExtClkMux : for i in 0 to 0 generate
@@ -720,16 +734,34 @@ begin
         
           end generate;
           
-     clk_wiz_1_BLOCK : clk_wiz_1
-         port map(  
-            clk_in40e => selected_ext_clkg, --s_clk40e,
-          -- Clock out ports
-          clk_out320e => bs_clk320e,
-          clk_out40e => bs_clk40e,
-          -- Status and control signals
-          reset => extra_clk_reset_OR(1),
-          locked  => ei40_gen_lock
-          );
+        clk_wiz_1_BLOCK : clk_wiz_1
+            port map(  
+                clk_in_external53       => selected_ext_clkg,   --: in STD_LOGIC;
+                clk_out_external160     => external_clk160,     --: out STD_LOGIC;
+                clk_out_external40      => external_clk40,      --: out STD_LOGIC;
+                clk_out_external53      => external_clk53,      --: out STD_LOGIC;
+                clk_out_external26      => external_clk26,      --: out STD_LOGIC;
+                clk_out_external13      => external_clk13,      --: out STD_LOGIC;
+                clk_out_external6       => external_clk6,       --: out STD_LOGIC;
+                --clkfb_in                => external_clk_fdbk_g,
+                --clkfb_out               => external_clk_fdbk,
+                
+                reset                   => extra_clk_reset_OR(1),--: in STD_LOGIC;
+                locked                  => ei40_gen_lock        --: out STD_LOGIC
+             
+--            clk_in40e => selected_ext_clkg, --s_clk40e,
+--            -- Clock out ports
+--            clk_out320e => bs_clk320e,
+--            clk_out40e => bs_clk40e,
+--            -- Status and control signals
+--            reset => extra_clk_reset_OR(1),
+--            locked  => ei40_gen_lock
+            );
+        
+--       extFeedbackClockBUFG: BUFG
+--          port map( I => external_clk_fdbk, 
+--                 O => external_clk_fdbk_g);   
+       
           
           
           

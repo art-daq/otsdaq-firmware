@@ -693,17 +693,53 @@ begin
 	     
 	 -- handle external trigger
 	 
-       trigpattern_imp : trigpattern
-       GENERIC MAP (
-         PATTERN => "01010",
-         CLOCK_EDGE => "FALLING",
-         WIDTH => 1
-       )
-       PORT MAP (
-         CLK => EXT_CLK,
-         D => EXT_CMD,
-         TRIGGER => TRIGGER
-       );
+--       trigpattern_imp : trigpattern
+--       GENERIC MAP (
+--         PATTERN => "01010",
+--         CLOCK_EDGE => "FALLING",
+--         WIDTH => 1
+--       )
+--       PORT MAP (
+--         CLK => EXT_CLK,
+--         D => EXT_CMD,
+--         TRIGGER => TRIGGER
+--       );
+       
+       
+        -- Missing triggers from NIM+ so trying to simplify
+        simple_trigger_gen : if TRUE generate
+            signal hi_count : unsigned(2 downto 0) := (others => '1');
+            signal cmd_latch,cmd_latch2 :std_logic;    
+        begin
+        
+        
+           simple_trigger_proc : process(EXT_CLK)
+           begin
+           
+                if (rising_edge(EXT_CLK)) then
+                
+                    cmd_latch       <= EXT_CMD;
+                    cmd_latch2      <= cmd_latch;
+                    
+                    TRIGGER         <= '0';
+                    
+                    if (cmd_latch2 = '0' and cmd_latch = '1') then 
+                        hi_count <= (others => '0'); --reset
+                    elsif(cmd_latch = '1') then
+                    
+                        if(hi_count = 2) then
+                            TRIGGER <= '1';
+                        end if;
+                    
+                        if(hi_count < "111") then 
+                            hi_count <= hi_count + 1;
+                        end if;
+                    else
+                        hi_count <= (others => '1'); --no signal
+                    end if;
+                end if;
+           end process simple_trigger_proc;
+        end generate simple_trigger_gen;
      
        startpattern_imp : trigpattern
        GENERIC MAP (

@@ -31,8 +31,11 @@ entity ethernet_interface is
           rx_addr              	: out   std_logic_vector (31 downto 0); 
           rx_data              	: out   std_logic_vector (63 downto 0);   	
           rx_wren              	: out   std_logic;							
-          tx_rden               : out   std_logic;    --added RAR 					   
-          tx_data              	: in    std_logic_vector (63 downto 0); 	 					 
+          tx_rden               : out   std_logic;    --added RAR 		
+            rx_wren2            : out   std_logic;    --added RAR                        
+            tx_rden2            : out   std_logic;    --added RAR     				   
+            tx_data2            : in    std_logic_vector (63 downto 0);  --added RAR			   
+          tx_data              	: in    std_logic_vector (63 downto 0);	 					 
 --erased for simple interface 
 --erased for simple interface 
 		  
@@ -101,7 +104,8 @@ architecture BEHAVIORAL of ethernet_interface is
 	signal user_tx_dest_mac     	: std_logic_vector (47 downto 0); 
 	signal user_tx_dest_port    	: std_logic_vector (15 downto 0); 		 
 	
-	signal user_tx_rden			   	: std_logic;						
+	signal user_tx_rden			   	: std_logic;	
+	signal user_tx_rden2			: std_logic;						
 	--signal user_ready		   		: std_logic; 						
 	signal user_b_force_packet	   	: std_logic;  						
 	signal crc_chk_out	   			: std_logic;		
@@ -114,7 +118,8 @@ architecture BEHAVIORAL of ethernet_interface is
     signal ots_din, ots_dout       	: std_logic_vector (63 downto 0); 	 					 
 	signal ots_rden			   		: std_logic;						  	
 	signal ots_ready	   			: std_logic; 						  	
-	signal ots_user_mask  			: std_logic := '0'; 							   
+	signal ots_user_mask  			: std_logic := '0';
+	signal ots_user_mask2  			: std_logic := '0'; 							   
     signal internal_eth_dout      	: std_logic_vector (63 downto 0); 	 				  	
 	signal internal_reset  			: std_logic_vector(1 downto 0) := (others => '0'); 	   							  	
 	signal reset_mgr_in  			: std_logic; 	   
@@ -159,7 +164,8 @@ architecture BEHAVIORAL of ethernet_interface is
 	-------- end simple declaration section -----------	
   	 											  								     
 begin						
-    tx_rden <= user_tx_rden;    				 
+    tx_rden <= user_tx_rden; 
+    tx_rden2 <= user_tx_rden2;    				 
 	
    ec_wrapper : entity work.ethernet_controller_wrapper
       port map (
@@ -299,9 +305,17 @@ begin
 	ots_user_mask <= '1' when ( ots_block_sel = 0) else '0';  		
 	rx_wren <= ots_user_mask and ots_wren;		   
 	user_tx_rden <= ots_user_mask and ots_rden;	
+	-- NOTE: User code 2 is treated as "block 256"																																																																																																																																
+	ots_user_mask2 <= '1' when ( ots_block_sel = 256) else '0';  		
+	rx_wren2 <= ots_user_mask2 and ots_wren;		   
+	user_tx_rden2 <= ots_user_mask2 and ots_rden;	
 	
-	ots_dout <= tx_data when (ots_user_mask = '1') else internal_eth_dout;
-	ots_ready <= (not ots_user_mask) or user_ready; -- ots address space is always ready	  
+	
+--        ots_dout <= tx_data when (ots_user_mask = '1') else internal_eth_dout;
+--        ots_ready <= (not ots_user_mask) or user_ready; -- ots address space is always ready
+	ots_dout <= tx_data when (ots_user_mask = '1') else
+	               tx_data2 when (ots_user_mask2 = '1') else internal_eth_dout;
+	ots_ready <= (not ots_user_mask and not ots_user_mask2) or user_ready; -- ots address space is always ready	  
 	
 	reset_mgr_in <= internal_reset(0) or reset_in;
 																								  

@@ -54,7 +54,8 @@
 --  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 --   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 ------------------------------------------------------------------------------
--- CLK_OUT1___125.000______0.000______50.0______125.031____104.065
+-- CLK_OUT1___125.000______0.000______50.0______119.348_____96.948
+-- CLK_OUT2____40.000______0.000______50.0______150.675_____96.948
 --
 ------------------------------------------------------------------------------
 -- Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -69,7 +70,8 @@ port
  (-- Clock in ports
   MASTER_CLK           : in     std_logic;
   -- Clock out ports
-  clk_out0          : out    std_logic;
+  clk_out_dac125          : out    std_logic;
+  clk_out_internal40          : out    std_logic;
   -- Status and control signals
   reset             : in     std_logic;
   locked            : out    std_logic
@@ -81,7 +83,7 @@ ATTRIBUTE SYN_BLACK_BOX OF NIM_CLKS : COMPONENT IS TRUE;
 
 
 ATTRIBUTE BLACK_BOX_PAD_PIN : STRING;
-ATTRIBUTE BLACK_BOX_PAD_PIN OF NIM_CLKS : COMPONENT IS "MASTER_CLK,clk_out0,reset,locked";
+ATTRIBUTE BLACK_BOX_PAD_PIN OF NIM_CLKS : COMPONENT IS "MASTER_CLK,clk_out_dac125,clk_out_internal40,reset,locked";
 
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
 -- The following code must appear in the VHDL architecture
@@ -93,7 +95,8 @@ your_instance_name : NIM_CLKS
    -- Clock in ports
    MASTER_CLK => MASTER_CLK,
   -- Clock out ports  
-   clk_out0 => clk_out0,
+   clk_out_dac125 => clk_out_dac125,
+   clk_out_internal40 => clk_out_internal40,
   -- Status and control signals                
    reset => reset,
    locked => locked            

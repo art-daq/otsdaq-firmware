@@ -611,22 +611,22 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
+        <CompFileExtendedInfo CompFileName="NIM_CLKS.xci" FileRelPathName="NIM_CLKS_board.xdc"/>
+        <CompFileExtendedInfo CompFileName="NIM_CLKS.xci" FileRelPathName="doc/clk_wiz_v5_1_changelog.txt"/>
+        <CompFileExtendedInfo CompFileName="NIM_CLKS.xci" FileRelPathName="NIM_CLKS.xml"/>
+        <CompFileExtendedInfo CompFileName="NIM_CLKS.xci" FileRelPathName="NIM_CLKS_funcsim.vhdl"/>
+        <CompFileExtendedInfo CompFileName="NIM_CLKS.xci" FileRelPathName="NIM_CLKS_funcsim.v"/>
+        <CompFileExtendedInfo CompFileName="NIM_CLKS.xci" FileRelPathName="NIM_CLKS_stub.vhdl"/>
+        <CompFileExtendedInfo CompFileName="NIM_CLKS.xci" FileRelPathName="NIM_CLKS_stub.v"/>
+        <CompFileExtendedInfo CompFileName="NIM_CLKS.xci" FileRelPathName="NIM_CLKS.dcp"/>
+        <CompFileExtendedInfo CompFileName="NIM_CLKS.xci" FileRelPathName="NIM_CLKS_ooc.xdc"/>
+        <CompFileExtendedInfo CompFileName="NIM_CLKS.xci" FileRelPathName="NIM_CLKS.xdc"/>
+        <CompFileExtendedInfo CompFileName="NIM_CLKS.xci" FileRelPathName="NIM_CLKS.vhd"/>
+        <CompFileExtendedInfo CompFileName="NIM_CLKS.xci" FileRelPathName="NIM_CLKS_clk_wiz.vhd"/>
+        <CompFileExtendedInfo CompFileName="NIM_CLKS.xci" FileRelPathName="NIM_CLKS.vho"/>
       </File>
       <Config>
         <Option Name="TopModule" Val="NIM_CLKS"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="clk_wiz_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/clk_wiz_0">
-      <File Path="$PSRCDIR/sources_1/ip/clk_wiz_0/clk_wiz_0.xci">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <Config>
-        <Option Name="TopModule" Val="clk_wiz_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -653,6 +653,19 @@
       </File>
       <Config>
         <Option Name="TopModule" Val="xilinx_64b_counter"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="clk_wiz_internalClocks" Type="BlockSrcs" RelSrcDir="$PSRCDIR/clk_wiz_internalClocks">
+      <File Path="$PSRCDIR/sources_1/ip/clk_wiz_internalClocks/clk_wiz_internalClocks.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <Config>
+        <Option Name="TopModule" Val="clk_wiz_internalClocks"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -695,13 +708,6 @@
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
     </Run>
-    <Run Id="clk_wiz_0_synth_1" Type="Ft3:Synth" SrcSet="clk_wiz_0" Part="xc7a200tffg1156-2" ConstrsSet="clk_wiz_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/clk_wiz_0_synth_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-    </Run>
     <Run Id="clk_wiz_1_synth_1" Type="Ft3:Synth" SrcSet="clk_wiz_1" Part="xc7a200tffg1156-2" ConstrsSet="clk_wiz_1" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/clk_wiz_1_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
@@ -710,6 +716,13 @@
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
     </Run>
     <Run Id="xilinx_64b_counter_synth_1" Type="Ft3:Synth" SrcSet="xilinx_64b_counter" Part="xc7a200tffg1156-2" ConstrsSet="xilinx_64b_counter" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/xilinx_64b_counter_synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+    </Run>
+    <Run Id="clk_wiz_internalClocks_synth_1" Type="Ft3:Synth" SrcSet="clk_wiz_internalClocks" Part="xc7a200tffg1156-2" ConstrsSet="clk_wiz_internalClocks" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/clk_wiz_internalClocks_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
         <Step Id="synth_design"/>
@@ -745,20 +758,6 @@
         <Step Id="write_bitstream"/>
       </Strategy>
     </Run>
-    <Run Id="clk_wiz_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a200tffg1156-2" ConstrsSet="clk_wiz_0" Description="Vivado Implementation Defaults" SynthRun="clk_wiz_0_synth_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-    </Run>
     <Run Id="clk_wiz_1_impl_1" Type="Ft2:EntireDesign" Part="xc7a200tffg1156-2" ConstrsSet="clk_wiz_1" Description="Vivado Implementation Defaults" SynthRun="clk_wiz_1_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
@@ -774,6 +773,20 @@
       </Strategy>
     </Run>
     <Run Id="xilinx_64b_counter_impl_1" Type="Ft2:EntireDesign" Part="xc7a200tffg1156-2" ConstrsSet="xilinx_64b_counter" Description="Vivado Implementation Defaults" SynthRun="xilinx_64b_counter_synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+    </Run>
+    <Run Id="clk_wiz_internalClocks_impl_1" Type="Ft2:EntireDesign" Part="xc7a200tffg1156-2" ConstrsSet="clk_wiz_internalClocks" Description="Vivado Implementation Defaults" SynthRun="clk_wiz_internalClocks_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
         <Step Id="init_design"/>

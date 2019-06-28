@@ -55,7 +55,8 @@
 --  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 --   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 ------------------------------------------------------------------------------
--- CLK_OUT1___125.000______0.000______50.0______125.031____104.065
+-- CLK_OUT1___125.000______0.000______50.0______119.348_____96.948
+-- CLK_OUT2____40.000______0.000______50.0______150.675_____96.948
 --
 ------------------------------------------------------------------------------
 -- Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -76,7 +77,8 @@ port
  (-- Clock in ports
   MASTER_CLK           : in     std_logic;
   -- Clock out ports
-  clk_out0          : out    std_logic;
+  clk_out_dac125          : out    std_logic;
+  clk_out_internal40          : out    std_logic;
   -- Status and control signals
   reset             : in     std_logic;
   locked            : out    std_logic
@@ -90,9 +92,9 @@ architecture xilinx of NIM_CLKS_clk_wiz is
   signal clkfbout_NIM_CLKS         : std_logic;
   signal clkfbout_buf_NIM_CLKS     : std_logic;
   signal clkfboutb_unused : std_logic;
-  signal clk_out0_NIM_CLKS          : std_logic;
+  signal clk_out_dac125_NIM_CLKS          : std_logic;
   signal clkout0b_unused         : std_logic;
-  signal clkout1_unused   : std_logic;
+  signal clk_out_internal40_NIM_CLKS          : std_logic;
   signal clkout1b_unused         : std_logic;
   signal clkout2_unused   : std_logic;
   signal clkout2b_unused         : std_logic;
@@ -137,18 +139,21 @@ begin
     
     COMPENSATION         => "ZHOLD",
     DIVCLK_DIVIDE        => 1,
-    CLKFBOUT_MULT        => 7,
+    CLKFBOUT_MULT        => 8,
     CLKFBOUT_PHASE       => 0.000,
-    CLKOUT0_DIVIDE       => 7,
+    CLKOUT0_DIVIDE       => 8,
     CLKOUT0_PHASE        => 0.000,
     CLKOUT0_DUTY_CYCLE   => 0.500,
+    CLKOUT1_DIVIDE       => 25,
+    CLKOUT1_PHASE        => 0.000,
+    CLKOUT1_DUTY_CYCLE   => 0.500,
     CLKIN1_PERIOD        => 8.0)
   port map
     -- Output clocks
    (
     CLKFBOUT            => clkfbout_NIM_CLKS,
-    CLKOUT0             => clk_out0_NIM_CLKS,
-    CLKOUT1             => clkout1_unused,
+    CLKOUT0             => clk_out_dac125_NIM_CLKS,
+    CLKOUT1             => clk_out_internal40_NIM_CLKS,
     CLKOUT2             => clkout2_unused,
     CLKOUT3             => clkout3_unused,
     CLKOUT4             => clkout4_unused,
@@ -187,9 +192,14 @@ begin
 
   clkout1_buf : BUFG
   port map
-   (O   => clk_out0,
-    I   => clk_out0_NIM_CLKS);
+   (O   => clk_out_dac125,
+    I   => clk_out_dac125_NIM_CLKS);
 
 
+
+  clkout2_buf : BUFG
+  port map
+   (O   => clk_out_internal40,
+    I   => clk_out_internal40_NIM_CLKS);
 
 end xilinx;

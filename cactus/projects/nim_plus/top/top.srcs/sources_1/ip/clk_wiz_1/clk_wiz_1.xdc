@@ -51,8 +51,8 @@
 # input clocks. You can use these to time your system. If required
 # commented constraints can be used in the top level xdc 
 #----------------------------------------------------------------
-#create_clock -period 25.0 [get_ports clk_in40e]
-#set_input_jitter [get_clocks -of_objects [get_ports clk_in40e]] 0.25
+#create_clock -period 18.867 [get_ports clk_in_external53]
+#set_input_jitter [get_clocks -of_objects [get_ports clk_in_external53]] 0.18867
 
 
 

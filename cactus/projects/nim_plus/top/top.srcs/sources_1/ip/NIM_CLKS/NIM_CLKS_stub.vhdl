@@ -1,7 +1,7 @@
 -- Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
--- Date        : Tue May 22 11:40:04 2018
+-- Date        : Thu May  9 13:46:23 2019
 -- Host        : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_stub.vhdl
@@ -15,7 +15,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity NIM_CLKS is
   Port ( 
     MASTER_CLK : in STD_LOGIC;
-    clk_out0 : out STD_LOGIC;
+    clk_out_dac125 : out STD_LOGIC;
+    clk_out_internal40 : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC
   );
@@ -26,6 +27,6 @@ architecture stub of NIM_CLKS is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "MASTER_CLK,clk_out0,reset,locked";
+attribute black_box_pad_pin of stub : architecture is "MASTER_CLK,clk_out_dac125,clk_out_internal40,reset,locked";
 begin
 end;

@@ -1,7 +1,7 @@
 -- Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
--- Date        : Tue May 22 11:40:04 2018
+-- Date        : Thu May  9 13:46:23 2019
 -- Host        : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_funcsim.vhdl
@@ -17,7 +17,8 @@ use UNISIM.VCOMPONENTS.ALL;
 entity NIM_CLKS_NIM_CLKS_clk_wiz is
   port (
     MASTER_CLK : in STD_LOGIC;
-    clk_out0 : out STD_LOGIC;
+    clk_out_dac125 : out STD_LOGIC;
+    clk_out_internal40 : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC
   );
@@ -27,10 +28,10 @@ end NIM_CLKS_NIM_CLKS_clk_wiz;
 
 architecture STRUCTURE of NIM_CLKS_NIM_CLKS_clk_wiz is
   signal MASTER_CLK_NIM_CLKS : STD_LOGIC;
-  signal clk_out0_NIM_CLKS : STD_LOGIC;
+  signal clk_out_dac125_NIM_CLKS : STD_LOGIC;
+  signal clk_out_internal40_NIM_CLKS : STD_LOGIC;
   signal clkfbout_NIM_CLKS : STD_LOGIC;
   signal clkfbout_buf_NIM_CLKS : STD_LOGIC;
-  signal NLW_plle2_adv_inst_CLKOUT1_UNCONNECTED : STD_LOGIC;
   signal NLW_plle2_adv_inst_CLKOUT2_UNCONNECTED : STD_LOGIC;
   signal NLW_plle2_adv_inst_CLKOUT3_UNCONNECTED : STD_LOGIC;
   signal NLW_plle2_adv_inst_CLKOUT4_UNCONNECTED : STD_LOGIC;
@@ -41,6 +42,7 @@ architecture STRUCTURE of NIM_CLKS_NIM_CLKS_clk_wiz is
   attribute box_type of clkf_buf : label is "PRIMITIVE";
   attribute box_type of clkin1_bufg : label is "PRIMITIVE";
   attribute box_type of clkout1_buf : label is "PRIMITIVE";
+  attribute box_type of clkout2_buf : label is "PRIMITIVE";
   attribute box_type of plle2_adv_inst : label is "PRIMITIVE";
 begin
 clkf_buf: unisim.vcomponents.BUFG
@@ -55,20 +57,25 @@ clkin1_bufg: unisim.vcomponents.BUFG
     );
 clkout1_buf: unisim.vcomponents.BUFG
      port map (
-      I => clk_out0_NIM_CLKS,
-      O => clk_out0
+      I => clk_out_dac125_NIM_CLKS,
+      O => clk_out_dac125
+    );
+clkout2_buf: unisim.vcomponents.BUFG
+     port map (
+      I => clk_out_internal40_NIM_CLKS,
+      O => clk_out_internal40
     );
 plle2_adv_inst: unisim.vcomponents.PLLE2_ADV
     generic map(
       BANDWIDTH => "OPTIMIZED",
-      CLKFBOUT_MULT => 7,
+      CLKFBOUT_MULT => 8,
       CLKFBOUT_PHASE => 0.000000,
       CLKIN1_PERIOD => 8.000000,
       CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE => 7,
+      CLKOUT0_DIVIDE => 8,
       CLKOUT0_DUTY_CYCLE => 0.500000,
       CLKOUT0_PHASE => 0.000000,
-      CLKOUT1_DIVIDE => 1,
+      CLKOUT1_DIVIDE => 25,
       CLKOUT1_DUTY_CYCLE => 0.500000,
       CLKOUT1_PHASE => 0.000000,
       CLKOUT2_DIVIDE => 1,
@@ -98,8 +105,8 @@ plle2_adv_inst: unisim.vcomponents.PLLE2_ADV
       CLKIN1 => MASTER_CLK_NIM_CLKS,
       CLKIN2 => '0',
       CLKINSEL => '1',
-      CLKOUT0 => clk_out0_NIM_CLKS,
-      CLKOUT1 => NLW_plle2_adv_inst_CLKOUT1_UNCONNECTED,
+      CLKOUT0 => clk_out_dac125_NIM_CLKS,
+      CLKOUT1 => clk_out_internal40_NIM_CLKS,
       CLKOUT2 => NLW_plle2_adv_inst_CLKOUT2_UNCONNECTED,
       CLKOUT3 => NLW_plle2_adv_inst_CLKOUT3_UNCONNECTED,
       CLKOUT4 => NLW_plle2_adv_inst_CLKOUT4_UNCONNECTED,
@@ -144,14 +151,15 @@ use UNISIM.VCOMPONENTS.ALL;
 entity NIM_CLKS is
   port (
     MASTER_CLK : in STD_LOGIC;
-    clk_out0 : out STD_LOGIC;
+    clk_out_dac125 : out STD_LOGIC;
+    clk_out_internal40 : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of NIM_CLKS : entity is true;
   attribute core_generation_info : string;
-  attribute core_generation_info of NIM_CLKS : entity is "NIM_CLKS,clk_wiz_v5_1,{component_name=NIM_CLKS,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=PLL,num_out_clk=1,clkin1_period=8.0,clkin2_period=10.0,use_power_down=false,use_reset=true,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}";
+  attribute core_generation_info of NIM_CLKS : entity is "NIM_CLKS,clk_wiz_v5_1,{component_name=NIM_CLKS,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=PLL,num_out_clk=2,clkin1_period=8.0,clkin2_period=10.0,use_power_down=false,use_reset=true,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}";
 end NIM_CLKS;
 
 architecture STRUCTURE of NIM_CLKS is
@@ -159,7 +167,8 @@ begin
 U0: entity work.NIM_CLKS_NIM_CLKS_clk_wiz
      port map (
       MASTER_CLK => MASTER_CLK,
-      clk_out0 => clk_out0,
+      clk_out_dac125 => clk_out_dac125,
+      clk_out_internal40 => clk_out_internal40,
       locked => locked,
       reset => reset
     );

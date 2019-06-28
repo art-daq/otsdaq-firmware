@@ -54,13 +54,17 @@
 --  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 --   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 ------------------------------------------------------------------------------
--- CLK_OUT1___160.000______0.000______50.0______190.317____208.802
--- CLK_OUT2____40.000______0.000______50.0______273.894____208.802
+-- CLK_OUT1___159.000______0.000______50.0______164.772____131.758
+-- CLK_OUT2____13.250______0.000______50.0______285.100____131.758
+-- CLK_OUT3_____6.625______0.000______50.0______325.772____131.758
+-- CLK_OUT4____39.750______0.000______50.0______228.151____131.758
+-- CLK_OUT5____53.000______0.000______50.0______213.774____131.758
+-- CLK_OUT6____26.500______0.000______50.0______248.151____131.758
 --
 ------------------------------------------------------------------------------
 -- Input Clock   Freq (MHz)    Input Jitter (UI)
 ------------------------------------------------------------------------------
--- __primary______________40____________0.010
+-- __primary______________53____________0.010
 
 
 -- The following code must appear in the VHDL architecture header:
@@ -68,10 +72,14 @@
 component clk_wiz_1
 port
  (-- Clock in ports
-  clk_in40e           : in     std_logic;
+  clk_in_external53           : in     std_logic;
   -- Clock out ports
-  clk_out320e          : out    std_logic;
-  clk_out40e          : out    std_logic;
+  clk_out_external160          : out    std_logic;
+  clk_out_external13          : out    std_logic;
+  clk_out_external6          : out    std_logic;
+  clk_out_external40          : out    std_logic;
+  clk_out_external53          : out    std_logic;
+  clk_out_external26          : out    std_logic;
   -- Status and control signals
   reset             : in     std_logic;
   locked            : out    std_logic
@@ -83,7 +91,7 @@ ATTRIBUTE SYN_BLACK_BOX OF clk_wiz_1 : COMPONENT IS TRUE;
 
 
 ATTRIBUTE BLACK_BOX_PAD_PIN : STRING;
-ATTRIBUTE BLACK_BOX_PAD_PIN OF clk_wiz_1 : COMPONENT IS "clk_in40e,clk_out320e,clk_out40e,reset,locked";
+ATTRIBUTE BLACK_BOX_PAD_PIN OF clk_wiz_1 : COMPONENT IS "clk_in_external53,clk_out_external160,clk_out_external13,clk_out_external6,clk_out_external40,clk_out_external53,clk_out_external26,reset,locked";
 
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
 -- The following code must appear in the VHDL architecture
@@ -93,10 +101,14 @@ your_instance_name : clk_wiz_1
    port map ( 
 
    -- Clock in ports
-   clk_in40e => clk_in40e,
+   clk_in_external53 => clk_in_external53,
   -- Clock out ports  
-   clk_out320e => clk_out320e,
-   clk_out40e => clk_out40e,
+   clk_out_external160 => clk_out_external160,
+   clk_out_external13 => clk_out_external13,
+   clk_out_external6 => clk_out_external6,
+   clk_out_external40 => clk_out_external40,
+   clk_out_external53 => clk_out_external53,
+   clk_out_external26 => clk_out_external26,
   -- Status and control signals                
    reset => reset,
    locked => locked            

@@ -1,7 +1,7 @@
 -- Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
--- Date        : Thu May  2 11:03:14 2019
+-- Date        : Thu May  9 11:40:37 2019
 -- Host        : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_stub.vhdl
@@ -16,10 +16,6 @@ entity clk_wiz_0 is
   Port ( 
     MASTER_CLK : in STD_LOGIC;
     clkout160 : out STD_LOGIC;
-    clkout40 : out STD_LOGIC;
-    clkout53 : out STD_LOGIC;
-    clkout26 : out STD_LOGIC;
-    clkout13 : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC
   );
@@ -30,6 +26,6 @@ architecture stub of clk_wiz_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "MASTER_CLK,clkout160,clkout40,clkout53,clkout26,clkout13,reset,locked";
+attribute black_box_pad_pin of stub : architecture is "MASTER_CLK,clkout160,reset,locked";
 begin
 end;

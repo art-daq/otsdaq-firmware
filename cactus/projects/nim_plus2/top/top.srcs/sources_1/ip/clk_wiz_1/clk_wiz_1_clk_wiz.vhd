@@ -55,13 +55,17 @@
 --  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 --   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 ------------------------------------------------------------------------------
--- CLK_OUT1___160.000______0.000______50.0______190.317____208.802
--- CLK_OUT2____40.000______0.000______50.0______273.894____208.802
+-- CLK_OUT1___159.000______0.000______50.0______164.772____131.758
+-- CLK_OUT2____13.250______0.000______50.0______285.100____131.758
+-- CLK_OUT3_____6.625______0.000______50.0______325.772____131.758
+-- CLK_OUT4____39.750______0.000______50.0______228.151____131.758
+-- CLK_OUT5____53.000______0.000______50.0______213.774____131.758
+-- CLK_OUT6____26.500______0.000______50.0______248.151____131.758
 --
 ------------------------------------------------------------------------------
 -- Input Clock   Freq (MHz)    Input Jitter (UI)
 ------------------------------------------------------------------------------
--- __primary______________40____________0.010
+-- __primary______________53____________0.010
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -75,10 +79,14 @@ use unisim.vcomponents.all;
 entity clk_wiz_1_clk_wiz is
 port
  (-- Clock in ports
-  clk_in40e           : in     std_logic;
+  clk_in_external53           : in     std_logic;
   -- Clock out ports
-  clk_out320e          : out    std_logic;
-  clk_out40e          : out    std_logic;
+  clk_out_external160          : out    std_logic;
+  clk_out_external13          : out    std_logic;
+  clk_out_external6          : out    std_logic;
+  clk_out_external40          : out    std_logic;
+  clk_out_external53          : out    std_logic;
+  clk_out_external26          : out    std_logic;
   -- Status and control signals
   reset             : in     std_logic;
   locked            : out    std_logic
@@ -87,21 +95,21 @@ end clk_wiz_1_clk_wiz;
 
 architecture xilinx of clk_wiz_1_clk_wiz is
   -- Input clock buffering / unused connectors
-  signal clk_in40e_clk_wiz_1      : std_logic;
+  signal clk_in_external53_clk_wiz_1      : std_logic;
   -- Output clock buffering / unused connectors
   signal clkfbout_clk_wiz_1         : std_logic;
   signal clkfbout_buf_clk_wiz_1     : std_logic;
   signal clkfboutb_unused : std_logic;
-  signal clk_out320e_clk_wiz_1          : std_logic;
+  signal clk_out_external160_clk_wiz_1          : std_logic;
   signal clkout0b_unused         : std_logic;
-  signal clk_out40e_clk_wiz_1          : std_logic;
+  signal clk_out_external13_clk_wiz_1          : std_logic;
   signal clkout1b_unused         : std_logic;
-  signal clkout2_unused   : std_logic;
+  signal clk_out_external6_clk_wiz_1          : std_logic;
   signal clkout2b_unused         : std_logic;
-  signal clkout3_unused   : std_logic;
+  signal clk_out_external40_clk_wiz_1          : std_logic;
   signal clkout3b_unused  : std_logic;
-  signal clkout4_unused   : std_logic;
-  signal clkout5_unused   : std_logic;
+  signal clk_out_external53_clk_wiz_1          : std_logic;
+  signal clk_out_external26_clk_wiz_1          : std_logic;
   signal clkout6_unused   : std_logic;
   -- Dynamic programming unused signals
   signal do_unused        : std_logic_vector(15 downto 0);
@@ -121,8 +129,8 @@ begin
   --------------------------------------
   clkin1_bufg : BUFG
   port map
-   (O => clk_in40e_clk_wiz_1,
-    I => clk_in40e);
+   (O => clk_in_external53_clk_wiz_1,
+    I => clk_in_external53);
 
 
 
@@ -132,35 +140,62 @@ begin
   -- Instantiation of the MMCM PRIMITIVE
   --    * Unused inputs are tied off
   --    * Unused outputs are labeled unused
-  plle2_adv_inst : PLLE2_ADV
+  mmcm_adv_inst : MMCME2_ADV
   generic map
    (BANDWIDTH            => "OPTIMIZED",
 
     
+    CLKOUT4_CASCADE      => FALSE,
     COMPENSATION         => "ZHOLD",
+    STARTUP_WAIT         => FALSE,
     DIVCLK_DIVIDE        => 1,
-    CLKFBOUT_MULT        => 20,
+    CLKFBOUT_MULT_F      => 15.000,
     CLKFBOUT_PHASE       => 0.000,
-    CLKOUT0_DIVIDE       => 5,
+    CLKFBOUT_USE_FINE_PS => FALSE,
+    CLKOUT0_DIVIDE_F     => 5.000,
     CLKOUT0_PHASE        => 0.000,
     CLKOUT0_DUTY_CYCLE   => 0.500,
-    CLKOUT1_DIVIDE       => 20,
+    CLKOUT0_USE_FINE_PS  => FALSE,
+    CLKOUT1_DIVIDE       => 60,
     CLKOUT1_PHASE        => 0.000,
     CLKOUT1_DUTY_CYCLE   => 0.500,
-    CLKIN1_PERIOD        => 25.0)
+    CLKOUT1_USE_FINE_PS  => FALSE,
+    CLKOUT2_DIVIDE       => 120,
+    CLKOUT2_PHASE        => 0.000,
+    CLKOUT2_DUTY_CYCLE   => 0.500,
+    CLKOUT2_USE_FINE_PS  => FALSE,
+    CLKOUT3_DIVIDE       => 20,
+    CLKOUT3_PHASE        => 0.000,
+    CLKOUT3_DUTY_CYCLE   => 0.500,
+    CLKOUT3_USE_FINE_PS  => FALSE,
+    CLKOUT4_DIVIDE       => 15,
+    CLKOUT4_PHASE        => 0.000,
+    CLKOUT4_DUTY_CYCLE   => 0.500,
+    CLKOUT4_USE_FINE_PS  => FALSE,
+    CLKOUT5_DIVIDE       => 30,
+    CLKOUT5_PHASE        => 0.000,
+    CLKOUT5_DUTY_CYCLE   => 0.500,
+    CLKOUT5_USE_FINE_PS  => FALSE,
+    CLKIN1_PERIOD        => 18.867)
   port map
     -- Output clocks
    (
     CLKFBOUT            => clkfbout_clk_wiz_1,
-    CLKOUT0             => clk_out320e_clk_wiz_1,
-    CLKOUT1             => clk_out40e_clk_wiz_1,
-    CLKOUT2             => clkout2_unused,
-    CLKOUT3             => clkout3_unused,
-    CLKOUT4             => clkout4_unused,
-    CLKOUT5             => clkout5_unused,
+    CLKFBOUTB           => clkfboutb_unused,
+    CLKOUT0             => clk_out_external160_clk_wiz_1,
+    CLKOUT0B            => clkout0b_unused,
+    CLKOUT1             => clk_out_external13_clk_wiz_1,
+    CLKOUT1B            => clkout1b_unused,
+    CLKOUT2             => clk_out_external6_clk_wiz_1,
+    CLKOUT2B            => clkout2b_unused,
+    CLKOUT3             => clk_out_external40_clk_wiz_1,
+    CLKOUT3B            => clkout3b_unused,
+    CLKOUT4             => clk_out_external53_clk_wiz_1,
+    CLKOUT5             => clk_out_external26_clk_wiz_1,
+    CLKOUT6             => clkout6_unused,
     -- Input clock control
     CLKFBIN             => clkfbout_buf_clk_wiz_1,
-    CLKIN1              => clk_in40e_clk_wiz_1,
+    CLKIN1              => clk_in_external53_clk_wiz_1,
     CLKIN2              => '0',
     -- Tied to always select the primary input clock
     CLKINSEL            => '1',
@@ -172,8 +207,15 @@ begin
     DO                  => do_unused,
     DRDY                => drdy_unused,
     DWE                 => '0',
+    -- Ports for dynamic phase shift
+    PSCLK               => '0',
+    PSEN                => '0',
+    PSINCDEC            => '0',
+    PSDONE              => psdone_unused,
     -- Other control and status signals
     LOCKED              => locked_int,
+    CLKINSTOPPED        => clkinstopped_unused,
+    CLKFBSTOPPED        => clkfbstopped_unused,
     PWRDWN              => '0',
     RST                 => reset_high);
 
@@ -192,14 +234,34 @@ begin
 
   clkout1_buf : BUFG
   port map
-   (O   => clk_out320e,
-    I   => clk_out320e_clk_wiz_1);
+   (O   => clk_out_external160,
+    I   => clk_out_external160_clk_wiz_1);
 
 
 
   clkout2_buf : BUFG
   port map
-   (O   => clk_out40e,
-    I   => clk_out40e_clk_wiz_1);
+   (O   => clk_out_external13,
+    I   => clk_out_external13_clk_wiz_1);
+
+  clkout3_buf : BUFG
+  port map
+   (O   => clk_out_external6,
+    I   => clk_out_external6_clk_wiz_1);
+
+  clkout4_buf : BUFG
+  port map
+   (O   => clk_out_external40,
+    I   => clk_out_external40_clk_wiz_1);
+
+  clkout5_buf : BUFG
+  port map
+   (O   => clk_out_external53,
+    I   => clk_out_external53_clk_wiz_1);
+
+  clkout6_buf : BUFG
+  port map
+   (O   => clk_out_external26,
+    I   => clk_out_external26_clk_wiz_1);
 
 end xilinx;

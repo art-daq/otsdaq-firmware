@@ -91,59 +91,57 @@ set_property IOSTANDARD LVCMOS25 [get_ports PHY_TXD7]
 # NIMPlus Comparator output pairs
 
 
-set_property PACKAGE_PIN AL30 [get_ports NIM_COM1_P]
-#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM1_P]
-##Above was 0
-
-#set_property PACKAGE_PIN AM30 [get_ports NIM_COM1_N]
-#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM1_N]
-##Above was 0
-
-#set_property PACKAGE_PIN AJ30 [get_ports NIM_COM0_P]
-#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM0_P]
-##Above was 1
-#set_property PACKAGE_PIN AK31 [get_ports NIM_COM0_N]
-#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM0_N]
-##Above was 1
-#set_property PACKAGE_PIN AJ26 [get_ports NIM_COM3_P]
-#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM3_P]
-##Above was 2
-#set_property PACKAGE_PIN AK26 [get_ports NIM_COM3_N]
-#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM3_N]
-##Above was 2
-#set_property PACKAGE_PIN AL25 [get_ports NIM_COM2_P]
-#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM2_P]
-##Above was 3
-#set_property PACKAGE_PIN AM25 [get_ports NIM_COM2_N]
-#set_property IOSTANDARD LVDS_25 [get_ports NIM_COM2_N]
-##Above was 3
-
-
-set_property PACKAGE_PIN AN8 [get_ports NIM_COM1_P]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM1_P]
+set_property PACKAGE_PIN AL30 [get_ports NIM_COM_P[1]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[1]]
 #Above was 0
-
-set_property PACKAGE_PIN AP8 [get_ports NIM_COM1_N]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM1_N]
+set_property PACKAGE_PIN AM30 [get_ports NIM_COM_N[1]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[1]]
 #Above was 0
-
-set_property PACKAGE_PIN AJ28 [get_ports NIM_COM0_P] 
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM0_P]
+set_property PACKAGE_PIN AJ30 [get_ports NIM_COM_P[0]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[0]]
 #Above was 1
-set_property PACKAGE_PIN AK28 [get_ports NIM_COM0_N]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM0_N]
+set_property PACKAGE_PIN AK31 [get_ports NIM_COM_N[0]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[0]]
 #Above was 1
-set_property PACKAGE_PIN AL4 [get_ports NIM_COM3_P]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM3_P]
+set_property PACKAGE_PIN AJ26 [get_ports NIM_COM_P[3]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[3]]
 #Above was 2
-set_property PACKAGE_PIN AM4 [get_ports NIM_COM3_N]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM3_N]
+set_property PACKAGE_PIN AK26 [get_ports NIM_COM_N[3]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[3]]
 #Above was 2
-set_property PACKAGE_PIN AL5 [get_ports NIM_COM2_P]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM2_P]
+set_property PACKAGE_PIN AL25 [get_ports NIM_COM_P[2]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[2]]
 #Above was 3
-set_property PACKAGE_PIN AM5 [get_ports NIM_COM2_N]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM2_N]
+set_property PACKAGE_PIN AM25 [get_ports NIM_COM_N[2]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[2]]
+#Above was 3
+
+
+set_property PACKAGE_PIN AN8 [get_ports NIM_COM_P[5]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[5]]
+#Above was 0
+
+set_property PACKAGE_PIN AP8 [get_ports NIM_COM_N[5]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[5]]
+#Above was 0
+
+set_property PACKAGE_PIN AJ28 [get_ports NIM_COM_P[4]] 
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[4]]
+#Above was 1
+set_property PACKAGE_PIN AK28 [get_ports NIM_COM_N[4]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[4]]
+#Above was 1
+set_property PACKAGE_PIN AL4 [get_ports NIM_COM_P[7]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[7]]
+#Above was 2
+set_property PACKAGE_PIN AM4 [get_ports NIM_COM_N[7]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[7]]
+#Above was 2
+set_property PACKAGE_PIN AL5 [get_ports NIM_COM_P[6]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[6]]
+#Above was 3
+set_property PACKAGE_PIN AM5 [get_ports NIM_COM_N[6]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[6]]
 #Above was 3
 
 
@@ -158,19 +156,37 @@ set_property IOSTANDARD LVCMOS25 [get_ports DAC_NSYNC]
 set_property PACKAGE_PIN AK27 [get_ports DAC_DIN]
 set_property IOSTANDARD LVCMOS25 [get_ports DAC_DIN]
 
-#Delayed Pulse Output
-set_property PACKAGE_PIN AN9 [get_ports NIM_OUT0_P]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT0_P]
+#Outputs
+set_property PACKAGE_PIN AN9 [get_ports NIM_OUT_P[0]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_P[0]]
+set_property PACKAGE_PIN AP9 [get_ports NIM_OUT_N[0]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_N[0]]
 
-set_property PACKAGE_PIN AP9 [get_ports NIM_OUT0_N]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT0_N]
-#Begin AGProsser 2017_03_31
-# Pulse Generator Output
-set_property PACKAGE_PIN AL9 [get_ports NIM_OUT1_P]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT1_P]
- 
-set_property PACKAGE_PIN AM9 [get_ports NIM_OUT1_N]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT1_N]
+set_property PACKAGE_PIN AL9 [get_ports NIM_OUT_P[1]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_P[1]] 
+set_property PACKAGE_PIN AM9 [get_ports NIM_OUT_N[1]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_N[1]]
+
+set_property PACKAGE_PIN AJ10 [get_ports NIM_OUT_P[2]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_P[2]]
+set_property PACKAGE_PIN AK10 [get_ports NIM_OUT_N[2]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_N[2]]
+#set_property PACKAGE_PIN J27 [get_ports TRIG_CMS1_OUT_P]
+#set_property IOSTANDARD LVDS_25 [get_ports TRIG_CMS1_OUT_P]
+#set_property PACKAGE_PIN J28 [get_ports TRIG_CMS1_OUT_N]
+#set_property IOSTANDARD LVDS_25 [get_ports TRIG_CMS1_OUT_N]
+
+set_property PACKAGE_PIN AM11 [get_ports NIM_OUT_P[3]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_P[3]]
+set_property PACKAGE_PIN AN11 [get_ports NIM_OUT_N[3]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_N[3]]
+
+#set_property PACKAGE_PIN L30 [get_ports CLK40_LEM_P]
+#set_property IOSTANDARD LVDS_25 [get_ports CLK40_LEM_P]
+
+#set_property PACKAGE_PIN K30 [get_ports CLK40_LEM_N]
+#set_property IOSTANDARD LVDS_25 [get_ports CLK40_LEM_N]
+
 
 set_property PACKAGE_PIN AC4 [get_ports BKPRSA_P]
 set_property IOSTANDARD LVDS_25 [get_ports BKPRSA_P]
@@ -209,30 +225,6 @@ set_property PACKAGE_PIN AP3 [get_ports CLK40B_OUT_N]
 set_property IOSTANDARD LVDS_25 [get_ports CLK40B_OUT_N]
 
 
-
-#set_property PACKAGE_PIN J27 [get_ports TRIG_CMS1_OUT_P]
-#set_property IOSTANDARD LVDS_25 [get_ports TRIG_CMS1_OUT_P]
-
-set_property PACKAGE_PIN AJ10 [get_ports NIM_OUT2_P]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT2_P]
-
-#set_property PACKAGE_PIN J28 [get_ports TRIG_CMS1_OUT_N]
-#set_property IOSTANDARD LVDS_25 [get_ports TRIG_CMS1_OUT_N]
-
-set_property PACKAGE_PIN AK10 [get_ports NIM_OUT2_N]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT2_N]
-
-#set_property PACKAGE_PIN L30 [get_ports CLK40_LEM_P]
-#set_property IOSTANDARD LVDS_25 [get_ports CLK40_LEM_P]
-
-#set_property PACKAGE_PIN K30 [get_ports CLK40_LEM_N]
-#set_property IOSTANDARD LVDS_25 [get_ports CLK40_LEM_N]
-
-set_property PACKAGE_PIN AM11 [get_ports NIM_OUT3_P]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT3_P]
-
-set_property PACKAGE_PIN AN11 [get_ports NIM_OUT3_N]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT3_N]
 
 set_property PACKAGE_PIN AP29 [get_ports CLK40_IN_EXT_P]
 set_property IOSTANDARD LVDS_25 [get_ports CLK40_IN_EXT_P]

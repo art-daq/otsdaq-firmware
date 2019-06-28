@@ -15,7 +15,6 @@ set_property parent.project_path /home/rrivera/ots/srcs/otsdaq-firmware/cactus/p
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
 read_ip /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.xci
-set_property used_in_implementation false [get_files -all /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.dcp]
 set_property is_locked true [get_files /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.xci]
 
 read_xdc dont_touch.xdc

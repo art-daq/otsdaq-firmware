@@ -53,4 +53,4 @@
 ############################################################
 # Clock Period Constraints                                 #
 ############################################################
-create_clock -period 25.0 [get_ports clk_in40e]
+create_clock -period 18.867 [get_ports clk_in_external53]

@@ -55,11 +55,7 @@
 --  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 --   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 ------------------------------------------------------------------------------
--- CLK_OUT1___160.000______0.000______50.0______120.854____230.698
--- CLK_OUT2____40.000______0.000______50.0______145.116____230.698
--- CLK_OUT3____53.333______0.000______50.0______139.665____230.698
--- CLK_OUT4____26.667______0.000______50.0______156.571____230.698
--- CLK_OUT5____13.223______0.000______50.0______177.670____230.698
+-- CLK_OUT1____40.000______0.000______50.0______321.613____265.359
 --
 ------------------------------------------------------------------------------
 -- Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -81,10 +77,6 @@ port
   MASTER_CLK           : in     std_logic;
   -- Clock out ports
   clkout160          : out    std_logic;
-  clkout40          : out    std_logic;
-  clkout53          : out    std_logic;
-  clkout26          : out    std_logic;
-  clkout13          : out    std_logic;
   -- Status and control signals
   reset             : in     std_logic;
   locked            : out    std_logic
@@ -100,13 +92,13 @@ architecture xilinx of clk_wiz_0_clk_wiz is
   signal clkfboutb_unused : std_logic;
   signal clkout160_clk_wiz_0          : std_logic;
   signal clkout0b_unused         : std_logic;
-  signal clkout40_clk_wiz_0          : std_logic;
+  signal clkout1_unused   : std_logic;
   signal clkout1b_unused         : std_logic;
-  signal clkout53_clk_wiz_0          : std_logic;
+  signal clkout2_unused   : std_logic;
   signal clkout2b_unused         : std_logic;
-  signal clkout26_clk_wiz_0          : std_logic;
+  signal clkout3_unused   : std_logic;
   signal clkout3b_unused  : std_logic;
-  signal clkout13_clk_wiz_0          : std_logic;
+  signal clkout4_unused   : std_logic;
   signal clkout5_unused   : std_logic;
   signal clkout6_unused   : std_logic;
   -- Dynamic programming unused signals
@@ -145,33 +137,21 @@ begin
     
     COMPENSATION         => "ZHOLD",
     DIVCLK_DIVIDE        => 5,
-    CLKFBOUT_MULT        => 64,
+    CLKFBOUT_MULT        => 32,
     CLKFBOUT_PHASE       => 0.000,
-    CLKOUT0_DIVIDE       => 10,
+    CLKOUT0_DIVIDE       => 20,
     CLKOUT0_PHASE        => 0.000,
     CLKOUT0_DUTY_CYCLE   => 0.500,
-    CLKOUT1_DIVIDE       => 40,
-    CLKOUT1_PHASE        => 0.000,
-    CLKOUT1_DUTY_CYCLE   => 0.500,
-    CLKOUT2_DIVIDE       => 30,
-    CLKOUT2_PHASE        => 0.000,
-    CLKOUT2_DUTY_CYCLE   => 0.500,
-    CLKOUT3_DIVIDE       => 60,
-    CLKOUT3_PHASE        => 0.000,
-    CLKOUT3_DUTY_CYCLE   => 0.500,
-    CLKOUT4_DIVIDE       => 121,
-    CLKOUT4_PHASE        => 0.000,
-    CLKOUT4_DUTY_CYCLE   => 0.500,
     CLKIN1_PERIOD        => 8.0)
   port map
     -- Output clocks
    (
     CLKFBOUT            => clkfbout_clk_wiz_0,
     CLKOUT0             => clkout160_clk_wiz_0,
-    CLKOUT1             => clkout40_clk_wiz_0,
-    CLKOUT2             => clkout53_clk_wiz_0,
-    CLKOUT3             => clkout26_clk_wiz_0,
-    CLKOUT4             => clkout13_clk_wiz_0,
+    CLKOUT1             => clkout1_unused,
+    CLKOUT2             => clkout2_unused,
+    CLKOUT3             => clkout3_unused,
+    CLKOUT4             => clkout4_unused,
     CLKOUT5             => clkout5_unused,
     -- Input clock control
     CLKFBIN             => clkfbout_buf_clk_wiz_0,
@@ -211,16 +191,5 @@ begin
     I   => clkout160_clk_wiz_0);
 
 
-
-  clkout2_buf : BUFG
-  port map
-   (O   => clkout40,
-    I   => clkout40_clk_wiz_0);
-
-  clkout53 <= clkout53_clk_wiz_0;
-
-  clkout26 <= clkout26_clk_wiz_0;
-
-  clkout13 <= clkout13_clk_wiz_0;
 
 end xilinx;

@@ -2,8 +2,8 @@
 # Vivado v2015.2 (64-bit)
 # SW Build 1266856 on Fri Jun 26 16:35:25 MDT 2015
 # IP Build 1264090 on Wed Jun 24 14:22:01 MDT 2015
-# Start of session at: Tue May 22 11:39:36 2018
-# Process ID: 24693
+# Start of session at: Thu May  9 13:45:57 2019
+# Process ID: 28440
 # Log file: /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.runs/NIM_CLKS_synth_1/NIM_CLKS.vds
 # Journal file: /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.runs/NIM_CLKS_synth_1/vivado.jou
 #-----------------------------------------------------------
@@ -20,23 +20,23 @@ Command: synth_design -top NIM_CLKS -part xc7a200tffg1156-2 -mode out_of_context
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a200t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a200t'
-INFO: [Common 17-1223] The version limit for your license is '2018.05' and will expire in 9 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: [Common 17-1223] The version limit for your license is '2018.05' and will expire in -343 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1034.277 ; gain = 164.520 ; free physical = 6283 ; free virtual = 43434
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1034.281 ; gain = 164.520 ; free physical = 3322 ; free virtual = 49498
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'NIM_CLKS' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.vhd:86]
-INFO: [Synth 8-3491] module 'NIM_CLKS_clk_wiz' declared at '/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_clk_wiz.vhd:74' bound to instance 'U0' of component 'NIM_CLKS_clk_wiz' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.vhd:104]
-INFO: [Synth 8-638] synthesizing module 'NIM_CLKS_clk_wiz' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_clk_wiz.vhd:86]
-INFO: [Synth 8-113] binding component instance 'clkin1_bufg' to cell 'BUFG' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_clk_wiz.vhd:120]
+INFO: [Synth 8-638] synthesizing module 'NIM_CLKS' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.vhd:88]
+INFO: [Synth 8-3491] module 'NIM_CLKS_clk_wiz' declared at '/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_clk_wiz.vhd:75' bound to instance 'U0' of component 'NIM_CLKS_clk_wiz' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.vhd:107]
+INFO: [Synth 8-638] synthesizing module 'NIM_CLKS_clk_wiz' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_clk_wiz.vhd:88]
+INFO: [Synth 8-113] binding component instance 'clkin1_bufg' to cell 'BUFG' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_clk_wiz.vhd:122]
 	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
-	Parameter CLKFBOUT_MULT bound to: 7 - type: integer 
+	Parameter CLKFBOUT_MULT bound to: 8 - type: integer 
 	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: float 
 	Parameter CLKIN1_PERIOD bound to: 8.000000 - type: float 
 	Parameter CLKIN2_PERIOD bound to: 0.000000 - type: float 
-	Parameter CLKOUT0_DIVIDE bound to: 7 - type: integer 
+	Parameter CLKOUT0_DIVIDE bound to: 8 - type: integer 
 	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: float 
 	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: float 
-	Parameter CLKOUT1_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT1_DIVIDE bound to: 25 - type: integer 
 	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: float 
 	Parameter CLKOUT1_PHASE bound to: 0.000000 - type: float 
 	Parameter CLKOUT2_DIVIDE bound to: 1 - type: integer 
@@ -59,13 +59,14 @@ INFO: [Synth 8-113] binding component instance 'clkin1_bufg' to cell 'BUFG' [/ho
 	Parameter REF_JITTER1 bound to: 0.000000 - type: float 
 	Parameter REF_JITTER2 bound to: 0.000000 - type: float 
 	Parameter STARTUP_WAIT bound to: FALSE - type: string 
-INFO: [Synth 8-113] binding component instance 'plle2_adv_inst' to cell 'PLLE2_ADV' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_clk_wiz.vhd:133]
-INFO: [Synth 8-113] binding component instance 'clkf_buf' to cell 'BUFG' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_clk_wiz.vhd:181]
-INFO: [Synth 8-113] binding component instance 'clkout1_buf' to cell 'BUFG' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_clk_wiz.vhd:188]
-INFO: [Synth 8-256] done synthesizing module 'NIM_CLKS_clk_wiz' (1#1) [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_clk_wiz.vhd:86]
-INFO: [Synth 8-256] done synthesizing module 'NIM_CLKS' (2#1) [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.vhd:86]
+INFO: [Synth 8-113] binding component instance 'plle2_adv_inst' to cell 'PLLE2_ADV' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_clk_wiz.vhd:135]
+INFO: [Synth 8-113] binding component instance 'clkf_buf' to cell 'BUFG' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_clk_wiz.vhd:186]
+INFO: [Synth 8-113] binding component instance 'clkout1_buf' to cell 'BUFG' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_clk_wiz.vhd:193]
+INFO: [Synth 8-113] binding component instance 'clkout2_buf' to cell 'BUFG' [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_clk_wiz.vhd:200]
+INFO: [Synth 8-256] done synthesizing module 'NIM_CLKS_clk_wiz' (1#1) [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS_clk_wiz.vhd:88]
+INFO: [Synth 8-256] done synthesizing module 'NIM_CLKS' (2#1) [/home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus/top/top.srcs/sources_1/ip/NIM_CLKS/NIM_CLKS.vhd:88]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1070.566 ; gain = 200.809 ; free physical = 6198 ; free virtual = 43350
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1070.570 ; gain = 200.809 ; free physical = 3284 ; free virtual = 49461
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -75,7 +76,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1070.566 ; gain = 200.809 ; free physical = 6196 ; free virtual = 43349
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1070.570 ; gain = 200.809 ; free physical = 3284 ; free virtual = 49460
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -98,26 +99,26 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Timing 38-2] Deriving generated clocks
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.05 . Memory (MB): peak = 1379.199 ; gain = 0.000 ; free physical = 5421 ; free virtual = 42598
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.05 . Memory (MB): peak = 1380.195 ; gain = 0.000 ; free physical = 3064 ; free virtual = 49240
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5334 ; free virtual = 42512
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3064 ; free virtual = 49240
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a200tffg1156-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5334 ; free virtual = 42512
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3064 ; free virtual = 49240
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property DONT_TOUCH = true for U0. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5334 ; free virtual = 42511
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3064 ; free virtual = 49240
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5335 ; free virtual = 42512
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3064 ; free virtual = 49240
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -148,14 +149,14 @@ BRAMs: 730 (col length: RAMB18 100 RAMB36 50)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
-Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5335 ; free virtual = 42513
+Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3064 ; free virtual = 49240
 ---------------------------------------------------------------------------------
 Start Cross Boundary Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5335 ; free virtual = 42513
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3064 ; free virtual = 49240
 ---------------------------------------------------------------------------------
-Finished Parallel Reinference  : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5335 ; free virtual = 42513
+Finished Parallel Reinference  : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3064 ; free virtual = 49240
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
@@ -166,16 +167,16 @@ Report RTL Partitions:
 Start Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5336 ; free virtual = 42513
+Finished Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3064 ; free virtual = 49240
 ---------------------------------------------------------------------------------
-Finished Parallel Area Optimization  : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5336 ; free virtual = 42513
+Finished Parallel Area Optimization  : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3064 ; free virtual = 49240
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
 | |RTL Partition |Replication |Instances |
 +-+--------------+------------+----------+
 +-+--------------+------------+----------+
-Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5336 ; free virtual = 42513
+Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3064 ; free virtual = 49240
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
@@ -183,10 +184,10 @@ Start Timing Optimization
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5149 ; free virtual = 42333
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3031 ; free virtual = 49207
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5149 ; free virtual = 42333
+Finished Timing Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3031 ; free virtual = 49207
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -198,7 +199,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5140 ; free virtual = 42324
+Finished Technology Mapping : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3022 ; free virtual = 49198
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -216,7 +217,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5140 ; free virtual = 42324
+Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3022 ; free virtual = 49198
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -229,7 +230,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5140 ; free virtual = 42324
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3022 ; free virtual = 49198
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -241,13 +242,13 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5140 ; free virtual = 42324
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3022 ; free virtual = 49198
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Start Renaming Generated Ports : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5140 ; free virtual = 42324
+Start Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3022 ; free virtual = 49198
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5140 ; free virtual = 42324
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3022 ; free virtual = 49198
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -263,7 +264,7 @@ Report Cell Usage:
 +------+----------+------+
 |      |Cell      |Count |
 +------+----------+------+
-|1     |BUFG      |     3|
+|1     |BUFG      |     4|
 |2     |PLLE2_ADV |     1|
 +------+----------+------+
 
@@ -271,15 +272,15 @@ Report Instance Areas:
 +------+---------+-----------------+------+
 |      |Instance |Module           |Cells |
 +------+---------+-----------------+------+
-|1     |top      |                 |     4|
-|2     |  U0     |NIM_CLKS_clk_wiz |     4|
+|1     |top      |                 |     5|
+|2     |  U0     |NIM_CLKS_clk_wiz |     5|
 +------+---------+-----------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5140 ; free virtual = 42324
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3022 ; free virtual = 49198
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1379.199 ; gain = 82.285 ; free physical = 5139 ; free virtual = 42324
-Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1379.199 ; gain = 509.441 ; free physical = 5139 ; free virtual = 42324
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1380.195 ; gain = 82.285 ; free physical = 3022 ; free virtual = 49198
+Synthesis Optimization Complete : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1380.195 ; gain = 510.434 ; free physical = 3022 ; free virtual = 49198
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -295,8 +296,8 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-27 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+28 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1379.199 ; gain = 400.922 ; free physical = 6086 ; free virtual = 43271
-report_utilization: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.07 . Memory (MB): peak = 1384.203 ; gain = 0.000 ; free physical = 6086 ; free virtual = 43271
-INFO: [Common 17-206] Exiting Vivado at Tue May 22 11:40:04 2018...
+synth_design: Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 1380.195 ; gain = 401.914 ; free physical = 3022 ; free virtual = 49198
+report_utilization: Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.12 . Memory (MB): peak = 1385.199 ; gain = 0.000 ; free physical = 3022 ; free virtual = 49198
+INFO: [Common 17-206] Exiting Vivado at Thu May  9 13:46:23 2019...
