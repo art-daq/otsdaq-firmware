@@ -12,6 +12,24 @@ set_property BITSTREAM.CONFIG.SPI_FALL_EDGE YES [current_design]
 
 
 
+set_property PACKAGE_PIN AM27 [get_ports GND_OUT[0]]
+set_property IOSTANDARD LVCMOS25 [get_ports GND_OUT[0]]
+set_property PACKAGE_PIN AN27 [get_ports GND_OUT[1]]
+set_property IOSTANDARD LVCMOS25 [get_ports GND_OUT[1]]
+set_property PACKAGE_PIN AM26 [get_ports GND_OUT[2]]
+set_property IOSTANDARD LVCMOS25 [get_ports GND_OUT[2]]
+set_property PACKAGE_PIN AN26 [get_ports GND_OUT[3]]
+set_property IOSTANDARD LVCMOS25 [get_ports GND_OUT[3]]
+set_property PACKAGE_PIN AL28 [get_ports GND_OUT[4]]
+set_property IOSTANDARD LVCMOS25 [get_ports GND_OUT[4]]
+set_property PACKAGE_PIN AL29 [get_ports GND_OUT[5]]
+set_property IOSTANDARD LVCMOS25 [get_ports GND_OUT[5]]
+set_property PACKAGE_PIN AN28 [get_ports GND_OUT[6]]
+set_property IOSTANDARD LVCMOS25 [get_ports GND_OUT[6]]
+set_property PACKAGE_PIN AP28 [get_ports GND_OUT[7]]
+set_property IOSTANDARD LVCMOS25 [get_ports GND_OUT[7]]
+
+
 ####################################################################################
 # Constraints from file : 'TOP_LEVEL.ucf'
 ####################################################################################

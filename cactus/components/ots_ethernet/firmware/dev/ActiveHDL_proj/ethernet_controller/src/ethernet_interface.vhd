@@ -159,6 +159,7 @@ architecture BEHAVIORAL of ethernet_interface is
     -- simple -- signal internal_dout				: std_logic_vector (63 downto 0):= (others => '0'); 	
 		  
     -- simple -- signal user_addr					: std_logic_vector (7 downto 0):= (others => '0'); 
+	 -- simple -- signal b_throttle_reset  		: std_logic := '0';
 	-------- end simple declaration section -----------	
   	 											  								     
 begin										 
@@ -430,7 +431,7 @@ begin
 				elsif ( ots_block_addr = x"B" ) then 
 					 internal_eth_dout(0) <= data_dynamic_mac_resolution; 
 				elsif ( ots_block_addr = x"C" ) then 
-					 internal_eth_dout(15 downto 0) <= b_data_throttle_threshold; 
+					 internal_eth_dout(15 downto 0) <= std_logic_vector(b_data_throttle_threshold); 
 				elsif ( ots_block_addr = x"64" ) then 
 					 internal_eth_dout(15 downto 0) <= ETH_INTERFACE_VERSION; 
 				end if;
@@ -463,7 +464,7 @@ begin
 				elsif ( unsigned(internal_addr) = x"B" ) then 
 					 internal_dout(0) <= data_dynamic_mac_resolution;
 				elsif ( unsigned(internal_addr) = x"C" ) then 
-					 internal_dout(15 downto 0) <= b_data_throttle_threshold;				
+					 internal_dout(15 downto 0) <= std_logic_vector(b_data_throttle_threshold);				
 				elsif ( unsigned(internal_addr) = x"64" ) then 
 					 internal_dout(15 downto 0) <= ETH_INTERFACE_VERSION; 
 				end if;

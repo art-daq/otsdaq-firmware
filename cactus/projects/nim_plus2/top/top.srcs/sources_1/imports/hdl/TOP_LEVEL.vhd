@@ -17,6 +17,8 @@ entity top is
         NIM_OUT_P     : out    std_logic_vector(3 downto 0); -- 4 NIM+2 outputs
         NIM_OUT_N     : out    std_logic_vector(3 downto 0);
         
+        GND_OUT         : out    std_logic_vector(7 downto 0); -- outputs tied low
+        
         BKPRSA_P     : in   std_logic; -- Back pressure input
         BKPRSA_N     : in   std_logic;
         
@@ -974,7 +976,15 @@ begin
          I => nim_outputs(i)          -- Buffer input 
       ); 
       
-    end generate gen_nim_obufs;      
+    end generate gen_nim_obufs; 
+    
+     --==============================================     
+    gen_gnd_obufs : for i in 0 to 7 generate
+    begin
+    
+      OBUF_GND_OUT : OBUF port map (I => '0', O => GND_OUT(i)); 
+      
+    end generate gen_gnd_obufs;      
                                 
                                              
     -----------------------
