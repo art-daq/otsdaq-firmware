@@ -1,7 +1,7 @@
 Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
-| Date              : Thu Oct 17 10:46:27 2019
+| Date              : Fri Oct 18 15:15:21 2019
 | Host              : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
 | Command           : report_clock_utilization -file top_clock_utilization_routed.rpt
 | Design            : top
@@ -263,8 +263,8 @@ set_property LOC MMCME2_ADV_X1Y0 [get_cells internal_clk_BLOCK/U0/mmcm_adv_inst]
 set_property LOC PLLE2_ADV_X0Y4 [get_cells NIM_CLKS_BLOCK/U0/plle2_adv_inst]
 
 # Location of IO Primitives which is load of clock spine
-set_property LOC IOB_X1Y106 [get_cells OBUFDS_CMS_CLK40A_OUT]
 set_property LOC IOB_X1Y40 [get_cells OBUFDS_CMS_CLK40B_OUT]
+set_property LOC IOB_X1Y106 [get_cells OBUFDS_CMS_CLK40A_OUT]
 set_property LOC IOB_X0Y125 [get_cells OBUF_PHY_TXCLK]
 
 # Location of clock ports
@@ -309,7 +309,7 @@ resize_pblock [get_pblocks {CLKAG_bmx_320}] -add {CLOCKREGION_X0Y0:CLOCKREGION_X
 # Clock net "bmx_40" driven by instance "CLK_mx_40_bufg" located at site "BUFGCTRL_X0Y16"
 #startgroup
 create_pblock {CLKAG_bmx_40}
-add_cells_to_pblock [get_pblocks  {CLKAG_bmx_40}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL && NAME!=OBUFDS_CMS_CLK40B_OUT && NAME!=OBUFDS_CMS_CLK40A_OUT} -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="bmx_40"}]]]
+add_cells_to_pblock [get_pblocks  {CLKAG_bmx_40}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL && NAME!=OBUFDS_CMS_CLK40A_OUT && NAME!=OBUFDS_CMS_CLK40B_OUT} -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="bmx_40"}]]]
 resize_pblock [get_pblocks {CLKAG_bmx_40}] -add {CLOCKREGION_X0Y2:CLOCKREGION_X0Y2}
 #endgroup
 

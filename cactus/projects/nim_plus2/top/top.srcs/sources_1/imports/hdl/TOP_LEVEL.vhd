@@ -982,7 +982,7 @@ begin
     gen_gnd_obufs : for i in 0 to 7 generate
     begin
     
-      OBUF_GND_OUT : OBUF port map (I => '0', O => GND_OUT(i)); 
+      OBUF_GND_OUT : OBUF port map (I => '1', O => GND_OUT(i)); 
       
     end generate gen_gnd_obufs;      
                                 
