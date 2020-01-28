@@ -73,7 +73,7 @@ architecture RTL of chipserdes is
   SIGNAL FIFO_EMPTY_FLAG : STD_LOGIC;
   SIGNAL FIFO_RESET : STD_LOGIC;
   SIGNAL INTERNAL_STATE : STD_LOGIC_VECTOR(3 DOWNTO 0);
-  SIGNAL TRY_AGAIN : INTEGER RANGE 0 TO 7 := 0;
+  SIGNAL TRY_AGAIN : INTEGER RANGE 0 TO 63 := 0;
   SIGNAL SHIFTOUT1 : STD_LOGIC;
   SIGNAL SHIFTOUT2 : STD_LOGIC;
   SIGNAL SERDES_RESET : STD_LOGIC;
@@ -100,7 +100,8 @@ architecture RTL of chipserdes is
            
            
     attribute mark_debug : string;
-    --attribute mark_debug of Q : signal is "true";
+    attribute mark_debug of Q : signal is "true";
+    attribute mark_debug of STATE : signal is "true";
     attribute mark_debug of ALIGNED : signal is "true";
     --attribute mark_debug of INTERNAL_STATE : signal is "true";
     attribute mark_debug of NEXT_BITSLIP : signal is "true";
@@ -125,7 +126,7 @@ architecture RTL of chipserdes is
       SIGNAL ddr_count : UNSIGNED(2 DOWNTO 0) := (others => '0');
       SIGNAL ddr_bitslip_count : UNSIGNED(2 DOWNTO 0) := (others => '0');
       SIGNAL ddr_shr : STD_LOGIC_VECTOR(7 DOWNTO 0);
-      SIGNAL ddr_old_bitslip : STD_LOGIC;
+      SIGNAL ddr_old_bitslip, ddr_old_bitslip2 : STD_LOGIC;
       SIGNAL iddrq : STD_LOGIC_VECTOR(1 DOWNTO 0);
       SIGNAL iddr_old_DLYCE : STD_LOGIC;
       SIGNAL iddr_dsel : STD_LOGIC;
@@ -166,16 +167,241 @@ begin
             ddr_shr <= iddr_dsel & ddr_shr(7 downto 1);
             ddr_count <= ddr_count + 1;
             ddr_old_bitslip <= BITSLIP;
-            if(ddr_old_bitslip = '0' and BITSLIP = '1') then
+            ddr_old_bitslip2 <= ddr_old_bitslip;
+            if(ddr_old_bitslip2 = '0' and ddr_old_bitslip = '1') then
                  ddr_bitslip_count <= ddr_bitslip_count + 1;                 
             end if;
             
             if( ddr_bitslip_count = ddr_count) then 
                  Q <= ddr_shr;
-            end if;            
+            end if;        
+             
         end if;
     end process;
     
+
+  PROCESS ( OUTCLK, RESET ) BEGIN
+    IF ( OUTCLK'EVENT AND OUTCLK = '1' ) THEN
+      IF ( RESET = '1' ) THEN
+        SERDES_RESET <= '1';
+        STATE <= Align0;
+        NEXT_VALID_SYNC <= '0';
+        NEXT_VALID_DATA <= '0';
+        ALIGNED <= '0';
+        TRY_AGAIN <= 0;
+        SYNC_ERROR <= '0';
+        SYNC_COUNT <= ( OTHERS => '0' );
+        LOST_SYNC_COUNT <= ( OTHERS => '0' );
+        ERROR_COUNT <= ( OTHERS => '0' );
+        MISSING_SYNC_COUNT <= ( OTHERS => '0' );
+        INTERNAL_STATE <= X"0";
+      ELSE
+        SERDES_RESET <= '0';
+        CASE STATE IS
+          WHEN Align0 =>
+            INTERNAL_STATE <= X"1";
+            ALIGNED <= '0';
+            NEXT_VALID_DATA <= '0';
+            NEXT_VALID_SYNC <= '0';
+            SYNC_ERROR <= '0';
+            MISSING_SYNC_COUNT <= ( OTHERS => '0' );
+            DATA_WORD(7 DOWNTO 0) <= Q;
+            DATA_WORD(23 DOWNTO 8) <= X"0000";
+            IF ( Q = "00000001" ) THEN
+              NEXT_BITSLIP <= '0';
+              STATE <= Align1;
+            ELSE
+              SYNC_COUNT <= SYNC_COUNT + 1;
+              IF ( TRY_AGAIN = 0 ) THEN
+                NEXT_BITSLIP <= '1';
+                TRY_AGAIN <= 62;
+              ELSIF (TRY_AGAIN < 10) THEN
+                NEXT_BITSLIP <= '1';
+                TRY_AGAIN <= TRY_AGAIN - 1;                
+              ELSE
+                NEXT_BITSLIP <= '0';
+                TRY_AGAIN <= TRY_AGAIN - 1;
+              END IF;
+            END IF;
+          WHEN Align1 =>
+            INTERNAL_STATE <= X"2";
+            ALIGNED <= '0';
+            NEXT_BITSLIP <= '0';
+            NEXT_VALID_SYNC <= '0';
+            NEXT_VALID_DATA <= '0';
+            DATA_WORD(15 DOWNTO 8) <= Q;
+            IF ( Q = "00000001" ) THEN
+              DATA_WORD(7 DOWNTO 0) <= "00000001";
+            ELSIF ( Q(5 DOWNTO 0) = "000000" ) THEN
+              STATE <= Word2;
+            ELSE
+              STATE <= Align0;
+            END IF;
+       
+          WHEN Word0 =>
+            INTERNAL_STATE <= X"A";
+            ALIGNED <= '1';
+            NEXT_VALID_SYNC <= '0';
+            NEXT_VALID_DATA <= '0';
+            GET_READY <= '0';
+            SYNC_ERROR <= '0';
+            TRY_AGAIN <= 0;
+            DATA_WORD(7 DOWNTO 0) <= Q;
+            STATE <= Word1;
+          WHEN Word1 =>
+            INTERNAL_STATE <= X"B";
+            ALIGNED <= '1';
+            DATA_WORD(15 DOWNTO 8) <= Q;
+            NEXT_VALID_SYNC <= '0';
+            NEXT_VALID_DATA <= '0';
+            GET_READY <= '1';
+            STATE <= Word2;
+          WHEN Word2 =>
+            INTERNAL_STATE <= X"C";
+            DATA_WORD(23 DOWNTO 16) <= Q;
+            IF ( TRIMMED = '1' ) THEN
+              ALIGNED <= '0';
+              NEXT_VALID_SYNC <= '0';
+              NEXT_VALID_DATA <= '0';
+              SYNC_ERROR <= '0';
+              GET_READY <= '0';
+              STATE <= Align0;
+            ELSIF ( VALID_SYNC_WORD = '1' ) THEN
+              ALIGNED <= '1';
+              NEXT_VALID_SYNC <= '1';
+              NEXT_VALID_DATA <= '0';
+              SYNC_ERROR <= '0';
+              GET_READY <= '0';
+              MISSING_SYNC_COUNT <= ( OTHERS => '0' );
+              STATE <= Word0;
+            ELSIF ( VALID_DATA_WORD = '1' ) THEN
+              ALIGNED <= '1';
+              NEXT_VALID_SYNC <= '0';
+              NEXT_VALID_DATA <= '1';
+              SYNC_ERROR <= '0';
+              GET_READY <= '0';
+              MISSING_SYNC_COUNT <= ( OTHERS => '0' );
+              STATE <= Word0;
+            ELSIF ( MISSING_SYNC_COUNT = "111111" ) THEN
+              ALIGNED <= '0';
+              SYNC_ERROR <= '1';
+              IF ( LOST_SYNC_COUNT /= X"FFFF" ) THEN
+                LOST_SYNC_COUNT <= LOST_SYNC_COUNT + 1;
+              END IF;
+              SYNC_COUNT <= ( OTHERS => '0' );
+              STATE <= Align0;
+            ELSE 
+              ALIGNED <= '0';
+              MISSING_SYNC_COUNT <= MISSING_SYNC_COUNT + 1;
+              SYNC_ERROR <= '1';
+              IF ( ERROR_COUNT /= X"FFFF" ) THEN
+                ERROR_COUNT <= ERROR_COUNT + 1;
+              END IF;
+              STATE <= Word0;
+            END IF;
+        END CASE;
+      END IF;
+    END IF;
+  END PROCESS;
+
+  PROCESS ( OUTCLK ) BEGIN
+    IF ( OUTCLK'EVENT AND OUTCLK = '0' ) THEN
+      BITSLIP <= NEXT_BITSLIP;
+    END IF;
+  END PROCESS;
+
+  PROCESS ( MCLK ) BEGIN
+    IF ( MCLK'EVENT AND MCLK = '0' ) THEN
+      IF ( RESET = '1' ) THEN
+        CHIP_STATUS <= ( OTHERS => '0' );
+      ELSIF ( GET_READY = '1' ) THEN
+        IF ( ACKED = '0' ) THEN
+          DATA_LOST <= '1';
+        END IF;
+      ELSIF ( NEXT_VALID_SYNC = '1' ) THEN
+        DOUT <= DATA_WORD;
+        SYNC_VALID <= NEXT_VALID_SYNC;
+        CHIP_STATUS(5) <= DATA_WORD(23);  -- SendData
+        CHIP_STATUS(4) <= DATA_WORD(22);  -- RejectHits
+        CHIP_STATUS(3) <= DATA_WORD(20);  -- ActiveLines LSB
+        CHIP_STATUS(2) <= DATA_WORD(19);  -- Acquire BCO mismatch
+        CHIP_STATUS(1) <= DATA_WORD(17);  -- Pulsing active
+        CHIP_STATUS(0) <= '0';
+      ELSIF ( NEXT_VALID_DATA = '1' ) THEN
+        DOUT <= DATA_WORD;
+        CHIP_STATUS(0) <= '1';
+        IF ( ACKED = '0' ) THEN
+          SYNC_VALID <= '0';
+          DATA_VALID <= ENABLE;    -- Only send data words when chip is enabled.
+        ELSE
+          DATA_LOST <= '0';
+          SYNC_VALID <= '0';
+          DATA_VALID <= '0';
+        END IF;
+      ELSIF ( ACKED = '1' ) THEN
+        DATA_LOST <= '0';
+        SYNC_VALID <= '0';
+        DATA_VALID <= '0';
+      END IF;
+    END IF;
+  END PROCESS;
+
+  PROCESS ( MCLK ) BEGIN
+    IF ( MCLK'EVENT AND MCLK = '1' ) THEN
+--      IF ( DLYCE = '1' OR DLYRST = '1' ) THEN
+--        TRIMMED <= '1';
+--      ELSE
+--        IF ( STATE = Align1 ) THEN
+--          TRIMMED <= '0';
+--        END IF;
+--      END IF;
+      IF ( GET_READY = '1' ) THEN
+        ACKED <= '0';
+      ELSIF ( ACK = '1' ) THEN
+        ACKED <= '1';
+      END IF;
+    END IF;
+  END PROCESS;
+
+--  Valid sync patterns are...
+--  xxxx xxxx|xx00 0000|0000 0001
+--
+  VALID_SYNC_WORD <= '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 0) = STD_LOGIC_VECTOR(TO_UNSIGNED(CHIPID,3)) & "00000000000001" ELSE '0';
+  VALID_STRIP_NUMBER <= '1' WHEN Q(4 DOWNTO 1) = "0101" ELSE
+                        '1' WHEN Q(4 DOWNTO 1) = "0111" ELSE
+                        '1' WHEN Q(4 DOWNTO 1) = "0110" ELSE
+                        '1' WHEN Q(4 DOWNTO 1) = "1110" ELSE
+                        '1' WHEN Q(4 DOWNTO 1) = "1010" ELSE
+                        '1' WHEN Q(4 DOWNTO 1) = "1011" ELSE
+                        '1' WHEN Q(4 DOWNTO 1) = "1001" ELSE
+                        '1' WHEN Q(4 DOWNTO 1) = "1101" ELSE '0';
+  VALID_SET_NUMBER <= '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "01010" ELSE
+                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "01011" ELSE
+                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "01111" ELSE
+                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "01110" ELSE
+                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "01100" ELSE
+                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "01101" ELSE
+                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "11101" ELSE
+                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "11100" ELSE
+                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "10100" ELSE
+                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "10101" ELSE
+                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "10111" ELSE
+                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "10110" ELSE
+                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "10010" ELSE
+                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "10011" ELSE
+                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "11011" ELSE
+                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "11010" ELSE '0';
+  VALID_DATA_WORD <= ( VALID_STRIP_NUMBER AND VALID_SET_NUMBER ) WHEN DATA_WORD(0) = '1' ELSE '0';
+--  VALID_DATA_WORD <= ALIGNED WHEN DATA_WORD(0) = '1' ELSE '0';
+
+  DATA_WORD(31) <= ALIGNED;
+  DATA_WORD(30) <= DATA_LOST;
+  DATA_WORD(29 DOWNTO 27) <= STD_LOGIC_VECTOR(TO_UNSIGNED(CHANNEL,3));
+  DATA_WORD(26 DOWNTO 24) <= STD_LOGIC_VECTOR(TO_UNSIGNED(CHIPID,3));
+  STATUS <= ALIGNED & SYNC_ERROR & CHIP_STATUS & INTERNAL_STATE & STD_LOGIC_VECTOR(MISSING_SYNC_COUNT) & "000000" & STD_LOGIC_VECTOR(SYNC_COUNT);
+
+end RTL;
+
 -- NOTE: was working for one plane.. but not gauranteed to be aligned..
 --   and with 2 planes and a big chipscope.. definitely not aligned
 --	process(CLK)
@@ -379,222 +605,3 @@ begin
 --    SHIFTOUT2 => OPEN,
 --    SR => SERDES_RESET
 --  );
-
-  PROCESS ( OUTCLK, RESET ) BEGIN
-    IF ( OUTCLK'EVENT AND OUTCLK = '1' ) THEN
-      IF ( RESET = '1' ) THEN
-        SERDES_RESET <= '1';
-        STATE <= Align0;
-        NEXT_VALID_SYNC <= '0';
-        NEXT_VALID_DATA <= '0';
-        ALIGNED <= '0';
-        TRY_AGAIN <= 0;
-        SYNC_ERROR <= '0';
-        SYNC_COUNT <= ( OTHERS => '0' );
-        LOST_SYNC_COUNT <= ( OTHERS => '0' );
-        ERROR_COUNT <= ( OTHERS => '0' );
-        MISSING_SYNC_COUNT <= ( OTHERS => '0' );
-        INTERNAL_STATE <= X"0";
-      ELSE
-        SERDES_RESET <= '0';
-        CASE STATE IS
-          WHEN Align0 =>
-            INTERNAL_STATE <= X"1";
-            ALIGNED <= '0';
-            NEXT_VALID_DATA <= '0';
-            NEXT_VALID_SYNC <= '0';
-            SYNC_ERROR <= '0';
-            MISSING_SYNC_COUNT <= ( OTHERS => '0' );
-            DATA_WORD(7 DOWNTO 0) <= Q;
-            DATA_WORD(23 DOWNTO 8) <= X"0000";
-            IF ( Q = "00000001" ) THEN
-              NEXT_BITSLIP <= '0';
-              STATE <= Align1;
-            ELSE
-              SYNC_COUNT <= SYNC_COUNT + 1;
-              IF ( TRY_AGAIN = 0 ) THEN
-                NEXT_BITSLIP <= '1';
-                TRY_AGAIN <= 6;
-              ELSE
-                NEXT_BITSLIP <= '0';
-                TRY_AGAIN <= TRY_AGAIN - 1;
-              END IF;
-            END IF;
-          WHEN Align1 =>
-            INTERNAL_STATE <= X"2";
-            ALIGNED <= '0';
-            NEXT_BITSLIP <= '0';
-            NEXT_VALID_SYNC <= '0';
-            NEXT_VALID_DATA <= '0';
-            DATA_WORD(15 DOWNTO 8) <= Q;
-            IF ( Q = "00000001" ) THEN
-              DATA_WORD(7 DOWNTO 0) <= "00000001";
-            ELSIF ( Q(5 DOWNTO 0) = "000000" ) THEN
-              STATE <= Word2;
-            ELSE
-              STATE <= Align0;
-            END IF;
-       
-          WHEN Word0 =>
-            INTERNAL_STATE <= X"A";
-            ALIGNED <= '1';
-            NEXT_VALID_SYNC <= '0';
-            NEXT_VALID_DATA <= '0';
-            GET_READY <= '0';
-            SYNC_ERROR <= '0';
-            TRY_AGAIN <= 0;
-            DATA_WORD(7 DOWNTO 0) <= Q;
-            STATE <= Word1;
-          WHEN Word1 =>
-            INTERNAL_STATE <= X"B";
-            ALIGNED <= '1';
-            DATA_WORD(15 DOWNTO 8) <= Q;
-            NEXT_VALID_SYNC <= '0';
-            NEXT_VALID_DATA <= '0';
-            GET_READY <= '1';
-            STATE <= Word2;
-          WHEN Word2 =>
-            INTERNAL_STATE <= X"C";
-            DATA_WORD(23 DOWNTO 16) <= Q;
-            IF ( TRIMMED = '1' ) THEN
-              ALIGNED <= '0';
-              NEXT_VALID_SYNC <= '0';
-              NEXT_VALID_DATA <= '0';
-              SYNC_ERROR <= '0';
-              GET_READY <= '0';
-              STATE <= Align0;
-            ELSIF ( VALID_SYNC_WORD = '1' ) THEN
-              ALIGNED <= '1';
-              NEXT_VALID_SYNC <= '1';
-              NEXT_VALID_DATA <= '0';
-              SYNC_ERROR <= '0';
-              GET_READY <= '0';
-              MISSING_SYNC_COUNT <= ( OTHERS => '0' );
-              STATE <= Word0;
-            ELSIF ( VALID_DATA_WORD = '1' ) THEN
-              ALIGNED <= '1';
-              NEXT_VALID_SYNC <= '0';
-              NEXT_VALID_DATA <= '1';
-              SYNC_ERROR <= '0';
-              GET_READY <= '0';
-              MISSING_SYNC_COUNT <= ( OTHERS => '0' );
-              STATE <= Word0;
-            ELSIF ( MISSING_SYNC_COUNT = "111111" ) THEN
-              ALIGNED <= '0';
-              SYNC_ERROR <= '1';
-              IF ( LOST_SYNC_COUNT /= X"FFFF" ) THEN
-                LOST_SYNC_COUNT <= LOST_SYNC_COUNT + 1;
-              END IF;
-              SYNC_COUNT <= ( OTHERS => '0' );
-              STATE <= Align0;
-            ELSE 
-              ALIGNED <= '0';
-              MISSING_SYNC_COUNT <= MISSING_SYNC_COUNT + 1;
-              SYNC_ERROR <= '1';
-              IF ( ERROR_COUNT /= X"FFFF" ) THEN
-                ERROR_COUNT <= ERROR_COUNT + 1;
-              END IF;
-              STATE <= Word0;
-            END IF;
-        END CASE;
-      END IF;
-    END IF;
-  END PROCESS;
-
-  PROCESS ( OUTCLK ) BEGIN
-    IF ( OUTCLK'EVENT AND OUTCLK = '0' ) THEN
-      BITSLIP <= NEXT_BITSLIP;
-    END IF;
-  END PROCESS;
-
-  PROCESS ( MCLK ) BEGIN
-    IF ( MCLK'EVENT AND MCLK = '0' ) THEN
-      IF ( RESET = '1' ) THEN
-        CHIP_STATUS <= ( OTHERS => '0' );
-      ELSIF ( GET_READY = '1' ) THEN
-        IF ( ACKED = '0' ) THEN
-          DATA_LOST <= '1';
-        END IF;
-      ELSIF ( NEXT_VALID_SYNC = '1' ) THEN
-        DOUT <= DATA_WORD;
-        SYNC_VALID <= NEXT_VALID_SYNC;
-        CHIP_STATUS(5) <= DATA_WORD(23);  -- SendData
-        CHIP_STATUS(4) <= DATA_WORD(22);  -- RejectHits
-        CHIP_STATUS(3) <= DATA_WORD(20);  -- ActiveLines LSB
-        CHIP_STATUS(2) <= DATA_WORD(19);  -- Acquire BCO mismatch
-        CHIP_STATUS(1) <= DATA_WORD(17);  -- Pulsing active
-        CHIP_STATUS(0) <= '0';
-      ELSIF ( NEXT_VALID_DATA = '1' ) THEN
-        DOUT <= DATA_WORD;
-        CHIP_STATUS(0) <= '1';
-        IF ( ACKED = '0' ) THEN
-          SYNC_VALID <= '0';
-          DATA_VALID <= ENABLE;    -- Only send data words when chip is enabled.
-        ELSE
-          DATA_LOST <= '0';
-          SYNC_VALID <= '0';
-          DATA_VALID <= '0';
-        END IF;
-      ELSIF ( ACKED = '1' ) THEN
-        DATA_LOST <= '0';
-        SYNC_VALID <= '0';
-        DATA_VALID <= '0';
-      END IF;
-    END IF;
-  END PROCESS;
-
-  PROCESS ( MCLK ) BEGIN
-    IF ( MCLK'EVENT AND MCLK = '1' ) THEN
---      IF ( DLYCE = '1' OR DLYRST = '1' ) THEN
---        TRIMMED <= '1';
---      ELSE
---        IF ( STATE = Align1 ) THEN
---          TRIMMED <= '0';
---        END IF;
---      END IF;
-      IF ( GET_READY = '1' ) THEN
-        ACKED <= '0';
-      ELSIF ( ACK = '1' ) THEN
-        ACKED <= '1';
-      END IF;
-    END IF;
-  END PROCESS;
-
---  Valid sync patterns are...
---  xxxx xxxx|xx00 0000|0000 0001
---
-  VALID_SYNC_WORD <= '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 0) = STD_LOGIC_VECTOR(TO_UNSIGNED(CHIPID,3)) & "00000000000001" ELSE '0';
-  VALID_STRIP_NUMBER <= '1' WHEN Q(4 DOWNTO 1) = "0101" ELSE
-                        '1' WHEN Q(4 DOWNTO 1) = "0111" ELSE
-                        '1' WHEN Q(4 DOWNTO 1) = "0110" ELSE
-                        '1' WHEN Q(4 DOWNTO 1) = "1110" ELSE
-                        '1' WHEN Q(4 DOWNTO 1) = "1010" ELSE
-                        '1' WHEN Q(4 DOWNTO 1) = "1011" ELSE
-                        '1' WHEN Q(4 DOWNTO 1) = "1001" ELSE
-                        '1' WHEN Q(4 DOWNTO 1) = "1101" ELSE '0';
-  VALID_SET_NUMBER <= '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "01010" ELSE
-                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "01011" ELSE
-                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "01111" ELSE
-                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "01110" ELSE
-                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "01100" ELSE
-                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "01101" ELSE
-                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "11101" ELSE
-                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "11100" ELSE
-                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "10100" ELSE
-                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "10101" ELSE
-                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "10111" ELSE
-                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "10110" ELSE
-                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "10010" ELSE
-                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "10011" ELSE
-                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "11011" ELSE
-                      '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 12) = "11010" ELSE '0';
-  VALID_DATA_WORD <= ( VALID_STRIP_NUMBER AND VALID_SET_NUMBER ) WHEN DATA_WORD(0) = '1' ELSE '0';
---  VALID_DATA_WORD <= ALIGNED WHEN DATA_WORD(0) = '1' ELSE '0';
-
-  DATA_WORD(31) <= ALIGNED;
-  DATA_WORD(30) <= DATA_LOST;
-  DATA_WORD(29 DOWNTO 27) <= STD_LOGIC_VECTOR(TO_UNSIGNED(CHANNEL,3));
-  DATA_WORD(26 DOWNTO 24) <= STD_LOGIC_VECTOR(TO_UNSIGNED(CHIPID,3));
-  STATUS <= ALIGNED & SYNC_ERROR & CHIP_STATUS & INTERNAL_STATE & STD_LOGIC_VECTOR(MISSING_SYNC_COUNT) & "000000" & STD_LOGIC_VECTOR(SYNC_COUNT);
-
-end RTL;

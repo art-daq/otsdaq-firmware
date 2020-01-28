@@ -388,6 +388,21 @@
         <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
     </FileSet>
+    <FileSet Name="chip_fifo" Type="BlockSrcs" RelSrcDir="$PSRCDIR/chip_fifo">
+      <File Path="$PSRCDIR/sources_1/ip/chip_fifo/chip_fifo.xci">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../cactus/components/strips_fssr2/firmware/cgn/chip_fifo.xci"/>
+          <Attr Name="ImportTime" Val="1447774658"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <Config>
+        <Option Name="TopModule" Val="chip_fifo"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
     <FileSet Name="packetfifo" Type="BlockSrcs" RelSrcDir="$PSRCDIR/packetfifo">
       <File Path="$PSRCDIR/sources_1/ip/packetfifo/packetfifo.xci">
         <FileInfo>
@@ -430,21 +445,6 @@
       </File>
       <Config>
         <Option Name="TopModule" Val="strips_mclk_mmcm"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="chip_fifo" Type="BlockSrcs" RelSrcDir="$PSRCDIR/chip_fifo">
-      <File Path="$PSRCDIR/sources_1/ip/chip_fifo/chip_fifo.xci">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../cactus/components/strips_fssr2/firmware/cgn/chip_fifo.xci"/>
-          <Attr Name="ImportTime" Val="1447774658"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <Config>
-        <Option Name="TopModule" Val="chip_fifo"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -495,37 +495,47 @@
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
     </Run>
-    <Run Id="packetfifo_synth_1" Type="Ft3:Synth" SrcSet="packetfifo" Part="xc7k325tffg900-2" ConstrsSet="packetfifo" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/packetfifo_synth_1">
+    <Run Id="chip_fifo_synth_1" Type="Ft3:Synth" SrcSet="chip_fifo" Part="xc7a200tffg1156-2" ConstrsSet="chip_fifo" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/chip_fifo_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
     </Run>
-    <Run Id="streamipbuf_synth_1" Type="Ft3:Synth" SrcSet="streamipbuf" Part="xc7k325tffg900-2" ConstrsSet="streamipbuf" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/streamipbuf_synth_1">
+    <Run Id="packetfifo_synth_1" Type="Ft3:Synth" SrcSet="packetfifo" Part="xc7a200tffg1156-2" ConstrsSet="packetfifo" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/packetfifo_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
     </Run>
-    <Run Id="strips_mclk_mmcm_synth_1" Type="Ft3:Synth" SrcSet="strips_mclk_mmcm" Part="xc7k325tffg900-2" ConstrsSet="strips_mclk_mmcm" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/strips_mclk_mmcm_synth_1">
+    <Run Id="streamipbuf_synth_1" Type="Ft3:Synth" SrcSet="streamipbuf" Part="xc7a200tffg1156-2" ConstrsSet="streamipbuf" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/streamipbuf_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
     </Run>
-    <Run Id="chip_fifo_synth_1" Type="Ft3:Synth" SrcSet="chip_fifo" Part="xc7k325tffg900-2" ConstrsSet="chip_fifo" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/chip_fifo_synth_1">
+    <Run Id="strips_mclk_mmcm_synth_1" Type="Ft3:Synth" SrcSet="strips_mclk_mmcm" Part="xc7a200tffg1156-2" ConstrsSet="strips_mclk_mmcm" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/strips_mclk_mmcm_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
     </Run>
-    <Run Id="trigbuf_synth_1" Type="Ft3:Synth" SrcSet="trigbuf" Part="xc7k325tffg900-2" ConstrsSet="trigbuf" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/trigbuf_synth_1">
+    <Run Id="trigbuf_synth_1" Type="Ft3:Synth" SrcSet="trigbuf" Part="xc7a200tffg1156-2" ConstrsSet="trigbuf" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/trigbuf_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -545,9 +555,11 @@
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
     </Run>
-    <Run Id="packetfifo_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="packetfifo" Description="Vivado Implementation Defaults" SynthRun="packetfifo_synth_1">
+    <Run Id="chip_fifo_impl_1" Type="Ft2:EntireDesign" Part="xc7a200tffg1156-2" ConstrsSet="chip_fifo" Description="Vivado Implementation Defaults" SynthRun="chip_fifo_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015">
+          <Desc>Vivado Implementation Defaults</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -559,9 +571,11 @@
         <Step Id="write_bitstream"/>
       </Strategy>
     </Run>
-    <Run Id="streamipbuf_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="streamipbuf" Description="Vivado Implementation Defaults" SynthRun="streamipbuf_synth_1">
+    <Run Id="packetfifo_impl_1" Type="Ft2:EntireDesign" Part="xc7a200tffg1156-2" ConstrsSet="packetfifo" Description="Vivado Implementation Defaults" SynthRun="packetfifo_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015">
+          <Desc>Vivado Implementation Defaults</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -573,9 +587,11 @@
         <Step Id="write_bitstream"/>
       </Strategy>
     </Run>
-    <Run Id="strips_mclk_mmcm_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="strips_mclk_mmcm" Description="Vivado Implementation Defaults" SynthRun="strips_mclk_mmcm_synth_1">
+    <Run Id="streamipbuf_impl_1" Type="Ft2:EntireDesign" Part="xc7a200tffg1156-2" ConstrsSet="streamipbuf" Description="Vivado Implementation Defaults" SynthRun="streamipbuf_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015">
+          <Desc>Vivado Implementation Defaults</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -587,9 +603,11 @@
         <Step Id="write_bitstream"/>
       </Strategy>
     </Run>
-    <Run Id="chip_fifo_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="chip_fifo" Description="Vivado Implementation Defaults" SynthRun="chip_fifo_synth_1">
+    <Run Id="strips_mclk_mmcm_impl_1" Type="Ft2:EntireDesign" Part="xc7a200tffg1156-2" ConstrsSet="strips_mclk_mmcm" Description="Vivado Implementation Defaults" SynthRun="strips_mclk_mmcm_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015">
+          <Desc>Vivado Implementation Defaults</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -601,9 +619,11 @@
         <Step Id="write_bitstream"/>
       </Strategy>
     </Run>
-    <Run Id="trigbuf_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="trigbuf" Description="Vivado Implementation Defaults" SynthRun="trigbuf_synth_1">
+    <Run Id="trigbuf_impl_1" Type="Ft2:EntireDesign" Part="xc7a200tffg1156-2" ConstrsSet="trigbuf" Description="Vivado Implementation Defaults" SynthRun="trigbuf_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015">
+          <Desc>Vivado Implementation Defaults</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>

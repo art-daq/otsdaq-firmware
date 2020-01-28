@@ -9,7 +9,7 @@ use UNISIM.Vcomponents.ALL;
 use work.iobus.ALL;
 
 entity top is
-	GENERIC ( NSENSOR_PADS : INTEGER := 2 );
+	GENERIC ( NSENSOR_PADS : INTEGER := 4 );
    port ( 
 		PHY_RXCLK      : in    std_logic; 
 		PHY_RXCTL_RXDV : in    std_logic; 
@@ -55,14 +55,10 @@ entity top is
     STRIP_SCOUT_PAD_N : IN STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
     STRIP_BCOCLK_PAD_P : OUT STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
     STRIP_BCOCLK_PAD_N : OUT STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
-    STRIP_MCLKA0_PAD_P : OUT STD_LOGIC;
-    STRIP_MCLKA0_PAD_N : OUT STD_LOGIC;
-    STRIP_MCLKB0_PAD_P : OUT STD_LOGIC;
-    STRIP_MCLKB0_PAD_N : OUT STD_LOGIC;
-    STRIP_MCLKA1_PAD_P : OUT STD_LOGIC;
-    STRIP_MCLKA1_PAD_N : OUT STD_LOGIC;
-    STRIP_MCLKB1_PAD_P : OUT STD_LOGIC;
-    STRIP_MCLKB1_PAD_N : OUT STD_LOGIC;
+    STRIP_MCLKA_PAD_P : OUT STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
+    STRIP_MCLKA_PAD_N : OUT STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
+    STRIP_MCLKB_PAD_P : OUT STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
+    STRIP_MCLKB_PAD_N : OUT STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
     STRIP_OUT1_0_PAD_P : IN STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
     STRIP_OUT1_0_PAD_N : IN STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
     STRIP_OUT1_1_PAD_P : IN STD_LOGIC_VECTOR(NSENSOR_PADS-1 DOWNTO 0);
@@ -836,41 +832,28 @@ begin
            );
        
        
-        strip_mclka0_obuf : OBUFDS
-        GENERIC MAP ( IOSTANDARD => "LVDS_25" )
-        PORT MAP (
-          I => STRIP_MCLKA,
-          O => STRIP_MCLKA0_PAD_P,
-          OB => STRIP_MCLKA0_PAD_N
-        );
-        strip_mclkb0_obuf : OBUFDS
-        GENERIC MAP ( IOSTANDARD => "LVDS_25" )
-        PORT MAP (
-          I => STRIP_MCLKB,
-          O => STRIP_MCLKB0_PAD_P,
-          OB => STRIP_MCLKB0_PAD_N
-        );
-        
-        strip_mclka1_obuf : OBUFDS
-        GENERIC MAP ( IOSTANDARD => "LVDS_25" )
-        PORT MAP (
-         I => STRIP_MCLKA,
-         O => STRIP_MCLKA1_PAD_P,
-         OB => STRIP_MCLKA1_PAD_N
-        );
-        strip_mclkb1_obuf : OBUFDS
-        GENERIC MAP ( IOSTANDARD => "LVDS_25" )
-        PORT MAP (
-         I => STRIP_MCLKB,
-         O => STRIP_MCLKB1_PAD_P,
-         OB => STRIP_MCLKB1_PAD_N
-        );
-
         
        strip_pad_gen : FOR I IN 0 TO NSENSOR_PADS-1 GENERATE
        
             STRIP_RESET(I) <= b_throttle_reset or strip_reset_sig(i); --RAR
        
+
+            strip_mclka_obuf : OBUFDS
+            GENERIC MAP ( IOSTANDARD => "LVDS_25" )
+            PORT MAP (
+              I => STRIP_MCLKA,
+              O => STRIP_MCLKA_PAD_P(I),
+              OB => STRIP_MCLKA_PAD_N(I)
+            );
+            strip_mclkb_obuf : OBUFDS
+            GENERIC MAP ( IOSTANDARD => "LVDS_25" )
+            PORT MAP (
+              I => STRIP_MCLKB,
+              O => STRIP_MCLKB_PAD_P(I),
+              OB => STRIP_MCLKB_PAD_N(I)
+            );
+            
+
            strip_reset_obuf : OBUFDS
            GENERIC MAP ( IOSTANDARD => "LVDS_25" )
            PORT MAP (
