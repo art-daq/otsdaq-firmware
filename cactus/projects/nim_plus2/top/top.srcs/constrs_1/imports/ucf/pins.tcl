@@ -104,65 +104,49 @@ set_property IOSTANDARD LVCMOS25 [get_ports PHY_TXD7]
 
 # Above supplied by Ryan for CAPTAN+
 
-# Added by AGProsser
+# Added by AGProsser, Modified by BHawks
 
 # NIMPlus Comparator output pairs
-
-
-set_property PACKAGE_PIN AL30 [get_ports NIM_COM_P[1]]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[1]]
-#Above was 0
-set_property PACKAGE_PIN AM30 [get_ports NIM_COM_N[1]]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[1]]
-#Above was 0
-set_property PACKAGE_PIN AJ30 [get_ports NIM_COM_P[0]]
+# Below Was 6/G, now 0/A
+set_property PACKAGE_PIN AL5 [get_ports NIM_COM_P[0]]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[0]]
-#Above was 1
-set_property PACKAGE_PIN AK31 [get_ports NIM_COM_N[0]]
+set_property PACKAGE_PIN AM5 [get_ports NIM_COM_N[0]]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[0]]
-#Above was 1
-set_property PACKAGE_PIN AJ26 [get_ports NIM_COM_P[3]]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[3]]
-#Above was 2
-set_property PACKAGE_PIN AK26 [get_ports NIM_COM_N[3]]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[3]]
-#Above was 2
-set_property PACKAGE_PIN AL25 [get_ports NIM_COM_P[2]]
+# Below Was 5/F, now 1/B
+set_property PACKAGE_PIN AN8 [get_ports NIM_COM_P[1]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[1]]
+set_property PACKAGE_PIN AP8 [get_ports NIM_COM_N[1]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[1]]
+# Below Was 3/D, now 2/C
+set_property PACKAGE_PIN AJ26 [get_ports NIM_COM_P[2]]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[2]]
-#Above was 3
-set_property PACKAGE_PIN AM25 [get_ports NIM_COM_N[2]]
+set_property PACKAGE_PIN AK26 [get_ports NIM_COM_N[2]]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[2]]
-#Above was 3
-
-
-set_property PACKAGE_PIN AN8 [get_ports NIM_COM_P[5]]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[5]]
-#Above was 0
-
-set_property PACKAGE_PIN AP8 [get_ports NIM_COM_N[5]]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[5]]
-#Above was 0
-
-set_property PACKAGE_PIN AJ28 [get_ports NIM_COM_P[4]] 
+# Below Was 1/B, now 3/D
+set_property PACKAGE_PIN AL30 [get_ports NIM_COM_P[3]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[3]]
+set_property PACKAGE_PIN AM30 [get_ports NIM_COM_N[3]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[3]]
+# Below Was 7/H, now 4/E
+set_property PACKAGE_PIN AL4 [get_ports NIM_COM_P[4]]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[4]]
-#Above was 1
-set_property PACKAGE_PIN AK28 [get_ports NIM_COM_N[4]]
+set_property PACKAGE_PIN AM4 [get_ports NIM_COM_N[4]]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[4]]
-#Above was 1
-set_property PACKAGE_PIN AL4 [get_ports NIM_COM_P[7]]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[7]]
-#Above was 2
-set_property PACKAGE_PIN AM4 [get_ports NIM_COM_N[7]]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[7]]
-#Above was 2
-set_property PACKAGE_PIN AL5 [get_ports NIM_COM_P[6]]
+# Below Was 4/E, now 5/F
+set_property PACKAGE_PIN AJ28 [get_ports NIM_COM_P[5]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[5]]
+set_property PACKAGE_PIN AK28 [get_ports NIM_COM_N[5]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[5]]
+# Below Was 2/C, now 7/G
+set_property PACKAGE_PIN AL25 [get_ports NIM_COM_P[6]]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[6]]
-#Above was 3
-set_property PACKAGE_PIN AM5 [get_ports NIM_COM_N[6]]
+set_property PACKAGE_PIN AM25 [get_ports NIM_COM_N[6]]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[6]]
-#Above was 3
-
-
+# Below Was 0/A, now 7/H
+set_property PACKAGE_PIN AJ30 [get_ports NIM_COM_P[7]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_P[7]]
+set_property PACKAGE_PIN AK31 [get_ports NIM_COM_N[7]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_COM_N[7]]
 
 # DAC serial interface
 set_property PACKAGE_PIN AP25 [get_ports DAC_SER_CLK]
@@ -175,29 +159,31 @@ set_property PACKAGE_PIN AK27 [get_ports DAC_DIN]
 set_property IOSTANDARD LVCMOS25 [get_ports DAC_DIN]
 
 #Outputs
-set_property PACKAGE_PIN AN9 [get_ports NIM_OUT_P[0]]
+#Below Was 3, Now 0
+set_property PACKAGE_PIN AJ10 [get_ports NIM_OUT_P[0]]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_P[0]]
-set_property PACKAGE_PIN AP9 [get_ports NIM_OUT_N[0]]
+set_property PACKAGE_PIN AK10 [get_ports NIM_OUT_N[0]]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_N[0]]
-
-set_property PACKAGE_PIN AL9 [get_ports NIM_OUT_P[1]]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_P[1]] 
-set_property PACKAGE_PIN AM9 [get_ports NIM_OUT_N[1]]
+#Below Was 4, Now 1
+set_property PACKAGE_PIN AN9 [get_ports NIM_OUT_P[1]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_P[1]]
+set_property PACKAGE_PIN AP9 [get_ports NIM_OUT_N[1]]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_N[1]]
-
-set_property PACKAGE_PIN AJ10 [get_ports NIM_OUT_P[2]]
+#Below Was 0, Now 2
+set_property PACKAGE_PIN AM11 [get_ports NIM_OUT_P[2]]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_P[2]]
-set_property PACKAGE_PIN AK10 [get_ports NIM_OUT_N[2]]
+set_property PACKAGE_PIN AN11 [get_ports NIM_OUT_N[2]]
 set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_N[2]]
+#Below Was 1, Now 3
+set_property PACKAGE_PIN AL9 [get_ports NIM_OUT_P[3]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_P[3]] 
+set_property PACKAGE_PIN AM9 [get_ports NIM_OUT_N[3]]
+set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_N[3]]
+
 #set_property PACKAGE_PIN J27 [get_ports TRIG_CMS1_OUT_P]
 #set_property IOSTANDARD LVDS_25 [get_ports TRIG_CMS1_OUT_P]
 #set_property PACKAGE_PIN J28 [get_ports TRIG_CMS1_OUT_N]
 #set_property IOSTANDARD LVDS_25 [get_ports TRIG_CMS1_OUT_N]
-
-set_property PACKAGE_PIN AM11 [get_ports NIM_OUT_P[3]]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_P[3]]
-set_property PACKAGE_PIN AN11 [get_ports NIM_OUT_N[3]]
-set_property IOSTANDARD LVDS_25 [get_ports NIM_OUT_N[3]]
 
 #set_property PACKAGE_PIN L30 [get_ports CLK40_LEM_P]
 #set_property IOSTANDARD LVDS_25 [get_ports CLK40_LEM_P]
@@ -243,14 +229,13 @@ set_property PACKAGE_PIN AP3 [get_ports CLK40B_OUT_N]
 set_property IOSTANDARD LVDS_25 [get_ports CLK40B_OUT_N]
 
 
-
 set_property PACKAGE_PIN AP29 [get_ports CLK40_IN_EXT_P]
 set_property IOSTANDARD LVDS_25 [get_ports CLK40_IN_EXT_P]
 
 set_property PACKAGE_PIN AP30 [get_ports CLK40_IN_EXT_N]
 set_property IOSTANDARD LVDS_25 [get_ports CLK40_IN_EXT_N]
 
-#End AGProsser 2017_03_31
+#End AGProsser 2017_03_31, Modifications by BHawks 2020_01_23 to I/O pin assignment to match faceplate
 #Created by Constraints Editor (xc4vlx25-ff668-10) - 2011/09/17
 
 # All timing constraint translations are rough conversions, intended to act as a template for further manual refinement. The translations should not be expected to produce semantically identical results to the original ucf. Each xdc timing constraint must be manually inspected and verified to ensure it captures the desired intent

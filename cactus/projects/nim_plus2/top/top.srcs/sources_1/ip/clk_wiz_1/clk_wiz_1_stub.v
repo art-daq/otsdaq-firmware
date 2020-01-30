@@ -1,10 +1,10 @@
 // Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2015.2 (lin64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
-// Date        : Thu May 23 15:30:00 2019
-// Host        : rulinux03.dhcp.fnal.gov running 64-bit Scientific Linux Fermi release 6.9 (Ramsey)
-// Command     : write_verilog -force -mode synth_stub
-//               /home/rrivera/ots/srcs/otsdaq-firmware/cactus/projects/nim_plus2/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_stub.v
+// Tool Version: Vivado v.2015.2 (win64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
+// Date        : Thu Jan 23 16:12:06 2020
+// Host        : CD-129669 running 64-bit major release  (build 9200)
+// Command     : write_verilog -force -mode synth_stub {C:/Users/bhawks/Documents/Vivado
+//               Projects/nim_plus2/top/top.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_stub.v}
 // Design      : clk_wiz_1
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a200tffg1156-2
