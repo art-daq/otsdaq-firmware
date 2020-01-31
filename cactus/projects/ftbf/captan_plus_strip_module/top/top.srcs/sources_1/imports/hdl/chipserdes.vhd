@@ -128,13 +128,13 @@ architecture RTL of chipserdes is
       SIGNAL ddr_shr : STD_LOGIC_VECTOR(7 DOWNTO 0);
       SIGNAL ddr_old_bitslip, ddr_old_bitslip2 : STD_LOGIC;
       SIGNAL iddrq : STD_LOGIC_VECTOR(1 DOWNTO 0);
-      SIGNAL iddr_old_DLYCE : STD_LOGIC;
       SIGNAL iddr_dsel : STD_LOGIC;
       
       
       attribute mark_debug of iddrq : signal is "true";
       attribute mark_debug of SYNC_ERROR : signal is "true";
       attribute mark_debug of DLYCE : signal is "true";
+      attribute mark_debug of BITSLIP : signal is "true";
     
 begin	 
 	
