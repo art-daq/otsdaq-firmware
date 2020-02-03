@@ -9,7 +9,7 @@ use UNISIM.Vcomponents.ALL;
 use work.iobus.ALL;
 
 entity top is
-	GENERIC ( NSENSOR_PADS : INTEGER := 4 );
+	GENERIC ( NSENSOR_PADS : INTEGER := 6 );
    port ( 
 		PHY_RXCLK      : in    std_logic; 
 		PHY_RXCTL_RXDV : in    std_logic; 

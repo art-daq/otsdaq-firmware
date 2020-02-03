@@ -100,8 +100,9 @@ architecture RTL of chipserdes is
            
            
     attribute mark_debug : string;
-    attribute mark_debug of Q : signal is "true";
-    attribute mark_debug of STATE : signal is "true";
+    --attribute mark_debug of Q : signal is "true";
+    --attribute mark_debug of DATA_WORD : signal is "true";
+    --attribute mark_debug of STATE : signal is "true";
     attribute mark_debug of ALIGNED : signal is "true";
     --attribute mark_debug of INTERNAL_STATE : signal is "true";
     attribute mark_debug of NEXT_BITSLIP : signal is "true";
@@ -135,6 +136,7 @@ architecture RTL of chipserdes is
       attribute mark_debug of SYNC_ERROR : signal is "true";
       attribute mark_debug of DLYCE : signal is "true";
       attribute mark_debug of BITSLIP : signal is "true";
+      --attribute mark_debug of ddr_shr : signal is "true";
     
 begin	 
 	
@@ -366,7 +368,7 @@ begin
 --  Valid sync patterns are...
 --  xxxx xxxx|xx00 0000|0000 0001
 --
-  VALID_SYNC_WORD <= '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 0) = STD_LOGIC_VECTOR(TO_UNSIGNED(CHIPID,3)) & "00000000000001" ELSE '0';
+  VALID_SYNC_WORD <= '1' WHEN Q(0) & DATA_WORD(15 DOWNTO 0) = STD_LOGIC_VECTOR(TO_UNSIGNED(CHIPID,3)) & "00" & x"001" ELSE '0';
   VALID_STRIP_NUMBER <= '1' WHEN Q(4 DOWNTO 1) = "0101" ELSE
                         '1' WHEN Q(4 DOWNTO 1) = "0111" ELSE
                         '1' WHEN Q(4 DOWNTO 1) = "0110" ELSE

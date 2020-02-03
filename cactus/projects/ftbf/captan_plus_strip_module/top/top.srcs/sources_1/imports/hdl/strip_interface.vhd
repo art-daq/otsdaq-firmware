@@ -1531,8 +1531,7 @@ trigbuf_imp : trigbuf
             when address_strip_ana_hit5_counter =>
               write_data <= strip_ana_nhit5;
             when address_strip_trim_csr =>
-              write_data <= trim_busy & strip_trim_csr(30 downto 24) & "00" &
-                            std_logic_vector(trim_count) & strip_trim_csr(15 downto 0);
+              write_data <= trim_busy & strip_trim_csr(30 downto 0);
             when address_strip_trig_csr =>
               write_data <= trig_outputs & strip_trig_csr(27 downto 0);
             when address_strip_trig_input_0 =>
@@ -1649,10 +1648,10 @@ trigbuf_imp : trigbuf
     end if;
   end process;
 
-    --this dly enable might be special for kc705 (?) RAR
+    --this dly enable chooses serial edge for captan implementation RAR
     process (strip_trim_csr) begin
         for i in 0 to nsensor-1 loop
-            dly_enable(i) <= strip_trim_csr(i*8+4 downto i*8);
+            dly_enable(i) <= strip_trim_csr(i*5+4 downto i*5);
         end loop;
     end process;
 

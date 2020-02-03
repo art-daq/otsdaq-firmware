@@ -324,7 +324,7 @@ set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_4_PAD_N[2]]
 #pta 27    STRIP_OUT1_4_PAD_P<1>]	       LA_07
 #pta 28    STRIP_OUT1_4_PAD_N<1>]	
 
-### These are for SE J1 to HPC-FMC on CAPTAN+
+### These are for NE J1 to HPC-FMC on CAPTAN+
 set_property PACKAGE_PIN u34 [get_ports STRIP_MCLKA_PAD_P[3]]			
 set_property PACKAGE_PIN t34 [get_ports STRIP_MCLKA_PAD_N[3]]			
 set_property PACKAGE_PIN l28 [get_ports STRIP_MCLKB_PAD_P[3]]			
@@ -381,6 +381,187 @@ set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_3_PAD_P[3]]
 set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_3_PAD_N[3]]		
 set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_4_PAD_P[3]]		
 set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_4_PAD_N[3]]	
+
+
+# PTA Connector J2 on FMC-to-PTA board
+#pta 13    STRIP_MCLKA0_PAD_P]		 LA_17  
+#pta 14    STRIP_MCLKA0_PAD_N]		    
+#pta 19    STRIP_MCLKB0_PAD_P]		 CLK1_M2C   
+#pta 20    STRIP_MCLKB0_PAD_N]		    
+                                     
+#pta 25    STRIP_BCOCLK_PAD_P<0>]	 LA_23
+#pta 26    STRIP_BCOCLK_PAD_N<0>]	
+#pta 43    STRIP_RESET_PAD_P<0>]	 LA_30
+#pta 44    STRIP_RESET_PAD_N<0>]	
+#pta 37    STRIP_SHIFT_PAD_P<0>]	 LA_28
+#pta 38    STRIP_SHIFT_PAD_N<0>]	
+#pta 35    STRIP_SCIN_PAD_P<0>]		  LA_27
+#pta 36    STRIP_SCIN_PAD_N<0>]		    
+#pta 47    STRIP_SCOUT_PAD_P<0>]	 LA_32 
+#pta 48    STRIP_SCOUT_PAD_N<0>]	
+#pta 5     STRIP_GOTHITOR_PAD_P<0>]	   LA_18
+#pta 6     STRIP_GOTHITOR_PAD_N<0>]	    
+#pta 49    STRIP_OUT1_0_PAD_P<0>]	 LA_33
+#pta 50    STRIP_OUT1_0_PAD_N<0>]	
+#pta 45    STRIP_OUT1_1_PAD_P<0>]	 LA_31
+#pta 46    STRIP_OUT1_1_PAD_N<0>]	
+#pta 39    STRIP_OUT1_2_PAD_P<0>]	 LA_29
+#pta 40    STRIP_OUT1_2_PAD_N<0>]	
+#pta 33    STRIP_OUT1_3_PAD_P<0>]	 LA_26
+#pta 34    STRIP_OUT1_3_PAD_N<0>]	
+#pta 27    STRIP_OUT1_4_PAD_P<0>]	 LA_24
+#pta 28    STRIP_OUT1_4_PAD_N<0>]	
+
+### These are for SW J2 to HPC-FMC on CAPTAN+
+set_property PACKAGE_PIN w6 [get_ports STRIP_MCLKA_PAD_P[4]]			
+set_property PACKAGE_PIN y6 [get_ports STRIP_MCLKA_PAD_N[4]]			
+set_property PACKAGE_PIN r6 [get_ports STRIP_MCLKB_PAD_P[4]]			
+set_property PACKAGE_PIN r5 [get_ports STRIP_MCLKB_PAD_N[4]]			
+
+set_property PACKAGE_PIN u10 [get_ports STRIP_BCOCLK_PAD_P[4]]		
+set_property PACKAGE_PIN t10 [get_ports STRIP_BCOCLK_PAD_N[4]]		
+set_property PACKAGE_PIN an1 [get_ports STRIP_RESET_PAD_P[4]]		
+set_property PACKAGE_PIN ap1 [get_ports STRIP_RESET_PAD_N[4]]		
+set_property PACKAGE_PIN al2 [get_ports STRIP_SHIFT_PAD_P[4]]		
+set_property PACKAGE_PIN am1 [get_ports STRIP_SHIFT_PAD_N[4]]		
+set_property PACKAGE_PIN ab10 [get_ports STRIP_SCIN_PAD_P[4]]			
+set_property PACKAGE_PIN ab9 [get_ports STRIP_SCIN_PAD_N[4]]			
+set_property PACKAGE_PIN an4 [get_ports STRIP_SCOUT_PAD_P[4]]		
+set_property PACKAGE_PIN ap4 [get_ports STRIP_SCOUT_PAD_N[4]]		
+set_property PACKAGE_PIN v9 [get_ports STRIP_GOTHITOR_PAD_P[4]]		
+set_property PACKAGE_PIN v8 [get_ports STRIP_GOTHITOR_PAD_N[4]]		
+set_property PACKAGE_PIN an3 [get_ports STRIP_OUT1_0_PAD_P[4]]		
+set_property PACKAGE_PIN ap3 [get_ports STRIP_OUT1_0_PAD_N[4]]		
+set_property PACKAGE_PIN am2 [get_ports STRIP_OUT1_1_PAD_P[4]]		
+set_property PACKAGE_PIN an2 [get_ports STRIP_OUT1_1_PAD_N[4]]		
+set_property PACKAGE_PIN ak3 [get_ports STRIP_OUT1_2_PAD_P[4]]		
+set_property PACKAGE_PIN al3 [get_ports STRIP_OUT1_2_PAD_N[4]]		
+set_property PACKAGE_PIN aa10 [get_ports STRIP_OUT1_3_PAD_P[4]]		
+set_property PACKAGE_PIN aa9 [get_ports STRIP_OUT1_3_PAD_N[4]]		
+set_property PACKAGE_PIN ak2 [get_ports STRIP_OUT1_4_PAD_P[4]]		
+set_property PACKAGE_PIN ak1 [get_ports STRIP_OUT1_4_PAD_N[4]]	
+
+							   
+
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_MCLKA_PAD_P[4]]			
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_MCLKA_PAD_N[4]]			
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_MCLKB_PAD_P[4]]			
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_MCLKB_PAD_N[4]]			
+
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_BCOCLK_PAD_P[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_BCOCLK_PAD_N[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_RESET_PAD_P[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_RESET_PAD_N[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_SHIFT_PAD_P[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_SHIFT_PAD_N[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_SCIN_PAD_P[4]]			
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_SCIN_PAD_N[4]]			
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_SCOUT_PAD_P[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_SCOUT_PAD_N[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_GOTHITOR_PAD_P[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_GOTHITOR_PAD_N[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_0_PAD_P[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_0_PAD_N[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_1_PAD_P[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_1_PAD_N[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_2_PAD_P[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_2_PAD_N[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_3_PAD_P[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_3_PAD_N[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_4_PAD_P[4]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_4_PAD_N[4]]	
+
+
+
+
+# PTA Connector J1 on FMC-to-PTA board
+#pta 13    STRIP_MCLKA1_PAD_P]		     LA_00
+#pta 14    STRIP_MCLKA1_PAD_N]		    
+#pta 19    STRIP_MCLKB1_PAD_P]		     CLK0_M2C
+#pta 20    STRIP_MCLKB1_PAD_N]		    
+                                     
+#pta 25    STRIP_BCOCLK_PAD_P<1>]	     LA_06
+#pta 26    STRIP_BCOCLK_PAD_N<1>]	
+#pta 43    STRIP_RESET_PAD_P<1>]	      LA_13
+#pta 44    STRIP_RESET_PAD_N<1>]	
+#pta 37    STRIP_SHIFT_PAD_P<1>]	      LA_11
+#pta 38    STRIP_SHIFT_PAD_N<1>]	
+#pta 35    STRIP_SCIN_PAD_P<1>]		       LA_10
+#pta 36    STRIP_SCIN_PAD_N<1>]		    
+#pta 47    STRIP_SCOUT_PAD_P<1>]	      LA_15
+#pta 48    STRIP_SCOUT_PAD_N<1>]	
+#pta 5     STRIP_GOTHITOR_PAD_P<1>]	      LA_01
+#pta 6     STRIP_GOTHITOR_PAD_N<1>]	    
+#pta 49    STRIP_OUT1_0_PAD_P<1>]	      LA_16
+#pta 50    STRIP_OUT1_0_PAD_N<1>]	
+#pta 45    STRIP_OUT1_1_PAD_P<1>]	      LA_14
+#pta 46    STRIP_OUT1_1_PAD_N<1>]	 
+#pta 39    STRIP_OUT1_2_PAD_P<1>]	      LA_12
+#pta 40    STRIP_OUT1_2_PAD_N<1>]	
+#pta 33    STRIP_OUT1_3_PAD_P<1>]	       LA_09
+#pta 34    STRIP_OUT1_3_PAD_N<1>]	
+#pta 27    STRIP_OUT1_4_PAD_P<1>]	       LA_07
+#pta 28    STRIP_OUT1_4_PAD_N<1>]	
+
+### These are for SW J1 to HPC-FMC on CAPTAN+
+set_property PACKAGE_PIN w1 [get_ports STRIP_MCLKA_PAD_P[5]]			
+set_property PACKAGE_PIN y1 [get_ports STRIP_MCLKA_PAD_N[5]]			
+set_property PACKAGE_PIN v4 [get_ports STRIP_MCLKB_PAD_P[5]]			
+set_property PACKAGE_PIN w4 [get_ports STRIP_MCLKB_PAD_N[5]]			
+
+set_property PACKAGE_PIN t8 [get_ports STRIP_BCOCLK_PAD_P[5]]		
+set_property PACKAGE_PIN t7 [get_ports STRIP_BCOCLK_PAD_N[5]]		
+set_property PACKAGE_PIN ab7 [get_ports STRIP_RESET_PAD_P[5]]		
+set_property PACKAGE_PIN ab6 [get_ports STRIP_RESET_PAD_N[5]]		
+set_property PACKAGE_PIN ac7 [get_ports STRIP_SHIFT_PAD_P[5]]		
+set_property PACKAGE_PIN ac6 [get_ports STRIP_SHIFT_PAD_N[5]]		
+set_property PACKAGE_PIN aa5 [get_ports STRIP_SCIN_PAD_P[5]]			
+set_property PACKAGE_PIN aa4 [get_ports STRIP_SCIN_PAD_N[5]]			
+set_property PACKAGE_PIN w9 [get_ports STRIP_SCOUT_PAD_P[5]]		
+set_property PACKAGE_PIN w8 [get_ports STRIP_SCOUT_PAD_N[5]]		
+set_property PACKAGE_PIN v3 [get_ports STRIP_GOTHITOR_PAD_P[5]]		
+set_property PACKAGE_PIN w3 [get_ports STRIP_GOTHITOR_PAD_N[5]]		
+set_property PACKAGE_PIN ac9 [get_ports STRIP_OUT1_0_PAD_P[5]]		
+set_property PACKAGE_PIN ac8 [get_ports STRIP_OUT1_0_PAD_N[5]]		
+set_property PACKAGE_PIN v7 [get_ports STRIP_OUT1_1_PAD_P[5]]		
+set_property PACKAGE_PIN v6 [get_ports STRIP_OUT1_1_PAD_N[5]]		
+set_property PACKAGE_PIN v2 [get_ports STRIP_OUT1_2_PAD_P[5]]		
+set_property PACKAGE_PIN v1 [get_ports STRIP_OUT1_2_PAD_N[5]]		
+set_property PACKAGE_PIN u9 [get_ports STRIP_OUT1_3_PAD_P[5]]		
+set_property PACKAGE_PIN t9 [get_ports STRIP_OUT1_3_PAD_N[5]]		
+set_property PACKAGE_PIN ab5 [get_ports STRIP_OUT1_4_PAD_P[5]]		
+set_property PACKAGE_PIN ab4 [get_ports STRIP_OUT1_4_PAD_N[5]]	
+							   
+
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_MCLKA_PAD_P[5]]			
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_MCLKA_PAD_N[5]]			
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_MCLKB_PAD_P[5]]			
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_MCLKB_PAD_N[5]]			
+
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_BCOCLK_PAD_P[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_BCOCLK_PAD_N[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_RESET_PAD_P[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_RESET_PAD_N[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_SHIFT_PAD_P[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_SHIFT_PAD_N[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_SCIN_PAD_P[5]]			
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_SCIN_PAD_N[5]]			
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_SCOUT_PAD_P[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_SCOUT_PAD_N[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_GOTHITOR_PAD_P[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_GOTHITOR_PAD_N[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_0_PAD_P[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_0_PAD_N[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_1_PAD_P[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_1_PAD_N[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_2_PAD_P[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_2_PAD_N[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_3_PAD_P[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_3_PAD_N[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_4_PAD_P[5]]		
+set_property IOSTANDARD LVDS_25 [get_ports STRIP_OUT1_4_PAD_N[5]]	
+
+
 
 
 
