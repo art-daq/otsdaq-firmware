@@ -1,0 +1,241 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
+#include <netdb.h>
+#include <math.h>
+#include <time.h>
+#include <sys/time.h>
+#include <arpa/inet.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+
+#include "TROOT.h"
+#include "TFile.h"
+#include "TF1.h"
+#include "TH2F.h"
+#include "TMath.h"
+#include "TGraphErrors.h"
+
+#include "stib.hh"
+
+using namespace std;
+using namespace stib;
+
+double ferf(double *x,double *p) {
+  return 0.5+0.5*TMath::Erf((x[0]-p[0])/p[1]/sqrt(2));
+}
+
+int main(int argc,char **argv) {
+  int ierr, i, s, strip;
+  socklen_t namelen;
+  int broadcast_enable;
+  unsigned short port;
+  struct sockaddr_in saddr, daddr;
+  struct hostent *hp;
+  unsigned int mask[4], inject[4];
+  unsigned int dac_word;
+
+  if ( argc < 5 ) {
+    cerr << "Usage: " << argv[0] << " <addr> <chan> <first> <last>" << endl;
+    exit(1);
+  }
+  if ( ( s = socket(PF_INET,SOCK_DGRAM,0) ) < 0 ) {
+    fprintf( stderr, "%s : socket() - %s\n", argv[0], strerror(errno) );
+    exit(1);
+  }
+  bzero((char *)&saddr,sizeof(saddr));
+  saddr.sin_family = AF_INET;
+  if ( bind(s,(struct sockaddr *)&saddr,sizeof(saddr)) < 0 ) {
+    fprintf( stderr, "%s : bind() - %s\n", argv[0], strerror(errno) );
+    exit(1);
+  }
+  namelen = sizeof(saddr);
+  if ( getsockname(s,(struct sockaddr *)&saddr,&namelen) < 0 ) {
+    fprintf( stderr, "%s : getsockname() - %s\n", argv[0], strerror(errno) );
+    exit(1);
+  }
+  printf( "Source port = %d (0x%04x)\n", ntohs(saddr.sin_port), ntohs(saddr.sin_port) );
+
+  if ( ( hp = gethostbyname(argv[1]) ) == NULL ) {
+    fprintf( stderr, "%s : gethostbyname(%s) - %s\n",
+             argv[0], argv[1], strerror(errno) );
+    exit(1);
+  }
+  bcopy(hp->h_addr,&daddr.sin_addr,hp->h_length);
+  daddr.sin_family = hp->h_addrtype;
+  port = STIB_PORT;
+  daddr.sin_port = htons(port);
+  if ( (ntohl(daddr.sin_addr.s_addr)&0xff) == 0xff ) {
+    broadcast_enable = 1;
+    if ( setsockopt(s,SOL_SOCKET,SO_BROADCAST,&broadcast_enable,
+                     sizeof(broadcast_enable)) < 0 ) {
+      fprintf( stderr, "%s : setsockopt() - %s\n", argv[0], strerror(errno) );
+      exit(1);
+    }
+    printf("Enabled broadcast.\n");
+  }
+
+  struct timeval timeout;
+  timeout.tv_sec = 10;
+  timeout.tv_usec = 0;
+  if ( setsockopt(s,SOL_SOCKET,SO_RCVTIMEO,&timeout,sizeof(timeout)) < 0 ) {
+    fprintf( stderr, "%s : setsockopt() - %s\n", argv[0], strerror(errno) );
+    exit(1);
+  }
+ 
+  int chan             = atoi(argv[2]);
+  unsigned char chmask = 1<<chan;
+  int first            = atoi(argv[3]);
+  int last             = atoi(argv[4]);
+  int idac             = 0x04;
+
+  cout << "Analyzing pedestals for channel " << chan << " strips " << first << ".." << last << endl;
+  TFile *fout = new TFile("dthrscan.root","RECREATE");
+  fout->cd();
+  int ndthr = 5;
+  int dthrmin = 5;
+  int dthrmax = 5;
+  TH2F *h_mu = new TH2F("mu",NULL,640,-0.5,639.5,ndthr,dthrmin-0.5,dthrmax+0.5);
+  TH2F *h_sig = new TH2F("sig",NULL,640,-0.5,639.5,ndthr,dthrmin-0.5,dthrmax+0.5);
+  
+  Stib *msg = new Stib(s,(struct sockaddr *)&daddr,sizeof(daddr));
+  msg->Clear();
+  msg->Write(STRIP_CSR,0x0a080000);                     //  Configure spy FIFO's and BCO divisor
+  msg->Write(STRIP_RESET,0xd0000003);                   //  Issue reset
+  msg->WaitClear(STRIP_RESET,0xf0000000);               //  Wait for reset to complete
+  for ( i=0; i<8; i++ ) {
+    msg->SlowControls(21,chmask,DTHR+i,WRITE,16*i+16);  //  Set discriminator thresholds
+  }
+  msg->WaitClear(STRIP_SC_CSR,0x80000000);
+  msg->SlowControls(21,chmask,DCR,WRITE,16);            //  Mod 255
+  msg->WaitClear(STRIP_SC_CSR,0x80000000);
+  msg->Write(STRIP_SC_CSR,0x90030b95);                      // SCR synchronized with BCO
+  msg->WaitClear(STRIP_SC_CSR,0x80000000);
+
+  msg->Write(STRIP_DAC_SPI,0x80000000|(idac<<16));
+  msg->WaitClear(STRIP_DAC_SPI,0x80000000);                 //  Wait for DAC SPI to finish
+  msg->Write(STRIP_DAC_SPI,0x80000144|(idac<<16));
+  msg->WaitClear(STRIP_DAC_SPI,0x80000000);                 //  Wait for DAC SPI to finish
+  msg->Write(STRIP_DAC_SPI,0x80000240|(idac<<16));
+  msg->WaitClear(STRIP_DAC_SPI,0x80000000);                 //  Wait for DAC SPI to finish
+  msg->Write(STRIP_DAC_INPUT,0x00010000);                   //  Don't forget to set the ramp...
+  msg->Write(STRIP_DAC_CSR,0x4000ff00);                     //  Continuous pulses
+  msg->Send();
+  if ( ( ierr = msg->Receive() ) < 0 ) {
+    cout << "Receive error after initial configuration." << endl;
+  }
+  for ( int strip=first; strip<=last; strip++ ) {
+    int ichip = strip/128;
+    int chipid = ichip + 9;
+    msg->Clear();
+    Stib::MaskBits(mask,SET);
+    Stib::MaskBits(inject,CLEAR);
+    msg->SlowControls(21,chmask,KILL,WRITE,mask);
+    msg->SlowControls(21,chmask,INJECT,WRITE,inject);
+    Stib::MaskBits(inject,SET,strip%128);
+    Stib::MaskBits(mask,CLEAR,strip%128);
+    msg->SlowControls(chipid,chmask,KILL,WRITE,mask);
+    msg->SlowControls(chipid,chmask,INJECT,WRITE,inject);
+    msg->Send();
+    if ( ( ierr = msg->Receive() ) < 0 ) {
+      cout << "Receive error after kill/inject bits." << endl;
+    }
+    for ( int dthr=dthrmin; dthr<=dthrmax; dthr++ ) {
+      msg->Clear();
+      TGraphErrors *g = new TGraphErrors();
+      g->SetMarkerStyle(20+dthr-dthrmin);
+      int imin = 0;
+      int imax = 800;
+      int index = 0;
+      const int n = 9;
+      int delta = 10;
+      double mu = 0;
+      do {
+        int vdac;
+        if ( index == 0 ) {
+          vdac = (imin+imax)/2;
+        }
+        dac_word = 0x00010000 | (((unsigned int)-vdac)&0x0fff);
+        cout << "Vdac = " << dec << vdac << " --> " << hex << dac_word << endl;
+        msg->Clear();
+        msg->Write(STRIP_DAC_INPUT,dac_word);
+        msg->SlowControls(chipid,chmask,DTHR,WRITE,dthr);  //  Set discriminator threshold
+        msg->Write(STRIP_ANALYSIS_CSR,0x40000000);       //  Clear analysis scalers   
+        msg->SlowControls(chipid,chmask,REJECT_HITS,RESET);
+        msg->SlowControls(chipid,chmask,SEND_DATA,SET);
+        msg->Write(STRIP_ANALYSIS_CSR,0x00009000|(chan<<16)|(Stib::SetNumber(strip%128)<<4)|Stib::StripNumber(strip%128));
+        msg->WaitSet(STRIP_ANALYSIS_CSR,0x80000000,10000000);
+        unsigned char ind[2];
+        ind[0] = msg->Read(STRIP_ANALYSIS_BCO_COUNTER);
+        ind[1] = msg->Read(STRIP_ANALYSIS_BCO_COUNTER+0x100*(ichip+1));
+        msg->SlowControls(21,chmask,REJECT_HITS,SET);
+        msg->SlowControls(21,chmask,SEND_DATA,RESET);
+        msg->Send();
+        if ( ( ierr = msg->Receive() ) < 0 ) {
+          cout << "Strip " << strip << ", vdac = " << vdac << " - receive error = " << ierr << endl;
+        }
+        else {
+          unsigned int den = msg->RxData(ind[0],1);
+          cout << "Denominator = 0x" << hex << den << dec << endl;
+          if ( den == 0xffffffff ) continue;
+          unsigned int num = msg->RxData(ind[1],1);
+          cout << "Numerator = 0x" << hex << num << dec << endl;
+          double frac = (double)num/den*256;
+          if ( frac > 1 ) frac = 1;
+          double efrac = sqrt(frac*(1-frac)/(den/256));
+          if ( efrac == 0 ) efrac = 0.001;
+          cout << "Strip " << strip << ", vdac = " << vdac << ", frac = " << num << "/" << den << " = " << frac << endl;
+          int npt = g->GetN();
+          g->SetPoint(npt,vdac,frac);
+          g->SetPointError(npt,0,efrac);
+          if ( frac < 0.5 ) {
+            imin = vdac;
+            cout << "now imin = " << imin << endl;
+          }
+          else {
+            imax = vdac;
+            cout << "now imax = " << imax << endl;
+          }
+        }
+        if ( index == 0 && imax-imin < 5 ) {
+          mu = vdac;
+          vdac -= delta*n/2;
+          index = 1;
+        }
+        else if ( index > 0 ) {
+          vdac += delta;
+          index += 1;
+        }
+      }
+      while ( index < n );
+      char label[16];
+      sprintf( label, "fit_%d_%d", strip, dthr );
+      TF1 *func = new TF1(label,ferf,0,1024,2);
+      func->SetLineColor(2);
+      func->SetLineWidth(2);
+      func->SetParameters(mu,45.0);
+      g->Fit(func);
+      h_mu->SetBinContent(strip+1,dthr-dthrmin+1,func->GetParameter(0));
+      h_mu->SetBinError(strip+1,dthr-dthrmin+1,func->GetParError(0));
+      h_sig->SetBinContent(strip+1,dthr-dthrmin+1,func->GetParameter(1));
+      h_sig->SetBinError(strip+1,dthr-dthrmin+1,func->GetParError(1));
+      sprintf( label, "gth_%d_%d", strip, dthr );
+      g->Write(label);
+    }
+  }
+
+  msg->Clear();
+  msg->Write(STRIP_DAC_CSR,0x0000ff00);   // Turn off the pulser
+  msg->Write(STRIP_DAC_SPI,0x8000001c|(idac<<16));
+  msg->WaitClear(STRIP_DAC_SPI,0x80000000);                 //  Wait for DAC SPI to finish
+  msg->Send();
+  if ( ( ierr = msg->Receive() ) < 0 ) {
+    cout << "Receive error after turning off pulser." << endl;
+  }
+  fout->Write();
+  fout->Close();
+
+  return 0;
+}

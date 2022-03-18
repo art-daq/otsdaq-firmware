@@ -1,0 +1,101 @@
+Release 14.7 Physical Synthesis Report P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc. All rights reserved.
+
+TABLE OF CONTENTS
+  1) Physical Synthesis Options Summary
+  2) Optimizations statistics and details
+
+
+=========================================================================
+*                 Physical Synthesis Options Summary                    *
+=========================================================================
+---- Options
+Global Optimization                 : ON
+    Retiming                        : OFF
+    Equivalent Register Removal     : ON
+Timing-Driven Packing and Placement : ON
+    Logic Optimization              : OFF
+    Register Duplication            : OFF
+
+---- Intelligent clock gating       : OFF
+
+---- Target Parameters
+Target Device                       : 4vlx25ff668-10
+
+=========================================================================
+
+
+=========================================================================
+*                        Optimizations                                  *
+=========================================================================
+---- Statistics
+   Number of LUTs added by Replication                       | 6               
+   Number of LUTs removed by Trimming                        | 46              
+
+   Overall change in number of design objects                |  -40             
+
+
+---- Details
+
+New or modified components                             | Optimization             | Objective           
+-------------------------------------------------------|--------------------------|----------------------
+STRIP_ANA_CSR_not000111_1                              | Replication              | Fanout Optimization
+tx_data_dest_mac_cmp_eq00001_1                         | Replication              | Fanout Optimization
+tx_data_dest_mac_not000117_1                           | Replication              | Fanout Optimization
+write_data_31_cmp_eq00161_1                            | Replication              | Fanout Optimization
+write_data_31_cmp_eq00221_1                            | Replication              | Fanout Optimization
+write_data_31_cmp_eq00361_1                            | Replication              | Fanout Optimization
+
+
+Removed components                                     | Optimization             
+-------------------------------------------------------|--------------------------
+U0/I_NO_D.U_ILA/U_STAT/U_DSR                           | Trimming                 
+U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[11].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[12].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[13].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[14].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[15].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[3].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[6].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[7].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[10].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[11].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[12].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[13].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[14].U_LUT          | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[1].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[2].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[3].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[4].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[5].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[6].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[7].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[8].U_LUT           | Trimming                 
+U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[9].U_LUT           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[10].U_HCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[11].U_HCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[11].U_LCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[12].U_HCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[12].U_LCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[13].U_HCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[13].U_LCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[14].U_HCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[14].U_LCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[15].U_HCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[15].U_LCE          | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[1].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[2].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[3].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[3].U_LCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[4].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[5].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[6].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[6].U_LCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[7].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[7].U_LCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[8].U_HCE           | Trimming                 
+U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[9].U_HCE           | Trimming                 
+
+
+   Flops added for Enable Generation                       
+-------------------------

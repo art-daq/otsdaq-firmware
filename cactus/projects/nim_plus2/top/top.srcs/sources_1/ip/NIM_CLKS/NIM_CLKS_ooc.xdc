@@ -1,3 +1,4 @@
+
 # file: NIM_CLKS_ooc.xdc
 # 
 # (c) Copyright 2008 - 2013 Xilinx, Inc. All rights reserved.
@@ -53,4 +54,5 @@
 ############################################################
 # Clock Period Constraints                                 #
 ############################################################
-create_clock -period 8.0 [get_ports MASTER_CLK]
+create_clock -period 8.000 [get_ports MASTER_CLK]
+

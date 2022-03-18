@@ -3,17 +3,13 @@
 # 
 # Vivado(TM)
 # runme.sh: a Vivado-generated Runs Script for UNIX
-# Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+# Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 # 
 
-echo "This script was generated under a different operating system."
-echo "Please update the PATH and LD_LIBRARY_PATH variables below, before executing this script"
-exit
-
 if [ -z "$PATH" ]; then
-  PATH=C:/Xilinx/Vivado/2015.2/ids_lite/ISE/bin/nt64;C:/Xilinx/Vivado/2015.2/ids_lite/ISE/lib/nt64:C:/Xilinx/Vivado/2015.2/bin
+  PATH=/data/Xilinx/Vivado/SDK/2019.1/bin:/data/Xilinx/Vivado/Vivado/2019.1/ids_lite/ISE/bin/lin64:/data/Xilinx/Vivado/Vivado/2019.1/bin
 else
-  PATH=C:/Xilinx/Vivado/2015.2/ids_lite/ISE/bin/nt64;C:/Xilinx/Vivado/2015.2/ids_lite/ISE/lib/nt64:C:/Xilinx/Vivado/2015.2/bin:$PATH
+  PATH=/data/Xilinx/Vivado/SDK/2019.1/bin:/data/Xilinx/Vivado/Vivado/2019.1/ids_lite/ISE/bin/lin64:/data/Xilinx/Vivado/Vivado/2019.1/bin:$PATH
 fi
 export PATH
 
@@ -24,7 +20,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD=`dirname "$0"`
+HD_PWD='/data/rrivera/otsdaq-firmware/cactus/projects/nim_plus2/top/top.runs/NIM_CLKS_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -40,4 +36,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log NIM_CLKS.vds -m64 -mode batch -messageDb vivado.pb -notrace -source NIM_CLKS.tcl
+EAStep vivado -log NIM_CLKS.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source NIM_CLKS.tcl

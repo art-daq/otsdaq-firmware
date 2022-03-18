@@ -1,0 +1,251 @@
+#include <arpa/inet.h>
+#include <errno.h>
+#include <iostream>
+#include <netdb.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <time.h>
+
+#include "stib.hh"
+
+using namespace std;
+using namespace stib;
+
+int main(int argc, char **argv) {
+  int ierr, i, s;
+  socklen_t namelen;
+  int broadcast_enable;
+  unsigned short port;
+  struct sockaddr_in saddr, daddr;
+  struct hostent *hp;
+  unsigned int mask[4];
+
+  if (argc < 3) {
+    cerr << "Usage: " << argv[0] << " <addr> <chan> [<chan> ...]" << endl;
+    exit(1);
+  }
+  if ((s = socket(PF_INET, SOCK_DGRAM, 0)) < 0) {
+    fprintf(stderr, "%s : socket() - %s\n", argv[0], strerror(errno));
+    exit(1);
+  }
+  bzero((char *)&saddr, sizeof(saddr));
+  saddr.sin_family = AF_INET;
+  if (bind(s, (struct sockaddr *)&saddr, sizeof(saddr)) < 0) {
+    fprintf(stderr, "%s : bind() - %s\n", argv[0], strerror(errno));
+    exit(1);
+  }
+  namelen = sizeof(saddr);
+  if (getsockname(s, (struct sockaddr *)&saddr, &namelen) < 0) {
+    fprintf(stderr, "%s : getsockname() - %s\n", argv[0], strerror(errno));
+    exit(1);
+  }
+  printf("Source port = %d (0x%04x)\n", ntohs(saddr.sin_port),
+         ntohs(saddr.sin_port));
+
+  if ((hp = gethostbyname(argv[1])) == NULL) {
+    fprintf(stderr, "%s : gethostbyname(%s) - %s\n", argv[0], argv[1],
+            strerror(errno));
+    exit(1);
+  }
+  bcopy(hp->h_addr, &daddr.sin_addr, hp->h_length);
+  daddr.sin_family = hp->h_addrtype;
+  port = STIB_PORT;
+  daddr.sin_port = htons(port);
+  if ((ntohl(daddr.sin_addr.s_addr) & 0xff) == 0xff) {
+    broadcast_enable = 1;
+    if (setsockopt(s, SOL_SOCKET, SO_BROADCAST, &broadcast_enable,
+                   sizeof(broadcast_enable)) < 0) {
+      fprintf(stderr, "%s : setsockopt() - %s\n", argv[0], strerror(errno));
+      exit(1);
+    }
+    printf("Enabled broadcast.\n");
+  }
+
+  struct timeval timeout;
+  timeout.tv_sec = 10;
+  timeout.tv_usec = 0;
+  if (setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) < 0) {
+    fprintf(stderr, "%s : setsockopt() - %s\n", argv[0], strerror(errno));
+    exit(1);
+  }
+
+  int chan[6] = {0, 0, 0, 0, 0, 0};
+  int nchan = 0;
+  for (int iarg = 2; iarg < argc; iarg++) {
+    chan[nchan++] = atoi(argv[iarg]);
+    if (chan[iarg - 2] < 0 || chan[iarg - 2] > 5) {
+      cerr << argv[0] << ": invalid channel number." << endl;
+      exit(1);
+    }
+  }
+
+  unsigned char chmask = 0;
+  cout << "Configuring channel";
+  for (int i = 0; i < nchan; i++) {
+    chmask |= 1 << chan[i];
+    cout << " " << chan[i];
+  }
+  cout << " mask = " << hex << (int)chmask << dec << endl;
+
+  Stib *msg = new Stib(s, (struct sockaddr *)&daddr, sizeof(daddr));
+  msg->Clear();
+  msg->Write(STRIP_CSR, 0x00210000 + (chmask << 8)); //  Reset CSR - reset
+                                                     //  trigger counter,
+                                                     //  external clock source
+  msg->Write(STRIP_TRIM_CSR, 0x00003000); //  MCLKB edge for channel 4,5
+  msg->Write(DATA_DESTINATION_IP,
+             0xc0a88501); //  Destination IP address 192.168.133.1
+  msg->Write(DATA_SOURCE_DESTINATION_PORT,
+             0xbeefb79b); //  Source and destination ports - dst port = 47003
+  msg->Write(0xc1000018, 0x0000b798);        //  Listen port for ethio stuff
+  msg->Write(STRIP_BCO_DCM, 0x80500001);     //  Set BCOCLK numerator to 2
+  msg->WaitClear(STRIP_BCO_DCM, 0x80000000); //  Wait DCM write to finish
+  msg->Write(STRIP_BCO_DCM, 0x80520000);     //  Set BCOCLK denominator to 1
+  msg->WaitClear(STRIP_BCO_DCM, 0x80000000); //  Wait DCM write to finish - BCO
+                                             //  frequency is now 13.513 MHz.
+  msg->Write(STRIP_CSR, 0x80210000 + (chmask << 8)); //  Reset the DCM
+  msg->Write(STRIP_CSR, 0x00210000 + (chmask << 8)); //  Reset the DCM -
+                                                     //  remember that this does
+                                                     //  not clear itself
+  msg->WaitClear(STRIP_CSR, 0x80000000, 1024); //  Wait for the DCM to lcok
+  msg->Send();
+  if ((ierr = msg->Receive()) < 0) {
+    cout << "receive() - timeout." << endl;
+    exit(1);
+  }
+  sleep(1);
+
+  //
+  //  Set default registers...
+  //
+
+  msg->Clear();
+  msg->Write(STRIP_RESET, 0xf0000000 | chmask); //  Issue reset
+  msg->WaitClear(STRIP_RESET, 0xf0000000);      //  Wait for reset to complete
+  //  msg->SlowControls(21,chmask,DCR,WRITE,27);           // dcr write 27 - mod
+  //  256, high gain, BLR disabled, 125 ns
+  msg->SlowControls(
+      21, chmask, DCR, WRITE,
+      16); // dcr write 16 - mod 256, high gain, BLR enabled, 65 ns
+  msg->Write(STRIP_SC_CSR, 0x90000b95 | (chmask << 16)); // scr set
+  msg->SlowControls(21, chmask, DTHR0, WRITE, 36);
+  msg->SlowControls(21, chmask, DTHR1, WRITE, 56);
+  msg->SlowControls(21, chmask, DTHR2, WRITE, 80);
+  msg->SlowControls(21, chmask, DTHR3, WRITE, 104);
+  msg->SlowControls(21, chmask, DTHR4, WRITE, 128);
+  msg->SlowControls(21, chmask, DTHR5, WRITE, 152);
+  msg->SlowControls(21, chmask, DTHR6, WRITE, 176);
+  msg->SlowControls(21, chmask, DTHR7, WRITE, 200);
+  msg->Send();
+  if ((ierr = msg->Receive()) < 0) {
+    cout << "receive() - timeout." << endl;
+    exit(1);
+  }
+
+  //
+  //  Configure non-default registers...
+  //
+  int hot = 0;
+  if ((htonl(daddr.sin_addr.s_addr) & 0xff) == 36) {
+    msg->Clear();
+    StripSet hotstrips;
+    hotstrips.insert(Strip(1, 229));
+    hotstrips.insert(Strip(1, 230));
+    hotstrips.insert(Strip(1, 176));
+    hotstrips.insert(Strip(1, 177));
+    hotstrips.insert(Strip(1, 178));
+    hot = msg->MaskHotStrips(hotstrips);
+  } else if ((htonl(daddr.sin_addr.s_addr) & 0xff) == 20) {
+    msg->Clear();
+    StripSet hotstrips;
+    hotstrips.insert(Strip(1, 0));
+    hotstrips.insert(Strip(1, 1));
+    hotstrips.insert(Strip(1, 2));
+    hotstrips.insert(Strip(1, 30));
+    hotstrips.insert(Strip(1, 31));
+    hotstrips.insert(Strip(1, 32));
+    hotstrips.insert(Strip(3, 398));
+    hot = msg->MaskHotStrips(hotstrips);
+  } else if ((htonl(daddr.sin_addr.s_addr) & 0xff) == 132) {
+    msg->Clear();
+    StripSet hotstrips;
+
+    hotstrips.insert(Strip(2, 12));
+    hotstrips.insert(Strip(2, 13));
+    hotstrips.insert(Strip(4, 198));
+    hotstrips.insert(Strip(4, 199));
+    hotstrips.insert(Strip(4, 200));
+    hotstrips.insert(Strip(4, 339));
+    hotstrips.insert(Strip(4, 340));
+    hotstrips.insert(Strip(5, 548));
+    hotstrips.insert(Strip(5, 388));
+    hotstrips.insert(Strip(5, 638));
+    hot = msg->MaskHotStrips(hotstrips);
+  }
+  if (hot) {
+    msg->Send();
+    if ((ierr = msg->Receive()) < 0) {
+      cout << "receive() - timeout." << endl;
+      exit(1);
+    }
+  }
+
+  //
+  //  Enable readout...
+  //
+  msg->Clear();
+  msg->Write(STRIP_TLK_CSR, 0x0c000001); //  Enable TLK serdes interface
+  msg->Write(STRIP_CSR, 0x0f010030 | (chmask << 8)); //  Turn on data readout in
+                                                     //  CSR but don't veto
+                                                     //  untriggered events.
+  msg->Write(STRIP_TRIG_CSR, 0x00000004);            //  BCO offset
+  msg->Write(STRIP_TRIG_UNBIASED, 0x1002805c); //  Configure unbiased trigger
+  if ((htonl(daddr.sin_addr.s_addr) & 0xff) == 132) {
+    msg->Write(STRIP_TRIG_INPUT_0,
+               0x3f440000); //  FSSR2 GOTHIT trigger input channel 0,1
+    msg->Write(STRIP_TRIG_INPUT_1,
+               0x3f440000); //  FSSR2 GOTHIT trigger input channel 2,3
+    msg->Write(STRIP_TRIG_INPUT_2,
+               0x3f440000); //  FSSR2 GOTHIT trigger input channel 4,5
+    msg->Write(STRIP_TRIG_INPUT_3, 0x20301000); //  Unbiased and external
+                                                //  trigger input - different
+                                                //  timing on this one.
+  } else if ((htonl(daddr.sin_addr.s_addr) & 0xff) == 36) {
+    msg->Write(STRIP_TRIG_INPUT_0,
+               0x3f440000); //  FSSR2 GOTHIT trigger input channel 0,1
+    msg->Write(STRIP_TRIG_INPUT_1,
+               0x3f440000); //  FSSR2 GOTHIT trigger input channel 2,3
+    msg->Write(STRIP_TRIG_INPUT_3,
+               0x20401000); //  Unbiased and external trigger input
+  } else if ((htonl(daddr.sin_addr.s_addr) & 0xff) == 20) {
+    msg->Write(STRIP_TRIG_INPUT_0,
+               0x3f440000); //  FSSR2 GOTHIT trigger input channel 0,1
+    msg->Write(STRIP_TRIG_INPUT_1,
+               0x3f440000); //  FSSR2 GOTHIT trigger input channel 2,3
+    msg->Write(STRIP_TRIG_INPUT_3,
+               0x20401000); //  Unbiased and external trigger input
+  } else {
+    msg->Write(STRIP_TRIG_INPUT_0,
+               0x00000000); //  FSSR2 GOTHIT trigger input channel 0,1
+    msg->Write(STRIP_TRIG_INPUT_1,
+               0x00000000); //  FSSR2 GOTHIT trigger input channel 2,3
+    msg->Write(STRIP_TRIG_INPUT_3,
+               0x00000000); //  Unbiased and external trigger input
+  }
+  msg->Write(0xc400006c, 0x80000010); //  Debug output
+
+  msg->SlowControls(21, chmask, SEND_DATA, SET); //  sdata set
+  msg->SlowControls(21, chmask, REJECT_HITS,
+                    SET); //  reject set - needs to be enabled to start readout.
+  msg->Send();
+  if ((ierr = msg->Receive()) < 0) {
+    cout << "receive() - timeout." << endl;
+    exit(1);
+  }
+
+  return 0;
+}

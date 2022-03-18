@@ -1,3 +1,4 @@
+
 # file: strips_mclk_mmcm.xdc
 # 
 # (c) Copyright 2008 - 2013 Xilinx, Inc. All rights reserved.
@@ -51,8 +52,8 @@
 # input clocks. You can use these to time your system. If required
 # commented constraints can be used in the top level xdc 
 #----------------------------------------------------------------
-#create_clock -period 14.999 [get_ports CLK15NS]
+#create_clock -period 15.000 [get_ports CLK15NS]
 #set_input_jitter [get_clocks -of_objects [get_ports CLK15NS]] 0.14999
 
 
-
+set_property PHASESHIFT_MODE WAVEFORM [get_cells -hierarchical *adv*]

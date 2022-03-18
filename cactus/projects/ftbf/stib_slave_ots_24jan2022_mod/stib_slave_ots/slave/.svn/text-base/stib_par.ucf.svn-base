@@ -1,0 +1,142 @@
+######################################################################################
+# GLOBAL CLOCK NET DISTRIBUTION UCF REPORT:
+#
+# Number of Global Clock Regions : 12
+# Number of Global Clock Networks: 19
+#
+# Clock Region Assignment: SUCCESSFUL
+# Location of Clock Components
+INST "tlk_imp/tlkclk_fb_bufg" LOC = "BUFGCTRL_X0Y13" ;
+INST "strip_imp/stripclk_imp/bcoclk_mux" LOC = "BUFGCTRL_X0Y28" ;
+INST "strip_imp/G[0].bufgmux_imp" LOC = "BUFGCTRL_X0Y0" ;
+INST "GMII_RXCLK_BUFG" LOC = "BUFGCTRL_X0Y5" ;
+INST "strip_imp/G[5].bufgmux_imp" LOC = "BUFGCTRL_X0Y4" ;
+INST "strip_imp/stripclk_imp/outclk_bufg" LOC = "BUFGCTRL_X0Y6" ;
+INST "strip_imp/stripclk_imp/bcoclkmux" LOC = "BUFGCTRL_X0Y20" ;
+INST "strip_imp/stripclk_imp/fclk_bufg" LOC = "BUFGCTRL_X0Y11" ;
+INST "CLK15NS_BUFG" LOC = "BUFGCTRL_X0Y15" ;
+INST "strip_imp/G[4].bufgmux_imp" LOC = "BUFGCTRL_X0Y3" ;
+INST "tlk_imp/fifoclkmux" LOC = "BUFGCTRL_X0Y2" ;
+INST "strip_imp/G[3].bufgmux_imp" LOC = "BUFGCTRL_X0Y10" ;
+INST "strip_imp/stripclk_imp/bcoclkfb_bufg" LOC = "BUFGCTRL_X0Y22" ;
+INST "strip_imp/stripclk_imp/mclka_bufg" LOC = "BUFGCTRL_X0Y1" ;
+INST "strip_imp/stripclk_imp/mclkb_bufg" LOC = "BUFGCTRL_X0Y7" ;
+INST "strip_imp/G[2].bufgmux_imp" LOC = "BUFGCTRL_X0Y9" ;
+INST "strip_imp/stripclk_imp/bcoclk_bufg" LOC = "BUFGCTRL_X0Y27" ;
+INST "tlk_imp/tlk_gtxclk_bufg" LOC = "BUFGCTRL_X0Y12" ;
+INST "strip_imp/G[1].bufgmux_imp" LOC = "BUFGCTRL_X0Y8" ;
+# INST "XIL_ML_UNUSED_DCM_1" LOC = "DCM_ADV_X0Y7" ;
+# INST "XIL_ML_UNUSED_DCM_2" LOC = "DCM_ADV_X0Y5" ;
+# INST "XIL_ML_UNUSED_DCM_3" LOC = "DCM_ADV_X0Y3" ;
+# INST "XIL_ML_UNUSED_DCM_4" LOC = "DCM_ADV_X0Y6" ;
+# INST "XIL_ML_UNUSED_DCM_5" LOC = "DCM_ADV_X0Y1" ;
+INST "tlk_imp/tlkclk_dcm" LOC = "DCM_ADV_X0Y0" ;
+INST "strip_imp/stripclk_imp/mclk_dcm" LOC = "DCM_ADV_X0Y2" ;
+INST "strip_imp/stripclk_imp/fbcoclk_dcm" LOC = "DCM_ADV_X0Y4" ;
+INST "CLK15NS_PAD" LOC = "AD17" ;
+INST "GMII_RXCLK_PAD" LOC = "AD12" ;
+INST "EXT_CLK_PAD_P" LOC = "F18" ;
+INST "strip_imp/stripclk_imp/bcoclk_pmcd" LOC = "PMCD_X0Y2" ;
+
+# tlk_imp/tlkclk_fb driven by BUFGCTRL_X0Y13
+NET "tlk_imp/tlkclk_fb" TNM_NET = "TN_tlk_imp/tlkclk_fb" ;
+TIMEGRP "TN_tlk_imp/tlkclk_fb" AREA_GROUP = "CLKAG_tlk_imp/tlkclk_fb" ;
+AREA_GROUP "CLKAG_tlk_imp/tlkclk_fb" RANGE =   CLOCKREGION_X0Y0 ;
+
+# strip_imp/stripclk_imp/clk_q driven by BUFGCTRL_X0Y28
+NET "strip_imp/stripclk_imp/clk_q" TNM_NET = "TN_strip_imp/stripclk_imp/clk_q" ;
+TIMEGRP "TN_strip_imp/stripclk_imp/clk_q" AREA_GROUP = "CLKAG_strip_imp/stripclk_imp/clk_q" ;
+AREA_GROUP "CLKAG_strip_imp/stripclk_imp/clk_q" RANGE =   CLOCKREGION_X0Y4 ;
+
+# strip_imp/strip_mclk<0> driven by BUFGCTRL_X0Y0
+NET "strip_imp/strip_mclk<0>" TNM_NET = "TN_strip_imp/strip_mclk<0>" ;
+TIMEGRP "TN_strip_imp/strip_mclk<0>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<0>" ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<0>" RANGE =   CLOCKREGION_X1Y3, CLOCKREGION_X1Y4, CLOCKREGION_X1Y5 ;
+
+# GMII_RXCLK driven by BUFGCTRL_X0Y5
+NET "GMII_RXCLK" TNM_NET = "TN_GMII_RXCLK" ;
+TIMEGRP "TN_GMII_RXCLK" AREA_GROUP = "CLKAG_GMII_RXCLK" ;
+AREA_GROUP "CLKAG_GMII_RXCLK" RANGE =   CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2, CLOCKREGION_X0Y3, CLOCKREGION_X1Y3, CLOCKREGION_X0Y4, CLOCKREGION_X1Y4, CLOCKREGION_X0Y5, CLOCKREGION_X1Y5 ;
+
+# strip_imp/strip_mclk<5> driven by BUFGCTRL_X0Y4
+NET "strip_imp/strip_mclk<5>" TNM_NET = "TN_strip_imp/strip_mclk<5>" ;
+TIMEGRP "TN_strip_imp/strip_mclk<5>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<5>" ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<5>" RANGE =   CLOCKREGION_X0Y3, CLOCKREGION_X0Y4, CLOCKREGION_X0Y5 ;
+
+# strip_imp/dcm_outclk driven by BUFGCTRL_X0Y6
+NET "strip_imp/dcm_outclk" TNM_NET = "TN_strip_imp/dcm_outclk" ;
+TIMEGRP "TN_strip_imp/dcm_outclk" AREA_GROUP = "CLKAG_strip_imp/dcm_outclk" ;
+AREA_GROUP "CLKAG_strip_imp/dcm_outclk" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2, CLOCKREGION_X0Y3, CLOCKREGION_X1Y3, CLOCKREGION_X0Y4, CLOCKREGION_X1Y4, CLOCKREGION_X0Y5, CLOCKREGION_X1Y5 ;
+
+# strip_imp/stripclk_imp/clk_z driven by BUFGCTRL_X0Y20
+NET "strip_imp/stripclk_imp/clk_z" TNM_NET = "TN_strip_imp/stripclk_imp/clk_z" ;
+TIMEGRP "TN_strip_imp/stripclk_imp/clk_z" AREA_GROUP = "CLKAG_strip_imp/stripclk_imp/clk_z" ;
+AREA_GROUP "CLKAG_strip_imp/stripclk_imp/clk_z" RANGE =   CLOCKREGION_X0Y5, CLOCKREGION_X1Y5 ;
+
+# STRIP_DAC_CLK driven by BUFGCTRL_X0Y11
+NET "STRIP_DAC_CLK" TNM_NET = "TN_STRIP_DAC_CLK" ;
+TIMEGRP "TN_STRIP_DAC_CLK" AREA_GROUP = "CLKAG_STRIP_DAC_CLK" ;
+AREA_GROUP "CLKAG_STRIP_DAC_CLK" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2, CLOCKREGION_X0Y3, CLOCKREGION_X1Y3, CLOCKREGION_X0Y4, CLOCKREGION_X1Y4, CLOCKREGION_X0Y5, CLOCKREGION_X1Y5 ;
+
+# CLK15NS driven by BUFGCTRL_X0Y15
+NET "CLK15NS" TNM_NET = "TN_CLK15NS" ;
+TIMEGRP "TN_CLK15NS" AREA_GROUP = "CLKAG_CLK15NS" ;
+AREA_GROUP "CLKAG_CLK15NS" RANGE =   CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2, CLOCKREGION_X0Y3, CLOCKREGION_X1Y3, CLOCKREGION_X0Y4, CLOCKREGION_X1Y4, CLOCKREGION_X0Y5, CLOCKREGION_X1Y5 ;
+
+# strip_imp/strip_mclk<4> driven by BUFGCTRL_X0Y3
+NET "strip_imp/strip_mclk<4>" TNM_NET = "TN_strip_imp/strip_mclk<4>" ;
+TIMEGRP "TN_strip_imp/strip_mclk<4>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<4>" ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<4>" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X0Y1, CLOCKREGION_X0Y2 ;
+
+# tlk_imp/fifo_clk driven by BUFGCTRL_X0Y2
+NET "tlk_imp/fifo_clk" TNM_NET = "TN_tlk_imp/fifo_clk" ;
+TIMEGRP "TN_tlk_imp/fifo_clk" AREA_GROUP = "CLKAG_tlk_imp/fifo_clk" ;
+AREA_GROUP "CLKAG_tlk_imp/fifo_clk" RANGE =   CLOCKREGION_X0Y1, CLOCKREGION_X1Y1 ;
+
+# strip_imp/strip_mclk<3> driven by BUFGCTRL_X0Y10
+NET "strip_imp/strip_mclk<3>" TNM_NET = "TN_strip_imp/strip_mclk<3>" ;
+TIMEGRP "TN_strip_imp/strip_mclk<3>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<3>" ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<3>" RANGE =   CLOCKREGION_X1Y0, CLOCKREGION_X1Y1, CLOCKREGION_X1Y2 ;
+
+# strip_imp/fracbcoclk driven by BUFGCTRL_X0Y22
+NET "strip_imp/fracbcoclk" TNM_NET = "TN_strip_imp/fracbcoclk" ;
+TIMEGRP "TN_strip_imp/fracbcoclk" AREA_GROUP = "CLKAG_strip_imp/fracbcoclk" ;
+AREA_GROUP "CLKAG_strip_imp/fracbcoclk" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0 ;
+
+# STRIP_MCLKA driven by BUFGCTRL_X0Y1
+NET "STRIP_MCLKA" TNM_NET = "TN_STRIP_MCLKA" ;
+TIMEGRP "TN_STRIP_MCLKA" AREA_GROUP = "CLKAG_STRIP_MCLKA" ;
+AREA_GROUP "CLKAG_STRIP_MCLKA" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X0Y2, CLOCKREGION_X0Y3, CLOCKREGION_X0Y4, CLOCKREGION_X0Y5 ;
+
+# STRIP_MCLKB driven by BUFGCTRL_X0Y7
+NET "STRIP_MCLKB" TNM_NET = "TN_STRIP_MCLKB" ;
+TIMEGRP "TN_STRIP_MCLKB" AREA_GROUP = "CLKAG_STRIP_MCLKB" ;
+AREA_GROUP "CLKAG_STRIP_MCLKB" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y2 ;
+
+# strip_imp/strip_mclk<2> driven by BUFGCTRL_X0Y9
+NET "strip_imp/strip_mclk<2>" TNM_NET = "TN_strip_imp/strip_mclk<2>" ;
+TIMEGRP "TN_strip_imp/strip_mclk<2>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<2>" ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<2>" RANGE =   CLOCKREGION_X1Y0, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2 ;
+
+# STRIP_BCOCLK<0> driven by BUFGCTRL_X0Y27
+NET "STRIP_BCOCLK<0>" TNM_NET = "TN_STRIP_BCOCLK<0>" ;
+TIMEGRP "TN_STRIP_BCOCLK<0>" AREA_GROUP = "CLKAG_STRIP_BCOCLK<0>" ;
+AREA_GROUP "CLKAG_STRIP_BCOCLK<0>" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2, CLOCKREGION_X0Y3, CLOCKREGION_X1Y3, CLOCKREGION_X0Y4, CLOCKREGION_X1Y4, CLOCKREGION_X0Y5, CLOCKREGION_X1Y5 ;
+
+# TLK_GTX_CLK driven by BUFGCTRL_X0Y12
+NET "TLK_GTX_CLK" TNM_NET = "TN_TLK_GTX_CLK" ;
+TIMEGRP "TN_TLK_GTX_CLK" AREA_GROUP = "CLKAG_TLK_GTX_CLK" ;
+AREA_GROUP "CLKAG_TLK_GTX_CLK" RANGE =   CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y3, CLOCKREGION_X1Y3, CLOCKREGION_X1Y4, CLOCKREGION_X1Y5 ;
+
+# strip_imp/strip_mclk<1> driven by BUFGCTRL_X0Y8
+NET "strip_imp/strip_mclk<1>" TNM_NET = "TN_strip_imp/strip_mclk<1>" ;
+TIMEGRP "TN_strip_imp/strip_mclk<1>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<1>" ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<1>" RANGE =   CLOCKREGION_X1Y3, CLOCKREGION_X1Y4 ;
+
+# NOTE: 
+# This report is provided to help reproduce successful clock-region 
+# assignments. The report provides range constraints for all global 
+# clock networks, in a format that is directly usable in ucf files. 
+#
+#END of Global Clock Net Distribution UCF Constraints
+######################################################################################

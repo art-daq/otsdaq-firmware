@@ -1,3 +1,4 @@
+
 # file: strips_mclk_mmcm_ooc.xdc
 # 
 # (c) Copyright 2008 - 2013 Xilinx, Inc. All rights reserved.
@@ -53,4 +54,5 @@
 ############################################################
 # Clock Period Constraints                                 #
 ############################################################
-create_clock -period 14.999 [get_ports CLK15NS]
+create_clock -period 15.000 [get_ports CLK15NS]
+

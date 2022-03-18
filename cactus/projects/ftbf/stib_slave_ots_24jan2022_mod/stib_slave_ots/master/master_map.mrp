@@ -1,0 +1,1313 @@
+Release 14.6 Map P.68d (lin64)
+Xilinx Mapping Report File for Design 'master'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc4vlx25-ff668-10 -timing -logic_opt off -ol high -xe n -t 1 -register_duplication
+off -global_opt off -cm area -ir off -pr off -power off -o master_map.ncd master.ngd master.pcf 
+Target Device  : xc4vlx25
+Target Package : ff668
+Target Speed   : -10
+Stepping Level : 0
+Mapper Version : virtex4 -- $Revision: 1.55 $
+Mapped Date    : Tue Jun  2 13:00:46 2015
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:   23
+Logic Utilization:
+  Total Number Slice Registers:       5,113 out of  21,504   23%
+    Number used as Flip Flops:        5,112
+    Number used as Latches:               1
+  Number of 4 input LUTs:             6,725 out of  21,504   31%
+Logic Distribution:
+  Number of occupied Slices:          5,506 out of  10,752   51%
+    Number of Slices containing only related logic:   5,506 out of   5,506 100%
+    Number of Slices containing unrelated logic:          0 out of   5,506   0%
+      *See NOTES below for an explanation of the effects of unrelated logic.
+  Total Number of 4 input LUTs:       7,682 out of  21,504   35%
+    Number used as logic:             6,281
+    Number used as a route-thru:        957
+    Number used for Dual Port RAMs:     312
+      (Two LUTs used per Dual Port RAM)
+    Number used as Shift registers:     132
+
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+  Number of bonded IOBs:                122 out of     448   27%
+    IOB Dual-Data Rate Flops:            30
+    IOB Master Pads:                      6
+    IOB Slave Pads:                       6
+  Number of BUFG/BUFGCTRLs:              11 out of      32   34%
+    Number used as BUFGs:                 7
+    Number used as BUFGCTRLs:             4
+  Number of FIFO16/RAMB16s:              46 out of      72   63%
+    Number used as RAMB16s:              46
+  Number of DCM_ADVs:                     2 out of       8   25%
+  Number of BUFRs:                        1 out of      24    4%
+  Number of BSCAN_VIRTEX4s:               1 out of       4   25%
+
+  Number of RPM macros:           12
+Average Fanout of Non-Clock Nets:                3.54
+
+Peak Memory Usage:  1084 MB
+Total REAL time to MAP completion:  3 mins 16 secs 
+Total CPU time to MAP completion:   3 mins 16 secs 
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Timing Report
+Section 11 - Configuration String Information
+Section 12 - Control Set Information
+Section 13 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:MapLib:701 - Signal CLK5MHZ_PAD connected to top level port CLK5MHZ_PAD
+   has been removed.
+WARNING:MapLib:701 - Signal OTHER_P<6> connected to top level port OTHER_P<6>
+   has been removed.
+WARNING:MapLib:701 - Signal OTHER_N<6> connected to top level port OTHER_N<6>
+   has been removed.
+WARNING:MapLib:701 - Signal OTHER_P<7> connected to top level port OTHER_P<7>
+   has been removed.
+WARNING:MapLib:701 - Signal OTHER_N<7> connected to top level port OTHER_N<7>
+   has been removed.
+WARNING:LIT:176 - Clock buffer is designated to drive clock loads. BUFGCTRL
+   symbol "mi_imp/bdclkmux_a" (output signal=bdclk) has a mix of clock and
+   non-clock loads. The non-clock loads are:
+   Pin I1 of DEBUG_PORT<0>1
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[24].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[24].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[24].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[24].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[25].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[25].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[25].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[25].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[29].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[29].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[29].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[29].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[30].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[30].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[30].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[30].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[31].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[31].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[31].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[31].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[28].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[28].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[28].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[28].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[27].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[27].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[27].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[27].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[26].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[26].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[26].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[26].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[16].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[16].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[16].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[16].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[17].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[17].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[17].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[17].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[18].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[18].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[18].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[18].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[19].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[19].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[19].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[19].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[20].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[20].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[20].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[20].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[21].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[21].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[21].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[21].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[22].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[22].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[22].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[22].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[23].SRL16E_I/Use_unisim.MB_SRL16E_I1 failed to merge
+   with F5 multiplexer
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[23].Operand_Select_Bit_I/Using_LUT4_2.Op2_MUXF5.  The
+   function generator
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using
+   _FPGA.PreFetch_Buffers[23].SRL16E_I/Use_unisim.MB_SRL16E_I1 is unable to be
+   placed in the G position because the output signal doesn't match other
+   symbols' use of the G signal.  The signal
+   mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usi
+   ng_FPGA.OpSelect_Bits[23].Operand_Select_Bit_I/op2_Reg already uses G.  The
+   design will exhibit suboptimal timing.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is sourced by a combinatorial pin. This is not
+   good design practice. Use the CE pin to control the loading of data into the flip-flop.
+
+Section 3 - Informational
+-------------------------
+INFO:LIT:243 - Logical network icon_control0<10> has no load.
+INFO:LIT:395 - The above info message is repeated 140 more times for the
+   following (max. 5 shown):
+   icon_control0<11>,
+   icon_control0<15>,
+   icon_control0<21>,
+   icon_control0<16>,
+   icon_control0<22>
+   To see the details of these info messages, please use the -detail switch.
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:MapLib:797 - Your design is targeting LX/SX Production Step 0/1/ES devices.
+   Please note that there are new specifications for the DCMs to guarantee
+   maximum frequency performance. If the DCM input clock might stop or if the
+   DCM reset might be asserted for an extended time, then use of the dcm_standby
+   macro may be required. Please see Answer Record 21127.
+INFO:Pack:1716 - Initializing temperature to 85.000 Celsius. (default - Range:
+   0.000 to 85.000 Celsius)
+INFO:Pack:1720 - Initializing voltage to 1.140 Volts. (default - Range: 1.140 to
+   1.260 Volts)
+INFO:Timing:3386 - Intersecting Constraints found and resolved.  For more
+   information, see the TSI report.  Please consult the Xilinx Command Line
+   Tools User Guide for information on generating a TSI report.
+INFO:Pack:1650 - Map created a placed design.
+INFO:PhysDesignRules:1437 - To achieve optimal frequency synthesis performance with the CLKFX and CLKFX180 outputs of
+   the DCM_ADV comp tlk_imp/tlkclk_dcm, consult the device Data Sheet.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+ 138 block(s) removed
+  93 block(s) optimized away
+  73 signal(s) removed
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+Loadless block "G_OTHER[6].other_ibuf" (IBUFDS) removed.
+ The signal "OTHER_P<6>" is loadless and has been removed.
+  Loadless block "OTHER_P<6>" (PAD) removed.
+ The signal "OTHER_N<6>" is loadless and has been removed.
+  Loadless block "OTHER_N<6>" (PAD) removed.
+Loadless block "G_OTHER[7].other_ibuf" (IBUFDS) removed.
+ The signal "OTHER_P<7>" is loadless and has been removed.
+  Loadless block "OTHER_P<7>" (PAD) removed.
+ The signal "OTHER_N<7>" is loadless and has been removed.
+  Loadless block "OTHER_N<7>" (PAD) removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[10].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[11].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[12].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[13].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[14].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[1].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[2].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[3].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[4].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[5].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[6].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[7].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[8].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[9].U_LUT" (ROM)
+removed.
+Loadless block "U_ila_pro_0/U0/I_NO_D.U_ILA/U_STAT/U_DSR" (ROM) removed.
+Loadless block "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TC/I_STORAGE_QUAL.U_CAP_B"
+(ROM) removed.
+Loadless block "clk5mhz_ibufg" (CKBUF) removed.
+ The signal "CLK5MHZ_PAD" is loadless and has been removed.
+  Loadless block "CLK5MHZ_PAD" (PAD) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[16].PC_Bit_I/PC_EX_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[17].PC_Bit_I/PC_EX_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[18].PC_Bit_I/PC_EX_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[19].PC_Bit_I/PC_EX_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[20].PC_Bit_I/PC_EX_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[21].PC_Bit_I/PC_EX_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[22].PC_Bit_I/PC_EX_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[23].PC_Bit_I/PC_EX_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[24].PC_Bit_I/PC_EX_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[25].PC_Bit_I/PC_EX_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[26].PC_Bit_I/PC_EX_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[27].PC_Bit_I/PC_EX_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[28].PC_Bit_I/PC_EX_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[29].PC_Bit_I/PC_EX_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[0].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[10].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[11].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[12].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[13].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[14].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[15].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[16].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[17].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[18].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[19].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[1].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[20].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[21].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[22].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[23].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[24].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[25].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[26].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[27].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[28].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[29].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[2].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[30].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[31].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[3].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[4].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[5].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[6].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[7].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[8].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Result_Mux_I/Using_FPG
+A.Result_Mux_Bits[9].Result_Mux_Bit_I/EX_Result_DFF" (FF) removed.
+Loadless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/Using_FPGA.Ext_NM_BRK_FDR
+SE" (SFF) removed.
+The signal "icon_control0<10>" is sourceless and has been removed.
+The signal "icon_control0<11>" is sourceless and has been removed.
+The signal "icon_control0<15>" is sourceless and has been removed.
+The signal "icon_control0<21>" is sourceless and has been removed.
+The signal "icon_control0<16>" is sourceless and has been removed.
+The signal "icon_control0<22>" is sourceless and has been removed.
+The signal "icon_control0<17>" is sourceless and has been removed.
+The signal "icon_control0<23>" is sourceless and has been removed.
+The signal "icon_control0<18>" is sourceless and has been removed.
+The signal "icon_control0<24>" is sourceless and has been removed.
+The signal "icon_control0<30>" is sourceless and has been removed.
+The signal "icon_control0<25>" is sourceless and has been removed.
+The signal "icon_control0<31>" is sourceless and has been removed.
+The signal "icon_control0<26>" is sourceless and has been removed.
+The signal "icon_control0<32>" is sourceless and has been removed.
+The signal "icon_control0<7>" is sourceless and has been removed.
+The signal "icon_control0<27>" is sourceless and has been removed.
+The signal "icon_control0<33>" is sourceless and has been removed.
+The signal "icon_control0<28>" is sourceless and has been removed.
+The signal "icon_control0<34>" is sourceless and has been removed.
+The signal "icon_control0<29>" is sourceless and has been removed.
+The signal "icon_control0<35>" is sourceless and has been removed.
+The signal "mcs_0/U0/iomodule_0/IO_Byte_Enable<3>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/IO_Byte_Enable<2>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/IO_Byte_Enable<1>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/IO_Byte_Enable<0>" is sourceless and has been
+removed.
+The signal
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/iFetch_In_Progress_n" is
+sourceless and has been removed.
+ Sourceless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/Using_FPGA.iFetch_MuxCY_3
+" (MUX) removed.
+  The signal
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/Using_FPGA.iFetch_MuxCY_3
+/O" is sourceless and has been removed.
+   Sourceless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/Using_FPGA.iFetch_MuxCY_3
+/MUXCY_L_BUF" (BUF) removed.
+    The signal
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/Using_FPGA.iFetch_MuxCY_3
+/LO" is sourceless and has been removed.
+The signal "mcs_0/U0/iomodule_0/write_data<17>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/write_data<18>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/write_data<19>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/write_data<20>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/write_data<21>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/write_data<22>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/write_data<23>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/write_data<24>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/write_data<25>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/write_data<26>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/write_data<27>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/write_data<28>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/write_data<29>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/write_data<30>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/iomodule_0/write_data<31>" is sourceless and has been
+removed.
+The signal "mcs_0/U0/LMB_Rst_or0000" is sourceless and has been removed.
+The signal
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[16].PC_Bit_I/MUXCY_X/O" is sourceless and has been removed.
+ Sourceless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[16].PC_Bit_I/MUXCY_X/MUXCY_L_BUF" (BUF) removed.
+  The signal
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[16].PC_Bit_I/MUXCY_X/LO" is sourceless and has been
+removed.
+The signal
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using_F
+PGA.Buffer_DFFs[1].buffer_Addr_MUXCY_L/O" is sourceless and has been removed.
+ Sourceless block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using_F
+PGA.Buffer_DFFs[1].buffer_Addr_MUXCY_L/MUXCY_L_BUF" (BUF) removed.
+  The signal
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using_F
+PGA.Buffer_DFFs[1].buffer_Addr_MUXCY_L/LO" is sourceless and has been removed.
+The signal
+"tlk_imp/tlkfifo_imp/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo
+.gcx.clkx/rd_pntr_gc<0>" is sourceless and has been removed.
+ Sourceless block
+"tlk_imp/tlkfifo_imp/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo
+.gcx.clkx/gsync_stage[1].wr_stg_inst/Q_reg_0" (FF) removed.
+  The signal
+"tlk_imp/tlkfifo_imp/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo
+.gcx.clkx/gsync_stage[1].wr_stg_inst/Q_reg<0>" is sourceless and has been
+removed.
+   Sourceless block
+"tlk_imp/tlkfifo_imp/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo
+.gcx.clkx/gsync_stage[2].wr_stg_inst/Q_reg_0" (FF) removed.
+    The signal
+"tlk_imp/tlkfifo_imp/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo
+.gcx.clkx/gsync_stage[2].wr_stg_inst/Q_reg<0>" is sourceless and has been
+removed.
+The signal
+"tlk_imp/tlkfifo_imp/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo
+.gcx.clkx/rd_pntr_gc_xor0008" is sourceless and has been removed.
+ Sourceless block
+"tlk_imp/tlkfifo_imp/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo
+.gcx.clkx/rd_pntr_gc_0" (FF) removed.
+The signal
+"gs1.gbe_imp/sendpkt_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.rd/gr1.rfwft/empty_fwft_i" is sourceless and has
+been removed.
+The signal
+"gs1.gbe_imp/sendpkt_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.wr/gwas.wsts/ram_full_i" is sourceless and has been
+removed.
+The signal
+"gs1.gbe_imp/sendpkt_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.rd/gr1.rfwft/empty_fwft_i_or0000" is sourceless and
+has been removed.
+ Sourceless block
+"gs1.gbe_imp/sendpkt_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.rd/gr1.rfwft/empty_fwft_i" (FF) removed.
+ Sourceless block
+"gs1.gbe_imp/sendpkt_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.rd/gr1.rfwft/empty_fwft_fb" (FF) removed.
+  The signal
+"gs1.gbe_imp/sendpkt_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.rd/gr1.rfwft/empty_fwft_fb" is sourceless and has
+been removed.
+   Sourceless block
+"gs1.gbe_imp/sendpkt_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.rd/gr1.rfwft/empty_fwft_i_or00001" (ROM) removed.
+The signal
+"gs1.gbe_imp/icmprep_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.rd/gr1.rfwft/empty_fwft_i" is sourceless and has
+been removed.
+The signal
+"gs1.gbe_imp/icmprep_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.wr/gwas.wsts/ram_full_i" is sourceless and has been
+removed.
+The signal
+"gs1.gbe_imp/icmprep_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.rd/gr1.rfwft/empty_fwft_i_or0000" is sourceless and
+has been removed.
+ Sourceless block
+"gs1.gbe_imp/icmprep_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.rd/gr1.rfwft/empty_fwft_i" (FF) removed.
+ Sourceless block
+"gs1.gbe_imp/icmprep_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.rd/gr1.rfwft/empty_fwft_fb" (FF) removed.
+  The signal
+"gs1.gbe_imp/icmprep_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.rd/gr1.rfwft/empty_fwft_fb" is sourceless and has
+been removed.
+   Sourceless block
+"gs1.gbe_imp/icmprep_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.rd/gr1.rfwft/empty_fwft_i_or00001" (ROM) removed.
+The signal "U_icon_pro/U0/U_ICON/iCOMMAND_SEL<3>" is sourceless and has been
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[3].U_HCE" (ROM)
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[3].U_LCE" (ROM)
+removed.
+The signal "U_icon_pro/U0/U_ICON/iCOMMAND_SEL<6>" is sourceless and has been
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[6].U_HCE" (ROM)
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[6].U_LCE" (ROM)
+removed.
+The signal "U_icon_pro/U0/U_ICON/iCOMMAND_SEL<7>" is sourceless and has been
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[7].U_HCE" (ROM)
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[7].U_LCE" (ROM)
+removed.
+The signal "U_icon_pro/U0/U_ICON/iCOMMAND_SEL<11>" is sourceless and has been
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[11].U_HCE"
+(ROM) removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[11].U_LCE"
+(ROM) removed.
+The signal "U_icon_pro/U0/U_ICON/iCOMMAND_SEL<12>" is sourceless and has been
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[12].U_HCE"
+(ROM) removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[12].U_LCE"
+(ROM) removed.
+The signal "U_icon_pro/U0/U_ICON/iCOMMAND_SEL<13>" is sourceless and has been
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[13].U_HCE"
+(ROM) removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[13].U_LCE"
+(ROM) removed.
+The signal "U_icon_pro/U0/U_ICON/iCOMMAND_SEL<14>" is sourceless and has been
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[14].U_HCE"
+(ROM) removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[14].U_LCE"
+(ROM) removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[11].U_LUT" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[12].U_LUT" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[13].U_LUT" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[14].U_LUT" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[3].U_LUT" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[6].U_LUT" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[7].U_LUT" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[10].U_HCE" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[15].U_HCE" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[1].U_HCE" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[2].U_HCE" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[4].U_HCE" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[5].U_HCE" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[8].U_HCE" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[9].U_HCE" (ROM)
+removed.
+Unused block
+"gs1.gbe_imp/icmprep_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.wr/gwas.wsts/ram_full_i" (FF) removed.
+Unused block
+"gs1.gbe_imp/sendpkt_imp/ipbuf_imp/ipfb_imp/U0/xst_fifo_generator/gconvfifo.rf/g
+rf.rf/gntv_or_sync_fifo.gl0.wr/gwas.wsts/ram_full_i" (FF) removed.
+Unused block "mcs_0/U0/iomodule_0/IO_Byte_Enable_0" (SFF) removed.
+Unused block "mcs_0/U0/iomodule_0/IO_Byte_Enable_1" (SFF) removed.
+Unused block "mcs_0/U0/iomodule_0/IO_Byte_Enable_2" (SFF) removed.
+Unused block "mcs_0/U0/iomodule_0/IO_Byte_Enable_3" (SFF) removed.
+Unused block "mcs_0/U0/iomodule_0/write_data_17" (FF) removed.
+Unused block "mcs_0/U0/iomodule_0/write_data_18" (FF) removed.
+Unused block "mcs_0/U0/iomodule_0/write_data_19" (FF) removed.
+Unused block "mcs_0/U0/iomodule_0/write_data_20" (FF) removed.
+Unused block "mcs_0/U0/iomodule_0/write_data_21" (FF) removed.
+Unused block "mcs_0/U0/iomodule_0/write_data_22" (FF) removed.
+Unused block "mcs_0/U0/iomodule_0/write_data_23" (FF) removed.
+Unused block "mcs_0/U0/iomodule_0/write_data_24" (FF) removed.
+Unused block "mcs_0/U0/iomodule_0/write_data_25" (FF) removed.
+Unused block "mcs_0/U0/iomodule_0/write_data_26" (FF) removed.
+Unused block "mcs_0/U0/iomodule_0/write_data_27" (FF) removed.
+Unused block "mcs_0/U0/iomodule_0/write_data_28" (FF) removed.
+Unused block "mcs_0/U0/iomodule_0/write_data_29" (FF) removed.
+Unused block "mcs_0/U0/iomodule_0/write_data_30" (FF) removed.
+Unused block "mcs_0/U0/iomodule_0/write_data_31" (FF) removed.
+Unused block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/iFetch_In_Progress_n1_INV
+_0" (BUF) removed.
+Unused block
+"tlk_imp/tlkfifo_imp/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo
+.gcx.clkx/Mxor_rd_pntr_gc_xor0008_Result1" (ROM) removed.
+Unused block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA
+.Not_All_Bits.PC_GEN[16].PC_Bit_I/MUXCY_X" (MUX) removed.
+Unused block
+"mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Decode_I/PreFetch_Buffer_I/Using_F
+PGA.Buffer_DFFs[1].buffer_Addr_MUXCY_L" (MUX) removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+GND 		U_icon_pro/XST_GND
+VCC 		U_icon_pro/XST_VCC
+LUT4 		U_ila_pro_0/U0/I_NO_D.U_ILA/U_STAT/F_SSTAT[6].I_STAT.U_STAT
+   optimized to 0
+GND 		U_ila_pro_0/XST_GND
+VCC 		U_ila_pro_0/XST_VCC
+GND 		XST_GND
+VCC 		XST_VCC
+GND 		gs1.gbe_imp/arptab_imp/arptab_dpram_imp/XST_GND
+VCC 		gs1.gbe_imp/arptab_imp/arptab_dpram_imp/XST_VCC
+GND 		gs1.gbe_imp/icmprep_imp/ipbuf_imp/ipfb_imp/XST_GND
+VCC 		gs1.gbe_imp/icmprep_imp/ipbuf_imp/ipfb_imp/XST_VCC
+GND 		gs1.gbe_imp/ipbuf_imp/ipfb_imp/XST_GND
+VCC 		gs1.gbe_imp/ipbuf_imp/ipfb_imp/XST_VCC
+GND 		gs1.gbe_imp/rxfb_imp/XST_GND
+VCC 		gs1.gbe_imp/rxfb_imp/XST_VCC
+GND 		gs1.gbe_imp/sendpkt_imp/ipbuf_imp/ipfb_imp/XST_GND
+VCC 		gs1.gbe_imp/sendpkt_imp/ipbuf_imp/ipfb_imp/XST_VCC
+GND 		gs1.gbe_imp/txfb_imp/XST_GND
+VCC 		gs1.gbe_imp/txfb_imp/XST_VCC
+GND 		gs1.gbe_imp/udpfb[0].udpfb_imp/XST_GND
+VCC 		gs1.gbe_imp/udpfb[0].udpfb_imp/XST_VCC
+GND 		gs1.gbe_imp/udpfb[1].udpfb_imp/XST_GND
+VCC 		gs1.gbe_imp/udpfb[1].udpfb_imp/XST_VCC
+FD 		mcs_0/U0/LMB_Rst
+   optimized to 0
+LUT3 		mcs_0/U0/LMB_Rst_or00001
+   optimized to 0
+FDR 		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[0].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[10].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[11].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[12].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[13].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[14].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[15].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[17].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[18].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[19].fdr_i
+   optimized to 0
+FDR 		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[1].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[20].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[21].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[22].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[23].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[24].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[25].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[26].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[27].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[28].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[29].fdr_i
+   optimized to 0
+FDR 		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[2].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[30].fdr_i
+   optimized to 0
+FDR
+		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[31].fdr_i
+   optimized to 0
+FDR 		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[3].fdr_i
+   optimized to 0
+FDR 		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[4].fdr_i
+   optimized to 0
+FDR 		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[5].fdr_i
+   optimized to 0
+FDR 		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[6].fdr_i
+   optimized to 0
+FDR 		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[7].fdr_i
+   optimized to 0
+FDR 		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[8].fdr_i
+   optimized to 0
+FDR 		mcs_0/U0/iomodule_0/IOModule_Core_I1/intr_ctrl_I1/cipr_rd_dff_all[9].fdr_i
+   optimized to 0
+LUT3
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/ALU_I/FPGA_Target.No_
+Carry_Decoding.alu_carry_select_LUT
+   optimized to 0
+LUT2
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[10].Operand_Select_Bit_I/Using_LUT4_1.Only_PC.Op1_Mux2_2
+   optimized to 0
+LUT2
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[11].Operand_Select_Bit_I/Using_LUT4_1.Only_PC.Op1_Mux2_2
+   optimized to 0
+LUT2
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[12].Operand_Select_Bit_I/Using_LUT4_1.Only_PC.Op1_Mux2_2
+   optimized to 0
+LUT2
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[13].Operand_Select_Bit_I/Using_LUT4_1.Only_PC.Op1_Mux2_2
+   optimized to 0
+LUT2
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[14].Operand_Select_Bit_I/Using_LUT4_1.Only_PC.Op1_Mux2_2
+   optimized to 0
+LUT2
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[15].Operand_Select_Bit_I/Using_LUT4_1.Only_PC.Op1_Mux2_2
+   optimized to 0
+LUT2
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[1].Operand_Select_Bit_I/Using_LUT4_1.Only_PC.Op1_Mux2_2
+   optimized to 0
+LUT2
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[2].Operand_Select_Bit_I/Using_LUT4_1.Only_PC.Op1_Mux2_2
+   optimized to 0
+LUT4
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[31].Operand_Select_Bit_I/Using_LUT4_1.Both_PC_and_MSR.Op1_M
+ux2_2
+   optimized to 0
+LUT2
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[3].Operand_Select_Bit_I/Using_LUT4_1.Only_PC.Op1_Mux2_2
+   optimized to 0
+LUT2
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[4].Operand_Select_Bit_I/Using_LUT4_1.Only_PC.Op1_Mux2_2
+   optimized to 0
+LUT2
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[5].Operand_Select_Bit_I/Using_LUT4_1.Only_PC.Op1_Mux2_2
+   optimized to 0
+LUT2
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[6].Operand_Select_Bit_I/Using_LUT4_1.Only_PC.Op1_Mux2_2
+   optimized to 0
+LUT2
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[7].Operand_Select_Bit_I/Using_LUT4_1.Only_PC.Op1_Mux2_2
+   optimized to 0
+LUT2
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[8].Operand_Select_Bit_I/Using_LUT4_1.Only_PC.Op1_Mux2_2
+   optimized to 0
+LUT2
+		mcs_0/U0/microblaze_I/MicroBlaze_Core_I/Area.Data_Flow_I/Operand_Select_I/Usin
+g_FPGA.OpSelect_Bits[9].Operand_Select_Bit_I/Using_LUT4_1.Only_PC.Op1_Mux2_2
+   optimized to 0
+FD 		mcs_0/U0/reset_vec_0
+   optimized to 0
+FD 		mcs_0/U0/reset_vec_1
+   optimized to 0
+FD 		mcs_0/U0/reset_vec_2
+   optimized to 0
+GND 		mcs_0/XST_GND
+VCC 		mcs_0/XST_VCC
+GND 		tlk_imp/rxsb_imp/XST_GND
+VCC 		tlk_imp/rxsb_imp/XST_VCC
+GND 		tlk_imp/tlkfifo_imp/XST_GND
+VCC 		tlk_imp/tlkfifo_imp/XST_VCC
+GND 		tlk_imp/txsb_imp/XST_GND
+VCC 		tlk_imp/txsb_imp/XST_VCC
+
+To enable printing of redundant blocks removed and signals merged, set the
+detailed map report option and rerun map.
+
+Section 6 - IOB Properties
+--------------------------
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
+|                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| BDCLK_IN_PAD_N                     | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| BDCLK_IN_PAD_P                     | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| BDCLK_OUT_PAD_N<0>                 | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BDCLK_OUT_PAD_N<1>                 | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BDCLK_OUT_PAD_N<2>                 | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BDCLK_OUT_PAD_P<0>                 | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BDCLK_OUT_PAD_P<1>                 | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| BDCLK_OUT_PAD_P<2>                 | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| CLK15NS_PAD                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| CMD_OUT_PAD_N<0>                   | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| CMD_OUT_PAD_N<1>                   | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| CMD_OUT_PAD_N<2>                   | IOBS             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| CMD_OUT_PAD_P<0>                   | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| CMD_OUT_PAD_P<1>                   | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| CMD_OUT_PAD_P<2>                   | IOBM             | OUTPUT    | LVDS_25              |       |          |      |              |          |          |
+| DEBUG_PORT_PAD<0>                  | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| DEBUG_PORT_PAD<1>                  | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| DEBUG_PORT_PAD<2>                  | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| DEBUG_PORT_PAD<3>                  | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| DEBUG_PORT_PAD<4>                  | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| DEBUG_PORT_PAD<5>                  | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| DEBUG_PORT_PAD<6>                  | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| DEBUG_PORT_PAD<7>                  | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| GMII_RESET_PAD                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| GMII_RXCLK_PAD                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GMII_RXDV_PAD                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GMII_RXD_PAD<0>                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GMII_RXD_PAD<1>                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GMII_RXD_PAD<2>                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GMII_RXD_PAD<3>                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GMII_RXD_PAD<4>                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GMII_RXD_PAD<5>                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GMII_RXD_PAD<6>                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GMII_RXD_PAD<7>                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GMII_RXER_PAD                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GMII_TXCLK_PAD                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| GMII_TXD_PAD<0>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| GMII_TXD_PAD<1>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| GMII_TXD_PAD<2>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| GMII_TXD_PAD<3>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| GMII_TXD_PAD<4>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| GMII_TXD_PAD<5>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| GMII_TXD_PAD<6>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| GMII_TXD_PAD<7>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| GMII_TXEN_PAD                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| GMII_TXER_PAD                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| JUMPER_PAD<0>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| JUMPER_PAD<1>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| JUMPER_PAD<2>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| JUMPER_PAD<3>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| JUMPER_PAD<4>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| JUMPER_PAD<5>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| JUMPER_PAD<6>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| JUMPER_PAD<7>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| LED_PAD<0>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| LED_PAD<1>                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| OTHER_N<0>                         | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| OTHER_N<1>                         | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| OTHER_N<2>                         | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| OTHER_N<3>                         | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| OTHER_N<4>                         | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| OTHER_N<5>                         | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| OTHER_P<0>                         | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| OTHER_P<1>                         | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| OTHER_P<2>                         | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| OTHER_P<3>                         | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| OTHER_P<4>                         | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| OTHER_P<5>                         | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| SCINT_TRIG_PAD_N                   | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| SCINT_TRIG_PAD_P                   | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| SFP_ENABLEN_PAD                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| SFP_LOS_PAD                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| SFP_MODABS_PAD                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| SFP_RS_PAD                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| SFP_TXDIS_PAD                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| SFP_TXFAULT_PAD                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_ENABLE_PAD                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| TLK_GTX_CLK_PAD                    | IOB              | OUTPUT    | LVCMOS25             |       | 24       | FAST | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_LCKREFN_PAD                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| TLK_LOOPEN_PAD                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| TLK_PRBSEN_PAD                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| TLK_PREM_PAD                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| TLK_RXCLK_PAD                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXDV_PAD                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<0>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<1>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<2>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<3>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<4>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<5>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<6>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<7>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<8>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<9>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<10>                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<11>                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<12>                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<13>                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<14>                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXD_PAD<15>                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_RXER_PAD                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| TLK_TESTEN_PAD                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| TLK_TXD_PAD<0>                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXD_PAD<1>                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXD_PAD<2>                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXD_PAD<3>                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXD_PAD<4>                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXD_PAD<5>                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXD_PAD<6>                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXD_PAD<7>                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXD_PAD<8>                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXD_PAD<9>                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXD_PAD<10>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXD_PAD<11>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXD_PAD<12>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXD_PAD<13>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXD_PAD<14>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXD_PAD<15>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXEN_PAD                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| TLK_TXER_PAD                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW | OFF1         |          |          |
+|                                    | ODDR:SAME        |           |                      |       |          |      | OFF2         |          |          |
+|                                    |                  |           |                      |       |          |      | OFF3         |          |          |
+|                                    |                  |           |                      |       |          |      | OFFDDRB      |          |          |
+| UART_RX_PAD                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| UART_TX_PAD                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_CDONE_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_CMPRESET_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_NS0_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_NS1_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_SCMPCE_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_SCRST_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_WHCMPCE_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_WLCMPCE_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_U_CAP_ADDRGEN_U_SCNT_CMP_I_SRL16.U
+_GAND_SRL16_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_U_CAP_ADDRGEN_U_WCNT_HCMP_I_SRL16.
+U_GAND_SRL16_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_U_CAP_ADDRGEN_U_WCNT_LCMP_I_SRL16.
+U_GAND_SRL16_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_GANDX.U_match/I_
+SRL16.U_GANDX_SRL16_MSET
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+  No area groups were found in this design.
+
+----------------------
+
+Section 10 - Timing Report
+--------------------------
+A logic-level (pre-route) timing report can be generated by using Xilinx static
+timing analysis tools, Timing Analyzer (GUI) or TRCE (command line), with the
+mapped NCD and PCF files. Please note that this timing report will be generated
+using estimated delay information. For accurate numbers, please generate a
+timing report with the post Place and Route NCD file.
+
+For more information about the Timing Analyzer, consult the Xilinx Timing
+Analyzer Reference Manual; for more information about TRCE, consult the Xilinx
+Command Line Tools User Guide "TRACE" chapter.
+
+Section 11 - Configuration String Details
+-----------------------------------------
+Use the "-detail" map option to print out Configuration Strings
+
+Section 12 - Control Set Information
+------------------------------------
+No control set information for this architecture.
+
+Section 13 - Utilization by Hierarchy
+-------------------------------------
+Use the "-detail" map option to print out the Utilization by Hierarchy section.

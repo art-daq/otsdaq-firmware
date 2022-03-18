@@ -1,0 +1,859 @@
+Release 14.7 Map P.20131013 (lin64)
+Xilinx Map Application Log File for Design 'top'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc4vlx25-ff668-10 -timing -logic_opt off
+-ol high -xe n -t 1 -register_duplication off -global_opt speed
+-equivalent_register_removal on -cm speed -detail -ir off -pr off -power off -o
+top_map.ncd top.ngd top.pcf 
+Target Device  : xc4vlx25
+Target Package : ff668
+Target Speed   : -10
+Stepping Level : 0
+Mapper Version : virtex4 -- $Revision: 1.55 $
+Mapped Date    : Thu Jan 27 00:52:25 2022
+
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+INFO:Security:54 - 'xc4vlx25' is a WebPack part.
+WARNING:Security:42 - Your software subscription period has lapsed. Your current
+version of Xilinx tools will continue to function, but you no longer qualify for
+Xilinx software updates or new releases.
+----------------------------------------------------------------------
+Running global optimization...
+Mapping design into LUTs...
+WARNING:MapLib:701 - Signal STRIP_GOTHITOR_PAD_P<4> connected to top level port
+   STRIP_GOTHITOR_PAD_P<4> has been removed.
+WARNING:MapLib:701 - Signal STRIP_GOTHITOR_PAD_N<4> connected to top level port
+   STRIP_GOTHITOR_PAD_N<4> has been removed.
+WARNING:MapLib:701 - Signal STRIP_GOTHITOR_PAD_P<1> connected to top level port
+   STRIP_GOTHITOR_PAD_P<1> has been removed.
+WARNING:MapLib:701 - Signal STRIP_GOTHITOR_PAD_N<1> connected to top level port
+   STRIP_GOTHITOR_PAD_N<1> has been removed.
+WARNING:MapLib:701 - Signal STRIP_GOTHITOR_PAD_P<0> connected to top level port
+   STRIP_GOTHITOR_PAD_P<0> has been removed.
+WARNING:MapLib:701 - Signal STRIP_GOTHITOR_PAD_N<0> connected to top level port
+   STRIP_GOTHITOR_PAD_N<0> has been removed.
+WARNING:MapLib:701 - Signal STRIP_GOTHITOR_PAD_P<5> connected to top level port
+   STRIP_GOTHITOR_PAD_P<5> has been removed.
+WARNING:MapLib:701 - Signal STRIP_GOTHITOR_PAD_N<5> connected to top level port
+   STRIP_GOTHITOR_PAD_N<5> has been removed.
+WARNING:MapLib:701 - Signal STRIP_GOTHITOR_PAD_P<3> connected to top level port
+   STRIP_GOTHITOR_PAD_P<3> has been removed.
+WARNING:MapLib:701 - Signal STRIP_GOTHITOR_PAD_P<2> connected to top level port
+   STRIP_GOTHITOR_PAD_P<2> has been removed.
+WARNING:MapLib:701 - Signal STRIP_GOTHITOR_PAD_N<2> connected to top level port
+   STRIP_GOTHITOR_PAD_N<2> has been removed.
+WARNING:MapLib:701 - Signal STRIP_GOTHITOR_PAD_N<3> connected to top level port
+   STRIP_GOTHITOR_PAD_N<3> has been removed.
+WARNING:LIT:176 - Clock buffer is designated to drive clock loads. BUFG symbol
+   "strip_imp/stripclk_imp/bcoclk_bufg" (output signal=STRIP_BCOCLK<0>) has a
+   mix of clock and non-clock loads. The non-clock loads are:
+   Pin D of local_bco_clk_0
+Running directed packing...
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	The RPM
+   "U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_
+   GANDX.U_match/I_SRL16.U_GANDX_SRL16_MSET".  Relationally Placed Macros (RPMs)
+   have a predetermined physical shape.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	The RPM
+   "U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2.U_CAPCTRL_I_SRLT_NE_1.U_NS1_MSE
+   T".  Relationally Placed Macros (RPMs) have a predetermined physical shape.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	The RPM
+   "U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2.U_CAPCTRL_I_SRLT_NE_1.U_NS0_MSE
+   T".  Relationally Placed Macros (RPMs) have a predetermined physical shape.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	The RPM
+   "U_ila_pro_0/U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2.U_CAPCTRL_I_SRLT_NE_1.U_CDONE_M
+   SET".  Relationally Placed Macros (RPMs) have a predetermined physical shape.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/CreatePacketBlock/dataout_mux00
+   00<3>_wg_cy<0>".  Carry chains must run upwards through adjacent slices in
+   the same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/ArpReplyBlock/dataout_mux0001<4
+   >_wg_cy<0>".  Carry chains must run upwards through adjacent slices in the
+   same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "Mcompar_local_bco_zero_cnt_cmp_eq0000_cy<0>".  Carry chains must run upwards
+   through adjacent slices in the same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/ArpReplyBlock/dataout_mux0001<5
+   >_wg_cy<0>".  Carry chains must run upwards through adjacent slices in the
+   same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/CreatePacketBlock/dataout_mux00
+   00<0>_wg_cy<0>".  Carry chains must run upwards through adjacent slices in
+   the same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/CreatePacketBlock/dataout_mux00
+   00<4>_wg_cy<0>".  Carry chains must run upwards through adjacent slices in
+   the same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/ArpReplyBlock/dataout_mux0001<0
+   >_wg_cy<0>".  Carry chains must run upwards through adjacent slices in the
+   same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/ArpReplyBlock/dataout_mux0001<6
+   >_wg_cy<0>".  Carry chains must run upwards through adjacent slices in the
+   same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/CreatePacketBlock/dataout_mux00
+   00<1>_wg_cy<0>".  Carry chains must run upwards through adjacent slices in
+   the same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/ArpReplyBlock/dataout_mux0001<7
+   >_wg_cy<0>".  Carry chains must run upwards through adjacent slices in the
+   same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/CreatePacketBlock/dataout_mux00
+   00<2>_wg_cy<0>".  Carry chains must run upwards through adjacent slices in
+   the same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_GANDX.U_matc
+   h/I_SRL16.U_GANDX_SRL16/I_TW_GTE4.F_TW[0].I_YES_RPM.U_MUXL".  Carry chains
+   must run upwards through adjacent slices in the same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/CreatePacketBlock/dataout_mux00
+   00<5>_wg_cy<0>".  Carry chains must run upwards through adjacent slices in
+   the same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/ArpReplyBlock/dataout_mux0001<1
+   >_wg_cy<0>".  Carry chains must run upwards through adjacent slices in the
+   same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/CreatePacketBlock/dataout_mux00
+   00<6>_wg_cy<0>".  Carry chains must run upwards through adjacent slices in
+   the same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/ArpReplyBlock/dataout_mux0001<2
+   >_wg_cy<0>".  Carry chains must run upwards through adjacent slices in the
+   same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2.U_CAPCTRL/U_CAP_ADDRGEN/U_WCNT_LCMP/I_SRL16
+   .U_GAND_SRL16/I_TW_GTE8.F_TW[0].I_YES_RPM.U_MUXL".  Carry chains must run
+   upwards through adjacent slices in the same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2.U_CAPCTRL/U_CAP_ADDRGEN/U_WCNT_HCMP/I_SRL16
+   .U_GAND_SRL16/I_TW_GTE8.F_TW[0].I_YES_RPM.U_MUXL".  Carry chains must run
+   upwards through adjacent slices in the same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2.U_CAPCTRL/U_CAP_ADDRGEN/U_SCNT_CMP/I_SRL16.
+   U_GAND_SRL16/I_TW_GTE8.F_TW[0].I_YES_RPM.U_MUXL".  Carry chains must run
+   upwards through adjacent slices in the same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/CreatePacketBlock/dataout_mux00
+   00<7>_wg_cy<0>".  Carry chains must run upwards through adjacent slices in
+   the same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+WARNING:Pack:1104 - A collection of symbols which have restrictive placement or
+   routing requirements has some symbols within an area group and some symbols
+   outside.  This is likely to cause placement problems.  The collection is:
+   	A carry chain starting with carry mux
+   "eth_interface/ec_wrapper/ethernet_controller/ArpReplyBlock/dataout_mux0001<3
+   >_wg_cy<0>".  Carry chains must run upwards through adjacent slices in the
+   same column.
+   The area group is:
+   	"CLKAG_GMII_RXCLK"
+Running delay-based LUT packing...
+Updating timing models...
+WARNING:Timing:3223 - Timing constraint PATH "TS_MCLKA_TO_BUSCLK_path" TIG
+   ignored during timing analysis.
+WARNING:Timing:3223 - Timing constraint PATH "TS_MCLKB_TO_BUSCLK_path" TIG
+   ignored during timing analysis.
+WARNING:Timing:3223 - Timing constraint PATH "TS_BUSCLK_TO_FBCOCLK_path" TIG
+   ignored during timing analysis.
+WARNING:Timing:3223 - Timing constraint PATH "TS_FBCOCLK_TO_BUSCLK_path" TIG
+   ignored during timing analysis.
+WARNING:Timing:3223 - Timing constraint PATH "TS_EXTCLK_TO_DACCLK_path" TIG
+   ignored during timing analysis.
+WARNING:Timing:3223 - Timing constraint PATH "TS_BCOCLK_TO_BUSCLK_path" TIG
+   ignored during timing analysis.
+WARNING:Timing:3223 - Timing constraint PATH "TS_MCLKB_TO_BCOCLK_path" TIG
+   ignored during timing analysis.
+WARNING:Timing:3223 - Timing constraint PATH "TS_CLKQ_TO_DACCLK_path" TIG
+   ignored during timing analysis.
+WARNING:Timing:3223 - Timing constraint PATH "TS_CLKQ_TO_BUSCLK_path" TIG
+   ignored during timing analysis.
+Running timing-driven placement...
+Total REAL time at the beginning of Placer: 4 mins 27 secs 
+Total CPU  time at the beginning of Placer: 4 mins 11 secs 
+
+Phase 1.1  Initial Placement Analysis
+Phase 1.1  Initial Placement Analysis (Checksum:b57a8b04) REAL time: 5 mins 15 secs 
+
+Phase 2.7  Design Feasibility Check
+Phase 2.7  Design Feasibility Check (Checksum:b57a8b04) REAL time: 5 mins 16 secs 
+
+Phase 3.31  Local Placement Optimization
+Phase 3.31  Local Placement Optimization (Checksum:106662d9) REAL time: 5 mins 16 secs 
+
+Phase 4.2  Initial Clock and IO Placement
+
+.......
+WARNING:Place:971 - A GCLK / GCLK clock component pair have been found that are
+   not placed at an optimal GCLK / GCLK site pair. The GCLK component
+   <clk15ns_ibufg> is placed at site <BUFGCTRL_X0Y10>. The corresponding GCLK
+   component <strip_imp/stripclk_imp/bcoclkmux> is placed at site
+   <BUFGCTRL_X0Y29>. The GCLK site can use the fast path to the other GCLK if
+   both the GCLK components are placed in the same half of the device (TOP or
+   BOTTOM). You may want to analyze why this problem exists and correct it. This
+   is not an error so processing will continue.
+WARNING:Place:644 - A clock IOB clock component is not placed at an optimal
+   clock IOB site. The clock IOB component <EXT_CLK_PAD_P> is placed at site
+   <F18>. The clock IO site can use the fast path between the IO and the Clock
+   buffer/GCLK if the IOB is placed in the master Clock IOB Site. This is
+   normally an ERROR but the CLOCK_DEDICATED_ROUTE constraint was applied on
+   COMP.PIN <EXT_CLK_PAD_P.PAD> allowing your design to continue. This
+   constraint disables all clock placer rules related to the specified COMP.PIN.
+   The use of this override is highly discouraged as it may lead to very poor
+   timing results. It is recommended that this error condition be corrected in
+   the design.
+Phase 4.2  Initial Clock and IO Placement (Checksum:b5df1996) REAL time: 5 mins 19 secs 
+
+Phase 5.36  Local Placement Optimization
+Phase 5.36  Local Placement Optimization (Checksum:b5df1996) REAL time: 5 mins 19 secs 
+
+...................
+..............................................................................................................
+Phase 6.30  Global Clock Region Assignment
+
+
+######################################################################################
+# GLOBAL CLOCK NET DISTRIBUTION UCF REPORT:
+#
+# Number of Global Clock Regions : 12
+# Number of Global Clock Networks: 19
+#
+# Clock Region Assignment: SUCCESSFUL
+
+# Location of Clock Components
+INST "strip_imp/stripclk_imp/bcoclk_mux" LOC = "BUFGCTRL_X0Y17" ;
+INST "strip_imp/stripclk_imp/outclk_bufg" LOC = "BUFGCTRL_X0Y2" ;
+INST "strip_imp/stripclk_imp/bcoclkmux" LOC = "BUFGCTRL_X0Y29" ;
+INST "strip_imp/stripclk_imp/fclk_bufg" LOC = "BUFGCTRL_X0Y12" ;
+INST "strip_imp/stripclk_imp/clkzWatchdog[0].dcm_clkz_bufg" LOC = "BUFGCTRL_X0Y16" ;
+INST "strip_imp/stripclk_imp/bcoclkfb_bufg" LOC = "BUFGCTRL_X0Y31" ;
+INST "strip_imp/stripclk_imp/mclka_bufg" LOC = "BUFGCTRL_X0Y3" ;
+INST "strip_imp/stripclk_imp/mclkb_bufg" LOC = "BUFGCTRL_X0Y7" ;
+INST "strip_imp/stripclk_imp/bcoclkmux_imp" LOC = "BUFGCTRL_X0Y23" ;
+INST "strip_imp/stripclk_imp/bcoclk_bufg" LOC = "BUFGCTRL_X0Y19" ;
+INST "strip_imp/G[0].bufgmux_imp" LOC = "BUFGCTRL_X0Y8" ;
+INST "strip_imp/G[5].bufgmux_imp" LOC = "BUFGCTRL_X0Y0" ;
+INST "strip_imp/G[4].bufgmux_imp" LOC = "BUFGCTRL_X0Y1" ;
+INST "strip_imp/G[3].bufgmux_imp" LOC = "BUFGCTRL_X0Y15" ;
+INST "strip_imp/G[2].bufgmux_imp" LOC = "BUFGCTRL_X0Y9" ;
+INST "strip_imp/G[1].bufgmux_imp" LOC = "BUFGCTRL_X0Y5" ;
+INST "U_icon_pro/U0/U_ICON/I_YES_BSCAN.U_BS/I_USE_SOFTBSCAN_EQ0.I_USE_XST_TCK_WORKAROUND_EQ1.U_ICON_BSCAN_BUFG/U_BUFG" LOC = "BUFGCTRL_X0Y4" ;
+INST "gmii_rxclk_ibufg" LOC = "BUFGCTRL_X0Y13" ;
+INST "clk15ns_ibufg" LOC = "BUFGCTRL_X0Y10" ;
+INST "strip_imp/stripclk_imp/clkzWatchdog[0].clkz_dcm" LOC = "DCM_ADV_X0Y3" ;
+INST "strip_imp/stripclk_imp/mclk_dcm" LOC = "DCM_ADV_X0Y2" ;
+INST "strip_imp/stripclk_imp/fbcoclk_dcm" LOC = "DCM_ADV_X0Y7" ;
+INST "XIL_ML_UNUSED_DCM_1" LOC = "DCM_ADV_X0Y0" ;
+INST "XIL_ML_UNUSED_DCM_2" LOC = "DCM_ADV_X0Y1" ;
+INST "XIL_ML_UNUSED_DCM_3" LOC = "DCM_ADV_X0Y4" ;
+INST "XIL_ML_UNUSED_DCM_4" LOC = "DCM_ADV_X0Y5" ;
+INST "XIL_ML_UNUSED_DCM_5" LOC = "DCM_ADV_X0Y6" ;
+INST "EXT_CLK_PAD_P" LOC = "F18" ;
+INST "GMII_RXCLK_PAD" LOC = "AD12" ;
+INST "CLK15NS_PAD" LOC = "AD17" ;
+
+# strip_imp/stripclk_imp/clk_q driven by BUFGCTRL_X0Y17
+NET "strip_imp/stripclk_imp/clk_q" TNM_NET = "TN_strip_imp/stripclk_imp/clk_q" ;
+TIMEGRP "TN_strip_imp/stripclk_imp/clk_q" AREA_GROUP = "CLKAG_strip_imp/stripclk_imp/clk_q" ;
+AREA_GROUP "CLKAG_strip_imp/stripclk_imp/clk_q" RANGE =   CLOCKREGION_X0Y3, CLOCKREGION_X0Y5 ;
+
+# strip_imp/dcm_outclk driven by BUFGCTRL_X0Y2
+NET "strip_imp/dcm_outclk" TNM_NET = "TN_strip_imp/dcm_outclk" ;
+TIMEGRP "TN_strip_imp/dcm_outclk" AREA_GROUP = "CLKAG_strip_imp/dcm_outclk" ;
+AREA_GROUP "CLKAG_strip_imp/dcm_outclk" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2, CLOCKREGION_X0Y3, CLOCKREGION_X1Y3, CLOCKREGION_X0Y4, CLOCKREGION_X1Y4, CLOCKREGION_X0Y5, CLOCKREGION_X1Y5 ;
+
+# strip_imp/stripclk_imp/clk_z_src driven by BUFGCTRL_X0Y29
+NET "strip_imp/stripclk_imp/clk_z_src" TNM_NET = "TN_strip_imp/stripclk_imp/clk_z_src" ;
+TIMEGRP "TN_strip_imp/stripclk_imp/clk_z_src" AREA_GROUP = "CLKAG_strip_imp/stripclk_imp/clk_z_src" ;
+AREA_GROUP "CLKAG_strip_imp/stripclk_imp/clk_z_src" RANGE =   CLOCKREGION_X0Y4, CLOCKREGION_X1Y5 ;
+
+# STRIP_DAC_CLK driven by BUFGCTRL_X0Y12
+NET "STRIP_DAC_CLK" TNM_NET = "TN_STRIP_DAC_CLK" ;
+TIMEGRP "TN_STRIP_DAC_CLK" AREA_GROUP = "CLKAG_STRIP_DAC_CLK" ;
+AREA_GROUP "CLKAG_STRIP_DAC_CLK" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2, CLOCKREGION_X0Y3, CLOCKREGION_X1Y3, CLOCKREGION_X0Y4, CLOCKREGION_X1Y4, CLOCKREGION_X0Y5, CLOCKREGION_X1Y5 ;
+
+# strip_imp/stripclk_imp/clk_z driven by BUFGCTRL_X0Y16
+NET "strip_imp/stripclk_imp/clk_z" TNM_NET = "TN_strip_imp/stripclk_imp/clk_z" ;
+TIMEGRP "TN_strip_imp/stripclk_imp/clk_z" AREA_GROUP = "CLKAG_strip_imp/stripclk_imp/clk_z" ;
+AREA_GROUP "CLKAG_strip_imp/stripclk_imp/clk_z" RANGE =   CLOCKREGION_X0Y3, CLOCKREGION_X0Y5 ;
+
+# strip_imp/fracbcoclk driven by BUFGCTRL_X0Y31
+NET "strip_imp/fracbcoclk" TNM_NET = "TN_strip_imp/fracbcoclk" ;
+TIMEGRP "TN_strip_imp/fracbcoclk" AREA_GROUP = "CLKAG_strip_imp/fracbcoclk" ;
+AREA_GROUP "CLKAG_strip_imp/fracbcoclk" RANGE =   CLOCKREGION_X1Y4, CLOCKREGION_X1Y5 ;
+
+# STRIP_MCLKA driven by BUFGCTRL_X0Y3
+NET "STRIP_MCLKA" TNM_NET = "TN_STRIP_MCLKA" ;
+TIMEGRP "TN_STRIP_MCLKA" AREA_GROUP = "CLKAG_STRIP_MCLKA" ;
+AREA_GROUP "CLKAG_STRIP_MCLKA" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2, CLOCKREGION_X0Y3, CLOCKREGION_X1Y3, CLOCKREGION_X0Y4, CLOCKREGION_X1Y4, CLOCKREGION_X0Y5, CLOCKREGION_X1Y5 ;
+
+# STRIP_MCLKB driven by BUFGCTRL_X0Y7
+NET "STRIP_MCLKB" TNM_NET = "TN_STRIP_MCLKB" ;
+TIMEGRP "TN_STRIP_MCLKB" AREA_GROUP = "CLKAG_STRIP_MCLKB" ;
+AREA_GROUP "CLKAG_STRIP_MCLKB" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y2 ;
+
+# strip_imp/stripclk_imp/debug<0> driven by BUFGCTRL_X0Y23
+NET "strip_imp/stripclk_imp/debug<0>" TNM_NET = "TN_strip_imp/stripclk_imp/debug<0>" ;
+TIMEGRP "TN_strip_imp/stripclk_imp/debug<0>" AREA_GROUP = "CLKAG_strip_imp/stripclk_imp/debug<0>" ;
+AREA_GROUP "CLKAG_strip_imp/stripclk_imp/debug<0>" RANGE =   CLOCKREGION_X1Y4 ;
+
+# STRIP_BCOCLK<0> driven by BUFGCTRL_X0Y19
+NET "STRIP_BCOCLK<0>" TNM_NET = "TN_STRIP_BCOCLK<0>" ;
+TIMEGRP "TN_STRIP_BCOCLK<0>" AREA_GROUP = "CLKAG_STRIP_BCOCLK<0>" ;
+AREA_GROUP "CLKAG_STRIP_BCOCLK<0>" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2, CLOCKREGION_X1Y3, CLOCKREGION_X0Y4, CLOCKREGION_X1Y4, CLOCKREGION_X0Y5, CLOCKREGION_X1Y5 ;
+
+# strip_imp/strip_mclk<0> driven by BUFGCTRL_X0Y8
+NET "strip_imp/strip_mclk<0>" TNM_NET = "TN_strip_imp/strip_mclk<0>" ;
+TIMEGRP "TN_strip_imp/strip_mclk<0>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<0>" ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<0>" RANGE =   CLOCKREGION_X1Y3, CLOCKREGION_X1Y4, CLOCKREGION_X1Y5 ;
+
+# strip_imp/strip_mclk<5> driven by BUFGCTRL_X0Y0
+NET "strip_imp/strip_mclk<5>" TNM_NET = "TN_strip_imp/strip_mclk<5>" ;
+TIMEGRP "TN_strip_imp/strip_mclk<5>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<5>" ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<5>" RANGE =   CLOCKREGION_X0Y3, CLOCKREGION_X0Y4, CLOCKREGION_X0Y5 ;
+
+# strip_imp/strip_mclk<4> driven by BUFGCTRL_X0Y1
+NET "strip_imp/strip_mclk<4>" TNM_NET = "TN_strip_imp/strip_mclk<4>" ;
+TIMEGRP "TN_strip_imp/strip_mclk<4>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<4>" ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<4>" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X0Y3 ;
+
+# strip_imp/strip_mclk<3> driven by BUFGCTRL_X0Y15
+NET "strip_imp/strip_mclk<3>" TNM_NET = "TN_strip_imp/strip_mclk<3>" ;
+TIMEGRP "TN_strip_imp/strip_mclk<3>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<3>" ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<3>" RANGE =   CLOCKREGION_X1Y0, CLOCKREGION_X1Y1, CLOCKREGION_X1Y2, CLOCKREGION_X1Y3 ;
+
+# strip_imp/strip_mclk<2> driven by BUFGCTRL_X0Y9
+NET "strip_imp/strip_mclk<2>" TNM_NET = "TN_strip_imp/strip_mclk<2>" ;
+TIMEGRP "TN_strip_imp/strip_mclk<2>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<2>" ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<2>" RANGE =   CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2 ;
+
+# strip_imp/strip_mclk<1> driven by BUFGCTRL_X0Y5
+NET "strip_imp/strip_mclk<1>" TNM_NET = "TN_strip_imp/strip_mclk<1>" ;
+TIMEGRP "TN_strip_imp/strip_mclk<1>" AREA_GROUP = "CLKAG_strip_imp/strip_mclk<1>" ;
+AREA_GROUP "CLKAG_strip_imp/strip_mclk<1>" RANGE =   CLOCKREGION_X1Y3 ;
+
+# icon_control0<0> driven by BUFGCTRL_X0Y4
+NET "icon_control0<0>" TNM_NET = "TN_icon_control0<0>" ;
+TIMEGRP "TN_icon_control0<0>" AREA_GROUP = "CLKAG_icon_control0<0>" ;
+AREA_GROUP "CLKAG_icon_control0<0>" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X0Y1, CLOCKREGION_X0Y2, CLOCKREGION_X0Y4 ;
+
+# GMII_RXCLK driven by BUFGCTRL_X0Y13
+NET "GMII_RXCLK" TNM_NET = "TN_GMII_RXCLK" ;
+TIMEGRP "TN_GMII_RXCLK" AREA_GROUP = "CLKAG_GMII_RXCLK" ;
+AREA_GROUP "CLKAG_GMII_RXCLK" RANGE =   CLOCKREGION_X0Y0, CLOCKREGION_X1Y0, CLOCKREGION_X0Y1, CLOCKREGION_X1Y1, CLOCKREGION_X0Y2, CLOCKREGION_X1Y2, CLOCKREGION_X0Y3, CLOCKREGION_X1Y3, CLOCKREGION_X0Y4, CLOCKREGION_X1Y4, CLOCKREGION_X0Y5, CLOCKREGION_X1Y5 ;
+
+# CLK15NS driven by BUFGCTRL_X0Y10
+NET "CLK15NS" TNM_NET = "TN_CLK15NS" ;
+TIMEGRP "TN_CLK15NS" AREA_GROUP = "CLKAG_CLK15NS" ;
+AREA_GROUP "CLKAG_CLK15NS" RANGE =   CLOCKREGION_X0Y1 ;
+
+# NOTE: 
+# This report is provided to help reproduce successful clock-region 
+# assignments. The report provides range constraints for all global 
+# clock networks, in a format that is directly usable in ucf files. 
+#
+#END of Global Clock Net Distribution UCF Constraints
+######################################################################################
+
+
+######################################################################################
+GLOBAL CLOCK NET LOADS DISTRIBUTION REPORT:
+
+Number of Global Clock Regions : 12
+Number of Global Clock Networks: 19
+
+Clock Region Assignment: SUCCESSFUL
+
+Clock-Region: <CLOCKREGION_X0Y0> 
+ key resource utilizations (used/available): global-clocks - 4/8 ;
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+   BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
+   FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      8 |      2 |      0 |      0 |     32 |     32 |      8 |      0 |      0 |      0 |      1 |    896 |   1792 | <- (Available Resources in this Region)
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+        |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    152 |    490 |GMII_RXCLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      9 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |strip_imp/strip_mclk<4>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      1 |    152 |    499 | Total 
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+
+
+Clock-Region: <CLOCKREGION_X1Y0> 
+ key resource utilizations (used/available): global-clocks - 6/8 ;
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+   BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
+   FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+     16 |      0 |      0 |      0 |     32 |     32 |      0 |      0 |      0 |      0 |      1 |    896 |   1792 | <- (Available Resources in this Region)
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+        |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     90 |    545 |GMII_RXCLK
+      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     32 |STRIP_BCOCLK<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      1 |STRIP_DAC_CLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    106 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     26 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      4 |strip_imp/strip_mclk<2>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      1 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      1 |     90 |    714 | Total 
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+
+
+Clock-Region: <CLOCKREGION_X0Y1> 
+ key resource utilizations (used/available): global-clocks - 6/8 ;
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+   BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
+   FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      8 |      1 |      2 |      0 |     48 |     48 |      8 |      0 |      0 |      0 |      2 |    896 |   1792 | <- (Available Resources in this Region)
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+        |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      0 |      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     14 |CLK15NS
+      0 |      0 |      0 |      0 |      0 |     11 |      0 |      0 |      0 |      0 |      0 |    133 |    595 |GMII_RXCLK
+      0 |      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      4 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     52 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |strip_imp/strip_mclk<2>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     46 |strip_imp/strip_mclk<4>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      0 |      2 |      0 |      0 |      0 |     11 |      0 |      0 |      0 |      0 |      0 |    133 |    712 | Total 
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+
+
+Clock-Region: <CLOCKREGION_X1Y1> 
+ key resource utilizations (used/available): global-clocks - 7/8 ;
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+   BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
+   FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+     16 |      0 |      0 |      0 |     32 |     32 |      0 |      0 |      0 |      0 |      1 |    896 |   1792 | <- (Available Resources in this Region)
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+        |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      5 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     26 |    309 |GMII_RXCLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     38 |    139 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      8 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    169 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     69 |strip_imp/strip_mclk<2>
+      0 |      0 |      0 |      0 |      8 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     92 |strip_imp/strip_mclk<3>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      9 |strip_imp/strip_mclk<4>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      5 |      0 |      0 |      0 |     16 |      0 |      0 |      0 |      0 |      0 |      1 |     64 |    787 | Total 
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+
+
+Clock-Region: <CLOCKREGION_X0Y2> 
+ key resource utilizations (used/available): global-clocks - 8/8 ;
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+   BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
+   FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      8 |      0 |      0 |      0 |     48 |     48 |      8 |      0 |      0 |      0 |      2 |    896 |   1792 | <- (Available Resources in this Region)
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+        |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     27 |    231 |GMII_RXCLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      4 |STRIP_BCOCLK<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      2 |      0 |      5 |STRIP_DAC_CLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    121 |STRIP_MCLKA
+      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     12 |     69 |icon_control0<0>
+      0 |      0 |      0 |      0 |     12 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    302 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     32 |strip_imp/strip_mclk<2>
+      0 |      0 |      0 |      0 |      8 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    115 |strip_imp/strip_mclk<4>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      2 |      0 |      0 |      0 |     24 |      0 |      0 |      0 |      0 |      0 |      2 |     39 |    879 | Total 
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+
+
+Clock-Region: <CLOCKREGION_X1Y2> 
+ key resource utilizations (used/available): global-clocks - 7/8 ;
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+   BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
+   FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+     16 |      0 |      0 |      0 |     32 |     32 |      0 |      0 |      0 |      0 |      1 |    896 |   1792 | <- (Available Resources in this Region)
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+        |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      5 |     81 |GMII_RXCLK
+      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      3 |STRIP_BCOCLK<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
+      8 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    210 |    267 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      6 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    282 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     68 |strip_imp/strip_mclk<2>
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     85 |strip_imp/strip_mclk<3>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+     12 |      0 |      0 |      0 |     12 |      0 |      0 |      0 |      0 |      0 |      1 |    215 |    786 | Total 
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+
+
+Clock-Region: <CLOCKREGION_X0Y3> 
+ key resource utilizations (used/available): global-clocks - 8/8 ;
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+   BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
+   FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      8 |      0 |      0 |      0 |     48 |     48 |      8 |      0 |      0 |      0 |      2 |    896 |   1792 | <- (Available Resources in this Region)
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+        |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      8 |    333 |GMII_RXCLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      8 |STRIP_DAC_CLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     92 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    207 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      6 |strip_imp/strip_mclk<4>
+      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     97 |strip_imp/strip_mclk<5>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     50 |strip_imp/stripclk_imp/clk_q
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |strip_imp/stripclk_imp/clk_z
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      0 |      0 |      0 |      0 |      8 |      0 |      0 |      0 |      0 |      0 |      1 |      8 |    794 | Total 
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+
+
+Clock-Region: <CLOCKREGION_X1Y3> 
+ key resource utilizations (used/available): global-clocks - 8/8 ;
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+   BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
+   FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+     16 |      0 |      0 |      0 |     32 |     32 |      0 |      0 |      0 |      0 |      1 |    896 |   1792 | <- (Available Resources in this Region)
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+        |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      6 |     83 |GMII_RXCLK
+      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     66 |     25 |STRIP_BCOCLK<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
+      5 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    126 |    139 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |     16 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    266 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      6 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     26 |strip_imp/strip_mclk<0>
+      0 |      0 |      0 |      0 |     10 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    172 |strip_imp/strip_mclk<1>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      3 |strip_imp/strip_mclk<3>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+     10 |      0 |      0 |      0 |     32 |      0 |      0 |      0 |      0 |      0 |      1 |    198 |    714 | Total 
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+
+
+Clock-Region: <CLOCKREGION_X0Y4> 
+ key resource utilizations (used/available): global-clocks - 7/8 ;
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+   BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
+   FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      8 |      1 |      2 |      0 |     48 |     48 |      8 |      0 |      0 |      0 |      2 |    896 |   1792 | <- (Available Resources in this Region)
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+        |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      4 |    248 |GMII_RXCLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    269 |STRIP_BCOCLK<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      4 |     98 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    103 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     83 |strip_imp/strip_mclk<5>
+      0 |      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |strip_imp/stripclk_imp/clk_z_src
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      0 |      1 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      1 |      8 |    801 | Total 
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+
+
+Clock-Region: <CLOCKREGION_X1Y4> 
+ key resource utilizations (used/available): global-clocks - 8/8 ;
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+   BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
+   FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+     16 |      0 |      0 |      0 |     32 |     32 |      0 |      0 |      0 |      0 |      1 |    896 |   1792 | <- (Available Resources in this Region)
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+        |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      3 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |    177 |GMII_RXCLK
+      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     58 |     61 |STRIP_BCOCLK<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     70 |    209 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    206 |strip_imp/dcm_outclk
+      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     71 |strip_imp/fracbcoclk
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    145 |strip_imp/strip_mclk<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     36 |strip_imp/stripclk_imp/debug<0>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      5 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      1 |    129 |    905 | Total 
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+
+
+Clock-Region: <CLOCKREGION_X0Y5> 
+ key resource utilizations (used/available): global-clocks - 7/8 ;
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+   BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
+   FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      8 |      4 |      0 |      0 |     32 |     32 |      8 |      0 |      0 |      0 |      1 |    896 |   1792 | <- (Available Resources in this Region)
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+        |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      0 |      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     91 |GMII_RXCLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    192 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     21 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |strip_imp/strip_mclk<5>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      3 |strip_imp/stripclk_imp/clk_q
+      0 |      1 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     21 |strip_imp/stripclk_imp/clk_z
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      0 |      2 |      0 |      0 |      8 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |    328 | Total 
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+
+
+Clock-Region: <CLOCKREGION_X1Y5> 
+ key resource utilizations (used/available): global-clocks - 8/8 ;
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+   BRAM |    DCM |   PMCD |     GT | ILOGIC | OLOGIC |   MULT |   EMAC |    PPC |   PCIE | IDLYCT | LUTRAM |     FF | <- (Types of Resources in this  Region)
+   FIFO |        |        |        |        |        |        |        |        |        |        |        |        |
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+     16 |      0 |      0 |      0 |     32 |     32 |      0 |      0 |      0 |      0 |      1 |    896 |   1792 | <- (Available Resources in this Region)
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+        |        |        |        |        |        |        |        |        |        |        |        |        | <Global clock Net Name>
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    267 |GMII_RXCLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      4 |    214 |STRIP_BCOCLK<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |STRIP_DAC_CLK
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    145 |STRIP_MCLKA
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |    104 |strip_imp/dcm_outclk
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     44 |strip_imp/fracbcoclk
+      0 |      0 |      0 |      0 |      2 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      9 |strip_imp/strip_mclk<0>
+      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |     21 |strip_imp/stripclk_imp/clk_z_src
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+      0 |      0 |      0 |      0 |      4 |      0 |      0 |      0 |      0 |      0 |      1 |      4 |    804 | Total 
+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+----------------------------------------
+
+NOTE:
+The above detailed report is the initial placement of the logic after the clock region assignment. The final placement
+may be significantly different because of the various optimization steps which will follow. Specifically, logic blocks
+maybe moved to adjacent clock-regions as long as the "number of clocks per region" constraint is not violated.
+
+
+# END of Global Clock Net Loads Distribution Report:
+######################################################################################
+
+
+Phase 6.30  Global Clock Region Assignment (Checksum:b5df1996) REAL time: 6 mins 9 secs 
+
+Phase 7.3  Local Placement Optimization
+Phase 7.3  Local Placement Optimization (Checksum:b5df1996) REAL time: 6 mins 9 secs 
+
+Phase 8.5  Local Placement Optimization
+Phase 8.5  Local Placement Optimization (Checksum:b5df1996) REAL time: 6 mins 9 secs 
+
+Phase 9.8  Global Placement
+............................
+..........................................................................................................
+......................
+...........................................................................................................................
+.......................
+.....................................
+................
+..............................
+Phase 9.8  Global Placement (Checksum:e2e0529d) REAL time: 13 mins 25 secs 
+
+Phase 10.5  Local Placement Optimization
+Phase 10.5  Local Placement Optimization (Checksum:e2e0529d) REAL time: 13 mins 26 secs 
+
+Phase 11.18  Placement Optimization
+Phase 11.18  Placement Optimization (Checksum:d64254ad) REAL time: 28 mins 21 secs 
+
+Phase 12.5  Local Placement Optimization
+Phase 12.5  Local Placement Optimization (Checksum:d64254ad) REAL time: 28 mins 21 secs 
+
+Phase 13.34  Placement Validation
+Phase 13.34  Placement Validation (Checksum:d64254ad) REAL time: 28 mins 22 secs 
+
+Total REAL time to Placer completion: 28 mins 25 secs 
+Total CPU  time to Placer completion: 27 mins 45 secs 
+Running post-placement packing...
+WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is sourced by a combinatorial pin. This is not
+   good design practice. Use the CE pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:367 - The signal <eth_interface/data_manager_blk/rx_info_fifo_rd_data<6>> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <eth_interface/data_manager_blk/rx_info_fifo_rd_data<5>> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <eth_interface/data_manager_blk/rx_info_fifo_rd_data<4>> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <eth_interface/data_manager_blk/tx_data_fifo_empty> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <eth_interface/data_manager_blk/tx_ctrl_info_fifo_full> is incomplete. The
+   signal does not drive any load pins in the design.
+
+Design Summary
+--------------
+
+Design Summary:
+Number of errors:      0
+Number of warnings:   55
+Logic Utilization:
+  Total Number Slice Registers:       8,996 out of  21,504   41%
+    Number used as Flip Flops:        8,995
+    Number used as Latches:               1
+  Number of 4 input LUTs:            13,137 out of  21,504   61%
+Logic Distribution:
+  Number of occupied Slices:          9,908 out of  10,752   92%
+    Number of Slices containing only related logic:   9,908 out of   9,908 100%
+    Number of Slices containing unrelated logic:          0 out of   9,908   0%
+      *See NOTES below for an explanation of the effects of unrelated logic.
+  Total Number of 4 input LUTs:      14,048 out of  21,504   65%
+    Number used as logic:            12,077
+    Number used as a route-thru:        911
+    Number used for Dual Port RAMs:     960
+      (Two LUTs used per Dual Port RAM)
+    Number used as Shift registers:     100
+
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+  Number of bonded IOBs:                203 out of     448   45%
+    IOB Dual-Data Rate Flops:            29
+    IOB Master Pads:                     34
+    IOB Slave Pads:                      34
+  Number of BUFG/BUFGCTRLs:              19 out of      32   59%
+    Number used as BUFGs:                11
+    Number used as BUFGCTRLs:             8
+  Number of FIFO16/RAMB16s:              28 out of      72   38%
+    Number used as FIFO16s:              12
+    Number used as RAMB16s:              16
+  Number of DCM_ADVs:                     3 out of       8   37%
+  Number of ISERDESs:                    60 out of     448   13%
+  Number of BSCAN_VIRTEX4s:               1 out of       4   25%
+  Number of IDELAYCTRLs:                 12 out of      16   75%
+
+  Number of RPM macros:            9
+Average Fanout of Non-Clock Nets:                3.43
+
+Peak Memory Usage:  1323 MB
+Total REAL time to MAP completion:  28 mins 42 secs 
+Total CPU time to MAP completion:   28 mins 2 secs 
+
+Mapping completed.
+See MAP report file "top_map.mrp" for details.

@@ -248,16 +248,25 @@ architecture BEHAVIORAL of top is
    
     COMPONENT trigpattern 
     GENERIC (
-     PATTERN : STD_LOGIC_VECTOR := "000";
-     CLOCK_EDGE : STRING := "RISING";
-     WIDTH : INTEGER := 1
+		PATTERN : STD_LOGIC_VECTOR := "000";
+		CLOCK_EDGE : STRING := "RISING";
+		WIDTH : INTEGER := 1
     );
     PORT (
-     CLK : IN STD_LOGIC;
-     D : IN STD_LOGIC;
-     TRIGGER : OUT STD_LOGIC
+		CLK : IN STD_LOGIC;
+		D : IN STD_LOGIC;
+		TRIGGER : OUT STD_LOGIC
     );
     END COMPONENT;
+
+
+	COMPONENT divide_ext_clk_by2
+		Port ( 
+			ext_clk_by2 : out STD_LOGIC;
+			locked : out STD_LOGIC;
+			ext_clk : in STD_LOGIC
+		);
+	END COMPONENT;
    
     SIGNAL HALT : STD_LOGIC;
     SIGNAL START : STD_LOGIC;
@@ -290,6 +299,13 @@ architecture BEHAVIORAL of top is
 
     signal ext_clk, ext_cmd : std_logic;-- ext_trig, ext_trig_strobe : std_logic;
     --signal ext_trig_cnt : unsigned(9 downto 0) := (others => '0');
+    signal ext_clk_by2 : std_logic;
+    signal TRIGGER_latch : std_logic := '0';
+    signal HALT_latch : std_logic := '0';
+    signal START_latch : std_logic := '0';
+    signal TRIGGER_long : std_logic := '0';
+    signal HALT_long : std_logic := '0';
+    signal START_long : std_logic := '0';
     
     signal b_throttle_reset, fifo_reset : std_logic;
             
@@ -297,7 +313,9 @@ architecture BEHAVIORAL of top is
     signal b_data_stack_state : std_logic_vector(3 downto 0) := (others => '0');
     signal bco_cnt_out : std_logic_vector(47 downto 0);   -- bco counter
     
-    
+    signal ext_clock_by2_is_locked : std_logic;
+    signal start_alternative : std_logic := '0';
+
     attribute mark_debug of strip_ready : signal is "true";
     attribute mark_debug of tx_rden : signal is "true";
     attribute mark_debug of eth_strobe_mask : signal is "true";
@@ -312,6 +330,11 @@ architecture BEHAVIORAL of top is
     attribute mark_debug of strip_bwe : signal is "true";
     attribute mark_debug of b_data_cnt : signal is "true";
         
+	
+    attribute mark_debug of HALT_long : signal is "true";
+    attribute mark_debug of START_long : signal is "true";
+    attribute mark_debug of TRIGGER_long : signal is "true";
+    attribute mark_debug of ext_clock_by2_is_locked : signal is "true";
     
    
 begin
@@ -643,10 +666,10 @@ begin
 	       IOBUS_READY => open, --SLAVE_READY(3),
 	       CLKX => CLK15NS,
 	       CLKY => secondary_clk,--CLK5MHZ,
-	       EXT_CLK => ext_clk,--EXT_CLK,
-	       EXT_TRIG => TRIGGER,--ext_trig_strobe,--TRIGGER,
-	       EXT_HALT => HALT,--gnd,--HALT,
-	       EXT_START => START,--gnd,--START,
+	       EXT_CLK => ext_clk_by2, --ext_clk,--EXT_CLK,
+	       EXT_TRIG => TRIGGER_long,--ext_trig_strobe,--TRIGGER,
+	       EXT_HALT => HALT_long,--gnd,--HALT,
+	       EXT_START => START_long,--gnd,--START,
 	       DAC_CS => open,--STRIP_DAC_CS,
 	       DAC_SDI => open,--STRIP_DAC_SDI,
 	       DAC_SDO => gnd,--STRIP_DAC_SDO,
@@ -689,18 +712,21 @@ begin
 	     
 	 -- handle external trigger
 	 
---       trigpattern_imp : trigpattern
---       GENERIC MAP (
---         PATTERN => "01010",
---         CLOCK_EDGE => "FALLING",
---         WIDTH => 1
---       )
---       PORT MAP (
---         CLK => EXT_CLK,
---         D => EXT_CMD,
---         TRIGGER => TRIGGER
---       );
+      trigpattern_imp : trigpattern
+      GENERIC MAP (
+        PATTERN => "00111",
+        CLOCK_EDGE => "FALLING",
+        WIDTH => 1
+      )
+      PORT MAP (
+        CLK => EXT_CLK,
+        D => EXT_CMD,
+        TRIGGER => TRIGGER
+      );
        
+	  TRIGGER_long     	<= TRIGGER or TRIGGER_latch;
+	  HALT_long      	<= HALT or HALT_latch;
+	  START_long      	<= START or START_latch or start_alternative;
        
         -- Missing triggers from NIM+ so trying to simplify
         simple_trigger_gen : if TRUE generate
@@ -716,23 +742,28 @@ begin
                 
                     cmd_latch       <= EXT_CMD;
                     cmd_latch2      <= cmd_latch;
+
+                    TRIGGER_latch      	<= TRIGGER;
+                    HALT_latch      	<= HALT;
+                    START_latch      	<= START or start_alternative;
+
                     
-                    TRIGGER         <= '0';
+                    -- TRIGGER         <= '0';
                     
-                    if (cmd_latch2 = '0' and cmd_latch = '1') then 
-                        hi_count <= (others => '0'); --reset
-                    elsif(cmd_latch = '1') then
+                    -- if (cmd_latch2 = '0' and cmd_latch = '1') then 
+                    --     hi_count <= (others => '0'); --reset
+                    -- elsif(cmd_latch = '1') then
                     
-                        if(hi_count = 2) then
-                            TRIGGER <= '1';
-                        end if;
+                    --     if(hi_count = 2) then
+                    --         TRIGGER <= '1';
+                    --     end if;
                     
-                        if(hi_count < "111") then 
-                            hi_count <= hi_count + 1;
-                        end if;
-                    else
-                        hi_count <= (others => '1'); --no signal
-                    end if;
+                    --     if(hi_count < "111") then 
+                    --         hi_count <= hi_count + 1;
+                    --     end if;
+                    -- else
+                    --     hi_count <= (others => '1'); --no signal
+                    -- end if;
                 end if;
            end process simple_trigger_proc;
         end generate simple_trigger_gen;
@@ -748,18 +779,31 @@ begin
          D => EXT_CMD,
          TRIGGER => START
        );
-     
-       haltpattern_imp : trigpattern
+
+	   startpattern_imp_alt : trigpattern
        GENERIC MAP (
-         PATTERN => "00111",
-         CLOCK_EDGE => "FALLING",
-         WIDTH => 2
+         PATTERN => "01101",
+         CLOCK_EDGE => "RISING",
+         WIDTH => 4
        )
        PORT MAP (
          CLK => EXT_CLK,
          D => EXT_CMD,
-         TRIGGER => HALT
+         TRIGGER => start_alternative
        );
+     
+    --    haltpattern_imp : trigpattern
+    --    GENERIC MAP (
+    --      PATTERN => "00111",
+    --      CLOCK_EDGE => "FALLING",
+    --      WIDTH => 2
+    --    )
+    --    PORT MAP (
+    --      CLK => EXT_CLK,
+    --      D => EXT_CMD,
+    --      TRIGGER => HALT
+    --    );
+	   HALT <= '0';
    
     -----------------------
     ----------------------- IBUF 's 
@@ -815,12 +859,21 @@ begin
              O => EXT_CLK_input
            );
            
-              ext_bcoclk_bufg : bufg    
-                 port map (
-                   i => EXT_CLK_input,
-                   o => EXT_CLK
-                 );
-       
+			ext_bcoclk_bufg : bufg    
+				port map (
+				i => EXT_CLK_input,
+				o => EXT_CLK
+				);
+
+				
+
+		divide_ext_clk_by2_inst : divide_ext_clk_by2
+		Port map ( 
+			ext_clk_by2 => ext_clk_by2, -- : out STD_LOGIC;
+			locked => ext_clock_by2_is_locked, --: out STD_LOGIC;
+			ext_clk => EXT_CLK -- : in STD_LOGIC
+		);
+		       
        
        ext_trig_ibuf : IBUFDS
            GENERIC MAP ( IOSTANDARD => "LVDS_25",
